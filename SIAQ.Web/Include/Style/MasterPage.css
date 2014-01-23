@@ -1,0 +1,103 @@
+/*'---------------------------------------------------------------------------------------------------------------------------------
+' Nombre:   MasterPage
+' Autor:    Ruben.Cobos
+' Fecha:		11-Marzo-2012
+'
+' Descripción:	Hoja de estilos que contiene las configuraciones generales de la aplicación aplicadas en los Master Pages
+'
+'----------------------------------------------------------------------------------------------------------------------------------*/
+
+/* General*/
+body{
+   background-color:#FFFFFF;
+   color:#27245D;
+   font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+.GCSoft{
+	border:0px solid #000000;
+	bottom:5px;
+	height:50px;
+	left:10px;
+	position:fixed;
+	width:138px;
+	z-index:800;
+}
+
+.Header{
+	border: 0px solid;
+	height:104px;
+	width:100%;
+}
+
+/* ApplicationLogin.MasterPage */
+.Login {
+	background-color:#FFFFFF;
+	border: 0px solid #549CC6;
+	clear: both;
+	height:122px;
+	margin:100px auto;
+	position:relative;
+	width:310px;
+}
+
+/* ApplicationPrivate.MasterPage */
+.Body {
+	background-color:#FFFFFF;
+	border: 0px solid RED;
+	margin:0px auto;
+	min-height:500px;
+	position:relative;
+	width:800px;
+}
+
+.Canvas {
+	background-color:#FFFFFF;
+	border: 0px solid BLUE;
+	clear: both;
+	min-height:500px;
+	position:relative;
+	width:100%;
+}
+
+.Menu {
+	background-color:#FFFFFF;
+	border: 0px solid YELLOW;
+	float:left;
+	min-height:500px;
+	top:0px;
+	position:relative;
+	width:224px;
+}
+
+.UserName{
+	border: 0px solid #000000;
+	float:right;
+	height:20px;
+	position:absolute;
+	right:10px;
+	text-align:right;
+	top:84px;
+	width:500px;
+}
+
+/* NonMenu.MasterPage */
+.NonMenuCanvas {
+	background-color:#FFFFFF;
+	border: 0px solid BLUE;
+	clear: both;
+	position:relative;
+	width:100%;
+}
+
+/* PopUpTemplate.MasterPage */
+.PopUpCanvas {
+	background-color:#FFFFFF;
+	border:0px solid BLUE;
+	clear:both;
+	margin:0px auto;
+	position:relative;
+	width:100%;
+}

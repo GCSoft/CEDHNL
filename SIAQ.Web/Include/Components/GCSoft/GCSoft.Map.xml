@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<GCSoft.Utilities>
+   <Common Namespace="GCSoft.Utilities.Common">
+      <Function>
+         <Utility Method="GetStandarDate"            Summary="Obtiene una fecha en el formato universal"/>
+         <Utility Method="IsNumber"                  Summary="Evalua una cadena de texto para saber si es un Número"/>
+         <Utility Method="JSClearText"               Summary="Reemplaza los caracteres especiales que no se interpretan en Javascript encontrados en la cadena de entrada por caracteres válidos"/>
+         <Utility Method="ParseGridViewToDataTable"  Summary="Obtiene un DataTable en base a la definición de enlazado de un GridView (incluye DataKeys). Este método no contempla los TemplateField ni ningun otra columna diferente a un BoundField o DataKey"/>
+      </Function>
+   </Common>
+   <Communication Namespace="GCSoft.Utilities.Communication">
+      <Mail>
+         <Utility Method="SendMail"   Summary="Envía un correo electrónico con los parametros de configuración establecidos en App.config"/>
+      </Mail>
+   </Communication>
+   <Security Namespace="GCSoft.Utilities.Security">
+      <Authentication>
+         <Utility Method="AuthenticateUser"   Summary="Genera un ticket de autenticación para un usuario que acreditó los niveles de seguridad de una aplicación configurada como Authentication Mode Forms"/>
+      </Authentication>
+      <Encryption>
+         <Utility Method="DecryptString"   Summary="Desencripta una cadena de texto"/>
+         <Utility Method="EncryptString"   Summary="Encripta una cadena de texto"/>
+      </Encryption>
+      <PasswordGenerator>
+         <Utility Method="CreatePassword"   Summary="Crea un nuevo password"/>
+      </PasswordGenerator>
+   </Security>
+</GCSoft.Utilities>

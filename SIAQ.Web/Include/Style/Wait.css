@@ -1,0 +1,27 @@
+/*'---------------------------------------------------------------------------------------------------------------------------------
+' Nombre:   Wait
+' Autor:    Ruben.Cobos
+' Fecha:    01-Marzo-2012
+'
+' Descripción:	Hoja de estilos que configura el comportamiento de la página en el PostBack con AJAX
+'
+'----------------------------------------------------------------------------------------------------------------------------------*/
+
+.LoadingDiv{
+	left: 0px;
+	height: 100%;
+	position:fixed;
+	top: 0px;
+	width: 100%;
+	z-index:1000;
+}
+
+.LoadingImageDiv{
+   border:0px solid #000000;
+	height:400px;
+	position:absolute;
+	right:-100px;
+	bottom:-175px;
+	width:400px;
+	z-index:800;
+}

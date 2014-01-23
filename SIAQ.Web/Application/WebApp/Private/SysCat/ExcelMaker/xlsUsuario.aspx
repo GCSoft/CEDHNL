@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="xlsUsuario.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.SysCat.ExcelMaker.xlsUsuario" %>

@@ -1,0 +1,78 @@
+/*'---------------------------------------------------------------------------------------------------------------------------------
+' Nombre:   Text
+' Autor:    Ruben.Cobos
+' Fecha:		01-Marzo-2012
+'
+' Descripción:	Hoja de estilos que contiene las configuraciones generales de los textos de la aplicación
+'
+'----------------------------------------------------------------------------------------------------------------------------------*/
+
+.LoginTextLink{
+	color:#4B4878;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	font-weight:bold;
+	text-decoration: underline;
+}
+
+.Notification{
+	color:#180A3B;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	vertical-align: top;
+}
+
+/*'---------------------------------------------------------------------------------------------------------------------------------*/
+
+.GraphTabTitleText{
+   color:#4B4878;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size:10px;
+}
+
+.GraphTitleText{
+   color:#4B4878;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	text-align:center;
+	width:100%;
+}
+
+.GraphSubTitleText{
+   color:#4B4878;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size:10px;
+	text-align:center;
+	width:100%;
+}
+
+.LoginText{
+	color:#4B4878;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 11px;
+}
+
+
+
+.Title_Form{
+	color: #2e5fa9;
+	font-family: 'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.Title_Public{
+	color: #27245D;
+	font-family:Agency FB;
+	font-size:35px;
+	text-align:center;
+	font-weight: bold;
+}
+
+
+.UserNameText{
+	color:#549CC6;
+	font-family:Arial;
+	font-size:9pt;
+	font-weight:normal;
+}

@@ -1,0 +1,130 @@
+/*'---------------------------------------------------------------------------------------------------------------------------------
+' Nombre:   Content
+' Autor:    Ruben.Cobos
+' Fecha:		11-Marzo-2012
+'
+' Descripción:	Hoja de estilos que contiene las configuraciones de las tablas de los Content's de la aplicación
+'
+'----------------------------------------------------------------------------------------------------------------------------------*/
+
+/* Action (Formularios de Edición/Nuevo) */
+.ActionBlock{
+	background: url(../../../../Include/Image/Wait/Background.png) repeat;
+	left: 0px;
+	height: 100%;
+	position:fixed;
+	top: 0px;
+	width: 100%;
+	z-index:900;
+}
+
+.ActionBody{
+	border:0px solid red;
+	clear: both;
+	text-align:center;
+	vertical-align:middle;
+	width:100%;
+}
+
+.ActionContent{
+	background-color:#FFFFFF;
+   border:1px solid #4B4878;
+   margin:0px auto;
+   position:relative;
+	z-index:901;
+}
+
+.ActionContentMessage{
+   border:0px solid red;
+   color:Red;
+   display:block;
+   font-family:Arial, Sans-Serif;
+   font-size:9px;
+}
+
+.ActionHeader{
+	background-color:#4B4878;
+	cursor:move;
+	height:30px;
+	text-align:center;
+	vertical-align:middle;
+	width:100%;
+}
+
+.ActionHeaderCloseImage{
+   cursor:pointer;
+   width:14px;
+   z-index:902;
+}
+
+.ActionHeaderTitle{
+   color:#FFFFFF;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size:12px;
+	font-weight:bold;
+}
+
+.tdActionCeldaLeyendaItem{
+	border:0px solid #4B4878;
+	color:#4B4878;
+	font-family: Arial, Sans-Serif;
+	font-size:12px;
+	font-weight:bold;
+	text-align:left;
+	width:160px;
+}
+
+
+/* Formulario General*/
+.tdCeldaTituloEncabezado{
+	color:#27245D;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size:15px;
+	font-weight:bold;
+	height: 27px;
+	text-align:left;
+}
+
+.tdCeldaItem{
+	text-align:left;
+	vertical-align:bottom;
+	width:632px;
+}
+
+.tdCeldaLeyendaItem{
+	background-color: #549CC6;
+	border:1px solid #4B4878;
+	color:White;
+	font-family: Arial, Sans-Serif;
+	font-size:12px;
+	font-weight:bold;
+	text-align:left;
+	width:153px;
+}
+
+.tdCeldaMiddleSpace{
+	height:10px;
+}
+
+.tdCeldaMiddleSpace_Title{
+	height:20px;
+}
+
+.tdCeldaSpan{
+	background-color: #FFFFFF;
+	border:1px solid #4B4878;
+	color:#27245D;
+	font-family: Arial, Sans-Serif;
+	font-size:12px;
+	font-weight:bold;
+	vertical-align:text-top;
+	width:153px;
+}
+
+.trFilaItem{
+	height:24px;
+}
+
+.trFilaFooter{
+	height:24px;
+}

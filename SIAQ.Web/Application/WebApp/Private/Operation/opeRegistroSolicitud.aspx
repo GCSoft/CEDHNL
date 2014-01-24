@@ -34,7 +34,7 @@
                         <tr class="trFilaItem">
 							<td class="tdCeldaLeyendaItemFondoBlanco">&nbsp;Tipo de Solicitud</td>
 							<td style="width:5px;"></td>
-							<td class="tdCeldaItem"><asp:DropDownList ID="ddlTipoSolicitud" runat="server" CssClass="Textbox_General" width="157px" ></asp:DropDownList>&nbsp;<font class="MarcadorObligatorio">&nbsp;*</font></td>
+							<td class="tdCeldaItem"><asp:DropDownList ID="ddlTipoSolicitud" runat="server" CssClass="Textbox_General" width="150px" ></asp:DropDownList>&nbsp;<font class="MarcadorObligatorio">&nbsp;*</font></td>
 						</tr>
                         <tr style="height:3px;"><td colspan="3"></td></tr>
                         <tr class="trFilaItem">
@@ -61,18 +61,18 @@
 							<td class="tdCeldaItem">
                                 <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                     <tr>
-                                        <td style="width:25%;"><asp:CheckBox ID="chkIndicador1" runat="server" Text="Indicador 1"></asp:CheckBox></td>
-                                        <td style="width:25%"><asp:CheckBox ID="chkIndicador4" runat="server" Text="Indicador 4"></asp:CheckBox></td>
+                                        <td style="width:25%;"><asp:CheckBox ID="chkIndicador1" runat="server" Text="Indicador 1" CssClass="CheckBox_Regular"></asp:CheckBox></td>
+                                        <td style="width:25%"><asp:CheckBox ID="chkIndicador4" runat="server" Text="Indicador 4" CssClass="CheckBox_Regular"></asp:CheckBox></td>
                                         <td style="width:50%"></td>
                                     </tr>
                                     <tr>
-                                        <td style="width:25%;"><asp:CheckBox ID="chkIndicador2" runat="server" Text="Indicador 2"></asp:CheckBox></td>
-                                        <td style="width:25%"><asp:CheckBox ID="chkIndicador5" runat="server" Text="Indicador 5"></asp:CheckBox></td>
+                                        <td style="width:25%;"><asp:CheckBox ID="chkIndicador2" runat="server" Text="Indicador 2" CssClass="CheckBox_Regular"></asp:CheckBox></td>
+                                        <td style="width:25%"><asp:CheckBox ID="chkIndicador5" runat="server" Text="Indicador 5" CssClass="CheckBox_Regular"></asp:CheckBox></td>
                                         <td style="width:50%"></td>
                                     </tr>
                                     <tr>
-                                        <td style="width:25%;"><asp:CheckBox ID="chkIndicador3" runat="server" Text="Indicador 3"></asp:CheckBox></td>
-                                        <td style="width:25%"><asp:CheckBox ID="chkIndicador6" runat="server" Text="Indicador 6"></asp:CheckBox></td>
+                                        <td style="width:25%;"><asp:CheckBox ID="chkIndicador3" runat="server" Text="Indicador 3" CssClass="CheckBox_Regular"></asp:CheckBox></td>
+                                        <td style="width:25%"><asp:CheckBox ID="chkIndicador6" runat="server" Text="Indicador 6" CssClass="CheckBox_Regular"></asp:CheckBox></td>
                                         <td style="width:50%"></td>
                                     </tr>
                                 </table>

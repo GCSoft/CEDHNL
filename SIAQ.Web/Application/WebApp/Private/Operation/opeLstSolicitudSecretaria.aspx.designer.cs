@@ -10,7 +10,7 @@
 namespace SIAQ.Web.Application.WebApp.Private.Operation {
     
     
-    public partial class opeRegistroServPublico {
+    public partial class opeLstSolicitudSecretaria {
         
         /// <summary>
         /// pnlGrid control.

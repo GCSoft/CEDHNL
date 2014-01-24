@@ -133,6 +133,31 @@
 	height:18px;
 }
 
+.Button_General_Verde{
+  	font-family: Arial;
+	font-size: 10px;
+	color: #003366;
+	cursor:pointer;
+	background-color: #66FF66;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-top-color: #808080;
+	border-right-color: #808080;
+	border-bottom-color: #808080;
+	border-left-color: #808080;
+	margin-top: 4px;
+	font-weight: bold;
+	margin-bottom: 4px;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 2px;
+	padding-left: 0px;
+	height:18px;
+}
+
 /*CALENDAR*/
 .Calendar_Canvas{
 	background:url('../../../../Include/Image/Web/Calendar.png') 98% 50% no-repeat;
@@ -417,7 +442,7 @@
 	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
 	font-size: 11px;
 	font-weight:lighter;
-	height:20px;
+	height:16px;
 	text-align:left;
 	vertical-align:bottom;
 }
@@ -454,20 +479,3 @@
 	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
 	font-size: 10px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

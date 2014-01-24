@@ -18,7 +18,7 @@
 	z-index:900;
 }
 
-.ActionBody{
+.ActionBody{ 
 	border:0px solid red;
 	clear: both;
 	text-align:center;
@@ -88,7 +88,7 @@
 .tdCeldaItem{
 	text-align:left;
 	vertical-align:bottom;
-	width:632px;
+	width:500px;
 }
 
 .tdCeldaLeyendaItem{
@@ -99,7 +99,18 @@
 	font-size:12px;
 	font-weight:bold;
 	text-align:left;
-	width:153px;
+	width:300px;
+}
+
+.tdCeldaLeyendaItemFondoBlanco{
+	background-color: White;
+	border:1px none #4B4878;
+	color:Navy;
+	font-family: Arial, Sans-Serif;
+	font-size:11px;
+	font-weight:normal;
+	text-align:left;
+	width:180px;
 }
 
 .tdCeldaMiddleSpace{
@@ -127,4 +138,15 @@
 
 .trFilaFooter{
 	height:24px;
+}
+ 
+/* Generales */ 
+.MarcadorObligatorio{
+	background-color: White;
+	color:Red;
+	font-family: Arial, Sans-Serif;
+	font-size:10px;
+	font-weight:normal;
+	text-align:left;
+	width:10px;
 }

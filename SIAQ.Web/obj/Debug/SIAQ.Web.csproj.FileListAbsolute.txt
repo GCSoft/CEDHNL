@@ -16,3 +16,6 @@ E:\Trabajo\Proyectos\Externos\Otros\GCSoft\CEDH\GitHub\CEDHNL\SIAQ.Web\bin\SIAQ.
 E:\Trabajo\Proyectos\Externos\Otros\GCSoft\CEDH\GitHub\CEDHNL\SIAQ.Web\obj\Debug\SIAQ.Web.csprojResolveAssemblyReference.cache
 E:\Trabajo\Proyectos\Externos\Otros\GCSoft\CEDH\GitHub\CEDHNL\SIAQ.Web\obj\Debug\SIAQ.Web.dll
 E:\Trabajo\Proyectos\Externos\Otros\GCSoft\CEDH\GitHub\CEDHNL\SIAQ.Web\obj\Debug\SIAQ.Web.pdb
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\CEDH\GitHub\CEDHNL\SIAQ.Web\bin\Microsoft.Practices.EnterpriseLibrary.Data.dll
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\CEDH\GitHub\CEDHNL\SIAQ.Web\bin\Microsoft.Practices.EnterpriseLibrary.Common.dll
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\CEDH\GitHub\CEDHNL\SIAQ.Web\bin\Microsoft.Practices.ObjectBuilder.dll

@@ -31,6 +31,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=4.1.0.0, Culture=neutral, PublicKeyToken=e44a2bc38ed2c13c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Documentación\03 - Construcción\CEDHNL-master\SIAQ.Component\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
+      <HintPath>..\..\..\Documentación\03 - Construcción\CEDHNL-master\SIAQ.Component\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ObjectBuilder">
+      <HintPath>..\..\..\Documentación\03 - Construcción\CEDHNL-master\SIAQ.Component\Microsoft.Practices.ObjectBuilder.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,6 +52,26 @@
   <ItemGroup>
     <Compile Include="DABase.cs" />
     <Compile Include="Object\DAArea.cs" />
+    <Compile Include="Object\DACalificacion.cs" />
+    <Compile Include="Object\DACiudad.cs" />
+    <Compile Include="Object\DACiudadano.cs" />
+    <Compile Include="Object\DAColonia.cs" />
+    <Compile Include="Object\DAEscolaridad.cs" />
+    <Compile Include="Object\DAEstado.cs" />
+    <Compile Include="Object\DAEstatus.cs" />
+    <Compile Include="Object\DAFuncionario.cs" />
+    <Compile Include="Object\DALugarHechos.cs" />
+    <Compile Include="Object\DAMedioComunicacion.cs" />
+    <Compile Include="Object\DANacionalidad.cs" />
+    <Compile Include="Object\DAPais.cs" />
+    <Compile Include="Object\DAPuesto.cs" />
+    <Compile Include="Object\DASolicitud.cs" />
+    <Compile Include="Object\DASolicitudCiudadano.cs" />
+    <Compile Include="Object\DATipoCiudadano.cs" />
+    <Compile Include="Object\DATipoEstatus.cs" />
+    <Compile Include="Object\DATipoSolicitud.cs" />
+    <Compile Include="Object\DATipoVivienda.cs" />
+    <Compile Include="Object\DATitulo.cs" />
     <Compile Include="Object\DAUsuario.cs" />
     <Compile Include="Object\DAMenu.cs" />
     <Compile Include="Object\DASubMenu.cs" />

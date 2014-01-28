@@ -42,6 +42,26 @@
   <ItemGroup>
     <Compile Include="ENTBase.cs" />
     <Compile Include="Object\ENTArea.cs" />
+    <Compile Include="Object\ENTCalificacion.cs" />
+    <Compile Include="Object\ENTCiudad.cs" />
+    <Compile Include="Object\ENTCiudadano.cs" />
+    <Compile Include="Object\ENTColonia.cs" />
+    <Compile Include="Object\ENTEscolaridad.cs" />
+    <Compile Include="Object\ENTEstado.cs" />
+    <Compile Include="Object\ENTEstatus.cs" />
+    <Compile Include="Object\ENTFuncionario.cs" />
+    <Compile Include="Object\ENTLugarHechos.cs" />
+    <Compile Include="Object\ENTMedioComunicacion.cs" />
+    <Compile Include="Object\ENTNacionalidad.cs" />
+    <Compile Include="Object\ENTPais.cs" />
+    <Compile Include="Object\ENTPuesto.cs" />
+    <Compile Include="Object\ENTSolicitud.cs" />
+    <Compile Include="Object\ENTSolicitudCiudadano.cs" />
+    <Compile Include="Object\ENTTipoCiudadano.cs" />
+    <Compile Include="Object\ENTTipoEstatus.cs" />
+    <Compile Include="Object\ENTTipoSolicitud.cs" />
+    <Compile Include="Object\ENTTipoVivienda.cs" />
+    <Compile Include="Object\ENTTitulo.cs" />
     <Compile Include="Object\ENTUsuario.cs" />
     <Compile Include="Object\ENTMenu.cs" />
     <Compile Include="Object\ENTSubMenu.cs" />

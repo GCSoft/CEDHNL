@@ -1,0 +1,4 @@
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\CEDH\GitHub\CEDHNL\SIAQ.Entity\bin\Debug\SIAQ.Entity.dll
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\CEDH\GitHub\CEDHNL\SIAQ.Entity\bin\Debug\SIAQ.Entity.pdb
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\CEDH\GitHub\CEDHNL\SIAQ.Entity\obj\Debug\SIAQ.Entity.dll
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\CEDH\GitHub\CEDHNL\SIAQ.Entity\obj\Debug\SIAQ.Entity.pdb

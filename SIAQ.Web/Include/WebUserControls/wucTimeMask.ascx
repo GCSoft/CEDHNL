@@ -17,7 +17,7 @@
             IsValidEmpty="False"
             EmptyValueMessage="Time is required"
             InvalidValueMessage="Time is invalid"
-            Display="Dynamic"
+            Display="Dynamic" 
             TooltipMessage="Input a time"
             EmptyValueBlurredText="*"
             InvalidValueBlurredMessage="*"

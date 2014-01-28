@@ -47,6 +47,24 @@
   <ItemGroup>
     <Compile Include="BPBase.cs" />
     <Compile Include="Object\BPArea.cs" />
+    <Compile Include="Object\BPCalificacion.cs" />
+    <Compile Include="Object\BPCiudad.cs" />
+    <Compile Include="Object\BPCiudadano.cs" />
+    <Compile Include="Object\BPColonia.cs" />
+    <Compile Include="Object\BPEscolaridad.cs" />
+    <Compile Include="Object\BPEstado.cs" />
+    <Compile Include="Object\BPEstatus.cs" />
+    <Compile Include="Object\BPFuncionario.cs" />
+    <Compile Include="Object\BPMedioComunicacion.cs" />
+    <Compile Include="Object\BPNacionalidad.cs" />
+    <Compile Include="Object\BPPais.cs" />
+    <Compile Include="Object\BPSolicitud.cs" />
+    <Compile Include="Object\BPSolicitudCiudadano.cs" />
+    <Compile Include="Object\BPTipoCiudadano.cs" />
+    <Compile Include="Object\BPTipoEstatus.cs" />
+    <Compile Include="Object\BPTipoSolicitud.cs" />
+    <Compile Include="Object\BPTipoVivienda.cs" />
+    <Compile Include="Object\BPTitulo.cs" />
     <Compile Include="Object\BPUsuario.cs" />
     <Compile Include="Object\BPMenu.cs" />
     <Compile Include="Object\BPSubMenu.cs" />

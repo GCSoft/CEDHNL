@@ -11,3 +11,16 @@ E:\Trabajo\Proyectos\Externos\Otros\GCSoft\CEDH\GitHub\CEDHNL\SIAQ.BusinessProce
 E:\Trabajo\Proyectos\Externos\Otros\GCSoft\CEDH\GitHub\CEDHNL\SIAQ.BusinessProcess\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
 E:\Trabajo\Proyectos\Externos\Otros\GCSoft\CEDH\GitHub\CEDHNL\SIAQ.BusinessProcess\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
 E:\Trabajo\Proyectos\Externos\Otros\GCSoft\CEDH\GitHub\CEDHNL\SIAQ.BusinessProcess\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
+C:\Daniel\Proyectos\GCSoft\ProyectoCDH\CEDHNL\SIAQ.BusinessProcess\bin\Debug\SIAQ.BusinessProcess.dll
+C:\Daniel\Proyectos\GCSoft\ProyectoCDH\CEDHNL\SIAQ.BusinessProcess\bin\Debug\SIAQ.BusinessProcess.pdb
+C:\Daniel\Proyectos\GCSoft\ProyectoCDH\CEDHNL\SIAQ.BusinessProcess\bin\Debug\GCSoft.Utilities.dll
+C:\Daniel\Proyectos\GCSoft\ProyectoCDH\CEDHNL\SIAQ.BusinessProcess\bin\Debug\SIAQ.DataAccess.dll
+C:\Daniel\Proyectos\GCSoft\ProyectoCDH\CEDHNL\SIAQ.BusinessProcess\bin\Debug\SIAQ.Entity.dll
+C:\Daniel\Proyectos\GCSoft\ProyectoCDH\CEDHNL\SIAQ.BusinessProcess\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Daniel\Proyectos\GCSoft\ProyectoCDH\CEDHNL\SIAQ.BusinessProcess\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Daniel\Proyectos\GCSoft\ProyectoCDH\CEDHNL\SIAQ.BusinessProcess\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
+C:\Daniel\Proyectos\GCSoft\ProyectoCDH\CEDHNL\SIAQ.BusinessProcess\bin\Debug\SIAQ.DataAccess.pdb
+C:\Daniel\Proyectos\GCSoft\ProyectoCDH\CEDHNL\SIAQ.BusinessProcess\bin\Debug\SIAQ.Entity.pdb
+C:\Daniel\Proyectos\GCSoft\ProyectoCDH\CEDHNL\SIAQ.BusinessProcess\obj\Debug\SIAQ.BusinessProcess.csprojResolveAssemblyReference.cache
+C:\Daniel\Proyectos\GCSoft\ProyectoCDH\CEDHNL\SIAQ.BusinessProcess\obj\Debug\SIAQ.BusinessProcess.dll
+C:\Daniel\Proyectos\GCSoft\ProyectoCDH\CEDHNL\SIAQ.BusinessProcess\obj\Debug\SIAQ.BusinessProcess.pdb

@@ -1,7 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeRegistroSolicitud.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeRegistroSolicitud" %>
-<%@ Register src="../../../../Include/WebUserControls/wucCalendar.ascx" tagname="wucCalendar" tagprefix="uc1" %>
-<%@ Register src="../../../../Include/WebUserControls/wucTimeMask.ascx" tagname="wucTimeMask" tagprefix="wuc" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
@@ -19,17 +16,13 @@
 						<tr class="trFilaItem">
 							<td class="tdCeldaLeyendaItemFondoBlanco">&nbsp;Fecha</td>
 							<td style="width:5px;"></td>
-							<td class="tdCeldaItem">
-                                <uc1:wucCalendar ID="txtFechaCaptura" runat="server" />
-                            </td>
+							<td class="tdCeldaItem"><asp:Label ID="lblFecha" runat="server" Text="23 de Enero 2014"></asp:Label></td>
 						</tr>
                         <tr style="height:3px;"><td colspan="3"></td></tr>
                         <tr class="trFilaItem">
 							<td class="tdCeldaLeyendaItemFondoBlanco">&nbsp;Hora</td>
 							<td style="width:5px;"></td>
-							<td class="tdCeldaItem">
-                                <wuc:wucTimeMask ID="txtFechaCargado" runat="server" />
-                            </td>
+							<td class="tdCeldaItem"><asp:Label ID="lblHora" runat="server" Text="8:56 p.m."></asp:Label></td>
 						</tr>
                         <tr style="height:3px;"><td colspan="3"></td></tr>
                          <tr class="trFilaItem">

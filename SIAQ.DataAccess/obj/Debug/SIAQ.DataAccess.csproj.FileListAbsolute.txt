@@ -8,13 +8,3 @@ E:\Trabajo\Proyectos\Externos\Otros\GCSoft\CEDH\GitHub\CEDHNL\SIAQ.DataAccess\ob
 E:\Trabajo\Proyectos\Externos\Otros\GCSoft\CEDH\GitHub\CEDHNL\SIAQ.DataAccess\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
 E:\Trabajo\Proyectos\Externos\Otros\GCSoft\CEDH\GitHub\CEDHNL\SIAQ.DataAccess\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
 E:\Trabajo\Proyectos\Externos\Otros\GCSoft\CEDH\GitHub\CEDHNL\SIAQ.DataAccess\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
-C:\Daniel\Proyectos\GCSoft\ProyectoCDH\CEDHNL\SIAQ.DataAccess\bin\Debug\SIAQ.DataAccess.dll
-C:\Daniel\Proyectos\GCSoft\ProyectoCDH\CEDHNL\SIAQ.DataAccess\bin\Debug\SIAQ.DataAccess.pdb
-C:\Daniel\Proyectos\GCSoft\ProyectoCDH\CEDHNL\SIAQ.DataAccess\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
-C:\Daniel\Proyectos\GCSoft\ProyectoCDH\CEDHNL\SIAQ.DataAccess\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
-C:\Daniel\Proyectos\GCSoft\ProyectoCDH\CEDHNL\SIAQ.DataAccess\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
-C:\Daniel\Proyectos\GCSoft\ProyectoCDH\CEDHNL\SIAQ.DataAccess\bin\Debug\SIAQ.Entity.dll
-C:\Daniel\Proyectos\GCSoft\ProyectoCDH\CEDHNL\SIAQ.DataAccess\bin\Debug\SIAQ.Entity.pdb
-C:\Daniel\Proyectos\GCSoft\ProyectoCDH\CEDHNL\SIAQ.DataAccess\obj\Debug\SIAQ.DataAccess.csprojResolveAssemblyReference.cache
-C:\Daniel\Proyectos\GCSoft\ProyectoCDH\CEDHNL\SIAQ.DataAccess\obj\Debug\SIAQ.DataAccess.dll
-C:\Daniel\Proyectos\GCSoft\ProyectoCDH\CEDHNL\SIAQ.DataAccess\obj\Debug\SIAQ.DataAccess.pdb

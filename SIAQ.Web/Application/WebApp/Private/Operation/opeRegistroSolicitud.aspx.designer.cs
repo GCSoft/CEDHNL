@@ -22,22 +22,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.Panel pnlFormulario;
         
         /// <summary>
-        /// txtFechaCaptura control.
+        /// lblFecha control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::SIAQ.Web.Include.WebUserControls.wucCalendar txtFechaCaptura;
+        protected global::System.Web.UI.WebControls.Label lblFecha;
         
         /// <summary>
-        /// txtFechaCargado control.
+        /// lblHora control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::SafeTransfere.Web.Include.WebUserControls.wucTimeMask txtFechaCargado;
+        protected global::System.Web.UI.WebControls.Label lblHora;
         
         /// <summary>
         /// txtNombre control.

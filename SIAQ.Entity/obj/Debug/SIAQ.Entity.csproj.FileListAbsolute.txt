@@ -2,3 +2,7 @@ E:\Trabajo\Proyectos\Externos\Otros\GCSoft\CEDH\GitHub\CEDHNL\SIAQ.Entity\bin\De
 E:\Trabajo\Proyectos\Externos\Otros\GCSoft\CEDH\GitHub\CEDHNL\SIAQ.Entity\bin\Debug\SIAQ.Entity.pdb
 E:\Trabajo\Proyectos\Externos\Otros\GCSoft\CEDH\GitHub\CEDHNL\SIAQ.Entity\obj\Debug\SIAQ.Entity.dll
 E:\Trabajo\Proyectos\Externos\Otros\GCSoft\CEDH\GitHub\CEDHNL\SIAQ.Entity\obj\Debug\SIAQ.Entity.pdb
+C:\Daniel\Proyectos\GCSoft\ProyectoCDH\CEDHNL\SIAQ.Entity\bin\Debug\SIAQ.Entity.dll
+C:\Daniel\Proyectos\GCSoft\ProyectoCDH\CEDHNL\SIAQ.Entity\bin\Debug\SIAQ.Entity.pdb
+C:\Daniel\Proyectos\GCSoft\ProyectoCDH\CEDHNL\SIAQ.Entity\obj\Debug\SIAQ.Entity.dll
+C:\Daniel\Proyectos\GCSoft\ProyectoCDH\CEDHNL\SIAQ.Entity\obj\Debug\SIAQ.Entity.pdb

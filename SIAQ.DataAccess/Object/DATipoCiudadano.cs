@@ -29,7 +29,7 @@ namespace SIAQ.DataAccess.Object
             // Transacción
             try
             {
-                ds = dbs.ExecuteDataSet("catTipoCiudadanoSel");
+                ds = dbs.ExecuteDataSet("spcatTipoSolicitud_SelForControl");
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)

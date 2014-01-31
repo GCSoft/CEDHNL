@@ -31,7 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Include\Image\Vectores\vssver2.scc" />
+  </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -84,6 +86,7 @@
     <Content Include="Application\WebApp\Private\Operation\opeAutoridad.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeBusquedaSolicitud.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeCiudadano.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeInicio.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeLstSolicitudFuncionario.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeLstSolicitudSecretaria.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeQueja.aspx" />
@@ -109,10 +112,20 @@
     <Content Include="Include\Image\Buttons\Edit_Over.png" />
     <Content Include="Include\Image\Buttons\Restore.png" />
     <Content Include="Include\Image\Buttons\Restore_Over.png" />
+    <Content Include="Include\Image\Vectores\Banner.png" />
+    <Content Include="Include\Image\Vectores\BarraTituloDePagina.png" />
+    <Content Include="Include\Image\Vectores\CEDH.png" />
+    <Content Include="Include\Image\Vectores\Exit.png" />
+    <Content Include="Include\Image\Vectores\Iconografia.png" />
+    <Content Include="Include\Image\Vectores\PestañasAcordeon.png" />
+    <Content Include="Include\Image\Vectores\TituloAcordeonTAE.png" />
     <Content Include="Include\Image\Web\Banner.png" />
     <Content Include="Include\Image\Web\BannerFill.png" />
     <Content Include="Include\Image\Web\BarraTitulo.png" />
+    <Content Include="Include\Image\Web\Buscar.jpg" />
     <Content Include="Include\Image\Web\Div.png" />
+    <Content Include="Include\Image\Web\img_x.jpg" />
+    <Content Include="Include\Image\Web\Registro.jpg" />
     <Content Include="Include\Image\Web\SalirOff.png" />
     <Content Include="Include\Image\Web\SalirOn.png" />
     <Content Include="Include\Javascript\ToolTip\ImageError.png" />
@@ -228,6 +241,13 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeCiudadano.aspx.designer.cs">
       <DependentUpon>opeCiudadano.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeInicio.aspx.cs">
+      <DependentUpon>opeInicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeInicio.aspx.designer.cs">
+      <DependentUpon>opeInicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeLstSolicitudFuncionario.aspx.cs">
       <DependentUpon>opeLstSolicitudFuncionario.aspx</DependentUpon>

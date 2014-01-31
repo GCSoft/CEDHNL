@@ -31,7 +31,11 @@
                             <td style="width:5px;"></td>
                             <td class="tdCeldaLeyendaItemFondoBlanco">&nbsp;Sexo</td>
                             <td style="width:5px;"></td>
-                            <td class="tdCeldaItem"><asp:DropDownList ID="ddlSexo" runat="server" CssClass="Textbox_General" width="150px"></asp:DropDownList>&nbsp;<font class="MarcadorObligatorio">&nbsp;*</font></td>
+                            <td class="tdCeldaItem"><asp:DropDownList ID="ddlSexo" runat="server" CssClass="Textbox_General" width="150px">
+                                <asp:ListItem Text="--Seleccionar--" Value="0"></asp:ListItem>
+                                <asp:ListItem Text="Femenino" Value="1"></asp:ListItem>
+                                <asp:ListItem Text="Masculino" Value="2"></asp:ListItem>
+                            </asp:DropDownList>&nbsp;<font class="MarcadorObligatorio">&nbsp;*</font></td>
                             <td style="width:5px;"></td>
 						</tr>
                         <tr style=" height:3px;"><td colspan="8"></td></tr>

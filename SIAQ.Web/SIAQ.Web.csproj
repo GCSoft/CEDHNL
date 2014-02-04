@@ -13,6 +13,7 @@
     <RootNamespace>SIAQ.Web</RootNamespace>
     <AssemblyName>SIAQ.Web</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -84,6 +85,7 @@
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsColonia.aspx" />
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsNacionalidad.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeAutoridad.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeBusquedaCiudadano.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeBusquedaSolicitud.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeCiudadano.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeInicio.aspx" />
@@ -227,6 +229,13 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeAutoridad.aspx.designer.cs">
       <DependentUpon>opeAutoridad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeBusquedaCiudadano.aspx.cs">
+      <DependentUpon>opeBusquedaCiudadano.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeBusquedaCiudadano.aspx.designer.cs">
+      <DependentUpon>opeBusquedaCiudadano.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeBusquedaSolicitud.aspx.cs">
       <DependentUpon>opeBusquedaSolicitud.aspx</DependentUpon>

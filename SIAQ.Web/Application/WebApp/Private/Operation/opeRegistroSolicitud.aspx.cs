@@ -38,13 +38,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                }
 
                //LLenado de control
-               this.ddlTipoSolicitud.DataTextField = "TipoSolicitudId";
-               this.ddlTipoSolicitud.DataValueField = "Nombre";
-               this.ddlTipoSolicitud.DataSource = oENTResponse.dsResponse.Tables[1];
-               this.ddlTipoSolicitud.DataBind();
+               this.ddlAbogado.DataTextField = "TipoSolicitudId";
+               this.ddlAbogado.DataValueField = "Nombre";
+               this.ddlAbogado.DataSource = oENTResponse.dsResponse.Tables[1];
+               this.ddlAbogado.DataBind();
 
                // Agregar Item de selección
-               this.ddlTipoSolicitud.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
+               this.ddlAbogado.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
 
 
            }
@@ -67,7 +67,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
            try {
 
                // Llenado de controles
-               selectTipoSolicitud();
+               //selectTipoSolicitud();
+               this.gvSolicitudes.DataSource = null;
+               this.gvSolicitudes.DataBind();
            }
            catch (Exception ex) {
                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);

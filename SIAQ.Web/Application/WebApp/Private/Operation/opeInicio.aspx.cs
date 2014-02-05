@@ -18,12 +18,17 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         protected void imgRegistrarVis_Click(object sender, ImageClickEventArgs e)
         {
-            Response.Redirect("opeRegistroSolicitud.aspx");
+            
         }
 
         protected void imgBuscarSol_Click(object sender, ImageClickEventArgs e)
         {
             Response.Redirect("opeBusquedaSolicitud.aspx");
+        }
+
+        protected void imgRegistrarSol_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("opeRegistroSolicitud.aspx");
         }
     }
 }

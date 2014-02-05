@@ -11,7 +11,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
    {
       protected void Page_Load(object sender, EventArgs e)
       {
+          if (this.Page.IsPostBack) { return; }
 
+          this.gvApps.DataSource = null;
+          this.gvApps.DataBind();
       }
    }
 }

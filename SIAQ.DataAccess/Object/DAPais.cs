@@ -12,6 +12,8 @@ namespace SIAQ.DataAccess.Object
 {
     public class DAPais : DABase
     {
+        protected int _ErrorId;
+        protected string _ErrorDescription;
         Database dbs;
         public DAPais()
         {
@@ -140,6 +142,48 @@ namespace SIAQ.DataAccess.Object
             // Resultado
             return oENTResponse;
 
+        }
+
+        public DataSet SelectPais(ENTPais ENTPais, string ConnectionString)
+        {
+            DataSet ResultData = new DataSet();
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            SqlCommand Command;
+            SqlParameter Parameter;
+            SqlDataAdapter DataAdapter;
+
+            try
+            {
+                Command = new SqlCommand("sptblPais_Sel", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                Parameter = new SqlParameter("PaisId", SqlDbType.Int);
+                Parameter.Value = ENTPais.PaisId;
+                Command.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("Nombre", SqlDbType.VarChar);
+                Parameter.Value = ENTPais.Nombre;
+                Command.Parameters.Add(Parameter);
+
+                DataAdapter = new SqlDataAdapter(Command);
+                ResultData = new DataSet();
+
+                Connection.Open();
+                DataAdapter.Fill(ResultData);
+                Connection.Close();
+
+                return ResultData;
+            }
+            catch (SqlException Exception)
+            {
+                _ErrorId = Exception.Number;
+                _ErrorDescription = Exception.Message;
+
+                if (Connection.State == ConnectionState.Open)
+                    Connection.Close();
+
+                return ResultData;
+            }
         }
     }
 }

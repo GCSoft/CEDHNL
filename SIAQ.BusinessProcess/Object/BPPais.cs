@@ -8,6 +8,19 @@ namespace SIAQ.BusinessProcess.Object
 {
     public class BPPais : BPBase
     {
+        protected ENTPais _PaisEntity;
+
+        public ENTPais PaisEntity
+        {
+            get { return _PaisEntity; }
+            set { _PaisEntity = value; }
+        }
+
+        public BPPais()
+        {
+
+            _PaisEntity = new ENTPais();
+        }
         ///<remarks>
         ///   <name>BPcatPais.searchcatPais</name>
         ///   <create>27/ene/2014</create>
@@ -37,6 +50,17 @@ namespace SIAQ.BusinessProcess.Object
             return oENTResponse;
 
         }
+
+        public DataSet SelectPais()
+        {
+            string ConnectionString = string.Empty;
+            DAPais DAPais = new DAPais();
+
+            ConnectionString = sConnectionApplication;
+            _PaisEntity.ResultData = DAPais.SelectPais(_PaisEntity, ConnectionString);
+            return _PaisEntity.ResultData;
+        }
+
         ///<remarks>
         ///   <name>BPcatPaisinsertcatPais</name>
         ///   <create>27/ene/2014</create>
@@ -66,6 +90,7 @@ namespace SIAQ.BusinessProcess.Object
             return oENTResponse;
 
         }
+
         ///<remarks>
         ///   <name>BPcatPaisupdatecatPais</name>
         ///   <create>27/ene/2014</create>
@@ -95,6 +120,7 @@ namespace SIAQ.BusinessProcess.Object
             return oENTResponse;
 
         }
+
         ///<remarks>
         ///   <name>BPcatPaisdeletecatPais</name>
         ///   <create>27/ene/2014</create>

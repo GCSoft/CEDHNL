@@ -6,8 +6,19 @@ using SIAQ.DataAccess.Object;
 using SIAQ.Entity.Object;
 namespace SIAQ.BusinessProcess.Object
 {
+
     public class BPCiudadano : BPBase
     {
+        private ENTCiudadano _ENTCiudadano;
+        /// <summary>
+        ///     Entidad de ciudadano
+        /// </summary>
+        public ENTCiudadano ENTCiudadano
+        {
+            get { return _ENTCiudadano; }
+            set { _ENTCiudadano = value; }
+        }
+        
         ///<remarks>
         ///   <name>BPCiudadano.searchCiudadano</name>
         ///   <create>27/ene/2014</create>

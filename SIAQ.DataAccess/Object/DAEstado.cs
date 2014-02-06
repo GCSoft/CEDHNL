@@ -11,6 +11,8 @@ namespace SIAQ.DataAccess.Object
 {
     public class DAEstado : DABase
     {
+        protected int _ErrorId;
+        protected string _ErrorDescription;
         Database dbs;
         public DAEstado()
         {
@@ -108,6 +110,49 @@ namespace SIAQ.DataAccess.Object
             // Resultado
             return oENTResponse;
 
+        }
+
+
+        public DataSet SelectEstado(ENTEstado ENTEstado, string ConnectionString)
+        {
+            DataSet ResultData = new DataSet();
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            SqlCommand Command;
+            SqlParameter Parameter;
+            SqlDataAdapter DataAdapter;
+
+            try
+            {
+                Command = new SqlCommand("sptblEstado_Sel", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                Parameter = new SqlParameter("EstadoId", SqlDbType.Int);
+                Parameter.Value = ENTEstado.EstadoId;
+                Command.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("Nombre", SqlDbType.VarChar);
+                Parameter.Value = ENTEstado.Nombre;
+                Command.Parameters.Add(Parameter);
+
+                DataAdapter = new SqlDataAdapter(Command);
+                ResultData = new DataSet();
+
+                Connection.Open();
+                DataAdapter.Fill(ResultData);
+                Connection.Close();
+
+                return ResultData;
+            }
+            catch (SqlException Exception)
+            {
+                _ErrorId = Exception.Number;
+                _ErrorDescription = Exception.Message;
+
+                if (Connection.State == ConnectionState.Open)
+                    Connection.Close();
+
+                return ResultData;
+            }
         }
         ///<remarks>
         ///   <name>DAcatEstado.deletecatEstado</name>

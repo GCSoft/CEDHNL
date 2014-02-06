@@ -18,3 +18,13 @@ C:\Daniel\Proyectos\GCSoft\ProyectoCDH\CEDHNL\SIAQ.DataAccess\bin\Debug\SIAQ.Ent
 C:\Daniel\Proyectos\GCSoft\ProyectoCDH\CEDHNL\SIAQ.DataAccess\obj\Debug\SIAQ.DataAccess.csprojResolveAssemblyReference.cache
 C:\Daniel\Proyectos\GCSoft\ProyectoCDH\CEDHNL\SIAQ.DataAccess\obj\Debug\SIAQ.DataAccess.dll
 C:\Daniel\Proyectos\GCSoft\ProyectoCDH\CEDHNL\SIAQ.DataAccess\obj\Debug\SIAQ.DataAccess.pdb
+C:\Felipe\Proyectos\CEDHNL\CEDHNL\SIAQ.DataAccess\bin\Debug\SIAQ.DataAccess.dll
+C:\Felipe\Proyectos\CEDHNL\CEDHNL\SIAQ.DataAccess\bin\Debug\SIAQ.DataAccess.pdb
+C:\Felipe\Proyectos\CEDHNL\CEDHNL\SIAQ.DataAccess\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Felipe\Proyectos\CEDHNL\CEDHNL\SIAQ.DataAccess\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Felipe\Proyectos\CEDHNL\CEDHNL\SIAQ.DataAccess\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
+C:\Felipe\Proyectos\CEDHNL\CEDHNL\SIAQ.DataAccess\bin\Debug\SIAQ.Entity.dll
+C:\Felipe\Proyectos\CEDHNL\CEDHNL\SIAQ.DataAccess\bin\Debug\SIAQ.Entity.pdb
+C:\Felipe\Proyectos\CEDHNL\CEDHNL\SIAQ.DataAccess\obj\Debug\ResolveAssemblyReference.cache
+C:\Felipe\Proyectos\CEDHNL\CEDHNL\SIAQ.DataAccess\obj\Debug\SIAQ.DataAccess.dll
+C:\Felipe\Proyectos\CEDHNL\CEDHNL\SIAQ.DataAccess\obj\Debug\SIAQ.DataAccess.pdb

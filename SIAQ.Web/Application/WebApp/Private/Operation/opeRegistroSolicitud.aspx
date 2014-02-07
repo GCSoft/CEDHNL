@@ -3,11 +3,55 @@
 <%@ Register src="../../../../Include/WebUserControls/wucTimeMask.ascx" tagname="wucTimeMask" tagprefix="wuc" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
+    <script type="text/javascript" language="javascript">
+        
+        // Prototipos
+        String.prototype.trim = function () { return this.replace(/^\s+|\s+$/g, ''); }
+
+        // Funciones del programador
+
+        function validateForm() {
+            var txtNombre = document.getElementById('cntPrivateTemplateBody_txtNombre');
+            var txtObservaciones = document.getElementById('cntPrivateTemplateBody_txtObservaciones');
+            var ddlAbogado = document.getElementById('cntPrivateTemplateBody_ddlAbogado');
+
+            var sNombre;
+            var sObservaciones;
+            var iAbogado;
+
+            // Inicializacion de variables
+            sNombre = txtNombre.value.trim();
+            sObservaciones = txtObservaciones.value.trim();
+            iAbogado = ddlAbogado.value;
+
+            // Espacio en blanco
+            if (sNombre == "") {
+                tinyboxMessage('El campo Nombre es obligatorio', 'Fail', true);
+                focusControl('cntPrivateTemplateBody_txtNombre');
+                return false;
+            }
+
+            if (sObservaciones == "") {
+                tinyboxMessage('El campo Observaciones es obligatorio', 'Fail', true);
+                focusControl('cntPrivateTemplateBody_txtObservaciones');
+                return false;
+            }
+
+            if (iAbogado == "0") {
+                tinyboxMessage('El campo Abogado es obligatorio favor de seleccionar uno', 'Fail', true);
+                focusControl('cntPrivateTemplateBody_ddlAbogado');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
    <table border="0" cellpadding="0" cellspacing="0" width="100%">
       <tr>
-			<td class="tdCeldaTituloEncabezado" style="background-image:url('../../../../Include/Image/Web/BarraTitulo.png');">
+			<td class="tdCeldaTituloEncabezado">
 				Registro de Solicitudes
 			</td>
 		</tr>
@@ -36,7 +80,9 @@
 							<td class="tdCeldaLeyendaItemFondoBlanco">&nbsp;Nombre</td>
 							<td style="width:5px;"></td>
 							<td class="tdCeldaItem">
-                                <asp:TextBox ID="txtNombre" runat="server" CssClass="Textbox_General" width="177px"></asp:TextBox>&nbsp;<font class="MarcadorObligatorio">*</font>&nbsp;<asp:Button ID="btnBuscar" runat="server"  Width="30px" Text="..."></asp:Button>
+                                <asp:TextBox ID="txtNombre" runat="server" CssClass="Textbox_General" width="177px"></asp:TextBox>&nbsp;<font class="MarcadorObligatorio">*</font>&nbsp;<asp:Button 
+                                    ID="btnBuscar" runat="server"  Width="30px" Text="..." 
+                                    onclick="btnBuscar_Click"></asp:Button>
                             </td>
 						</tr>
                         <tr style="height:3px;"><td colspan="3"></td></tr>
@@ -62,7 +108,9 @@
             <asp:Panel id="pnlBotones" runat="server" Width="100%">
                <table border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tr>
-                     <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="Button_General_Verde" width="125px" /></td>
+                     <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="btnGuardar" 
+                             runat="server" Text="Guardar" CssClass="Button_General_Verde" width="125px" 
+                             onclick="btnGuardar_Click" /></td>
                      <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="btnRegresar" runat="server" Text="Regresar" CssClass="Button_General_Verde" width="125px" /></td>
 					 <td style="height:24px; width:530px;"></td>
                   </tr>
@@ -74,45 +122,7 @@
       <tr>
          <td>
             <asp:Panel id="pnlGrid" runat="server" Width="100%">
-               <asp:GridView id="gvSolicitudes" runat="server" AllowPaging="false" AllowSorting="true" AutoGenerateColumns="False" Width="790px"
-						DataKeyNames="SolicitudId,FuncionarioId">
-						<alternatingrowstyle cssclass="Grid_Row_Alternating" />
-						<headerstyle cssclass="Grid_Header" />
-						<rowstyle cssclass="Grid_Row" />
-						<EmptyDataTemplate>
-							<table border="1px" cellpadding="0px" cellspacing="0px">
-								<tr class="Grid_Header">
-									<td style="width:150px;">Solicitud</td>
-									<td style="width:150px;">Funcionario</td>
-                                    <td style="width:100px;">Numero</td>
-                                    <td style="width:100px;">Estatus</td>
-                                    <td style="width:190px;">Lugar de Hechos</td>
-                                    <td style="width:100px;">Calificación</td>
-								</tr>
-								<tr class="Grid_Row">
-									<td colspan="6">No se encontraron Solicitudes registrados en el sistema</td>
-								</tr>
-							</table>
-						</EmptyDataTemplate>
-						<Columns>
-							<asp:BoundField HeaderText="Solicitud" ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="150px" DataField="sNombre"        SortExpression="sNombre"></asp:BoundField>
-                            <asp:BoundField HeaderText="Funcionario"           ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100px" DataField="iTerminal"      SortExpression="iTerminal"></asp:BoundField>
-                            <asp:BoundField HeaderText="Numero"                ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100px" DataField="sRFC"           SortExpression="sRFC"></asp:BoundField>
-                            <asp:BoundField HeaderText="Estatus"        ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100px" DataField="sProExterno"    SortExpression="sProExterno"></asp:BoundField>
-							<asp:BoundField HeaderText="Lugar de Hechos"        ItemStyle-HorizontalAlign="Left"		ItemStyle-Width="240px" DataField="sDescripcion"	SortExpression="sDescripcion"></asp:BoundField>
-                            <asp:BoundField HeaderText="Calificación"            ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100px" DataField="sEstatus"       SortExpression="sEstatus"></asp:BoundField>
-							<%--<asp:TemplateField ItemStyle-HorizontalAlign ="Center" ItemStyle-Width="20px">
-								<ItemTemplate>
-                                    <asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
-                                </ItemTemplate>
-							</asp:TemplateField>
-							<asp:TemplateField ItemStyle-HorizontalAlign ="Center" ItemStyle-Width="20px">
-								<ItemTemplate>
-                                    <asp:ImageButton ID="imgAction" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Action" ImageUrl="~/Include/Image/Buttons/Delete.png" runat="server" />
-								</ItemTemplate>
-							</asp:TemplateField>--%>
-						</Columns>
-					</asp:GridView>
+               
             </asp:Panel>
          </td>
       </tr>

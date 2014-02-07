@@ -16,35 +16,78 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
    public partial class opeRegistroSolicitud : System.Web.UI.Page
    {
        // Rutinas del programador
-       private void selectTipoSolicitud()
+       private void Clear() {
+
+           this.ddlAbogado.SelectedValue = "0";
+           this.txtNombre.Text = "";
+           this.txtObservaciones.Text = "";
+           this.txtFechaCargado.Tiempo.Insert(0, "00:00");
+       }
+
+       private void searchCiudadano() {
+           BPCiudadano oBPCiudadano = new BPCiudadano();
+           ENTCiudadano oENTCiudadano = new ENTCiudadano();
+           ENTResponse oENTResponse = new ENTResponse();
+
+           try {
+
+               // Formulario
+               oENTCiudadano.Nombre = this.txtNombre.Text.Trim();
+
+               // Transacción
+               oENTResponse = oBPCiudadano.searchCiudadano(oENTCiudadano);
+
+               // Validación de error en la consulta
+               if (oENTResponse.GeneratesException) {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sErrorMessage + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+                   return;
+               }
+
+               // Mensaje de la base de datos
+               if (oENTResponse.sMessage != "") {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Success', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+                   return;
+               }
+
+
+           }
+           catch(Exception ex){
+               ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+           }
+
+       }
+
+       private void selectFuncionario()
        {
-           BPTipoSolicitud oBPTipoSolicitud = new BPTipoSolicitud();
-           ENTTipoSolicitud oENTTipoSolicitud = new ENTTipoSolicitud();
+           BPFuncionario oBPFuncionario = new BPFuncionario();
+           ENTFuncionario oENTFuncionario = new ENTFuncionario();
            ENTResponse oENTResponse = new ENTResponse();
 
            try { 
                 
                // Transacción
-               oENTResponse = oBPTipoSolicitud.searchcatTipoSolicitud(oENTTipoSolicitud);
+               oENTResponse = oBPFuncionario.searchFuncionario(oENTFuncionario);
 
                // Validación de error en la consulta
                if (oENTResponse.GeneratesException) {
                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sErrorMessage + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+                   return;
                }
 
                // Mensaje de la base de datos
                if(oENTResponse.sMessage!=""){
                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Success', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+                   
                }
 
                //LLenado de control
-               this.ddlAbogado.DataTextField = "TipoSolicitudId";
+               this.ddlAbogado.DataTextField = "FuncionarioId";
                this.ddlAbogado.DataValueField = "Nombre";
                this.ddlAbogado.DataSource = oENTResponse.dsResponse.Tables[1];
                this.ddlAbogado.DataBind();
 
                // Agregar Item de selección
-               this.ddlAbogado.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
+               this.ddlAbogado.Items.Insert(0, new ListItem("--Seleccionar--", "1"));
 
 
            }
@@ -52,6 +95,51 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
            }
 
+       }
+
+       private void insertSolicitud() {
+           BPSolicitud oBPSolicitud = new BPSolicitud();
+           ENTResponse oENTResponse = new ENTResponse();
+           ENTSolicitud oENTSolicitud = new ENTSolicitud();
+
+           try { 
+           
+               // Formulario
+               oENTSolicitud.FuncionarioId = 1; //Int32.Parse(this.ddlAbogado.SelectedValue);
+               oENTSolicitud.CalificacionId = 0;
+               oENTSolicitud.TipoSolicitudId = 1;
+               oENTSolicitud.LugarHechosId = 0;
+               oENTSolicitud.EstatusId = 1;
+               oENTSolicitud.Numero = 1;
+               oENTSolicitud.NombreTemporal = this.txtNombre.Text.Trim();
+               oENTSolicitud.Fecha = this.txtFechaCaptura.EndDate;
+               oENTSolicitud.Observaciones = this.txtObservaciones.Text.Trim();
+
+               // Transacción
+               oENTResponse = oBPSolicitud.insertSolicitud(oENTSolicitud);
+
+               // Validación de error
+               if (oENTResponse.GeneratesException) {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sErrorMessage + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+                   return;
+               }
+
+               if (oENTResponse.sMessage != "") {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Success', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+                   return;
+               }
+
+               // Se limpia el formulario
+               Clear();
+
+               // Mensaje de Exito
+               ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Se registro la solicitud exitosamente', 'Success', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+
+           }
+           catch (Exception ex)
+           {
+               ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+           }
        }
 
        // Eventos de la página
@@ -67,15 +155,27 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
            try {
 
                // Llenado de controles
-               //selectTipoSolicitud();
-               this.gvSolicitudes.DataSource = null;
-               this.gvSolicitudes.DataBind();
+               selectFuncionario();
+
+               // Se agrega atributo para validación de controles
+               this.btnGuardar.Attributes.Add("OnClick", "javascript: return validateForm();");
+
            }
            catch (Exception ex) {
                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
            }
 
 
+       }
+
+       protected void btnBuscar_Click(object sender, EventArgs e)
+       {
+           searchCiudadano();
+       }
+
+       protected void btnGuardar_Click(object sender, EventArgs e)
+       {
+           insertSolicitud();
        }
 
    }

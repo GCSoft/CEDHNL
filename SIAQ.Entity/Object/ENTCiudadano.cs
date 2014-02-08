@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Data;
 namespace SIAQ.Entity.Object
 {
     public class ENTCiudadano : ENTBase
@@ -19,11 +20,13 @@ namespace SIAQ.Entity.Object
         private string _ApellidoMaterno; // Valor de ApellidoMaterno
         private DateTime _FechaNacimiento; // Valor de FechaNacimiento
         private DateTime _FechaIngreso; // Valor de FechaIngreso
+        private DataSet _ResultData; //Otras propiedades
         private string _PaisId;
         private string _EstadoId;
         private string _CiudadId;
         private string _ColoniaId;
         private string _Calle;
+        private string _CampoBusqueda;
 
         public ENTCiudadano()
         {
@@ -46,6 +49,7 @@ namespace SIAQ.Entity.Object
             _CiudadId = string.Empty;
             _ColoniaId = string.Empty;
             _Calle = string.Empty;
+            _CampoBusqueda = string.Empty;
 
         }
         ///<remarks>
@@ -232,6 +236,20 @@ namespace SIAQ.Entity.Object
         {
             get { return _Calle; }
             set { _Calle = value; }
+        }
+
+        public string CampoBusqueda
+        {
+            get { return _CampoBusqueda; }
+            set { _CampoBusqueda = value; }
+        }
+
+        ///     DataSet resultante de las busquedas en la base de datos
+        /// </summary>
+        public DataSet ResultData
+        {
+            get { return _ResultData; }
+            set { _ResultData = value; }
         }
     }
 }

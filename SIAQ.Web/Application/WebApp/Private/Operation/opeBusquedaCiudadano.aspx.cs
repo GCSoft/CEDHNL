@@ -24,12 +24,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             VerBusquedaAvanzada();
         }
 
-        protected void QuickSearchButton_Click(object sender, ImageClickEventArgs e)
+        protected void QuickSearchButton_Click(object sender, EventArgs e)
         {
-            QuickSearch(txtNombre.Text.Trim());
+            QuickSearch(txtNombre.Text.Trim());//cambio de funciones
         }
 
-        protected void SearchButton_Click(object sender, ImageClickEventArgs e)
+        protected void SearchButton_Click(object sender, EventArgs e)
         {
             BuscarCiudadano(TextBoxNombre.Text.Trim(), TextBoxPaterno.Text.Trim(), TextBoxMaterno.Text.Trim(), TextBoxCalle.Text.Trim());
         }
@@ -146,6 +146,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             BPCiudadano.ENTCiudadano.PaisId = PaisId;
             BPCiudadano.ENTCiudadano.ColoniaId = ColoniaId;
             BPCiudadano.ENTCiudadano.Calle = Calle;
+            BPCiudadano.ENTCiudadano.CampoBusqueda = CampoBusqueda;
+
+            BPCiudadano.BuscarCiudadano();
+
+            gvCiudadano.DataSource = BPCiudadano.ENTCiudadano.ResultData;
+            gvCiudadano.DataBind();
             
         }
 
@@ -157,14 +163,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         protected void gvCiudadano_Sorting(object sender, GridViewSortEventArgs e)
         {
-            
-                // Vaciar datos
-                this.gvCiudadano.DataSource = null;
-                this.gvCiudadano.DataBind();
+
         }
 
         protected void gvCiudadano_RowCommand(object sender, GridViewCommandEventArgs e)
         {
         }
+
     }
 }

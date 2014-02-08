@@ -9,7 +9,34 @@ namespace SIAQ.BusinessProcess.Object
 
     public class BPCiudadano : BPBase
     {
-        private ENTCiudadano _ENTCiudadano;
+        private int _ErrorId;                         
+        private string _ErrorDescription;   
+        private ENTCiudadano _ENTCiudadano;//
+         
+        public BPCiudadano() {
+
+            _ErrorId = 0;
+            _ErrorDescription = "";
+            _ENTCiudadano = new ENTCiudadano();
+        
+        }
+        /// <summary>
+        ///     Número de error ocurrido. Cero por default
+        /// </summary>
+        public int ErrorId
+        {
+            get { return _ErrorId; }
+            set { _ErrorId = value; }
+        }
+
+        /// <summary>
+        ///     Descripción del error ocurrido
+        /// </summary>
+        public string ErrorDescription
+        {
+            get { return _ErrorDescription; }
+            set { _ErrorDescription = value; }
+        }
         /// <summary>
         ///     Entidad de ciudadano
         /// </summary>
@@ -134,6 +161,19 @@ namespace SIAQ.BusinessProcess.Object
             // Resultado
             return oENTResponse;
 
+        }
+
+        public void BuscarCiudadano()
+        {
+            string ConnectionString = string.Empty;
+            DACiudadano DACiudadano = new DACiudadano();
+
+            ConnectionString = sConnectionApplication;
+            _ENTCiudadano.ResultData = DACiudadano.SelectCiudadano(_ENTCiudadano, ConnectionString);
+
+            _ErrorId = DACiudadano.ErrorId;
+            _ErrorDescription = DACiudadano.ErrorDescription;
+           
         }
     }
 }

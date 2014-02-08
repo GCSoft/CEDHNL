@@ -95,7 +95,7 @@
     <Content Include="Application\WebApp\Private\Operation\opeRegistroCiudadano.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeRegistroServPublico.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeRegistroSolicitud.aspx" />
-    <Content Include="Application\WebApp\Private\Report\rptSIAQ.aspx" />
+    <Content Include="Application\WebApp\Private\SysApp\Report\rptSIAQ.aspx" />
     <Content Include="Application\WebApp\Private\SysApp\saChangePassword.aspx" />
     <Content Include="Application\WebApp\Private\SysCat\ExcelMaker\xlsArea.aspx" />
     <Content Include="Application\WebApp\Private\SysCat\ExcelMaker\xlsMenu.aspx" />
@@ -300,11 +300,11 @@
     <Compile Include="Application\WebApp\Private\Operation\opeRegistroSolicitud.aspx.designer.cs">
       <DependentUpon>opeRegistroSolicitud.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Report\rptSIAQ.aspx.cs">
+    <Compile Include="Application\WebApp\Private\SysApp\Report\rptSIAQ.aspx.cs">
       <DependentUpon>rptSIAQ.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Report\rptSIAQ.aspx.designer.cs">
+    <Compile Include="Application\WebApp\Private\SysApp\Report\rptSIAQ.aspx.designer.cs">
       <DependentUpon>rptSIAQ.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\SysApp\saChangePassword.aspx.cs">

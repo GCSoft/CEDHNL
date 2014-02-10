@@ -88,6 +88,7 @@
     <Content Include="Application\WebApp\Private\Operation\opeBusquedaCiudadano.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeBusquedaSolicitud.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeCiudadano.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeDetalleSolicitud.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeInicio.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeLstSolicitudFuncionario.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeLstSolicitudSecretaria.aspx" />
@@ -126,10 +127,13 @@
     <Content Include="Include\Image\Web\BarraTitulo.png" />
     <Content Include="Include\Image\Web\Buscar.jpg" />
     <Content Include="Include\Image\Web\Div.png" />
+    <Content Include="Include\Image\Web\imgs.png" />
     <Content Include="Include\Image\Web\img_x.jpg" />
+    <Content Include="Include\Image\Web\pdf.png" />
     <Content Include="Include\Image\Web\Registro.jpg" />
     <Content Include="Include\Image\Web\SalirOff.png" />
     <Content Include="Include\Image\Web\SalirOn.png" />
+    <Content Include="Include\Image\Web\word.png" />
     <Content Include="Include\Javascript\ToolTip\ImageError.png" />
     <Content Include="Include\Javascript\ToolTip\ImageWarning.png" />
     <Content Include="Include\WebUserControls\wucTimeMask.ascx" />
@@ -250,6 +254,13 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeCiudadano.aspx.designer.cs">
       <DependentUpon>opeCiudadano.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeDetalleSolicitud.aspx.cs">
+      <DependentUpon>opeDetalleSolicitud.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeDetalleSolicitud.aspx.designer.cs">
+      <DependentUpon>opeDetalleSolicitud.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeInicio.aspx.cs">
       <DependentUpon>opeInicio.aspx</DependentUpon>

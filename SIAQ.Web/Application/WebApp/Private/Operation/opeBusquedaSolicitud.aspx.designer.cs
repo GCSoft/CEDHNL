@@ -67,22 +67,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.Panel pnlBotones;
         
         /// <summary>
-        /// cmdBuscar control.
+        /// cmdGuardar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button cmdBuscar;
+        protected global::System.Web.UI.WebControls.Button cmdGuardar;
         
         /// <summary>
-        /// cmdCancelar control.
+        /// cmdRegresar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button cmdCancelar;
+        protected global::System.Web.UI.WebControls.Button cmdRegresar;
         
         /// <summary>
         /// pnlGrid control.

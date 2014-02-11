@@ -11,54 +11,10 @@ namespace SIAQ.DataAccess.Object
 {
     public class DAColonia : DABase
     {
-        protected int _ErrorId;
-        protected string _ErrorDescription;
         Database dbs;
         public DAColonia()
         {
             dbs = DatabaseFactory.CreateDatabase("Conn");
-        }
-
-        public DataSet SelectColonia(ENTColonia ENTColonia, string ConnectionString)
-        {
-            DataSet ResultData = new DataSet();
-            SqlConnection Connection = new SqlConnection(ConnectionString);
-            SqlCommand Command;
-            SqlParameter Parameter;
-            SqlDataAdapter DataAdapter;
-
-            try
-            {
-                Command = new SqlCommand("sptblColonia_Sel", Connection);
-                Command.CommandType = CommandType.StoredProcedure;
-
-                Parameter = new SqlParameter("ColoniaId", SqlDbType.Int);
-                Parameter.Value = ENTColonia.ColoniaId;
-                Command.Parameters.Add(Parameter);
-
-                Parameter = new SqlParameter("Nombre", SqlDbType.VarChar);
-                Parameter.Value = ENTColonia.Nombre;
-                Command.Parameters.Add(Parameter);
-
-                DataAdapter = new SqlDataAdapter(Command);
-                ResultData = new DataSet();
-
-                Connection.Open();
-                DataAdapter.Fill(ResultData);
-                Connection.Close();
-
-                return ResultData;
-            }
-            catch (SqlException Exception)
-            {
-                _ErrorId = Exception.Number;
-                _ErrorDescription = Exception.Message;
-
-                if (Connection.State == ConnectionState.Open)
-                    Connection.Close();
-
-                return ResultData;
-            }
         }
         ///<remarks>
         ///   <name>DAcatColonia.searchcatColonia</name>

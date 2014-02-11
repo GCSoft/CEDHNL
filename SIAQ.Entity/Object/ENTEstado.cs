@@ -1,21 +1,19 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Data;
 namespace SIAQ.Entity.Object
 {
     public class ENTEstado : ENTBase
     {
         private int _EstadoId; // Valor de EstadoId
         private int _PaisId; // Valor de PaisId
-        private string _Nombre; // Valor de Nombre
+        private string _Nombde; // Valor de Nombde
         private string _Descripcion; // Valor de Descripcion
-        private DataSet _ResultData; //Otras propiedades
         public ENTEstado()
         {
             _EstadoId = 0;
             _PaisId = 0;
-            _Nombre = "";
+            _Nombde = "";
             _Descripcion = "";
         }
         ///<remarks>
@@ -46,10 +44,10 @@ namespace SIAQ.Entity.Object
         ///   <author>Generador</author>
         ///</remarks>
         ///<summary>Obtiene/Asigna Nombde</summary>
-        public string Nombre
+        public string Nombde
         {
-            get { return _Nombre; }
-            set { _Nombre = value; }
+            get { return _Nombde; }
+            set { _Nombde = value; }
         }
         ///<remarks>
         ///   <name>Estado.Descripcion</name>
@@ -61,14 +59,6 @@ namespace SIAQ.Entity.Object
         {
             get { return _Descripcion; }
             set { _Descripcion = value; }
-        }
-
-        ///     DataSet resultante de las busquedas en la base de datos
-        /// </summary>
-        public DataSet ResultData
-        {
-            get { return _ResultData; }
-            set { _ResultData = value; }
         }
     }
 }

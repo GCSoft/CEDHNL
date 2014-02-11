@@ -1,0 +1,11 @@
+# git ignore file
+SIAQ.BusinessProcess/bin/
+SIAQ.BusinessProcess/obj/
+SIAQ.DataAccess/bin/
+SIAQ.DataAccess/obj/
+SIAQ.Entity/bin/
+SIAQ.Entity/obj/
+SIAQ.Web/bin/
+SIAQ.Web/obj/
+solSIAQ.sln
+solSIAQ.suo

@@ -13,7 +13,6 @@
     <RootNamespace>SIAQ.Web</RootNamespace>
     <AssemblyName>SIAQ.Web</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,9 +31,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <ItemGroup>
-    <None Include="Include\Image\Vectores\vssver2.scc" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -85,22 +82,15 @@
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsColonia.aspx" />
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsNacionalidad.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeAutoridad.aspx" />
-    <Content Include="Application\WebApp\Private\Operation\opeBusquedaCiudadano.aspx" />
-    <Content Include="Application\WebApp\Private\Operation\opeBusquedaExpedientes.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeBusquedaSolicitud.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeCiudadano.aspx" />
-    <Content Include="Application\WebApp\Private\Operation\opeDetalleSolicitud.aspx" />
-    <Content Include="Application\WebApp\Private\Operation\opeInicio.aspx" />
-    <Content Include="Application\WebApp\Private\Operation\opeLstEspedienteSecretaria.aspx" />
-    <Content Include="Application\WebApp\Private\Operation\opeLstExpedientesFuncionario.aspx" />
-    <Content Include="Application\WebApp\Private\Operation\opeLstExpedientesTitular.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeLstSolicitudFuncionario.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeLstSolicitudSecretaria.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeQueja.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeRegistroCiudadano.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeRegistroServPublico.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeRegistroSolicitud.aspx" />
-    <Content Include="Application\WebApp\Private\SysApp\Report\rptSIAQ.aspx" />
+    <Content Include="Application\WebApp\Private\Report\rptSIAQ.aspx" />
     <Content Include="Application\WebApp\Private\SysApp\saChangePassword.aspx" />
     <Content Include="Application\WebApp\Private\SysCat\ExcelMaker\xlsArea.aspx" />
     <Content Include="Application\WebApp\Private\SysCat\ExcelMaker\xlsMenu.aspx" />
@@ -119,28 +109,14 @@
     <Content Include="Include\Image\Buttons\Edit_Over.png" />
     <Content Include="Include\Image\Buttons\Restore.png" />
     <Content Include="Include\Image\Buttons\Restore_Over.png" />
-    <Content Include="Include\Image\Vectores\Banner.png" />
-    <Content Include="Include\Image\Vectores\BarraTituloDePagina.png" />
-    <Content Include="Include\Image\Vectores\CEDH.png" />
-    <Content Include="Include\Image\Vectores\Exit.png" />
-    <Content Include="Include\Image\Vectores\Iconografia.png" />
-    <Content Include="Include\Image\Vectores\PestañasAcordeon.png" />
-    <Content Include="Include\Image\Vectores\TituloAcordeonTAE.png" />
     <Content Include="Include\Image\Web\Banner.png" />
     <Content Include="Include\Image\Web\BannerFill.png" />
     <Content Include="Include\Image\Web\BarraTitulo.png" />
-    <Content Include="Include\Image\Web\Buscar.jpg" />
     <Content Include="Include\Image\Web\Div.png" />
-    <Content Include="Include\Image\Web\imgs.png" />
-    <Content Include="Include\Image\Web\img_x.jpg" />
-    <Content Include="Include\Image\Web\pdf.png" />
-    <Content Include="Include\Image\Web\Registro.jpg" />
     <Content Include="Include\Image\Web\SalirOff.png" />
     <Content Include="Include\Image\Web\SalirOn.png" />
-    <Content Include="Include\Image\Web\word.png" />
     <Content Include="Include\Javascript\ToolTip\ImageError.png" />
     <Content Include="Include\Javascript\ToolTip\ImageWarning.png" />
-    <Content Include="Include\WebUserControls\wucTimeMask.ascx" />
     <Content Include="Index.aspx" />
     <Content Include="Application\WebApp\Private\Home\AppIndex.aspx" />
     <Content Include="Application\WebApp\Private\SysApp\saLogout.aspx" />
@@ -238,20 +214,6 @@
     <Compile Include="Application\WebApp\Private\Operation\opeAutoridad.aspx.designer.cs">
       <DependentUpon>opeAutoridad.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeBusquedaCiudadano.aspx.cs">
-      <DependentUpon>opeBusquedaCiudadano.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeBusquedaCiudadano.aspx.designer.cs">
-      <DependentUpon>opeBusquedaCiudadano.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeBusquedaExpedientes.aspx.cs">
-      <DependentUpon>opeBusquedaExpedientes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeBusquedaExpedientes.aspx.designer.cs">
-      <DependentUpon>opeBusquedaExpedientes.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeBusquedaSolicitud.aspx.cs">
       <DependentUpon>opeBusquedaSolicitud.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -265,41 +227,6 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeCiudadano.aspx.designer.cs">
       <DependentUpon>opeCiudadano.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeDetalleSolicitud.aspx.cs">
-      <DependentUpon>opeDetalleSolicitud.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeDetalleSolicitud.aspx.designer.cs">
-      <DependentUpon>opeDetalleSolicitud.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeInicio.aspx.cs">
-      <DependentUpon>opeInicio.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeInicio.aspx.designer.cs">
-      <DependentUpon>opeInicio.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeLstEspedienteSecretaria.aspx.cs">
-      <DependentUpon>opeLstEspedienteSecretaria.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeLstEspedienteSecretaria.aspx.designer.cs">
-      <DependentUpon>opeLstEspedienteSecretaria.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeLstExpedientesFuncionario.aspx.cs">
-      <DependentUpon>opeLstExpedientesFuncionario.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeLstExpedientesFuncionario.aspx.designer.cs">
-      <DependentUpon>opeLstExpedientesFuncionario.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeLstExpedientesTitular.aspx.cs">
-      <DependentUpon>opeLstExpedientesTitular.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeLstExpedientesTitular.aspx.designer.cs">
-      <DependentUpon>opeLstExpedientesTitular.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeLstSolicitudFuncionario.aspx.cs">
       <DependentUpon>opeLstSolicitudFuncionario.aspx</DependentUpon>
@@ -343,11 +270,11 @@
     <Compile Include="Application\WebApp\Private\Operation\opeRegistroSolicitud.aspx.designer.cs">
       <DependentUpon>opeRegistroSolicitud.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Application\WebApp\Private\SysApp\Report\rptSIAQ.aspx.cs">
+    <Compile Include="Application\WebApp\Private\Report\rptSIAQ.aspx.cs">
       <DependentUpon>rptSIAQ.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Application\WebApp\Private\SysApp\Report\rptSIAQ.aspx.designer.cs">
+    <Compile Include="Application\WebApp\Private\Report\rptSIAQ.aspx.designer.cs">
       <DependentUpon>rptSIAQ.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\SysApp\saChangePassword.aspx.cs">
@@ -426,13 +353,6 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\SysCat\scatUsuario.aspx.designer.cs">
       <DependentUpon>scatUsuario.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Include\WebUserControls\wucTimeMask.ascx.cs">
-      <DependentUpon>wucTimeMask.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Include\WebUserControls\wucTimeMask.ascx.designer.cs">
-      <DependentUpon>wucTimeMask.ascx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Index.aspx.cs">

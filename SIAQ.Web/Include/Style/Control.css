@@ -230,7 +230,7 @@
 	font-family: 'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
 	font-size: 11px;
 	font-weight:lighter;
-	height:22px;
+	height:25px;
 	text-align:left;
 	vertical-align:middle;
 }
@@ -244,23 +244,26 @@
 	font-size: 11px;
 	font-weight:normal;
 	height: 28px;
-}
-
-{
+}{
 
 F;
 	background: none;
 }
 
 .Grid_Heade{
-	
+	borddd
 	border:solid 1px #C1C1C1;
-	color:#FFFFFF;
-	font-family:Ft-familililnt-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	color:#Ft-familililnt-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
 	font-size:11px;
 	font-weight:normal;
 	padding:2px;
 } 
+
+.Grid_Row {
+
+ 
+
+rid_Row {
 
 
 .Grid_Header a{

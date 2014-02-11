@@ -8,29 +8,6 @@ namespace SIAQ.BusinessProcess.Object
 {
     public class BPEstado : BPBase
     {
-        protected ENTEstado _EstadoEntity;
-
-        public ENTEstado EstadoEntity
-        {
-            get { return _EstadoEntity; }
-            set { _EstadoEntity = value; }
-        }
-
-        public BPEstado()
-        {
-
-            _EstadoEntity = new ENTEstado();
-        }
-
-        public DataSet SelectEstado()
-        {
-            string ConnectionString = string.Empty;
-            DAEstado DAEstado = new DAEstado();
-
-            ConnectionString = sConnectionApplication;
-            _EstadoEntity.ResultData = DAEstado.SelectEstado(_EstadoEntity, ConnectionString);
-            return _EstadoEntity.ResultData;
-        }
         ///<remarks>
         ///   <name>BPcatEstado.searchcatEstado</name>
         ///   <create>27/ene/2014</create>
@@ -147,7 +124,5 @@ namespace SIAQ.BusinessProcess.Object
             return oENTResponse;
 
         }
-
-
     }
 }

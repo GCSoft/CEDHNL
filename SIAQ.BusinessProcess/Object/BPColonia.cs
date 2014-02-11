@@ -8,29 +8,6 @@ namespace SIAQ.BusinessProcess.Object
 {
     public class BPColonia : BPBase
     {
-        protected ENTColonia _ColoniaEntity;
-
-        public ENTColonia EstadoColonia
-        {
-            get { return _ColoniaEntity; }
-            set { _ColoniaEntity = value; }
-        }
-
-        public BPColonia()
-        {
-
-            _ColoniaEntity = new ENTColonia();
-        }
-
-        public DataSet SelectColonia()
-        {
-            string ConnectionString = string.Empty;
-            DAColonia DAColonia = new DAColonia();
-
-            ConnectionString = sConnectionApplication;
-            _ColoniaEntity.ResultData = DAColonia.SelectColonia(_ColoniaEntity, ConnectionString);
-            return _ColoniaEntity.ResultData;
-        }
         ///<remarks>
         ///   <name>BPcatColonia.searchcatColonia</name>
         ///   <create>27/ene/2014</create>

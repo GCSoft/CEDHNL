@@ -5,18 +5,14 @@ namespace SIAQ.Entity.Object
 {
     public class ENTSolicitud : ENTBase
     {
-        private int _SolicitudId;       // Valor de SolicitudId
-        private int _FuncionarioId;     // Valor de FuncionarioId
-        private int _CalificacionId;    // Valor de CalificacionId
-        private int _TipoSolicitudId;   // Valor de TipoSolicitudId
-        private int _LugarHechosId;     // Valor de LugarHechosId
-        private int _EstatusId;         // Valor de EstatusId
-        private int _Numero;            // Valor de Numero
-        private string _Fecha;          // Valor de Fecha
-        private string _NombreTemporal; // Nombtre temporal de ciudadano
-        private string _Observaciones;  // Observaciones del recepcionista
-
-
+        private int _SolicitudId; // Valor de SolicitudId
+        private int _FuncionarioId; // Valor de FuncionarioId
+        private int _CalificacionId; // Valor de CalificacionId
+        private int _TipoSolicitudId; // Valor de TipoSolicitudId
+        private int _LugarHechosId; // Valor de LugarHechosId
+        private int _EstatusId; // Valor de EstatusId
+        private int _Numero; // Valor de Numero
+        private string _Fecha; // Valor de Fecha
         public ENTSolicitud()
         {
             _SolicitudId = 0;
@@ -27,8 +23,6 @@ namespace SIAQ.Entity.Object
             _EstatusId = 0;
             _Numero = 0;
             _Fecha = "";
-            _NombreTemporal = "";
-            _Observaciones = "";
         }
         ///<remarks>
         ///   <name>Solicitud.SolicitudId</name>
@@ -118,29 +112,5 @@ namespace SIAQ.Entity.Object
             get { return _Fecha; }
             set { _Fecha = value; }
         }
-
-        ///<remarks>
-        ///   <name>Solicitud.NombreTemporal</name>
-        ///   <create>o5/Feb/2014</create>
-        ///   <author>Generador</author>
-        ///</remarks>
-        ///<summary>Obtiene/Asigna NombreTemporal</summary>
-        public string NombreTemporal {
-            get { return _NombreTemporal; }
-            set { _NombreTemporal = value; }
-        }
-
-        ///<remarks>
-        ///   <name>Solicitud.Observaciones</name>
-        ///   <create>o5/Feb/2014</create>
-        ///   <author>Generador</author>
-        ///</remarks>
-        ///<summary>Obtiene/Asigna Observaciones</summary>
-        public string Observaciones
-        {
-            get { return _Observaciones; }
-            set { _Observaciones = value; }
-        }
-
     }
 }

@@ -86,10 +86,14 @@
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsNacionalidad.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeAutoridad.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeBusquedaCiudadano.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeBusquedaExpedientes.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeBusquedaSolicitud.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeCiudadano.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeDetalleSolicitud.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeInicio.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeLstEspedienteSecretaria.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeLstExpedientesFuncionario.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeLstExpedientesTitular.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeLstSolicitudFuncionario.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeLstSolicitudSecretaria.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeQueja.aspx" />
@@ -241,6 +245,13 @@
     <Compile Include="Application\WebApp\Private\Operation\opeBusquedaCiudadano.aspx.designer.cs">
       <DependentUpon>opeBusquedaCiudadano.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeBusquedaExpedientes.aspx.cs">
+      <DependentUpon>opeBusquedaExpedientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeBusquedaExpedientes.aspx.designer.cs">
+      <DependentUpon>opeBusquedaExpedientes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeBusquedaSolicitud.aspx.cs">
       <DependentUpon>opeBusquedaSolicitud.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -268,6 +279,27 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeInicio.aspx.designer.cs">
       <DependentUpon>opeInicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeLstEspedienteSecretaria.aspx.cs">
+      <DependentUpon>opeLstEspedienteSecretaria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeLstEspedienteSecretaria.aspx.designer.cs">
+      <DependentUpon>opeLstEspedienteSecretaria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeLstExpedientesFuncionario.aspx.cs">
+      <DependentUpon>opeLstExpedientesFuncionario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeLstExpedientesFuncionario.aspx.designer.cs">
+      <DependentUpon>opeLstExpedientesFuncionario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeLstExpedientesTitular.aspx.cs">
+      <DependentUpon>opeLstExpedientesTitular.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeLstExpedientesTitular.aspx.designer.cs">
+      <DependentUpon>opeLstExpedientesTitular.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeLstSolicitudFuncionario.aspx.cs">
       <DependentUpon>opeLstSolicitudFuncionario.aspx</DependentUpon>

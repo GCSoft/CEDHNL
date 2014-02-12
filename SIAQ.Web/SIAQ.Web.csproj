@@ -31,7 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Include\Image\Vectores\vssver2.scc" />
+  </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -85,6 +87,8 @@
     <Content Include="Application\WebApp\Private\Operation\opeBusquedaExpedientes.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeBusquedaSolicitud.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeCiudadano.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeDetalleExpedienteTitular.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeDetalleExpedienteVisitador.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeDetalleSolicitud.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeLstEspedienteSecretaria.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeLstExpedientesFuncionario.aspx" />
@@ -114,12 +118,25 @@
     <Content Include="Include\Image\Buttons\Edit_Over.png" />
     <Content Include="Include\Image\Buttons\Restore.png" />
     <Content Include="Include\Image\Buttons\Restore_Over.png" />
+    <Content Include="Include\Image\Vectores\Banner.png" />
+    <Content Include="Include\Image\Vectores\BarraTituloDePagina.png" />
+    <Content Include="Include\Image\Vectores\CEDH.png" />
+    <Content Include="Include\Image\Vectores\Exit.png" />
+    <Content Include="Include\Image\Vectores\Iconografia.png" />
+    <Content Include="Include\Image\Vectores\PestañasAcordeon.png" />
+    <Content Include="Include\Image\Vectores\TituloAcordeonTAE.png" />
     <Content Include="Include\Image\Web\Banner.png" />
     <Content Include="Include\Image\Web\BannerFill.png" />
     <Content Include="Include\Image\Web\BarraTitulo.png" />
+    <Content Include="Include\Image\Web\Buscar.jpg" />
     <Content Include="Include\Image\Web\Div.png" />
+    <Content Include="Include\Image\Web\imgs.png" />
+    <Content Include="Include\Image\Web\img_x.jpg" />
+    <Content Include="Include\Image\Web\pdf.png" />
+    <Content Include="Include\Image\Web\Registro.jpg" />
     <Content Include="Include\Image\Web\SalirOff.png" />
     <Content Include="Include\Image\Web\SalirOn.png" />
+    <Content Include="Include\Image\Web\word.png" />
     <Content Include="Include\Javascript\ToolTip\ImageError.png" />
     <Content Include="Include\Javascript\ToolTip\ImageWarning.png" />
     <Content Include="Index.aspx" />
@@ -221,6 +238,7 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeBusquedaExpedientes.aspx.cs">
       <DependentUpon>opeBusquedaExpedientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeBusquedaExpedientes.aspx.designer.cs">
       <DependentUpon>opeBusquedaExpedientes.aspx</DependentUpon>
@@ -239,26 +257,44 @@
     <Compile Include="Application\WebApp\Private\Operation\opeCiudadano.aspx.designer.cs">
       <DependentUpon>opeCiudadano.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeDetalleExpedienteTitular.aspx.cs">
+      <DependentUpon>opeDetalleExpedienteTitular.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeDetalleExpedienteTitular.aspx.designer.cs">
+      <DependentUpon>opeDetalleExpedienteTitular.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeDetalleExpedienteVisitador.aspx.cs">
+      <DependentUpon>opeDetalleExpedienteVisitador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeDetalleExpedienteVisitador.aspx.designer.cs">
+      <DependentUpon>opeDetalleExpedienteVisitador.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeDetalleSolicitud.aspx.cs">
       <DependentUpon>opeDetalleSolicitud.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeDetalleSolicitud.aspx.designer.cs">
       <DependentUpon>opeDetalleSolicitud.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeLstEspedienteSecretaria.aspx.cs">
       <DependentUpon>opeLstEspedienteSecretaria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeLstEspedienteSecretaria.aspx.designer.cs">
       <DependentUpon>opeLstEspedienteSecretaria.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeLstExpedientesFuncionario.aspx.cs">
       <DependentUpon>opeLstExpedientesFuncionario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeLstExpedientesFuncionario.aspx.designer.cs">
       <DependentUpon>opeLstExpedientesFuncionario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeLstExpedientesTitular.aspx.cs">
       <DependentUpon>opeLstExpedientesTitular.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeLstExpedientesTitular.aspx.designer.cs">
       <DependentUpon>opeLstExpedientesTitular.aspx</DependentUpon>

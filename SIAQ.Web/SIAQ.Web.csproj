@@ -115,6 +115,7 @@
     <Content Include="Application\WebApp\Private\SysCat\scatRol.aspx" />
     <Content Include="Application\WebApp\Private\SysCat\scatSubMenu.aspx" />
     <Content Include="Application\WebApp\Private\SysCat\scatUsuario.aspx" />
+    <Content Include="Include\Image\Background\HandsBackgorund.jpg" />
     <Content Include="Include\Image\Buttons\CloseWindow.png" />
     <Content Include="Include\Image\Buttons\Delete.png" />
     <Content Include="Include\Image\Buttons\Delete_Over.png" />
@@ -122,6 +123,9 @@
     <Content Include="Include\Image\Buttons\Edit_Over.png" />
     <Content Include="Include\Image\Buttons\Restore.png" />
     <Content Include="Include\Image\Buttons\Restore_Over.png" />
+    <Content Include="Include\Image\Icon\BuscarSolicitud.png" />
+    <Content Include="Include\Image\Icon\RegistrarSolicitud.png" />
+    <Content Include="Include\Image\Icon\RegistrarVisita.png" />
     <Content Include="Include\Image\Vectores\Banner.png" />
     <Content Include="Include\Image\Vectores\BarraTituloDePagina.png" />
     <Content Include="Include\Image\Vectores\CEDH.png" />
@@ -291,6 +295,7 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeInicio.aspx.cs">
       <DependentUpon>opeInicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeInicio.aspx.designer.cs">
       <DependentUpon>opeInicio.aspx</DependentUpon>
@@ -538,6 +543,7 @@
       <Name>SIAQ.Entity</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>

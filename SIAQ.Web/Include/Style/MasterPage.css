@@ -8,12 +8,16 @@
 '----------------------------------------------------------------------------------------------------------------------------------*/
 
 /* General*/
-body{
-   background-color:#FFFFFF;
-   color:#27245D;
-   font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+html, body, form
+{
+	background: url(/Include/Image/Background/HandsBackgorund.jpg) no-repeat center;
+	color:#27245D;
+	background-size: cover;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	height: 100%;
 	margin: 0;
 	padding: 0;
+	width: 100%;
 }
 
 .GCSoft{

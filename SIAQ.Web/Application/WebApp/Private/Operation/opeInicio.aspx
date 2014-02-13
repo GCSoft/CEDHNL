@@ -15,25 +15,11 @@
                         <tr style="height:20px;"><td colspan="9"></td></tr>
                         <tr>
                             <td style="width:11%;"></td>
-                            <td style="width:11%;"><asp:ImageButton ID="imgRegistrarSol" runat="server" ImageUrl="~/Include/Image/Web/Registro.jpg" onclick="imgRegistrarSol_Click"></asp:ImageButton></td>
+                            <td style="width:11%;"><asp:ImageButton ID="imgRegistrarSol" runat="server" ImageUrl="~/Include/Image/Icon/BuscarSolicitud.png" onclick="imgRegistrarSol_Click"></asp:ImageButton></td>
                             <td style="width:11%;"></td>
-                            <td style="width:11%;"><asp:ImageButton ID="imgRegistrarVis" runat="server" ImageUrl="~/Include/Image/Web/Registro.jpg" onclick="imgRegistrarVis_Click"></asp:ImageButton></td>
+                            <td style="width:11%;"><asp:ImageButton ID="imgRegistrarVis" runat="server" ImageUrl="~/Include/Image/Icon/RegistrarSolicitud.png" onclick="imgRegistrarVis_Click"></asp:ImageButton></td>
                             <td style="width:11%;"></td>
-                            <td style="width:11%;"><asp:ImageButton ID="imgBuscarSol" runat="server" ImageUrl="~/Include/Image/Web/Buscar.jpg" onclick="imgBuscarSol_Click"></asp:ImageButton></td>
-                            <td style="width:11%;"></td>
-                            <td style="width:11%;"><asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="~/Include/Image/Web/img_x.jpg"></asp:ImageButton></td>
-                            <td style="width:11%;"></td>
-                        </tr>
-                        <tr style="height:20px;"><td colspan="9"></td></tr>
-                        <tr>
-                            <td style="width:11%;"></td>
-                            <td style="width:11%; font-size:10px;">Registrar Solicitud</td>
-                            <td style="width:11%;"></td>
-                            <td style="width:11%; font-size:10px;">Registrar visita</td>
-                            <td style="width:11%;"></td>
-                            <td style="width:11%; font-size:10px;">Buscar solicitud</td>
-                            <td style="width:11%;"></td>
-                            <td style="width:11%;"></td>
+                            <td style="width:11%;"><asp:ImageButton ID="imgBuscarSol" runat="server" ImageUrl="~/Include/Image/Icon/RegistrarVisita.png" onclick="imgBuscarSol_Click"></asp:ImageButton></td>
                             <td style="width:11%;"></td>
                         </tr>
                     </table>

@@ -10,9 +10,7 @@
 /* General*/
 html, body, form
 {
-	background: url(/Include/Image/Background/HandsBackgorund.jpg) no-repeat center;
-	color:#27245D;
-	background-size: cover;
+	color: #27245D;
 	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
 	height: 100%;
 	margin: 0;
@@ -47,7 +45,7 @@ html, body, form
 	width:310px;
 }
 
-/* ApplicationPrivate.MasterPage */
+/* ApplicationPrivate.MasterPage
 .Body {
 	background-color:#FFFFFF;
 	border: 0px solid RED;
@@ -55,13 +53,13 @@ html, body, form
 	min-height:500px;
 	position:relative;
 	width:800px;
-}
+} */
 
 .Canvas {
 	background-color:#FFFFFF;
 	border: 0px solid BLUE;
 	clear: both;
-	min-height:500px;
+	min-height: 500px;
 	position:relative;
 	width:100%;
 }

@@ -147,6 +147,7 @@
     <Content Include="Include\Image\Web\word.png" />
     <Content Include="Include\Javascript\ToolTip\ImageError.png" />
     <Content Include="Include\Javascript\ToolTip\ImageWarning.png" />
+    <Content Include="Include\Style\Login.css" />
     <Content Include="Index.aspx" />
     <Content Include="Application\WebApp\Private\Home\AppIndex.aspx" />
     <Content Include="Application\WebApp\Private\SysApp\saLogout.aspx" />

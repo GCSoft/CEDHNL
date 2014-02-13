@@ -8,7 +8,7 @@
 	<meta content="GCSoft - Web Project Creator BETA 1.0" name="autor" />
 	<link rel="shortcut icon" href="~/Include/Image/Content/Web/favicon.ico" type="image/png" />
 	<link href="~/Include/Style/Control.css" rel="Stylesheet" type="text/css" />
-	<link href="~/Include/Style/MasterPage.css" rel="Stylesheet" type="text/css" />
+	<link href="~/Include/Style/Login.css" rel="Stylesheet" type="text/css" />
 	<link href="~/Include/Style/Text.css" rel="Stylesheet" type="text/css" />
 	<link href="~/Include/Style/Wait.css" rel="Stylesheet" type="text/css" />
    <link href="~/Include/Javascript/TinyBox/TinyBox.css" rel="Stylesheet" type="text/css" />

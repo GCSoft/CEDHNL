@@ -81,9 +81,7 @@
          <td>
             <asp:Panel id="pnlGrid" runat="server" Width="100%">
                <asp:GridView ID="gvApps" runat="server" AutoGenerateColumns="False"
-                        AutoUpdateAfterCallBack="True" OnPageIndexChanging="gvApps_PageIndexChanging"
-                        OnRowDataBound="gvApps_RowDataBound" OnSelectedIndexChanged="gvApps_SelectedIndexChanged"
-                        OnSelectedIndexChanging="gvApps_SelectedIndexChanging" OnRowCommand="gvApps_RowCommand"
+                        AutoUpdateAfterCallBack="True"
                         UpdateAfterCallBack="True" Width="800px" Style="text-align: center" DataKeyNames="Solicitud"
                         PageSize="30" ShowHeaderWhenEmpty="True">
                         <RowStyle CssClass="Grid_Row" />

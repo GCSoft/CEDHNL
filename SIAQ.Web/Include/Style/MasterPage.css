@@ -45,7 +45,7 @@ html, body, form
 	width:310px;
 }
 
-/* ApplicationPrivate.MasterPage
+/* ApplicationPrivate.MasterPage */
 .Body {
 	background-color:#FFFFFF;
 	border: 0px solid RED;
@@ -53,7 +53,7 @@ html, body, form
 	min-height:500px;
 	position:relative;
 	width:800px;
-} */
+}
 
 .Canvas {
 	background-color:#FFFFFF;

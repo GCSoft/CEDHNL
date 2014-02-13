@@ -14,13 +14,13 @@
                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
                         <tr style="height:20px;"><td colspan="9"></td></tr>
                         <tr>
-                            <td style="width:11%;"></td>
-                            <td style="width:11%;"><asp:ImageButton ID="imgRegistrarSol" runat="server" ImageUrl="~/Include/Image/Icon/BuscarSolicitud.png" onclick="imgRegistrarSol_Click"></asp:ImageButton></td>
-                            <td style="width:11%;"></td>
-                            <td style="width:11%;"><asp:ImageButton ID="imgRegistrarVis" runat="server" ImageUrl="~/Include/Image/Icon/RegistrarSolicitud.png" onclick="imgRegistrarVis_Click"></asp:ImageButton></td>
-                            <td style="width:11%;"></td>
-                            <td style="width:11%;"><asp:ImageButton ID="imgBuscarSol" runat="server" ImageUrl="~/Include/Image/Icon/RegistrarVisita.png" onclick="imgBuscarSol_Click"></asp:ImageButton></td>
-                            <td style="width:11%;"></td>
+                            <td style="width:10%;"></td>
+                            <td style="width:20%;"><asp:ImageButton ID="imgRegistrarSol" runat="server" ImageUrl="~/Include/Image/Icon/RegistrarSolicitud.png" onclick="imgRegistrarSol_Click"></asp:ImageButton></td>
+                            <td style="width:10%;"></td>
+                            <td style="width:20%;"><asp:ImageButton ID="imgRegistrarVis" runat="server" ImageUrl="~/Include/Image/Icon/RegistrarVisita.png" onclick="imgRegistrarVis_Click"></asp:ImageButton></td>
+                            <td style="width:10%;"></td>
+                            <td style="width:20%;"><asp:ImageButton ID="imgBuscarSol" runat="server" ImageUrl="~/Include/Image/Icon/BuscarSolicitud.png" onclick="imgBuscarSol_Click"></asp:ImageButton></td>
+                            <td style="width:10%;"></td>
                         </tr>
                     </table>
                 </asp:Panel>

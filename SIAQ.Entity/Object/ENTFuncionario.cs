@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Data;
 namespace SIAQ.Entity.Object
 {
     public class ENTFuncionario : ENTBase
@@ -13,6 +14,8 @@ namespace SIAQ.Entity.Object
         private string _ApellidoPaterno; // Valor de ApellidoPaterno
         private string _ApellidoMaterno; // Valor de ApellidoMaterno
         private string _FechaIngreso; // Valor de FechaIngreso
+        private DataSet _ResultData; //Otras propiedades
+        private string _Descripcion; // Valor de Descripcion
         public ENTFuncionario()
         {
             _FuncionarioId = 0;
@@ -112,5 +115,18 @@ namespace SIAQ.Entity.Object
             get { return _FechaIngreso; }
             set { _FechaIngreso = value; }
         }
+
+        public string Descripcion
+        {
+            get { return _Descripcion; }
+            set { _Descripcion = value; }
+        }
+
+        public DataSet ResultData
+        {
+            get { return _ResultData; }
+            set { _ResultData = value; }
+        }
+
     }
 }

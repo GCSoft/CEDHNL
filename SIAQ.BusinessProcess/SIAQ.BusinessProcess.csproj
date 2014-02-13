@@ -56,6 +56,7 @@
     <Compile Include="Object\BPEstatus.cs" />
     <Compile Include="Object\BPFuncionario.cs" />
     <Compile Include="Object\BPMedioComunicacion.cs" />
+    <Compile Include="Object\BPMotivo.cs" />
     <Compile Include="Object\BPNacionalidad.cs" />
     <Compile Include="Object\BPPais.cs" />
     <Compile Include="Object\BPSolicitud.cs" />

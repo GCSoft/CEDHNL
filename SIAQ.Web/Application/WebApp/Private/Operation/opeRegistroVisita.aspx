@@ -44,17 +44,17 @@
                   <tr>
                     <td class="style1">Fecha</td>
                     <td class="style3"></td>
-                    <td>&nbsp;</td>
+                    <td><asp:TextBox ReadOnly="true" ID="txtBoxFecha" width="183px" runat="server"></asp:TextBox></td>
                   </tr>
                   <tr>
                     <td class="style1">Hora</td>
                     <td class="style3"></td>
-                    <td>&nbsp;</td>
+                    <td><asp:TextBox ReadOnly="true" ID="txtBoxHora" width="183px" runat="server"></asp:TextBox></td>
                   </tr>
                   <tr>
                     <td class="style1">Área que visita</td>
-                    <td class="style3"></td>
-                    <td><asp:DropDownList ID="ddlVisita" runat="server" CssClass="DropDownList_General" width="183px"></asp:DropDownList></td>
+                    <td class="style3">*</td>
+                    <td><asp:DropDownList ID="ddlArea" runat="server" CssClass="DropDownList_General" width="183px"></asp:DropDownList></td>
                   </tr>
                   <tr>
                     <td class="style1">Funcionario</td>

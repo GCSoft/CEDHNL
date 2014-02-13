@@ -23,6 +23,27 @@ namespace SIAQ.BusinessProcess.Object
 
    public class BPArea : BPBase
    {
+       protected ENTArea _AreaEntity;
+
+       public ENTArea Area
+       {
+           get { return _AreaEntity; }
+           set { _AreaEntity = value; }
+       }
+
+       public BPArea()
+       {
+           _AreaEntity = new ENTArea();
+       }
+
+       public DataSet SelectArea()
+       {
+           string ConnectionString = string.Empty;
+           DAArea DAArea = new DAArea();
+           ConnectionString = sConnectionApplication;
+           _AreaEntity.ResultData = DAArea.SelectArea(_AreaEntity, ConnectionString);
+           return _AreaEntity.ResultData;
+       }
 
       ///<remarks>
 		///   <name>BPArea.InsertArea</name>

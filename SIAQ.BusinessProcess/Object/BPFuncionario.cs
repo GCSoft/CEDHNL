@@ -8,6 +8,43 @@ namespace SIAQ.BusinessProcess.Object
 {
     public class BPFuncionario : BPBase
     {
+        /*       protected ENTArea _AreaEntity;
+
+       public ENTArea Area
+       {
+           get { return _AreaEntity; }
+           set { _AreaEntity = value; }
+       }
+
+       public BPArea()
+       {
+           _AreaEntity = new ENTArea();
+       }
+
+       public DataSet SelectArea()
+       {
+           string ConnectionString = string.Empty;
+           DAArea DAArea = new DAArea();
+           ConnectionString = sConnectionApplication;
+           _AreaEntity.ResultData = DAArea.SelectArea(_AreaEntity, ConnectionString);
+           return _AreaEntity.ResultData;
+       }*/
+        protected ENTFuncionario _FuncionarioEntity;
+
+        public ENTFuncionario Funcionario
+        {
+            get { return _FuncionarioEntity; }
+            set { _FuncionarioEntity = value; }
+        }
+
+        public DataSet SelectFuncionario()
+        {
+            string ConnectionString = string.Empty;
+            DAFuncionario DAFuncionario = new DAFuncionario();
+            ConnectionString = sConnectionApplication;
+            _FuncionarioEntity.ResultData = DAFuncionario.SelectFuncionario(_FuncionarioEntity, ConnectionString);
+            return _FuncionarioEntity.ResultData;
+        }
         ///<remarks>
         ///   <name>BPFuncionario.searchFuncionario</name>
         ///   <create>27/ene/2014</create>

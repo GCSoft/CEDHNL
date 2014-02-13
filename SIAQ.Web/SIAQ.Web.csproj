@@ -244,6 +244,7 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\lstRecSectretarias.aspx.cs">
       <DependentUpon>lstRecSectretarias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\lstRecSectretarias.aspx.designer.cs">
       <DependentUpon>lstRecSectretarias.aspx</DependentUpon>
@@ -271,6 +272,7 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeBusquedaRecomendacion.aspx.cs">
       <DependentUpon>opeBusquedaRecomendacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeBusquedaRecomendacion.aspx.designer.cs">
       <DependentUpon>opeBusquedaRecomendacion.aspx</DependentUpon>
@@ -340,12 +342,14 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeLstRecDefensor.aspx.cs">
       <DependentUpon>opeLstRecDefensor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeLstRecDefensor.aspx.designer.cs">
       <DependentUpon>opeLstRecDefensor.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeLstRecDirector.aspx.cs">
       <DependentUpon>opeLstRecDirector.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeLstRecDirector.aspx.designer.cs">
       <DependentUpon>opeLstRecDirector.aspx</DependentUpon>

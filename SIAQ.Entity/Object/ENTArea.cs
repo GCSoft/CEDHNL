@@ -11,6 +11,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Data;
 
 
 namespace SIAQ.Entity.Object
@@ -25,6 +26,8 @@ namespace SIAQ.Entity.Object
 		private String	_sDescripcion;		// Descripción/notas del registro
 		private String	_sNombre;			// Nombre del Area
 		private Int16	_tiActivo;			// Control de baja lógica de registro
+        private DataSet _ResultData; //Otras propiedades
+        private string _Descripcion; // Valor de Descripcion
 
 		
 		 //Constructor
@@ -99,6 +102,18 @@ namespace SIAQ.Entity.Object
 			get { return _tiActivo; }
 			set { _tiActivo = value; }
 		}
+
+        public string Descripcion
+        {
+            get { return _Descripcion; }
+            set { _Descripcion = value; }
+        }
+
+        public DataSet ResultData
+        {
+            get { return _ResultData; }
+            set { _ResultData = value; }
+        }
 
    }
 

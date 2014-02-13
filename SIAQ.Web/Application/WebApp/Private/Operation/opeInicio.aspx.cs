@@ -18,7 +18,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         protected void imgRegistrarVis_Click(object sender, ImageClickEventArgs e)
         {
-            
+            Response.Redirect("opeRegistroVisita.aspx");
         }
 
         protected void imgBuscarSol_Click(object sender, ImageClickEventArgs e)

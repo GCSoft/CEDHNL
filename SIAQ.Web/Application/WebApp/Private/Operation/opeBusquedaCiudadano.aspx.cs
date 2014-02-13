@@ -56,6 +56,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 SelectCiudad();
                 SelectColonia();
 
+                gvCiudadano.DataSource = null;
+                gvCiudadano.DataBind();
             }
         }
 
@@ -150,6 +152,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             BPCiudadano.ENTCiudadano.CampoBusqueda = CampoBusqueda;
 
             BPCiudadano.BuscarCiudadano();
+
             if (BPCiudadano.ErrorId == 0)
             {
                 if (BPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows.Count > 0)
@@ -159,10 +162,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 }
 
             }
-
-            gvCiudadano.DataSource = null;
-            gvCiudadano.DataBind();
-
+            else
+            {
+                gvCiudadano.DataSource = null;
+                gvCiudadano.DataBind();
+            }
         }
 
         protected void gvCiudadano_RowDataBound(object sender, GridViewRowEventArgs e)

@@ -84,9 +84,11 @@
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlscatOcupacion.aspx" />
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsColonia.aspx" />
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsNacionalidad.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\lstRecSectretarias.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeAutoridad.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeBusquedaCiudadano.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeBusquedaExpedientes.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeBusquedaRecomendacion.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeBusquedaSolicitud.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeCiudadano.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeDetalleExpedienteTitular.aspx" />
@@ -96,6 +98,8 @@
     <Content Include="Application\WebApp\Private\Operation\opeLstEspedienteSecretaria.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeLstExpedientesFuncionario.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeLstExpedientesTitular.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeLstRecDefensor.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeLstRecDirector.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeLstSolicitudFuncionario.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeLstSolicitudSecretaria.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeQueja.aspx" />
@@ -238,6 +242,12 @@
     <Compile Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsNacionalidad.aspx.designer.cs">
       <DependentUpon>xlsNacionalidad.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\lstRecSectretarias.aspx.cs">
+      <DependentUpon>lstRecSectretarias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\lstRecSectretarias.aspx.designer.cs">
+      <DependentUpon>lstRecSectretarias.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeAutoridad.aspx.cs">
       <DependentUpon>opeAutoridad.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -258,6 +268,12 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeBusquedaExpedientes.aspx.designer.cs">
       <DependentUpon>opeBusquedaExpedientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeBusquedaRecomendacion.aspx.cs">
+      <DependentUpon>opeBusquedaRecomendacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeBusquedaRecomendacion.aspx.designer.cs">
+      <DependentUpon>opeBusquedaRecomendacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeBusquedaSolicitud.aspx.cs">
       <DependentUpon>opeBusquedaSolicitud.aspx</DependentUpon>
@@ -321,6 +337,18 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeLstExpedientesTitular.aspx.designer.cs">
       <DependentUpon>opeLstExpedientesTitular.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeLstRecDefensor.aspx.cs">
+      <DependentUpon>opeLstRecDefensor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeLstRecDefensor.aspx.designer.cs">
+      <DependentUpon>opeLstRecDefensor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeLstRecDirector.aspx.cs">
+      <DependentUpon>opeLstRecDirector.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeLstRecDirector.aspx.designer.cs">
+      <DependentUpon>opeLstRecDirector.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeLstSolicitudFuncionario.aspx.cs">
       <DependentUpon>opeLstSolicitudFuncionario.aspx</DependentUpon>

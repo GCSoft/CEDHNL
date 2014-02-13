@@ -8,9 +8,33 @@ namespace SIAQ.BusinessProcess.Object
 {
     public class BPCiudad : BPBase
     {
+
+        protected ENTCiudad _CiudadEntity;
+
+        public ENTCiudad EstadoCiudad
+        {
+            get { return _CiudadEntity; }
+            set { _CiudadEntity = value; }
+        }
+
+        public BPCiudad()
+        {
+
+            _CiudadEntity = new ENTCiudad();
+        }
+
+        public DataSet SelectCiudad()
+        {
+            string ConnectionString = string.Empty;
+            DACiudad DACiudad = new DACiudad();
+
+            ConnectionString = sConnectionApplication;
+            _CiudadEntity.ResultData = DACiudad.SelectCiudad(_CiudadEntity, ConnectionString);
+            return _CiudadEntity.ResultData;
+        }
         ///<remarks>
         ///   <name>BPcatCiudad.searchcatCiudad</name>
-        ///   <create>27/ene/2014</create>
+        ///   <create>27/ene/2014 </create>
         ///   <author>Generador</author>
         ///</remarks>
         ///<summary>Metodo para obtener las catCiudad del sistema</summary>

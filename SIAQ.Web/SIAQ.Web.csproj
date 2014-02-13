@@ -13,6 +13,7 @@
     <RootNamespace>SIAQ.Web</RootNamespace>
     <AssemblyName>SIAQ.Web</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -84,6 +85,7 @@
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsColonia.aspx" />
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsNacionalidad.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeAutoridad.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeBusquedaCiudadano.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeBusquedaExpedientes.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeBusquedaSolicitud.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeCiudadano.aspx" />
@@ -99,7 +101,8 @@
     <Content Include="Application\WebApp\Private\Operation\opeRegistroCiudadano.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeRegistroServPublico.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeRegistroSolicitud.aspx" />
-    <Content Include="Application\WebApp\Private\Report\rptSIAQ.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeRegistroVisita.aspx" />
+    <Content Include="Application\WebApp\Private\SysApp\Report\rptSIAQ.aspx" />
     <Content Include="Application\WebApp\Private\SysApp\saChangePassword.aspx" />
     <Content Include="Application\WebApp\Private\SysCat\ExcelMaker\xlsArea.aspx" />
     <Content Include="Application\WebApp\Private\SysCat\ExcelMaker\xlsMenu.aspx" />
@@ -236,6 +239,13 @@
     <Compile Include="Application\WebApp\Private\Operation\opeAutoridad.aspx.designer.cs">
       <DependentUpon>opeAutoridad.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeBusquedaCiudadano.aspx.cs">
+      <DependentUpon>opeBusquedaCiudadano.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeBusquedaCiudadano.aspx.designer.cs">
+      <DependentUpon>opeBusquedaCiudadano.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeBusquedaExpedientes.aspx.cs">
       <DependentUpon>opeBusquedaExpedientes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -341,11 +351,18 @@
     <Compile Include="Application\WebApp\Private\Operation\opeRegistroSolicitud.aspx.designer.cs">
       <DependentUpon>opeRegistroSolicitud.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Report\rptSIAQ.aspx.cs">
+    <Compile Include="Application\WebApp\Private\Operation\opeRegistroVisita.aspx.cs">
+      <DependentUpon>opeRegistroVisita.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeRegistroVisita.aspx.designer.cs">
+      <DependentUpon>opeRegistroVisita.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\SysApp\Report\rptSIAQ.aspx.cs">
       <DependentUpon>rptSIAQ.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Report\rptSIAQ.aspx.designer.cs">
+    <Compile Include="Application\WebApp\Private\SysApp\Report\rptSIAQ.aspx.designer.cs">
       <DependentUpon>rptSIAQ.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\SysApp\saChangePassword.aspx.cs">

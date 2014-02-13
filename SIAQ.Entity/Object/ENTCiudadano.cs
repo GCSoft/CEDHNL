@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Data;
 namespace SIAQ.Entity.Object
 {
     public class ENTCiudadano : ENTBase
     {
+
         private int _CiudadanoId; // Valor de CiudadanoId
         private int _SexoId; // Valor de SexoId
         private int _EstadoCivilId; // Valor de EstadoCivilId
@@ -19,6 +21,13 @@ namespace SIAQ.Entity.Object
         private string _ApellidoMaterno; // Valor de ApellidoMaterno
         private DateTime _FechaNacimiento; // Valor de FechaNacimiento
         private DateTime _FechaIngreso; // Valor de FechaIngreso
+        private DataSet _ResultData; //Otras propiedades
+        private string _PaisId;
+        private string _EstadoId;
+        private string _CiudadId;
+        private string _ColoniaId;
+        private string _Calle;
+        private string _CampoBusqueda;
 
         public ENTCiudadano()
         {
@@ -36,6 +45,13 @@ namespace SIAQ.Entity.Object
             _ApellidoMaterno = "";
             _FechaNacimiento = System.DateTime.Now;
             _FechaIngreso = System.DateTime.Now;
+            _PaisId = string.Empty;
+            _EstadoId = string.Empty;
+            _CiudadId = string.Empty;
+            _ColoniaId = string.Empty;
+            _Calle = string.Empty;
+            _CampoBusqueda = string.Empty;
+
         }
         ///<remarks>
         ///   <name>Ciudadano.CiudadanoId</name>
@@ -191,5 +207,52 @@ namespace SIAQ.Entity.Object
             get { return _FechaIngreso; }
             set { _FechaIngreso = value; }
         }
+
+        public string PaisId
+        {
+            get { return _PaisId; }
+            set { _PaisId = value; }
+        }
+
+        public string EstadoId
+        {
+            get { return _EstadoId; }
+            set { _EstadoId = value; }
+        }
+
+        public string CiudadId
+        {
+            get { return _EstadoId; }
+            set { _EstadoId = value; }
+        }
+
+        public string ColoniaId
+        {
+            get { return _EstadoId; }
+            set { _EstadoId = value; }
+        }
+
+
+        public string Calle
+        {
+            get { return _Calle; }
+            set { _Calle = value; }
+        }
+
+        public string CampoBusqueda
+        {
+            get { return _CampoBusqueda; }
+            set { _CampoBusqueda = value; }
+        }
+
+        ///     DataSet resultante de las busquedas en la base de datos
+        /// </summary>
+        public DataSet ResultData
+        {
+            get { return _ResultData; }
+            set { _ResultData = value; }
+        }
     }
 }
+
+

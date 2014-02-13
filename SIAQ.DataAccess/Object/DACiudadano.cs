@@ -11,10 +11,31 @@ namespace SIAQ.DataAccess.Object
 {
     public class DACiudadano : DABase
     {
+
+        protected int _ErrorId;
+        protected string _ErrorDescription;
         Database dbs;
         public DACiudadano()
         {
             dbs = DatabaseFactory.CreateDatabase("Conn");
+        }
+
+        /// <summary>
+        ///     Número de error ocurrido. Cero por default//
+        /// </summary>
+        public int ErrorId//
+        {
+            get { return _ErrorId; }
+            set { _ErrorId = value; }
+        }
+
+        /// <summary>
+        ///     Descripción del error ocurrido
+        /// </summary>
+        public string ErrorDescription
+        {
+            get { return _ErrorDescription; }
+            set { _ErrorDescription = value; }
         }
         ///<remarks>
         ///   <name>DACiudadano.searchCiudadano</name>
@@ -29,7 +50,7 @@ namespace SIAQ.DataAccess.Object
             // Transacción
             try
             {
-                ds = dbs.ExecuteDataSet("CiudadanoSel");
+                ds = dbs.ExecuteDataSet("spCiudadano_Search", entCiudadano.Nombre);
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)
@@ -139,6 +160,63 @@ namespace SIAQ.DataAccess.Object
             // Resultado
             return oENTResponse;
 
+        }
+        public DataSet SelectCiudadano(ENTCiudadano ENTCiudadano, string ConnectionString)
+        {
+            DataSet ResultData = new DataSet();
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            SqlCommand Command;
+            SqlParameter Parameter;
+            SqlDataAdapter DataAdapter;
+
+            try
+            {
+                Command = new SqlCommand("ConsultarCiudadano", Connection);//falta nombre stored
+                Command.CommandType = CommandType.StoredProcedure;
+
+                Parameter = new SqlParameter("Nombre", SqlDbType.VarChar);
+                Parameter.Value = ENTCiudadano.Nombre;
+                Command.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("ApellidoPaterno", SqlDbType.VarChar);
+                Parameter.Value = ENTCiudadano.ApellidoPaterno;
+                Command.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("ApellidoMaterno", SqlDbType.VarChar);
+                Parameter.Value = ENTCiudadano.ApellidoMaterno;
+                Command.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("ColoniaId", SqlDbType.VarChar);
+                Parameter.Value = ENTCiudadano.ColoniaId;
+                Command.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("Calle", SqlDbType.VarChar);
+                Parameter.Value = ENTCiudadano.Calle;
+                Command.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("CampoBusqueda", SqlDbType.VarChar);
+                Parameter.Value = ENTCiudadano.CampoBusqueda;
+                Command.Parameters.Add(Parameter);
+
+                DataAdapter = new SqlDataAdapter(Command);
+
+                Connection.Open();
+                DataAdapter.Fill(ResultData);
+                Connection.Close();
+
+                return ResultData;
+
+            }
+            catch (SqlException Exception)
+            {
+                _ErrorId = Exception.Number;
+                _ErrorDescription = Exception.Message;
+
+                if (Connection.State == ConnectionState.Open)
+                    Connection.Close();
+
+                return ResultData;
+            }
         }
     }
 }

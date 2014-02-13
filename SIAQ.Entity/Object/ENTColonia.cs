@@ -1,14 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Data;
 namespace SIAQ.Entity.Object
 {
     public class ENTColonia : ENTBase
     {
+
         private int _ColoniaId; // Valor de ColoniaId
         private int _CiudadId; // Valor de CiudadId
         private string _Nombre; // Valor de Nombre
         private string _Descripcion; // Valor de Descripcion
+        private DataSet _ResultData; //Otras propiedades
         public ENTColonia()
         {
             _ColoniaId = 0;
@@ -59,6 +62,14 @@ namespace SIAQ.Entity.Object
         {
             get { return _Descripcion; }
             set { _Descripcion = value; }
+        }
+
+        ///     DataSet resultante de las busquedas en la base de datos
+        /// </summary>
+        public DataSet ResultData
+        {
+            get { return _ResultData; }
+            set { _ResultData = value; }
         }
     }
 }

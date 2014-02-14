@@ -17,7 +17,25 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         {
             if (ddlArea.SelectedValue == "0" || ddlFuncionario.SelectedValue == "0" || ddlMotivo.SelectedValue == "0" || DescriptionBox.Text == "")
             {
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Se deben de llenar todo los campos para poder guardar', 'Success', true); focusControl('" + this.DescriptionBox.ClientID + "');", true);
+                if (ddlArea.SelectedValue == "0")
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo de Área es obligatorio ', 'Success', true); focusControl('" + this.ddlArea + "');", true);
+
+                    if (ddlFuncionario.SelectedValue == "0")
+                    {
+                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo de Funcionario es obligatorio ', 'Success', true); focusControl('" + this.ddlFuncionario + "');", true);
+
+                        if (ddlMotivo.SelectedValue == "0")
+                        {
+                            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo de Motivo es obligatorio ', 'Success', true); focusControl('" + this.ddlMotivo + "');", true);
+
+                            if (DescriptionBox.Text == "")
+                            {
+                                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo Detalle de visita es obligatorio ', 'Success', true); focusControl('" + this.DescriptionBox + "');", true);
+                            }
+                        }
+                    }
+                }
 
             }
 

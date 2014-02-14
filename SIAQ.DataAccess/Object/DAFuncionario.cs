@@ -154,7 +154,7 @@ namespace SIAQ.DataAccess.Object
 
             try
             {
-                Command = new SqlCommand("", Connection);
+                Command = new SqlCommand("sptblFuncionario_Sel", Connection);
                 Command.CommandType = CommandType.StoredProcedure;
 
                 Parameter = new SqlParameter("FuncionarioId", SqlDbType.Int);

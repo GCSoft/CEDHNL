@@ -30,11 +30,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 txtBoxHora.Text = Time.ToString(Hora);
                 //Consultas para los DropdownList
                 SelectArea();
-                SelectFuncionario();
+                //SelectFuncionario();
                 SelectMotivo();
             }
 
         }
+
             protected void SelectArea(){
 
                 BPArea BPArea = new BPArea();
@@ -46,6 +47,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 ddlArea.DataBind();
                 ddlArea.Items.Insert(0, new ListItem(AllDefault, "0"));
             }
+
             protected void SelectFuncionario(){
 
                 BPFuncionario BPFuncionario = new BPFuncionario();
@@ -57,6 +59,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 ddlFuncionario.DataBind();
                 ddlFuncionario.Items.Insert(0, new ListItem(AllDefault, "0"));
             }
+
             protected void SelectMotivo(){
 
                 BPMotivo BPMotivo = new BPMotivo();
@@ -67,7 +70,5 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 ddlMotivo.DataBind();
                 ddlMotivo.Items.Insert(0, new ListItem(AllDefault, "0"));
             }
-        
-
     }
 }

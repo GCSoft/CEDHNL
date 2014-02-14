@@ -337,7 +337,7 @@ namespace SIAQ.DataAccess.Object
 
             try
             {
-                Command = new SqlCommand("", Connection);
+                Command = new SqlCommand("sptblArea_Sel", Connection);
                 Command.CommandType = CommandType.StoredProcedure;
 
                 Parameter = new SqlParameter("idArea", SqlDbType.Int);

@@ -26,7 +26,7 @@ namespace SIAQ.DataAccess.Object
 
             try
             {
-                Command = new SqlCommand("", Connection);
+                Command = new SqlCommand("sptblMotivo_Sel", Connection);
                 Command.CommandType = CommandType.StoredProcedure;
 
                 Parameter = new SqlParameter("MotivoId", SqlDbType.Int);

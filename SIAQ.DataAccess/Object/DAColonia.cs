@@ -30,6 +30,7 @@ namespace SIAQ.DataAccess.Object
 
             try
             {
+
                 Command = new SqlCommand("sptblColonia_Sel", Connection);
                 Command.CommandType = CommandType.StoredProcedure;
 

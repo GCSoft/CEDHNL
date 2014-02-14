@@ -18,6 +18,7 @@ namespace SIAQ.DataAccess.Object
 
         public DataSet SelectMotivo(ENTMotivo ENTMotivo, string ConnectionString)
         {
+
             DataSet ResultData = new DataSet();
             SqlConnection Connection = new SqlConnection(ConnectionString);
             SqlCommand Command;

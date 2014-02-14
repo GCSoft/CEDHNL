@@ -146,6 +146,7 @@ namespace SIAQ.DataAccess.Object
 
         public DataSet SelectFuncionario(ENTFuncionario ENTFuncionario, string ConnectionString)
         {
+
             DataSet ResultData = new DataSet();
             SqlConnection Connection = new SqlConnection(ConnectionString);
             SqlCommand Command;

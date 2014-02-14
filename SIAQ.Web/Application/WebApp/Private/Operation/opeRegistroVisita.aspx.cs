@@ -36,6 +36,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         }
 
+
             protected void SelectArea(){
 
                 BPArea BPArea = new BPArea();

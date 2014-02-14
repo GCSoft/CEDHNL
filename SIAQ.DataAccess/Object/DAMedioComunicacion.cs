@@ -29,7 +29,7 @@ namespace SIAQ.DataAccess.Object
             // Transacción
             try
             {
-                ds = dbs.ExecuteDataSet("catMedioComunicacionSel");
+                ds = dbs.ExecuteDataSet("spcatMedioComunicacion_Sel");
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)

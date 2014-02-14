@@ -32,7 +32,7 @@ namespace SIAQ.DataAccess.Object
             // Transacción
             try
             {
-                ds = dbs.ExecuteDataSet("FuncionarioSel");
+                ds = dbs.ExecuteDataSet("spcatFuncionario_SelForControl");
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)

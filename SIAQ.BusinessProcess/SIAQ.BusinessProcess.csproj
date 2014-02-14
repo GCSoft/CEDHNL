@@ -70,6 +70,7 @@
     <Compile Include="Object\BPMenu.cs" />
     <Compile Include="Object\BPSubMenu.cs" />
     <Compile Include="Object\BPRol.cs" />
+    <Compile Include="Object\BPVisita.cs" />
     <Compile Include="Page\BPPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>

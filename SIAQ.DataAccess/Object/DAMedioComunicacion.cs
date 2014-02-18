@@ -11,6 +11,8 @@ namespace SIAQ.DataAccess.Object
 {
     public class DAMedioComunicacion : DABase
     {
+        protected int _ErrorId;
+        protected string _ErrorDescription;
         Database dbs;
         public DAMedioComunicacion()
         {
@@ -139,6 +141,49 @@ namespace SIAQ.DataAccess.Object
             // Resultado
             return oENTResponse;
 
+        }
+
+        public DataSet SelectMedioComunicacion(ENTMedioComunicacion ENTMedioComunicacion, string ConnectionString)
+        {
+
+            DataSet ResultData = new DataSet();
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            SqlCommand Command;
+            SqlParameter Parameter;
+            SqlDataAdapter DataAdapter;
+
+            try
+            {
+                Command = new SqlCommand("sptblMedioComunicacion_Sel", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                Parameter = new SqlParameter("MedioComunicacionId", SqlDbType.Int);
+                Parameter.Value = ENTMedioComunicacion.MedioComunicacionId;
+                Command.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("Nombre", SqlDbType.VarChar);
+                Parameter.Value = ENTMedioComunicacion.Nombre;
+                Command.Parameters.Add(Parameter);
+
+                DataAdapter = new SqlDataAdapter(Command);
+                ResultData = new DataSet();
+
+                Connection.Open();
+                DataAdapter.Fill(ResultData);
+                Connection.Close();
+
+                return ResultData;
+            }
+            catch (SqlException Exception)
+            {
+                _ErrorId = Exception.Number;
+                _ErrorDescription = Exception.Message;
+
+                if (Connection.State == ConnectionState.Open)
+                    Connection.Close();
+
+                return ResultData;
+            }
         }
     }
 }

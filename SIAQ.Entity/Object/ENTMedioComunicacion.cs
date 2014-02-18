@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Data;
 namespace SIAQ.Entity.Object
 {
     public class ENTMedioComunicacion : ENTBase
@@ -8,6 +9,7 @@ namespace SIAQ.Entity.Object
         private int _MedioComunicacionId; // Valor de MedioComunicacionId
         private string _Nombre; // Valor de Nombre
         private string _Descripcion; // Valor de Descripcion
+        private DataSet _ResultData; //Otras propiedades
         public ENTMedioComunicacion()
         {
             _MedioComunicacionId = 0;
@@ -47,5 +49,12 @@ namespace SIAQ.Entity.Object
             get { return _Descripcion; }
             set { _Descripcion = value; }
         }
+
+        public DataSet ResultData
+        {
+            get { return _ResultData; }
+            set { _ResultData = value; }
+        }
+
     }
 }

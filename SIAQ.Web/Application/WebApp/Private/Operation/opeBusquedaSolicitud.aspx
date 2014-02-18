@@ -36,7 +36,7 @@
                         <tr class="trFilaItem">
 							<td class="tdCeldaLeyendaItemFondoBlanco">&nbsp;Forma de contacto</td>
 							<td style="width:5px;"></td>
-							<td class="tdCeldaItem"><asp:DropDownList ID="cboFormaContacto" runat="server" CssClass="Textbox_General" width="150px"></asp:DropDownList></td>
+							<td class="tdCeldaItem"><asp:DropDownList ID="ddlFormaContacto" runat="server" CssClass="Textbox_General" width="150px"></asp:DropDownList></td>
                             <td style="width:5px;"></td>
                             <td ></td>
                             <td style="width:5px;"></td>
@@ -46,7 +46,7 @@
                         <tr class="trFilaItem">
 							<td class="tdCeldaLeyendaItemFondoBlanco">&nbsp;Funcionario</td>
 							<td style="width:5px;"></td>
-							<td class="tdCeldaItem"><asp:DropDownList ID="cboFuncionario" runat="server" CssClass="Textbox_General" width="150px"></asp:DropDownList></td>
+							<td class="tdCeldaItem"><asp:DropDownList ID="ddlFuncionario" runat="server" CssClass="Textbox_General" width="150px"></asp:DropDownList></td>
                             <td style="width:5px;"></td>
                             <td ></td>
                             <td style="width:5px;"></td>
@@ -68,7 +68,7 @@
             <asp:Panel id="pnlBotones" runat="server" Width="100%">
                <table border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tr>
-                     <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="cmdGuardar" runat="server" Text="Guardar" CssClass="Button_General_Verde" width="125px" /></td>
+                     <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="cmdGuardar" runat="server" Text="Guardar" OnClick="SearchButton_Click"  CssClass="Button_General_Verde" width="125px" /></td>
                      <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="cmdRegresar" runat="server" Text="Regresar" CssClass="Button_General_Verde" width="125px" /></td>
 							<td style="height:24px; width:530px;"></td>
                   </tr>
@@ -80,7 +80,7 @@
       <tr>
          <td>
             <asp:Panel id="pnlGrid" runat="server" Width="100%">
-               <asp:GridView ID="gvApps" runat="server" AutoGenerateColumns="False"
+               <asp:GridView ID="gvSolicitud" runat="server" AutoGenerateColumns="False"
                         AutoUpdateAfterCallBack="True"
                         UpdateAfterCallBack="True" Width="800px" Style="text-align: center" DataKeyNames="Solicitud"
                         PageSize="30" ShowHeaderWhenEmpty="True">

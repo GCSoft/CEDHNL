@@ -8,6 +8,39 @@ namespace SIAQ.BusinessProcess.Object
 {
     public class BPSolicitud : BPBase
     {
+
+        private int _ErrorId;
+        private string _ErrorDescription;
+        protected ENTSolicitud _SolicitudEntity;
+
+
+        public ENTSolicitud SolicitudEntity
+        {
+            get { return _SolicitudEntity; }
+            set { _SolicitudEntity = value; }
+        }
+
+        public BPSolicitud()
+        {
+            _SolicitudEntity = new ENTSolicitud();
+        }
+
+                /// <summary>
+        ///     Número de error ocurrido. Cero por default
+        /// </summary>
+        public int ErrorId
+        {
+            get { return _ErrorId; }
+            set { _ErrorId = value; }
+        }
+
+        /// <summary>
+        ///     Descripción del error ocurrido
+        /// </summary>
+        public string ErrorDescription
+        {
+            get { return _ErrorDescription; }
+        }
         ///<remarks>
         ///   <name>BPSolicitud.searchSolicitud</name>
         ///   <create>27/ene/2014</create>
@@ -122,6 +155,19 @@ namespace SIAQ.BusinessProcess.Object
             }
             // Resultado
             return oENTResponse;
+
+        }
+  
+        public void SelectSolicitud()
+        {
+            string ConnectionString = string.Empty;
+            DASolicitud DASolicitud = new DASolicitud();
+
+            ConnectionString = sConnectionApplication;
+            _SolicitudEntity.ResultData = DASolicitud.SelectSolicitud(_SolicitudEntity, ConnectionString);
+
+            _ErrorId = DASolicitud.ErrorId;
+            _ErrorDescription = DASolicitud.ErrorDescription;
 
         }
     }

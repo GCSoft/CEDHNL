@@ -8,6 +8,28 @@ namespace SIAQ.BusinessProcess.Object
 {
     public class BPMedioComunicacion : BPBase
     {
+
+        protected ENTMedioComunicacion _MedioComunicacionEntity;
+
+        public BPMedioComunicacion()
+        {
+            _MedioComunicacionEntity = new ENTMedioComunicacion();
+        }
+
+        public ENTMedioComunicacion MedioComunicacionEntity
+        {
+            get { return _MedioComunicacionEntity; }
+            set { _MedioComunicacionEntity = value;}
+        }
+
+        public DataSet SelectMedioComunicacion()
+        {
+            string ConnectionString = string.Empty;
+            DAMedioComunicacion DAMedioComunicacion = new DAMedioComunicacion();
+            ConnectionString = sConnectionApplication;
+            _MedioComunicacionEntity.ResultData = DAMedioComunicacion.SelectMedioComunicacion(_MedioComunicacionEntity, ConnectionString);
+            return _MedioComunicacionEntity.ResultData;
+        }
         ///<remarks>
         ///   <name>BPcatMedioComunicacion.searchcatMedioComunicacion</name>
         ///   <create>27/ene/2014</create>

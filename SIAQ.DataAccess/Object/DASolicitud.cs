@@ -11,7 +11,22 @@ namespace SIAQ.DataAccess.Object
 {
     public class DASolicitud : DABase
     {
+        protected int _ErrorId;
+        protected string _ErrorDescription;
         Database dbs;
+
+        public int ErrorId//
+        {
+            get { return _ErrorId; }
+            set { _ErrorId = value; }
+        }
+
+        public string ErrorDescription
+        {
+            get { return _ErrorDescription; }
+            set { _ErrorDescription = value; }
+        }
+
         public DASolicitud()
         {
             dbs = DatabaseFactory.CreateDatabase("Conn");
@@ -139,6 +154,56 @@ namespace SIAQ.DataAccess.Object
             // Resultado
             return oENTResponse;
 
+        }
+
+        public DataSet SelectSolicitud(ENTSolicitud ENTSolicitud, string ConnectionString)
+        {
+            DataSet ResultData = new DataSet();
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            SqlCommand Command;
+            SqlParameter Parameter;
+            SqlDataAdapter DataAdapter;
+
+            try
+            {
+                Command = new SqlCommand("", Connection);//falta nombre stored
+                Command.CommandType = CommandType.StoredProcedure;
+
+                Parameter = new SqlParameter("Nombre", SqlDbType.VarChar);
+                Parameter.Value = ENTSolicitud.Nombre;
+                Command.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("SolicitudId", SqlDbType.TinyInt);
+                Parameter.Value = ENTSolicitud.SolicitudId;
+                Command.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("MedioComunicacionId", SqlDbType.TinyInt);
+                Parameter.Value = ENTSolicitud.MedioComunicacion;
+                Command.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("FuncionarioId", SqlDbType.TinyInt);
+                Parameter.Value = ENTSolicitud.FuncinarioId;
+                Command.Parameters.Add(Parameter);
+
+                DataAdapter = new SqlDataAdapter(Command);
+
+                Connection.Open();
+                DataAdapter.Fill(ResultData);
+                Connection.Close();
+
+                return ResultData;
+
+            }
+            catch (SqlException Exception)
+            {
+                _ErrorId = Exception.Number;
+                _ErrorDescription = Exception.Message;
+
+                if (Connection.State == ConnectionState.Open)
+                    Connection.Close();
+
+                return ResultData;
+            }
         }
     }
 }

@@ -1,20 +1,27 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Data;
 namespace SIAQ.Entity.Object
 {
     public class ENTSolicitud : ENTBase
     {
         private int _SolicitudId; // Valor de SolicitudId
-        private int _FuncionarioId; // Valor de FuncionarioId
         private int _CalificacionId; // Valor de CalificacionId
         private int _TipoSolicitudId; // Valor de TipoSolicitudId
         private int _LugarHechosId; // Valor de LugarHechosId
         private int _EstatusId; // Valor de EstatusId
         private int _Numero; // Valor de Numero
+        private Int32 _MedioComunicacion;
+        private Int32 _FuncionarioId;
         private string _Fecha; // Valor de Fecha
+        private string _Nombre;
+        private DataSet _ResultData; //Otras propiedades
+        
+
         public ENTSolicitud()
         {
+            
             _SolicitudId = 0;
             _FuncionarioId = 0;
             _CalificacionId = 0;
@@ -22,7 +29,9 @@ namespace SIAQ.Entity.Object
             _LugarHechosId = 0;
             _EstatusId = 0;
             _Numero = 0;
+            _MedioComunicacion = 0; 
             _Fecha = "";
+            _Nombre = "";
         }
         ///<remarks>
         ///   <name>Solicitud.SolicitudId</name>
@@ -35,17 +44,7 @@ namespace SIAQ.Entity.Object
             get { return _SolicitudId; }
             set { _SolicitudId = value; }
         }
-        ///<remarks>
-        ///   <name>Solicitud.FuncionarioId</name>
-        ///   <create>27/ene/2014</create>
-        ///   <author>Generador</author>
-        ///</remarks>
-        ///<summary>Obtiene/Asigna FuncionarioId</summary>
-        public int FuncionarioId
-        {
-            get { return _FuncionarioId; }
-            set { _FuncionarioId = value; }
-        }
+
         ///<remarks>
         ///   <name>Solicitud.CalificacionId</name>
         ///   <create>27/ene/2014</create>
@@ -111,6 +110,30 @@ namespace SIAQ.Entity.Object
         {
             get { return _Fecha; }
             set { _Fecha = value; }
+        }
+
+        public Int32 MedioComunicacion
+        {
+            get { return _MedioComunicacion; }
+            set { _MedioComunicacion = value; }
+        }
+
+        public string Nombre
+        {
+            get { return _Nombre; }
+            set { _Nombre = value; }
+        }
+
+        public Int32 FuncinarioId
+        {
+            get { return _FuncionarioId; }
+            set { _FuncionarioId = value; }
+        }
+
+        public DataSet ResultData
+        {
+            get { return _ResultData; }
+            set { _ResultData = value; }
         }
     }
 }

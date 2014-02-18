@@ -1,5 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeBusquedaSolicitud.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeBusquedaSolicitud" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
+<script type="text/javascript">
+
+    function NumbersValidator(e) {
+        var tecla = document.all ? tecla = e.keyCode : tecla = e.which;
+        return (tecla > 47 && tecla < 58);
+
+    }
+</script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
    <table border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -68,8 +76,8 @@
             <asp:Panel id="pnlBotones" runat="server" Width="100%">
                <table border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tr>
-                     <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="cmdGuardar" runat="server" Text="Guardar" OnClick="SearchButton_Click"  CssClass="Button_General_Verde" width="125px" /></td>
-                     <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="cmdRegresar" runat="server" Text="Regresar" CssClass="Button_General_Verde" width="125px" /></td>
+                     <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="cmdGuardar" runat="server" Text="Buscar" OnClick="SearchButton_Click"  CssClass="Button_General" width="125px" /></td>
+                     <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="cmdRegresar" runat="server" Text="Cancelar" CssClass="Button_General" width="125px" /></td>
 					<td style="height:24px; width:530px;"></td>
                   </tr>
                </table>
@@ -88,24 +96,40 @@
                         <EditRowStyle Wrap="True" />
                         <HeaderStyle CssClass="Grid_Header" ForeColor="#E3EBF5" />
                         <AlternatingRowStyle CssClass="Grid_Row_Alternating" />
+                        <EmptyDataTemplate>
+							<table border="1px" cellpadding="0px" cellspacing="0px">
+								<tr class="Grid_Header">
+									<td style="width:100px;">Solicitud</td>
+									<td style="width:200px;">Ciudadano</td>
+                                    <td style="width:100px;">FormaContacto</td>
+                                    <td style="width:100px;">Funcionario</td>
+                                    <td style="width:100px;">Estatus</td>
+                                    <td style="width:100px;">Quejosos</td>
+                                    <td style="width:100px;">Servidores</td>
+								</tr>
+								<tr class="Grid_Row">
+									<td colspan="7">No se encontraron solicitudes registradas en el sistema</td>
+								</tr>
+							</table>
+						</EmptyDataTemplate>
                         <Columns>
-                            <asp:BoundField DataField="Solicitud" HeaderText="Id" Visible="False"/>
-                            <asp:BoundField DataField="Ciudadano" HeaderText="Ciudadano">
+                            <asp:BoundField DataField="Numero" HeaderText="Id" Visible="False"/>
+                            <asp:BoundField DataField="NombreCompleto" HeaderText="Ciudadano">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="FormaContacto" HeaderText="Forma de contacto">
+                            <asp:BoundField DataField="MedioComunicacionId" HeaderText="Forma de contacto">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="Funcionario" HeaderText="Funcionario">
+                            <asp:BoundField DataField="FuncionarioId" HeaderText="Funcionario">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="Estatus" HeaderText="Estatus">
+                            <asp:BoundField DataField="EstatusId" HeaderText="Estatus">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="Quejosos" HeaderText="Quejosos">
+                            <asp:BoundField DataField="Observacones" HeaderText="Quejosos">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="Servidores" HeaderText="Servidores">
+                            <asp:BoundField HeaderText="Servidores">
                                 <ItemStyle HorizontalAlign="Left"/>
                             </asp:BoundField>
                             <asp:ButtonField CommandName="EDITA" HeaderText="Editar" Text="Editar" />

@@ -1,10 +1,10 @@
-﻿using System;
+﻿//
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
 
 using SIAQ.BusinessProcess.Object;
 using SIAQ.BusinessProcess.Page;
@@ -16,18 +16,19 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
        protected void SearchButton_Click(object sender, EventArgs e)
        {
-           BuscarSolicitud(Int32.Parse(txtNumeroSolicitud.Text.Trim()) , txtCiudadano.Text.Trim());
+           BuscarSolicitud(txtNumeroSolicitud.Text.Trim() , txtCiudadano.Text.Trim());
        }
 
              protected void Page_Load(object sender, EventArgs e)
             {
               PageLoad();
             }
-             protected void BuscarSolicitud(Int32 NumeroSolicitud, string Ciudadano)
+             protected void BuscarSolicitud(string NumeroSolicitud, string Ciudadano)
              {
                  BPSolicitud BPSolicitud = new BPSolicitud();
-
-                 BPSolicitud.SolicitudEntity.SolicitudId = NumeroSolicitud;
+                 if (NumeroSolicitud == "")
+                     NumeroSolicitud = "0";
+                 BPSolicitud.SolicitudEntity.Numero = Int32.Parse(NumeroSolicitud);
                  BPSolicitud.SolicitudEntity.Nombre = Ciudadano;
                  BPSolicitud.SolicitudEntity.MedioComunicacion = Int32.Parse(ddlFormaContacto.SelectedValue);
                  BPSolicitud.SolicitudEntity.FuncinarioId = Int32.Parse(ddlFuncionario.SelectedValue);
@@ -62,6 +63,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     SelectContacto();
                 }
 
+                txtNumeroSolicitud.Attributes.Add("onkeypress", "javascript:return NumbersValidator(event);");
             }
 
 

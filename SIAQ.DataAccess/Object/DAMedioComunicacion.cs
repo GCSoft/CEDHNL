@@ -14,6 +14,7 @@ namespace SIAQ.DataAccess.Object
         protected int _ErrorId;
         protected string _ErrorDescription;
         Database dbs;
+
         public DAMedioComunicacion()
         {
             dbs = DatabaseFactory.CreateDatabase("Conn");

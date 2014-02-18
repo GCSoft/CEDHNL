@@ -166,7 +166,8 @@ namespace SIAQ.DataAccess.Object
 
             try
             {
-                Command = new SqlCommand("", Connection);//falta nombre stored
+
+                Command = new SqlCommand("ConsultarSolicitud", Connection);
                 Command.CommandType = CommandType.StoredProcedure;
 
                 Parameter = new SqlParameter("Nombre", SqlDbType.VarChar);

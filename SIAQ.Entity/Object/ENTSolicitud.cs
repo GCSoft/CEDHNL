@@ -19,6 +19,7 @@ namespace SIAQ.Entity.Object
         private DataSet _ResultData; //Otras propiedades
         
 
+
         public ENTSolicitud()
         {
             

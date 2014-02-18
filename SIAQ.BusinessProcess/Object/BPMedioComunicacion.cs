@@ -15,8 +15,6 @@ namespace SIAQ.BusinessProcess.Object
         {
             _MedioComunicacionEntity = new ENTMedioComunicacion();
         }
-
-
         public ENTMedioComunicacion MedioComunicacionEntity
         {
             get { return _MedioComunicacionEntity; }

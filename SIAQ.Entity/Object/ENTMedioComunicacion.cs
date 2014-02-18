@@ -16,7 +16,6 @@ namespace SIAQ.Entity.Object
             _Nombre = "";
             _Descripcion = "";
         }
-
         ///<remarks>
         ///   <name>MedioComunicacion.MedioComunicacionId</name>
         ///   <create>27/ene/2014</create>

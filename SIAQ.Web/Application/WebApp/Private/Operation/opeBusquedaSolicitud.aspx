@@ -70,7 +70,7 @@
                   <tr>
                      <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="cmdGuardar" runat="server" Text="Guardar" OnClick="SearchButton_Click"  CssClass="Button_General_Verde" width="125px" /></td>
                      <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="cmdRegresar" runat="server" Text="Regresar" CssClass="Button_General_Verde" width="125px" /></td>
-							<td style="height:24px; width:530px;"></td>
+					<td style="height:24px; width:530px;"></td>
                   </tr>
                </table>
             </asp:Panel>

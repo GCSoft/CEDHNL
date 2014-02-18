@@ -166,7 +166,6 @@ namespace SIAQ.DataAccess.Object
 
             try
             {
-
                 Command = new SqlCommand("ConsultarSolicitud", Connection);
                 Command.CommandType = CommandType.StoredProcedure;
 

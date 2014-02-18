@@ -23,7 +23,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             {
               PageLoad();
             }
-
              protected void BuscarSolicitud(Int32 NumeroSolicitud, string Ciudadano)
              {
                  BPSolicitud BPSolicitud = new BPSolicitud();

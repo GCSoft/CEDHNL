@@ -18,7 +18,6 @@ namespace SIAQ.Entity.Object
         private string _Descripcion; // Valor de Descripcion
         public ENTFuncionario()
         {
-
             _Descripcion = "";
             _FuncionarioId = 0;
             _TituloId = 0;

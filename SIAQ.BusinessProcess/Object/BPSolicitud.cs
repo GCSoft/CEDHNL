@@ -165,8 +165,6 @@ namespace SIAQ.BusinessProcess.Object
 
             ConnectionString = sConnectionApplication;
             _SolicitudEntity.ResultData = DASolicitud.SelectSolicitud(_SolicitudEntity, ConnectionString);
-
-
             _ErrorId = DASolicitud.ErrorId;
             _ErrorDescription = DASolicitud.ErrorDescription;
 

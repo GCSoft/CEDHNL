@@ -1,3 +1,4 @@
+//
 using System;
 using System.Data;
 using System.Configuration;
@@ -68,16 +69,14 @@ namespace SIAQ.DataAccess.Object
         ///   <author>Generador</author>
         ///</remarks>
         ///<summary>Metodo para insertar Solicitud del sistema</summary>
-        public ENTResponse insertSolicitud(ENTSolicitud oENTSolicitud)
+        public ENTResponse insertSolicitud(ENTSolicitud entSolicitud)
         {
             ENTResponse oENTResponse = new ENTResponse();
             DataSet ds = new DataSet();
-
-
             // Transacción
             try
             {
-                ds = dbs.ExecuteDataSet("spSolicitud_Ins", oENTSolicitud.FuncinarioId, oENTSolicitud.CalificacionId, oENTSolicitud.TipoSolicitudId, oENTSolicitud.LugarHechosId, oENTSolicitud.EstatusId, oENTSolicitud.Numero, oENTSolicitud.Fecha, oENTSolicitud.Nombre, oENTSolicitud.Observaciones);
+                ds = dbs.ExecuteDataSet("SolicitudIns");
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)
@@ -175,8 +174,8 @@ namespace SIAQ.DataAccess.Object
                 Parameter.Value = ENTSolicitud.Nombre;
                 Command.Parameters.Add(Parameter);
 
-                Parameter = new SqlParameter("SolicitudId", SqlDbType.TinyInt);
-                Parameter.Value = ENTSolicitud.SolicitudId;
+                Parameter = new SqlParameter("Numero", SqlDbType.TinyInt);
+                Parameter.Value = ENTSolicitud.Numero;
                 Command.Parameters.Add(Parameter);
 
                 Parameter = new SqlParameter("MedioComunicacionId", SqlDbType.TinyInt);

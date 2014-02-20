@@ -49,7 +49,6 @@
     <Compile Include="Object\ENTEscolaridad.cs" />
     <Compile Include="Object\ENTEstado.cs" />
     <Compile Include="Object\ENTEstatus.cs" />
-    <Compile Include="Object\ENTExpediente.cs" />
     <Compile Include="Object\ENTFuncionario.cs" />
     <Compile Include="Object\ENTLugarHechos.cs" />
     <Compile Include="Object\ENTMedioComunicacion.cs" />

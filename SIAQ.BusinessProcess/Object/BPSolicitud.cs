@@ -84,7 +84,7 @@ namespace SIAQ.BusinessProcess.Object
             {
                 // Consulta a base de datos
                 DASolicitud dataSolicitud = new DASolicitud();
-                oENTResponse = dataSolicitud.insertSolicitud(entSolicitud);
+                oENTResponse = dataSolicitud.searchSolicitud(entSolicitud);
                 // Validación de error en consulta
                 if (oENTResponse.GeneratesException) { return oENTResponse; }
                 // Validación de mensajes de la BD

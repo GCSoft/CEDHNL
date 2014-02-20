@@ -54,6 +54,7 @@
     <Compile Include="Object\BPEscolaridad.cs" />
     <Compile Include="Object\BPEstado.cs" />
     <Compile Include="Object\BPEstatus.cs" />
+    <Compile Include="Object\BPExpediente.cs" />
     <Compile Include="Object\BPFuncionario.cs" />
     <Compile Include="Object\BPMedioComunicacion.cs" />
     <Compile Include="Object\BPMotivo.cs" />

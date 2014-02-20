@@ -85,8 +85,9 @@
             <asp:Panel id="pnlGrid" runat="server" Width="100%">
                <asp:GridView ID="gvApps" runat="server" AutoGenerateColumns="False"
                         AutoUpdateAfterCallBack="True" UpdateAfterCallBack="True" Width="800px" 
-                        Style="text-align: center" DataKeyNames="Solicitud"
-                        PageSize="30" ShowHeaderWhenEmpty="True">
+                        Style="text-align: center" DataKeyNames="ExpedienteId, FuncionarioId, EstatusId, CiudadanoId"
+                        PageSize="30" ShowHeaderWhenEmpty="True" 
+                    onrowdatabound="gvApps_RowDataBound" onrowcommand="gvApps_RowCommand">
                         <RowStyle CssClass="Grid_Row" />
                         <EditRowStyle Wrap="True" />
                         <HeaderStyle CssClass="Grid_Header" ForeColor="#E3EBF5" />
@@ -104,33 +105,24 @@
                                     <td style="width:50px;">Editar</td>
 								</tr>
 								<tr class="Grid_Row">
-									<td colspan="8">No se encontraron Solicitudes registrados en el sistema</td>
+									<td colspan="8">No se encontraron expedientes registrados en el sistema</td>
 								</tr>
 							</table>
                         </EmptyDataTemplate>
                         <Columns>
-                            
-                            <asp:BoundField DataField="Expediente" HeaderText="Expediente">
-                                <ItemStyle HorizontalAlign="Left" />
-                            </asp:BoundField>
-                            <asp:BoundField DataField="Asunto" HeaderText="Asunto">
-                                <ItemStyle HorizontalAlign="Left" />
-                            </asp:BoundField>
-                            <asp:BoundField DataField="FechaVisitadurias" HeaderText="Fecha Visitadurías">
-                                <ItemStyle HorizontalAlign="Left" />
-                            </asp:BoundField>
-                            <asp:BoundField DataField="Visitador" HeaderText="Visitador">
-                                <ItemStyle HorizontalAlign="Left" />
-                            </asp:BoundField>
-                            <asp:BoundField DataField="Estatus" HeaderText="Estatus">
-                                <ItemStyle HorizontalAlign="Left" />
-                            </asp:BoundField>
-                            <asp:BoundField DataField="Quejosos" HeaderText="Quejosos">
-                                <ItemStyle HorizontalAlign="Left"/>
-                            </asp:BoundField>
-                            <asp:BoundField DataField="Autoridades" HeaderText="Autoridades" />
-                            <asp:ButtonField CommandName="EDITA" HeaderText="Editar" Text="Editar" />
-
+                            <asp:BoundField DataField="idExpediente" HeaderText="idExpediente" Visible="false" />
+                            <asp:ButtonField CommandName="Detalle" DataTextField="Numero" HeaderText="Expediente" runat="server" ItemStyle-Width="50px"/>
+                            <asp:BoundField DataField="Observaciones" HeaderText="Asunto" ItemStyle-Width="250px"></asp:BoundField>
+                            <asp:BoundField DataField="Fecha" HeaderText="Fecha Visitadurías" ItemStyle-Width="100px" DataFormatString="{0:MM-dd-yyyy}"></asp:BoundField>
+                            <asp:BoundField DataField="NombreFuncionario" HeaderText="Visitador" ItemStyle-Width="150px"></asp:BoundField>
+                            <asp:BoundField DataField="Estatus" HeaderText="Estatus" ItemStyle-Width="100px"></asp:BoundField>
+                            <asp:BoundField DataField="NombreCiudadano" HeaderText="Quejosos" ItemStyle-Width="100px"></asp:BoundField>
+                            <asp:BoundField DataField="Autoridades" HeaderText="Autoridades" Visible ="false"/>
+                            <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Editar" ItemStyle-Width="50px">
+                                <ItemTemplate>
+                                    <asp:ImageButton ID="imgEdit" runat="server" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png"></asp:ImageButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                         </Columns>
                 </asp:GridView>
             </asp:Panel>

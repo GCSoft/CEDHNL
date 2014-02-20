@@ -1,61 +1,32 @@
+﻿// Referencias
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
-using System.Data;
+
+// Referencias manuales
 using SIAQ.DataAccess.Object;
 using SIAQ.Entity.Object;
+
 namespace SIAQ.BusinessProcess.Object
 {
-    public class BPSolicitud : BPBase
+    public class BPExpediente : BPBase
     {
-
-        private int _ErrorId;
-        private string _ErrorDescription;
-        protected ENTSolicitud _SolicitudEntity;
-
-
-        public ENTSolicitud SolicitudEntity
-        {
-            get { return _SolicitudEntity; }
-            set { _SolicitudEntity = value; }
-        }
-
-        public BPSolicitud()
-        {
-            _SolicitudEntity = new ENTSolicitud();
-        }
-
-                /// <summary>
-        ///     Número de error ocurrido. Cero por default
-        /// </summary>
-        public int ErrorId
-        {
-            get { return _ErrorId; }
-            set { _ErrorId = value; }
-        }
-
-        /// <summary>
-        ///     Descripción del error ocurrido
-        /// </summary>
-        public string ErrorDescription
-        {
-            get { return _ErrorDescription; }
-        }
         ///<remarks>
-        ///   <name>BPSolicitud.searchSolicitud</name>
+        ///   <name>BPExpediente.searchcatTipoSolicitud</name>
         ///   <create>27/ene/2014</create>
         ///   <author>Generador</author>
         ///</remarks>
-        ///<summary>Metodo para obtener las Solicitud del sistema</summary>
-        public ENTResponse searchSolicitud(ENTSolicitud entSolicitud)
+        ///<summary>Metodo para obtener el Expediente del sistema</summary>
+        public ENTResponse searchExpediente(ENTExpediente oENTExpediente)
         {
 
             ENTResponse oENTResponse = new ENTResponse();
             try
             {
                 // Consulta a base de datos
-                DASolicitud dataSolicitud = new DASolicitud();
-                oENTResponse = dataSolicitud.searchSolicitud(entSolicitud);
+                DAExpediente oDAExpediente = new DAExpediente();
+                oENTResponse = oDAExpediente.searchExpediente(oENTExpediente);
                 // Validación de error en consulta
                 if (oENTResponse.GeneratesException) { return oENTResponse; }
                 // Validación de mensajes de la BD
@@ -71,20 +42,20 @@ namespace SIAQ.BusinessProcess.Object
 
         }
         ///<remarks>
-        ///   <name>BPSolicitudinsertSolicitud</name>
+        ///   <name>BPExpediente.insertcatTipoSolicitud</name>
         ///   <create>27/ene/2014</create>
         ///   <author>Generador</author>
         ///</remarks>
-        ///<summary>Metodo para insertar Solicitud del sistema</summary>
-        public ENTResponse insertSolicitud(ENTSolicitud entSolicitud)
+        ///<summary>Metodo para insertar Expediente del sistema</summary>
+        public ENTResponse insertExpediente(ENTExpediente oENTExpediente)
         {
 
             ENTResponse oENTResponse = new ENTResponse();
             try
             {
                 // Consulta a base de datos
-                DASolicitud dataSolicitud = new DASolicitud();
-                oENTResponse = dataSolicitud.insertSolicitud(entSolicitud);
+                DAExpediente oDAExpediente = new DAExpediente();
+                oENTResponse = oDAExpediente.searchExpediente(oENTExpediente);
                 // Validación de error en consulta
                 if (oENTResponse.GeneratesException) { return oENTResponse; }
                 // Validación de mensajes de la BD
@@ -100,20 +71,20 @@ namespace SIAQ.BusinessProcess.Object
 
         }
         ///<remarks>
-        ///   <name>BPSolicitudupdateSolicitud</name>
+        ///   <name>BPExpediente.updatecatTipoSolicitud</name>
         ///   <create>27/ene/2014</create>
         ///   <author>Generador</author>
         ///</remarks>
-        ///<summary>Metodo que actualiza Solicitud del sistema</summary>
-        public ENTResponse updateSolicitud(ENTSolicitud entSolicitud)
+        ///<summary>Metodo que actualiza Expediente del sistema</summary>
+        public ENTResponse updateExpediente(ENTExpediente oENTExpediente)
         {
 
             ENTResponse oENTResponse = new ENTResponse();
             try
             {
                 // Consulta a base de datos
-                DASolicitud dataSolicitud = new DASolicitud();
-                oENTResponse = dataSolicitud.searchSolicitud(entSolicitud);
+                DAExpediente oDAExpediente = new DAExpediente();
+                oENTResponse = oDAExpediente.searchExpediente(oENTExpediente);
                 // Validación de error en consulta
                 if (oENTResponse.GeneratesException) { return oENTResponse; }
                 // Validación de mensajes de la BD
@@ -129,20 +100,20 @@ namespace SIAQ.BusinessProcess.Object
 
         }
         ///<remarks>
-        ///   <name>BPSolicituddeleteSolicitud</name>
+        ///   <name>BPExpediente.deletecatTipoSolicitud</name>
         ///   <create>27/ene/2014</create>
         ///   <author>Generador</author>
         ///</remarks>
-        ///<summary>Metodo para eliminar de Solicitud del sistema</summary>
-        public ENTResponse deleteSolicitud(ENTSolicitud entSolicitud)
+        ///<summary>Metodo para eliminar de Expediente del sistema</summary>
+        public ENTResponse deleteExpediente(ENTExpediente oENTExpediente)
         {
 
             ENTResponse oENTResponse = new ENTResponse();
             try
             {
                 // Consulta a base de datos
-                DASolicitud dataSolicitud = new DASolicitud();
-                oENTResponse = dataSolicitud.searchSolicitud(entSolicitud);
+                DAExpediente oDAExpediente = new DAExpediente();
+                oENTResponse = oDAExpediente.searchExpediente(oENTExpediente);
                 // Validación de error en consulta
                 if (oENTResponse.GeneratesException) { return oENTResponse; }
                 // Validación de mensajes de la BD
@@ -155,18 +126,6 @@ namespace SIAQ.BusinessProcess.Object
             }
             // Resultado
             return oENTResponse;
-
-        }
-  
-        public void SelectSolicitud()
-        {
-            string ConnectionString = string.Empty;
-            DASolicitud DASolicitud = new DASolicitud();
-
-            ConnectionString = sConnectionApplication;
-            _SolicitudEntity.ResultData = DASolicitud.SelectSolicitud(_SolicitudEntity, ConnectionString);
-            _ErrorId = DASolicitud.ErrorId;
-            _ErrorDescription = DASolicitud.ErrorDescription;
 
         }
     }

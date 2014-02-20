@@ -91,6 +91,7 @@
     <Content Include="Application\WebApp\Private\Operation\opeBusquedaRecomendacion.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeBusquedaSolicitud.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeCiudadano.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeDetalleCiudadano.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeDetalleExpedienteTitular.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeDetalleExpedienteVisitador.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeDetalleSolicitud.aspx" />
@@ -290,6 +291,13 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeCiudadano.aspx.designer.cs">
       <DependentUpon>opeCiudadano.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeDetalleCiudadano.aspx.cs">
+      <DependentUpon>opeDetalleCiudadano.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeDetalleCiudadano.aspx.designer.cs">
+      <DependentUpon>opeDetalleCiudadano.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeDetalleExpedienteTitular.aspx.cs">
       <DependentUpon>opeDetalleExpedienteTitular.aspx</DependentUpon>

@@ -98,7 +98,7 @@
      <br /><br />
      <asp:Panel id="pnlGrid" runat="server" Width="100%">
                <asp:GridView id="gvCiudadano" runat="server" AllowPaging="false" AllowSorting="true" AutoGenerateColumns="False" Width="790px"
-						DataKeyNames="idCiudadano"
+						DataKeyNames="CiudadanoId"
 						OnRowDataBound="gvCiudadano_RowDataBound"
 						OnRowCommand="gvCiudadano_RowCommand">
 						<alternatingrowstyle cssclass="Grid_Row_Alternating" />
@@ -107,13 +107,13 @@
 						<EmptyDataTemplate>
 							<table border="1px" cellpadding="0px" cellspacing="0px">
 								<tr class="Grid_Header">
-									<td style="width:150px;">Nombre</td>
-									<td style="width:20px;">Sexo</td>
-                                    <td style="width:100px;">Fecha Nacimiento</td>
-                                    <td style="width:220px;">Domicilio</td>
-                                    <td style="width:100px;">Telefono</td>
-                                    <td style="width:100px;">Visita</td>
-                                    <td style="width:100px;">Solicitud</td>
+									<td style="width:210px;">Nombre</td>
+									<td style="width:65px;">Sexo</td>
+                                    <td style="width:65px;">Fecha Nacimiento</td>
+                                    <td style="width:280px;">Domicilio</td>
+                                    <td style="width:65px;">Telefono</td>
+                                    <td style="width:50px;">Visita</td>
+                                    <td style="width:50px;">Solicitud</td>
 								</tr>
 								<tr class="Grid_Row">
 									<td colspan="7">No se encontraron ciudadanos registradas en el sistema</td>
@@ -121,14 +121,13 @@
 							</table>
 						</EmptyDataTemplate>
 						<Columns>
-							<asp:BoundField HeaderText="Nombre"         ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="100px" DataField="NombreCompleto"></asp:BoundField>
+							<asp:BoundField HeaderText="Nombre"         ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="170px" DataField="NombreCompleto"></asp:BoundField>
 							<asp:BoundField HeaderText="Sexo"  ItemStyle-HorizontalAlign="Left"		ItemStyle-Width="50px" DataField="SexoNombre"></asp:BoundField>
-                            <asp:BoundField HeaderText="Fecha Nacimiento"         ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="100px" DataField="FechaNacimiento"></asp:BoundField>
-							<asp:BoundField HeaderText="Domicilio"  ItemStyle-HorizontalAlign="Left"		ItemStyle-Width="100px" DataField="DireccionCompleta"></asp:BoundField>
-                            <asp:BoundField HeaderText="Telefono"         ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="100px" DataField="TelefonoPrincipal"></asp:BoundField>
-							<asp:BoundField HeaderText="Visita"  ItemStyle-HorizontalAlign="Left"		ItemStyle-Width="100px" DataField="sDescripcion"></asp:BoundField>
-                            <asp:BoundField HeaderText="Solicitud"         ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="100px"></asp:BoundField>
-                             <asp:BoundField HeaderText="Estatus"      ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100px" DataField="sEstatus"></asp:BoundField>
+                            <asp:BoundField HeaderText="Fecha Nacimiento"  ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="65px" DataField="FechaNacimiento"></asp:BoundField>
+							<asp:BoundField HeaderText="Domicilio"  ItemStyle-HorizontalAlign="Left"		ItemStyle-Width="220px" DataField="DireccionCompleta"></asp:BoundField>
+                            <asp:BoundField HeaderText="Telefono"         ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="65px" DataField="TelefonoPrincipal"></asp:BoundField>
+							<asp:BoundField HeaderText="Visita"  ItemStyle-HorizontalAlign="Left"		ItemStyle-Width="50px" ></asp:BoundField>
+                            <asp:BoundField HeaderText="Solicitud"         ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="50px"></asp:BoundField>
 							<asp:TemplateField ItemStyle-HorizontalAlign ="Center" ItemStyle-Width="20px">
 								<ItemTemplate>
                            <asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />

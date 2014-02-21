@@ -17,6 +17,8 @@ namespace SIAQ.Entity.Object
         private string _Fecha; // Valor de Fecha
         private string _Nombre;
         private DataSet _ResultData; //Otras propiedades
+        private string _Observaciones;
+        
         
 
         public ENTSolicitud()
@@ -32,6 +34,7 @@ namespace SIAQ.Entity.Object
             _MedioComunicacion = 0; 
             _Fecha = "";
             _Nombre = "";
+            _Observaciones = "";
         }
         ///<remarks>
         ///   <name>Solicitud.SolicitudId</name>
@@ -135,5 +138,12 @@ namespace SIAQ.Entity.Object
             get { return _ResultData; }
             set { _ResultData = value; }
         }
+
+        public string Observaciones
+        {
+            get{ return _Observaciones;}
+            set { _Observaciones = value; }
+        }
+
     }
 }

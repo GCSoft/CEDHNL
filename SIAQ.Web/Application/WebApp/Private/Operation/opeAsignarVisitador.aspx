@@ -1,54 +1,26 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeDetalleSolicitud.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeDetalleSolicitud" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeAsignarVisitador.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeAsignarVisitador" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
         <tr>
 			<td class="tdCeldaTituloEncabezado">
-				Detalle de Solictud
+				Asignar visitador
 			</td>
 		</tr>
       <tr><td class="tdCeldaMiddleSpace_Title"></td></tr>
       <tr>
          <td>
+         <asp:Label ID="Label1" runat="server" Text="Seleccione el visitador al que se le asignará el expediente para su seguimiento."></asp:Label>
+         <br /><br />
+         </td>      
+      </tr>
+      <tr>
+         <td>
             <asp:Panel id="pnlFormulario" runat="server" Visible="true" Width="100%">
                 <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                    <tr>
-                        <td style="width:65px;"><asp:ImageButton ID="ImageButton1" runat="server"></asp:ImageButton></td>
-                        <td></td>
-                        <td style="width:65px;"><asp:ImageButton ID="ImageButton2" runat="server"></asp:ImageButton></td>
-                        <td></td>
-                        <td style="width:65px;"><asp:ImageButton ID="ImageButton3" runat="server"></asp:ImageButton></td>
-                        <td></td>
-                        <td style="width:65px;"><asp:ImageButton ID="ImageButton4" runat="server"></asp:ImageButton></td>
-                        <td></td>
-                        <td style="width:65px;"><asp:ImageButton ID="ImageButton5" runat="server"></asp:ImageButton></td>
-                        <td></td>
-                        <td style="width:65px;"><asp:ImageButton ID="ImageButton6" runat="server"></asp:ImageButton></td>
-                        <td></td>
-                        <td style="width:65px;"><asp:ImageButton ID="ImageButton7" runat="server"></asp:ImageButton></td>
-                    </tr>
-                    <tr style=" height:2px;"><td colspan="13"></td></tr>
-                    <tr>
-                        <td style="width:65px; font-size:10px;">Información general</td>
-                        <td></td>
-                        <td style="width:65px; font-size:10px;">Agregar ciudadanos</td>
-                        <td></td>
-                        <td style="width:65px; font-size:10px;">Agegar autoridades señaladas y voces</td>
-                        <td></td>
-                        <td style="width:65px; font-size:10px;">Indicadores</td>
-                        <td></td>
-                        <td style="width:65px; font-size:10px;">Agregar documentos</td>
-                        <td></td>
-                        <td style="width:65px; font-size:10px;">Calificar solicitud</td>
-                        <td></td>
-                        <td style="width:65px; font-size:10px;">Enviar solicitud</td>
-                    </tr>
-                    <tr style=" height:30px; "><td colspan="13"></td></tr>
-                </table>
-                <table border="0" cellpadding="0" cellspacing="0" width="100%">
                     <tr class="trFilaItem">
-                        <td class="tdCeldaLeyendaItemFondoBlanco">Solicitud Número</td>
+                        <td class="tdCeldaLeyendaItemFondoBlanco">Expediente Número</td>
                         <td style="width:5px;"></td>
 						<td class="tdCeldaItem"><asp:Label ID="lbNumeroSolictud" runat="server" Text="2000"></asp:Label></td>
                         <td style="width:5px;"></td>
@@ -63,9 +35,9 @@
                         <td style="width:5px;"></td>
 						<td class="tdCeldaItem"><asp:TextBox ID="txtCalificacion" runat="server" CssClass="Textbox_General" width="177px" ></asp:TextBox>&nbsp;</td>
                         <td style="width:5px;"></td>
-                        <td class="tdCeldaLeyendaItemFondoBlanco"></td>
+                        <td class="tdCeldaLeyendaItemFondoBlanco">Fecha recepción</td>
                         <td style="width:5px;"></td>
-						<td class="tdCeldaItem"></td>
+						<td class="tdCeldaItem"><asp:TextBox ID="txtFechaRecepcion" runat="server" CssClass="Textbox_General" Width="177"></asp:TextBox></td>
                         <td style="width:5px;"></td>
                     </tr>
                     <tr style=" height:3px;"><td colspan="8"></td></tr>
@@ -74,42 +46,46 @@
                         <td style="width:5px;"></td>
 						<td class="tdCeldaItem"><asp:TextBox ID="txtEstatus" runat="server" CssClass="Textbox_General" width="177px" ></asp:TextBox>&nbsp;</td>
                         <td style="width:5px;"></td>
-                        <td class="tdCeldaLeyendaItemFondoBlanco">Fecha de recepción</td>
-                        <td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtFechaResepcion" runat="server" CssClass="Textbox_General" width="177px" ></asp:TextBox>&nbsp;</td>
-                        <td style="width:5px;"></td>
-                    </tr>
-                    <tr style=" height:3px;"><td colspan="8"></td></tr>
-                    <tr class="trFilaItem">
-                        <td class="tdCeldaLeyendaItemFondoBlanco">Funcionario</td>
-                        <td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtFuncionario" runat="server" CssClass="Textbox_General" width="177px" ></asp:TextBox>&nbsp;</td>
-                        <td style="width:5px;"></td>
-                        <td class="tdCeldaLeyendaItemFondoBlanco">Fecha de asignación</td>
+                        <td class="tdCeldaLeyendaItemFondoBlanco">Fecha asignación</td>
                         <td style="width:5px;"></td>
 						<td class="tdCeldaItem"><asp:TextBox ID="txtFechaAsignacion" runat="server" CssClass="Textbox_General" width="177px" ></asp:TextBox>&nbsp;</td>
                         <td style="width:5px;"></td>
                     </tr>
                     <tr style=" height:3px;"><td colspan="8"></td></tr>
                     <tr class="trFilaItem">
-                        <td class="tdCeldaLeyendaItemFondoBlanco">Forma de contacto</td>
+                        <td class="tdCeldaLeyendaItemFondoBlanco">Visitador</td>
                         <td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtFormaContacto" runat="server" CssClass="Textbox_General" width="177px" ></asp:TextBox>&nbsp;</td>
+						<td class="tdCeldaItem"><asp:Dropdownlist ID="ddlFuncionario" runat="server" CssClass="DropDownList_General" width="183px" ></asp:Dropdownlist>&nbsp;</td>
                         <td style="width:5px;"></td>
-                        <td class="tdCeldaLeyendaItemFondoBlanco">Fecha de inicio gestión</td>
+                        <td class="tdCeldaLeyendaItemFondoBlanco"></td>
                         <td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtFechaIniGest" runat="server" CssClass="Textbox_General" width="177px" ></asp:TextBox>&nbsp;</td>
+						<td class="tdCeldaItem"></td>
                         <td style="width:5px;"></td>
+                    </tr>
+                    <tr style=" height:3px;"><td colspan="8"></td></tr>
+                    <tr class="trFilaItem">
+                        <td class="tdCeldaLeyendaItemFondoBlanco"><asp:Button ID="btnAsignar" runat="server" CssClass="Button_General_Verde" Text="Asignar expediente" Width="120px"></asp:Button></td>
+                        <td style="width:5px;"></td>
+						<td class="tdCeldaItem"><asp:Button ID="btnRegresar" runat="server" CssClass="Button_General_Verde" Text="Regresar" Width="120px"></asp:Button></td>
+                        <td style="width:5px;"></td>
+                        <td class="tdCeldaLeyendaItemFondoBlanco"></td>
+                        <td style="width:5px;"></td>
+						<td class="tdCeldaItem"></td>
+                        <td style="width:5px;"></td>
+                    </tr>
+                    <tr style=" height:30px;"><td colspan="8"></td></tr>
+                    <tr class="trFilaItem">
+                        <td colspan="8" style="background-color:#CCCCCC; text-align:left;">&nbsp;&nbsp;Detalle del expediente</td>
                     </tr>
                     <tr style=" height:3px;"><td colspan="8"></td></tr>
                     <tr class="trFilaItem">
                         <td class="tdCeldaLeyendaItemFondoBlanco">Tipo de solicitud</td>
                         <td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtTipoSolicitud" runat="server" CssClass="Textbox_General" width="177px" ></asp:TextBox>&nbsp;</td>
+						<td class="tdCeldaItem"><asp:TextBox ID="txtTipoSolicitud" runat="server" CssClass="Textbox_General"></asp:TextBox></td>
                         <td style="width:5px;"></td>
-                        <td class="tdCeldaLeyendaItemFondoBlanco">Última modificación</td>
+                        <td class="tdCeldaLeyendaItemFondoBlanco"></td>
                         <td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtUltimaModificacion" runat="server" CssClass="Textbox_General" width="177px" ></asp:TextBox>&nbsp;</td>
+						<td class="tdCeldaItem"></td>
                         <td style="width:5px;"></td>
                     </tr>
                     <tr style=" height:3px;"><td colspan="8"></td></tr>
@@ -122,7 +98,7 @@
                     <tr class="trFilaItem">
                         <td class="tdCeldaLeyendaItemFondoBlanco">Lugar de los hechos</td>
                         <td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:DropDownList ID="ddlLugarHechos" runat="server" CssClass="DropDownList_General" width="182px"></asp:DropDownList></td>
+						<td class="tdCeldaItem"><asp:TextBox ID="txtLugarHechos" runat="server" CssClass="Textbox_General"></asp:TextBox></td>
                         <td style="width:5px;"></td>
                         <td class="tdCeldaLeyendaItemFondoBlanco"></td>
                         <td style="width:5px;"></td>
@@ -250,7 +226,7 @@
                         <td class="tdCeldaLeyendaItemFondoBlanco">Foto 1</td>
                         <td></td>
                     </tr>
-                    <tr style=" height:3px;"><td colspan="4"></td></tr>
+                    <tr style=" height:10px;"><td colspan="4"></td></tr>
                     <tr>
                         <td colspan="4" style="text-align:left;">Asuto de la solicitud</td>
                     </tr>
@@ -272,7 +248,7 @@
             <asp:Panel id="pnlBotones" runat="server" Width="100%">
                <table border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tr>
-                     <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="btnGuardar" runat="server" Text="Guardar información de solicitud" CssClass="Button_General_Verde" width="200px" /></td>
+                     <td style="height:24px; text-align:left; width:130px;"></td>
                      <td style="height:24px; width:530px;"></td>
                   </tr>
                </table>

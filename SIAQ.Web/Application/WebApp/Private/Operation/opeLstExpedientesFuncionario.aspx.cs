@@ -14,7 +14,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
     public partial class opeLstExpedientesFuncionario : System.Web.UI.Page
     {
-
+         
         // Rutinas del programador
         private void selectExpediente()
         {

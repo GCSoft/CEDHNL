@@ -85,6 +85,10 @@
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsColonia.aspx" />
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsNacionalidad.aspx" />
     <Content Include="Application\WebApp\Private\Operation\lstRecSectretarias.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeAcuerdoCalifDefinitiva.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeAgregarCiudadanosSol.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeAprobarResolucionTitular.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeAsignarVisitador.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeAutoridad.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeBusquedaCiudadano.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeBusquedaExpedientes.aspx" />
@@ -249,6 +253,34 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\lstRecSectretarias.aspx.designer.cs">
       <DependentUpon>lstRecSectretarias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeAcuerdoCalifDefinitiva.aspx.cs">
+      <DependentUpon>opeAcuerdoCalifDefinitiva.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeAcuerdoCalifDefinitiva.aspx.designer.cs">
+      <DependentUpon>opeAcuerdoCalifDefinitiva.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeAgregarCiudadanosSol.aspx.cs">
+      <DependentUpon>opeAgregarCiudadanosSol.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeAgregarCiudadanosSol.aspx.designer.cs">
+      <DependentUpon>opeAgregarCiudadanosSol.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeAprobarResolucionTitular.aspx.cs">
+      <DependentUpon>opeAprobarResolucionTitular.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeAprobarResolucionTitular.aspx.designer.cs">
+      <DependentUpon>opeAprobarResolucionTitular.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeAsignarVisitador.aspx.cs">
+      <DependentUpon>opeAsignarVisitador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeAsignarVisitador.aspx.designer.cs">
+      <DependentUpon>opeAsignarVisitador.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeAutoridad.aspx.cs">
       <DependentUpon>opeAutoridad.aspx</DependentUpon>

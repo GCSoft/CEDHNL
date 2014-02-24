@@ -192,5 +192,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
        {
            insertSolicitud();
        }
+
+       protected void btnRegresar_Click(object sender, EventArgs e)
+       {
+           Response.Redirect("opeInicio.aspx");
+       }
    }
 }

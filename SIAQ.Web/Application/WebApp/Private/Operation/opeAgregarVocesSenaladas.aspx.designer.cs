@@ -10,7 +10,7 @@
 namespace SIAQ.Web.Application.WebApp.Private.Operation {
     
     
-    public partial class opeAgregarDocumentos {
+    public partial class opeAgregarVocesSenaladas {
         
         /// <summary>
         /// Label1 control.
@@ -40,40 +40,40 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.Label lblNumSolicitud;
         
         /// <summary>
-        /// txtArchivo control.
+        /// ddlPrimerNivel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtArchivo;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPrimerNivel;
         
         /// <summary>
-        /// btnBuscar control.
+        /// ddlSegundoNivel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscar;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSegundoNivel;
         
         /// <summary>
-        /// txtNombre control.
+        /// ddlTercerNivel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombre;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTercerNivel;
         
         /// <summary>
-        /// txtDescripcion control.
+        /// txtComentarios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDescripcion;
+        protected global::System.Web.UI.WebControls.TextBox txtComentarios;
         
         /// <summary>
         /// chkListCiudadanos control.

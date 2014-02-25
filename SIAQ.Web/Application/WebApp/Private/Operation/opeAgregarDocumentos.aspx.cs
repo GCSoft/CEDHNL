@@ -11,7 +11,18 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (this.Page.IsPostBack) { return; }
 
+            this.chkListCiudadanos.Items.Add("Laura Cepeda");
+            this.chkListCiudadanos.Items.Add("Lizeth Muriño");
+            this.chkListCiudadanos.Items.Add("Laura Cepeda");
+            this.chkListCiudadanos.Items.Add("Lizeth Muriño");
+            this.chkListCiudadanos.Items.Add("Laura Cepeda");
+            this.chkListCiudadanos.Items.Add("Lizeth Muriño");
+            this.chkListCiudadanos.Items.Add("Laura Cepeda");
+            this.chkListCiudadanos.Items.Add("Lizeth Muriño");
+            this.chkListCiudadanos.Items.Add("Laura Cepeda");
+            this.chkListCiudadanos.Items.Add("Lizeth Muriño");
         }
     }
 }

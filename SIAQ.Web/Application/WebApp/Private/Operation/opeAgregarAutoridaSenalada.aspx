@@ -1,17 +1,17 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeAgregarDocumentos.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeAgregarDocumentos" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeAgregarAutoridaSenalada.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeAgregarAutoridaSenalada" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
         <tr>
 			<td class="tdCeldaTituloEncabezado">
-				Agregar voces señaladas
+				Agregar autoridades señaladas
 			</td>
 		</tr>
       <tr><td class="tdCeldaMiddleSpace_Title"></td></tr>
       <tr>
          <td>
-         <asp:Label ID="Label1" runat="server" Text="Seleccione los distintos niveles de las voces a señalar en la solicitud."></asp:Label>
+         <asp:Label ID="Label1" runat="server" Text="Seleccione los distintos niveles de la autoridad a señalar en la solicitud."></asp:Label>
          <br /><br />
          </td>      
       </tr>
@@ -27,26 +27,44 @@
                     </tr>
                     <tr style="height:10px;"><td colspan="3"></td></tr>
                      <tr>
-                        <td class="tdCeldaLeyendaItemFondoBlanco">Archivo</td>
+                        <td class="tdCeldaLeyendaItemFondoBlanco">Primer nivel</td>
                         <td style="width:5px;"></td>
-                        <td class="tdCeldaItem">
-                            <asp:Textbox ID="txtArchivo" runat="server" CssClass="Textbox_General" Width="177px"></asp:Textbox>
-                            <asp:Button ID="btnBuscar" runat="server" Text="..." Width="50px" />
-                        </td>
+                        <td class="tdCeldaItem"><asp:DropDownList ID="ddlPrimerNivel" runat="server" CssClass="DropDownList_General" Width="183px"></asp:DropDownList></td>
                         <td style="width:5px;"></td>
                     </tr> 
                     <tr style="height:10px;"><td colspan="3"></td></tr>
                      <tr>
-                        <td class="tdCeldaLeyendaItemFondoBlanco">Nombre</td>
+                        <td class="tdCeldaLeyendaItemFondoBlanco">Segundo nivel</td>
                         <td style="width:5px;"></td>
-                        <td class="tdCeldaItem"><asp:Textbox ID="txtNombre" runat="server" CssClass="Textbox_General" Width="177px"></asp:Textbox></td>
+                        <td class="tdCeldaItem"><asp:DropDownList ID="ddlSegundoNivel" runat="server" CssClass="DropDownList_General" Width="183px"></asp:DropDownList></td>
                         <td style="width:5px;"></td>
                     </tr>
                     <tr style="height:10px;"><td colspan="3"></td></tr>
                      <tr>
-                        <td class="tdCeldaLeyendaItemFondoBlanco">Descripción</td>
+                        <td class="tdCeldaLeyendaItemFondoBlanco">Tercer nivel</td>
                         <td style="width:5px;"></td>
-                        <td class="tdCeldaItem"><asp:TextBox ID="txtDescripcion" runat="server" CssClass="Textarea_General" Width="400px"></asp:TextBox></td>
+                        <td class="tdCeldaItem"><asp:DropDownList ID="ddlTercerNivel" runat="server" CssClass="DropDownList_General" Width="183px"></asp:DropDownList></td>
+                        <td style="width:5px;"></td>
+                    </tr> 
+                    <tr style="height:10px;"><td colspan="3"></td></tr>
+                     <tr>
+                        <td class="tdCeldaLeyendaItemFondoBlanco">Nombre funcionario público a cargo</td>
+                        <td style="width:5px;"></td>
+                        <td class="tdCeldaItem"><asp:TextBox ID="txtNombre" runat="server" CssClass="Textbox_General" Width="177px"></asp:TextBox></td>
+                        <td style="width:5px;"></td>
+                    </tr>
+                    <tr style="height:10px;"><td colspan="3"></td></tr>
+                     <tr>
+                        <td class="tdCeldaLeyendaItemFondoBlanco">Puesto Actual</td>
+                        <td style="width:5px;"></td>
+                        <td class="tdCeldaItem"><asp:TextBox ID="txtPuestoActual" runat="server" CssClass="Textbox_General" Width="177px"></asp:TextBox></td>
+                        <td style="width:5px;"></td>
+                    </tr> 
+                    <tr style="height:10px;"><td colspan="3"></td></tr>
+                     <tr>
+                        <td class="tdCeldaLeyendaItemFondoBlanco">Comentarios</td>
+                        <td style="width:5px;"></td>
+                        <td class="tdCeldaItem"><asp:TextBox ID="txtComentarios" runat="server" CssClass="Textarea_General" Width="400px"></asp:TextBox></td>
                         <td style="width:5px;"></td>
                     </tr>   
                 </table>
@@ -56,7 +74,7 @@
          <td rowspan="5" valign="top" style="width:200px;">
             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                 <tr>
-                    <td style="background-color:#DDDDFF; font-size:10px; border:1px solid #333333;">Voces señaladas en la solicitud</td>
+                    <td style="background-color:#DDDDFF; font-size:10px; border:1px solid #333333;">Autoridades señaladas en la solicitud</td>
                 </tr>
                 <tr>
                     <td style="background-color:#FBFBFF; font-size:10px; border:1px solid #333333;">

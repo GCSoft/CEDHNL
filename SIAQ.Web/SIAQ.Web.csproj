@@ -87,17 +87,23 @@
     <Content Include="Application\WebApp\Private\Operation\lstRecSectretarias.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeAcuerdoCalifDefinitiva.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeAgregarCiudadanosSol.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeAgregarDocumentos.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeAgregarIndicadores.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeAprobarResolucionTitular.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeAregarIndicadores.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeAsignarVisitador.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeAutoridad.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeBusquedaCiudadano.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeBusquedaExpedientes.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeBusquedaRecomendacion.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeBusquedaSolicitud.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeCalificarSolicitud.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeCiudadano.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeDetalleCiudadano.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeDetalleExpedienteTitular.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeDetalleExpedienteVisitador.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeDetalleSolicitud.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeEnviarSolicitud.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeInicio.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeLstEspedienteSecretaria.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeLstExpedientesFuncionario.aspx" />
@@ -268,12 +274,33 @@
     <Compile Include="Application\WebApp\Private\Operation\opeAgregarCiudadanosSol.aspx.designer.cs">
       <DependentUpon>opeAgregarCiudadanosSol.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeAgregarDocumentos.aspx.cs">
+      <DependentUpon>opeAgregarDocumentos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeAgregarDocumentos.aspx.designer.cs">
+      <DependentUpon>opeAgregarDocumentos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeAgregarIndicadores.aspx.cs">
+      <DependentUpon>opeAgregarIndicadores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeAgregarIndicadores.aspx.designer.cs">
+      <DependentUpon>opeAgregarIndicadores.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeAprobarResolucionTitular.aspx.cs">
       <DependentUpon>opeAprobarResolucionTitular.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeAprobarResolucionTitular.aspx.designer.cs">
       <DependentUpon>opeAprobarResolucionTitular.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeAregarIndicadores.aspx.cs">
+      <DependentUpon>opeAregarIndicadores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeAregarIndicadores.aspx.designer.cs">
+      <DependentUpon>opeAregarIndicadores.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeAsignarVisitador.aspx.cs">
       <DependentUpon>opeAsignarVisitador.aspx</DependentUpon>
@@ -317,12 +344,26 @@
     <Compile Include="Application\WebApp\Private\Operation\opeBusquedaSolicitud.aspx.designer.cs">
       <DependentUpon>opeBusquedaSolicitud.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeCalificarSolicitud.aspx.cs">
+      <DependentUpon>opeCalificarSolicitud.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeCalificarSolicitud.aspx.designer.cs">
+      <DependentUpon>opeCalificarSolicitud.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeCiudadano.aspx.cs">
       <DependentUpon>opeCiudadano.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeCiudadano.aspx.designer.cs">
       <DependentUpon>opeCiudadano.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeDetalleCiudadano.aspx.cs">
+      <DependentUpon>opeDetalleCiudadano.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeDetalleCiudadano.aspx.designer.cs">
+      <DependentUpon>opeDetalleCiudadano.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeDetalleExpedienteTitular.aspx.cs">
       <DependentUpon>opeDetalleExpedienteTitular.aspx</DependentUpon>
@@ -344,6 +385,13 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeDetalleSolicitud.aspx.designer.cs">
       <DependentUpon>opeDetalleSolicitud.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeEnviarSolicitud.aspx.cs">
+      <DependentUpon>opeEnviarSolicitud.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeEnviarSolicitud.aspx.designer.cs">
+      <DependentUpon>opeEnviarSolicitud.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeInicio.aspx.cs">
       <DependentUpon>opeInicio.aspx</DependentUpon>

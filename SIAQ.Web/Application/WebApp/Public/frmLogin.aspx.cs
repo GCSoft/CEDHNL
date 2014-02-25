@@ -81,7 +81,6 @@ namespace SIAQ.Web.Application.WebApp
 		
 		private void loginUser(){
 			BPUsuario oBPUsuario = new BPUsuario();
-			
 			ENTUsuario oENTUsuario = new ENTUsuario();
 			ENTResponse oENTResponse = new ENTResponse();
 			ENTSession oENTSession = new ENTSession();
@@ -101,8 +100,19 @@ namespace SIAQ.Web.Application.WebApp
 				
 				// Usuario válido
             cookiesSetConfiguration();
-            this.Response.Redirect("../Private/Home/AppIndex.aspx", false);
-				
+
+            oENTSession = (ENTSession)Session["oENTSession"];
+
+            switch (oENTSession.idRol)
+            {
+                case 3:
+                    this.Response.Redirect("../Private/Operation/opeInicio.aspx", false);
+                    break;
+
+                default:
+                    this.Response.Redirect("../Private/Home/AppIndex.aspx", false);
+                    break;
+            }	
 			}catch(Exception ex){
 				throw(ex);
 			}

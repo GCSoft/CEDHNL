@@ -175,8 +175,8 @@ namespace SIAQ.DataAccess.Object
                 Parameter.Value = ENTSolicitud.Nombre;
                 Command.Parameters.Add(Parameter);
 
-                Parameter = new SqlParameter("SolicitudId", SqlDbType.TinyInt);
-                Parameter.Value = ENTSolicitud.SolicitudId;
+                Parameter = new SqlParameter("Numero", SqlDbType.TinyInt);
+                Parameter.Value = ENTSolicitud.Numero;
                 Command.Parameters.Add(Parameter);
 
                 Parameter = new SqlParameter("MedioComunicacionId", SqlDbType.TinyInt);

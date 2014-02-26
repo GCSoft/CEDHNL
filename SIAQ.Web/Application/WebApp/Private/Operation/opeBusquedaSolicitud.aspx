@@ -90,7 +90,7 @@
             <asp:Panel id="pnlGrid" runat="server" Width="100%">
                <asp:GridView ID="gvSolicitud" runat="server" AutoGenerateColumns="False"
                         AutoUpdateAfterCallBack="True"
-                        UpdateAfterCallBack="True" Width="800px" Style="text-align: center" DataKeyNames="Solicitud"
+                        UpdateAfterCallBack="True" Width="800px" Style="text-align: center" DataKeyNames="SolicitudId"
                         PageSize="30" ShowHeaderWhenEmpty="True">
                         <RowStyle CssClass="Grid_Row" />
                         <EditRowStyle Wrap="True" />
@@ -126,7 +126,7 @@
                             <asp:BoundField DataField="EstatusId" HeaderText="Estatus">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="Observacones" HeaderText="Quejosos">
+                            <asp:BoundField DataField="Observaciones" HeaderText="Quejosos">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
                             <asp:BoundField HeaderText="Servidores">

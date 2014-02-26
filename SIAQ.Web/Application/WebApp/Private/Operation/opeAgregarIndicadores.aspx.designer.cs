@@ -22,120 +22,102 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// pnlFormulario control.
+        /// CBMenorEdad control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlFormulario;
+        protected global::System.Web.UI.WebControls.CheckBox CBMenorEdad;
         
         /// <summary>
-        /// lblNumSolicitud control.
+        /// CBMigranteInternaccional control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNumSolicitud;
+        protected global::System.Web.UI.WebControls.CheckBox CBMigranteInternaccional;
         
         /// <summary>
-        /// cnkMenor control.
+        /// CBAdultoMayor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cnkMenor;
+        protected global::System.Web.UI.WebControls.CheckBox CBAdultoMayor;
         
         /// <summary>
-        /// chkMigranteInter control.
+        /// CBMigranteNacional control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkMigranteInter;
+        protected global::System.Web.UI.WebControls.CheckBox CBMigranteNacional;
         
         /// <summary>
-        /// chkAdultoMayor control.
+        /// CBActividadVictima control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkAdultoMayor;
+        protected global::System.Web.UI.WebControls.CheckBox CBActividadVictima;
         
         /// <summary>
-        /// chkMigranteNacional control.
+        /// CBJornalero control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkMigranteNacional;
+        protected global::System.Web.UI.WebControls.CheckBox CBJornalero;
         
         /// <summary>
-        /// chkJornalero control.
+        /// CBConstruccion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkJornalero;
+        protected global::System.Web.UI.WebControls.CheckBox CBConstruccion;
         
         /// <summary>
-        /// chkConstruccion control.
+        /// CBSexoServidora control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkConstruccion;
+        protected global::System.Web.UI.WebControls.CheckBox CBSexoServidora;
         
         /// <summary>
-        /// chkSexoServidora control.
+        /// CBEmpleadaDomestica control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkSexoServidora;
+        protected global::System.Web.UI.WebControls.CheckBox CBEmpleadaDomestica;
         
         /// <summary>
-        /// chkEmpleadaDomestica control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkEmpleadaDomestica;
+        protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
-        /// pnlBotones control.
+        /// Button2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlBotones;
-        
-        /// <summary>
-        /// btnGuardar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardar;
-        
-        /// <summary>
-        /// btnRegresar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRegresar;
+        protected global::System.Web.UI.WebControls.Button Button2;
     }
 }

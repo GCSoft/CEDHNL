@@ -1,90 +1,106 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeAgregarIndicadores.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeAgregarIndicadores" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
+    <style type="text/css">   
+        .CeldaTabla 
+        {
+            border-bottom: 1px solid #cccccc;
+	        background-color: #ececff;
+	        border-spacing: 5px;
+	        font-weight: bold;
+	        padding: 5px;
+	        text-align:left;
+        }
+        .style1
+        {
+            width: 186px;
+        }
+        .style2
+        {
+            width: 351px;
+        }
+    </style>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
+<asp:Content ID="Content3" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
-        <tr>
-			<td class="tdCeldaTituloEncabezado">
-				Agregar voces señaladas
-			</td>
-		</tr>
-      <tr><td class="tdCeldaMiddleSpace_Title"></td></tr>
+          <tr>
+			    <td class="tdCeldaTituloEncabezado" style="background-image:url('../../../../Include/Image/Web/BarraTitulo.png');">
+				     Agregar Indicadores
+			    </td>
+		    </tr>
+     </table>
+     <br />
+     <div style="text-align:left;">
+        <asp:Label ID="Label1" runat="server">Seleccione los distintos indicadores que cumplan con una mejor descripción de la solicitud y del quejoso</asp:Label>
+     </div>
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+           <tr>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td class="CeldaTabla">Condición de la víctima</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>
+            <table width="100%" border="0" style="text-align:left;">
+                  <tr>
+                    <td> <asp:CheckBox Text="Menor de edad" runat="server" ID="CBMenorEdad" /></td>
+                    <td> <asp:CheckBox Text="Migrante internacional" runat="server" ID="CBMigranteInternaccional" /> </td>
+                  </tr>
+                  <tr>
+                    <td><asp:CheckBox Text="Adulto mayor" runat="server" ID="CBAdultoMayor" /></td>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td><asp:CheckBox Text="Migrante nacional" runat="server" ID="CBMigranteNacional" /></td>
+                    <td>&nbsp;</td>
+                  </tr>
+           </table>
+
+            </td>
+         </tr>
+         <tr>
+            <td>&nbsp;</td>
+         </tr>
       <tr>
-         <td>
-         <asp:Label ID="Label1" runat="server" Text="Seleccione los distintos niveles de las voces a señalar en la solicitud."></asp:Label>
-         <br /><br />
-         </td>      
+        <td class="CeldaTabla"><asp:CheckBox Text="Actividad de la víctima" runat="server" ID="CBActividadVictima" /></td>
       </tr>
       <tr>
-         <td>
-            <asp:Panel id="pnlFormulario" runat="server" Visible="true" Width="100%">
-                <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                    <tr>
-                        <td class="tdCeldaLeyendaItemFondoBlanco">Solicitud número:</td>
-                        <td style="width:5px;"></td>
-                        <td class="tdCeldaItem"><asp:Label ID="lblNumSolicitud" runat="server" Text="20202"></asp:Label></td>
-                        <td style="width:5px;"></td>
-                    </tr>
-                    <tr style="height:10px;"><td colspan="3"></td></tr>
-                    <tr style="height:10px; background-color:#EEEEEE; text-align:left;"><td colspan="3">Condición de la víctima</td></tr>
-                     <tr>
-                        <td class="tdCeldaLeyendaItemFondoBlanco"><asp:CheckBox ID="cnkMenor" runat="server" Text="Menor de edad" CssClass="CheckBox_Regular"></asp:CheckBox></td>
-                        <td style="width:5px;"></td>
-                        <td class="tdCeldaItem"><asp:CheckBox ID="chkMigranteInter" runat="server" Text="Migrante internacional" CssClass="CheckBox_Regular"></asp:CheckBox></td>
-                        <td style="width:5px;"></td>
-                    </tr> 
-                    <tr style="height:3px;"><td colspan="3"></td></tr>
-                     <tr>
-                        <td class="tdCeldaLeyendaItemFondoBlanco"><asp:CheckBox ID="chkAdultoMayor" runat="server" Text="Adulto mayor" CssClass="CheckBox_Regular"></asp:CheckBox></td>
-                        <td style="width:5px;"></td>
-                        <td class="tdCeldaItem"></td>
-                        <td style="width:5px;"></td>
-                    </tr>
-                    <tr style="height:3px;"><td colspan="3"></td></tr>
-                     <tr>
-                        <td class="tdCeldaLeyendaItemFondoBlanco"><asp:CheckBox ID="chkMigranteNacional" runat="server" Text="Migrante nacional" CssClass="CheckBox_Regular"></asp:CheckBox></td>
-                        <td style="width:5px;"></td>
-                        <td class="tdCeldaItem"></td>
-                        <td style="width:5px;"></td>
-                    </tr>
-                    <tr style="height:10px;"><td colspan="3"></td></tr>
-                    <tr style="height:10px; background-color:#EEEEEE; text-align:left;"><td colspan="3">Actividad de la víctima</td></tr>
-                     <tr>
-                        <td class="tdCeldaLeyendaItemFondoBlanco"><asp:CheckBox ID="chkJornalero" runat="server" Text="Jornalero" CssClass="CheckBox_Regular"></asp:CheckBox></td>
-                        <td style="width:5px;"></td>
-                        <td class="tdCeldaItem"><asp:CheckBox ID="chkConstruccion" runat="server" Text="Construcción" CssClass="CheckBox_Regular"></asp:CheckBox></td>
-                        <td style="width:5px;"></td>
-                    </tr> 
-                    <tr style="height:3px;"><td colspan="3"></td></tr>
-                     <tr>
-                        <td class="tdCeldaLeyendaItemFondoBlanco"><asp:CheckBox ID="chkSexoServidora" runat="server" Text="Sexo servidora" CssClass="CheckBox_Regular"></asp:CheckBox></td>
-                        <td style="width:5px;"></td>
-                        <td class="tdCeldaItem"></td>
-                        <td style="width:5px;"></td>
-                    </tr>
-                    <tr style="height:3px;"><td colspan="3"></td></tr>
-                     <tr>
-                        <td class="tdCeldaLeyendaItemFondoBlanco"><asp:CheckBox ID="chkEmpleadaDomestica" runat="server" Text="Empleada doméstica" CssClass="CheckBox_Regular"></asp:CheckBox></td>
-                        <td style="width:5px;"></td>
-                        <td class="tdCeldaItem"></td>
-                        <td style="width:5px;"></td>
-                    </tr>
-                </table>
-            </asp:Panel>
-         </td>
+        <td>&nbsp;</td>
       </tr>
-    <tr><td class="tdCeldaMiddleSpace"></td></tr>
-    <tr>
+      <tr>
         <td>
-        <asp:Panel id="pnlBotones" runat="server" Width="100%">
-            <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                <tr>
-                    <td class="tdCeldaLeyendaItemFondoBlanco"><asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="Button_General_Verde" width="125px"/></td>
-                    <td class="tdCeldaItem"><asp:Button ID="btnRegresar" runat="server" Text="Regresar" CssClass="Button_General_Verde" width="125px"/></td>
-                </tr>
+            <table width="100%" border="0" style="text-align:left;">
+              <tr>
+                <td class="style2"><asp:CheckBox Text="Jornalero" runat="server" ID="CBJornalero" /></td>
+                <td><asp:CheckBox Text="Construcción" runat="server" ID="CBConstruccion" /></td>
+              </tr>
+              <tr>
+                <td class="style2"><asp:CheckBox Text="Sexo servidora"  runat="server" ID="CBSexoServidora" /></td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td class="style2"><asp:CheckBox Text="Empleada doméstica"  runat="server" ID="CBEmpleadaDomestica" /></td>
+                <td>&nbsp;</td>
+              </tr>
             </table>
-        </asp:Panel>
+                </td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td>
+                <table width="100%" border="0">
+              <tr>
+                <td style="text-align:left;" class="style1"><asp:Button ID="Button1" runat="server" Text="Guardar" CssClass="Button_General" width="125px"/></td>
+                <td style="text-align:left;"><asp:Button ID="Button2" runat="server" Text="Regresar" CssClass="Button_General" width="125px"/></td>
+              </tr>
+            </table>
         </td>
-    </tr>
-</table>
+      </tr>
+    </table>
 </asp:Content>
+

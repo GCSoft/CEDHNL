@@ -7,16 +7,15 @@ using System.Web.UI.WebControls;
 
 namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
-    public partial class opeAgregarDocumentos : System.Web.UI.Page
+    public partial class opeDetalleCiudadano : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (this.Page.IsPostBack) { return; }
+            gvSolcitudes.DataSource = null;
+            gvSolcitudes.DataBind();
 
-            this.chkListCiudadanos.Items.Add("Dictamen Médico");
-            this.chkListCiudadanos.Items.Add("");
-            this.chkListCiudadanos.Items.Add("");
-          
+            gvVisitas.DataSource = null;
+            gvVisitas.DataBind();
         }
     }
 }

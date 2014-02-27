@@ -13,76 +13,67 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
     public partial class opeDetalleSolicitud {
         
         /// <summary>
-        /// pnlFormulario control.
+        /// InformacionGeneralButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlFormulario;
+        protected global::System.Web.UI.WebControls.ImageButton InformacionGeneralButton;
         
         /// <summary>
-        /// ImageButton1 control.
+        /// CiudadanoButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton1;
+        protected global::System.Web.UI.WebControls.ImageButton CiudadanoButton;
         
         /// <summary>
-        /// ImageButton2 control.
+        /// AutoridadButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton2;
+        protected global::System.Web.UI.WebControls.ImageButton AutoridadButton;
         
         /// <summary>
-        /// ImageButton3 control.
+        /// IndicadorButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton3;
+        protected global::System.Web.UI.WebControls.ImageButton IndicadorButton;
         
         /// <summary>
-        /// ImageButton4 control.
+        /// DocumentoButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton4;
+        protected global::System.Web.UI.WebControls.ImageButton DocumentoButton;
         
         /// <summary>
-        /// ImageButton5 control.
+        /// CalificarButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton5;
+        protected global::System.Web.UI.WebControls.ImageButton CalificarButton;
         
         /// <summary>
-        /// ImageButton6 control.
+        /// EnviarButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton6;
-        
-        /// <summary>
-        /// ImageButton7 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton7;
+        protected global::System.Web.UI.WebControls.ImageButton EnviarButton;
         
         /// <summary>
         /// lbNumeroSolictud control.

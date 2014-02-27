@@ -485,6 +485,7 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\SysApp\saChangePassword.aspx.cs">
       <DependentUpon>saChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\SysApp\saChangePassword.aspx.designer.cs">
       <DependentUpon>saChangePassword.aspx</DependentUpon>
@@ -526,30 +527,35 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\SysCat\scatArea.aspx.cs">
       <DependentUpon>scatArea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\SysCat\scatArea.aspx.designer.cs">
       <DependentUpon>scatArea.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\SysCat\scatMenu.aspx.cs">
       <DependentUpon>scatMenu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\SysCat\scatMenu.aspx.designer.cs">
       <DependentUpon>scatMenu.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\SysCat\scatRol.aspx.cs">
       <DependentUpon>scatRol.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\SysCat\scatRol.aspx.designer.cs">
       <DependentUpon>scatRol.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\SysCat\scatSubMenu.aspx.cs">
       <DependentUpon>scatSubMenu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\SysCat\scatSubMenu.aspx.designer.cs">
       <DependentUpon>scatSubMenu.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\SysCat\scatUsuario.aspx.cs">
       <DependentUpon>scatUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\SysCat\scatUsuario.aspx.designer.cs">
       <DependentUpon>scatUsuario.aspx</DependentUpon>
@@ -571,18 +577,21 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Home\AppIndex.aspx.cs">
       <DependentUpon>AppIndex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\Home\AppIndex.aspx.designer.cs">
       <DependentUpon>AppIndex.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\SysApp\saLogout.aspx.cs">
       <DependentUpon>saLogout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\SysApp\saLogout.aspx.designer.cs">
       <DependentUpon>saLogout.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\SysApp\saNotificacion.aspx.cs">
       <DependentUpon>saNotificacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\SysApp\saNotificacion.aspx.designer.cs">
       <DependentUpon>saNotificacion.aspx</DependentUpon>

@@ -8,9 +8,11 @@ namespace SIAQ.BusinessProcess.Object
 {
     public class BPSolicitud : BPBase
     {
+
         private int _ErrorId;
         private string _ErrorDescription;
         protected ENTSolicitud _SolicitudEntity;
+
 
         public ENTSolicitud SolicitudEntity
         {
@@ -23,7 +25,7 @@ namespace SIAQ.BusinessProcess.Object
             _SolicitudEntity = new ENTSolicitud();
         }
 
-        /// <summary>
+                /// <summary>
         ///     Número de error ocurrido. Cero por default
         /// </summary>
         public int ErrorId
@@ -39,7 +41,6 @@ namespace SIAQ.BusinessProcess.Object
         {
             get { return _ErrorDescription; }
         }
-
         ///<remarks>
         ///   <name>BPSolicitud.searchSolicitud</name>
         ///   <create>27/ene/2014</create>
@@ -69,7 +70,6 @@ namespace SIAQ.BusinessProcess.Object
             return oENTResponse;
 
         }
-
         ///<remarks>
         ///   <name>BPSolicitudinsertSolicitud</name>
         ///   <create>27/ene/2014</create>
@@ -99,7 +99,6 @@ namespace SIAQ.BusinessProcess.Object
             return oENTResponse;
 
         }
-
         ///<remarks>
         ///   <name>BPSolicitudupdateSolicitud</name>
         ///   <create>27/ene/2014</create>
@@ -129,7 +128,6 @@ namespace SIAQ.BusinessProcess.Object
             return oENTResponse;
 
         }
-
         ///<remarks>
         ///   <name>BPSolicituddeleteSolicitud</name>
         ///   <create>27/ene/2014</create>
@@ -166,9 +164,7 @@ namespace SIAQ.BusinessProcess.Object
             DASolicitud DASolicitud = new DASolicitud();
 
             ConnectionString = sConnectionApplication;
-
             _SolicitudEntity.ResultData = DASolicitud.SelectSolicitud(_SolicitudEntity, ConnectionString);
-
             _ErrorId = DASolicitud.ErrorId;
             _ErrorDescription = DASolicitud.ErrorDescription;
 

@@ -84,6 +84,7 @@
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlscatOcupacion.aspx" />
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsColonia.aspx" />
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsNacionalidad.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeAgregarAutoridadesSenaladas.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\lstRecSectretarias.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeAcuerdoCalifDefinitiva.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeAgregarAutoridaSenalada.aspx" />
@@ -251,6 +252,13 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsNacionalidad.aspx.designer.cs">
       <DependentUpon>xlsNacionalidad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeAgregarAutoridadesSenaladas.aspx.cs">
+      <DependentUpon>opeAgregarAutoridadesSenaladas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeAgregarAutoridadesSenaladas.aspx.designer.cs">
+      <DependentUpon>opeAgregarAutoridadesSenaladas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Seguimiento\lstRecSectretarias.aspx.cs">
       <DependentUpon>lstRecSectretarias.aspx</DependentUpon>

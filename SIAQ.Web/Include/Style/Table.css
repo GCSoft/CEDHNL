@@ -7,3 +7,50 @@
 '
 '----------------------------------------------------------------------------------------------------------------------------------*/
 
+/* Tabla para el detalle de la solicitud */
+.SolicitudTable
+{
+	border-spacing: 5px;
+	font-size:11px;
+	padding: 0px;
+	width: 100%;
+}
+
+.SolicitudTable .Campo
+{
+	text-align: left;
+	width: 200px;
+}
+
+.SolicitudTable .Espacio
+{
+	width: 20px;
+}
+
+.SolicitudTable .Especial
+{
+	font-size: 15px;
+	font-weight: bold;
+	text-align: left;
+}
+
+.SolicitudTable .Etiqueta
+{
+	background-color: #ededed;
+	text-align: left;
+	width: 200px;
+}
+
+.SolicitudTable .Observaciones
+{
+	background-color: #ededed;
+	text-align: left;
+}
+
+.SolicitudTable .Nombre
+{
+	text-align: left;
+	width: 150px;
+}
+
+

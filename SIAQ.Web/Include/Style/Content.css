@@ -141,6 +141,11 @@
 }
  
 /* Generales */ 
+#InformacionDiv
+{
+	margin-bottom: 20px;
+}
+
 .MarcadorObligatorio{
 	background-color: White;
 	color:Red;

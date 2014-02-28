@@ -37,6 +37,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 Response.Redirect("/Application/WebApp/Private/Operation/opeEnviarSolicitud.aspx");
             }
 
+            protected void GuardarButton_Click(object sender, EventArgs e)
+            {
+                GuardarSolicitud();
+            }
+
             protected void IndicadorButton_Click(object sender, ImageClickEventArgs e)
             {
                 Response.Redirect("/Application/WebApp/Private/Operation/opeAgregarIndicadores.aspx");
@@ -54,6 +59,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         #endregion
 
         #region "Methods"
+            private void GuardarSolicitud()
+            {
+
+            }
+
             private void PageLoad()
             {
                 int SolicitudId = 0;
@@ -64,12 +74,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     SolicitudId = 1004;
 
                     SelectSolicitud(SolicitudId);
-
-                    this.gvCiudadano.DataSource = null;
-                    this.gvCiudadano.DataBind();
-
-                    this.gvAutoridades.DataSource = null;
-                    this.gvAutoridades.DataBind();
+                    SelectCiudadano(SolicitudId);
+                    SelectAutoridades(SolicitudId);
                 }
             }
 
@@ -82,6 +88,18 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 ContactoLabel.Text = "";
                 TipoSolicitudLabel.Text = "";
                 ObservacionesLabel.Text = "";
+            }
+
+            private void SelectAutoridades(int SolicitudId)
+            {
+                this.gvAutoridades.DataSource = null;
+                this.gvAutoridades.DataBind();
+            }
+
+            private void SelectCiudadano(int SolicitudId)
+            {
+                this.gvCiudadano.DataSource = null;
+                this.gvCiudadano.DataBind();
             }
 
             private void SelectSolicitud(int SolicitudId)

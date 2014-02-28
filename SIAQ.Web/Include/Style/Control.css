@@ -457,12 +457,6 @@
 
 
 /*LABEL*/
-.DetalleLabel
-{
-	background-color: #cacaca;
-	width: 150px;
-}
-
 .Label_General{
    color:#333333;
 	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
@@ -477,6 +471,13 @@
 	font-size:12px;
 	font-weight:bold;
 	text-align:left;
+}
+
+.NumeroSolicitudLabel
+{
+	color: #ff6600;
+	font-size: 15px;
+	font-weight: bold;
 }
 
 /*LINKBUTTON*/

@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeDetalleSolicitud.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeDetalleSolicitud" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
-
+    <link href="/Include/Style/Table.css" rel="Stylesheet" type="text/css" />
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
@@ -53,99 +53,66 @@
     </div>
 
     <div id="InformacionDiv">
-        <table border="1" cellpadding="0" cellspacing="0" width="100%">
-            <tr class="trFilaItem">
-                <td class="tdCeldaLeyendaItemFondoBlanco">Solicitud Número</td>
-                <td style="width:5px;"></td>
-				<td class="tdCeldaItem"><asp:Label ID="SolicitudLabel" runat="server" Text="0"></asp:Label></td>
-                <td style="width:5px;"></td>
-                <td class="tdCeldaLeyendaItemFondoBlanco"></td>
-                <td style="width:5px;"></td>
-				<td class="tdCeldaItem"></td>
-                <td style="width:5px;"></td>
+        <table border="1" class="SolicitudTable">
+            <tr>
+                <td class="Especial">Solicitud Número</td>
+                <td class="Espacio"></td>
+				<td class="Campo" colspan="5"><asp:Label CssClass="NumeroSolicitudLabel" ID="SolicitudLabel" runat="server" Text="0"></asp:Label></td>
             </tr>
-            <tr style=" height:20px;"><td colspan="8"></td></tr>
-            <tr class="trFilaItem">
-                <td class="tdCeldaLeyendaItemFondoBlanco">Calificación</td>
-                <td style="width:5px;"></td>
-				<td class="tdCeldaItem"><asp:Label CssClass="DetalleLabel" ID="CalificacionLabel" runat="server" Text=""></asp:Label></td>
-                <td style="width:5px;"></td>
-                <td class="tdCeldaLeyendaItemFondoBlanco"></td>
-                <td style="width:5px;"></td>
-				<td class="tdCeldaItem"></td>
-                <td style="width:5px;"></td>
+            <tr>
+                <td class="Nombre">Calificación</td>
+                <td class="Espacio"></td>
+				<td class="Etiqueta" colspan="5"><asp:Label ID="CalificacionLabel" runat="server" Text=""></asp:Label></td>
             </tr>
-            <tr style=" height:3px;"><td colspan="8"></td></tr>
-            <tr class="trFilaItem">
-                <td class="tdCeldaLeyendaItemFondoBlanco">Estatus</td>
-                <td style="width:5px;"></td>
-				<td class="tdCeldaItem"><asp:Label CssClass="DetalleLabel" ID="EstatusaLabel" runat="server" Text=""></asp:Label></td>
-                <td style="width:5px;"></td>
-                <td class="tdCeldaLeyendaItemFondoBlanco">Fecha de recepción</td>
-                <td style="width:5px;"></td>
-				<td class="tdCeldaItem"><asp:Label CssClass="DetalleLabel" ID="FechaRecepcionLabel" runat="server" Text=""></asp:Label></td>
-                <td style="width:5px;"></td>
+            <tr>
+                <td class="Nombre">Estatus</td>
+                <td class="Espacio"></td>
+				<td class="Etiqueta"><asp:Label ID="EstatusaLabel" runat="server" Text=""></asp:Label></td>
+                <td class="Espacio"></td>
+                <td class="Nombre">Fecha de recepción</td>
+                <td class="Espacio"></td>
+				<td class="Etiqueta"><asp:Label ID="FechaRecepcionLabel" runat="server" Text=""></asp:Label></td>
             </tr>
-            <tr style=" height:3px;"><td colspan="8"></td></tr>
-            <tr class="trFilaItem">
-                <td class="tdCeldaLeyendaItemFondoBlanco">Funcionario</td>
-                <td style="width:5px;"></td>
-				<td class="tdCeldaItem"><asp:Label CssClass="DetalleLabel" ID="FuncionarioLabel" runat="server" Text=""></asp:Label></td>
-                <td style="width:5px;"></td>
-                <td class="tdCeldaLeyendaItemFondoBlanco">Fecha de asignación</td>
-                <td style="width:5px;"></td>
-				<td class="tdCeldaItem"><asp:Label CssClass="DetalleLabel" ID="FechaAsignacionLabel" runat="server" Text=""></asp:Label></td>
-                <td style="width:5px;"></td>
+            <tr>
+                <td class="Nombre">Funcionario</td>
+                <td class="Espacio"></td>
+				<td class="Etiqueta"><asp:Label ID="FuncionarioLabel" runat="server" Text=""></asp:Label></td>
+                <td class="Espacio"></td>
+                <td class="Nombre">Fecha de asignación</td><td class="Espacio"></td>
+				<td class="Etiqueta"><asp:Label ID="FechaAsignacionLabel" runat="server" Text=""></asp:Label></td>
             </tr>
-            <tr style=" height:3px;"><td colspan="8"></td></tr>
-            <tr class="trFilaItem">
-                <td class="tdCeldaLeyendaItemFondoBlanco">Forma de contacto</td>
-                <td style="width:5px;"></td>
-				<td class="tdCeldaItem"><asp:Label CssClass="DetalleLabel" ID="ContactoLabel" runat="server" Text=""></asp:Label></td>
-                <td style="width:5px;"></td>
-                <td class="tdCeldaLeyendaItemFondoBlanco">Fecha de inicio gestión</td>
-                <td style="width:5px;"></td>
-				<td class="tdCeldaItem"><asp:Label ID="FechaGestionLabel" runat="server" Text=""></asp:Label></td>
-                <td style="width:5px;"></td>
+            <tr>
+                <td class="Nombre">Forma de contacto</td>
+                <td class="Espacio"></td>
+				<td class="Etiqueta"><asp:Label ID="ContactoLabel" runat="server" Text=""></asp:Label></td>
+                <td class="Espacio"></td>
+                <td class="Nombre">Fecha de inicio gestión</td>
+                <td class="Espacio"></td>
+				<td class="Etiqueta"><asp:Label ID="FechaGestionLabel" runat="server" Text=""></asp:Label></td>
             </tr>
-            <tr style=" height:3px;"><td colspan="8"></td></tr>
-            <tr class="trFilaItem">
-                <td class="tdCeldaLeyendaItemFondoBlanco">Tipo de solicitud</td>
-                <td style="width:5px;"></td>
-				<td class="tdCeldaItem"><asp:Label CssClass="DetalleLabel" ID="TipoSolicitudLabel" runat="server" Text=""></asp:Label></td>
-                <td style="width:5px;"></td>
-                <td class="tdCeldaLeyendaItemFondoBlanco">Última modificación</td>
-                <td style="width:5px;"></td>
-				<td class="tdCeldaItem"><asp:Label CssClass="DetalleLabel" ID="FechaModificacionLabel" runat="server" Text=""></asp:Label></td>
-                <td style="width:5px;"></td>
+            <tr>
+                <td class="Nombre">Tipo de solicitud</td>
+                <td class="Espacio"></td>
+				<td class="Etiqueta"><asp:Label ID="TipoSolicitudLabel" runat="server" Text=""></asp:Label></td>
+                <td class="Espacio"></td>
+                <td class="Nombre">Última modificación</td>
+                <td class="Espacio"></td>
+				<td class="Etiqueta"><asp:Label ID="FechaModificacionLabel" runat="server" Text=""></asp:Label></td>
             </tr>
-            <tr style=" height:3px;"><td colspan="8"></td></tr>
-            <tr class="trFilaItem">
-                <td class="tdCeldaLeyendaItemFondoBlanco">Observaciones (Recepción)</td>
-                <td style="width:5px;"></td>
-				<td class="tdCeldaItem" colspan="5"><asp:Label CssClass="DetalleLabel" ID="ObservacionesLabel" runat="server" Text=""></asp:Label></td>
+            <tr>
+                <td class="Nombre">Observaciones (Recepción)</td>
+                <td class="Espacio"></td>
+				<td class="Observaciones" colspan="5"><asp:Label ID="ObservacionesLabel" runat="server" Text=""></asp:Label></td>
             </tr>
-            <tr style=" height:3px;"><td colspan="8"></td></tr>
-            <tr class="trFilaItem">
-                <td class="tdCeldaLeyendaItemFondoBlanco">Lugar de los hechos</td>
-                <td style="width:5px;"></td>
-				<td class="tdCeldaItem"><asp:DropDownList ID="LugarHechosList" runat="server" CssClass="DropDownList_General" width="182px"></asp:DropDownList></td>
-                <td style="width:5px;"></td>
-                <td class="tdCeldaLeyendaItemFondoBlanco"></td>
-                <td style="width:5px;"></td>
-				<td class="tdCeldaItem"></td>
-                <td style="width:5px;"></td>
+            <tr>
+                <td class="Nombre">Lugar de los hechos</td>
+                <td class="Espacio"></td>
+				<td class="Campo" colspan="5"><asp:DropDownList ID="LugarHechosList" runat="server" CssClass="DropDownList_General" width="195px"></asp:DropDownList></td>
             </tr>
-            <tr style=" height:3px;"><td colspan="8"></td></tr>
-            <tr class="trFilaItem">
-                <td class="tdCeldaLeyendaItemFondoBlanco">Dirección de los hechos</td>
-                <td style="width:5px;"></td>
-				<td class="tdCeldaItem"><asp:TextBox ID="DireccionHechosBox" runat="server" CssClass="Textarea_General" width="177px" ></asp:TextBox>&nbsp;</td>
-                <td style="width:5px;"></td>
-                <td class="tdCeldaLeyendaItemFondoBlanco"></td>
-                <td style="width:5px;"></td>
-				<td class="tdCeldaItem"></td>
-                <td style="width:5px;"></td>
+            <tr>
+                <td class="Nombre">Dirección de los hechos</td>
+                <td class="Espacio"></td>
+				<td class="Campo" colspan="5"><asp:TextBox ID="DireccionHechosBox" runat="server" CssClass="Textarea_General" width="195px" ></asp:TextBox></td>
             </tr>
         </table>
 
@@ -276,7 +243,10 @@
                     <asp:Panel id="pnlBotones" runat="server" Width="100%">
                         <table border="0" cellpadding="0" cellspacing="0" width="100%">
                             <tr>
-                                <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="btnGuardar" runat="server" Text="Guardar información de solicitud" CssClass="Button_General_Verde" width="200px" /></td>
+                                <td style="height:24px; text-align:left; width:130px;">
+                                    <asp:Button ID="GuardarButton" runat="server" 
+                                        Text="Guardar información de solicitud" CssClass="Button_General" width="200px" onclick="GuardarButton_Click" 
+                                     /></td>
                                 <td style="height:24px; width:530px;"></td>
                             </tr>
                         </table>

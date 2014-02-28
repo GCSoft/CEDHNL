@@ -239,8 +239,8 @@
 .Grid_Header {
 	background-color: #549CC6;
 	border: 1px solid #C1C1C1;
-   color: #FFFFFF;
-   font-family: 'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+    color: #FFFFFF;
+    font-family: 'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
 	font-size: 11px;
 	font-weight:normal;
 	height: 28px;
@@ -262,10 +262,10 @@
 } 
 
 .Grid_Row {
-   background-color: #FFFFFF;
-	border: 1px solid #C1C1C1;
-   color: #333333;
-   font-family: 'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+    background-color: #FFFFFF;
+	border: 0px;
+    color: #333333;
+    font-family: 'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
 	font-size: 11px;
 	font-weight:normal;
 	height: 22px;
@@ -288,9 +288,9 @@
 
 .Grid_Row_Alternating {
 	background-color:#E6E6E6;
-	border:1px solid #C1C1C1;
-   color:#333333;
-   font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	border: 0px;
+    color:#333333;
+    font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
 	font-size:11px;
 	font-weight:normal;
 	height:22px;
@@ -302,7 +302,7 @@
 }
 
 .Grid_Row_Alternating td {
-	border: solid 1px #C1C1C1;
+	border: 0px;
 	color: #333333;
 	font-family: 'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
 	font-size:11px;
@@ -313,9 +313,9 @@
 
 .Grid_Row_Over{
 	background-color: #4B4878;
-	border: 1px solid #C1C1C1;
-   color: #C1C1C1;
-   font-family: 'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	border: 0px;
+    color: #C1C1C1;
+    font-family: 'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
 	font-size: 11px;
 	font-weight:normal;
 	height: 22px;
@@ -327,7 +327,7 @@
 }
 
 .Grid_Row_Over td {
-	border: solid 1px #C1C1C1;
+	border: 0px;
 	color: #C1C1C1;
 	font-family: 'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
 	font-size: 11px;
@@ -344,9 +344,9 @@
 /*GRIDVIEW ACTION*/
 .Grid_Header_Action {
 	background-color: #EFEFEF;
-	border: 1px solid #C1C1C1;
-   color: #4B4878;
-   font:11px Tahoma;
+	border: 0px;
+    color: #4B4878;
+    font:11px Tahoma;
 	font-weight:normal;
 	height:15px;
 }
@@ -357,7 +357,7 @@
 } 
 
 .Grid_Header_Action th {
-	border: solid 1px #C1C1C1;
+	border: 0px;
 	color: #4B4878;
 	font:11px Tahoma;
 	font-weight:normal;
@@ -366,9 +366,9 @@
 
 .Grid_Row_Action {
 	background-color: #FFFFFF;
-	border: 1px solid #C1C1C1;
-   color: #4B4878;
-   font:11px Tahoma;
+	border: 0px;
+    color: #4B4878;
+    font:11px Tahoma;
 	font-weight:normal;
 	height:15px;
 }
@@ -379,7 +379,7 @@
 }
 
 .Grid_Row_Action td {
-	border: solid 1px #C1C1C1;
+	border: 0px;
 	color: #4B4878;
 	font:11px Tahoma;
 	font-weight:normal;
@@ -389,9 +389,9 @@
 
 .Grid_Row_Over_Action{
 	background-color: #4B4878;
-	border: 1px solid #C1C1C1;
-   color: #C1C1C1;
-   font:11px Tahoma;
+	border: 0px;
+    color: #C1C1C1;
+    font:11px Tahoma;
 	font-weight:normal;
 	height:15px;
 }
@@ -402,7 +402,7 @@
 }
 
 .Grid_Row_Over_Action td {
-	border:solid 1px #C1C1C1;
+	border: 0px;
 	color:#C1C1C1;
 	font:11px Tahoma;
 	font-weight:normal;
@@ -457,6 +457,12 @@
 
 
 /*LABEL*/
+.DetalleLabel
+{
+	background-color: #cacaca;
+	width: 150px;
+}
+
 .Label_General{
    color:#333333;
 	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;

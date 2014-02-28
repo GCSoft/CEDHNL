@@ -15,7 +15,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
     public partial class opeAgregarCiudadanosSol : System.Web.UI.Page
     {
         // Rutinas del programador
-        
+
 
         protected void Page_Load(object sender, EventArgs e)
         {

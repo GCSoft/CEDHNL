@@ -18,19 +18,19 @@
     <div id="SubMenuDiv">
         <table border="0" cellpadding="0" cellspacing="0" width="100%">
             <tr>
-                <td style="width:65px;"><asp:ImageButton ID="InformacionGeneralButton" ImageUrl="/Include/Image/Icon/GeneralIcon.png" runat="server"></asp:ImageButton></td>
+                <td style="width:65px;"><asp:ImageButton ID="InformacionGeneralButton" ImageUrl="/Include/Image/Icon/GeneralIcon.png" runat="server" onclick="InformacionGeneralButton_Click"></asp:ImageButton></td>
                 <td></td>
-                <td style="width:65px;"><asp:ImageButton ID="CiudadanoButton" ImageUrl="/Include/Image/Icon/CiudadanoIcon.png" runat="server"></asp:ImageButton></td>
+                <td style="width:65px;"><asp:ImageButton ID="CiudadanoButton" ImageUrl="/Include/Image/Icon/CiudadanoIcon.png" runat="server" onclick="CiudadanoButton_Click"></asp:ImageButton></td>
                 <td></td>
-                <td style="width:65px;"><asp:ImageButton ID="AutoridadButton" ImageUrl="/Include/Image/Icon/GeneralIcon.png" runat="server"></asp:ImageButton></td>
+                <td style="width:65px;"><asp:ImageButton ID="AutoridadButton" ImageUrl="/Include/Image/Icon/GeneralIcon.png" runat="server" onclick="AutoridadButton_Click"></asp:ImageButton></td>
                 <td></td>
-                <td style="width:65px;"><asp:ImageButton ID="IndicadorButton" ImageUrl="/Include/Image/Icon/IndicadorIcon.png" runat="server"></asp:ImageButton></td>
+                <td style="width:65px;"><asp:ImageButton ID="IndicadorButton" ImageUrl="/Include/Image/Icon/IndicadorIcon.png" runat="server" onclick="IndicadorButton_Click"></asp:ImageButton></td>
                 <td></td>
-                <td style="width:65px;"><asp:ImageButton ID="DocumentoButton" ImageUrl="/Include/Image/Icon/DocumentoIcon.png" runat="server"></asp:ImageButton></td>
+                <td style="width:65px;"><asp:ImageButton ID="DocumentoButton" ImageUrl="/Include/Image/Icon/DocumentoIcon.png" runat="server" onclick="DocumentoButton_Click"></asp:ImageButton></td>
                 <td></td>
-                <td style="width:65px;"><asp:ImageButton ID="CalificarButton" ImageUrl="/Include/Image/Icon/CalificarIcon.png" runat="server"></asp:ImageButton></td>
+                <td style="width:65px;"><asp:ImageButton ID="CalificarButton" ImageUrl="/Include/Image/Icon/CalificarIcon.png" runat="server" onclick="CalificarButton_Click"></asp:ImageButton></td>
                 <td></td>
-                <td style="width:65px;"><asp:ImageButton ID="EnviarButton" ImageUrl="/Include/Image/Icon/EnviarIcon.png" runat="server"></asp:ImageButton></td>
+                <td style="width:65px;"><asp:ImageButton ID="EnviarButton" ImageUrl="/Include/Image/Icon/EnviarIcon.png" runat="server" onclick="EnviarButton_Click"></asp:ImageButton></td>
             </tr>
             <tr style=" height:2px;"><td colspan="13"></td></tr>
             <tr>

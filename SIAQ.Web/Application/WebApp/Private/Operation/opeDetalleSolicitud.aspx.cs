@@ -12,6 +12,41 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
     public partial class opeDetalleSolicitud : System.Web.UI.Page
     {
         #region "Events"
+            protected void AutoridadButton_Click(object sender, ImageClickEventArgs e)
+            {
+                Response.Redirect("/Application/WebApp/Private/Operation/opeAgregarAutoridaSenalada.aspx");
+            }
+
+            protected void CalificarButton_Click(object sender, ImageClickEventArgs e)
+            {
+                Response.Redirect("/Application/WebApp/Private/Operation/opeCalificarSolicitud.aspx");
+            }
+
+            protected void CiudadanoButton_Click(object sender, ImageClickEventArgs e)
+            {
+                Response.Redirect("/Application/WebApp/Private/Operation/opeAgregarCiudadanosSol.aspx");
+            }
+
+            protected void DocumentoButton_Click(object sender, ImageClickEventArgs e)
+            {
+                Response.Redirect("/Application/WebApp/Private/Operation/opeAgregarDocumentos.aspx");
+            }
+
+            protected void EnviarButton_Click(object sender, ImageClickEventArgs e)
+            {
+                Response.Redirect("/Application/WebApp/Private/Operation/opeEnviarSolicitud.aspx");
+            }
+
+            protected void IndicadorButton_Click(object sender, ImageClickEventArgs e)
+            {
+                Response.Redirect("/Application/WebApp/Private/Operation/opeAgregarIndicadores.aspx");
+            }
+
+            protected void InformacionGeneralButton_Click(object sender, ImageClickEventArgs e)
+            {
+                Response.Redirect("/Application/WebApp/Private/Operation/opeDetalleSolicitud.aspx");
+            }
+
             protected void Page_Load(object sender, EventArgs e)
             {
                 PageLoad();

@@ -24,7 +24,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             this.gvApps.DataSource = null;
             this.gvApps.DataBind();
 
-            this.chkListCiudadanos.Items.Add("Laura Cepeda");
+            this.chkListCiudadanos.Items.Add("Laura Cepeda"); 
             this.chkListCiudadanos.Items.Add("Lizeth Muriño");
             this.chkListCiudadanos.Items.Add("Laura Cepeda");
             this.chkListCiudadanos.Items.Add("Lizeth Muriño");

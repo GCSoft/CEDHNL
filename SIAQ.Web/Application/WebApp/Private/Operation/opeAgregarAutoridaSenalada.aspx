@@ -5,7 +5,7 @@
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
         <tr>
 			<td class="tdCeldaTituloEncabezado">
-				Agregar autoridades señaladas
+				Agregar autoridades señaladas 
 			</td>
 		</tr>
       <tr><td class="tdCeldaMiddleSpace_Title"></td></tr>

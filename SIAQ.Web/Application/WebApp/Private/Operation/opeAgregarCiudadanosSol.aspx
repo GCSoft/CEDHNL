@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
     <style type="text/css">
            .style5
-            {
+            { 
                 height: 35px;
                 width: 175px;
                 color:#979393;

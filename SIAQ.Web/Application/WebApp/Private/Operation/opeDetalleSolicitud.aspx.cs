@@ -102,6 +102,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 this.gvCiudadano.DataBind();
             }
 
+            private void SelectLugarHechos()
+            {
+
+            }
+
             private void SelectSolicitud(int SolicitudId)
             {
                 BPSolicitud SolicitudProcess = new BPSolicitud();

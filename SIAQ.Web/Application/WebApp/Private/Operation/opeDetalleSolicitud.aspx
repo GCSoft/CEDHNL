@@ -53,16 +53,18 @@
     </div>
 
     <div id="InformacionDiv">
-        <table border="1" class="SolicitudTable">
+        <table class="SolicitudTable">
             <tr>
                 <td class="Especial">Solicitud Número</td>
                 <td class="Espacio"></td>
-				<td class="Campo" colspan="5"><asp:Label CssClass="NumeroSolicitudLabel" ID="SolicitudLabel" runat="server" Text="0"></asp:Label></td>
+				<td class="Campo"><asp:Label CssClass="NumeroSolicitudLabel" ID="SolicitudLabel" runat="server" Text="0"></asp:Label></td>
+                <td colspan="4"></td>
             </tr>
             <tr>
                 <td class="Nombre">Calificación</td>
                 <td class="Espacio"></td>
-				<td class="Etiqueta" colspan="5"><asp:Label ID="CalificacionLabel" runat="server" Text=""></asp:Label></td>
+				<td class="Etiqueta"><asp:Label ID="CalificacionLabel" runat="server" Text=""></asp:Label></td>
+                <td colspan="4"></td>
             </tr>
             <tr>
                 <td class="Nombre">Estatus</td>

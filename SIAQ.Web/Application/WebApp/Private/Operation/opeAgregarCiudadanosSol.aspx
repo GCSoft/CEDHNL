@@ -112,7 +112,9 @@
             <asp:Panel id="pnlBotones" runat="server" Width="100%">
                <table border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tr>
-                     <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="btnRegresar" runat="server" Text="Regresar" CssClass="Button_General" width="125px"/></td>
+                     <td style="height:24px; text-align:left; width:130px;">
+                        <input class="Button_General" id="RegresarButton" onclick="document.location.href='opeDetalleSolicitud.aspx?s=1004';" style="width: 125px;" type="button" value="Regresar" />
+                     </td>
                   </tr>
                </table>
             </asp:Panel>

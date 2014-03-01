@@ -95,7 +95,7 @@
     <table width="100%" border="0">
       <tr>
       <td style="text-align:left;" class="style1"><asp:Button ID="Button1" runat="server" Text="Enviar Solicitud" CssClass="Button_General" width="160px"/></td>
-      <td style="text-align:left;"><asp:Button ID="Button2" runat="server" Text="Regresar" CssClass="Button_General" width="125px"/></td>
+      <td style="text-align:left;"><input class="Button_General" id="RegresarButton" onclick="document.location.href='opeDetalleSolicitud.aspx?s=1004';" style="width: 125px;" type="button" value="Regresar" /></td>
       </tr>
     </table>
 </asp:Content>

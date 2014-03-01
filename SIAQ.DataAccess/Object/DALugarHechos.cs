@@ -106,7 +106,7 @@ namespace SIAQ.DataAccess.Object
         /// <param name="HechosEntity">Entidad del lugar de los hechos.</param>
         /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
         /// <returns>Resultado de la búsqueda.</returns>
-        public DataSet SelectLugarHechos(ENTLugarHechos HechosEntity, string ConnectionString)
+        public DataSet SelectLugarHechos(ENTLugarHechos LugarEntity, string ConnectionString)
         {
             DataSet ResultData = new DataSet();
             SqlConnection Connection = new SqlConnection(ConnectionString);
@@ -120,7 +120,7 @@ namespace SIAQ.DataAccess.Object
                 Command.CommandType = CommandType.StoredProcedure;
 
                 Parameter = new SqlParameter("LugarHechosId", SqlDbType.Int);
-                Parameter.Value = HechosEntity.LugarHechosId;
+                Parameter.Value = LugarEntity.LugarHechosId;
                 Command.Parameters.Add(Parameter);
 
                 DataAdapter = new SqlDataAdapter(Command);

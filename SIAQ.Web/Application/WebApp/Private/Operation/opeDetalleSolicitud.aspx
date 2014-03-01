@@ -109,12 +109,12 @@
             <tr>
                 <td class="Nombre">Lugar de los hechos</td>
                 <td class="Espacio"></td>
-				<td class="Campo" colspan="5"><asp:DropDownList ID="LugarHechosList" runat="server" CssClass="DropDownList_General" width="195px"></asp:DropDownList></td>
+				<td class="Campo" colspan="5"><asp:DropDownList ID="LugarHechosList" runat="server" CssClass="DropDownList_General" width="198px"></asp:DropDownList></td>
             </tr>
             <tr>
                 <td class="Nombre">Dirección de los hechos</td>
                 <td class="Espacio"></td>
-				<td class="Campo" colspan="5"><asp:TextBox ID="DireccionHechosBox" runat="server" CssClass="Textarea_General" width="195px" ></asp:TextBox></td>
+				<td class="Campo" colspan="5"><asp:TextBox CssClass="Textarea_General" ID="DireccionHechosBox" runat="server" TextMode="multiline" width="193px" ></asp:TextBox></td>
             </tr>
         </table>
 

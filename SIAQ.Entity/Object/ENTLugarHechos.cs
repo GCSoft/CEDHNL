@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 namespace SIAQ.Entity.Object
 {
@@ -8,12 +9,16 @@ namespace SIAQ.Entity.Object
         private int _LugarHechosId; // Valor de LugarHechosId
         private string _Nombre; // Valor de Nombre
         private string _Descripcion; // Valor de Descripcion
+        private DataSet _ResultData;
+
         public ENTLugarHechos()
         {
             _LugarHechosId = 0;
             _Nombre = "";
             _Descripcion = "";
+            _ResultData = null;
         }
+
         ///<remarks>
         ///   <name>LugarHechos.LugarHechosId</name>
         ///   <create>27/ene/2014</create>
@@ -25,6 +30,7 @@ namespace SIAQ.Entity.Object
             get { return _LugarHechosId; }
             set { _LugarHechosId = value; }
         }
+
         ///<remarks>
         ///   <name>LugarHechos.Nombre</name>
         ///   <create>27/ene/2014</create>
@@ -36,6 +42,7 @@ namespace SIAQ.Entity.Object
             get { return _Nombre; }
             set { _Nombre = value; }
         }
+
         ///<remarks>
         ///   <name>LugarHechos.Descripcion</name>
         ///   <create>27/ene/2014</create>
@@ -46,6 +53,15 @@ namespace SIAQ.Entity.Object
         {
             get { return _Descripcion; }
             set { _Descripcion = value; }
+        }
+
+        /// <summary>
+        ///     Resultado de búsquedas.
+        /// </summary>
+        public DataSet ResultData
+        {
+            get { return _ResultData; }
+            set { _ResultData = value; }
         }
     }
 }

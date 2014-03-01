@@ -15,7 +15,7 @@ namespace SIAQ.DataAccess.Object
         protected string _ErrorDescription;
         Database dbs;
 
-        public int ErrorId//
+        public int ErrorId
         {
             get { return _ErrorId; }
             set { _ErrorId = value; }
@@ -162,6 +162,12 @@ namespace SIAQ.DataAccess.Object
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ENTSolicitud"></param>
+        /// <param name="ConnectionString"></param>
+        /// <returns></returns>
         public DataSet SelectSolicitud(ENTSolicitud ENTSolicitud, string ConnectionString)
         {
             DataSet ResultData = new DataSet();
@@ -211,7 +217,99 @@ namespace SIAQ.DataAccess.Object
                 return ResultData;
             }
         }
+        
+        /// <summary>
+        ///     Busca las autoridades que están señaladas en una solicitud.
+        /// </summary>
+        /// <param name="ENTSolicitud">Entidad de solicitud.</param>
+        /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
+        /// <returns>Resultado de la búsqueda.</returns>
+        public DataSet SelectSolicitudAutoridad(ENTSolicitud ENTSolicitud, string ConnectionString)
+        {
+            DataSet ResultData = new DataSet();
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            SqlCommand Command;
+            SqlParameter Parameter;
+            SqlDataAdapter DataAdapter;
 
+            try
+            {
+                Command = new SqlCommand("SelectSolicitudAutoridad", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                Parameter = new SqlParameter("SolicitudId", SqlDbType.Int);
+                Parameter.Value = ENTSolicitud.SolicitudId;
+                Command.Parameters.Add(Parameter);
+
+                DataAdapter = new SqlDataAdapter(Command);
+
+                Connection.Open();
+                DataAdapter.Fill(ResultData);
+                Connection.Close();
+
+                return ResultData;
+            }
+            catch (SqlException Exception)
+            {
+                _ErrorId = Exception.Number;
+                _ErrorDescription = Exception.Message;
+
+                if (Connection.State == ConnectionState.Open)
+                    Connection.Close();
+
+                return ResultData;
+            }
+        }
+
+        /// <summary>
+        ///     Busca los ciudadanos que están relacionados a una solicitud.
+        /// </summary>
+        /// <param name="ENTSolicitud">Entidad de solicitud.</param>
+        /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
+        /// <returns>Resultado de la búsqueda.</returns>
+        public DataSet SelectSolicitudCiudadano(ENTSolicitud ENTSolicitud, string ConnectionString)
+        {
+            DataSet ResultData = new DataSet();
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            SqlCommand Command;
+            SqlParameter Parameter;
+            SqlDataAdapter DataAdapter;
+
+            try
+            {
+                Command = new SqlCommand("SelectSolicitudCiudadano", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                Parameter = new SqlParameter("SolicitudId", SqlDbType.Int);
+                Parameter.Value = ENTSolicitud.SolicitudId;
+                Command.Parameters.Add(Parameter);
+
+                DataAdapter = new SqlDataAdapter(Command);
+
+                Connection.Open();
+                DataAdapter.Fill(ResultData);
+                Connection.Close();
+
+                return ResultData;
+            }
+            catch (SqlException Exception)
+            {
+                _ErrorId = Exception.Number;
+                _ErrorDescription = Exception.Message;
+
+                if (Connection.State == ConnectionState.Open)
+                    Connection.Close();
+
+                return ResultData;
+            }
+        }
+
+        /// <summary>
+        ///     Busca el detalle completo de una solicitud.
+        /// </summary>
+        /// <param name="ENTSolicitud">Entidad de solicitud.</param>
+        /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
+        /// <returns>Resultado de la búsqueda.</returns>
         public DataSet SelectSolicitudDetalle(ENTSolicitud ENTSolicitud, string ConnectionString)
         {
             DataSet ResultData = new DataSet();

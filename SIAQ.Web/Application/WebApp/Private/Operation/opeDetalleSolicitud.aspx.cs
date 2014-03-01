@@ -70,12 +70,19 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
                 if (!this.Page.IsPostBack)
                 {
-                    // ToDo: Hay que recibir el parámetro de la solicitud
-                    SolicitudId = 1004;
+                    try
+                    {
+                        SolicitudId = int.Parse(Request.QueryString["s"].ToString());
 
-                    SelectSolicitud(SolicitudId);
-                    SelectCiudadano(SolicitudId);
-                    SelectAutoridades(SolicitudId);
+                        SelectLugarHechos();
+                        SelectSolicitud(SolicitudId);
+                        SelectCiudadano(SolicitudId);
+                        SelectAutoridades(SolicitudId);
+                    }
+                    catch (Exception Exception)
+                    {
+                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + Exception.Message + "', 'Fail', true);", true);
+                    }
                 }
             }
 
@@ -92,19 +99,62 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
             private void SelectAutoridades(int SolicitudId)
             {
+                BPSolicitud SolicitudProcess = new BPSolicitud();
+
+                SolicitudProcess.SolicitudEntity.SolicitudId = SolicitudId;
+
+                SolicitudProcess.SelectSolicitudAutoridad();
+
+                if (SolicitudProcess.ErrorId == 0)
+                {
+                    this.gvAutoridades.DataSource = null;
+                    this.gvAutoridades.DataBind();
+                }
+                else
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + SolicitudProcess.ErrorDescription + "', 'Fail', true);", true);
+
                 this.gvAutoridades.DataSource = null;
                 this.gvAutoridades.DataBind();
             }
 
             private void SelectCiudadano(int SolicitudId)
             {
+                BPSolicitud SolicitudProcess = new BPSolicitud();
+
+                SolicitudProcess.SolicitudEntity.SolicitudId = SolicitudId;
+
+                SolicitudProcess.SelectSolicitudCiudadano();
+
+                if (SolicitudProcess.ErrorId == 0)
+                {
+                    this.gvCiudadano.DataSource = null;
+                    this.gvCiudadano.DataBind();
+                }
+                else
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + SolicitudProcess.ErrorDescription + "', 'Fail', true);", true);
+
                 this.gvCiudadano.DataSource = null;
                 this.gvCiudadano.DataBind();
             }
 
             private void SelectLugarHechos()
             {
+                BPLugarHechos LugarProcess = new BPLugarHechos();
 
+                LugarProcess.SelectLugarHechos();
+
+                if (LugarProcess.ErrorId == 0)
+                {
+                    LugarHechosList.DataValueField = "LugarHechosId";
+                    LugarHechosList.DataTextField = "Nombre";
+
+                    LugarHechosList.DataSource = LugarProcess.LugarEntity.ResultData.Tables[0];
+                    LugarHechosList.DataBind();
+
+                    LugarHechosList.Items.Insert(0, new ListItem("-- Seleccione --", "0"));
+                }
+                else
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + LugarProcess.ErrorDescription + "', 'Fail', true);", true);
             }
 
             private void SelectSolicitud(int SolicitudId)

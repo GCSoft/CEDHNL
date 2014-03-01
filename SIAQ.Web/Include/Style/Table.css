@@ -50,6 +50,7 @@
 .SolicitudTable .Nombre
 {
 	text-align: left;
+	vertical-align: top;
 	width: 150px;
 }
 

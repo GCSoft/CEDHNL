@@ -160,6 +160,9 @@ namespace SIAQ.BusinessProcess.Object
 
         }
   
+        /// <summary>
+        ///     
+        /// </summary>
         public void SelectSolicitud()
         {
             string ConnectionString = string.Empty;
@@ -173,6 +176,41 @@ namespace SIAQ.BusinessProcess.Object
             _ErrorDescription = DASolicitud.ErrorDescription;
         }
 
+        /// <summary>
+        ///     Busca las autoridades que están señaladas en una solicitud.
+        /// </summary>
+        public void SelectSolicitudAutoridad()
+        {
+            string ConnectionString = string.Empty;
+            DASolicitud DASolicitud = new DASolicitud();
+
+            ConnectionString = sConnectionApplication;
+
+            _SolicitudEntity.ResultData = DASolicitud.SelectSolicitudAutoridad(_SolicitudEntity, ConnectionString);
+
+            _ErrorId = DASolicitud.ErrorId;
+            _ErrorDescription = DASolicitud.ErrorDescription;
+        }
+
+        /// <summary>
+        ///     Busca los ciudadanos que están relacionados a una solicitud.
+        /// </summary>
+        public void SelectSolicitudCiudadano()
+        {
+            string ConnectionString = string.Empty;
+            DASolicitud DASolicitud = new DASolicitud();
+
+            ConnectionString = sConnectionApplication;
+
+            _SolicitudEntity.ResultData = DASolicitud.SelectSolicitudCiudadano(_SolicitudEntity, ConnectionString);
+
+            _ErrorId = DASolicitud.ErrorId;
+            _ErrorDescription = DASolicitud.ErrorDescription;
+        }
+
+        /// <summary>
+        ///     Busca el detalle completo de una solicitud.
+        /// </summary>
         public void SelectSolicitudDetalle()
         {
             string ConnectionString = string.Empty;

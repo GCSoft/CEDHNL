@@ -89,7 +89,7 @@
          <td>
             <asp:Panel id="pnlGrid" runat="server" Width="100%">
                <asp:GridView ID="gvSolicitud" runat="server" AutoGenerateColumns="False"
-                        AutoUpdateAfterCallBack="True"
+                        AutoUpdateAfterCallBack="True" OnRowCommand="gvSolicitud_RowCommand"
                         UpdateAfterCallBack="True" Width="800px" Style="text-align: center" DataKeyNames="SolicitudId"
                         PageSize="30" ShowHeaderWhenEmpty="True">
                         <RowStyle CssClass="Grid_Row" />
@@ -132,7 +132,12 @@
                             <asp:BoundField HeaderText="Servidores">
                                 <ItemStyle HorizontalAlign="Left"/>
                             </asp:BoundField>
-                            <asp:ButtonField CommandName="EDITA" HeaderText="Editar" Text="Editar" />
+                            <asp:TemplateField HeaderText="Editar">
+                                <ItemTemplate>
+                                    <asp:LinkButton CommandArgument='<%#Eval("SolicitudId")%>' CommandName="Editar" ID="SolicitudLink" runat="server" Text='editar'></asp:LinkButton>
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="Left" />
+                            </asp:TemplateField>
                         </Columns>
                 </asp:GridView>
             </asp:Panel>

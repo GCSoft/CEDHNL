@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 
 using SIAQ.BusinessProcess.Object;
 using SIAQ.BusinessProcess.Page;
+using System.Configuration;
 
 namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
@@ -14,6 +15,28 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
     {
         string AllDefault = "-- Todos --";
 
+        protected void gvCiudadano_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            gvCiudadanoGridRowCommand(e);
+        }
+
+        private void gvCiudadanoGridRowCommand(GridViewCommandEventArgs e)
+        {
+            string CiudadanoId = string.Empty;
+
+            CiudadanoId = e.CommandArgument.ToString();
+
+            switch (e.CommandName.ToString())
+            {
+                case "Editar":
+                    Response.Redirect(ConfigurationManager.AppSettings["Application.Url.RegistroCiudadano"].ToString() + "?s=" + CiudadanoId);
+                    break;
+
+                case "Visita":
+                    Response.Redirect(ConfigurationManager.AppSettings["Application.Url.RegistroVisita"].ToString() + "?s=" + CiudadanoId);
+                    break;
+            }
+        }
 
         protected void BusquedaRapida_Click(object sender, EventArgs e)
         {
@@ -180,9 +203,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         }
 
-        protected void gvCiudadano_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-        }
 
     }
 }

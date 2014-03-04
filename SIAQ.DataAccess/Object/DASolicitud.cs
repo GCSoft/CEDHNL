@@ -185,15 +185,15 @@ namespace SIAQ.DataAccess.Object
                 Parameter.Value = ENTSolicitud.Nombre;
                 Command.Parameters.Add(Parameter);
 
-                Parameter = new SqlParameter("Numero", SqlDbType.TinyInt);
+                Parameter = new SqlParameter("Numero", SqlDbType.Int);
                 Parameter.Value = ENTSolicitud.Numero;
                 Command.Parameters.Add(Parameter);
 
-                Parameter = new SqlParameter("MedioComunicacionId", SqlDbType.TinyInt);
-                Parameter.Value = ENTSolicitud.MedioComunicacion;
+                Parameter = new SqlParameter("FormaContactoId", SqlDbType.Int);
+                Parameter.Value = ENTSolicitud.FormaContactoId;
                 Command.Parameters.Add(Parameter);
 
-                Parameter = new SqlParameter("FuncionarioId", SqlDbType.TinyInt);
+                Parameter = new SqlParameter("FuncionarioId", SqlDbType.Int);
                 Parameter.Value = ENTSolicitud.FuncinarioId;
                 Command.Parameters.Add(Parameter);
 

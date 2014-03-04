@@ -23,12 +23,17 @@
             vertical-align:middle;
             
         }
+        
+        .Tamanoletra
+        {
+          font-size:11px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
-    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="text-align:left">
+    <table class="Tamanoletra"  border="0" cellpadding="0" cellspacing="0" width="100%" style="text-align:left">
       <tr>
-			<td class="tdCeldaTituloEncabezado">
+			<td class="tdCeldaTituloEncabezado" style="background-image:url('../../../../Include/Image/Web/BarraTitulo.png');">
 				Registrar visita
 			</td>
 		</tr>
@@ -80,7 +85,9 @@
                <table border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tr>
                      <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="btnGuardar" OnClick="GuardarButton_Click" runat="server" Text="Guardar" CssClass="Button_General" width="125px" /></td>
-                     <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="btnCancelar" runat="server" Text="Regresar" CssClass="Button_General" width="125px" /></td>
+                     <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="btnCancelar" 
+                             runat="server" Text="Regresar" CssClass="Button_General" width="125px" 
+                             onclick="btnCancelar_Click" /></td>
 							<td style="height:24px; width:530px;"></td>
                   </tr>
                </table>

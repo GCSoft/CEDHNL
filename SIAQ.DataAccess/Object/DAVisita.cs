@@ -62,7 +62,7 @@ namespace SIAQ.DataAccess.Object
                 Command.Parameters.Add(Parameter);
 
                 Parameter = new SqlParameter("Observaciones", SqlDbType.VarChar);
-                Parameter.Value = ENTVisita.UsuarioIdInsert;
+                Parameter.Value = ENTVisita.Observaciones;
                 Command.Parameters.Add(Parameter);
 
                 Connection.Open();

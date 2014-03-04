@@ -1,13 +1,23 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeBusquedaSolicitud.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeBusquedaSolicitud" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
-<script type="text/javascript">
+    <script type="text/javascript">
 
-    function NumbersValidator(e) {
-        var tecla = document.all ? tecla = e.keyCode : tecla = e.which;
-        return (tecla > 47 && tecla < 58);
+        function NumbersValidator(e) {
+            var tecla = document.all ? tecla = e.keyCode : tecla = e.which;
+            return (tecla > 47 && tecla < 58);
 
-    }
-</script>
+        }
+    </script>
+
+    <style type="text/css">
+        .Tamanoletra
+        {
+          font-size:11px;
+          text-align:left;
+          height:50px;
+        }
+    </style>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
    <table border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -16,7 +26,7 @@
 				Busqueda de Solicitudes
 			</td>
 		</tr>
-      <tr><td class="tdCeldaMiddleSpace_Title">Proporcione los filtros deseados para buscar la solicitud</td></tr>
+      <tr><td class="Tamanoletra">Proporcione los filtros deseados para buscar la solicitud</td></tr>
       <tr>
          <td>
             <asp:Panel id="pnlFormulario" runat="server" Visible="true" Width="100%">
@@ -77,7 +87,9 @@
                <table border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tr>
                      <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="cmdGuardar" runat="server" Text="Buscar" OnClick="SearchButton_Click"  CssClass="Button_General" width="125px" /></td>
-                     <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="cmdRegresar" runat="server" Text="Cancelar" CssClass="Button_General" width="125px" /></td>
+                     <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="cmdRegresar" 
+                             runat="server" Text="Cancelar" CssClass="Button_General" width="125px" 
+                             onclick="cmdRegresar_Click" /></td>
 					<td style="height:24px; width:530px;"></td>
                   </tr>
                </table>
@@ -99,13 +111,13 @@
                         <EmptyDataTemplate>
 							<table border="1px" cellpadding="0px" cellspacing="0px">
 								<tr class="Grid_Header">
-									<td style="width:100px;">Solicitud</td>
+									<td style="width:100px;">Número Solicitud</td>
 									<td style="width:200px;">Ciudadano</td>
-                                    <td style="width:100px;">FormaContacto</td>
+                                    <td style="width:100px;">FormaContacto</td
                                     <td style="width:100px;">Funcionario</td>
+                                    <td style="width:100px;">Detalle de queja</td>
                                     <td style="width:100px;">Estatus</td>
-                                    <td style="width:100px;">Quejosos</td>
-                                    <td style="width:100px;">Servidores</td>
+                                    <td style="width:80px;">Editar</td>
 								</tr>
 								<tr class="Grid_Row">
 									<td colspan="7">No se encontraron solicitudes registradas en el sistema</td>
@@ -113,28 +125,25 @@
 							</table>
 						</EmptyDataTemplate>
                         <Columns>
-                            <asp:BoundField DataField="Numero" HeaderText="Id" Visible="False"/>
+                            <asp:BoundField DataField="NumeroSol" HeaderText="Numero Solicitud" />
                             <asp:BoundField DataField="NombreCompleto" HeaderText="Ciudadano">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="MedioComunicacionId" HeaderText="Forma de contacto">
+                            <asp:BoundField DataField="FormaContactoNombre" HeaderText="Forma de contacto">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="FuncionarioId" HeaderText="Funcionario">
+                            <asp:BoundField DataField="NombreFuncionario" HeaderText="Funcionario">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="EstatusId" HeaderText="Estatus">
+                           <asp:BoundField DataField="Observaciones" HeaderText="Detalle queja">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="Observaciones" HeaderText="Quejosos">
+                            <asp:BoundField DataField="NombreEstatus" HeaderText="Estatus">
                                 <ItemStyle HorizontalAlign="Left" />
-                            </asp:BoundField>
-                            <asp:BoundField HeaderText="Servidores">
-                                <ItemStyle HorizontalAlign="Left"/>
                             </asp:BoundField>
                             <asp:TemplateField HeaderText="Editar">
                                 <ItemTemplate>
-                                    <asp:LinkButton CommandArgument='<%#Eval("SolicitudId")%>' CommandName="Editar" ID="SolicitudLink" runat="server" Text='editar'></asp:LinkButton>
+                                    <asp:LinkButton CommandArgument='<%#Eval("SolicitudId")%>' CommandName="Editar" ID="SolicitudLink" runat="server" Text='Editar' Width="80px"></asp:LinkButton>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:TemplateField>

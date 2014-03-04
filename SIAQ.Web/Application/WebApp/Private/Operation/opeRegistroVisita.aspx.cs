@@ -46,6 +46,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
               
         }
 
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/Application/WebApp/Private/Home/AppIndex.aspx");
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             PageLoad();
@@ -135,5 +140,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 ddlMotivo.DataBind();
                 ddlMotivo.Items.Insert(0, new ListItem(AllDefault, "0"));
             }
+
+
     }
 }

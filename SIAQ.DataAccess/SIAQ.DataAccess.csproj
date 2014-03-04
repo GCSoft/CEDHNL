@@ -60,6 +60,7 @@
     <Compile Include="Object\DAEstado.cs" />
     <Compile Include="Object\DAEstatus.cs" />
     <Compile Include="Object\DAExpediente.cs" />
+    <Compile Include="Object\DAFormaContacto.cs" />
     <Compile Include="Object\DAFuncionario.cs" />
     <Compile Include="Object\DALugarHechos.cs" />
     <Compile Include="Object\DAMedioComunicacion.cs" />

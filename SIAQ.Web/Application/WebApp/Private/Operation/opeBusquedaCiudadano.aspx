@@ -1,18 +1,42 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeBusquedaCiudadano.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeBusquedaCiudadano" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
  <style type="text/css">
+        .TablaCiudadano
+        {
+            	border-spacing: 5px;
+	            font-size:11px;
+	            padding: 0px;
+	            width: 100%;
+	            text-align:left;
+            }  
+            
         .style1
         {
             width: 236px;
+            font-size:13.5px;
         }
+        
         .style2
         {
             width: 127px;
         }
+        
         .style3
         {
             width: 450px;
         }
+     .style4
+     {
+         width: 140px;
+     }
+     .style5
+     {
+         width: 7px;
+     }
+     .style6
+     {
+         width: 104px;
+     }
     </style>
     
 </asp:Content>
@@ -20,15 +44,11 @@
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
       <tr>
 			<td class="tdCeldaTituloEncabezado" style="background-image:url('../../../../Include/Image/Web/BarraTitulo.png');">
-				Catálogo de Operación - Búsqueda de Ciudadanos
+				Búsqueda de Ciudadanos
 
 			</td>
 		</tr>
  </table>
- <br />
- <div style="text-align:left;">
- <asp:Label ID="Label1" runat="server">Búsqueda de Ciudadanos</asp:Label>
- </div>
   <br />
   <asp:Panel id="pnlBusquedaSimple" runat="server" Width="100%" Visible="true">
     <table>
@@ -42,45 +62,45 @@
      </table> 
      </asp:Panel>
      <asp:Panel id="pnlBusqedaAvanzada" runat="server" Width="100%" Visible="false" CssClass="tdTituloEncabezado">
-        <table border="0px" class="tdBusquedaAvanzada">
+        <table border="0px" class="TablaCiudadano">
               <tr>
-                <td >Nombre</td>
-                <td ></td>
+                <td class="style6" >Nombre</td>
+                <td class="style5" ></td>
                 <td  ><asp:TextBox ID="TextBoxNombre" runat="server" CssClass="Textbox_General" width="210px" ></asp:TextBox></td>
               </tr>
               <tr>
-                <td>Apellido Paterno</td>
-                <td ></td>
+                <td class="style6">Apellido Paterno</td>
+                <td class="style5" ></td>
                 <td ><asp:TextBox ID="TextBoxPaterno" runat="server" CssClass="Textbox_General" width="210px" ></asp:TextBox></td>
               </tr>
               <tr>
-                <td>Apellido Materno</td>
-                <td ></td>
+                <td class="style6">Apellido Materno</td>
+                <td class="style5" ></td>
                 <td><asp:TextBox ID="TextBoxMaterno" runat="server" CssClass="Textbox_General" width="210px" ></asp:TextBox></td>
               </tr>
               <tr>
-                <td >País</td>
-                <td></td>
+                <td class="style6" >País</td>
+                <td class="style5"></td>
                 <td ><asp:DropDownList ID="BuscadorListaPais" width="214px" runat="server"></asp:DropDownList></td>
               </tr>
               <tr>
-                <td >Estado</td>
-                <td ></td>
+                <td class="style6" >Estado</td>
+                <td class="style5" ></td>
                 <td><asp:DropDownList ID="BuscadorListaEstado" width="214px" runat="server"></asp:DropDownList></td>
               </tr>
               <tr>
-                <td >Municipio</td>
-                <td ></td>
+                <td class="style6" >Municipio</td>
+                <td class="style5" ></td>
                 <td ><asp:DropDownList ID="BuscadorListaCiudad" width="214px" runat="server"></asp:DropDownList></td>
               </tr>
               <tr>
-                <td >Colonia</td>
-                <td ></td>
+                <td class="style6" >Colonia</td>
+                <td class="style5" ></td>
                 <td ><asp:DropDownList ID="BuscadorListaColonia" width="214px" runat="server"></asp:DropDownList></td>
               </tr>
               <tr>
-                <td >Calle</td>
-                <td ></td>
+                <td class="style6" >Calle</td>
+                <td class="style5" ></td>
                 <td ><asp:TextBox ID="TextBoxCalle" runat="server" CssClass="Textbox_General" width="210px" ></asp:TextBox></td>
               </tr>
         </table>
@@ -107,16 +127,17 @@
 						<EmptyDataTemplate>
 							<table border="1px" cellpadding="0px" cellspacing="0px">
 								<tr class="Grid_Header">
-									<td style="width:210px;">Nombre</td>
-									<td style="width:65px;">Sexo</td>
+									<td style="width:200px;">Nombre</td>
+									<td style="width:50px;">Sexo</td>
                                     <td style="width:65px;">Fecha Nacimiento</td>
                                     <td style="width:280px;">Domicilio</td>
                                     <td style="width:65px;">Telefono</td>
                                     <td style="width:50px;">Visita</td>
-                                    <td style="width:50px;">Solicitud</td>
+                                    <td style="width:53px;">Solicitud</td>
+                                    <td style="width:30px;">Editar</td>
 								</tr>
 								<tr class="Grid_Row">
-									<td colspan="7">No se encontraron ciudadanos registradas en el sistema</td>
+									<td colspan="9">No se encontraron ciudadanos registradas en el sistema</td>
 								</tr>
 							</table>
 						</EmptyDataTemplate>
@@ -124,19 +145,18 @@
 							<asp:BoundField HeaderText="Nombre"         ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="170px" DataField="NombreCompleto"></asp:BoundField>
 							<asp:BoundField HeaderText="Sexo"  ItemStyle-HorizontalAlign="Left"		ItemStyle-Width="50px" DataField="SexoNombre"></asp:BoundField>
                             <asp:BoundField HeaderText="Fecha Nacimiento"  ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="65px" DataField="FechaNacimiento"></asp:BoundField>
-							<asp:BoundField HeaderText="Domicilio"  ItemStyle-HorizontalAlign="Left"		ItemStyle-Width="220px" DataField="DireccionCompleta"></asp:BoundField>
+							<asp:BoundField HeaderText="Domicilio"  ItemStyle-HorizontalAlign="Left"		ItemStyle-Width="280px" DataField="DireccionCompleta"></asp:BoundField>
                             <asp:BoundField HeaderText="Telefono"         ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="65px" DataField="TelefonoPrincipal"></asp:BoundField>
-							<asp:BoundField HeaderText="Visita"  ItemStyle-HorizontalAlign="Left"		ItemStyle-Width="50px" ></asp:BoundField>
-                            <asp:BoundField HeaderText="Solicitud"         ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="50px"></asp:BoundField>
-							<asp:TemplateField ItemStyle-HorizontalAlign ="Center" ItemStyle-Width="20px">
-								<ItemTemplate>
-                           <asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
-                        </ItemTemplate>
+								<asp:TemplateField HeaderText="Visita">
+                                <ItemTemplate>
+                                    <asp:LinkButton CommandArgument='<%#Eval("CiudadanoId")%>' CommandName="Visita" ID="VisitaLink" runat="server" Text='Visita' Width="80px"></asp:LinkButton>
+                                </ItemTemplate>
 							</asp:TemplateField>
-							<asp:TemplateField ItemStyle-HorizontalAlign ="Center" ItemStyle-Width="20px">
-								<ItemTemplate>
-                           <asp:ImageButton ID="imgAction" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Action" ImageUrl="~/Include/Image/Buttons/Delete.png" runat="server" />
-								</ItemTemplate>
+                            <asp:BoundField HeaderText="Solicitud"         ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="50px"></asp:BoundField>
+							<asp:TemplateField HeaderText="Editar">
+                                <ItemTemplate>
+                                    <asp:LinkButton CommandArgument='<%#Eval("CiudadanoId")%>' CommandName="Editar" ID="EditarLink" runat="server" Text='Editar' Width="80px"></asp:LinkButton>
+                                </ItemTemplate>
 							</asp:TemplateField>
 						</Columns>
 					</asp:GridView>

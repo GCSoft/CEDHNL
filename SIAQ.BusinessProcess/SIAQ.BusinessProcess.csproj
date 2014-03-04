@@ -55,6 +55,7 @@
     <Compile Include="Object\BPEstado.cs" />
     <Compile Include="Object\BPEstatus.cs" />
     <Compile Include="Object\BPExpediente.cs" />
+    <Compile Include="Object\BPFormaContacto.cs" />
     <Compile Include="Object\BPFuncionario.cs" />
     <Compile Include="Object\BPLugarHechos.cs" />
     <Compile Include="Object\BPMedioComunicacion.cs" />

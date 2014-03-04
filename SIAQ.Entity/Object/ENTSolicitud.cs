@@ -12,8 +12,9 @@ namespace SIAQ.Entity.Object
         private int _LugarHechosId; // Valor de LugarHechosId
         private int _EstatusId; // Valor de EstatusId
         private int _Numero; // Valor de Numero
-        private Int32 _MedioComunicacion;
-        private Int32 _FuncionarioId;
+        private int _MedioComunicacion;
+        private int _FormaContactoId;
+        private int _FuncionarioId;
         private string _Fecha; // Valor de Fecha
         private string _Nombre;
         private DataSet _ResultData; //Otras propiedades
@@ -35,6 +36,7 @@ namespace SIAQ.Entity.Object
             _Fecha = "";
             _Nombre = "";
             _Observaciones = "";
+            _FormaContactoId = 0;
         }
         ///<remarks>
         ///   <name>Solicitud.SolicitudId</name>
@@ -115,7 +117,7 @@ namespace SIAQ.Entity.Object
             set { _Fecha = value; }
         }
 
-        public Int32 MedioComunicacion
+        public int MedioComunicacion
         {
             get { return _MedioComunicacion; }
             set { _MedioComunicacion = value; }
@@ -127,7 +129,7 @@ namespace SIAQ.Entity.Object
             set { _Nombre = value; }
         }
 
-        public Int32 FuncinarioId
+        public int FuncinarioId
         {
             get { return _FuncionarioId; }
             set { _FuncionarioId = value; }
@@ -145,5 +147,10 @@ namespace SIAQ.Entity.Object
             set { _Observaciones = value; }
         }
 
+        public int FormaContactoId
+        {
+            get { return _FormaContactoId; }
+            set { _FormaContactoId = value; }
+        }
     }
 }

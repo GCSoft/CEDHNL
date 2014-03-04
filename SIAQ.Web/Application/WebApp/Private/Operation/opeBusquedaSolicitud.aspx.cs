@@ -15,6 +15,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
    {
         string AllDefault = "[Seleccione]";
 
+        protected void cmdRegresar_Click(object sender, EventArgs e)
+        {
+             Response.Redirect("/Application/WebApp/Private/Home/AppIndex.aspx");
+        }
+
         protected void gvSolicitud_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             gvSolicitudGridRowCommand(e);
@@ -51,7 +56,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 NumeroSolicitud = "0";
             BPSolicitud.SolicitudEntity.Numero = Int32.Parse(NumeroSolicitud);
             BPSolicitud.SolicitudEntity.Nombre = Ciudadano;
-            BPSolicitud.SolicitudEntity.MedioComunicacion = Int32.Parse(ddlFormaContacto.SelectedValue);
+            BPSolicitud.SolicitudEntity.FormaContactoId = Int32.Parse(ddlFormaContacto.SelectedValue);
             BPSolicitud.SolicitudEntity.FuncinarioId = Int32.Parse(ddlFuncionario.SelectedValue);
 
             BPSolicitud.SelectSolicitud();
@@ -63,11 +68,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     gvSolicitud.DataSource = BPSolicitud.SolicitudEntity.ResultData;
                     gvSolicitud.DataBind();
                 }
-            }
+           
             else
             {
                 gvSolicitud.DataSource = null;
                 gvSolicitud.DataBind();
+             }
             }
         }
 
@@ -76,7 +82,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             if (!Page.IsPostBack)
             {
                 SelectFuncionario();
-                SelectContacto();
+                //SelectContacto();
+                SelectFormaContacto();
             }
 
             txtNumeroSolicitud.Attributes.Add("onkeypress", "javascript:return NumbersValidator(event);");
@@ -94,6 +101,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             ddlFuncionario.Items.Insert(0, new ListItem(AllDefault, "0"));
         }
 
+       //este metodo queda sin uso
         protected void SelectContacto()
         {
             BPMedioComunicacion BPMedioComunicacion = new BPMedioComunicacion();
@@ -105,5 +113,18 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             ddlFormaContacto.DataBind();
             ddlFormaContacto.Items.Insert(0, new ListItem(AllDefault, "0"));
         }
+
+        protected void SelectFormaContacto() {
+
+            BPFormaContacto BPFormaContacto = new BPFormaContacto();
+
+            ddlFormaContacto.DataTextField = "Nombre";
+            ddlFormaContacto.DataValueField = "FormaContactoId";
+
+            ddlFormaContacto.DataSource = BPFormaContacto.SelectFormaContacto();
+            ddlFormaContacto.DataBind();
+            ddlFormaContacto.Items.Insert(0, new ListItem(AllDefault, "0"));
+        }
+
    }
 }

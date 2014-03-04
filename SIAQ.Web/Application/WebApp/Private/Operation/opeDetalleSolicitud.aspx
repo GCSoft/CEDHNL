@@ -124,7 +124,7 @@
             <tr>
                 <td>
                 <asp:Panel id="pnlGrid" runat="server" Width="100%">
-                    <asp:GridView AutoGenerateColumns="False" AutoUpdateAfterCallBack="True" DataKeyNames="Solicitud" ID="gvCiudadano" PageSize="30"
+                    <asp:GridView AutoGenerateColumns="False" AutoUpdateAfterCallBack="True" DataKeyNames="SolicitudId" ID="gvCiudadano" PageSize="30"
                             runat="server" ShowHeaderWhenEmpty="True" Style="text-align: center" UpdateAfterCallBack="True" Width="800px" >
                             <RowStyle CssClass="Grid_Row" />
                             <EditRowStyle Wrap="True" />
@@ -147,13 +147,16 @@
 					            </table>
                             </EmptyDataTemplate>
                             <Columns>
-                                <asp:BoundField DataField="Nombre" HeaderText="Nombre"></asp:BoundField>
-                                <asp:BoundField DataField="Sexo" HeaderText="Sexo"></asp:BoundField>
+                                <asp:BoundField DataField="NombreCiudadano" HeaderText="Nombre"></asp:BoundField>
+                                <asp:BoundField DataField="NombreSexo" HeaderText="Sexo"></asp:BoundField>
                                 <asp:BoundField DataField="FechaNacimiento" HeaderText="Fecha nacimiento"></asp:BoundField>
                                 <asp:BoundField DataField="Domicilio" HeaderText="Funcionario"></asp:BoundField>
-                                <asp:BoundField DataField="Telefono" HeaderText="Estatus"></asp:BoundField>
-                                <asp:BoundField DataField="Tipo" HeaderText="Quejosos"></asp:BoundField>
-                            
+                                <asp:BoundField DataField="TelefonoPrincipal" HeaderText="Estatus"></asp:BoundField>
+                                <asp:BoundField DataField="NombreTipoCiudadano" HeaderText="Quejosos"></asp:BoundField>
+                                <asp:TemplateField HeaderText="Borrar">
+                                    <ItemTemplate></ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Center" />
+                                </asp:TemplateField>
                             </Columns>
                     </asp:GridView>
                 </asp:Panel>

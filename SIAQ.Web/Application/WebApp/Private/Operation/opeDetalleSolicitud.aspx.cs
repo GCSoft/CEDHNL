@@ -127,14 +127,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
                 if (SolicitudProcess.ErrorId == 0)
                 {
-                    this.gvCiudadano.DataSource = null;
+                    this.gvCiudadano.DataSource = SolicitudProcess.SolicitudEntity.ResultData.Tables[0];
                     this.gvCiudadano.DataBind();
                 }
                 else
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + SolicitudProcess.ErrorDescription + "', 'Fail', true);", true);
-
-                this.gvCiudadano.DataSource = null;
-                this.gvCiudadano.DataBind();
             }
 
             private void SelectLugarHechos()

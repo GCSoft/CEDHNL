@@ -203,6 +203,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         }
 
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/Application/WebApp/Private/Home/AppIndex.aspx");
+        }
+
 
     }
 }

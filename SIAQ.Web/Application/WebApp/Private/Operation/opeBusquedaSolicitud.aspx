@@ -109,23 +109,23 @@
                         <HeaderStyle CssClass="Grid_Header" ForeColor="#E3EBF5" />
                         <AlternatingRowStyle CssClass="Grid_Row_Alternating" />
                         <EmptyDataTemplate>
-							<table border="1px" cellpadding="0px" cellspacing="0px">
-								<tr class="Grid_Header">
-									<td style="width:100px;">Número Solicitud</td>
-									<td style="width:200px;">Ciudadano</td>
-                                    <td style="width:100px;">FormaContacto</td
-                                    <td style="width:100px;">Funcionario</td>
-                                    <td style="width:100px;">Detalle de queja</td>
-                                    <td style="width:100px;">Estatus</td>
-                                    <td style="width:80px;">Editar</td>
+							<table border="1px" width="100%" cellpadding="0px" cellspacing="0px">
+                            	<tr class="Grid_Header">
+									<td>Número Solicitud</td>
+                                    <td>Ciudadano</td>
+                                    <td>Forma Contacto</td>
+                                    <td>Funcionario</td>
+                                    <td style="width:200px">Detalle queja</td>
+                                    <td>Estatus</td>
+                                    <td style="width:40px">Editar</td>
 								</tr>
 								<tr class="Grid_Row">
-									<td colspan="7">No se encontraron solicitudes registradas en el sistema</td>
+									<td colspan="7" >No se encontraron solicitudes registradas en el sistema</td>
 								</tr>
 							</table>
 						</EmptyDataTemplate>
                         <Columns>
-                            <asp:BoundField DataField="NumeroSol" HeaderText="Numero Solicitud" />
+                            <asp:BoundField DataField="NumeroSol" HeaderText="Número Solicitud" />
                             <asp:BoundField DataField="NombreCompleto" HeaderText="Ciudadano">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
@@ -143,9 +143,8 @@
                             </asp:BoundField>
                             <asp:TemplateField HeaderText="Editar">
                                 <ItemTemplate>
-                                    <asp:LinkButton CommandArgument='<%#Eval("SolicitudId")%>' CommandName="Editar" ID="SolicitudLink" runat="server" Text='Editar' Width="80px"></asp:LinkButton>
+                                    <asp:LinkButton CommandArgument='<%#Eval("SolicitudId")%>' CommandName="Editar" ID="SolicitudLink" runat="server" Text='Editar' Width="40px"></asp:LinkButton>
                                 </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Left" />
                             </asp:TemplateField>
                         </Columns>
                 </asp:GridView>

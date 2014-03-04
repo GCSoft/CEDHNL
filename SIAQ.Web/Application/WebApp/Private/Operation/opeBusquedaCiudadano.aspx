@@ -109,7 +109,8 @@
         <table width="90%" border="0">
           <tr>
             <td class="style2"><asp:Button ID="Button1" runat="server" Text="Buscar" CssClass="Button_General" OnClick="SearchButton_Click" width="125px"/></td>
-            <td class="style3"><asp:Button ID="Button2" runat="server" Text="Cancelar" CssClass="Button_General" width="125px"/></td>
+            <td class="style3"><asp:Button ID="Button2" runat="server" Text="Cancelar" 
+                    CssClass="Button_General" width="125px" onclick="Button2_Click"/></td>
             <td><asp:LinkButton  class="style1" ID="LinkButton1" runat="server" OnClick="BusquedaRapida_Click">Búsqueda rapida</asp:LinkButton></td>
           </tr>
         </table>

@@ -94,7 +94,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             BPFuncionario BPFuncionario = new BPFuncionario();
 
             ddlFuncionario.DataValueField = "FuncionarioId";
-            ddlFuncionario.DataTextField = "Nombre";
+            ddlFuncionario.DataTextField = "NombreApellido";
 
             ddlFuncionario.DataSource = BPFuncionario.SelectFuncionario();
             ddlFuncionario.DataBind();

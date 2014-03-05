@@ -1,9 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeRegistroSolicitud.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeRegistroSolicitud" %>
+
 <%@ Register src="../../../../Include/WebUserControls/wucCalendar.ascx" tagname="wucCalendar" tagprefix="uc1" %>
 <%@ Register src="../../../../Include/WebUserControls/wucTimeMask.ascx" tagname="wucTimeMask" tagprefix="uc2" %>
-
-
-
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
     <script type="text/javascript" language="javascript">
@@ -54,7 +52,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
    <table border="0" cellpadding="0" cellspacing="0" width="100%">
       <tr>
-			<td class="tdCeldaTituloEncabezado">
+			<td class="tdCeldaTituloEncabezado" style="background-image:url('../../../../Include/Image/Web/BarraTitulo.png');">
 				Registro de Solicitudes
 			</td>
 		</tr>
@@ -111,12 +109,8 @@
             <asp:Panel id="pnlBotones" runat="server" Width="100%">
                <table border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tr>
-                     <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="btnGuardar" 
-                             runat="server" Text="Guardar" CssClass="Button_General_Verde" width="125px" 
-                             onclick="btnGuardar_Click" /></td>
-                     <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="btnRegresar" 
-                             runat="server" Text="Regresar" CssClass="Button_General_Verde" width="125px" 
-                             onclick="btnRegresar_Click" /></td>
+                     <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="Button_General" width="125px" onclick="btnGuardar_Click" /></td>
+                     <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="btnRegresar" runat="server" Text="Regresar" CssClass="Button_General" width="125px" onclick="btnRegresar_Click" /></td>
 					 <td style="height:24px; width:530px;"></td>
                   </tr>
                </table>

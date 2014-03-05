@@ -54,4 +54,64 @@
 	width: 150px;
 }
 
+/* Tabla general */
+.GeneralTable
+{
+	border-spacing: 5px;
+	font-size:11px;
+	padding: 0px;
+	width: 100%;
+}
+
+.GeneralTable .Campo
+{
+	text-align: left;
+	width: 200px;
+}
+
+.GeneralTable .Espacio
+{
+	width: 20px;
+}
+
+.GeneralTable .Especial
+{
+	font-size: 15px;
+	font-weight: bold;
+	text-align: left;
+}
+
+.GeneralTable .Etiqueta
+{
+	text-align: left;
+	width: 200px;
+}
+
+.GeneralTable .SubTitulo
+{
+	font-size: 11px;
+	text-align: left;
+}
+
+.GeneralTable .VinetaObligatorio
+{
+    color: #ff0000;
+    font-size: 12px;
+    vertical-align: top;
+    width: 20px;
+}
+
+.GeneralTable .Observaciones
+{
+	background-color: #ededed;
+	text-align: left;
+}
+
+.GeneralTable .Nombre
+{
+	text-align: left;
+	vertical-align: top;
+	width: 150px;
+}
+
 

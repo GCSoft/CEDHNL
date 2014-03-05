@@ -11,10 +11,12 @@
    <link href="~/Include/Style/Content.css" rel="Stylesheet" type="text/css" />
    <link href="~/Include/Style/Control.css" rel="Stylesheet" type="text/css" />
    <link href="~/Include/Style/MasterPage.css" rel="Stylesheet" type="text/css" />
+   <link href="~/Include/Style/Table.css" rel="Stylesheet" type="text/css" />
    <link href="~/Include/Style/Text.css" rel="Stylesheet" type="text/css" />
    <link href="~/Include/Style/Wait.css" rel="Stylesheet" type="text/css" />
    <link href="~/Include/Javascript/TinyBox/TinyBox.css" rel="Stylesheet" type="text/css" />
    <link href="~/Include/Javascript/ToolTip/ToolTip.css" rel="Stylesheet" type="text/css" />
+
    <script src="../../../../Include/Javascript/TinyBox/TinyBox.js" type="text/javascript"></script>
    <script src="../../../../Include/Javascript/ToolTip/ToolTip.js" type="text/javascript"></script>
    <script language="javascript" type="text/javascript" src="../../../../Include/Javascript/GCSoft/GCSoft.js"></script>

@@ -95,24 +95,15 @@ namespace SIAQ.Web.Application.WebApp
 				oENTResponse = oBPUsuario.SelectUsuario_Autenticacion(oENTUsuario);
 				
 				// Validaciones
-            if (oENTResponse.GeneratesException){ throw (new Exception(oENTResponse.sErrorMessage)); }
+                if (oENTResponse.GeneratesException){ throw (new Exception(oENTResponse.sErrorMessage)); }
 				if (oENTResponse.sMessage != ""){ throw (new Exception(oENTResponse.sMessage)); }
 				
 				// Usuario válido
-            cookiesSetConfiguration();
+                cookiesSetConfiguration();
 
-            oENTSession = (ENTSession)Session["oENTSession"];
+                oENTSession = (ENTSession)Session["oENTSession"];
 
-            switch (oENTSession.idRol)
-            {
-                case 3:
-                    this.Response.Redirect("../Private/Operation/opeInicio.aspx", false);
-                    break;
-
-                default:
-                    this.Response.Redirect("../Private/Home/AppIndex.aspx", false);
-                    break;
-            }	
+                this.Response.Redirect("../Private/Home/AppIndex.aspx", false);
 			}catch(Exception ex){
 				throw(ex);
 			}

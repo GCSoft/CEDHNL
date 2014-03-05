@@ -13,6 +13,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
     public partial class opeRegistroVisita {
         
         /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+        
+        /// <summary>
         /// pnlFormulario control.
         /// </summary>
         /// <remarks>
@@ -92,15 +101,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGuardar;
-        
-        /// <summary>
-        /// btnCancelar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelar;
         
         /// <summary>
         /// Label1 control.

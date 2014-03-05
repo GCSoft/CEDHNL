@@ -1,13 +1,17 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeInicio.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeInicio" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
+
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
-    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <table border="0" cellpadding="0" cellspacing="0" class="Tamanoletra" width="100%">
       <tr>
-			<td class="tdCeldaTituloEncabezado">
-				Pantalla de inicio
+			<td class="tdCeldaTituloEncabezado" style="background-image:url('../../../../Include/Image/Web/BarraTitulo.png');">
+				Recepción
 			</td>
 		</tr>
+        <tr><td class="tdCeldaMiddleSpace_Title"></td></tr>
         <tr>
             <td>
                 <asp:Panel ID="pnlFormulario" runat="server" Visible="true" Width="100%">

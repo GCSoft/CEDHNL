@@ -21,6 +21,7 @@ using System.Web.UI.HtmlControls;
 
 // Referencias manuales
 using SIAQ.BusinessProcess.Page;
+using SIAQ.Entity.Object;
 
 namespace SIAQ.Web.Application.WebApp.Private.Home
 {
@@ -31,7 +32,31 @@ namespace SIAQ.Web.Application.WebApp.Private.Home
       // Eventos de la página
 
       protected void Page_Load(object sender, EventArgs e){
-         
+          ENTSession oENTSession = new ENTSession();
+
+          oENTSession = (ENTSession)Session["oENTSession"];
+
+          switch (oENTSession.idRol)
+          {
+              case 3:
+                  this.Response.Redirect("../Operation/opeInicio.aspx", false);
+                  break;
+
+              case 4:
+                  this.Response.Redirect("../Operation/opeLstSolicitudSecretaria.aspx", false);
+                  break;
+
+              case 5:
+                  this.Response.Redirect("../Operation/opeLstSolicitudFuncionario.aspx", false);
+                  break;
+
+              case 6:
+                  this.Response.Redirect("../Operation/opeBusquedaSolicitud.aspx", false);
+                  break;
+
+              default:
+                  break;
+          }
       }
 
 	}

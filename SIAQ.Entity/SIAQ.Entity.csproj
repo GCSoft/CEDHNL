@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,6 +47,7 @@
     <Compile Include="Object\ENTCiudad.cs" />
     <Compile Include="Object\ENTCiudadano.cs" />
     <Compile Include="Object\ENTColonia.cs" />
+    <Compile Include="Object\ENTDocumento.cs" />
     <Compile Include="Object\ENTEscolaridad.cs" />
     <Compile Include="Object\ENTEstado.cs" />
     <Compile Include="Object\ENTEstatus.cs" />

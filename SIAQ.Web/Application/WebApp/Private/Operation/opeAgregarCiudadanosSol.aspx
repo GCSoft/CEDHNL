@@ -57,6 +57,11 @@
              {
                  width: 104px;
              }
+             
+             .gv
+             {
+                 border: 0px;
+             }
           </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
@@ -159,28 +164,35 @@
         </div>
      </asp:Panel>
          </td>
-         <td style="width:20px;"></td>
          <td rowspan="5" valign="top" style="width:200px;">
-         <asp:GridView id="gvCiudadanosAgregados" runat="server" AllowPaging="false" AllowSorting="false" AutoGenerateColumns="False"
-         DataKeyNames="CiudadanoId">
-         <EmptyDataTemplate>
-             <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                <tr>
-                    <td style="background-color:#DDDDFF; height:30px; font-size:10px; border:1px solid #333333; text-align:center;">Ciudadanos agregados a la Solicitud</td>
-                </tr>
-                <tr>
-                    <td style="background-color:#FBFBFF; font-size:10px; border:1px solid #333333;">
-                      No han agregado ciudadanos a la solicitud  
-                    </td>
-                </tr>
+         <table width="100%" border="0">
+              <tr>
+                <td class="MiddleSpace"></td>
+                <td>
+                     <table width="100%" border="0" cellpadding="0" cellspacing="0"">
+                          <tr>
+                            <td style="background-color:#DDDDFF; height:30px; font-size:10px; border:0px; text-align:center;"> &nbsp;Ciudadanos agregados a la Solicitud&nbsp;</td>
+                          </tr>
+                          <tr>
+                            <td style="height:175px; background-color:#EFF2FB;"> <!--aqui se estaran ingresando los ciudadanos agregados-->
+                               <asp:GridView CssClass="gv" id="gvCiudadanosAgregados" runat="server" AllowPaging="false" AllowSorting="false" AutoGenerateColumns="False"
+                                 DataKeyNames="CiudadanoId">
+                                 <EmptyDataTemplate>
+
+                                 </EmptyDataTemplate>
+                                 <Columns>
+                                 <asp:BoundField HeaderText="Nombre" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="170px" DataField="NombreCompleto"></asp:BoundField>
+                                 <asp:TemplateField HeaderText="Eliminar">
+                                 </asp:TemplateField>
+                                 </Columns>
+                                </asp:GridView>
+                            </td>
+                          </tr>
+                     </table>
+                </td>
+              </tr>
             </table>
-         </EmptyDataTemplate>
-         <Columns>
-         <asp:BoundField HeaderText="Nombre" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="170px" DataField="NombreCompleto"></asp:BoundField>
-         <asp:TemplateField HeaderText="Eliminar">
-         </asp:TemplateField>
-         </Columns>
-         </asp:GridView>
+
          </td>
       </tr>
     <tr><td class="tdCeldaMiddleSpace"></td></tr>
@@ -239,5 +251,5 @@
          </td>
       </tr>
     </table>
-    <asp:HiddenField ID="SesionIDHidden" runat="server" Value="" />
+    <asp:HiddenField ID="SolicitudIDHidden" runat="server" Value="" />
 </asp:Content>

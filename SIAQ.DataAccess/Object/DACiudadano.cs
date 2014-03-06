@@ -175,16 +175,16 @@ namespace SIAQ.DataAccess.Object
                 Command = new SqlCommand("InsertarCiudadanoSolicitud", Connection);
                 Command.CommandType = CommandType.StoredProcedure;
 
-                Parameter = new SqlParameter("CiudadanoId", SqlDbType.VarChar);
-                Parameter.Value = ENTCiudadano.Nombre;
+                Parameter = new SqlParameter("CiudadanoId", SqlDbType.Int);
+                Parameter.Value = ENTCiudadano.CiudadanoId;
                 Command.Parameters.Add(Parameter);
 
-                Parameter = new SqlParameter("SolicitudId", SqlDbType.VarChar);
+                Parameter = new SqlParameter("SolicitudId", SqlDbType.Int);
                 Parameter.Value = ENTCiudadano.SolicitudId;
                 Command.Parameters.Add(Parameter);
 
-                Parameter = new SqlParameter("TipoSolicitud", SqlDbType.VarChar);
-                Parameter.Value = ENTCiudadano.SolicitudId;
+                Parameter = new SqlParameter("TipoCiudadanoId", SqlDbType.Int);
+                Parameter.Value = ENTCiudadano.TipoCiudadanoId;
                 Command.Parameters.Add(Parameter);
 
                  DataAdapter = new SqlDataAdapter(Command);

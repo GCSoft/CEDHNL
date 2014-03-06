@@ -25,11 +25,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         private void gvCiudadanoGridRowCommand(GridViewCommandEventArgs e)
         {
-            //estos valores los debe de traer el querystring se declaran solo para las pruebas
-            int SolicitudId = 10001;
-            string CiudadanoId = string.Empty;
-            int TipoCiudadanoId = 1;
 
+            string CiudadanoId = string.Empty;
+            int TipoCiudadanoId = 1; //estos valores los debe de traer un checkbox, se han declarado solo para pruebas
+
+            int SolicitudId = int.Parse(SolicitudIDHidden.Value);
             CiudadanoId = e.CommandArgument.ToString();
 
             switch (e.CommandName.ToString())
@@ -84,6 +84,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
+
             if (!Page.IsPostBack)
             {
                 SelectEstado();
@@ -93,6 +95,19 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
                 gvCiudadano.DataSource = null;
                 gvCiudadano.DataBind();
+                
+                gvCiudadanosAgregados.DataSource = null;
+                gvCiudadanosAgregados.DataBind();
+                
+                try
+                {
+                    SolicitudIDHidden.Value = Request.QueryString["s"].ToString();
+
+                }
+                catch (Exception Exception)
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + Exception.Message + "', 'Fail', true);", true);
+                }
             }
         }
 

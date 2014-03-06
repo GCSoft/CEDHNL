@@ -63,6 +63,16 @@
 	width: 100%;
 }
 
+.GeneralTable .Agregados
+{
+	vertical-align: top;
+}
+
+.GeneralTable .Botones
+{
+	text-align: left;
+}
+
 .GeneralTable .Campo
 {
 	text-align: left;
@@ -87,6 +97,19 @@
 	width: 200px;
 }
 
+.GeneralTable .Nombre
+{
+	text-align: left;
+	vertical-align: top;
+	width: 150px;
+}
+
+.GeneralTable .Observaciones
+{
+	background-color: #ededed;
+	text-align: left;
+}
+
 .GeneralTable .SubTitulo
 {
 	font-size: 11px;
@@ -99,19 +122,6 @@
     font-size: 12px;
     vertical-align: top;
     width: 20px;
-}
-
-.GeneralTable .Observaciones
-{
-	background-color: #ededed;
-	text-align: left;
-}
-
-.GeneralTable .Nombre
-{
-	text-align: left;
-	vertical-align: top;
-	width: 150px;
 }
 
 

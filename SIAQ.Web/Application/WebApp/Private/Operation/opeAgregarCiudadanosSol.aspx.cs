@@ -25,14 +25,25 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         private void gvCiudadanoGridRowCommand(GridViewCommandEventArgs e)
         {
+            //estos valores los debe de traer el querystring se declaran solo para las pruebas
+            int SolicitudId = 10001;
             string CiudadanoId = string.Empty;
+            int TipoCiudadanoId = 1;
 
             CiudadanoId = e.CommandArgument.ToString();
 
             switch (e.CommandName.ToString())
             {
                 case "Agregar":
-                    //Se queda pendiente hasta aqui
+
+                    BPCiudadano BPCiudadano = new BPCiudadano();
+
+                    BPCiudadano.ENTCiudadano.CiudadanoId = int.Parse(CiudadanoId);
+                    BPCiudadano.ENTCiudadano.SolicitudId = SolicitudId;
+                    BPCiudadano.ENTCiudadano.TipoCiudadanoId = TipoCiudadanoId;
+
+                    BPCiudadano.AgregarCiudadanoSolicitud();
+
                     break;
 
             }

@@ -13,9 +13,11 @@
 	            text-align:left;
             }
             
-            .MiddleSpace{
+            .MiddleSpace
+            {
 	            height:7px;
-                        }
+            }
+                        
              .Tamanoletra
             {
               font-size:13.5px;
@@ -24,7 +26,7 @@
             }
         
              .TablaCiudadano
-                 {
+            {
             	border-spacing: 5px;
 	            font-size:11px;
 	            padding: 0px;
@@ -159,16 +161,26 @@
          </td>
          <td style="width:20px;"></td>
          <td rowspan="5" valign="top" style="width:200px;">
-            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+         <asp:GridView id="gvCiudadanosAgregados" runat="server" AllowPaging="false" AllowSorting="false" AutoGenerateColumns="False"
+         DataKeyNames="CiudadanoId">
+         <EmptyDataTemplate>
+             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                 <tr>
                     <td style="background-color:#DDDDFF; height:30px; font-size:10px; border:1px solid #333333; text-align:center;">Ciudadanos agregados a la Solicitud</td>
                 </tr>
                 <tr>
                     <td style="background-color:#FBFBFF; font-size:10px; border:1px solid #333333;">
-                        <asp:CheckBoxList ID="chkListCiudadanos" runat="server"></asp:CheckBoxList>
+                      No han agregado ciudadanos a la solicitud  
                     </td>
                 </tr>
             </table>
+         </EmptyDataTemplate>
+         <Columns>
+         <asp:BoundField HeaderText="Nombre" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="170px" DataField="NombreCompleto"></asp:BoundField>
+         <asp:TemplateField HeaderText="Eliminar">
+         </asp:TemplateField>
+         </Columns>
+         </asp:GridView>
          </td>
       </tr>
     <tr><td class="tdCeldaMiddleSpace"></td></tr>
@@ -190,7 +202,6 @@
                                     <td style="width:100px; text-align:center;">Fecha Nacimiento</td>
                                     <td style="width:200px; text-align:center;">Domicilio</td>
                                     <td style="width:70px; text-align:center;" ></td>
-                             
 								</tr>
 								<tr class="Grid_Row">
 									<td colspan="9"  style="text-align:center;">No se encontraron ciudadanos registradas en el sistema</td>
@@ -228,6 +239,5 @@
          </td>
       </tr>
     </table>
-
-
+    <asp:HiddenField ID="SesionIDHidden" runat="server" Value="" />
 </asp:Content>

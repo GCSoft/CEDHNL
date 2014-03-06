@@ -28,6 +28,9 @@ namespace SIAQ.Entity.Object
         private string _ColoniaId;
         private string _Calle;
         private string _CampoBusqueda;
+        private int _SolicitudId;
+        private int _TipoCiudadanoId;
+
 
         public ENTCiudadano()
         {
@@ -39,8 +42,10 @@ namespace SIAQ.Entity.Object
             _EscolaridadId = 0;
             _IngresoEconomicoId = 0;
             _TipoViviendaId = 0;
+            _TipoCiudadanoId = 0;
             _MedioComunicacionId = 0;
             _Nombre = "";
+            _SolicitudId = 0;
             _ApellidoPaterno = "";
             _ApellidoMaterno = "";
             _FechaNacimiento = System.DateTime.Now;
@@ -141,6 +146,12 @@ namespace SIAQ.Entity.Object
             get { return _TipoViviendaId; }
             set { _TipoViviendaId = value; }
         }
+
+        public int TipoCiudadanoId
+        {
+            get { return _TipoCiudadanoId; }
+            set { _TipoCiudadanoId = value; }
+        }
         ///<remarks>
         ///   <name>Ciudadano.MedioComunicacionId</name>
         ///   <create>27/ene/2014</create>
@@ -162,6 +173,12 @@ namespace SIAQ.Entity.Object
         {
             get { return _Nombre; }
             set { _Nombre = value; }
+        }
+
+        public int SolicitudId
+        {
+            get { return _SolicitudId; }
+            set { _SolicitudId = value; }
         }
         ///<remarks>
         ///   <name>Ciudadano.ApellidoPaterno</name>

@@ -13,6 +13,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
     public partial class opeAgregarDocumentos {
         
         /// <summary>
+        /// SolicitudLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SolicitudLabel;
+        
+        /// <summary>
         /// chkListCiudadanos control.
         /// </summary>
         /// <remarks>
@@ -49,12 +58,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.TextBox TextBoxMaterno;
         
         /// <summary>
-        /// Button1 control.
+        /// GuardarButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button GuardarButton;
     }
 }

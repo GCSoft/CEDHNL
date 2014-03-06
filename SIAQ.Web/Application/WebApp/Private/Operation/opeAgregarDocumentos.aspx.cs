@@ -12,6 +12,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         public string _SolicitudId;
 
         #region "Events"
+            protected void GuardarButton_Click(object sender, EventArgs e)
+            {
+                GuardarDocumento();
+            }
+
             protected void Page_Load(object sender, EventArgs e)
             {
                 PageLoad();
@@ -29,6 +34,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     {
                         SolicitudId = int.Parse(Request.QueryString["s"].ToString());
 
+                        SelectDocumento(SolicitudId);
+
                         _SolicitudId = SolicitudId.ToString();
                     }
                     catch (Exception Exception)
@@ -36,6 +43,16 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                         ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + Exception.Message + "', 'Fail', true);", true);
                     }
                 }
+            }
+
+            private void GuardarDocumento()
+            {
+
+            }
+
+            private void SelectDocumento(int SolicitudId)
+            {
+
             }
         #endregion
     }

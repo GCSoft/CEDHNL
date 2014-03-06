@@ -8,7 +8,7 @@
     <table class="GeneralTable">
         <tr>
             <td class="tdCeldaTituloEncabezado" style="background-image:url('../../../../Include/Image/Web/BarraTitulo.png');">
-	            Registrar visita
+	            Agregar documentos a la solicitud
             </td>
 		</tr>
         <tr>
@@ -18,9 +18,9 @@
             <td>
                 <table border="0" style="width: 460px">
                     <tr>
-                        <td class="Nombre">Solicitud número</td>
+                        <td class="Especial">Solicitud número</td>
                         <td class="Espacio"></td>
-                        <td class="Campo"></td>
+                        <td class="Campo"><asp:Label CssClass="NumeroSolicitudLabel" ID="SolicitudLabel" runat="server" Text="0"></asp:Label></td>
                         <td class="Espacio"></td>
                         <td class="Agregados" rowspan="6">
                                 <table border="0" cellpadding="0" cellspacing="0" 
@@ -57,7 +57,8 @@
                     <tr>
                         <td class="Botones" colspan="5">
                             <br />
-                            <asp:Button ID="Button1" runat="server" Text="Agregar" CssClass="Button_General" width="125px"/>
+                            <asp:Button ID="GuardarButton" runat="server" Text="Agregar" 
+                                CssClass="Button_General" width="125px" onclick="GuardarButton_Click"/>
                             <input class="Button_General" id="RegresarButton" onclick="document.location.href='opeDetalleSolicitud.aspx?s=<%= _SolicitudId %>';" style="width: 125px;" type="button" value="Regresar" />
                         </td>
                     </tr>

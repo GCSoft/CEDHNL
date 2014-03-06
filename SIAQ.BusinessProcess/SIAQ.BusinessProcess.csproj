@@ -51,6 +51,7 @@
     <Compile Include="Object\BPCiudad.cs" />
     <Compile Include="Object\BPCiudadano.cs" />
     <Compile Include="Object\BPColonia.cs" />
+    <Compile Include="Object\BPDocumento.cs" />
     <Compile Include="Object\BPEscolaridad.cs" />
     <Compile Include="Object\BPEstado.cs" />
     <Compile Include="Object\BPEstatus.cs" />

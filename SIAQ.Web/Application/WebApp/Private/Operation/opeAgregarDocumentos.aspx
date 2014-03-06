@@ -100,7 +100,7 @@
               <table width="100%" border="0">
                       <tr>
                       <td style="text-align:left;" class="style8"><asp:Button ID="Button1" runat="server" Text="Agregar" CssClass="Button_General" width="125px"/></td>
-                      <td style="text-align:left;" class="style3"><input class="Button_General" id="RegresarButton" onclick="document.location.href='opeDetalleSolicitud.aspx?s=1004';" style="width: 125px;" type="button" value="Regresar" /></td>
+                      <td style="text-align:left;" class="style3"><input class="Button_General" id="RegresarButton" onclick="document.location.href='opeDetalleSolicitud.aspx?s=<%= _SolicitudId %>';" style="width: 125px;" type="button" value="Regresar" /></td>
                       </tr>
             </table>
               </td>

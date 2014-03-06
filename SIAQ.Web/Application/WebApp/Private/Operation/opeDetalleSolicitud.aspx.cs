@@ -14,27 +14,27 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         #region "Events"
             protected void AutoridadButton_Click(object sender, ImageClickEventArgs e)
             {
-                Response.Redirect("/Application/WebApp/Private/Operation/opeAgregarAutoridaSenalada.aspx");
+                Response.Redirect("/Application/WebApp/Private/Operation/opeAgregarAutoridaSenalada.aspx?s=" + SolicitudIdHidden.Value.ToString());
             }
 
             protected void CalificarButton_Click(object sender, ImageClickEventArgs e)
             {
-                Response.Redirect("/Application/WebApp/Private/Operation/opeCalificarSolicitud.aspx");
+                Response.Redirect("/Application/WebApp/Private/Operation/opeCalificarSolicitud.aspx?s=" + SolicitudIdHidden.Value.ToString());
             }
 
             protected void CiudadanoButton_Click(object sender, ImageClickEventArgs e)
             {
-                Response.Redirect("/Application/WebApp/Private/Operation/opeAgregarCiudadanosSol.aspx");
+                Response.Redirect("/Application/WebApp/Private/Operation/opeAgregarCiudadanosSol.aspx?s=" + SolicitudIdHidden.Value.ToString());
             }
 
             protected void DocumentoButton_Click(object sender, ImageClickEventArgs e)
             {
-                Response.Redirect("/Application/WebApp/Private/Operation/opeAgregarDocumentos.aspx");
+                Response.Redirect("/Application/WebApp/Private/Operation/opeAgregarDocumentos.aspx?s=" + SolicitudIdHidden.Value.ToString());
             }
 
             protected void EnviarButton_Click(object sender, ImageClickEventArgs e)
             {
-                Response.Redirect("/Application/WebApp/Private/Operation/opeEnviarSolicitud.aspx");
+                Response.Redirect("/Application/WebApp/Private/Operation/opeEnviarSolicitud.aspx?s=" + SolicitudIdHidden.Value.ToString());
             }
 
             protected void GuardarButton_Click(object sender, EventArgs e)
@@ -44,12 +44,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
             protected void IndicadorButton_Click(object sender, ImageClickEventArgs e)
             {
-                Response.Redirect("/Application/WebApp/Private/Operation/opeAgregarIndicadores.aspx");
+                Response.Redirect("/Application/WebApp/Private/Operation/opeAgregarIndicadores.aspx?s=" + SolicitudIdHidden.Value.ToString());
             }
 
             protected void InformacionGeneralButton_Click(object sender, ImageClickEventArgs e)
             {
-                Response.Redirect("/Application/WebApp/Private/Operation/opeDetalleSolicitud.aspx");
+                Response.Redirect("/Application/WebApp/Private/Operation/opeDetalleSolicitud.aspx?s=" + SolicitudIdHidden.Value.ToString());
             }
 
             protected void Page_Load(object sender, EventArgs e)
@@ -78,6 +78,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                         SelectSolicitud(SolicitudId);
                         SelectCiudadano(SolicitudId);
                         SelectAutoridades(SolicitudId);
+
+                        SolicitudIdHidden.Value = SolicitudId.ToString();
                     }
                     catch (Exception Exception)
                     {

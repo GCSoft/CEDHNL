@@ -9,9 +9,34 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
     public partial class opeEnviarSolicitud : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
+        public string _SolicitudId;
 
-        }
+        #region "Events"
+            protected void Page_Load(object sender, EventArgs e)
+            {
+                PageLoad();
+            }
+        #endregion
+
+        #region
+            private void PageLoad()
+            {
+                int SolicitudId = 0;
+
+                if (!this.Page.IsPostBack)
+                {
+                    try
+                    {
+                        SolicitudId = int.Parse(Request.QueryString["s"].ToString());
+
+                        _SolicitudId = SolicitudId.ToString();
+                    }
+                    catch (Exception Exception)
+                    {
+                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + Exception.Message + "', 'Fail', true);", true);
+                    }
+                }
+            }
+        #endregion
     }
 }

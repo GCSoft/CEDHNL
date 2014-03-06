@@ -9,14 +9,34 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
     public partial class opeAgregarDocumentos : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (this.Page.IsPostBack) { return; }
+        public string _SolicitudId;
 
-            this.chkListCiudadanos.Items.Add("Dictamen Médico");
-            this.chkListCiudadanos.Items.Add("");
-            this.chkListCiudadanos.Items.Add("");
-          
-        }
+        #region "Events"
+            protected void Page_Load(object sender, EventArgs e)
+            {
+                PageLoad();
+            }
+        #endregion
+
+        #region
+            private void PageLoad()
+            {
+                int SolicitudId = 0;
+
+                if (!this.Page.IsPostBack)
+                {
+                    try
+                    {
+                        SolicitudId = int.Parse(Request.QueryString["s"].ToString());
+
+                        _SolicitudId = SolicitudId.ToString();
+                    }
+                    catch (Exception Exception)
+                    {
+                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + Exception.Message + "', 'Fail', true);", true);
+                    }
+                }
+            }
+        #endregion
     }
 }

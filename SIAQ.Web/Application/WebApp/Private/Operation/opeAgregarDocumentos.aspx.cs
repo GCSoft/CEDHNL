@@ -21,6 +21,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
             protected void Page_Load(object sender, EventArgs e)
             {
+                // Se le agrega una propiedad al formulario de la página para poder subir archivos
+                Parent.Page.Form.Enctype = "multipart/form-data";
+
                 PageLoad();
             }
         #endregion
@@ -61,7 +64,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 DocumentoProcess.DocumentoEntity.Nombre = Nombre;
                 DocumentoProcess.DocumentoEntity.Descripcion = Descripcion;
 
-
+                DocumentoProcess.UploadDocumento();
             }
 
             private void SelectDocumento(int SolicitudId)

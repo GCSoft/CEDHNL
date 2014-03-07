@@ -13,7 +13,7 @@ namespace SIAQ.Entity.Object
         private int _SolicitudId;
         private int _ExpedienteId;
         private int _RecomendacionId;
-        private int _TipoDocumentoId;
+        private string _TipoDocumentoId;
         private int _idUsuarioInsert;
         private int _idUsuarioLastUpdate;
         private string _Nombre;
@@ -28,7 +28,7 @@ namespace SIAQ.Entity.Object
             _SolicitudId = 0;
             _ExpedienteId = 0;
             _RecomendacionId = 0;
-            _TipoDocumentoId = 0;
+            _TipoDocumentoId = string.Empty;
             _idUsuarioInsert = 0;
             _idUsuarioLastUpdate = 0;
             _Nombre = string.Empty;
@@ -77,7 +77,7 @@ namespace SIAQ.Entity.Object
         /// <summary>
         ///     Identificador del tipo de documento.
         /// </summary>
-        public int TipoDocumentoId
+        public string TipoDocumentoId
         {
             get { return _TipoDocumentoId; }
             set { _TipoDocumentoId = value; }

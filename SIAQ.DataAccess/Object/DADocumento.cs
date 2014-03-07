@@ -32,6 +32,69 @@ namespace SIAQ.DataAccess.Object
 
         #region "Method"
             /// <summary>
+            ///     Guarda un documento en el repositorio.
+            /// </summary>
+            /// <param name="ENTDocumento">Entidad de documento.</param>
+            /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
+            public void InsertDocumentoSE(ENTDocumento DocumentoEntity, string ConnectionString)
+            {
+                DataSet ResultData = new DataSet();
+                SqlCommand Command;
+                SqlParameter Parameter;
+                SqlConnection Connection = new SqlConnection(ConnectionString);
+
+                try
+                {
+                    Command = new SqlCommand("sptblRepositoryFileTemp_Ins", Connection);
+                    Command.CommandType = CommandType.StoredProcedure;
+
+                    Parameter = new SqlParameter("RepositorioId", SqlDbType.VarChar);
+                    Parameter.Value = DocumentoEntity.RepositorioId;
+                    Command.Parameters.Add(Parameter);
+
+                    Parameter = new SqlParameter("SolicitudId", SqlDbType.Int);
+                    Parameter.Value = DocumentoEntity.SolicitudId;
+                    Command.Parameters.Add(Parameter);
+
+                    Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
+                    Parameter.Value = DocumentoEntity.ExpedienteId;
+                    Command.Parameters.Add(Parameter);
+
+                    Parameter = new SqlParameter("TipoDocumentoId", SqlDbType.VarChar);
+                    Parameter.Value = DocumentoEntity.TipoDocumentoId;
+                    Command.Parameters.Add(Parameter);
+
+                    Parameter = new SqlParameter("idUsuarioInsert", SqlDbType.Int);
+                    Parameter.Value = DocumentoEntity.idUsuarioInsert;
+                    Command.Parameters.Add(Parameter);
+
+                    Parameter = new SqlParameter("Nombre", SqlDbType.VarChar);
+                    Parameter.Value = DocumentoEntity.Nombre;
+                    Command.Parameters.Add(Parameter);
+
+                    Parameter = new SqlParameter("Descripcion", SqlDbType.VarChar);
+                    Parameter.Value = DocumentoEntity.Descripcion;
+                    Command.Parameters.Add(Parameter);
+
+                    Parameter = new SqlParameter("Documento", SqlDbType.Image);
+                    Parameter.Value = DocumentoEntity.Documento;
+                    Command.Parameters.Add(Parameter);
+
+                    Connection.Open();
+                    Command.ExecuteNonQuery();
+                    Connection.Close();
+                }
+                catch (SqlException Exception)
+                {
+                    _ErrorId = Exception.Number;
+                    _ErrorDescription = Exception.Message;
+
+                    if (Connection.State == ConnectionState.Open)
+                        Connection.Close();
+                }
+            }
+
+            /// <summary>
             ///     Busca documentos en el repositorio relacionados a una solicitud, expediente o recomendación.
             /// </summary>
             /// <param name="ENTDocumento">Entidad de documento.</param>

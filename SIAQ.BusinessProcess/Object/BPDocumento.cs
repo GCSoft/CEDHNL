@@ -55,47 +55,52 @@ namespace SIAQ.BusinessProcess.Object
         #region "Methods"
             public string GetFileType(string FileExtension)
             {
-                string Result = "";
+                string Result = string.Empty;
 
                 switch (FileExtension)
                 {
                     case "jpg":
-                        Result = "";
+                        Result = "81944c0f-8fa6-4e9b-b7b8-74afeccfc54c";
                         break;
 
                     case "gif":
-                        Result = "";
+                        Result = "31bb2d11-2f6f-47be-891b-4ff3113b8b73";
                         break;
 
                     case "png":
-                        Result = "";
+                        Result = "0d4186fa-3b0f-49dc-a55f-a362ad893211";
                         break;
 
                     case "bmp":
-                        Result = "";
+                        Result = "8f455f2a-0492-487c-a729-7b4c4913257d";
                         break;
 
                     case "doc":
-                        Result = "";
+                        Result = "275ebe4c-d4a8-4f4d-8dda-98f8c9ccfe70";
                         break;
 
                     case "docx":
-                        Result = "";
+                        Result = "96a31530-202c-44ad-ba1e-3e07777a0d7c";
                         break;
 
                     case "pdf":
-                        Result = "";
+                        Result = "523e371f-07e8-46c7-81f4-a92a843fa1a1";
                         break;
 
                     case "ppt":
-                        Result = "";
+                        Result = "cba3eb71-5c11-489d-9b92-da1cc7fbe8af";
                         break;
 
                     case "pptx":
-                        Result = "";
+                        Result = "bd168a5e-ec4c-47d7-96a7-03f05ad77bca";
                         break;
                 }
                 return Result;
+            }
+
+            public void SaveDocumento()
+            {
+
             }
 
             public void SelectDocumento()
@@ -111,7 +116,10 @@ namespace SIAQ.BusinessProcess.Object
 
             public void UploadDocumento()
             {
+                int DocumentoLen = 0;
                 string Extension = string.Empty;
+                Stream DocumentoStream;
+                byte[] DocumentoBytes;
                 HttpContext httpContext = HttpContext.Current;
                 DADocumento DocumentoAccess = new DADocumento();
 
@@ -125,14 +133,16 @@ namespace SIAQ.BusinessProcess.Object
                     try
                     {
                         Extension = Path.GetExtension(_DocumentoEntity.FileUpload.PostedFile.FileName);
+                        DocumentoStream = _DocumentoEntity.FileUpload.PostedFile.InputStream;
+                        DocumentoLen = _DocumentoEntity.FileUpload.PostedFile.ContentLength;
+                        DocumentoBytes = new byte[DocumentoLen];
+                        DocumentoStream.Read(DocumentoBytes, 0, DocumentoLen);
 
                         _DocumentoEntity.RepositorioId = Guid.NewGuid().ToString();
-                        //_DocumentoEntity.TipoDocumentoId = GetFileType(Extension);
-                        _DocumentoEntity.Nombre = Path.GetFileName(_DocumentoEntity.FileUpload.PostedFile.FileName);
-                        //_DocumentoEntity.Descripcion = ProgramConstant.ProductFileUpload;
-                        //_DocumentoEntity.File = Common.Image.ImageConverter.ConvertImageToBytes(Image.FromStream(_DocumentoEntity.FileUpload.PostedFile.InputStream));
+                        _DocumentoEntity.TipoDocumentoId = GetFileType(Extension);
+                        _DocumentoEntity.Documento = DocumentoBytes;
 
-
+                        SaveDocumento();
                     }
                     catch (Exception ex)
                     {

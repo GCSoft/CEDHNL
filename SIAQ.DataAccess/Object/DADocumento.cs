@@ -31,7 +31,13 @@ namespace SIAQ.DataAccess.Object
         }
 
         #region "Method"
-            public DataSet SelectDocumento(ENTDocumento ENTDocumento, string ConnectionString)
+            /// <summary>
+            ///     Busca documentos en el repositorio relacionados a una solicitud, expediente o recomendación.
+            /// </summary>
+            /// <param name="ENTDocumento">Entidad de documento.</param>
+            /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
+            /// <returns>Resultado de la búsqueda.</returns>
+            public DataSet SelectDocumento(ENTDocumento DocumentoEntity, string ConnectionString)
             {
                 DataSet ResultData = new DataSet();
                 SqlConnection Connection = new SqlConnection(ConnectionString);
@@ -44,8 +50,20 @@ namespace SIAQ.DataAccess.Object
                     Command = new SqlCommand("SelectDocumento", Connection);
                     Command.CommandType = CommandType.StoredProcedure;
 
+                    Parameter = new SqlParameter("RepositorioId", SqlDbType.VarChar);
+                    Parameter.Value = DocumentoEntity.RepositorioId;
+                    Command.Parameters.Add(Parameter);
+
                     Parameter = new SqlParameter("SolicitudId", SqlDbType.Int);
-                    Parameter.Value = ENTDocumento.SolicitudId;
+                    Parameter.Value = DocumentoEntity.SolicitudId;
+                    Command.Parameters.Add(Parameter);
+
+                    Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
+                    Parameter.Value = DocumentoEntity.ExpedienteId;
+                    Command.Parameters.Add(Parameter);
+
+                    Parameter = new SqlParameter("RecomendacionId", SqlDbType.Int);
+                    Parameter.Value = DocumentoEntity.RecomendacionId;
                     Command.Parameters.Add(Parameter);
 
                     DataAdapter = new SqlDataAdapter(Command);

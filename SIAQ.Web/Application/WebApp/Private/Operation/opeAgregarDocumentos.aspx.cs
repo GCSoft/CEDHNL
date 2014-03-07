@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+using SIAQ.BusinessProcess.Object;
+
 namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
     public partial class opeAgregarDocumentos : System.Web.UI.Page
@@ -47,6 +49,18 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
             private void GuardarDocumento()
             {
+
+            }
+
+            private void GuardarDocumento(int SolicitudId, int idUsuarioInsert, string Nombre, string Descripcion)
+            {
+                BPDocumento DocumentoProcess = new BPDocumento();
+
+                DocumentoProcess.DocumentoEntity.SolicitudId = SolicitudId;
+                DocumentoProcess.DocumentoEntity.idUsuarioInsert = idUsuarioInsert;
+                DocumentoProcess.DocumentoEntity.Nombre = Nombre;
+                DocumentoProcess.DocumentoEntity.Descripcion = Descripcion;
+
 
             }
 

@@ -14,8 +14,8 @@ namespace SIAQ.Entity.Object
         private int _ExpedienteId;
         private int _RecomendacionId;
         private int _TipoDocumentoId;
-        private int _UsuarioIdInsert;
-        private int _UsuarioIdLastUpdate;
+        private int _idUsuarioInsert;
+        private int _idUsuarioLastUpdate;
         private string _Nombre;
         private string _Descripcion;
         private byte[] _Documento;
@@ -29,8 +29,8 @@ namespace SIAQ.Entity.Object
             _ExpedienteId = 0;
             _RecomendacionId = 0;
             _TipoDocumentoId = 0;
-            _UsuarioIdInsert = 0;
-            _UsuarioIdLastUpdate = 0;
+            _idUsuarioInsert = 0;
+            _idUsuarioLastUpdate = 0;
             _Nombre = string.Empty;
             _Descripcion = string.Empty;
             _Documento = new byte[] { 0 };
@@ -86,19 +86,64 @@ namespace SIAQ.Entity.Object
         /// <summary>
         ///     Identificador del usuario que creó el registro.
         /// </summary>
-        public int UsuarioIdInsert
+        public int idUsuarioInsert
         {
-            get { return _UsuarioIdInsert; }
-            set { _UsuarioIdInsert = value; }
+            get { return _idUsuarioInsert; }
+            set { _idUsuarioInsert = value; }
         }
 
         /// <summary>
         ///     Identificador del último usuario que modificó el registro.
         /// </summary>
-        public int UsuarioIdLastUpdate
+        public int idUsuarioLastUpdate
         {
-            get { return _UsuarioIdLastUpdate; }
-            set { _UsuarioIdLastUpdate = value; }
+            get { return _idUsuarioLastUpdate; }
+            set { _idUsuarioLastUpdate = value; }
+        }
+
+        /// <summary>
+        ///     Nombre del documento.
+        /// </summary>
+        public string Nombre
+        {
+            get { return _Nombre; }
+            set { _Nombre = value; }
+        }
+
+        /// <summary>
+        ///     Descripción del documento.
+        /// </summary>
+        public string Descripcion
+        {
+            get { return _Descripcion; }
+            set { _Descripcion = value; }
+        }
+
+        /// <summary>
+        ///     Documento en formato de bytes.
+        /// </summary>
+        public byte[] Documento
+        {
+            get { return _Documento; }
+            set { _Documento = value; }
+        }
+
+        /// <summary>
+        ///     Control para subir archivos al servidor Web.
+        /// </summary>
+        public FileUpload FileUpload
+        {
+            get { return _FileUpload; }
+            set { _FileUpload = value; }
+        }
+
+        /// <summary>
+        ///     DataSet con el resultado de una búsqueda.
+        /// </summary>
+        public DataSet ResultData
+        {
+            get { return _ResultData; }
+            set { _ResultData = value; }
         }
     }
 }

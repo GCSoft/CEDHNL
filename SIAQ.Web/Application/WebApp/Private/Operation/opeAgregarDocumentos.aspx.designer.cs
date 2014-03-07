@@ -31,31 +31,31 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.CheckBoxList chkListCiudadanos;
         
         /// <summary>
-        /// FLArchivo control.
+        /// DocumentoFile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FLArchivo;
+        protected global::System.Web.UI.WebControls.FileUpload DocumentoFile;
         
         /// <summary>
-        /// TextBoxNombre control.
+        /// NombreText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxNombre;
+        protected global::System.Web.UI.WebControls.TextBox NombreText;
         
         /// <summary>
-        /// TextBoxMaterno control.
+        /// DescripcionText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxMaterno;
+        protected global::System.Web.UI.WebControls.TextBox DescripcionText;
         
         /// <summary>
         /// GuardarButton control.

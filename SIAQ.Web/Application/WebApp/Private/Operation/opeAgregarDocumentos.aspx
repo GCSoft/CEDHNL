@@ -39,26 +39,25 @@
                     <tr>
                         <td class="Nombre">Archivo</td>
                         <td class="Espacio"></td>
-                        <td class="Campo"><asp:FileUpload ID="FLArchivo" runat="server" Width="210px" /></td>
+                        <td class="Campo"><asp:FileUpload ID="DocumentoFile" runat="server" Width="210px" /></td>
                         <td class="Espacio"></td>
                     </tr>
                     <tr>
                         <td class="Nombre">Nombre</td>
                         <td class="Espacio"></td>
-                        <td class="Campo"><asp:TextBox ID="TextBoxNombre" runat="server" CssClass="Textbox_General" width="210px" ></asp:TextBox></td>
+                        <td class="Campo"><asp:TextBox ID="NombreText" runat="server" CssClass="Textbox_General" width="210px" ></asp:TextBox></td>
                         <td class="Espacio"></td>
                     </tr>
                     <tr>
                         <td class="Nombre">Descripción</td>
                         <td class="Espacio"></td>
-                        <td class="Campo"><asp:TextBox ID="TextBoxMaterno" runat="server" CssClass="Textbox_General" TextMode="MultiLine" Height="100px" width="360px" ></asp:TextBox></td>
+                        <td class="Campo"><asp:TextBox ID="DescripcionText" runat="server" CssClass="Textbox_General" TextMode="MultiLine" Height="100px" width="360px" ></asp:TextBox></td>
                         <td class="Espacio"></td>
                     </tr>
                     <tr>
                         <td class="Botones" colspan="5">
                             <br />
-                            <asp:Button ID="GuardarButton" runat="server" Text="Agregar" 
-                                CssClass="Button_General" width="125px" onclick="GuardarButton_Click"/>
+                            <asp:Button ID="GuardarButton" runat="server" Text="Agregar" CssClass="Button_General" width="125px" onclick="GuardarButton_Click"/>
                             <input class="Button_General" id="RegresarButton" onclick="document.location.href='opeDetalleSolicitud.aspx?s=<%= _SolicitudId %>';" style="width: 125px;" type="button" value="Regresar" />
                         </td>
                     </tr>

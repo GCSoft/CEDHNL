@@ -98,9 +98,17 @@ namespace SIAQ.BusinessProcess.Object
                 return Result;
             }
 
-            public void SaveDocumento()
+            public void SaveDocumentoSE()
             {
+                DADocumento DocumentoAccess = new DADocumento();
 
+                UploadDocumento();
+
+                if(_ErrorId == 0)
+                    DocumentoAccess.InsertDocumentoSE(_DocumentoEntity, sConnectionApplication);
+
+                _ErrorId = DocumentoAccess.ErrorId;
+                _ErrorDescription = DocumentoAccess.ErrorDescription;
             }
 
             public void SelectDocumento()
@@ -114,7 +122,7 @@ namespace SIAQ.BusinessProcess.Object
                 _ErrorDescription = DocumentoAccess.ErrorDescription;
             }
 
-            public void UploadDocumento()
+            private void UploadDocumento()
             {
                 int DocumentoLen = 0;
                 string Extension = string.Empty;
@@ -141,8 +149,6 @@ namespace SIAQ.BusinessProcess.Object
                         _DocumentoEntity.RepositorioId = Guid.NewGuid().ToString();
                         _DocumentoEntity.TipoDocumentoId = GetFileType(Extension);
                         _DocumentoEntity.Documento = DocumentoBytes;
-
-                        SaveDocumento();
                     }
                     catch (Exception ex)
                     {

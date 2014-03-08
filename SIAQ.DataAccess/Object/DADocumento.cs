@@ -54,7 +54,7 @@ namespace SIAQ.DataAccess.Object
 
                 try
                 {
-                    Command = new SqlCommand("sptblRepositoryFileTemp_Ins", Connection);
+                    Command = new SqlCommand("InsertDocumentoSE", Connection);
                     Command.CommandType = CommandType.StoredProcedure;
 
                     Parameter = new SqlParameter("RepositorioId", SqlDbType.VarChar);

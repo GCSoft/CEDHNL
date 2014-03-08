@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 using SIAQ.BusinessProcess.Object;
+using SIAQ.Entity.Object;
 
 namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
@@ -22,7 +23,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             protected void Page_Load(object sender, EventArgs e)
             {
                 // Se le agrega una propiedad al formulario de la página para poder subir archivos
-                //Parent.Page.Form.Enctype = "multipart/form-data";
+                this.Form.Enctype = "multipart/form-data";
 
                 PageLoad();
             }
@@ -31,17 +32,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         #region
             private void PageLoad()
             {
-                int SolicitudId = 0;
-
                 if (!this.Page.IsPostBack)
                 {
                     try
                     {
-                        SolicitudId = int.Parse(Request.QueryString["s"].ToString());
+                        _SolicitudId = Request.QueryString["s"].ToString();
 
-                        SelectDocumento(SolicitudId);
+                        SelectDocumento(int.Parse(_SolicitudId));
 
-                        _SolicitudId = SolicitudId.ToString();
+                        SolicitudIdHidden.Value = _SolicitudId;
                     }
                     catch (Exception Exception)
                     {
@@ -52,10 +51,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
             private void GuardarDocumento()
             {
+                ENTUsuario UsuarioEntity = new ENTUsuario();
 
+                GuardarDocumento(int.Parse(SolicitudIdHidden.Value), UsuarioEntity.idUsuario, NombreBox.Text.Trim(), DescripcionBox.Text.Trim(), DocumentoFile);
             }
 
-            private void GuardarDocumento(int SolicitudId, int idUsuarioInsert, string Nombre, string Descripcion)
+            private void GuardarDocumento(int SolicitudId, int idUsuarioInsert, string Nombre, string Descripcion, FileUpload DocumentoFile)
             {
                 BPDocumento DocumentoProcess = new BPDocumento();
 
@@ -63,8 +64,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 DocumentoProcess.DocumentoEntity.idUsuarioInsert = idUsuarioInsert;
                 DocumentoProcess.DocumentoEntity.Nombre = Nombre;
                 DocumentoProcess.DocumentoEntity.Descripcion = Descripcion;
+                DocumentoProcess.DocumentoEntity.FileUpload = DocumentoFile;
 
-                DocumentoProcess.UploadDocumento();
+                DocumentoProcess.SaveDocumentoSE();
             }
 
             private void SelectDocumento(int SolicitudId)

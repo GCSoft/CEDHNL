@@ -61,7 +61,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         #region "Methods"
             private void GuardarSolicitud()
             {
-                //GuardarSolicitud(int.Parse(SolicitudIdHidden.Value), int.Parse(LugarHechosList.SelectedValue), DireccionHechosBox.Text.Trim(), AsuntoBox.Text.Trim());
+                GuardarSolicitud(int.Parse(SolicitudIdHidden.Value), int.Parse(LugarHechosList.SelectedValue), DireccionHechosBox.Text.Trim(), AsuntoBox.Text.Trim());
             }
 
             private void GuardarSolicitud(int SolicitudId, int LugarHechosId, string DireccionHechos, string Observaciones)
@@ -189,6 +189,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     FuncionarioLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["NombreFuncionario"].ToString();
                     ContactoLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["NombreContacto"].ToString();
                     TipoSolicitudLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["NombreTipoSolicitud"].ToString();
+                    LugarHechosList.SelectedValue = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["LugarHechosId"].ToString();
+                    DireccionHechosBox.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["DireccionHechos"].ToString();
                     ObservacionesLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["Observaciones"].ToString();
                 }
                 else

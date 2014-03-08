@@ -40,22 +40,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.FileUpload DocumentoFile;
         
         /// <summary>
-        /// NombreText control.
+        /// NombreBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox NombreText;
+        protected global::System.Web.UI.WebControls.TextBox NombreBox;
         
         /// <summary>
-        /// DescripcionText control.
+        /// DescripcionBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox DescripcionText;
+        protected global::System.Web.UI.WebControls.TextBox DescripcionBox;
         
         /// <summary>
         /// GuardarButton control.
@@ -65,5 +65,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button GuardarButton;
+        
+        /// <summary>
+        /// SolicitudIdHidden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField SolicitudIdHidden;
     }
 }

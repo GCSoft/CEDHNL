@@ -45,13 +45,13 @@
                     <tr>
                         <td class="Nombre">Nombre</td>
                         <td class="Espacio"></td>
-                        <td class="Campo"><asp:TextBox ID="NombreText" runat="server" CssClass="Textbox_General" width="210px" ></asp:TextBox></td>
+                        <td class="Campo"><asp:TextBox ID="NombreBox" runat="server" CssClass="Textbox_General" width="210px" ></asp:TextBox></td>
                         <td class="Espacio"></td>
                     </tr>
                     <tr>
                         <td class="Nombre">Descripción</td>
                         <td class="Espacio"></td>
-                        <td class="Campo"><asp:TextBox ID="DescripcionText" runat="server" CssClass="Textbox_General" TextMode="MultiLine" Height="100px" width="360px" ></asp:TextBox></td>
+                        <td class="Campo"><asp:TextBox ID="DescripcionBox" runat="server" CssClass="Textbox_General" TextMode="MultiLine" Height="100px" width="360px" ></asp:TextBox></td>
                         <td class="Espacio"></td>
                     </tr>
                     <tr>
@@ -65,5 +65,7 @@
             </td>
         </tr>
     </table>
+
+    <asp:HiddenField ID="SolicitudIdHidden" runat="server" Value="0" />
 </asp:Content>
 

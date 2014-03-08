@@ -92,6 +92,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
             // Formulario
             oENTArea.sDescripcion = this.txtActionDescripcion.Text.Trim();
             oENTArea.sNombre = this.txtActionNombre.Text.Trim();
+            oENTArea.tiSistema = Int16.Parse(this.ddlActionSistema.SelectedValue);
             oENTArea.tiActivo = Int16.Parse(this.ddlActionStatus.SelectedValue);
 
 				// Transacción
@@ -127,6 +128,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
             // Formulario
             oENTArea.sNombre = this.txtNombre.Text;
             oENTArea.tiActivo = Int16.Parse(this.ddlStatus.SelectedItem.Value);
+            oENTArea.tiSistema = 2;
 
 				// Transacción
 				oENTResponse = oBPArea.SelectArea(oENTArea);
@@ -161,6 +163,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
             oENTArea.idArea = idArea;
             oENTArea.sNombre = "";
             oENTArea.tiActivo = 2;
+            oENTArea.tiSistema = 2;
 
 				// Transacción
 				oENTResponse = oBPArea.SelectArea(oENTArea);
@@ -175,10 +178,25 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
             this.txtActionNombre.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["sNombre"].ToString();
             this.txtActionDescripcion.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["sDescripcion"].ToString();
             this.ddlActionStatus.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["tiActivo"].ToString();
+            this.ddlActionSistema.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["tiSistema"].ToString();
 
 			}catch (Exception ex){
             throw (ex);
 			}
+      }
+
+      private void SelectSistema_Action(){
+         try
+         {
+
+            // Opciones de DropDownList
+            this.ddlActionSistema.Items.Insert(0, new ListItem("[Seleccione]", "2"));
+            this.ddlActionSistema.Items.Insert(1, new ListItem("Si", "1"));
+            this.ddlActionSistema.Items.Insert(2, new ListItem("No", "0"));
+
+         }catch (Exception ex){
+            throw (ex);
+         }
       }
 
       private void SelectStatus(){
@@ -255,6 +273,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
             oENTArea.idArea = idArea;
             oENTArea.sDescripcion = this.txtActionDescripcion.Text.Trim();
             oENTArea.sNombre = this.txtActionNombre.Text.Trim();
+            oENTArea.tiSistema = Int16.Parse(this.ddlActionSistema.SelectedValue);
             oENTArea.tiActivo = Int16.Parse(this.ddlActionStatus.SelectedValue);
 
 				// Transacción
@@ -285,10 +304,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
 			BPArea oBPArea = new BPArea();
 
 			try{
-
-            // Área origen
-            if (idArea == 1) { throw new Exception("No es permitido realizar transacciones sobre la Área origen"); }
-
+            
             // Formulario
             oENTArea.idArea = idArea;
             switch (AreaActionType){
@@ -324,11 +340,11 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
             // Nombre
             if(this.txtActionNombre.Text.Trim() == ""){ throw new Exception("* El campo [Nombre] es requerido"); }
 
+            // Sistema
+            if (this.ddlActionSistema.SelectedIndex == 0) { throw new Exception("* El campo [Sistema] es requerido"); }
+
             // Estatus
             if (this.ddlActionStatus.SelectedIndex == 0) { throw new Exception("* El campo [Estatus] es requerido"); }
-
-            // Área origen
-            if (this.hddArea.Value == "1") { throw new Exception("* No es permitido realizar transacciones sobre la Área origen"); }
 
          }catch (Exception ex){
             throw (ex);
@@ -346,6 +362,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
          try{
 
             // Llenado de controles
+            SelectSistema_Action();
             SelectStatus_Action();
             SelectStatus();
             SelectArea();
@@ -440,42 +457,34 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
             tiActivo = this.gvArea.DataKeys[e.Row.RowIndex]["tiActivo"].ToString();
             sNombreArea = this.gvArea.DataKeys[e.Row.RowIndex]["sNombre"].ToString();
 
-            // Validación sobre la Área origen
-            if(idArea == "1"){
+            // Tooltip Edición
+            sTootlTip = "Editar Área [" + sNombreArea + "]";
+            imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sTootlTip + "', 'Izq');");
+            imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
+            imgEdit.Attributes.Add("style", "cursor:hand;");
 
-               imgEdit.Visible = false;
-               imgAction.Visible = false;
-            }else{
+            // Tooltip Action
+            sTootlTip = (tiActivo == "1" ? "Eliminar" : "Reactivar") + " Área [" + sNombreArea + "]";
+            imgAction.Attributes.Add("onmouseover", "tooltip.show('" + sTootlTip + "', 'Izq');");
+            imgAction.Attributes.Add("onmouseout", "tooltip.hide();");
+            imgAction.Attributes.Add("style", "cursor:hand;");
 
-               // Tooltip Edición
-               sTootlTip = "Editar Área [" + sNombreArea + "]";
-               imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sTootlTip + "', 'Izq');");
-               imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
-               imgEdit.Attributes.Add("style", "cursor:hand;");
+            // Imagen del botón [imgAction]
+            imgAction.ImageUrl = "../../../../Include/Image/Buttons/" + (tiActivo == "1" ? "Delete" : "Restore") + ".png";
 
-               // Tooltip Action
-               sTootlTip = (tiActivo == "1" ? "Eliminar" : "Reactivar") + " Área [" + sNombreArea + "]";
-               imgAction.Attributes.Add("onmouseover", "tooltip.show('" + sTootlTip + "', 'Izq');");
-               imgAction.Attributes.Add("onmouseout", "tooltip.hide();");
-               imgAction.Attributes.Add("style", "cursor:hand;");
+            // Atributos Over
+            sImagesAttributes = " document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png';";
+            sImagesAttributes = sImagesAttributes + " document.getElementById('" + imgAction.ClientID + "').src='../../../../Include/Image/Buttons/" + (tiActivo == "1" ? "Delete" : "Restore") + "_Over.png';";
 
-               // Imagen del botón [imgAction]
-               imgAction.ImageUrl = "../../../../Include/Image/Buttons/" + (tiActivo == "1" ? "Delete" : "Restore") + ".png";
+            // Puntero y Sombra en fila Over
+            e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
 
-               // Atributos Over
-               sImagesAttributes = " document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png';";
-               sImagesAttributes = sImagesAttributes + " document.getElementById('" + imgAction.ClientID + "').src='../../../../Include/Image/Buttons/" + (tiActivo == "1" ? "Delete" : "Restore") + "_Over.png';";
+            // Atributos Out
+            sImagesAttributes = " document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png';";
+            sImagesAttributes = sImagesAttributes + " document.getElementById('" + imgAction.ClientID + "').src='../../../../Include/Image/Buttons/" + (tiActivo == "1" ? "Delete" : "Restore") + ".png';";
 
-               // Puntero y Sombra en fila Over
-               e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
-
-               // Atributos Out
-               sImagesAttributes = " document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png';";
-               sImagesAttributes = sImagesAttributes + " document.getElementById('" + imgAction.ClientID + "').src='../../../../Include/Image/Buttons/" + (tiActivo == "1" ? "Delete" : "Restore") + ".png';";
-
-               // Puntero y Sombra en fila Out
-               e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
-            }
+            // Puntero y Sombra en fila Out
+            e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
 				
 			}catch (Exception ex){
 				throw (ex);

@@ -5,12 +5,21 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+// Referencias manuales
+using GCSoft.Utilities.Common;
+using GCSoft.Utilities.Security;
 using SIAQ.BusinessProcess.Object;
 using SIAQ.BusinessProcess.Page;
+using SIAQ.Entity.Object;
+
 namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
     public partial class opeRegistroVisita : System.Web.UI.Page
     {
+
+      // Utilerías
+      Function utilFunction = new Function();
+       
         string AllDefault = "[Seleccione]";
 
         protected void GuardarButton_Click(object sender, EventArgs e)
@@ -75,15 +84,45 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         }
 
         protected void SelectArea(){
+            ENTArea oENTArea = new ENTArea();
+			   ENTResponse oENTResponse = new ENTResponse();
 
-            BPArea BPArea = new BPArea();
+			   BPArea oBPArea = new BPArea();
+            String sMessage = "tinyboxToolTipMessage_ClearOld();";
 
-            ddlArea.DataValueField = "idArea";
-            ddlArea.DataTextField = "sNombre";
+			   try{
 
-            ddlArea.DataSource = BPArea.SelectArea();
-            ddlArea.DataBind();
-            ddlArea.Items.Insert(0, new ListItem(AllDefault, "0"));
+               // Parámetros de consulta
+               oENTArea.idArea = 0;
+               oENTArea.sNombre = "";
+               oENTArea.tiActivo = 1;
+               oENTArea.tiSistema = 0;
+
+				   // Transacción
+				   oENTResponse = oBPArea.SelectArea(oENTArea);
+
+				   // Validaciones
+               if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+
+               // Mensaje de la BD
+               if (oENTResponse.sMessage != "") { sMessage = "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', true);"; }
+
+               // Llenado de controles
+               this.ddlArea.DataValueField = "idArea";
+               this.ddlArea.DataTextField = "sNombre";
+
+               this.ddlArea.DataSource = oENTResponse.dsResponse.Tables[1];
+               this.ddlArea.DataBind();
+               this.ddlArea.Items.Insert(0, new ListItem(AllDefault, "0"));
+
+               // Mensaje al usuario
+               ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), sMessage, true);
+
+			   }catch (Exception ex){
+               throw (ex);
+			   }
+
+
         }
 
         protected void SelectFuncionario(){

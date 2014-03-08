@@ -60,18 +60,20 @@
 							<table border="1px" cellpadding="0px" cellspacing="0px">
 								<tr class="Grid_Header">
 									<td style="width:150px;">Área</td>
-									<td style="width:540px;">Descripción</td>
+									<td style="width:440px;">Descripción</td>
                            <td style="width:100px;">Estatus</td>
+                           <td style="width:100px;">Sistema</td>
 								</tr>
 								<tr class="Grid_Row">
-									<td colspan="3">No se encontraron Áreas registradas en el sistema</td>
+									<td colspan="4">No se encontraron Áreas registradas en el sistema</td>
 								</tr>
 							</table>
 						</EmptyDataTemplate>
 						<Columns>
 							<asp:BoundField HeaderText="Área"         ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="150px" DataField="sNombre"        SortExpression="sNombre"></asp:BoundField>
-							<asp:BoundField HeaderText="Descripción"  ItemStyle-HorizontalAlign="Left"		ItemStyle-Width="500px" DataField="sDescripcion"	SortExpression="sDescripcion"></asp:BoundField>
+							<asp:BoundField HeaderText="Descripción"  ItemStyle-HorizontalAlign="Left"		ItemStyle-Width="400px" DataField="sDescripcion"	SortExpression="sDescripcion"></asp:BoundField>
                      <asp:BoundField HeaderText="Estatus"      ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100px" DataField="sEstatus"       SortExpression="sEstatus"></asp:BoundField>
+                     <asp:BoundField HeaderText="Sistema"      ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100px" DataField="sSistema"       SortExpression="sSistema"></asp:BoundField>
 							<asp:TemplateField ItemStyle-HorizontalAlign ="Center" ItemStyle-Width="20px">
 								<ItemTemplate>
                            <asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
@@ -90,7 +92,7 @@
       <tr>
          <td>
             <asp:Panel id="pnlAction" runat="server" CssClass="ActionBlock" >
-               <asp:Panel id="pnlActionContent" runat="server" CssClass="ActionContent" style="top:200px;" Height="210px" Width="400px">
+               <asp:Panel id="pnlActionContent" runat="server" CssClass="ActionContent" style="top:200px;" Height="250px" Width="400px">
                   <asp:Panel ID="pnlActionHeader" runat="server" CssClass="ActionHeader">
                      <table border="0" cellpadding="0" cellspacing="0" style="height:100%; width:100%">
 								<tr>
@@ -117,6 +119,12 @@
 									   <td><asp:TextBox ID="txtActionDescripcion" runat="server" CssClass="Textarea_General" height="50px" MaxLength="200" TextMode="MultiLine" width="310px" ></asp:TextBox></td>
 								   </tr>
 								   <tr style="height:5px;"><td colspan="3"></td></tr>
+                           <tr class="trFilaItem">
+							         <td class="tdActionCeldaLeyendaItem">&nbsp;Sistema</td>
+							         <td></td>
+							         <td class="tdCeldaItem"><asp:DropDownList id="ddlActionSistema" runat="server" CssClass="DropDownList_General" width="316px" ></asp:DropDownList></td>
+						         </tr>
+                           <tr style="height:5px;"><td colspan="3"></td></tr>
 								   <tr class="trFilaItem">
 							         <td class="tdActionCeldaLeyendaItem">&nbsp;Estatus</td>
 							         <td></td>

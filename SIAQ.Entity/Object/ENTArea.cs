@@ -26,8 +26,10 @@ namespace SIAQ.Entity.Object
 		private String	_sDescripcion;		// Descripción/notas del registro
 		private String	_sNombre;			// Nombre del Area
 		private Int16	_tiActivo;			// Control de baja lógica de registro
-        private DataSet _ResultData; //Otras propiedades
-        private string _Descripcion; // Valor de Descripcion
+      private Int16  _tiSistema;			// Determina si el área se visualizará en los combos o es para uso exclusivo de sistemas
+
+      private DataSet _ResultData;     // Otras propiedades
+      private string _Descripcion;     // Valor de Descripcion
 
 		
 		 //Constructor
@@ -38,6 +40,7 @@ namespace SIAQ.Entity.Object
 			_sDescripcion = "";
 			_sNombre = "";
 			_tiActivo = 0;
+         _tiSistema = 0;
 		}
 
 
@@ -103,17 +106,28 @@ namespace SIAQ.Entity.Object
 			set { _tiActivo = value; }
 		}
 
-        public string Descripcion
-        {
-            get { return _Descripcion; }
-            set { _Descripcion = value; }
-        }
+      ///<remarks>
+      ///   <name>ENTArea.tiSistema</name>
+      ///   <create>21-Octubre-2013</create>
+      ///   <author>GCSoft - Web Project Creator BETA 1.0</author>
+      ///</remarks>
+      ///<summary>Obtiene/Asigna un valor que determina si el área se visualizará en los combos o es para uso exclusivo de sistemas</summary>
+      public Int16 tiSistema
+      {
+         get { return _tiSistema; }
+         set { _tiSistema = value; }
+      }
 
-        public DataSet ResultData
-        {
-            get { return _ResultData; }
-            set { _ResultData = value; }
-        }
+
+      public string Descripcion{
+         get { return _Descripcion; }
+         set { _Descripcion = value; }
+      }
+
+      public DataSet ResultData{
+         get { return _ResultData; }
+         set { _ResultData = value; }
+      }
 
    }
 

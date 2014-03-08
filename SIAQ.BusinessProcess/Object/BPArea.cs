@@ -23,27 +23,6 @@ namespace SIAQ.BusinessProcess.Object
 
    public class BPArea : BPBase
    {
-       protected ENTArea _AreaEntity;
-
-       public ENTArea Area
-       {
-           get { return _AreaEntity; }
-           set { _AreaEntity = value; }
-       }
-
-       public BPArea()
-       {
-           _AreaEntity = new ENTArea();
-       }
-
-       public DataSet SelectArea()
-       {
-           string ConnectionString = string.Empty;
-           DAArea DAArea = new DAArea();
-           ConnectionString = sConnectionApplication;
-           _AreaEntity.ResultData = DAArea.SelectArea(_AreaEntity, ConnectionString);
-           return _AreaEntity.ResultData;
-       }
 
       ///<remarks>
 		///   <name>BPArea.InsertArea</name>
@@ -82,7 +61,7 @@ namespace SIAQ.BusinessProcess.Object
       ///   <create>21-Octubre-2013</create>
       ///   <author>GCSoft - Web Project Creator BETA 1.0</author>
       ///</remarks>
-      ///<summary>Consulta el catálogo de Compañías</summary>
+      ///<summary>Consulta el catálogo de Áreas</summary>
       ///<param name="oENTArea">Entidad de Area con los filtros necesarios para la consulta</param>
       ///<returns>Una entidad de respuesta</returns>
       public ENTResponse SelectArea(ENTArea oENTArea){

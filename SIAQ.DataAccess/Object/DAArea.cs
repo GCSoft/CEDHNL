@@ -23,8 +23,6 @@ namespace SIAQ.DataAccess.Object
    public class DAArea
    {
 
-       protected int _ErrorId;
-       protected string _ErrorDescription;
       ///<remarks>
 		///   <name>DAArea.InsertArea</name>
 		///   <create>21-Octubre-2013</create>
@@ -61,6 +59,10 @@ namespace SIAQ.DataAccess.Object
 
          sqlPar = new SqlParameter("tiActivo", SqlDbType.TinyInt);
          sqlPar.Value = oENTArea.tiActivo;
+         sqlCom.Parameters.Add(sqlPar);
+
+         sqlPar = new SqlParameter("tiSistema", SqlDbType.TinyInt);
+         sqlPar.Value = oENTArea.tiSistema;
          sqlCom.Parameters.Add(sqlPar);
 
 			// Inicializaciones
@@ -185,6 +187,10 @@ namespace SIAQ.DataAccess.Object
 			sqlPar.Value = oENTArea.tiActivo;
 			sqlCom.Parameters.Add(sqlPar);
 
+         sqlPar = new SqlParameter("tiSistema", SqlDbType.TinyInt);
+         sqlPar.Value = oENTArea.tiSistema;
+         sqlCom.Parameters.Add(sqlPar);
+
 			// Inicializaciones
 			oENTResponse.dsResponse = new DataSet();
 			sqlDA = new SqlDataAdapter(sqlCom);
@@ -248,6 +254,10 @@ namespace SIAQ.DataAccess.Object
 			sqlPar = new SqlParameter("tiActivo", SqlDbType.TinyInt);
 			sqlPar.Value = oENTArea.tiActivo;
 			sqlCom.Parameters.Add(sqlPar);
+
+         sqlPar = new SqlParameter("tiSistema", SqlDbType.TinyInt);
+         sqlPar.Value = oENTArea.tiSistema;
+         sqlCom.Parameters.Add(sqlPar);
 
 			// Inicializaciones
 			oENTResponse.dsResponse = new DataSet();
@@ -327,48 +337,6 @@ namespace SIAQ.DataAccess.Object
 			return oENTResponse;
 		}
 
-        public DataSet SelectArea(ENTArea ENTArea, string ConnectionString)
-        {
-            DataSet ResultData = new DataSet();
-            SqlConnection Connection = new SqlConnection(ConnectionString);
-            SqlCommand Command;
-            SqlParameter Parameter;
-            SqlDataAdapter DataAdapter;
-
-            try
-            {
-
-                Command = new SqlCommand("sptblArea_Sel", Connection);
-                Command.CommandType = CommandType.StoredProcedure;
-
-                Parameter = new SqlParameter("idArea", SqlDbType.Int);
-                Parameter.Value = ENTArea.idArea;
-                Command.Parameters.Add(Parameter);
-
-                Parameter = new SqlParameter("sNombre", SqlDbType.VarChar);
-                Parameter.Value = ENTArea.sNombre;
-                Command.Parameters.Add(Parameter);
-
-                DataAdapter = new SqlDataAdapter(Command);
-                ResultData = new DataSet();
-
-                Connection.Open();
-                DataAdapter.Fill(ResultData);
-                Connection.Close();
-
-                return ResultData;
-            }
-            catch (SqlException Exception)
-            {
-                _ErrorId = Exception.Number;
-                _ErrorDescription = Exception.Message;
-
-                if (Connection.State == ConnectionState.Open)
-                    Connection.Close();
-
-                return ResultData;
-            }
-        }
    }
 
 }

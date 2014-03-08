@@ -245,12 +245,17 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
       private void SelectSubMenu_ForEdit(Int32 idSubMenu){
          ENTSubMenu oENTSubMenu = new ENTSubMenu();
 			ENTResponse oENTResponse = new ENTResponse();
+         ENTSession oENTSession;
 
 			BPSubMenu oBPSubMenu = new BPSubMenu();
 
 			try{
 
+            // Información de Sesión
+            oENTSession = (ENTSession)this.Session["oENTSession"];
+
             // Formulario
+            oENTSubMenu.idRol = oENTSession.idRol;
             oENTSubMenu.idSubMenu = idSubMenu;
             oENTSubMenu.idMenu = 0;
             oENTSubMenu.sNombre = "";

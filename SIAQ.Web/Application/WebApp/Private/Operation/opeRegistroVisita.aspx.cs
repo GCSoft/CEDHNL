@@ -74,73 +74,66 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         }
 
+        protected void SelectArea(){
 
-            protected void SelectArea(){
+            BPArea BPArea = new BPArea();
 
-                BPArea BPArea = new BPArea();
+            ddlArea.DataValueField = "idArea";
+            ddlArea.DataTextField = "sNombre";
 
-                ddlArea.DataValueField = "idArea";
-                ddlArea.DataTextField = "sNombre";
+            ddlArea.DataSource = BPArea.SelectArea();
+            ddlArea.DataBind();
+            ddlArea.Items.Insert(0, new ListItem(AllDefault, "0"));
+        }
 
-                ddlArea.DataSource = BPArea.SelectArea();
-                ddlArea.DataBind();
-                ddlArea.Items.Insert(0, new ListItem(AllDefault, "0"));
-            }
+        protected void SelectFuncionario(){
 
-            protected void SelectFuncionario(){
-
-                BPFuncionario BPFuncionario = new BPFuncionario();
+            BPFuncionario BPFuncionario = new BPFuncionario();
                 
-                ddlFuncionario.DataValueField = "FuncionarioId";
-                ddlFuncionario.DataTextField = "Nombre";
+            ddlFuncionario.DataValueField = "FuncionarioId";
+            ddlFuncionario.DataTextField = "Nombre";
 
-                ddlFuncionario.DataSource = BPFuncionario.SelectFuncionario();
-                ddlFuncionario.DataBind();
-                ddlFuncionario.Items.Insert(0, new ListItem(AllDefault, "0"));
+            ddlFuncionario.DataSource = BPFuncionario.SelectFuncionario();
+            ddlFuncionario.DataBind();
+            ddlFuncionario.Items.Insert(0, new ListItem(AllDefault, "0"));
+        }
+
+        protected void GuardarVisita(){
+            BPVisita BPVisita = new BPVisita();
+
+            BPVisita.ENTVisita.AreaId = Int32.Parse(ddlArea.SelectedValue);
+            BPVisita.ENTVisita.MotivoId = Int32.Parse(ddlMotivo.SelectedValue);
+            BPVisita.ENTVisita.FuncionarioId = Int32.Parse(ddlFuncionario.SelectedValue);
+            BPVisita.ENTVisita.UsuarioIdInsert = 1;//pendiente "verrificar como usan el id de ususario en el sistema"
+            BPVisita.ENTVisita.Observaciones = DescriptionBox.Text;
+
+            BPVisita.GuardarVisita();
+
+            if (BPVisita.ErrorId == 0) {
+                ResetearCampos();
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Guardado con éxito', 'Success', true); focusControl('" + this.DescriptionBox.ClientID + "');", true);
             }
-
-            protected void GuardarVisita(){
-
-                BPVisita BPVisita = new BPVisita();
-
-                BPVisita.ENTVisita.AreaId = Int32.Parse(ddlArea.SelectedValue);
-                BPVisita.ENTVisita.MotivoId = Int32.Parse(ddlMotivo.SelectedValue);
-                BPVisita.ENTVisita.FuncionarioId = Int32.Parse(ddlFuncionario.SelectedValue);
-                BPVisita.ENTVisita.UsuarioIdInsert = 0;//pendiente "verrificar como usan el id de ususario en el sistema"
-                BPVisita.ENTVisita.Observaciones = DescriptionBox.Text;
-
-                BPVisita.GuardarVisita();
-                if (BPVisita.ErrorId == 0) {
-
-                    ResetearCampos();
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Guardado con éxito', 'Success', true); focusControl('" + this.DescriptionBox.ClientID + "');", true);
-                }
-                else {
-
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Problema al intentar de guardar la visita', 'Success', true); focusControl('" + this.DescriptionBox.ClientID + "');", true);
-                }
-            
+            else {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Problema al intentar de guardar la visita', 'Success', true); focusControl('" + this.DescriptionBox.ClientID + "');", true);
             }
+        }
 
-            protected void ResetearCampos() { 
-            
+        protected void ResetearCampos() { 
             ddlArea.SelectedIndex = 0;
             ddlMotivo.SelectedIndex = 0;
             ddlFuncionario.SelectedIndex = 0;
             DescriptionBox.Text = "";
-            }    
+        }    
 
-            protected void SelectMotivo(){
+        protected void SelectMotivo(){
 
-                BPMotivo BPMotivo = new BPMotivo();
-                ddlMotivo.DataValueField = "MotivoId";
-                ddlMotivo.DataTextField = "Nombre";
+            BPMotivo BPMotivo = new BPMotivo();
+            ddlMotivo.DataValueField = "MotivoId";
+            ddlMotivo.DataTextField = "Nombre";
 
-                ddlMotivo.DataSource = BPMotivo.SelectMotivo();
-                ddlMotivo.DataBind();
-                ddlMotivo.Items.Insert(0, new ListItem(AllDefault, "0"));
-            }
-
-
+            ddlMotivo.DataSource = BPMotivo.SelectMotivo();
+            ddlMotivo.DataBind();
+            ddlMotivo.Items.Insert(0, new ListItem(AllDefault, "0"));
+        }
     }
 }

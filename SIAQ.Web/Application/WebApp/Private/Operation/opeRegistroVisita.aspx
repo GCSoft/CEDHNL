@@ -1,22 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeRegistroVisita.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeRegistroVisita" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
     <style type="text/css">
-        .style1
-        {
-            width: 118px;
-        }
-                
         .DetalleBox
         {
             font-family: Calibri, Verdana, Arial;
             height: 100px;
             width: 300px;
-            
-        }
-        
-        .Tamanoletra
-        {
-          font-size:11px;
         }
     </style>
 </asp:Content>
@@ -85,7 +74,7 @@
         </tr>
         <tr><td class="tdCeldaMiddleSpace"></td></tr>
         <tr>
-            <td>
+            <td style="text-align: left;">
                 <asp:Label Text="Los campos marcados con " runat="server"></asp:Label> 
                 <asp:Label CssClass="style3" Text="*" runat="server"></asp:Label>
                 <asp:Label ID="Label1" Text="son obligatorios." runat="server"></asp:Label> 

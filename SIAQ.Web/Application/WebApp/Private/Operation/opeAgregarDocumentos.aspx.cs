@@ -22,7 +22,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             protected void Page_Load(object sender, EventArgs e)
             {
                 // Se le agrega una propiedad al formulario de la página para poder subir archivos
-                Parent.Page.Form.Enctype = "multipart/form-data";
+                //Parent.Page.Form.Enctype = "multipart/form-data";
 
                 PageLoad();
             }

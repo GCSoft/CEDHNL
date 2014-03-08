@@ -244,18 +244,9 @@
             </tr>
             <tr><td class="tdCeldaMiddleSpace"></td></tr>
             <tr>
-                <td>
-                    <asp:Panel id="pnlBotones" runat="server" Width="100%">
-                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                            <tr>
-                                <td style="height:24px; text-align:left; width:130px;">
-                                    <asp:Button ID="GuardarButton" runat="server" 
-                                        Text="Guardar información de solicitud" CssClass="Button_General" width="200px" onclick="GuardarButton_Click" 
-                                     /></td>
-                                <td style="height:24px; width:530px;"></td>
-                            </tr>
-                        </table>
-                    </asp:Panel>
+                <td style="text-align: left;">
+                    <asp:Button ID="GuardarButton" runat="server" Text="Guardar información de solicitud" CssClass="Button_General" width="200px" onclick="GuardarButton_Click" />
+                    <input class="Button_General" id="RegresarButton" onclick="document.location.href='opeBusquedaSolicitud.aspx';" style="width: 125px;" type="button" value="Regresar" />
                 </td>
             </tr>
         </table>

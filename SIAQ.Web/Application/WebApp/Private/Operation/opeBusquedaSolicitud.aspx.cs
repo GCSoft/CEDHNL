@@ -89,7 +89,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             txtNumeroSolicitud.Attributes.Add("onkeypress", "javascript:return NumbersValidator(event);");
         }
 
-
         protected void SelectFuncionario()
         {
             BPFuncionario BPFuncionario = new BPFuncionario();
@@ -100,19 +99,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             ddlFuncionario.DataSource = BPFuncionario.SelectFuncionario();
             ddlFuncionario.DataBind();
             ddlFuncionario.Items.Insert(0, new ListItem(AllDefault, "0"));
-        }
-
-       //este metodo queda sin uso
-        protected void SelectContacto()
-        {
-            BPMedioComunicacion BPMedioComunicacion = new BPMedioComunicacion();
-
-            ddlFormaContacto.DataTextField = "Nombre";
-            ddlFormaContacto.DataValueField = "MedioComunicacionId";
-
-            ddlFormaContacto.DataSource = BPMedioComunicacion.SelectMedioComunicacion();
-            ddlFormaContacto.DataBind();
-            ddlFormaContacto.Items.Insert(0, new ListItem(AllDefault, "0"));
         }
 
         protected void SelectFormaContacto() {

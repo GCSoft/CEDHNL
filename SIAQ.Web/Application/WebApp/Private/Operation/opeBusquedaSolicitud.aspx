@@ -20,9 +20,10 @@
     </style>
 
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
    <table border="0" cellpadding="0" cellspacing="0" width="100%">
-      <tr>
+        <tr>
 			<td class="tdCeldaTituloEncabezado" style="background-image:url('../../../../Include/Image/Web/BarraTitulo.png');">
 				Busqueda de Solicitudes
 			</td>
@@ -88,8 +89,7 @@
                <table border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tr>
                      <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="cmdGuardar" runat="server" Text="Buscar" OnClick="SearchButton_Click"  CssClass="Button_General" width="125px" /></td>
-                     <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="cmdRegresar" 
-                             runat="server" Text="Cancelar" CssClass="Button_General" width="125px" 
+                     <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="cmdRegresar" runat="server" Text="Regresar" CssClass="Button_General" width="125px" 
                              onclick="cmdRegresar_Click" /></td>
 					<td style="height:24px; width:530px;"></td>
                   </tr>
@@ -144,7 +144,7 @@
                             </asp:BoundField>
                             <asp:TemplateField HeaderText="Editar">
                                 <ItemTemplate>
-                                    <asp:LinkButton CommandArgument='<%#Eval("SolicitudId")%>' CommandName="Editar" ID="SolicitudLink" runat="server" Text='Editar' Width="40px"></asp:LinkButton>
+                                    <asp:ImageButton ID="imgEdit" CommandArgument='<%#Eval("SolicitudId")%>' CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>

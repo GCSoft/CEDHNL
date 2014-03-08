@@ -61,7 +61,24 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         #region "Methods"
             private void GuardarSolicitud()
             {
+                //GuardarSolicitud(int.Parse(SolicitudIdHidden.Value), int.Parse(LugarHechosList.SelectedValue), DireccionHechosBox.Text.Trim(), AsuntoBox.Text.Trim());
+            }
 
+            private void GuardarSolicitud(int SolicitudId, int LugarHechosId, string DireccionHechos, string Observaciones)
+            {
+                BPSolicitud SolicitudProcess = new BPSolicitud();
+
+                SolicitudProcess.SolicitudEntity.SolicitudId = SolicitudId;
+                SolicitudProcess.SolicitudEntity.LugarHechosId = LugarHechosId;
+                SolicitudProcess.SolicitudEntity.DireccionHechos = DireccionHechos;
+                SolicitudProcess.SolicitudEntity.Observaciones = Observaciones;
+
+                SolicitudProcess.SaveSolicitudGeneral();
+
+                if (SolicitudProcess.ErrorId == 0)
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('La información fue guardada con éxito!', 'Success', true);", true);
+                else
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + SolicitudProcess.ErrorDescription + "', 'Error', true);", true);
             }
 
             private void PageLoad()

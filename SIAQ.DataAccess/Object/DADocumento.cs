@@ -30,6 +30,15 @@ namespace SIAQ.DataAccess.Object
             get { return _ErrorDescription; }
         }
 
+        /// <summary>
+        ///     Constructor de la clase.
+        /// </summary>
+        public DADocumento()
+        {
+            _ErrorId = 0;
+            _ErrorDescription = string.Empty;
+        }
+
         #region "Method"
             /// <summary>
             ///     Guarda un documento en el repositorio.

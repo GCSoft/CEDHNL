@@ -33,19 +33,19 @@ namespace SIAQ.DataAccess.Object
         }
 
         ///<remarks>
-        ///   <name>DASolicitud.searchSolicitud</name>
+        ///   <name>DASolicitud.deleteSolicitud</name>
         ///   <create>27/ene/2014</create>
         ///   <author>Generador</author>
         ///</remarks>
-        ///<summary>Metodo para obtener las Solicitud del sistema</summary>
-        public ENTResponse searchSolicitud(ENTSolicitud entSolicitud)
+        ///<summary>Metodo para eliminar de Solicitud del sistema</summary>
+        public ENTResponse deleteSolicitud(ENTSolicitud entSolicitud)
         {
             ENTResponse oENTResponse = new ENTResponse();
             DataSet ds = new DataSet();
             // Transacción
             try
             {
-                ds = dbs.ExecuteDataSet("SolicitudSel");
+                dbs.ExecuteDataSet("SolicitudDel");
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)
@@ -99,51 +99,19 @@ namespace SIAQ.DataAccess.Object
         }
 
         ///<remarks>
-        ///   <name>DASolicitud.updateSolicitud</name>
+        ///   <name>DASolicitud.searchSolicitud</name>
         ///   <create>27/ene/2014</create>
         ///   <author>Generador</author>
         ///</remarks>
-        ///<summary>Metodo que actualiza Solicitud del sistema</summary>
-        public ENTResponse updateSolicitud(ENTSolicitud entSolicitud)
+        ///<summary>Metodo para obtener las Solicitud del sistema</summary>
+        public ENTResponse searchSolicitud(ENTSolicitud entSolicitud)
         {
             ENTResponse oENTResponse = new ENTResponse();
             DataSet ds = new DataSet();
             // Transacción
             try
             {
-                dbs.ExecuteDataSet("SolicitudUpd");
-                oENTResponse.dsResponse = ds;
-            }
-            catch (SqlException sqlEx)
-            {
-                oENTResponse.ExceptionRaised(sqlEx.Message);
-            }
-            catch (Exception ex)
-            {
-                oENTResponse.ExceptionRaised(ex.Message);
-            }
-            finally
-            {
-            }
-            // Resultado
-            return oENTResponse;
-
-        }
-
-        ///<remarks>
-        ///   <name>DASolicitud.deleteSolicitud</name>
-        ///   <create>27/ene/2014</create>
-        ///   <author>Generador</author>
-        ///</remarks>
-        ///<summary>Metodo para eliminar de Solicitud del sistema</summary>
-        public ENTResponse deleteSolicitud(ENTSolicitud entSolicitud)
-        {
-            ENTResponse oENTResponse = new ENTResponse();
-            DataSet ds = new DataSet();
-            // Transacción
-            try
-            {
-                dbs.ExecuteDataSet("SolicitudDel");
+                ds = dbs.ExecuteDataSet("SolicitudSel");
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)
@@ -344,6 +312,84 @@ namespace SIAQ.DataAccess.Object
                     Connection.Close();
 
                 return ResultData;
+            }
+        }
+
+        ///<remarks>
+        ///   <name>DASolicitud.updateSolicitud</name>
+        ///   <create>27/ene/2014</create>
+        ///   <author>Generador</author>
+        ///</remarks>
+        ///<summary>Metodo que actualiza Solicitud del sistema</summary>
+        public ENTResponse updateSolicitud(ENTSolicitud entSolicitud)
+        {
+            ENTResponse oENTResponse = new ENTResponse();
+            DataSet ds = new DataSet();
+            // Transacción
+            try
+            {
+                dbs.ExecuteDataSet("SolicitudUpd");
+                oENTResponse.dsResponse = ds;
+            }
+            catch (SqlException sqlEx)
+            {
+                oENTResponse.ExceptionRaised(sqlEx.Message);
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+            finally
+            {
+            }
+            // Resultado
+            return oENTResponse;
+        }
+
+        /// <summary>
+        ///     Actualiza la información del detalle de la solicitud.
+        /// </summary>
+        /// <param name="ENTSolicitud">Entidad de la solicitud.</param>
+        /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
+        public void UpdateSolicitudGeneral(ENTSolicitud ENTSolicitud, string ConnectionString)
+        {
+            DataSet ResultData = new DataSet();
+            SqlCommand Command;
+            SqlParameter Parameter;
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+
+            try
+            {
+                Command = new SqlCommand("UpdateSolicitudGeneral", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                Parameter = new SqlParameter("SolicitudId", SqlDbType.Int);
+                Parameter.Value = ENTSolicitud.SolicitudId;
+                Command.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("LugarHechosId", SqlDbType.Int);
+                Parameter.Value = ENTSolicitud.LugarHechosId;
+                Command.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("DireccionHechos", SqlDbType.VarChar);
+                Parameter.Value = ENTSolicitud.DireccionHechos;
+                Command.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("Observaciones", SqlDbType.VarChar);
+                Parameter.Value = ENTSolicitud.Observaciones;
+                Command.Parameters.Add(Parameter);
+
+                Connection.Open();
+                Command.ExecuteNonQuery();
+                Connection.Close();
+            }
+            catch (SqlException Exception)
+            {
+                _ErrorId = Exception.Number;
+                _ErrorDescription = Exception.Message;
+
+                if (Connection.State == ConnectionState.Open)
+                    Connection.Close();
             }
         }
     }

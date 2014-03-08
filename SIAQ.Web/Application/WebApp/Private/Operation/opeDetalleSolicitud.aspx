@@ -235,7 +235,7 @@
                         </tr>
                         <tr>
                             <td colspan="4" style="background-color:Gray;">
-                            <asp:TextBox ID="txtAsunto" runat="server" TextMode="MultiLine" CssClass="Textarea_General" Width="800px"></asp:TextBox>
+                            <asp:TextBox ID="AsuntoBox" runat="server" TextMode="MultiLine" CssClass="Textarea_General" Width="800px"></asp:TextBox>
                             </td>
                         </tr>
                     </table>

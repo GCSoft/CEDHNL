@@ -19,7 +19,7 @@ namespace SIAQ.Entity.Object
         private string _Nombre;
         private DataSet _ResultData; //Otras propiedades
         private string _Observaciones;
-        
+        private string _DireccionHechos;
         
 
         public ENTSolicitud()
@@ -37,6 +37,7 @@ namespace SIAQ.Entity.Object
             _Nombre = "";
             _Observaciones = "";
             _FormaContactoId = 0;
+            _DireccionHechos = string.Empty;
         }
         ///<remarks>
         ///   <name>Solicitud.SolicitudId</name>
@@ -151,6 +152,15 @@ namespace SIAQ.Entity.Object
         {
             get { return _FormaContactoId; }
             set { _FormaContactoId = value; }
+        }
+
+        /// <summary>
+        ///     Dirección de los hechos.
+        /// </summary>
+        public string DireccionHechos
+        {
+            get { return _DireccionHechos; }
+            set { _DireccionHechos = value; }
         }
     }
 }

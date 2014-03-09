@@ -3,6 +3,8 @@
 <%@ Register src="../../../../Include/WebUserControls/wucCalendar.ascx" tagname="wucCalendar" tagprefix="uc1" %>
 <%@ Register src="../../../../Include/WebUserControls/wucTimeMask.ascx" tagname="wucTimeMask" tagprefix="uc2" %>
 
+<%@ Register src="../../../../Include/WebUserControls/wucBusquedaCiudadano.ascx" tagname="wucBusquedaCiudadano" tagprefix="uc3" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
     <script type="text/javascript" language="javascript">
 
@@ -12,7 +14,7 @@
         // Funciones del programador
 
         function validateForm() {
-            var txtNombre = document.getElementById('cntPrivateTemplateBody_txtNombre');
+            var txtCiudadano = document.getElementById('cntPrivateTemplateBody_wucBusquedaCiudadano1_txtCiudadano');
             var txtObservaciones = document.getElementById('cntPrivateTemplateBody_txtObservaciones');
             var ddlAbogado = document.getElementById('cntPrivateTemplateBody_ddlAbogado');
 
@@ -21,20 +23,15 @@
             var iAbogado;
 
             // Inicializacion de variables
-            sNombre = txtNombre.value.trim();
+            sNombre = txtCiudadano.value.trim();
             sObservaciones = txtObservaciones.value.trim();
             iAbogado = ddlAbogado.value;
 
             // Espacio en blanco
+
             if (sNombre == "") {
                 tinyboxMessage('El campo Nombre es obligatorio', 'Fail', true);
-                focusControl('cntPrivateTemplateBody_txtNombre');
-                return false;
-            }
-
-            if (sObservaciones == "") {
-                tinyboxMessage('El campo Observaciones es obligatorio', 'Fail', true);
-                focusControl('cntPrivateTemplateBody_txtObservaciones');
+                focusControl('cntPrivateTemplateBody_wucBusquedaCiudadano1_txtCiudadano');
                 return false;
             }
 
@@ -44,65 +41,63 @@
                 return false;
             }
 
+            if (sObservaciones == "") {
+                tinyboxMessage('El campo Observaciones es obligatorio', 'Fail', true);
+                focusControl('cntPrivateTemplateBody_txtObservaciones');
+                return false;
+            }
+
+            
             return true;
         }
     </script>
     
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
-   <table border="0" cellpadding="0" cellspacing="0" width="100%">
-      <tr>
-			<td class="tdCeldaTituloEncabezado" style="background-image:url('../../../../Include/Image/Web/BarraTitulo.png');">
-				Registro de Solicitudes
-			</td>
-		</tr>
-      <tr><td class="tdCeldaMiddleSpace_Title"></td></tr>
-      <tr>
-         <td>
+   <table class="GeneralTable">
+        <tr>
+            <td class="tdCeldaTituloEncabezado" style="background-image:url('../../../../Include/Image/Web/BarraTitulo.png');">
+                Registro de Solicitudes
+            </td>
+        </tr>
+        <tr>
+            <td class="SubTitulo"><asp:Label ID="Label2" runat="server" Text="Proporcione la siguiente información para registrar una nueva visita en el sistema."></asp:Label></td>
+        </tr>
+        <tr>
+            <td>
             <asp:Panel id="pnlFormulario" runat="server" Visible="true" Width="100%">
-					<table border="0" cellpadding="0" cellspacing="0" width="100%">
-						<tr class="trFilaItem">
-							<td class="tdCeldaLeyendaItemFondoBlanco">&nbsp;Fecha</td>
-							<td style="width:5px;"></td>
-							<td class="tdCeldaItem">
-                                <uc1:wucCalendar ID="txtFechaCaptura" runat="server" />
+			        <table  border="0" style="width: 460px">
+				        <tr>
+					        <td class="Etiqueta">Fecha</td>
+					        <td class="Espacio"></td>
+					        <td class="Campo"><uc1:wucCalendar ID="txtFechaCaptura" runat="server" /></td>
+				        </tr>
+                        <tr>
+					        <td class="Etiqueta">Hora</td>
+					        <td class="Espacio"></td>
+					        <td class="Campo"><uc2:wucTimeMask ID="txtFechaCargado" runat="server" /></td>
+				        </tr>
+                        <tr>
+					        <td class="Etiqueta">Nombre</td>
+					        <td class="VinetaObligatorio">*</td>
+					        <td class="Campo">
+                                <uc3:wucBusquedaCiudadano ID="wucBusquedaCiudadano1" runat="server" />
                             </td>
-						</tr>
-                        <tr style="height:3px;"><td colspan="3"></td></tr>
-                        <tr class="trFilaItem">
-							<td class="tdCeldaLeyendaItemFondoBlanco">&nbsp;Hora</td>
-							<td style="width:5px;"></td>
-							<td class="tdCeldaItem">                              
-                                <uc2:wucTimeMask ID="txtFechaCargado" runat="server" />
-                            </td>
-						</tr>
-                        <tr style="height:3px;"><td colspan="3"></td></tr>
-                         <tr class="trFilaItem">
-							<td class="tdCeldaLeyendaItemFondoBlanco">&nbsp;Nombre</td>
-							<td style="width:5px;"></td>
-							<td class="tdCeldaItem">
-                                <asp:TextBox ID="txtNombre" runat="server" CssClass="Textbox_General" width="177px" MaxLength="50"></asp:TextBox>&nbsp;&nbsp;<asp:Button 
-                                    ID="btnBuscar" runat="server"  Width="30px" Text="..." 
-                                    onclick="btnBuscar_Click"></asp:Button>
-                            </td>
-						</tr>
-                        <tr style="height:3px;"><td colspan="3"></td></tr>
-                        <tr class="trFilaItem">
-							<td class="tdCeldaLeyendaItemFondoBlanco">&nbsp;Abogado</td>
-							<td style="width:5px;"></td>
-							<td class="tdCeldaItem"><asp:DropDownList ID="ddlAbogado" runat="server" CssClass="DropDownList_General" width="182px" ></asp:DropDownList>&nbsp;<font class="MarcadorObligatorio">*</font></td>
-						</tr>
-                        <tr style="height:3px;"><td colspan="3"></td></tr>
-                        <tr class="trFilaItem">
-							<td class="tdCeldaLeyendaItemFondoBlanco">&nbsp;Observaciones</td>
-							<td style="width:5px;"></td>
-							<td class="tdCeldaItem"><asp:TextBox ID="txtObservaciones" runat="server" CssClass="Textarea_General" width="300px" TextMode="MultiLine" MaxLength="300"></asp:TextBox>&nbsp;<font class="MarcadorObligatorio">&nbsp;*</font></td>
-						</tr>
-                        <tr style="height:3px;"><td colspan="3"></td></tr>
-                        </table>
-             </asp:Panel>
-         </td>
-      </tr>
+				        </tr>
+                        <tr>
+					        <td class="Etiqueta">Abogado</td>
+					        <td class="VinetaObligatorio">*</td>
+					        <td class="Campo"><asp:DropDownList ID="ddlAbogado" runat="server" CssClass="DropDownList_General" width="182px" ></asp:DropDownList></td>
+				        </tr>
+                        <tr>
+					        <td class="Etiqueta">Observaciones</td>
+					        <td class="VinetaObligatorio">*</td>
+					        <td class="Campo"><asp:TextBox ID="txtObservaciones" runat="server" CssClass="Textarea_General" width="300px" TextMode="MultiLine" MaxLength="300"></asp:TextBox></td>
+				        </tr>
+                    </table>
+                </asp:Panel>
+            </td>
+        </tr>
       <tr><td class="tdCeldaMiddleSpace"></td></tr>
       <tr>
          <td>
@@ -118,12 +113,12 @@
          </td>
       </tr>
       <tr><td class="tdCeldaMiddleSpace"></td></tr>
-      <tr>
-         <td>
-            <asp:Panel id="pnlGrid" runat="server" Width="100%">
-               
-            </asp:Panel>
-         </td>
-      </tr>
+        <tr>
+            <td>
+                <asp:Label Text="Los campos marcados con " runat="server"></asp:Label> 
+                <asp:Label CssClass="style3" Text="*" runat="server"></asp:Label>
+                <asp:Label ID="Label4" Text="son obligatorios." runat="server"></asp:Label> 
+            </td>
+        </tr>
    </table>
 </asp:Content>

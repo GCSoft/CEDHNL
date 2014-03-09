@@ -79,7 +79,7 @@ namespace SIAQ.DataAccess.Object
             // Transacción
             try
             {
-                ds = dbs.ExecuteDataSet("spSolicitud_Ins", oENTSolicitud.FuncinarioId, oENTSolicitud.CalificacionId, oENTSolicitud.TipoSolicitudId, oENTSolicitud.LugarHechosId, oENTSolicitud.EstatusId, oENTSolicitud.Numero, oENTSolicitud.Fecha, oENTSolicitud.Nombre, oENTSolicitud.Observaciones);
+                ds = dbs.ExecuteDataSet("spSolicitud_Ins", oENTSolicitud.FuncinarioId, oENTSolicitud.CalificacionId, oENTSolicitud.TipoSolicitudId, oENTSolicitud.LugarHechosId, oENTSolicitud.EstatusId, oENTSolicitud.Fecha, oENTSolicitud.Nombre, oENTSolicitud.Observaciones, oENTSolicitud.CiudadanoId);
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)

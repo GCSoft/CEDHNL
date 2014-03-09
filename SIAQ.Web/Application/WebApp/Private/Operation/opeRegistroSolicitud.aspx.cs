@@ -19,47 +19,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
        {
 
            this.ddlAbogado.SelectedValue = "0";
-           this.txtNombre.Text = "";
+           wucBusquedaCiudadano1.Text = "";
            this.txtObservaciones.Text = "";
            this.txtFechaCargado.Tiempo.Insert(0, "00:00");
-       }
-
-       private void searchCiudadano()
-       {
-           BPCiudadano oBPCiudadano = new BPCiudadano();
-           ENTCiudadano oENTCiudadano = new ENTCiudadano();
-           ENTResponse oENTResponse = new ENTResponse();
-
-           try
-           {
-
-               // Formulario
-               oENTCiudadano.Nombre = this.txtNombre.Text.Trim();
-
-               // Transacción
-               oENTResponse = oBPCiudadano.searchCiudadano(oENTCiudadano);
-
-               // Validación de error en la consulta
-               if (oENTResponse.GeneratesException)
-               {
-                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sErrorMessage + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
-                   return;
-               }
-
-               // Mensaje de la base de datos
-               if (oENTResponse.sMessage != "")
-               {
-                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Success', true); focusControl('" + this.txtNombre.ClientID + "');", true);
-                   return;
-               }
-
-
-           }
-           catch (Exception ex)
-           {
-               ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
-           }
-
        }
 
        private void selectFuncionario()
@@ -77,14 +39,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                // Validación de error en la consulta
                if (oENTResponse.GeneratesException)
                {
-                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sErrorMessage + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sErrorMessage + "', 'Fail', true);", true);
                    return;
                }
 
                // Mensaje de la base de datos
                if (oENTResponse.sMessage != "")
                {
-                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Success', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Success', true);", true);
 
                }
 
@@ -101,7 +63,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
            }
            catch (Exception ex)
            {
-               ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+               ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true);", true);
            }
 
        }
@@ -114,15 +76,20 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
            try
            {
+               // Validación cambio de nombre
+               if (wucBusquedaCiudadano1.Text != wucBusquedaCiudadano1.NombreCiud)
+               {
+                   wucBusquedaCiudadano1.CiudadanoID = 0;
+               }
 
                // Formulario
-               oENTSolicitud.FuncinarioId = 1; //Int32.Parse(this.ddlAbogado.SelectedValue);
-               oENTSolicitud.CalificacionId = 0;
+               oENTSolicitud.FuncinarioId = Int32.Parse(this.ddlAbogado.SelectedValue);
+               oENTSolicitud.CalificacionId = 1;
                oENTSolicitud.TipoSolicitudId = 1;
-               oENTSolicitud.LugarHechosId = 0;
+               oENTSolicitud.LugarHechosId = 5;
                oENTSolicitud.EstatusId = 1;
-               oENTSolicitud.Numero = 2;
-               oENTSolicitud.Nombre = this.txtNombre.Text.Trim();
+               oENTSolicitud.CiudadanoId = wucBusquedaCiudadano1.CiudadanoID;
+               oENTSolicitud.Nombre = wucBusquedaCiudadano1.Text;
                oENTSolicitud.Fecha = this.txtFechaCaptura.EndDate;
                oENTSolicitud.Observaciones = this.txtObservaciones.Text.Trim();
 
@@ -132,13 +99,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                // Validación de error
                if (oENTResponse.GeneratesException)
                {
-                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sErrorMessage + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sErrorMessage + "', 'Fail', true);;", true);
                    return;
                }
 
                if (oENTResponse.sMessage != "")
                {
-                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Success', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Success', true);", true);
                    return;
                }
 
@@ -146,12 +113,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                Clear();
 
                // Mensaje de Exito
-               ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Se registro la solicitud exitosamente', 'Success', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+               ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Se registro la solicitud exitosamente', 'Success', true);", true);
 
            }
            catch (Exception ex)
            {
-               ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+               ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true);", true);
            }
        }
 
@@ -177,15 +144,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
            }
            catch (Exception ex)
            {
-               ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+               ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true);", true);
            }
 
 
-       }
-
-       protected void btnBuscar_Click(object sender, EventArgs e)
-       {
-           searchCiudadano();
        }
 
        protected void btnGuardar_Click(object sender, EventArgs e)

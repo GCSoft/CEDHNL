@@ -20,7 +20,8 @@ namespace SIAQ.Entity.Object
         private DataSet _ResultData; //Otras propiedades
         private string _Observaciones;
         private string _DireccionHechos;
-        
+
+        private int _CiudadanoId;                   // Identificador unico del ciudadano
 
         public ENTSolicitud()
         {
@@ -38,6 +39,7 @@ namespace SIAQ.Entity.Object
             _Observaciones = "";
             _FormaContactoId = 0;
             _DireccionHechos = string.Empty;
+            _CiudadanoId = 0;
         }
         ///<remarks>
         ///   <name>Solicitud.SolicitudId</name>
@@ -162,5 +164,12 @@ namespace SIAQ.Entity.Object
             get { return _DireccionHechos; }
             set { _DireccionHechos = value; }
         }
+
+        public int CiudadanoId
+        {
+            get { return _CiudadanoId; }
+            set { _CiudadanoId = value; }
+        }
+
     }
 }

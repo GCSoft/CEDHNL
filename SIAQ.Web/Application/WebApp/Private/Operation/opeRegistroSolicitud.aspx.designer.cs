@@ -13,6 +13,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
     public partial class opeRegistroSolicitud {
         
         /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+        
+        /// <summary>
         /// pnlFormulario control.
         /// </summary>
         /// <remarks>
@@ -40,22 +49,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::SafeTransfere.Web.Include.WebUserControls.wucTimeMask txtFechaCargado;
         
         /// <summary>
-        /// txtNombre control.
+        /// wucBusquedaCiudadano1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombre;
-        
-        /// <summary>
-        /// btnBuscar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscar;
+        protected global::SIAQ.Web.Include.WebUserControls.wucBusquedaCiudadano wucBusquedaCiudadano1;
         
         /// <summary>
         /// ddlAbogado control.
@@ -103,12 +103,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.Button btnRegresar;
         
         /// <summary>
-        /// pnlGrid control.
+        /// Label4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlGrid;
+        protected global::System.Web.UI.WebControls.Label Label4;
     }
 }

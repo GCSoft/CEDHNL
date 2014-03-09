@@ -169,7 +169,7 @@
               <tr>
                 <td class="MiddleSpace"></td>
                 <td>
-                     <table width="100%" border="0" cellpadding="0" cellspacing="0"">
+                     <table width="100%" border="0" cellpadding="0" cellspacing="0">
                           <tr>
                             <td style="background-color:#DDDDFF; height:30px; font-size:10px; border:0px; text-align:center;"> &nbsp;Ciudadanos agregados a la Solicitud&nbsp;</td>
                           </tr>
@@ -178,7 +178,14 @@
                                <asp:GridView CssClass="gv" id="gvCiudadanosAgregados" runat="server" AllowPaging="false" AllowSorting="false" AutoGenerateColumns="False"
                                  DataKeyNames="CiudadanoId">
                                  <EmptyDataTemplate>
-
+                                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                      <tr>
+                                        <td style="font-size:9.5px; text-align:center;">No se han agregado ciudadanos a la solicitud</td>
+                                      </tr>
+                                      <tr>
+                                        <td style="height:130px;"></td>
+                                      </tr>
+                                    </table>
                                  </EmptyDataTemplate>
                                  <Columns>
                                  <asp:BoundField HeaderText="Nombre" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="170px" DataField="NombreCompleto"></asp:BoundField>

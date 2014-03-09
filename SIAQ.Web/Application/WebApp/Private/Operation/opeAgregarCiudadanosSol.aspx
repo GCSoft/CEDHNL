@@ -180,7 +180,7 @@
                                  <EmptyDataTemplate>
                                     <table width="100%" border="0" cellpadding="0" cellspacing="0">
                                       <tr>
-                                        <td style="font-size:9.5px; text-align:center;">No se han agregado ciudadanos a la solicitud</td>
+                                        <td style="font-size:9.5px; text-align:center;"> No se han agregado ciudadanos a la solicitud</td>
                                       </tr>
                                       <tr>
                                         <td style="height:130px;"></td>

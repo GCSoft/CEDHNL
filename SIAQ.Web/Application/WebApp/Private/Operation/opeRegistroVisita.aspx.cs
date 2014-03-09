@@ -126,13 +126,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         }
 
         protected void SelectFuncionario(){
-
+            
             BPFuncionario BPFuncionario = new BPFuncionario();
                 
             ddlFuncionario.DataValueField = "FuncionarioId";
             ddlFuncionario.DataTextField = "Nombre";
 
-            ddlFuncionario.DataSource = BPFuncionario.SelectFuncionario();
+            //ddlFuncionario.DataSource = BPFuncionario.SelectFuncionario();
+
+            ddlFuncionario.DataSource = null;
             ddlFuncionario.DataBind();
             ddlFuncionario.Items.Insert(0, new ListItem(AllDefault, "0"));
         }

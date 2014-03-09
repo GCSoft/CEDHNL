@@ -580,6 +580,7 @@
     </Compile>
     <Compile Include="Include\WebUserControls\wucBusquedaUsuario.ascx.cs">
       <DependentUpon>wucBusquedaUsuario.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Include\WebUserControls\wucBusquedaUsuario.ascx.designer.cs">
       <DependentUpon>wucBusquedaUsuario.ascx</DependentUpon>

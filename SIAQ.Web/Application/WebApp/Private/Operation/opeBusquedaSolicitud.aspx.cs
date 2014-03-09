@@ -17,7 +17,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         protected void cmdRegresar_Click(object sender, EventArgs e)
         {
-             Response.Redirect("/Application/WebApp/Private/Home/AppIndex.aspx");
+            Response.Redirect("/Application/WebApp/Private/Operation/opeInicio.aspx");
         }
 
         protected void gvSolicitud_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -49,6 +49,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             PageLoad();
         }
 
+       /*Como se cambo la arquitectura de a tabla de funcionario este select tiene conflicto ya que no encuentra ni el nombre ni e apeli
+        *apellido paterno de funcionario se quedar asi hasta que se resuelva que onda con la tabla funcionario*/
         protected void BuscarSolicitud(string NumeroSolicitud, string Ciudadano)
         {
             BPSolicitud BPSolicitud = new BPSolicitud();
@@ -90,16 +92,20 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         }
 
         protected void SelectFuncionario()
-        {
+        {/*Alguien cambio la estructura de la tabla de Funcionario, este metodo se quedara pendiente hasta que me digan como 
+          * quedará el diseño de la BD
+          * se mandara siempre el valor 0 como parametro de FuncionarioId para hacer las pruebas
             BPFuncionario BPFuncionario = new BPFuncionario();
 
             ddlFuncionario.DataValueField = "FuncionarioId";
-            ddlFuncionario.DataTextField = "NombreApellido";
-
-            ddlFuncionario.DataSource = BPFuncionario.SelectFuncionario();
+            ddlFuncionario.DataTextField = "NombreApellido";*/
+            ddlFuncionario.DataSource = null;
+           /* BPFuncionario.SelectFuncionario();
+            if (BPFuncionario.Funcionario.ResultData.Tables[0].Rows.Count > 0)
+                ddlFuncionario.DataSource = BPFuncionario.Funcionario.ResultData;*/
             ddlFuncionario.DataBind();
             ddlFuncionario.Items.Insert(0, new ListItem(AllDefault, "0"));
-        }
+       }
 
         protected void SelectFormaContacto() {
 

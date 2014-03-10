@@ -190,5 +190,18 @@ namespace SIAQ.BusinessProcess.Object
             _ErrorDescription = DACiudadano.ErrorDescription;
 
         }
+
+        public void SelectCiudadanosAgregados()
+        {
+            string ConnectionString = string.Empty;
+            DACiudadano DACiudadano = new DACiudadano();
+
+            ConnectionString = sConnectionApplication;
+            _ENTCiudadano.ResultData = DACiudadano.SelectCiudadanosAgregados(_ENTCiudadano, ConnectionString);
+
+            _ErrorId = DACiudadano.ErrorId;
+            _ErrorDescription = DACiudadano.ErrorDescription;
+
+        }
     }
 }

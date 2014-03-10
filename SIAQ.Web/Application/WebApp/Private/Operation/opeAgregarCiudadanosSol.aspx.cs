@@ -44,6 +44,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
                     BPCiudadano.AgregarCiudadanoSolicitud();
 
+                    SelectCiudadanosAgregados(SolicitudId);
                     break;
 
             }
@@ -140,6 +141,23 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             {
                 gvCiudadano.DataSource = null;
                 gvCiudadano.DataBind();
+            }
+        }
+
+        protected void SelectCiudadanosAgregados(int SolicitudId)
+        {
+            BPCiudadano BPCiudadano = new BPCiudadano();
+
+            BPCiudadano.ENTCiudadano.SolicitudId = SolicitudId;
+            BPCiudadano.SelectCiudadanosAgregados();
+
+            if (BPCiudadano.ErrorId == 0)
+            {
+                if (BPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows.Count > 0)
+                {
+                    gvCiudadanosAgregados.DataSource = BPCiudadano.ENTCiudadano.ResultData;
+                    gvCiudadanosAgregados.DataBind();
+                }
             }
         }
 

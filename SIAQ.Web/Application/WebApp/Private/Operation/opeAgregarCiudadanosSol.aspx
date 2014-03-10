@@ -188,7 +188,7 @@
                                     </table>
                                  </EmptyDataTemplate>
                                  <Columns>
-                                 <asp:BoundField HeaderText="Nombre" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="170px" DataField="NombreCompleto"></asp:BoundField>
+                                 <asp:BoundField HeaderText="Nombre" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="170px" DataField="NombreApellido"></asp:BoundField>
                                  <asp:TemplateField HeaderText="Eliminar">
                                  </asp:TemplateField>
                                  </Columns>

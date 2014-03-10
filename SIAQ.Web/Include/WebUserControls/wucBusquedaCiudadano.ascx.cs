@@ -1,5 +1,5 @@
 ﻿/*---------------------------------------------------------------------------------------------------------------------------------
-' Nombre:	wucSelector_Cliente
+' Nombre:	wucBusquedaCiudadano
 ' Autor:		Daniel.Chavez
 ' Fecha:		07-Marzo-2014
 '
@@ -18,216 +18,294 @@ using System.Web.UI.WebControls;
 // Referencias manuales
 using SIAQ.BusinessProcess.Object;
 using SIAQ.Entity.Object;
+using GCSoft.Utilities.Common;
+using System.Data;
 
 namespace SIAQ.Web.Include.WebUserControls
 {
-    public partial class wucBusquedaCiudadano : System.Web.UI.UserControl
-    {
+   public partial class wucBusquedaCiudadano : System.Web.UI.UserControl
+   {
 
-        // Propiedades
-        public Int32 CiudadanoID
-        {
-            get { return SelfInt32Parse(this.hddCiudadanoID.Value); }
-            set { this.hddCiudadanoID.Value = value.ToString(); }
-        }
+      // Utilerías
+      Function utilFunction = new Function();
+      
+      // Propiedades
 
-        public String Text
-        {
-            get { return this.txtCiudadano.Text; }
-            set { this.txtCiudadano.Text = value; }
-        }
+      ///<remarks>
+      ///   <name>wucBusquedaCiudadano.CanvasID</name>
+      ///   <create>09-Marzo-2014</create>
+      ///   <author>Ruben.Cobos</author>
+      ///</remarks>
+      ///<summary>Obtiene el id del Canvas del control</summary>
+      public String CanvasID
+      {
+         get { return this.txtCiudadano.ClientID; }
+      }
 
-        public String NombreCiud
-        {
-            get { return this.hddNombre.Value; }
-            set { this.hddNombre.Value = value; }
-        }
+      public Int32 CiudadanoID
+      {
+         get { return SelfInt32Parse(this.hddCiudadanoID.Value); }
+         set { this.hddCiudadanoID.Value = value.ToString(); }
+      }
 
-        // Handlers
-        public delegate void WUCSelectorCommandEventHandler();
-        public event WUCSelectorCommandEventHandler ItemSelected;
+      public String Text
+      {
+         get { return this.txtCiudadano.Text; }
+         set { this.txtCiudadano.Text = value; }
+      }
 
-        // Funciones del programador
-        private void selectCiudadano()
-        {
-            BPCiudadano oBPCiudadano = new BPCiudadano();
-            ENTCiudadano oENTCiudadano = new ENTCiudadano();
-            ENTResponse oENTResponse = new ENTResponse();
+      public String NombreCiud
+      {
+         get { return this.hddNombre.Value; }
+         set { this.hddNombre.Value = value; }
+      }
 
-            // Limpiar mensajes anteriores
-            this.lblMessage.Text = "";
+      
+      // Handlers
 
-            try
-            {
+      public delegate void WUCSelectorCommandEventHandler();
+      public event WUCSelectorCommandEventHandler ItemSelected;
 
-                // Formulario
-                oENTCiudadano.Nombre = this.txtNombre.Text.Trim();
+      
+      // Funciones del programador
 
-                // Transacción
-                oENTResponse = oBPCiudadano.searchCiudadano(oENTCiudadano);
+      private Int32 SelfInt32Parse(String sItem)
+      {
+         Int32 iResponse;
 
-                // Validaciones
-                if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+         try
+         {
 
-                // Mensaje de la BD
-                if (oENTResponse.sMessage != "") 
-                {
-                    this.lblMessage.Text = oENTResponse.sMessage;
-                    this.gvCiudadano.DataSource = null;
-                    this.gvCiudadano.DataBind();
-                    return;
-                }
+               iResponse = Int32.Parse(sItem);
 
-                // Llenado de contClientees
-                this.gvCiudadano.DataSource = oENTResponse.dsResponse.Tables[1];
-                this.gvCiudadano.DataBind();
+         }
+         catch (Exception)
+         {
+               iResponse = 0;
+         }
+
+         return iResponse;
+      }
 
 
+      // Runtinas del programador
+
+      private void selectCiudadano(){
+         BPCiudadano oBPCiudadano = new BPCiudadano();
+         ENTCiudadano oENTCiudadano = new ENTCiudadano();
+         ENTResponse oENTResponse = new ENTResponse();
+
+         // Limpiar mensajes anteriores
+         this.lblMessage.Text = "";
+
+         try
+         {
+
+            // Formulario
+            oENTCiudadano.Nombre = this.txtNombre.Text.Trim();
+
+            // Transacción
+            oENTResponse = oBPCiudadano.searchCiudadano(oENTCiudadano);
+
+            // Validaciones
+            if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+
+            // Mensaje de la BD
+            if (oENTResponse.sMessage != ""){
+               this.lblMessage.Text = oENTResponse.sMessage;
+               this.gvCiudadano.DataSource = null;
+               this.gvCiudadano.DataBind();
+               ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtNombre.ClientID + "');", true);
+               return;
             }
-            catch (Exception ex)
-            { throw (ex); }
-        }
 
-        private Int32 SelfInt32Parse(String sItem)
-        {
-            Int32 iResponse;
+            // Llenado de contClientees
+            this.gvCiudadano.DataSource = oENTResponse.dsResponse.Tables[1];
+            this.gvCiudadano.DataBind();
 
-            try
-            {
+            // Foco
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtNombre.ClientID + "');", true);
 
-                iResponse = Int32.Parse(sItem);
+         }catch (Exception ex){
+            throw (ex);
+         }
+      }
 
-            }
-            catch (Exception)
-            {
-                iResponse = 0;
-            }
+      private void ShowFilter(){
+         try
+         {
 
-            return iResponse;
-        }
+            // Mostrar filtro
+            this.pnlAction.Visible = true;
 
-        // Eventos de la pagina
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            // Validación. Solo la primera vez que se ejecuta la página
-            if (this.IsPostBack) { return; }
+            // Estado inicial del grid
+            this.gvCiudadano.DataSource = null;
+            this.gvCiudadano.DataBind();
 
-            // Lógica de la página
-            try {
+            // Foco
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtNombre.ClientID + "');", true);
+
+         }catch (Exception ex){
+            throw (ex);
+         }
+      }
+
+      
+      // Eventos de la pagina
+      
+      protected void Page_Load(object sender, EventArgs e){
+
+         // Validación. Solo la primera vez que se ejecuta la página
+         if (this.IsPostBack) { return; }
+
+         // Lógica de la página
+         try {
                 
-                // Estado inicial
-                this.pnlAction.Visible = false;
+               // Estado inicial
+               this.pnlAction.Visible = false;
                 
+         }
+         catch (Exception ex){
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true);", true);
+         }
+      }
 
-            }
-            catch (Exception ex)
-            { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true);", true); }
-        }
+      protected void btnBuscar_Click(object sender, EventArgs e){
+         try
+         {
 
-        protected void btnBuscar_Click(object sender, EventArgs e)
-        {
+            // Buscar ciudadanos
             selectCiudadano();
-        }
 
-        protected void gvCiudadano_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            String strCommand = "";
-            Int32 intRow = 0;
+         }catch (Exception ex){
+            this.lblMessage.Text = ex.Message;
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtNombre.ClientID + "');", true);
+         }
+      }
 
-            try
-            {
+      protected void gvCiudadano_RowCommand(object sender, GridViewCommandEventArgs e){
+         String strCommand = "";
+         Int32 intRow = 0;
 
-                // Opción seleccionada
-                strCommand = e.CommandName.ToString();
+         try
+         {
 
-                // Se dispara el evento RowCommand en el ordenamiento
-                if (strCommand == "Sort") { return; }
+            // Opción seleccionada
+            strCommand = e.CommandName.ToString();
 
-                // Fila
-                intRow = Int32.Parse(e.CommandArgument.ToString());
+            // Se dispara el evento RowCommand en el ordenamiento
+            if (strCommand == "Sort") { return; }
 
-                // Datakeys
-                this.hddCiudadanoID.Value = this.gvCiudadano.DataKeys[intRow]["CiudadanoId"].ToString();
+            // Fila
+            intRow = Int32.Parse(e.CommandArgument.ToString());
 
-                // Mostrar nombre
-                this.txtCiudadano.Text = this.gvCiudadano.DataKeys[intRow]["NombreCiudadano"].ToString();
-                this.hddNombre.Value = this.gvCiudadano.DataKeys[intRow]["NombreCiudadano"].ToString();
+            // Datakeys
+            this.hddCiudadanoID.Value = this.gvCiudadano.DataKeys[intRow]["CiudadanoId"].ToString();
 
-                // limpiar formulario
-                this.txtNombre.Text = "";
+            // Mostrar nombre
+            this.txtCiudadano.Text = this.gvCiudadano.DataKeys[intRow]["NombreCiudadano"].ToString();
+            this.hddNombre.Value = this.gvCiudadano.DataKeys[intRow]["NombreCiudadano"].ToString();
 
-                // Esconder control
-                this.pnlAction.Visible = false;
+            // limpiar formulario
+            this.txtNombre.Text = "";
 
-                // Generar evento
-                if (ItemSelected != null) { ItemSelected(); }
+            // Esconder control
+            this.pnlAction.Visible = false;
 
-            }
-            catch (Exception ex)
-            { this.lblMessage.Text = ex.Message; }
-        }
+            // Generar evento
+            if (ItemSelected != null) { ItemSelected(); }
 
-        protected void gvCiudadano_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            ImageButton imgSelectItem = null;
+         }catch (Exception ex){
+            this.lblMessage.Text = ex.Message;
+         }
+      }
 
-            String CiudadanoId = "";
-            String NombreCiudadano = "";
-            String sImagesAttributes = "";
+      protected void gvCiudadano_RowDataBound(object sender, GridViewRowEventArgs e){
+         ImageButton imgSelectItem = null;
 
-            try
-            {
+         String CiudadanoId = "";
+         String NombreCiudadano = "";
+         String sImagesAttributes = "";
 
-                // Validación de que sea fila
-                if (e.Row.RowType != DataControlRowType.DataRow) { return; }
+         try
+         {
 
-                // Obtener imágen
-                imgSelectItem = (ImageButton)e.Row.FindControl("imgSelectItem");
+            // Validación de que sea fila
+            if (e.Row.RowType != DataControlRowType.DataRow) { return; }
 
-                // Datakeys
-                CiudadanoId = this.gvCiudadano.DataKeys[e.Row.RowIndex]["CiudadanoId"].ToString();
-                NombreCiudadano = this.gvCiudadano.DataKeys[e.Row.RowIndex]["NombreCiudadano"].ToString();
+            // Obtener imágen
+            imgSelectItem = (ImageButton)e.Row.FindControl("imgSelectItem");
 
-                // Tooltip
+            // Datakeys
+            CiudadanoId = this.gvCiudadano.DataKeys[e.Row.RowIndex]["CiudadanoId"].ToString();
+            NombreCiudadano = this.gvCiudadano.DataKeys[e.Row.RowIndex]["NombreCiudadano"].ToString();
 
-                // Atributos Over
-                sImagesAttributes = " document.getElementById('" + imgSelectItem.ClientID + "').src='../../../../Include/Image/Buttons/SelectItem.png';";
-                e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over_Action'; " + sImagesAttributes);
+            // Atributos Over
+            sImagesAttributes = " document.getElementById('" + imgSelectItem.ClientID + "').src='../../../../Include/Image/Buttons/SelectItem.png';";
+            e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over_Action'; " + sImagesAttributes);
 
-                // Atributos Out
-                sImagesAttributes = " document.getElementById('" + imgSelectItem.ClientID + "').src='../../../../Include/Image/Buttons/SelectItem_Null.png';";
-                e.Row.Attributes.Add("onmouseout", "this.className='Grid_Row_Action'; " + sImagesAttributes);
+            // Atributos Out
+            sImagesAttributes = " document.getElementById('" + imgSelectItem.ClientID + "').src='../../../../Include/Image/Buttons/SelectItem_Null.png';";
+            e.Row.Attributes.Add("onmouseout", "this.className='Grid_Row_Action'; " + sImagesAttributes);
 
-            }
-            catch (Exception ex)
-            { throw (ex); }
+         }
+         catch (Exception ex){
+            throw (ex);
+         }
+      }
 
-        }
+      protected void gvCiudadano_Sorting(object sender, GridViewSortEventArgs e){
+         DataTable tblCliente = null;
+			DataView viewCliente = null;
+			
+			try{
+
+				// Obtener DataTable y DataView del GridView
+            tblCliente = utilFunction.ParseGridViewToDataTable(this.gvCiudadano, true);
+				viewCliente = new DataView(tblCliente);
+
+				// Determinar ordenamiento
+				this.hddSort.Value = (this.hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
+
+				// Ordenar vista
+				viewCliente.Sort = this.hddSort.Value;
+
+				// Vaciar datos
+				this.gvCiudadano.DataSource = viewCliente;
+				this.gvCiudadano.DataBind();
+				
+			}catch (Exception ex){
+            this.lblMessage.Text = ex.Message;
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtNombre.ClientID + "');", true);
+			}
+		}
         
-        protected void imgBusqueda_Click(object sender, ImageClickEventArgs e)
-        {
-            
-            try {
-                // Mostrar/Ocultar filtro
-                this.pnlAction.Visible = (this.pnlAction.Visible ? false : true);
-            }
-            catch (Exception ex)
-            { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true);", true); }
-        }
+      protected void imgBusqueda_Click(object sender, ImageClickEventArgs e){
+         try {
 
-        protected void imgCloseWindow_Click(object sender, ImageClickEventArgs e)
-        {
-            try
-            {
+            // Mostrar el filtro
+            ShowFilter();
 
-                // Ocultar filtro
-                this.pnlAction.Visible = false;
+         }
+         catch (Exception ex){
+            this.lblMessage.Text = ex.Message;
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtNombre.ClientID + "');", true);
+         }
+      }
 
-            }
-            catch (Exception ex)
-            { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true);", true); }
-        }
-        
+      protected void imgCloseWindow_Click(object sender, ImageClickEventArgs e){
+         try
+         {
 
-    }
+            // Ocultar filtro
+            this.pnlAction.Visible = false;
+
+         }
+         catch (Exception ex){
+            this.lblMessage.Text = ex.Message;
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtNombre.ClientID + "');", true);
+         }
+      }
+
+   }
 }

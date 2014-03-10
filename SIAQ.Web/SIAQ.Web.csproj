@@ -165,6 +165,7 @@
     <Content Include="Include\Style\Table.css" />
     <Content Include="Include\WebUserControls\wucBusquedaCiudadano.ascx" />
     <Content Include="Include\WebUserControls\wucBusquedaUsuario.ascx" />
+    <Content Include="Include\WebUserControls\wucFixedDateTime.ascx" />
     <Content Include="Include\WebUserControls\wucTimeMask.ascx" />
     <Content Include="Index.aspx" />
     <Content Include="Application\WebApp\Private\Home\AppIndex.aspx" />
@@ -584,6 +585,13 @@
     </Compile>
     <Compile Include="Include\WebUserControls\wucBusquedaUsuario.ascx.designer.cs">
       <DependentUpon>wucBusquedaUsuario.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Include\WebUserControls\wucFixedDateTime.ascx.cs">
+      <DependentUpon>wucFixedDateTime.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Include\WebUserControls\wucFixedDateTime.ascx.designer.cs">
+      <DependentUpon>wucFixedDateTime.ascx</DependentUpon>
     </Compile>
     <Compile Include="Include\WebUserControls\wucTimeMask.ascx.cs">
       <DependentUpon>wucTimeMask.ascx</DependentUpon>

@@ -31,31 +31,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.Panel pnlFormulario;
         
         /// <summary>
-        /// txtFechaCaptura control.
+        /// wucFixedDateTime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::SIAQ.Web.Include.WebUserControls.wucCalendar txtFechaCaptura;
+        protected global::SIAQ.Web.Include.WebUserControls.wucFixedDateTime wucFixedDateTime;
         
         /// <summary>
-        /// txtFechaCargado control.
+        /// wucBusquedaCiudadano control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::SafeTransfere.Web.Include.WebUserControls.wucTimeMask txtFechaCargado;
-        
-        /// <summary>
-        /// wucBusquedaCiudadano1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::SIAQ.Web.Include.WebUserControls.wucBusquedaCiudadano wucBusquedaCiudadano1;
+        protected global::SIAQ.Web.Include.WebUserControls.wucBusquedaCiudadano wucBusquedaCiudadano;
         
         /// <summary>
         /// ddlAbogado control.

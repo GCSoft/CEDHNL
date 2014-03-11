@@ -178,6 +178,18 @@ namespace SIAQ.BusinessProcess.Object
         }
 
 
+        public void EliminarCiudadanoSolicitud()
+        {
+            string ConnectionString = string.Empty;
+            DACiudadano DACiudadano = new DACiudadano();
+
+            ConnectionString = sConnectionApplication;
+            DACiudadano.EliminarCiudadanoSolicitud(_ENTCiudadano, ConnectionString);
+
+            _ErrorId = DACiudadano.ErrorId;
+            _ErrorDescription = DACiudadano.ErrorDescription;
+        }
+
         public void BuscarCiudadano()
         {
             string ConnectionString = string.Empty;

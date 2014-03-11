@@ -50,6 +50,33 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
+
+        protected void gvCiudadanoAgregados_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
+            string CiudadanoId = string.Empty;
+            int SolicitudId = int.Parse(SolicitudIDHidden.Value);
+            CiudadanoId = e.CommandArgument.ToString();
+
+            switch (e.CommandName.ToString())
+            {
+                case "Eliminar":
+
+                    BPCiudadano BPCiudadano = new BPCiudadano();
+
+                    BPCiudadano.ENTCiudadano.CiudadanoId = int.Parse(CiudadanoId);
+                    BPCiudadano.ENTCiudadano.SolicitudId = SolicitudId;
+
+                    BPCiudadano.EliminarCiudadanoSolicitud();
+
+                    SelectCiudadanosAgregados(SolicitudId);
+                    break;
+
+
+            }
+        }
+        
+
         protected void QuickSearch(string SearchText)
         {
 
@@ -94,6 +121,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 SelectCiudad();
                 SelectColonia();
 
+                
+
                 gvCiudadano.DataSource = null;
                 gvCiudadano.DataBind();
                 
@@ -103,7 +132,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 try
                 {
                     SolicitudIDHidden.Value = Request.QueryString["s"].ToString();
-
+                    SelectCiudadanosAgregados(int.Parse(SolicitudIDHidden.Value));
                 }
                 catch (Exception Exception)
                 {
@@ -157,6 +186,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 {
                     gvCiudadanosAgregados.DataSource = BPCiudadano.ENTCiudadano.ResultData;
                     gvCiudadanosAgregados.DataBind();
+                }
+                else {
+
+                    gvCiudadanosAgregados.DataSource = null;
+                    gvCiudadanosAgregados.DataBind();
+                
                 }
             }
         }

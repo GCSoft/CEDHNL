@@ -62,6 +62,30 @@
              {
                  border: 0px;
              }
+             
+             .Grid_Encabezado {
+	            background-color:transparent;
+	            border:transparent;
+	            height: 1px;
+             }
+             
+             .Grid_Filas{
+               background-color: transparent;
+	            border: transparent;
+                color: Black;
+                font-family: 'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	            font-size: 11px;
+	            font-weight:normal;
+	            height:11.5px;
+                    }
+                    
+               .Empty
+                {
+                    border-style: none;
+                    border-width: 0px;
+                    background-color:transparent;
+                    border: 0px;
+                }
           </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
@@ -168,17 +192,20 @@
          <table width="100%" border="0">
               <tr>
                 <td class="MiddleSpace"></td>
-                <td>
+                <td style="border:0px">
                      <table width="100%" border="0" cellpadding="0" cellspacing="0">
                           <tr>
                             <td style="background-color:#DDDDFF; height:30px; font-size:10px; border:0px; text-align:center;"> &nbsp;Ciudadanos agregados a la Solicitud&nbsp;</td>
                           </tr>
                           <tr>
-                            <td style="height:175px; background-color:#EFF2FB;"> <!--aqui se estaran ingresando los ciudadanos agregados-->
-                               <asp:GridView CssClass="gv" id="gvCiudadanosAgregados" runat="server" AllowPaging="false" AllowSorting="false" AutoGenerateColumns="False"
-                                 DataKeyNames="CiudadanoId">
+                            <td style="height:175px; background-color:#EFF2FB; vertical-align: top;"> <!--aqui se estaran ingresando los ciudadanos agregados-->
+                               <asp:GridView id="gvCiudadanosAgregados" runat="server" AllowPaging="false" AllowSorting="false" AutoGenerateColumns="False"
+                                 DataKeyNames="CiudadanoId" OnRowCommand="gvCiudadanoAgregados_RowCommand">
+                                <headerstyle cssclass="Grid_Encabezado" />
+                                <rowstyle cssclass="Grid_Filas" />
+                                <EmptyDataRowStyle CssClass="Empty" BorderStyle="None" BorderWidth="0px" />
                                  <EmptyDataTemplate>
-                                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                    <table border="0px" cellpadding="0" style="border:0px;" cellspacing="0">
                                       <tr>
                                         <td style="font-size:9.5px; text-align:center;"> No se han agregado ciudadanos a la solicitud</td>
                                       </tr>
@@ -188,8 +215,11 @@
                                     </table>
                                  </EmptyDataTemplate>
                                  <Columns>
-                                 <asp:BoundField HeaderText="Nombre" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="170px" DataField="NombreApellido"></asp:BoundField>
-                                 <asp:TemplateField HeaderText="Eliminar">
+                                 <asp:BoundField  ItemStyle-HorizontalAlign="Left" ItemStyle-Width="170px" DataField="NombreCompleto"></asp:BoundField>
+                                 <asp:TemplateField>
+                                 <ItemTemplate>
+                                 <asp:ImageButton CommandArgument='<%#Eval("CiudadanoId")%>' CommandName="Eliminar"  runat="server" ID="ImagenEliminar" ImageUrl="~/Include/Image/Buttons/Delete.png" Height="11px"> </asp:ImageButton>
+                                 </ItemTemplate>
                                  </asp:TemplateField>
                                  </Columns>
                                 </asp:GridView>

@@ -27,6 +27,7 @@ namespace SIAQ.BusinessProcess
       private Int16  _iSessionTimeout;          // Periodo en minutos que durará la sesión de un usuario
       private String _sApplicationURL;          // URL de la publicación aplicación
       private String _sConnectionApplication;   // Cadena de conexión a la base de datos de la Aplicación
+      private string _sConnectionRepositorio;   
 
       // Constructor
       public BPBase()
@@ -34,6 +35,7 @@ namespace SIAQ.BusinessProcess
          _iSessionTimeout        = Int16.Parse(ConfigurationManager.AppSettings["Application.SessionTimeout"].ToString());
          _sApplicationURL        = ConfigurationManager.AppSettings["Application.URL"].ToString();
          _sConnectionApplication = ConfigurationManager.ConnectionStrings["Application.DBCnn"].ToString();
+         _sConnectionRepositorio = ConfigurationManager.ConnectionStrings["Application.Repositorio"].ToString();
       }
 
 
@@ -72,6 +74,13 @@ namespace SIAQ.BusinessProcess
          get { return _sConnectionApplication; }
       }
 
+      /// <summary>
+      ///   Cadena de conexión a la base de datos para el repositorio de archivos
+      /// </summary>
+      public String sConnectionRepositorio
+      {
+          get { return _sConnectionRepositorio; }
+      }
    }
 
 }

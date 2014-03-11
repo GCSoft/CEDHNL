@@ -83,7 +83,7 @@
             <asp:Panel id="pnlBusquedaSimple" runat="server" Visible="true" Width="100%">
                 <table border="0" cellpadding="0" cellspacing="0" width="100%">
                     <tr>
-                        <td style="font-size:12px">Solicitud número:</td>
+                        <td style="font-size:12px">Solicitud número</td>
                         <td style="width:5px;"></td>
                         <td class="tdCeldaItem"><asp:Label ID="lblNumSolicitud" runat="server"></asp:Label></td>
                         <td style="width:5px;"></td>
@@ -105,7 +105,7 @@
       <asp:Panel id="pnlBusqedaAvanzada" runat="server" Width="100%" Visible="false" CssClass="tdTituloEncabezado">
         <table border="0px" class="TablaCiudadano">
              <tr>
-                <td class="Solicitud">Solicitud número:</td>
+                <td class="Solicitud">Solicitud número</td>
                 <td style="width:5px;"></td>
                 <td class="tdCeldaItem"><asp:Label ID="Label1" runat="server"></asp:Label></td>
                 <td style="width:5px;"></td>

@@ -155,3 +155,26 @@
 	text-align:left;
 	width:10px;
 }
+
+/* Detalle de la solicitud */
+#AgregadosDiv
+{
+	width: 100%;
+}
+
+#AgregadosDiv .ContenidoDiv
+{
+	background-color: #eff2fb;
+	border: 1px solid;
+	min-height: 150px;
+}
+
+#AgregadosDiv .TituloDiv
+{
+	background-color: #ddf;
+	border: 1px solid;
+	height: 20px;
+	padding: 5px;
+	vertical-align: middle;
+}
+

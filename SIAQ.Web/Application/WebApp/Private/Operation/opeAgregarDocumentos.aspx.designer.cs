@@ -13,6 +13,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
     public partial class opeAgregarDocumentos {
         
         /// <summary>
+        /// DocumentUpdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel DocumentUpdate;
+        
+        /// <summary>
         /// SolicitudLabel control.
         /// </summary>
         /// <remarks>
@@ -22,13 +31,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.Label SolicitudLabel;
         
         /// <summary>
-        /// chkListCiudadanos control.
+        /// DocumentoGrid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList chkListCiudadanos;
+        protected global::System.Web.UI.WebControls.GridView DocumentoGrid;
         
         /// <summary>
         /// DocumentoFile control.

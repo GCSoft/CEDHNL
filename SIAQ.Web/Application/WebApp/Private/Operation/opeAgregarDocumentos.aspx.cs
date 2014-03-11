@@ -38,6 +38,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     {
                         _SolicitudId = Request.QueryString["s"].ToString();
 
+                        SolicitudLabel.Text = _SolicitudId;
+
                         SelectDocumento(int.Parse(_SolicitudId));
 
                         SolicitudIdHidden.Value = _SolicitudId;
@@ -49,11 +51,19 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 }
             }
 
+            private void ResetForm()
+            {
+                NombreBox.Text = "";
+                DescripcionBox.Text = "";
+            }
+
             private void GuardarDocumento()
             {
-                ENTUsuario UsuarioEntity = new ENTUsuario();
+                ENTSession SessionEntity = new ENTSession();
 
-                GuardarDocumento(int.Parse(SolicitudIdHidden.Value), UsuarioEntity.idUsuario, NombreBox.Text.Trim(), DescripcionBox.Text.Trim(), DocumentoFile);
+                SessionEntity = (ENTSession)Session["oENTSession"];
+
+                GuardarDocumento(int.Parse(SolicitudIdHidden.Value), SessionEntity.idUsuario, NombreBox.Text.Trim(), DescripcionBox.Text.Trim(), DocumentoFile);
             }
 
             private void GuardarDocumento(int SolicitudId, int idUsuarioInsert, string Nombre, string Descripcion, FileUpload DocumentoFile)
@@ -67,11 +77,33 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 DocumentoProcess.DocumentoEntity.FileUpload = DocumentoFile;
 
                 DocumentoProcess.SaveDocumentoSE();
+
+                if (DocumentoProcess.ErrorId == 0)
+                {
+                    ResetForm();
+                    SelectDocumento(int.Parse(SolicitudIdHidden.Value));
+
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('La información fue guardada con éxito!', 'Success', true);", true);
+                }
+                else
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + DocumentoProcess.ErrorDescription + "', 'Error', true);", true);
             }
 
             private void SelectDocumento(int SolicitudId)
             {
+                BPDocumento DocumentoProcess = new BPDocumento();
 
+                DocumentoProcess.DocumentoEntity.SolicitudId = SolicitudId;
+
+                DocumentoProcess.SelectDocumentoSE();
+
+                if (DocumentoProcess.ErrorId == 0)
+                {
+                    DocumentoGrid.DataSource = DocumentoProcess.DocumentoEntity.ResultData;
+                    DocumentoGrid.DataBind();
+                }
+                else
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + DocumentoProcess.ErrorDescription + "', 'Error', true);", true);
             }
         #endregion
     }

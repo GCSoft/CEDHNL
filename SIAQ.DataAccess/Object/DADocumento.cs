@@ -109,7 +109,7 @@ namespace SIAQ.DataAccess.Object
             /// <param name="ENTDocumento">Entidad de documento.</param>
             /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
             /// <returns>Resultado de la búsqueda.</returns>
-            public DataSet SelectDocumento(ENTDocumento DocumentoEntity, string ConnectionString)
+            public DataSet SelectDocumentoSE(ENTDocumento DocumentoEntity, string ConnectionString)
             {
                 DataSet ResultData = new DataSet();
                 SqlConnection Connection = new SqlConnection(ConnectionString);
@@ -119,7 +119,7 @@ namespace SIAQ.DataAccess.Object
 
                 try
                 {
-                    Command = new SqlCommand("SelectDocumento", Connection);
+                    Command = new SqlCommand("SelectDocumentoSE", Connection);
                     Command.CommandType = CommandType.StoredProcedure;
 
                     Parameter = new SqlParameter("RepositorioId", SqlDbType.VarChar);
@@ -134,8 +134,16 @@ namespace SIAQ.DataAccess.Object
                     Parameter.Value = DocumentoEntity.ExpedienteId;
                     Command.Parameters.Add(Parameter);
 
-                    Parameter = new SqlParameter("RecomendacionId", SqlDbType.Int);
-                    Parameter.Value = DocumentoEntity.RecomendacionId;
+                    Parameter = new SqlParameter("TipoDocumentoId", SqlDbType.VarChar);
+                    Parameter.Value = DocumentoEntity.TipoDocumentoId;
+                    Command.Parameters.Add(Parameter);
+
+                    Parameter = new SqlParameter("idUsuarioInsert", SqlDbType.Int);
+                    Parameter.Value = DocumentoEntity.idUsuarioInsert;
+                    Command.Parameters.Add(Parameter);
+
+                    Parameter = new SqlParameter("Nombre", SqlDbType.VarChar);
+                    Parameter.Value = DocumentoEntity.Nombre;
                     Command.Parameters.Add(Parameter);
 
                     DataAdapter = new SqlDataAdapter(Command);

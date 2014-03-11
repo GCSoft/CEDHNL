@@ -354,6 +354,24 @@
 	background: none;
 }
 
+.AgregadosGrid
+{
+	border: 0px;
+	margin: auto;
+	width: 100%;
+}
+
+.AgregadosGrid td
+{
+	border: 0px;
+	padding: 5px;
+}
+
+.AgregadosGrid tr
+{
+	border: 0px;
+}
+
 /*GRIDVIEW ACTION*/
 .Grid_Header_Action {
 	background-color: #EFEFEF;

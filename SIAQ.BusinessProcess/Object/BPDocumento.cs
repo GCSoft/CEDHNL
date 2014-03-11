@@ -59,42 +59,43 @@ namespace SIAQ.BusinessProcess.Object
 
                 switch (FileExtension)
                 {
-                    case "jpg":
+                    case ".jpg":
                         Result = "81944c0f-8fa6-4e9b-b7b8-74afeccfc54c";
                         break;
 
-                    case "gif":
+                    case ".gif":
                         Result = "31bb2d11-2f6f-47be-891b-4ff3113b8b73";
                         break;
 
-                    case "png":
+                    case ".png":
                         Result = "0d4186fa-3b0f-49dc-a55f-a362ad893211";
                         break;
 
-                    case "bmp":
+                    case ".bmp":
                         Result = "8f455f2a-0492-487c-a729-7b4c4913257d";
                         break;
 
-                    case "doc":
+                    case ".doc":
                         Result = "275ebe4c-d4a8-4f4d-8dda-98f8c9ccfe70";
                         break;
 
-                    case "docx":
+                    case ".docx":
                         Result = "96a31530-202c-44ad-ba1e-3e07777a0d7c";
                         break;
 
-                    case "pdf":
+                    case ".pdf":
                         Result = "523e371f-07e8-46c7-81f4-a92a843fa1a1";
                         break;
 
-                    case "ppt":
+                    case ".ppt":
                         Result = "cba3eb71-5c11-489d-9b92-da1cc7fbe8af";
                         break;
 
-                    case "pptx":
+                    case ".pptx":
                         Result = "bd168a5e-ec4c-47d7-96a7-03f05ad77bca";
                         break;
                 }
+
                 return Result;
             }
 
@@ -105,18 +106,18 @@ namespace SIAQ.BusinessProcess.Object
                 UploadDocumento();
 
                 if(_ErrorId == 0)
-                    DocumentoAccess.InsertDocumentoSE(_DocumentoEntity, sConnectionApplication);
+                    DocumentoAccess.InsertDocumentoSE(_DocumentoEntity, sConnectionRepositorio);
 
                 _ErrorId = DocumentoAccess.ErrorId;
                 _ErrorDescription = DocumentoAccess.ErrorDescription;
             }
 
-            public void SelectDocumento()
+            public void SelectDocumentoSE()
             {
                 string ConnectionString = string.Empty;
                 DADocumento DocumentoAccess = new DADocumento();
 
-                _DocumentoEntity.ResultData = DocumentoAccess.SelectDocumento(_DocumentoEntity, sConnectionApplication);
+                _DocumentoEntity.ResultData = DocumentoAccess.SelectDocumentoSE(_DocumentoEntity, sConnectionRepositorio);
 
                 _ErrorId = DocumentoAccess.ErrorId;
                 _ErrorDescription = DocumentoAccess.ErrorDescription;

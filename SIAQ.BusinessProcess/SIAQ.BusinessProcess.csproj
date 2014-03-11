@@ -65,6 +65,8 @@
     <Compile Include="Object\BPNacionalidad.cs" />
     <Compile Include="Object\BPPais.cs" />
     <Compile Include="Object\BPPuesto.cs" />
+    <Compile Include="Object\BPRecomendacion.cs" />
+    <Compile Include="Object\BPSeguimientoRecomendacion.cs" />
     <Compile Include="Object\BPSolicitud.cs" />
     <Compile Include="Object\BPSolicitudCiudadano.cs" />
     <Compile Include="Object\BPTipoCiudadano.cs" />

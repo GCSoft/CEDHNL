@@ -69,6 +69,8 @@
     <Compile Include="Object\DANacionalidad.cs" />
     <Compile Include="Object\DAPais.cs" />
     <Compile Include="Object\DAPuesto.cs" />
+    <Compile Include="Object\DARecomendacion.cs" />
+    <Compile Include="Object\DASeguimientoRecomendacion.cs" />
     <Compile Include="Object\DASolicitud.cs" />
     <Compile Include="Object\DASolicitudCiudadano.cs" />
     <Compile Include="Object\DATipoCiudadano.cs" />

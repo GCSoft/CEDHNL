@@ -830,23 +830,23 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
 		}
 
 		protected void gvRol_Sorting(object sender, GridViewSortEventArgs e){
-			DataTable tblRegionesTelcel = null;
-			DataView viewRegionesTelcel = null;
+			DataTable tblRol = null;
+			DataView viewRol = null;
 			
 			try{
 
 				// Obtener DataTable y DataView del GridView
-				tblRegionesTelcel = utilFunction.ParseGridViewToDataTable(this.gvRol, true);
-				viewRegionesTelcel = new DataView(tblRegionesTelcel);
+				tblRol = utilFunction.ParseGridViewToDataTable(this.gvRol, true);
+				viewRol = new DataView(tblRol);
 
 				// Determinar ordenamiento
 				this.hddSort.Value = (this.hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
 
 				// Ordenar vista
-				viewRegionesTelcel.Sort = this.hddSort.Value;
+				viewRol.Sort = this.hddSort.Value;
 
 				// Vaciar datos
-				this.gvRol.DataSource = viewRegionesTelcel;
+				this.gvRol.DataSource = viewRol;
 				this.gvRol.DataBind();
 				
 			}catch (Exception ex){

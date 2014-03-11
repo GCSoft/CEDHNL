@@ -94,7 +94,7 @@
                   <tr>
                      <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="Button_General" width="125px" onclick="btnGuardar_Click" /></td>
                      <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="btnRegresar" runat="server" Text="Regresar" CssClass="Button_General" width="125px" onclick="btnRegresar_Click" /></td>
-					 <td style="height:24px; width:530px;"></td>
+                     <td style="height:24px; width:530px;"></td>
                   </tr>
                </table>
             </asp:Panel>

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SIAQ.Web.Application.WebApp.Private.Operation {
+namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
     
     
     public partial class opeLstRecDefensor {

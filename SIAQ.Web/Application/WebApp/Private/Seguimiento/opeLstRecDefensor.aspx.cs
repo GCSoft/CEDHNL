@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace SIAQ.Web.Application.WebApp.Private.Operation
+namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 {
     public partial class opeLstRecDefensor : System.Web.UI.Page
     {

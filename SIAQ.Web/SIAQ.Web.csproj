@@ -85,8 +85,11 @@
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlscatOcupacion.aspx" />
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsColonia.aspx" />
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsNacionalidad.aspx" />
-    <Content Include="Application\WebApp\Private\Seguimiento\opeLstRecDirector.aspx" />
+    <Content Include="Application\WebApp\Private\Seguimiento\lstRecSectretarias.aspx" />
+    <Content Include="Application\WebApp\Private\Seguimiento\opeBusquedaRecomendacion.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\opeDetalleRecomendacionDirector.aspx" />
+    <Content Include="Application\WebApp\Private\Seguimiento\opeLstRecDefensor.aspx" />
+    <Content Include="Application\WebApp\Private\Seguimiento\opeLstRecDirector.aspx" />
     <Content Include="Application\WebApp\Private\SysApp\Seguimiento\lstRecSectretarias.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeAcuerdoCalifDefinitiva.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeAgregarAutoridaSenalada.aspx" />
@@ -266,12 +269,19 @@
     <Compile Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsNacionalidad.aspx.designer.cs">
       <DependentUpon>xlsNacionalidad.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\opeLstRecDirector.aspx.cs">
-      <DependentUpon>opeLstRecDirector.aspx</DependentUpon>
+    <Compile Include="Application\WebApp\Private\Seguimiento\lstRecSectretarias.aspx.cs">
+      <DependentUpon>lstRecSectretarias.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\opeLstRecDirector.aspx.designer.cs">
-      <DependentUpon>opeLstRecDirector.aspx</DependentUpon>
+    <Compile Include="Application\WebApp\Private\Seguimiento\lstRecSectretarias.aspx.designer.cs">
+      <DependentUpon>lstRecSectretarias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\opeBusquedaRecomendacion.aspx.cs">
+      <DependentUpon>opeBusquedaRecomendacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\opeBusquedaRecomendacion.aspx.designer.cs">
+      <DependentUpon>opeBusquedaRecomendacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Seguimiento\opeDetalleRecomendacionDirector.aspx.cs">
       <DependentUpon>opeDetalleRecomendacionDirector.aspx</DependentUpon>
@@ -279,6 +289,20 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Seguimiento\opeDetalleRecomendacionDirector.aspx.designer.cs">
       <DependentUpon>opeDetalleRecomendacionDirector.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\opeLstRecDefensor.aspx.cs">
+      <DependentUpon>opeLstRecDefensor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\opeLstRecDefensor.aspx.designer.cs">
+      <DependentUpon>opeLstRecDefensor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\opeLstRecDirector.aspx.cs">
+      <DependentUpon>opeLstRecDirector.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\opeLstRecDirector.aspx.designer.cs">
+      <DependentUpon>opeLstRecDirector.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\SysApp\Seguimiento\lstRecSectretarias.aspx.cs">
       <DependentUpon>lstRecSectretarias.aspx</DependentUpon>

@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 using SIAQ.BusinessProcess.Object;
 using SIAQ.Entity.Object;
 
-namespace SIAQ.Web.Application.WebApp.Private.Operation
+namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 {
     public partial class opeBusquedaRecomendacion : System.Web.UI.Page
     {

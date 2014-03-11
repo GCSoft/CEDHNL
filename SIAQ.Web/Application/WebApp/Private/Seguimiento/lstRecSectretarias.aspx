@@ -1,11 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeLstRecDefensor.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeLstRecDefensor" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="lstRecSectretarias.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Seguimiento.lstRecSectretarias" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
       <tr>
 			<td class="tdCeldaTituloEncabezado">
-				Listado de Recomendaciones
+				Listado de Recomendaciónes
 			</td>
 		</tr>
       <tr><td class="tdCeldaMiddleSpace"></td></tr>
@@ -29,7 +29,7 @@
                                     <td style="width:100px;">Estatus</td>
                                     <td style="width:100px;">Quejosos</td>
                                     <td style="width:100px;">Autoridades</td>
-                                    <td style="width:100px;">Atender</td>
+                                    <td style="width:100px;">Defensor</td>
                                     
 								</tr>
 								<tr class="Grid_Row">
@@ -54,7 +54,7 @@
                             <asp:BoundField DataField="Autoridades" HeaderText="Autoridades">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="Atender" HeaderText="Atender">
+                            <asp:BoundField DataField="Defensor" HeaderText="Defensor">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
                             

@@ -1,92 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeAgregarCiudadanosSol.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeAgregarCiudadanosSol" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
-    <style type="text/css">
-            .Solictud
-            { 
-                height: 35px;
-                width: 175px;
-                color:#979393;
-	            font-family:Verdana;
-	            font-size:13px;
-	            font-weight:bold;
-	            height: 27px;
-	            text-align:left;
-            }
-            
-            .MiddleSpace
-            {
-	            height:7px;
-            }
-                        
-             .Tamanoletra
-            {
-              font-size:13.5px;
-              text-align:left;
-              height:50px;
-            }
-        
-             .TablaCiudadano
-            {
-            	border-spacing: 5px;
-	            font-size:11px;
-	            padding: 0px;
-	            width: 100%;
-	            text-align:left;
-            }  
-            
-            .style1
-            {
-                width: 236px;
-                font-size:13.5px;
-            }
-        
-            .style2
-            {
-                width: 127px;
-            }
-        
-            .style3
-            {
-                width: 251px;
-            }
-             .style5
-             {
-                 width: 7px;
-             }
-             .style6
-             {
-                 width: 104px;
-             }
-             
-             .gv
-             {
-                 border: 0px;
-             }
-             
-             .Grid_Encabezado {
-	            background-color:transparent;
-	            border:transparent;
-	            height: 1px;
-             }
-             
-             .Grid_Filas{
-               background-color: transparent;
-	            border: transparent;
-                color: Black;
-                font-family: 'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
-	            font-size: 11px;
-	            font-weight:normal;
-	            height:11.5px;
-                    }
-                    
-               .Empty
-                {
-                    border-style: none;
-                    border-width: 0px;
-                    background-color:transparent;
-                    border: 0px;
-                }
-          </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
     <table border="0" cellpadding="0" cellspacing="0" width="100%" style="text-align:left;">
@@ -107,9 +20,9 @@
             <asp:Panel id="pnlBusquedaSimple" runat="server" Visible="true" Width="100%">
                 <table border="0" cellpadding="0" cellspacing="0" width="100%">
                     <tr>
-                        <td style="font-size:12px">Solicitud número</td>
+                        <td class="Solicitud">Solicitud número</td>
                         <td style="width:5px;"></td>
-                        <td class="tdCeldaItem"><asp:Label ID="lblNumSolicitud" runat="server"></asp:Label></td>
+                        <td class="tdCeldaItem"><asp:Label CssClass="NumeroSolicitudLabel" ID="SolicitudLabelSearch" runat="server" Text="0"></asp:Label></td>
                         <td style="width:5px;"></td>
                     </tr>
                     <tr style="height:10px;"><td colspan="3"></td></tr>
@@ -129,50 +42,50 @@
       <asp:Panel id="pnlBusqedaAvanzada" runat="server" Width="100%" Visible="false" CssClass="tdTituloEncabezado">
         <table border="0px" class="TablaCiudadano">
              <tr>
-                <td class="Solicitud">Solicitud número</td>
+                <td class="TextoSolNum">Solicitud número</td>
                 <td style="width:5px;"></td>
-                <td class="tdCeldaItem"><asp:Label ID="Label1" runat="server"></asp:Label></td>
+                <td class="tdCeldaItem"><asp:Label CssClass="NumeroSolicitudLabel" ID="SolicitudLabel" runat="server" ></asp:Label></td>
                 <td style="width:5px;"></td>
              </tr>
-             <tr><td class="MiddleSpace"></td></tr>
+             <tr><td class="CeldaEspacioGrandeAncho"></td></tr>
               <tr>
-                <td class="style6" >Nombre</td>
-                <td class="style5" ></td>
+                <td class="AnchoCeldaPrincipal" >Nombre</td>
+                <td class="EspacioCeldaIntermedia" ></td>
                 <td  ><asp:TextBox ID="TextBoxNombre" runat="server" CssClass="Textbox_General" width="210px" ></asp:TextBox></td>
               </tr>
               <tr>
-                <td class="style6">Apellido Paterno</td>
-                <td class="style5" ></td>
+                <td class="AnchoCeldaPrincipal">Apellido Paterno</td>
+                <td class="EspacioCeldaIntermedia" ></td>
                 <td ><asp:TextBox ID="TextBoxPaterno" runat="server" CssClass="Textbox_General" width="210px" ></asp:TextBox></td>
               </tr>
               <tr>
-                <td class="style6">Apellido Materno</td>
-                <td class="style5" ></td>
+                <td class="AnchoCeldaPrincipal">Apellido Materno</td>
+                <td class="EspacioCeldaIntermedia" ></td>
                 <td><asp:TextBox ID="TextBoxMaterno" runat="server" CssClass="Textbox_General" width="210px" ></asp:TextBox></td>
               </tr>
               <tr>
-                <td class="style6" >País</td>
-                <td class="style5"></td>
+                <td class="AnchoCeldaPrincipal" >País</td>
+                <td class="EspacioCeldaIntermedia"></td>
                 <td ><asp:DropDownList ID="BuscadorListaPais" width="214px" runat="server"></asp:DropDownList></td>
               </tr>
               <tr>
-                <td class="style6" >Estado</td>
-                <td class="style5" ></td>
+                <td class="AnchoCeldaPrincipal" >Estado</td>
+                <td class="EspacioCeldaIntermedia" ></td>
                 <td><asp:DropDownList ID="BuscadorListaEstado" width="214px" runat="server"></asp:DropDownList></td>
               </tr>
               <tr>
-                <td class="style6" >Municipio</td>
-                <td class="style5" ></td>
+                <td class="AnchoCeldaPrincipal" >Municipio</td>
+                <td class="EspacioCeldaIntermedia" ></td>
                 <td ><asp:DropDownList ID="BuscadorListaCiudad" width="214px" runat="server"></asp:DropDownList></td>
               </tr>
               <tr>
-                <td class="style6" >Colonia</td>
-                <td class="style5" ></td>
+                <td class="AnchoCeldaPrincipal" >Colonia</td>
+                <td class="EspacioCeldaIntermedia" ></td>
                 <td ><asp:DropDownList ID="BuscadorListaColonia" width="214px" runat="server"></asp:DropDownList></td>
               </tr>
               <tr>
-                <td class="style6" >Calle</td>
-                <td class="style5" ></td>
+                <td class="AnchoCeldaPrincipal" >Calle</td>
+                <td class="EspacioCeldaIntermedia" ></td>
                 <td ><asp:TextBox ID="TextBoxCalle" runat="server" CssClass="Textbox_General" width="210px" ></asp:TextBox></td>
               </tr>
         </table>
@@ -180,9 +93,9 @@
         <br /><br />
         <table width="90%" border="0">
           <tr>
-            <td class="style2"><asp:Button ID="Button1" runat="server" Text="Buscar" CssClass="Button_General" OnClick="SearchButton_Click" width="125px"/></td>
-            <td class="style3"></td>
-            <td><asp:LinkButton  class="style1" ID="LinkButton1" runat="server" OnClick="BusquedaRapida_Click">Búsqueda rapida</asp:LinkButton></td>
+            <td class="tdBotonBuscar"><asp:Button ID="Button1" runat="server" Text="Buscar" CssClass="Button_General" OnClick="SearchButton_Click" width="125px"/></td>
+            <td class="EspacioCeldaMediano"></td>
+            <td><asp:LinkButton  class="EstiloBR" ID="LinkButton1" runat="server" OnClick="BusquedaRapida_Click">Búsqueda rapida</asp:LinkButton></td>
           </tr>
         </table>
         </div>
@@ -200,12 +113,15 @@
                           <tr>
                             <td style="height:175px; background-color:#EFF2FB; vertical-align: top;"> <!--aqui se estaran ingresando los ciudadanos agregados-->
                                <asp:GridView id="gvCiudadanosAgregados" runat="server" AllowPaging="false" AllowSorting="false" AutoGenerateColumns="False"
-                                 DataKeyNames="CiudadanoId" OnRowCommand="gvCiudadanoAgregados_RowCommand">
+                                 DataKeyNames="CiudadanoId" OnRowCommand="gvCiudadanoAgregados_RowCommand" BorderWidth="0"> 
                                 <headerstyle cssclass="Grid_Encabezado" />
                                 <rowstyle cssclass="Grid_Filas" />
                                 <EmptyDataRowStyle CssClass="Empty" BorderStyle="None" BorderWidth="0px" />
                                  <EmptyDataTemplate>
                                     <table border="0px" cellpadding="0" style="border:0px;" cellspacing="0">
+                                      <tr>
+                                        <td style="height:5px"></td>
+                                      </tr>
                                       <tr>
                                         <td style="font-size:9.5px; text-align:center;"> No se han agregado ciudadanos a la solicitud</td>
                                       </tr>
@@ -215,7 +131,12 @@
                                     </table>
                                  </EmptyDataTemplate>
                                  <Columns>
-                                 <asp:BoundField  ItemStyle-HorizontalAlign="Left" ItemStyle-Width="170px" DataField="NombreCompleto"></asp:BoundField>
+                                 <asp:TemplateField>
+                                 <ItemTemplate>
+                                     <asp:LinkButton Width="150px" CommandArgument='<%#Eval("CiudadanoId")%>' CommandName="SelectCiudadano" ID="CiudadanoButton" runat="server" Text='<%#Eval("NombreCompleto")%>'></asp:LinkButton>
+                                 </ItemTemplate>
+                                 <ItemStyle HorizontalAlign="Left" />
+                                 </asp:TemplateField>
                                  <asp:TemplateField>
                                  <ItemTemplate>
                                  <asp:ImageButton CommandArgument='<%#Eval("CiudadanoId")%>' CommandName="Eliminar"  runat="server" ID="ImagenEliminar" ImageUrl="~/Include/Image/Buttons/Delete.png" Height="11px"> </asp:ImageButton>

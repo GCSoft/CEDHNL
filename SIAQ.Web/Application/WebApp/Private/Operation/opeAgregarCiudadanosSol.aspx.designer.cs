@@ -22,13 +22,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.Panel pnlBusquedaSimple;
         
         /// <summary>
-        /// lblNumSolicitud control.
+        /// SolicitudLabelSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNumSolicitud;
+        protected global::System.Web.UI.WebControls.Label SolicitudLabelSearch;
         
         /// <summary>
         /// txtNombre control.
@@ -67,13 +67,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.Panel pnlBusqedaAvanzada;
         
         /// <summary>
-        /// Label1 control.
+        /// SolicitudLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label SolicitudLabel;
         
         /// <summary>
         /// TextBoxNombre control.

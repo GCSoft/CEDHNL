@@ -72,6 +72,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     SelectCiudadanosAgregados(SolicitudId);
                     break;
 
+                case "SelectCiudadano":
+
+                    Response.Redirect("/Application/WebApp/Private/Operation/opeDetalleCiudadano.aspx?s=" + CiudadanoId);
+
+                    break;
+
 
             }
         }
@@ -133,6 +139,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 {
                     SolicitudIDHidden.Value = Request.QueryString["s"].ToString();
                     SelectCiudadanosAgregados(int.Parse(SolicitudIDHidden.Value));
+                    SolicitudLabel.Text = SolicitudIDHidden.Value;
+                    SolicitudLabelSearch.Text = SolicitudIDHidden.Value;
                 }
                 catch (Exception Exception)
                 {

@@ -124,4 +124,98 @@
     width: 20px;
 }
 
+/*Tabla Agregar Ciudadanos a la solicitud*/
+.Solicitud
+{ 
+ font-size: 15px;
+font-weight: bold;
+text-align: left;
+}
+            
+.MiddleSpace
+{
+ height:7px;
+ }
+                        
+.Tamanoletra
+ {
+font-size:13.5px;
+text-align:left;
+ height:50px;
+}
+        
+ .TablaCiudadano
+{
+ border-spacing: 5px;
+ font-size:11px;
+padding: 0px;
+width: 100%;
+text-align:left;
+}  
+            
+.EstiloBR
+{
+ width: 236px;
+font-size:13.5px;
+}
+        
+.tdBotonbuscar
+{
+ width: 127px;
+}
+        
+.EspacioCeldaMediano
+{
+width: 251px;
+}
+
+.EspacioCeldaIntermedia
+{
+width: 7px;
+}
+
+             
+.Grid_Encabezado {
+ background-color:transparent;
+border:transparent;
+height: 1px;
+}
+             
+.Grid_Filas{
+background-color: transparent;
+border: transparent;
+color: Black;
+font-family: 'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+font-size: 11px;
+font-weight:normal;
+height:11.5px;
+}
+                    
+.Empty
+{
+border-style: none;
+border-width: 0px;
+background-color:transparent;
+border: 0px;
+}
+
+.TextoSolNum
+{
+font-size: 15px;
+font-weight: bold;
+text-align: left;
+width: 158px;
+}
+
+.CeldaEspacioGrandeAncho
+{
+height: 7px;
+width: 158px;
+}
+
+.AnchoCeldaPrincipal
+{
+ width: 158px;
+}
+
 

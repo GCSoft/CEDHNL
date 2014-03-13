@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master"
-    AutoEventWireup="true" CodeBehind="opeDetalleRecomendacionDirector.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Seguimiento.opeDetalleRecomendacionDirector" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeDetalleRecomendacionDefensor.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Seguimiento.opeDetalleRecomendacionDefensor" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
     <link href="/Include/Style/Table.css" rel="Stylesheet" type="text/css" />
@@ -458,3 +457,4 @@
         </table>
     </div>
 </asp:Content>
+

@@ -87,7 +87,9 @@
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsNacionalidad.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\lstRecSectretarias.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\opeBusquedaRecomendacion.aspx" />
+    <Content Include="Application\WebApp\Private\Seguimiento\opeDetalleRecomendacionDefensor.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\opeDetalleRecomendacionDirector.aspx" />
+    <Content Include="Application\WebApp\Private\Seguimiento\opeDetalleRecomendacionSecretaria.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\opeLstRecDefensor.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\opeLstRecDirector.aspx" />
     <Content Include="Application\WebApp\Private\SysApp\Seguimiento\lstRecSectretarias.aspx" />
@@ -283,12 +285,26 @@
     <Compile Include="Application\WebApp\Private\Seguimiento\opeBusquedaRecomendacion.aspx.designer.cs">
       <DependentUpon>opeBusquedaRecomendacion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\opeDetalleRecomendacionDefensor.aspx.cs">
+      <DependentUpon>opeDetalleRecomendacionDefensor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\opeDetalleRecomendacionDefensor.aspx.designer.cs">
+      <DependentUpon>opeDetalleRecomendacionDefensor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Application\WebApp\Private\Seguimiento\opeDetalleRecomendacionDirector.aspx.cs">
       <DependentUpon>opeDetalleRecomendacionDirector.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\Seguimiento\opeDetalleRecomendacionDirector.aspx.designer.cs">
       <DependentUpon>opeDetalleRecomendacionDirector.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\opeDetalleRecomendacionSecretaria.aspx.cs">
+      <DependentUpon>opeDetalleRecomendacionSecretaria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\opeDetalleRecomendacionSecretaria.aspx.designer.cs">
+      <DependentUpon>opeDetalleRecomendacionSecretaria.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Seguimiento\opeLstRecDefensor.aspx.cs">
       <DependentUpon>opeLstRecDefensor.aspx</DependentUpon>

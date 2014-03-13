@@ -14,7 +14,7 @@
             <asp:Panel id="pnlGrid" runat="server" Width="100%">
                <asp:GridView ID="gvApps" runat="server" AutoGenerateColumns="False"
                         AutoUpdateAfterCallBack="True" UpdateAfterCallBack="True" Width="800px" 
-                        Style="text-align: center" DataKeyNames="Solicitud"
+                        Style="text-align: center" DataKeyNames="Recomendacion"
                         PageSize="30" ShowHeaderWhenEmpty="True">
                         <RowStyle CssClass="Grid_Row" />
                         <EditRowStyle Wrap="True" />
@@ -54,9 +54,15 @@
                             <asp:BoundField DataField="Autoridades" HeaderText="Autoridades">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="Atender" HeaderText="Atender">
-                                <ItemStyle HorizontalAlign="Left" />
-                            </asp:BoundField>
+                            <asp:TemplateField HeaderText = "Editar">
+                            <ItemTemplate>
+                            <asp:HyperLink ID="lnkDetalle" runat="server"
+                             NavigateUrl='<%# "/Application/WebApp/Private/Seguimiento/opeDetalleRecomendacionDefensor.aspx?recomendacionId=" + Eval("Recomendacion") %>'
+                            >
+                                <img alt="Detalle" src="../../../../Include/Image/Buttons/Edit.png" />
+                            </asp:HyperLink>
+                            </ItemTemplate>
+                            </asp:TemplateField>
                             
                         </Columns>
                 </asp:GridView>

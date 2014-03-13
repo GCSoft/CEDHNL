@@ -10,7 +10,7 @@
 namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
     
     
-    public partial class opeDetalleRecomendacionDirector {
+    public partial class opeDetalleRecomendacionSecretaria {
         
         /// <summary>
         /// InformacionGeneralButton control.

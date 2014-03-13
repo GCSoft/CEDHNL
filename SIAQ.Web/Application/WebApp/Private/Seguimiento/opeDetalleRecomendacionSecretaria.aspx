@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master"
-    AutoEventWireup="true" CodeBehind="opeDetalleRecomendacionDirector.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Seguimiento.opeDetalleRecomendacionDirector" %>
+    AutoEventWireup="true" CodeBehind="opeDetalleRecomendacionSecretaria.aspx.cs"
+    Inherits="SIAQ.Web.Application.WebApp.Private.Seguimiento.opeDetalleRecomendacionSecretaria" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
     <link href="/Include/Style/Table.css" rel="Stylesheet" type="text/css" />
@@ -31,19 +32,19 @@
                 </td>
                 <td style="width: 65px;">
                     <asp:ImageButton ID="GenerarCitaButton" ImageUrl="/Include/Image/Icon/EnviarIcon.png"
-                        runat="server" onclick="GenerarCitaButton_Click"></asp:ImageButton>
+                        runat="server" OnClick="GenerarCitaButton_Click"></asp:ImageButton>
                 </td>
                 <td>
                 </td>
                 <td style="width: 65px;">
-                <asp:ImageButton ID="ConcluirExpButton" ImageUrl="/Include/Image/Icon/EnviarIcon.png"
-                        runat="server" onclick="ConcluirExpButton_Click"></asp:ImageButton>
+                    <asp:ImageButton ID="ConcluirExpButton" ImageUrl="/Include/Image/Icon/EnviarIcon.png"
+                        runat="server" OnClick="ConcluirExpButton_Click"></asp:ImageButton>
                 </td>
                 <td>
                 </td>
                 <td style="width: 65px;">
-                <asp:ImageButton ID="AgregarDocButton" ImageUrl="/Include/Image/Icon/EnviarIcon.png"
-                        runat="server" onclick="AgregarDocButton_Click"></asp:ImageButton>
+                    <asp:ImageButton ID="AgregarDocButton" ImageUrl="/Include/Image/Icon/EnviarIcon.png"
+                        runat="server" OnClick="AgregarDocButton_Click"></asp:ImageButton>
                 </td>
                 <td>
                 </td>

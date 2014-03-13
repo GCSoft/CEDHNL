@@ -10,16 +10,17 @@ using SIAQ.BusinessProcess.Page;
 
 namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 {
-    public partial class opeDetalleRecomendacionDirector : System.Web.UI.Page
+    public partial class opeDetalleRecomendacionSecretaria : System.Web.UI.Page
     {
 
-        #region "Atributos"
+
+        #region Atributo
         #endregion
 
-        #region "Propiedades"
+        #region Propiedades
         #endregion
 
-        #region "Eventos"
+        #region Eventos
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -42,12 +43,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
         protected void InformacionGeneralButton_Click(object sender, ImageClickEventArgs e)
         {
-            Response.Redirect("/Application/WebApp/Private/Seguimiento/opeLstRecDirector.aspx");
-        }
-
-        protected void GuardarButton_Click(object sender, EventArgs e)
-        {
-
+            Response.Redirect("/Application/WebApp/Private/Seguimiento/lstRecSectretarias.aspx");
         }
 
         protected void SeguimientoButton_Click(object sender, ImageClickEventArgs e)
@@ -70,11 +66,16 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
         }
 
-        #endregion
+        protected void GuardarButton_Click(object sender, EventArgs e)
+        {
+
+        }
 
         #endregion
 
-        #region "Funciones"
+        #endregion
+
+        #region Funciones
 
         public string GetRawQueryParameter(string parameterName)
         {
@@ -186,6 +187,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
                 LugarHechosList.DataBind();
             }
         }
+
 
         #endregion
 

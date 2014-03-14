@@ -46,7 +46,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
            }
 
            // Transacción
-           GuardarVisita();
+           ENTSession SessionEntity = new ENTSession();
+
+           SessionEntity = (ENTSession)Session["oENTSession"];
+           GuardarVisita(SessionEntity.idUsuario);
               
         }
 
@@ -130,13 +133,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             ddlFuncionario.Items.Insert(0, new ListItem(AllDefault, "0"));
         }
 
-        protected void GuardarVisita(){
+        protected void GuardarVisita(int UsuarioIdInsert){
             BPVisita BPVisita = new BPVisita();
 
             BPVisita.ENTVisita.AreaId = Int32.Parse(ddlArea.SelectedValue);
             BPVisita.ENTVisita.MotivoId = Int32.Parse(ddlMotivo.SelectedValue);
             BPVisita.ENTVisita.FuncionarioId = Int32.Parse(ddlFuncionario.SelectedValue);
-            BPVisita.ENTVisita.UsuarioIdInsert = 1;//pendiente "verrificar como usan el id de ususario en el sistema"
+            BPVisita.ENTVisita.UsuarioIdInsert = UsuarioIdInsert;
             BPVisita.ENTVisita.Observaciones = DescriptionBox.Text;
 
             BPVisita.GuardarVisita();

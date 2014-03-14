@@ -8,6 +8,43 @@ namespace SIAQ.BusinessProcess.Object
 {
     public class BPCalificacion : BPBase
     {
+        private int _ErrorId;
+        private string _ErrorDescription;
+        private ENTCalificacion _ENTCalificacion;//
+
+        public BPCalificacion()
+        {
+
+            _ErrorId = 0;
+            _ErrorDescription = "";
+            _ENTCalificacion = new ENTCalificacion();
+
+        }
+        /// <summary>
+        ///     Número de error ocurrido. Cero por default
+        /// </summary>
+        public int ErrorId
+        {
+            get { return _ErrorId; }
+            set { _ErrorId = value; }
+        }
+
+        /// <summary>
+        ///     Descripción del error ocurrido
+        /// </summary>
+        public string ErrorDescription
+        {
+            get { return _ErrorDescription; }
+            set { _ErrorDescription = value; }
+        }
+        /// <summary>
+        ///     Entidad de calificacion
+        /// </summary>
+        public ENTCalificacion ENTCalificacion
+        {
+            get { return _ENTCalificacion; }
+            set { _ENTCalificacion = value; }
+        }
         ///<remarks>
         ///   <name>BPcatCalificacion.searchcatCalificacion</name>
         ///   <create>27/ene/2014</create>
@@ -122,6 +159,21 @@ namespace SIAQ.BusinessProcess.Object
             }
             // Resultado
             return oENTResponse;
+
+        }
+
+        public DataSet SelectCalificacion()
+        {
+            string ConnectionString = string.Empty;
+            DACalificacion DACalificacion = new DACalificacion();
+
+            ConnectionString = sConnectionApplication;
+            _ENTCalificacion.ResultData = DACalificacion.SelectCalificacion(_ENTCalificacion, ConnectionString);
+
+            _ErrorId = DACalificacion.ErrorId;
+            _ErrorDescription = DACalificacion.ErrorDescription;
+
+            return _ENTCalificacion.ResultData;
 
         }
     }

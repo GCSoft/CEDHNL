@@ -44,6 +44,7 @@
     <Compile Include="ENTBase.cs" />
     <Compile Include="Object\ENTArea.cs" />
     <Compile Include="Object\ENTCalificacion.cs" />
+    <Compile Include="Object\ENTCanalizacion.cs" />
     <Compile Include="Object\ENTCiudad.cs" />
     <Compile Include="Object\ENTCiudadano.cs" />
     <Compile Include="Object\ENTColonia.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Object\ENTSolicitudCiudadano.cs" />
     <Compile Include="Object\ENTTipoCiudadano.cs" />
     <Compile Include="Object\ENTTipoEstatus.cs" />
+    <Compile Include="Object\ENTTipoOrientacion.cs" />
     <Compile Include="Object\ENTTipoSolicitud.cs" />
     <Compile Include="Object\ENTTipoVivienda.cs" />
     <Compile Include="Object\ENTTitulo.cs" />

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Data;
 namespace SIAQ.Entity.Object
 {
     public class ENTCalificacion : ENTBase
@@ -8,6 +9,7 @@ namespace SIAQ.Entity.Object
         private int _CalificacionId; // Valor de CalificacionId
         private string _Nombre; // Valor de Nombre
         private string _Descripcion; // Valor de Descripcion
+        private DataSet _ResultData; //Otras propiedades
         public ENTCalificacion()
         {
             _CalificacionId = 0;
@@ -46,6 +48,14 @@ namespace SIAQ.Entity.Object
         {
             get { return _Descripcion; }
             set { _Descripcion = value; }
+        }
+
+        ///     DataSet resultante de las busquedas en la base de datos
+        /// </summary>
+        public DataSet ResultData
+        {
+            get { return _ResultData; }
+            set { _ResultData = value; }
         }
     }
 }

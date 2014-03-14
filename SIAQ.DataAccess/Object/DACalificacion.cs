@@ -11,10 +11,30 @@ namespace SIAQ.DataAccess.Object
 {
     public class DACalificacion : DABase
     {
+
+        protected int _ErrorId;
+        protected string _ErrorDescription;
         Database dbs;
         public DACalificacion()
         {
             dbs = DatabaseFactory.CreateDatabase("Conn");
+        }
+        /// <summary>
+        ///     Número de error ocurrido. Cero por default//
+        /// </summary>
+        public int ErrorId//
+        {
+            get { return _ErrorId; }
+            set { _ErrorId = value; }
+        }
+
+        /// <summary>
+        ///     Descripción del error ocurrido
+        /// </summary>
+        public string ErrorDescription
+        {
+            get { return _ErrorDescription; }
+            set { _ErrorDescription = value; }
         }
         ///<remarks>
         ///   <name>DAcatCalificacion.searchcatCalificacion</name>
@@ -139,6 +159,48 @@ namespace SIAQ.DataAccess.Object
             // Resultado
             return oENTResponse;
 
+        }
+
+        public DataSet SelectCalificacion(ENTCalificacion ENTCalificacion, string ConnectionString)
+        {
+            DataSet ResultData = new DataSet();
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            SqlCommand Command;
+            SqlParameter Parameter;
+            SqlDataAdapter DataAdapter;
+
+            try
+            {
+                Command = new SqlCommand("SelectCalificacion", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                Parameter = new SqlParameter("CalificacionId", SqlDbType.Int);
+                Parameter.Value = ENTCalificacion.CalificacionId;
+                Command.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("Nombre", SqlDbType.VarChar);
+                Parameter.Value = ENTCalificacion.Nombre;
+                Command.Parameters.Add(Parameter);
+
+                DataAdapter = new SqlDataAdapter(Command);
+
+                Connection.Open();
+                DataAdapter.Fill(ResultData);
+                Connection.Close();
+
+                return ResultData;
+
+            }
+            catch (SqlException Exception)
+            {
+                _ErrorId = Exception.Number;
+                _ErrorDescription = Exception.Message;
+
+                if (Connection.State == ConnectionState.Open)
+                    Connection.Close();
+
+                return ResultData;
+            }
         }
     }
 }

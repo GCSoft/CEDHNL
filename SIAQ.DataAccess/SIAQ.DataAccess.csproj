@@ -53,6 +53,7 @@
     <Compile Include="DABase.cs" />
     <Compile Include="Object\DAArea.cs" />
     <Compile Include="Object\DACalificacion.cs" />
+    <Compile Include="Object\DACanalizacion.cs" />
     <Compile Include="Object\DACiudad.cs" />
     <Compile Include="Object\DACiudadano.cs" />
     <Compile Include="Object\DAColonia.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Object\DASolicitudCiudadano.cs" />
     <Compile Include="Object\DATipoCiudadano.cs" />
     <Compile Include="Object\DATipoEstatus.cs" />
+    <Compile Include="Object\DATipoOrientacion.cs" />
     <Compile Include="Object\DATipoSolicitud.cs" />
     <Compile Include="Object\DATipoVivienda.cs" />
     <Compile Include="Object\DATitulo.cs" />

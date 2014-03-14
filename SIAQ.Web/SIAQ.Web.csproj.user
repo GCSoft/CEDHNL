@@ -7,7 +7,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349C5851-65DF-11DA-9384-00065B846F21}">
         <WebProjectProperties>
-          <StartPageUrl>Application/WebApp/Private/Seguimiento/lstRecSectretarias.aspx</StartPageUrl>
+          <StartPageUrl>Application/WebApp/Public/frmLogin.aspx</StartPageUrl>
           <StartAction>SpecificPage</StartAction>
           <AspNetDebugging>True</AspNetDebugging>
           <SilverlightDebugging>False</SilverlightDebugging>

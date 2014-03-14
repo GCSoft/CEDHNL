@@ -13,5 +13,30 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
       {
 
       }
+
+      protected void gvApps_PageIndexChanging(object sender, GridViewPageEventArgs e)
+      {
+
+      }
+
+      protected void gvApps_RowCommand(object sender, GridViewCommandEventArgs e)
+      {
+
+      }
+
+      protected void gvApps_RowDataBound(object sender, GridViewRowEventArgs e)
+      {
+
+      }
+
+      protected void gvApps_SelectedIndexChanged(object sender, EventArgs e)
+      {
+
+      }
+
+      protected void gvApps_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+      {
+
+      }
    }
 }

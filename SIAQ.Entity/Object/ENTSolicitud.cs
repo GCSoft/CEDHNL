@@ -8,6 +8,7 @@ namespace SIAQ.Entity.Object
     {
         private int _SolicitudId; // Valor de SolicitudId
         private int _CalificacionId; // Valor de CalificacionId
+        private int _CanalizacionId;
         private int _TipoSolicitudId; // Valor de TipoSolicitudId
         private int _LugarHechosId; // Valor de LugarHechosId
         private int _EstatusId; // Valor de EstatusId
@@ -17,9 +18,13 @@ namespace SIAQ.Entity.Object
         private int _FuncionarioId;
         private string _Fecha; // Valor de Fecha
         private string _Nombre;
+        private string _Fundamento;
         private DataSet _ResultData; //Otras propiedades
         private string _Observaciones;
         private string _DireccionHechos;
+        private int _idUsuarioInsert;
+        private int _idUsuarioLastUpdate;
+        private int _CierreOrientacionId;
 
         private int _CiudadanoId;                   // Identificador unico del ciudadano
 
@@ -40,6 +45,12 @@ namespace SIAQ.Entity.Object
             _FormaContactoId = 0;
             _DireccionHechos = string.Empty;
             _CiudadanoId = 0;
+            _idUsuarioInsert = 0;
+            _idUsuarioLastUpdate = 0;
+            _Fundamento = "";
+            _CanalizacionId = 0;
+            _CierreOrientacionId = 0;
+
         }
         ///<remarks>
         ///   <name>Solicitud.SolicitudId</name>
@@ -53,6 +64,12 @@ namespace SIAQ.Entity.Object
             set { _SolicitudId = value; }
         }
 
+        public int CanalizacionId
+        {
+            get { return _CanalizacionId; }
+            set { _CanalizacionId = value; }
+        }
+
         ///<remarks>
         ///   <name>Solicitud.CalificacionId</name>
         ///   <create>27/ene/2014</create>
@@ -63,6 +80,12 @@ namespace SIAQ.Entity.Object
         {
             get { return _CalificacionId; }
             set { _CalificacionId = value; }
+        }
+
+        public int CierreOrientacionId
+        {
+            get { return _CierreOrientacionId; }
+            set { _CierreOrientacionId = value; }
         }
         ///<remarks>
         ///   <name>Solicitud.TipoSolicitudId</name>
@@ -108,6 +131,23 @@ namespace SIAQ.Entity.Object
             get { return _Numero; }
             set { _Numero = value; }
         }
+        /// <summary>
+        ///     Identificador del usuario que creó el registro.
+        /// </summary>
+        public int idUsuarioInsert
+        {
+            get { return _idUsuarioInsert; }
+            set { _idUsuarioInsert = value; }
+        }
+
+        /// <summary>
+        ///     Identificador del último usuario que modificó el registro.
+        /// </summary>
+        public int idUsuarioLastUpdate
+        {
+            get { return _idUsuarioLastUpdate; }
+            set { _idUsuarioLastUpdate = value; }
+        }
         ///<remarks>
         ///   <name>Solicitud.Fecha</name>
         ///   <create>27/ene/2014</create>
@@ -118,6 +158,12 @@ namespace SIAQ.Entity.Object
         {
             get { return _Fecha; }
             set { _Fecha = value; }
+        }
+
+        public string Fundamento
+        {
+            get { return _Fundamento; }
+            set { _Fundamento = value; }
         }
 
         public int MedioComunicacion

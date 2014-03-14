@@ -171,7 +171,7 @@ namespace SIAQ.DataAccess.Object
 
             try
             {
-                Command = new SqlCommand("SelectCalificacion", Connection);
+                Command = new SqlCommand("sptblCalificacion_Sel", Connection);
                 Command.CommandType = CommandType.StoredProcedure;
 
                 Parameter = new SqlParameter("CalificacionId", SqlDbType.Int);

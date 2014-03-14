@@ -233,5 +233,15 @@ namespace SIAQ.BusinessProcess.Object
             _ErrorId = SolicitudAccess.ErrorId;
             _ErrorDescription = SolicitudAccess.ErrorDescription;
         }
+
+        public void GuardarCalificacionSol() {
+
+            DASolicitud SolicitudAccess = new DASolicitud();
+
+            SolicitudAccess.GuardarCalificacionSol(_SolicitudEntity, sConnectionApplication);
+
+            _ErrorId = SolicitudAccess.ErrorId;
+            _ErrorDescription = SolicitudAccess.ErrorDescription;
+        }
     }
 }

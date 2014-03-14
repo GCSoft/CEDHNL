@@ -4,7 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+/*
+ * solo cuando se seleccione la opción de Orientación
+ * se van a mostrar los campos Cierre de orientación y Canalizado
+ */
 
 using SIAQ.BusinessProcess.Object;
 using SIAQ.BusinessProcess.Page;
@@ -120,6 +123,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
             protected void GuardarCalificacionSol(int IdUsuarioInsert , int SolicitudId , string Fundamento , int CanalizacionId , int CalificacionId , int CierreOrientacionId)
             {
+                BPSolicitud BPSolicitud = new BPSolicitud();
+
+                BPSolicitud.SolicitudEntity.idUsuarioInsert = IdUsuarioInsert;
+                BPSolicitud.SolicitudEntity.SolicitudId = SolicitudId;
+                BPSolicitud.SolicitudEntity.Fundamento = Fundamento;
+                BPSolicitud.SolicitudEntity.CanalizacionId = CanalizacionId;
+                BPSolicitud.SolicitudEntity.CalificacionId = CalificacionId;
+                BPSolicitud.SolicitudEntity.CierreOrientacionId = CierreOrientacionId;
+
+                BPSolicitud.GuardarCalificacionSol();
+                if (BPSolicitud.ErrorId == 0)
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('La Calificacion se ha dado de alta correctamente ', 'Success', true);", true);
+                }
+                else
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + BPSolicitud.ErrorDescription + "', 'Error', true);", true);
 
             }
 

@@ -7,11 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
-   public partial class opeLstSolicitudFuncionario : System.Web.UI.Page
-   {
-      protected void Page_Load(object sender, EventArgs e)
-      {
+    public partial class opeSolicitudSecretaria : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
 
-      }
-   }
+        }
+    }
 }

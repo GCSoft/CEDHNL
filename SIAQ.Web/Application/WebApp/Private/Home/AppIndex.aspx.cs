@@ -43,11 +43,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Home
                   break;
 
               case 4:
-                  this.Response.Redirect("../Operation/opeLstSolicitudSecretaria.aspx", false);
+                  this.Response.Redirect("../Operation/opeSolicitudSecretaria.aspx", false);
                   break;
 
               case 5:
-                  this.Response.Redirect("../Operation/opeLstSolicitudFuncionario.aspx", false);
+                  this.Response.Redirect("../Operation/opeSolicitudFuncionario.aspx", false);
                   break;
 
               case 6:

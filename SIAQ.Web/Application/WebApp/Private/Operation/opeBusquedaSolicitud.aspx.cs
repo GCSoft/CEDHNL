@@ -14,7 +14,7 @@ using System.Data;
 
 namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
-   public partial class opeBusquedaSolicitud : System.Web.UI.Page
+   public partial class opeBusquedaSolicitud : BPPage
    {
 
       // Utilerías

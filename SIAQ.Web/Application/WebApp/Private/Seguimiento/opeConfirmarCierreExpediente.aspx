@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master"
-    AutoEventWireup="true" CodeBehind="opeDetalleRecomendacionDefensor.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Seguimiento.opeDetalleRecomendacionDefensor" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeConfirmarCierreExpediente.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Seguimiento.opeConfirmarCierreExpediente" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
     <script type="text/javascript">
@@ -17,103 +16,16 @@
     <table class="GeneralTable">
         <tr>
             <td class="tdCeldaTituloEncabezado" style="background-image: url('../../../../Include/Image/Web/BarraTitulo.png');">
-                Buscar solicitud
+                Confirmar cierre de expediente
             </td>
         </tr>
         <tr>
             <td class="SubTitulo">
-                <asp:Label ID="Label2" runat="server" Text="Proporcione los filtros deseados para buscar la solicitud."></asp:Label>
+                <asp:Label ID="Label2" runat="server" Text="Confirme si el expediente va a ser cerrado"></asp:Label>
             </td>
         </tr>
         <tr style="height: 2px;">
             <td colspan="13">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div id="SubMenuDiv">
-                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                        <tr>
-                            <td style="width: 65px;">
-                                <asp:ImageButton ID="InformacionGeneralButton" ImageUrl="/Include/Image/Icon/GeneralIcon.png"
-                                    runat="server" OnClick="InformacionGeneralButton_Click"></asp:ImageButton>
-                            </td>
-                            <td>
-                            </td>
-                            <td style="width: 65px;">
-                                <asp:ImageButton ID="SeguimientoButton" ImageUrl="/Include/Image/Icon/CalificarIcon.png"
-                                    runat="server" OnClick="SeguimientoButton_Click"></asp:ImageButton>
-                            </td>
-                            <td>
-                            </td>
-                            <td style="width: 65px;">
-                                <asp:ImageButton ID="NotificacionesButton" ImageUrl="/Include/Image/Icon/EnviarIcon.png"
-                                    runat="server" OnClick="NotificacionesButton_Click"></asp:ImageButton>
-                            </td>
-                            <td>
-                            </td>
-                            <td style="width: 65px;">
-                                <asp:ImageButton ID="DiligenciasButton" ImageUrl="/Include/Image/Icon/EnviarIcon.png"
-                                    runat="server" OnClick="DiligenciasButton_Click"></asp:ImageButton>
-                            </td>
-                            <td>
-                            </td>
-                            <td style="width: 65px;">
-                                <asp:ImageButton ID="CerrarExpedienteButton" ImageUrl="/Include/Image/Icon/EnviarIcon.png"
-                                    runat="server" OnClick="CerrarExpedienteButton_Click"></asp:ImageButton>
-                            </td>
-                            <td>
-                            </td>
-                            <td style="width: 65px;">
-                            </td>
-                            <td>
-                            </td>
-                            <td style="width: 65px;">
-                            </td>
-                        </tr>
-                        <tr style="height: 2px;">
-                            <td colspan="13">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 65px; font-size: 10px;">
-                                Información general
-                            </td>
-                            <td>
-                            </td>
-                            <td style="width: 65px; font-size: 10px;">
-                                Seguimiento
-                            </td>
-                            <td>
-                            </td>
-                            <td style="width: 65px; font-size: 10px;">
-                                Notificaciones
-                            </td>
-                            <td>
-                            </td>
-                            <td style="width: 65px; font-size: 10px;">
-                                Diligencias
-                            </td>
-                            <td>
-                            </td>
-                            <td style="width: 65px; font-size: 10px;">
-                                Cerrar expediente
-                            </td>
-                            <td>
-                            </td>
-                            <td style="width: 65px; font-size: 10px;">
-                            </td>
-                            <td>
-                            </td>
-                            <td style="width: 65px;">
-                            </td>
-                        </tr>
-                        <tr style="height: 30px;">
-                            <td colspan="13">
-                            </td>
-                        </tr>
-                    </table>
-                </div>
             </td>
         </tr>
         <tr>
@@ -338,86 +250,16 @@
         </tr>
         <tr>
             <td>
-                <asp:Panel ID="pnlDocumentos" runat="server" Width="100%">
-                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                        <tr>
-                            <td style="text-align: left;">
-                                Documentos anexos
-                            </td>
-                        </tr>
-                        <tr style="height: 3px;">
-                            <td colspan="4">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left;">
-                                <asp:ImageButton ID="imgWord" runat="server" ImageUrl="~/Include/Image/Web/word.png">
-                                </asp:ImageButton>
-                            </td>
-                            <td style="text-align: left;">
-                                <asp:ImageButton ID="imgPdf" runat="server" ImageUrl="~/Include/Image/Web/pdf.png">
-                                </asp:ImageButton>
-                            </td>
-                            <td style="text-align: left;">
-                                <asp:ImageButton ID="imgImages" runat="server" ImageUrl="~/Include/Image/Web/imgs.png">
-                                </asp:ImageButton>
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tdCeldaLeyendaItemFondoBlanco">
-                                Dictamen médico
-                            </td>
-                            <td class="tdCeldaLeyendaItemFondoBlanco">
-                                Anotaciones
-                            </td>
-                            <td class="tdCeldaLeyendaItemFondoBlanco">
-                                Foto 1
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                        <tr style="height: 3px;">
-                            <td colspan="4">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="4" style="text-align: left;">
-                                Asunto de la solicitud
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="4" style="background-color: Gray;">
-                                Barra de Herramientas
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="4" style="background-color: Gray;">
-                                <asp:TextBox ID="txtAsunto" runat="server" TextMode="MultiLine" CssClass="Textarea_General"
-                                    Width="800px"></asp:TextBox>
-                            </td>
-                        </tr>
-                    </table>
-                </asp:Panel>
-            </td>
-        </tr>
-        <tr>
-            <td class="tdCeldaMiddleSpace">
-            </td>
-        </tr>
-        <tr>
-            <td>
                 <asp:Panel ID="pnlBotones" runat="server" Width="100%">
                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
                         <tr>
                             <td style="height: 24px; text-align: left; width: 205px;">
-                                <asp:Button ID="cmdGuardar" runat="server" Text="Guardar información del expediente"
-                                    CssClass="Button_General" Width="200px" OnClick="cmdGuardar_Click" />
+                                <asp:Button ID="cmdCerrarExpediente" runat="server" Text="Cerrar expediente"
+                                    CssClass="Button_General" Width="200px"/>
                             </td>
                             <td style="height: 24px; text-align: left; width: 130px;">
                                 <asp:Button ID="cmdRegresar" runat="server" Text="Regresar" CssClass="Button_General"
-                                    Width="125px" OnClick="cmdRegresar_Click" />
+                                    Width="125px"/>
                             </td>
                             <td style="height: 24px; width: 530px;">
                             </td>

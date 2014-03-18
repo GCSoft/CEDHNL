@@ -191,6 +191,22 @@ namespace SIAQ.BusinessProcess.Object
             _ErrorDescription = DASolicitud.ErrorDescription;
         }
 
+        /// <summary>
+        ///     Busca las solicitudes asignadas a un funcionario, que están en estatus por atender o en proceso.
+        /// </summary>
+        public void SelectSolicitudFuncionario()
+        {
+            string ConnectionString = string.Empty;
+            DASolicitud DASolicitud = new DASolicitud();
+
+            ConnectionString = sConnectionApplication;
+
+            _SolicitudEntity.ResultData = DASolicitud.SelectSolicitudFuncionario(_SolicitudEntity, ConnectionString);
+
+            _ErrorId = DASolicitud.ErrorId;
+            _ErrorDescription = DASolicitud.ErrorDescription;
+        }
+
         ///<remarks>
         ///   <name>BPSolicitudupdateSolicitud</name>
         ///   <create>27/ene/2014</create>

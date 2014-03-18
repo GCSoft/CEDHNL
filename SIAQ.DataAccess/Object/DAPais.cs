@@ -16,10 +16,12 @@ namespace SIAQ.DataAccess.Object
         protected int _ErrorId;
         protected string _ErrorDescription;
         Database dbs;
+
         public DAPais()
         {
             dbs = DatabaseFactory.CreateDatabase("Conn");
         }
+
         ///<remarks>
         ///   <name>DAcatPais.searchcatPais</name>
         ///   <create>27/ene/2014</create>
@@ -51,6 +53,68 @@ namespace SIAQ.DataAccess.Object
             return oENTResponse;
 
         }
+
+       ///<remarks>
+        ///   <name>DAPais.SelectPais</name>
+        ///   <create>17-Marzo-2014</create>
+        ///   <author>Ruben.Cobos</author>
+        ///</remarks>
+        ///<summary>Obtiene un listado de Paises en base a los parámetros proporcionados</summary>
+        ///<param name="oENTPais">Entidad de Pais con los parámetros necesarios para consultar la información</param>
+        ///<param name="sConnection">Cadena de conexión a la base de datos</param>
+        ///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+        ///<returns>Una entidad de respuesta</returns>
+        public ENTResponse SelectPais(ENTPais oENTPais, String sConnection, Int32 iAlternateDBTimeout){
+           SqlConnection sqlCnn = new SqlConnection(sConnection);
+           SqlCommand sqlCom;
+           SqlParameter sqlPar;
+           SqlDataAdapter sqlDA;
+
+           ENTResponse oENTResponse = new ENTResponse();
+
+           // Configuración de objetos
+           sqlCom = new SqlCommand("uspcatPais_Sel", sqlCnn);
+           sqlCom.CommandType = CommandType.StoredProcedure;
+
+           // Timeout alternativo en caso de ser solicitado
+           if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+           // Parametros
+           sqlPar = new SqlParameter("PaisId", SqlDbType.Int);
+           sqlPar.Value = oENTPais.PaisId;
+           sqlCom.Parameters.Add(sqlPar);
+
+           sqlPar = new SqlParameter("Nombre", SqlDbType.VarChar);
+           sqlPar.Value = oENTPais.Nombre;
+           sqlCom.Parameters.Add(sqlPar);
+
+           sqlPar = new SqlParameter("Activo", SqlDbType.TinyInt);
+           sqlPar.Value = oENTPais.Activo;
+           sqlCom.Parameters.Add(sqlPar);
+
+           // Inicializaciones
+           oENTResponse.dsResponse = new DataSet();
+           sqlDA = new SqlDataAdapter(sqlCom);
+
+           // Transacción
+           try
+           {
+              sqlCnn.Open();
+              sqlDA.Fill(oENTResponse.dsResponse);
+              sqlCnn.Close();
+           }catch (SqlException sqlEx){
+              oENTResponse.ExceptionRaised(sqlEx.Message);
+           }catch (Exception ex){
+              oENTResponse.ExceptionRaised(ex.Message);
+           }finally{
+              if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+              sqlCnn.Dispose();
+           }
+
+           // Resultado
+           return oENTResponse;
+        }
+
         ///<remarks>
         ///   <name>DAcatPais.insertcatPais</name>
         ///   <create>27/ene/2014</create>
@@ -82,6 +146,7 @@ namespace SIAQ.DataAccess.Object
             return oENTResponse;
 
         }
+
         ///<remarks>
         ///   <name>DAcatPais.updatecatPais</name>
         ///   <create>27/ene/2014</create>
@@ -113,6 +178,7 @@ namespace SIAQ.DataAccess.Object
             return oENTResponse;
 
         }
+
         ///<remarks>
         ///   <name>DAcatPais.deletecatPais</name>
         ///   <create>27/ene/2014</create>
@@ -145,46 +211,5 @@ namespace SIAQ.DataAccess.Object
 
         }
 
-        public DataSet SelectPais(ENTPais ENTPais, string ConnectionString)
-        {
-            DataSet ResultData = new DataSet();
-            SqlConnection Connection = new SqlConnection(ConnectionString);
-            SqlCommand Command;
-            SqlParameter Parameter;
-            SqlDataAdapter DataAdapter;
-
-            try
-            {
-                Command = new SqlCommand("sptblPais_Sel", Connection);
-                Command.CommandType = CommandType.StoredProcedure;
-
-                Parameter = new SqlParameter("PaisId", SqlDbType.Int);
-                Parameter.Value = ENTPais.PaisId;
-                Command.Parameters.Add(Parameter);
-
-                Parameter = new SqlParameter("Nombre", SqlDbType.VarChar);
-                Parameter.Value = ENTPais.Nombre;
-                Command.Parameters.Add(Parameter);
-
-                DataAdapter = new SqlDataAdapter(Command);
-                ResultData = new DataSet();
-
-                Connection.Open();
-                DataAdapter.Fill(ResultData);
-                Connection.Close();
-
-                return ResultData;
-            }
-            catch (SqlException Exception)
-            {
-                _ErrorId = Exception.Number;
-                _ErrorDescription = Exception.Message;
-
-                if (Connection.State == ConnectionState.Open)
-                    Connection.Close();
-
-                return ResultData;
-            }
-        }
     }
 }

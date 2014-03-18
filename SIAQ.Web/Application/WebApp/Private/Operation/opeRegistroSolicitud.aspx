@@ -56,7 +56,7 @@
             </td>
         </tr>
         <tr>
-            <td class="SubTitulo"><asp:Label ID="Label2" runat="server" Text="Proporcione la siguiente información para registrar una nueva visita en el sistema."></asp:Label></td>
+            <td class="SubTitulo"><asp:Label ID="Label2" runat="server" Text="Proporcione la siguiente información para registrar una nueva solicitud en el sistema."></asp:Label></td>
         </tr>
         <tr>
             <td>
@@ -101,12 +101,13 @@
          </td>
       </tr>
       <tr><td class="tdCeldaMiddleSpace"></td></tr>
-        <tr>
-            <td style="text-align: left;">
-                <asp:Label Text="Los campos marcados con " runat="server"></asp:Label> 
-                <asp:Label CssClass="style3" Text="*" runat="server"></asp:Label>
-                <asp:Label ID="Label4" Text="son obligatorios." runat="server"></asp:Label> 
-            </td>
-        </tr>
+      <tr>
+         <td style="text-align: left;">
+            <asp:Label Text="Los campos marcados con " runat="server"></asp:Label> 
+            <asp:Label CssClass="style3" Text="*" runat="server"></asp:Label>
+            <asp:Label ID="Label4" Text="son obligatorios." runat="server"></asp:Label> 
+         </td>
+      </tr>
+      <tr class="trFilaFooter"><td></td></tr>
    </table>
 </asp:Content>

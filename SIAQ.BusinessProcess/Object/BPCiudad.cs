@@ -23,15 +23,6 @@ namespace SIAQ.BusinessProcess.Object
             _CiudadEntity = new ENTCiudad();
         }
 
-        public DataSet SelectCiudad()
-        {
-            string ConnectionString = string.Empty;
-            DACiudad DACiudad = new DACiudad();
-
-            ConnectionString = sConnectionApplication;
-            _CiudadEntity.ResultData = DACiudad.SelectCiudad(_CiudadEntity, ConnectionString);
-            return _CiudadEntity.ResultData;
-        }
         ///<remarks>
         ///   <name>BPcatCiudad.searchcatCiudad</name>
         ///   <create>27/ene/2014 </create>
@@ -61,6 +52,41 @@ namespace SIAQ.BusinessProcess.Object
             return oENTResponse;
 
         }
+
+        ///<remarks>
+        ///   <name>BPCiudad.SelectCiudad</name>
+        ///   <create>17-Marzo-2014</create>
+        ///   <author>Ruben.Cobos</author>
+        ///</remarks>
+        ///<summary>Consulta el catálogo de Ciudades</summary>
+        ///<param name="oENTEstado">Entidad de Estado con los filtros necesarios para la consulta</param>
+        ///<returns>Una entidad de respuesta</returns>
+        public ENTResponse SelectCiudad(ENTCiudad oENTCiudad)
+        {
+           DACiudad oDACiudad = new DACiudad();
+           ENTResponse oENTResponse = new ENTResponse();
+
+           try
+           {
+
+              // Transacción en base de datos
+              oENTResponse = oDACiudad.SelectCiudad(oENTCiudad, this.sConnectionApplication, 0);
+
+              // Validación de error en consulta
+              if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+              // Validación de mensajes de la BD
+              oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+              if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+           }catch (Exception ex){
+              oENTResponse.ExceptionRaised(ex.Message);
+           }
+
+           // Resultado
+           return oENTResponse;
+        }
+
         ///<remarks>
         ///   <name>BPcatCiudadinsertcatCiudad</name>
         ///   <create>27/ene/2014</create>
@@ -90,6 +116,7 @@ namespace SIAQ.BusinessProcess.Object
             return oENTResponse;
 
         }
+
         ///<remarks>
         ///   <name>BPcatCiudadupdatecatCiudad</name>
         ///   <create>27/ene/2014</create>
@@ -119,6 +146,7 @@ namespace SIAQ.BusinessProcess.Object
             return oENTResponse;
 
         }
+
         ///<remarks>
         ///   <name>BPcatCiudaddeletecatCiudad</name>
         ///   <create>27/ene/2014</create>

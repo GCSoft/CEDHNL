@@ -23,15 +23,6 @@ namespace SIAQ.BusinessProcess.Object
             _ColoniaEntity = new ENTColonia();
         }
 
-        public DataSet SelectColonia()
-        {
-            string ConnectionString = string.Empty;
-            DAColonia DAColonia = new DAColonia();
-
-            ConnectionString = sConnectionApplication;
-            _ColoniaEntity.ResultData = DAColonia.SelectColonia(_ColoniaEntity, ConnectionString);
-            return _ColoniaEntity.ResultData;
-        }
         ///<remarks>
         ///   <name>BPcatColonia.searchcatColonia</name>
         ///   <create>27/ene/2014</create>
@@ -61,6 +52,41 @@ namespace SIAQ.BusinessProcess.Object
             return oENTResponse;
 
         }
+      
+      ///<remarks>
+      ///   <name>BPCiudad.SelectColonia</name>
+      ///   <create>17-Marzo-2014</create>
+      ///   <author>Ruben.Cobos</author>
+      ///</remarks>
+      ///<summary>Consulta el catálogo de Colonias</summary>
+      ///<param name="oENTEstado">Entidad de Estado con los filtros necesarios para la consulta</param>
+      ///<returns>Una entidad de respuesta</returns>
+      public ENTResponse SelectColonia(ENTColonia oENTColonia)
+      {
+         DAColonia oDAColonia = new DAColonia();
+         ENTResponse oENTResponse = new ENTResponse();
+
+         try
+         {
+
+            // Transacción en base de datos
+            oENTResponse = oDAColonia.SelectColonia(oENTColonia, this.sConnectionApplication, 0);
+
+            // Validación de error en consulta
+            if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+            // Validación de mensajes de la BD
+            oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+            if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+         }catch (Exception ex){
+            oENTResponse.ExceptionRaised(ex.Message);
+         }
+
+         // Resultado
+         return oENTResponse;
+      }
+
         ///<remarks>
         ///   <name>BPcatColoniainsertcatColonia</name>
         ///   <create>27/ene/2014</create>
@@ -90,6 +116,7 @@ namespace SIAQ.BusinessProcess.Object
             return oENTResponse;
 
         }
+
         ///<remarks>
         ///   <name>BPcatColoniaupdatecatColonia</name>
         ///   <create>27/ene/2014</create>
@@ -119,6 +146,7 @@ namespace SIAQ.BusinessProcess.Object
             return oENTResponse;
 
         }
+
         ///<remarks>
         ///   <name>BPcatColoniadeletecatColonia</name>
         ///   <create>27/ene/2014</create>
@@ -148,5 +176,6 @@ namespace SIAQ.BusinessProcess.Object
             return oENTResponse;
 
         }
+
     }
 }

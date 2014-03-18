@@ -15,53 +15,12 @@ namespace SIAQ.DataAccess.Object
         protected int _ErrorId;
         protected string _ErrorDescription;
         Database dbs;
+
         public DAColonia()
         {
             dbs = DatabaseFactory.CreateDatabase("Conn");
         }
 
-        public DataSet SelectColonia(ENTColonia ENTColonia, string ConnectionString)
-        {
-            DataSet ResultData = new DataSet();
-            SqlConnection Connection = new SqlConnection(ConnectionString);
-            SqlCommand Command;
-            SqlParameter Parameter;
-            SqlDataAdapter DataAdapter;
-
-            try
-            {
-
-                Command = new SqlCommand("sptblColonia_Sel", Connection);
-                Command.CommandType = CommandType.StoredProcedure;
-
-                Parameter = new SqlParameter("ColoniaId", SqlDbType.Int);
-                Parameter.Value = ENTColonia.ColoniaId;
-                Command.Parameters.Add(Parameter);
-
-                Parameter = new SqlParameter("Nombre", SqlDbType.VarChar);
-                Parameter.Value = ENTColonia.Nombre;
-                Command.Parameters.Add(Parameter);
-
-                DataAdapter = new SqlDataAdapter(Command);
-                ResultData = new DataSet();
-
-                Connection.Open();
-                DataAdapter.Fill(ResultData);
-                Connection.Close();
-
-                return ResultData;
-            }
-            catch (SqlException Exception)
-            {
-                _ErrorId = Exception.Number;
-                _ErrorDescription = Exception.Message;
-
-                if (Connection.State == ConnectionState.Open)
-                    Connection.Close();
-
-                return ResultData;
-            }
-        }
         ///<remarks>
         ///   <name>DAcatColonia.searchcatColonia</name>
         ///   <create>27/ene/2014</create>
@@ -93,6 +52,72 @@ namespace SIAQ.DataAccess.Object
             return oENTResponse;
 
         }
+
+      ///<remarks>
+      ///   <name>DAColonia.SelectColonia</name>
+      ///   <create>17-Marzo-2014</create>
+      ///   <author>Ruben.Cobos</author>
+      ///</remarks>
+      ///<summary>Obtiene un listado de Colonias en base a los parámetros proporcionados</summary>
+      ///<param name="oENTEstado">Entidad de Colonia con los parámetros necesarios para consultar la información</param>
+      ///<param name="sConnection">Cadena de conexión a la base de datos</param>
+      ///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+      ///<returns>Una entidad de respuesta</returns>
+      public ENTResponse SelectColonia(ENTColonia oENTColonia, String sConnection, Int32 iAlternateDBTimeout){
+         SqlConnection sqlCnn = new SqlConnection(sConnection);
+         SqlCommand sqlCom;
+         SqlParameter sqlPar;
+         SqlDataAdapter sqlDA;
+
+         ENTResponse oENTResponse = new ENTResponse();
+
+         // Configuración de objetos
+         sqlCom = new SqlCommand("uspcatColonia_Sel", sqlCnn);
+         sqlCom.CommandType = CommandType.StoredProcedure;
+
+         // Timeout alternativo en caso de ser solicitado
+         if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+         // Parametros
+         sqlPar = new SqlParameter("ColoniaId", SqlDbType.Int);
+         sqlPar.Value = oENTColonia.ColoniaId;
+         sqlCom.Parameters.Add(sqlPar);
+
+         sqlPar = new SqlParameter("CiudadId", SqlDbType.Int);
+         sqlPar.Value = oENTColonia.CiudadId;
+         sqlCom.Parameters.Add(sqlPar);
+
+         sqlPar = new SqlParameter("Nombre", SqlDbType.VarChar);
+         sqlPar.Value = oENTColonia.Nombre;
+         sqlCom.Parameters.Add(sqlPar);
+
+         sqlPar = new SqlParameter("Activo", SqlDbType.TinyInt);
+         sqlPar.Value = oENTColonia.Activo;
+         sqlCom.Parameters.Add(sqlPar);
+
+         // Inicializaciones
+         oENTResponse.dsResponse = new DataSet();
+         sqlDA = new SqlDataAdapter(sqlCom);
+
+         // Transacción
+         try
+         {
+            sqlCnn.Open();
+            sqlDA.Fill(oENTResponse.dsResponse);
+            sqlCnn.Close();
+         }catch (SqlException sqlEx){
+            oENTResponse.ExceptionRaised(sqlEx.Message);
+         }catch (Exception ex){
+            oENTResponse.ExceptionRaised(ex.Message);
+         }finally{
+            if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+            sqlCnn.Dispose();
+         }
+
+         // Resultado
+         return oENTResponse;
+      }
+
         ///<remarks>
         ///   <name>DAcatColonia.insertcatColonia</name>
         ///   <create>27/ene/2014</create>
@@ -124,6 +149,7 @@ namespace SIAQ.DataAccess.Object
             return oENTResponse;
 
         }
+
         ///<remarks>
         ///   <name>DAcatColonia.updatecatColonia</name>
         ///   <create>27/ene/2014</create>
@@ -155,6 +181,7 @@ namespace SIAQ.DataAccess.Object
             return oENTResponse;
 
         }
+
         ///<remarks>
         ///   <name>DAcatColonia.deletecatColonia</name>
         ///   <create>27/ene/2014</create>
@@ -186,5 +213,6 @@ namespace SIAQ.DataAccess.Object
             return oENTResponse;
 
         }
+
     }
 }

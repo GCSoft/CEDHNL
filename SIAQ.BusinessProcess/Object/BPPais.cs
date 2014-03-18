@@ -22,7 +22,8 @@ namespace SIAQ.BusinessProcess.Object
 
             _PaisEntity = new ENTPais();
         }
-        ///<remarks>
+        
+       ///<remarks>
         ///   <name>BPcatPais.searchcatPais</name>
         ///   <create>27/ene/2014</create>
         ///   <author>Generador</author>
@@ -52,14 +53,37 @@ namespace SIAQ.BusinessProcess.Object
 
         }
 
-        public DataSet SelectPais()
-        {
-            string ConnectionString = string.Empty;
-            DAPais DAPais = new DAPais();
+        ///<remarks>
+        ///   <name>BPPais.SelectPais</name>
+        ///   <create>17-Marzo-2014</create>
+        ///   <author>Ruben.Cobos</author>
+        ///</remarks>
+        ///<summary>Consulta el catálogo de Paises</summary>
+        ///<param name="oENTPais">Entidad de Pais con los filtros necesarios para la consulta</param>
+        ///<returns>Una entidad de respuesta</returns>
+        public ENTResponse SelectPais(ENTPais oENTPais){
+           DAPais oDAPais = new DAPais();
+           ENTResponse oENTResponse = new ENTResponse();
 
-            ConnectionString = sConnectionApplication;
-            _PaisEntity.ResultData = DAPais.SelectPais(_PaisEntity, ConnectionString);
-            return _PaisEntity.ResultData;
+           try
+           {
+
+              // Transacción en base de datos
+              oENTResponse = oDAPais.SelectPais(oENTPais, this.sConnectionApplication, 0);
+
+              // Validación de error en consulta
+              if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+              // Validación de mensajes de la BD
+              oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+              if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+           }catch (Exception ex){
+              oENTResponse.ExceptionRaised(ex.Message);
+           }
+
+           // Resultado
+           return oENTResponse;
         }
 
         ///<remarks>

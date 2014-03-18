@@ -6,19 +6,23 @@ namespace SIAQ.Entity.Object
 {
     public class ENTEstado : ENTBase
     {
-        private int _EstadoId; // Valor de EstadoId
-        private int _PaisId; // Valor de PaisId
-        private string _Nombre; // Valor de Nombre
-        private string _Descripcion; // Valor de Descripcion
-        private DataSet _ResultData; //Otras propiedades
-        public ENTEstado()
-        {
+      
+      private Int16     _Activo;       // Control de baja lógica de registro
+      private int       _EstadoId;     // Valor de EstadoId
+      private int       _PaisId;       // Valor de PaisId
+      private string    _Nombre;       // Valor de Nombre
+      private string    _Descripcion;  // Valor de Descripcion
+      private DataSet   _ResultData;   //Otras propiedades
 
-            _EstadoId = 0;
-            _PaisId = 0;
-            _Nombre = "";
-            _Descripcion = "";
-        }
+      public ENTEstado()
+      {
+         _Activo        = 0;
+         _EstadoId      = 0;
+         _PaisId        = 0;
+         _Nombre        = "";
+         _Descripcion   = "";
+      }
+
         ///<remarks>
         ///   <name>Estado.EstadoId</name>
         ///   <create>27/ene/2014</create>
@@ -30,6 +34,7 @@ namespace SIAQ.Entity.Object
             get { return _EstadoId; }
             set { _EstadoId = value; }
         }
+
         ///<remarks>
         ///   <name>Estado.PaisId</name>
         ///   <create>27/ene/2014</create>
@@ -41,6 +46,7 @@ namespace SIAQ.Entity.Object
             get { return _PaisId; }
             set { _PaisId = value; }
         }
+
         ///<remarks>
         ///   <name>Estado.Nombde</name>
         ///   <create>27/ene/2014</create>
@@ -52,6 +58,7 @@ namespace SIAQ.Entity.Object
             get { return _Nombre; }
             set { _Nombre = value; }
         }
+
         ///<remarks>
         ///   <name>Estado.Descripcion</name>
         ///   <create>27/ene/2014</create>
@@ -71,5 +78,18 @@ namespace SIAQ.Entity.Object
             get { return _ResultData; }
             set { _ResultData = value; }
         }
+
+        ///<remarks>
+        ///   <name>ENTEstado.Activo</name>
+        ///   <create>17-Marzo-2014</create>
+        ///   <author>Ruben.Cobos</author>
+        ///</remarks>
+        ///<summary>Obtiene/Asigna el control de baja lógica de registro</summary>
+        public Int16 Activo
+        {
+           get { return _Activo; }
+           set { _Activo = value; }
+        }
+
     }
 }

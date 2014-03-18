@@ -23,15 +23,6 @@ namespace SIAQ.BusinessProcess.Object
             _EstadoEntity = new ENTEstado();
         }
 
-        public DataSet SelectEstado()
-        {
-            string ConnectionString = string.Empty;
-            DAEstado DAEstado = new DAEstado();
-
-            ConnectionString = sConnectionApplication;
-            _EstadoEntity.ResultData = DAEstado.SelectEstado(_EstadoEntity, ConnectionString);
-            return _EstadoEntity.ResultData;
-        }
         ///<remarks>
         ///   <name>BPcatEstado.searchcatEstado</name>
         ///   <create>27/ene/2014</create>
@@ -61,6 +52,39 @@ namespace SIAQ.BusinessProcess.Object
             return oENTResponse;
 
         }
+
+      ///<remarks>
+      ///   <name>BPEstado.SelectEstado</name>
+      ///   <create>17-Marzo-2014</create>
+      ///   <author>Ruben.Cobos</author>
+      ///</remarks>
+      ///<summary>Consulta el catálogo de Estados</summary>
+      ///<param name="oENTEstado">Entidad de Estado con los filtros necesarios para la consulta</param>
+      ///<returns>Una entidad de respuesta</returns>
+      public ENTResponse SelectEstado(ENTEstado oENTEstado){
+         DAEstado oDAEstado = new DAEstado();
+         ENTResponse oENTResponse = new ENTResponse();
+
+			try{
+
+            // Transacción en base de datos
+            oENTResponse = oDAEstado.SelectEstado(oENTEstado, this.sConnectionApplication, 0);
+
+            // Validación de error en consulta
+            if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+            // Validación de mensajes de la BD
+            oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+            if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
         ///<remarks>
         ///   <name>BPcatEstadoinsertcatEstado</name>
         ///   <create>27/ene/2014</create>
@@ -90,6 +114,7 @@ namespace SIAQ.BusinessProcess.Object
             return oENTResponse;
 
         }
+
         ///<remarks>
         ///   <name>BPcatEstadoupdatecatEstado</name>
         ///   <create>27/ene/2014</create>
@@ -119,6 +144,7 @@ namespace SIAQ.BusinessProcess.Object
             return oENTResponse;
 
         }
+
         ///<remarks>
         ///   <name>BPcatEstadodeletecatEstado</name>
         ///   <create>27/ene/2014</create>
@@ -148,7 +174,6 @@ namespace SIAQ.BusinessProcess.Object
             return oENTResponse;
 
         }
-
 
     }
 }

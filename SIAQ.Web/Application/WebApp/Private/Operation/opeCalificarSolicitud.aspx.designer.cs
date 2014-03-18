@@ -49,6 +49,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.DropDownList ddlCierre;
         
         /// <summary>
+        /// CeldaCanalizado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow CeldaCanalizado;
+        
+        /// <summary>
         /// ddlCanalizado control.
         /// </summary>
         /// <remarks>
@@ -56,6 +65,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCanalizado;
+        
+        /// <summary>
+        /// CeldaFundamento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow CeldaFundamento;
         
         /// <summary>
         /// TextBoxFundamento control.

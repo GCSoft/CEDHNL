@@ -10,7 +10,7 @@ using SIAQ.BusinessProcess.Page;
 
 namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 {
-    public partial class opeDetalleRecomendacionDefensor : BPPage 
+    public partial class opeDetalleRecomendacionDefensor : System.Web.UI.Page
     {
 
         #region Atributos
@@ -27,33 +27,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
             {
                 string recomendacionId = GetRawQueryParameter("recomendacionId");
 
+                //Llenar lugar hechos
+                SelectListaLugarHechos();
                 // Llenar detalle
                 LlenarDetalleRecomendacion(recomendacionId);
                 // Llenar grd
                 SelectCiudadanosRecomendacion(recomendacionId);
+                // Llenar autoridad
+                SelectAutoridadesRecomendacion(recomendacionId);
             }
         }
 
         #region "Botones"
 
-        protected void gvRecomendaciones_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-
-        }
-
-        protected void gvRecomendaciones_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-
-        }
-
-        protected void gvRecomendaciones_Sorting(object sender, GridViewSortEventArgs e)
-        {
-
-        }
-
         protected void InformacionGeneralButton_Click(object sender, ImageClickEventArgs e)
         {
-
+            Response.Redirect("/Application/WebApp/Private/Seguimiento/opeLstRecDefensor.aspx");
         }
 
         protected void SeguimientoButton_Click(object sender, ImageClickEventArgs e)
@@ -61,27 +50,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
         }
 
-        protected void NotificacionesButton_Click(object sender, ImageClickEventArgs e)
+        protected void GenerarCitaButton_Click(object sender, ImageClickEventArgs e)
         {
 
         }
 
-        protected void DiligenciasButton_Click(object sender, ImageClickEventArgs e)
+        protected void ConcluirExpButton_Click(object sender, ImageClickEventArgs e)
         {
 
         }
 
-        protected void CerrarExpedienteButton_Click(object sender, ImageClickEventArgs e)
+        protected void AgregarDocButton_Click(object sender, ImageClickEventArgs e)
         {
 
         }
 
-        protected void cmdGuardar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void cmdRegresar_Click(object sender, EventArgs e)
+        protected void GuardarButton_Click(object sender, EventArgs e)
         {
 
         }
@@ -123,14 +107,36 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
             {
                 if (BPRecomendacion.RecomendacionEntity.ResultData.Tables[0].Rows.Count > 0)
                 {
-                    gvRecomendaciones.DataSource = BPRecomendacion.RecomendacionEntity.ResultData;
-                    gvRecomendaciones.DataBind();
+                    gvCiudadano.DataSource = BPRecomendacion.RecomendacionEntity.ResultData;
+                    gvCiudadano.DataBind();
                 }
             }
             else
             {
-                gvRecomendaciones.DataSource = null;
-                gvRecomendaciones.DataBind();
+                gvCiudadano.DataSource = null;
+                gvCiudadano.DataBind();
+            }
+        }
+
+        private void SelectAutoridadesRecomendacion(string recomendacionId)
+        {
+            BPRecomendacion BPRecomendacion = new BPRecomendacion();
+
+            BPRecomendacion.RecomendacionEntity.RecomendacionId = Convert.ToInt32(recomendacionId);
+            BPRecomendacion.SelectAutoridadRecomendacionDirector();
+
+            if (BPRecomendacion.ErrorId == 0)
+            {
+                if (BPRecomendacion.RecomendacionEntity.ResultData.Tables[0].Rows.Count > 0)
+                {
+                    gvAutoridades.DataSource = BPRecomendacion.RecomendacionEntity.ResultData;
+                    gvAutoridades.DataBind();
+                }
+            }
+            else
+            {
+                gvAutoridades.DataSource = null;
+                gvAutoridades.DataBind();
             }
         }
 
@@ -146,13 +152,43 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
                 if (BPRecomendacion.RecomendacionEntity.ResultData.Tables[0].Rows.Count > 0)
                 {
                     SolicitudLabel.Text = BPRecomendacion.RecomendacionEntity.ResultData.Tables[0].Rows[0]["ExpedienteId"].ToString();
+                    CalificacionLabel.Text = BPRecomendacion.RecomendacionEntity.ResultData.Tables[0].Rows[0]["Calificacion"].ToString();
                     EstatusaLabel.Text = BPRecomendacion.RecomendacionEntity.ResultData.Tables[0].Rows[0]["Estatus"].ToString();
+                    VisitadorLabel.Text = BPRecomendacion.RecomendacionEntity.ResultData.Tables[0].Rows[0]["Visitador"].ToString();
+                    ContactoLabel.Text = BPRecomendacion.RecomendacionEntity.ResultData.Tables[0].Rows[0]["FormaContacto"].ToString();
+                    TipoSolicitudLabel.Text = BPRecomendacion.RecomendacionEntity.ResultData.Tables[0].Rows[0]["TipoSolicitud"].ToString();
                     ObservacionesLabel.Text = BPRecomendacion.RecomendacionEntity.ResultData.Tables[0].Rows[0]["Observaciones"].ToString();
+                    LugarHechosList.SelectedValue = BPRecomendacion.RecomendacionEntity.ResultData.Tables[0].Rows[0]["LugarHechosId"].ToString();
+                    DireccionHechosBox.Text = BPRecomendacion.RecomendacionEntity.ResultData.Tables[0].Rows[0]["DireccionHechos"].ToString();
                 }
             }
         }
 
+        private void SelectListaLugarHechos()
+        {
+            BPLugarHechos BPLugarHechos = new BPLugarHechos();
+
+            BPLugarHechos.SelectLugarHechos();
+
+            if (BPLugarHechos.ErrorId == 0)
+            {
+                if (BPLugarHechos.LugarEntity.ResultData.Tables[0].Rows.Count > 0)
+                {
+                    LugarHechosList.DataSource = BPLugarHechos.LugarEntity.ResultData;
+                    LugarHechosList.DataTextField = "Nombre";
+                    LugarHechosList.DataValueField = "LugarHechosId";
+                    LugarHechosList.DataBind();
+                }
+            }
+            else
+            {
+                LugarHechosList.DataSource = null;
+                LugarHechosList.DataBind();
+            }
+        }
+
         #endregion
+
 
     }
 }

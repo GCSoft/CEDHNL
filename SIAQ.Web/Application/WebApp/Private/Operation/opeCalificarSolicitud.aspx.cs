@@ -4,10 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-/*
- * solo cuando se seleccione la opción de Orientación
- * se van a mostrar los campos Cierre de orientación y Canalizado
- */
 
 using SIAQ.BusinessProcess.Object;
 using SIAQ.BusinessProcess.Page;
@@ -18,7 +14,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
     public partial class opeCalificarSolicitud : System.Web.UI.Page
     {
-        string AllDefault = "-- Todos --";
+        string AllDefault = "-- Seleccione --";
+
         public string _SolicitudId;
 
         #region "Events"
@@ -58,6 +55,26 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                         ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + Exception.Message + "', 'Fail', true);", true);
                     }
                 }
+            }
+     /*
+     * solo cuando se seleccione la opción de Orientación
+     * se van a mostrar los campos Cierre de orientación y Canalizado
+     */
+            public void Orientacion_OnSelectedIndexChanged(Object sender, EventArgs e) {
+
+                if (int.Parse(ddlCierre.SelectedValue) != 0)
+                {
+
+                    CeldaCanalizado.Visible = true;
+                    CeldaFundamento.Visible = true;
+                }
+
+                else {
+
+                    CeldaCanalizado.Visible = false;
+                    CeldaFundamento.Visible = false;
+                }
+
             }
 
             protected void SelectCalificacion() {
@@ -108,14 +125,19 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                       return;
                    }
 
-                   if (this.ddlCanalizado.SelectedValue == "0"){
-                      ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo de Canalizado es obligatorio ', 'Success', true); focusControl('" + this.ddlCanalizado.ClientID + "');", true);
-                      return;
-                   }
+                   if (this.ddlCierre.SelectedValue != "0"){
 
-                   if (this.ddlCierre.SelectedValue == "0"){
-                      ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo de Cierre de Orientacion es obligatorio ', 'Success', true); focusControl('" + this.ddlCierre.ClientID + "');", true);
-                      return;
+                      if (this.ddlCanalizado.SelectedValue == "0")
+                      {
+                          ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo de Canalizado es obligatorio ', 'Success', true); focusControl('" + this.ddlCanalizado.ClientID + "');", true);
+                          return;
+                      }
+
+                      if (this.TextBoxFundamento.Text =="")
+                      {
+                          ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo de Canalizado es obligatorio ', 'Success', true); focusControl('" + this.ddlCanalizado.ClientID + "');", true);
+                          return;
+                      }
                    }
 
                 GuardarCalificacionSol(SessionEntity.idUsuario ,int.Parse(SolicitudIdHidden.Value), TextBoxFundamento.Text, int.Parse(ddlCanalizado.SelectedValue) ,int.Parse(ddlCalificacion.SelectedValue) , int.Parse(ddlCierre.SelectedValue) );
@@ -123,6 +145,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
             protected void GuardarCalificacionSol(int IdUsuarioInsert , int SolicitudId , string Fundamento , int CanalizacionId , int CalificacionId , int CierreOrientacionId)
             {
+
                 BPSolicitud BPSolicitud = new BPSolicitud();
 
                 BPSolicitud.SolicitudEntity.idUsuarioInsert = IdUsuarioInsert;

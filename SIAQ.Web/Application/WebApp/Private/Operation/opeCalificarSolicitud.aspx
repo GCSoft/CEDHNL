@@ -3,7 +3,7 @@
     <style type="text/css">
         .style2
         {
-            width: 136px;
+            width: 146px;
             font-size: 11px;
         }
         .style3
@@ -16,6 +16,13 @@
             font-size:11px;
             
             }
+        .style4
+        {
+            font-size: 15px;
+            font-weight: bold;
+            text-align: left;
+            width: 129px;
+        }
         </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
@@ -29,7 +36,7 @@
   <br />
    <table border="0" cellpadding="0" cellspacing="0" width="100%">
        <tr class="trFilaItem">
-       <td class="Solicitud">Solicitud Número</td>
+       <td class="style4">Solicitud Número</td>
        <td style="width:5px;"></td>
 	   <td class="tdCeldaItem"><asp:Label CssClass="NumeroSolicitudLabel" ID="SolicitudLabel" runat="server" Text="0"></asp:Label></td>
        </tr>
@@ -46,13 +53,13 @@
         </tr>
         <tr>
           <td class="style2">Cierre de orientación</td>
-          <td><asp:DropDownList ID="ddlCierre" width="214px" runat="server"></asp:DropDownList></td>
+          <td><asp:DropDownList ID="ddlCierre" width="214px" runat="server" AutoPostBack="true" OnSelectedIndexChanged="Orientacion_OnSelectedIndexChanged"></asp:DropDownList></td>
         </tr>
-       <tr>
+       <tr id="CeldaCanalizado" runat="server" visible="false">
          <td class="style2">Canalizado a</td>
          <td><asp:DropDownList ID="ddlCanalizado" width="214px" runat="server"></asp:DropDownList></td>
        </tr>
-       <tr>
+       <tr id="CeldaFundamento" runat="server" visible="false">
         <td class="style2">Fundamento</td>
         <td>
             <asp:TextBox ID="TextBoxFundamento" runat="server" CssClass="Textbox_General" TextMode="MultiLine" Height="100px" width="360px" ></asp:TextBox></td>

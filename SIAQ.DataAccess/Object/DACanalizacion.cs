@@ -43,7 +43,7 @@ namespace SIAQ.DataAccess.Object
 
             try
             {
-                Command = new SqlCommand("SelectCanalizacion", Connection);
+                Command = new SqlCommand("sptblCanalizacion_Sel", Connection);
                 Command.CommandType = CommandType.StoredProcedure;
 
                 Parameter = new SqlParameter("CanalizacionId", SqlDbType.Int);
@@ -51,7 +51,7 @@ namespace SIAQ.DataAccess.Object
                 Command.Parameters.Add(Parameter);
 
                 Parameter = new SqlParameter("Nombre", SqlDbType.VarChar);
-                Parameter.Value = ENTCanalizacion.CanalizacionId;
+                Parameter.Value = ENTCanalizacion.Nombre;
                 Command.Parameters.Add(Parameter);
 
                 DataAdapter = new SqlDataAdapter(Command);

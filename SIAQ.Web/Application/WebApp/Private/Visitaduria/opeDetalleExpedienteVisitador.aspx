@@ -61,7 +61,8 @@
                     <tr class="trFilaItem">
                         <td class="tdCeldaLeyendaItemFondoBlanco">Calificación</td>
                         <td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtCalificacion" runat="server" CssClass="Textbox_General" width="177px" ></asp:TextBox>&nbsp;</td>
+						<td class="tdCeldaItem"><asp:TextBox ID="txtCalificacion" runat="server" 
+                                CssClass="Textbox_General" width="177px" ReadOnly="True" ></asp:TextBox>&nbsp;</td>
                         <td style="width:5px;"></td>
                         <td class="tdCeldaLeyendaItemFondoBlanco"></td>
                         <td style="width:5px;"></td>
@@ -72,57 +73,69 @@
                     <tr class="trFilaItem">
                         <td class="tdCeldaLeyendaItemFondoBlanco">Estatus</td>
                         <td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtEstatus" runat="server" CssClass="Textbox_General" width="177px" ></asp:TextBox>&nbsp;</td>
+						<td class="tdCeldaItem"><asp:TextBox ID="txtEstatus" runat="server" 
+                                CssClass="Textbox_General" width="177px" ReadOnly="True" ></asp:TextBox>&nbsp;</td>
                         <td style="width:5px;"></td>
                         <td class="tdCeldaLeyendaItemFondoBlanco">Fecha de recepción</td>
                         <td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtFechaResepcion" runat="server" CssClass="Textbox_General" width="177px" ></asp:TextBox>&nbsp;</td>
+						<td class="tdCeldaItem"><asp:TextBox ID="txtFechaResepcion" runat="server" 
+                                CssClass="Textbox_General" width="177px" ReadOnly="True" ></asp:TextBox>&nbsp;</td>
                         <td style="width:5px;"></td>
                     </tr>
                     <tr style=" height:3px;"><td colspan="8"></td></tr>
                     <tr class="trFilaItem">
                         <td class="tdCeldaLeyendaItemFondoBlanco">Visitador</td>
                         <td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtFuncionario" runat="server" CssClass="Textbox_General" width="177px" ></asp:TextBox>&nbsp;</td>
+						<td class="tdCeldaItem"><asp:TextBox ID="txtFuncionario" runat="server" 
+                                CssClass="Textbox_General" width="177px" ReadOnly="True" ></asp:TextBox>&nbsp;</td>
                         <td style="width:5px;"></td>
                         <td class="tdCeldaLeyendaItemFondoBlanco">Fecha de asignación</td>
                         <td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtFechaAsignacion" runat="server" CssClass="Textbox_General" width="177px" ></asp:TextBox>&nbsp;</td>
+						<td class="tdCeldaItem"><asp:TextBox ID="txtFechaAsignacion" runat="server" 
+                                CssClass="Textbox_General" width="177px" ReadOnly="True" ></asp:TextBox>&nbsp;</td>
                         <td style="width:5px;"></td>
                     </tr>
                     <tr style=" height:3px;"><td colspan="8"></td></tr>
                     <tr class="trFilaItem">
                         <td class="tdCeldaLeyendaItemFondoBlanco">Forma de contacto</td>
                         <td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtFormaContacto" runat="server" CssClass="Textbox_General" width="177px" ></asp:TextBox>&nbsp;</td>
+						<td class="tdCeldaItem"><asp:TextBox ID="txtFormaContacto" runat="server" 
+                                CssClass="Textbox_General" width="177px" ReadOnly="True" ></asp:TextBox>&nbsp;</td>
                         <td style="width:5px;"></td>
                         <td class="tdCeldaLeyendaItemFondoBlanco">Fecha de inicio gestión</td>
                         <td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtFechaIniGest" runat="server" CssClass="Textbox_General" width="177px" ></asp:TextBox>&nbsp;</td>
+						<td class="tdCeldaItem"><asp:TextBox ID="txtFechaIniGest" runat="server" 
+                                CssClass="Textbox_General" width="177px" ReadOnly="True" ></asp:TextBox>&nbsp;</td>
                         <td style="width:5px;"></td>
                     </tr>
                     <tr style=" height:3px;"><td colspan="8"></td></tr>
                     <tr class="trFilaItem">
                         <td class="tdCeldaLeyendaItemFondoBlanco">Tipo de solicitud</td>
                         <td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtTipoSolicitud" runat="server" CssClass="Textbox_General" width="177px" ></asp:TextBox>&nbsp;</td>
+						<td class="tdCeldaItem"><asp:TextBox ID="txtTipoSolicitud" runat="server" 
+                                CssClass="Textbox_General" width="177px" ReadOnly="True" ></asp:TextBox>&nbsp;</td>
                         <td style="width:5px;"></td>
                         <td class="tdCeldaLeyendaItemFondoBlanco">Última modificación</td>
                         <td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtUltimaModificacion" runat="server" CssClass="Textbox_General" width="177px" ></asp:TextBox>&nbsp;</td>
+						<td class="tdCeldaItem"><asp:TextBox ID="txtUltimaModificacion" runat="server" 
+                                CssClass="Textbox_General" width="177px" ReadOnly="True" ></asp:TextBox>&nbsp;</td>
                         <td style="width:5px;"></td>
                     </tr>
                     <tr style=" height:3px;"><td colspan="8"></td></tr>
                     <tr class="trFilaItem">
                         <td class="tdCeldaLeyendaItemFondoBlanco">Observaciones (Recepción)</td>
                         <td style="width:5px;"></td>
-						<td class="tdCeldaItem" colspan="5"><asp:TextBox ID="txtObservaciones" runat="server" CssClass="Textarea_General" width="586px" ></asp:TextBox>&nbsp;</td>
+						<td class="tdCeldaItem" colspan="5"><asp:TextBox ID="txtObservaciones" 
+                                runat="server" CssClass="Textarea_General" width="586px" 
+                                ontextchanged="txtObservaciones_TextChanged" ReadOnly="True" 
+                                TextMode="MultiLine" ></asp:TextBox>&nbsp;</td>
                     </tr>
                     <tr style=" height:3px;"><td colspan="8"></td></tr>
                     <tr class="trFilaItem">
                         <td class="tdCeldaLeyendaItemFondoBlanco">Lugar de los hechos</td>
                         <td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:DropDownList ID="ddlLugarHechos" runat="server" CssClass="DropDownList_General" width="182px"></asp:DropDownList></td>
+						<td class="tdCeldaItem"><asp:TextBox ID="txtLugar" runat="server" 
+                                CssClass="Textbox_General" width="177px" ReadOnly="True" ></asp:TextBox></td>
                         <td style="width:5px;"></td>
                         <td class="tdCeldaLeyendaItemFondoBlanco"></td>
                         <td style="width:5px;"></td>
@@ -133,7 +146,8 @@
                     <tr class="trFilaItem">
                         <td class="tdCeldaLeyendaItemFondoBlanco">Dirección de los hechos</td>
                         <td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtDireccionHechos" runat="server" CssClass="Textarea_General" width="177px" ></asp:TextBox>&nbsp;</td>
+						<td class="tdCeldaItem"><asp:TextBox ID="txtDireccionHechos" runat="server" 
+                                CssClass="Textarea_General" width="177px" ReadOnly="True" TextMode="MultiLine" ></asp:TextBox>&nbsp;</td>
                         <td style="width:5px;"></td>
                         <td class="tdCeldaLeyendaItemFondoBlanco"></td>
                         <td style="width:5px;"></td>
@@ -151,8 +165,9 @@
             <asp:Panel id="pnlGrid" runat="server" Width="100%">
                <asp:GridView ID="gvCiudadano" runat="server" AutoGenerateColumns="False"
                         AutoUpdateAfterCallBack="True" UpdateAfterCallBack="True" Width="800px" 
-                        Style="text-align: center" DataKeyNames="Solicitud"
-                        PageSize="30" ShowHeaderWhenEmpty="True">
+                        Style="text-align: center" DataKeyNames="Ciudadanoid"
+                        PageSize="30" ShowHeaderWhenEmpty="True" 
+                        onrowcommand="gvCiudadano_RowCommand" onrowdatabound="gvCiudadano_RowDataBound">
                         <RowStyle CssClass="Grid_Row" />
                         <EditRowStyle Wrap="True" />
                         <HeaderStyle CssClass="Grid_Header" ForeColor="#E3EBF5" />
@@ -174,12 +189,18 @@
 							</table>
                         </EmptyDataTemplate>
                         <Columns>
+                            <asp:BoundField DataField="Ciudadanoid" HeaderText="id" Visible="false"></asp:BoundField>
                             <asp:BoundField DataField="Nombre" HeaderText="Nombre"></asp:BoundField>
                             <asp:BoundField DataField="Sexo" HeaderText="Sexo"></asp:BoundField>
                             <asp:BoundField DataField="FechaNacimiento" HeaderText="Fecha nacimiento"></asp:BoundField>
-                            <asp:BoundField DataField="Domicilio" HeaderText="Funcionario"></asp:BoundField>
-                            <asp:BoundField DataField="Telefono" HeaderText="Estatus"></asp:BoundField>
-                            <asp:BoundField DataField="Tipo" HeaderText="Quejosos"></asp:BoundField>
+                            <asp:BoundField DataField="Domicilio" HeaderText="Domicilio"></asp:BoundField>
+                            <asp:BoundField DataField="Telefono" HeaderText="Teléfono"></asp:BoundField>
+                            <asp:BoundField DataField="TipoCiudadano" HeaderText="Tipo"></asp:BoundField>
+                            <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Editar" ItemStyle-Width="50px">
+                                <ItemTemplate>
+                                    <asp:ImageButton ID="imgEdit" runat="server" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png"></asp:ImageButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             
                         </Columns>
                 </asp:GridView>
@@ -194,7 +215,7 @@
             <asp:Panel id="pnlGrid2" runat="server" Width="100%">
                <asp:GridView ID="gvAutoridades" runat="server" AutoGenerateColumns="False"
                         AutoUpdateAfterCallBack="True" UpdateAfterCallBack="True" Width="800px" 
-                        Style="text-align: center" DataKeyNames="Solicitud"
+                        Style="text-align: center" DataKeyNames=""
                         PageSize="30" ShowHeaderWhenEmpty="True">
                         <RowStyle CssClass="Grid_Row" />
                         <EditRowStyle Wrap="True" />
@@ -217,12 +238,12 @@
 							</table>
                         </EmptyDataTemplate>
                         <Columns>
-                            <asp:BoundField DataField="Nombre" HeaderText="Nombre"></asp:BoundField>
-                            <asp:BoundField DataField="Sexo" HeaderText="Sexo"></asp:BoundField>
-                            <asp:BoundField DataField="FechaNacimiento" HeaderText="Fecha nacimiento"></asp:BoundField>
-                            <asp:BoundField DataField="Domicilio" HeaderText="Funcionario"></asp:BoundField>
-                            <asp:BoundField DataField="Telefono" HeaderText="Estatus"></asp:BoundField>
-                            <asp:BoundField DataField="Tipo" HeaderText="Quejosos"></asp:BoundField>
+                            <asp:BoundField DataField="Nom" HeaderText="Nombre"></asp:BoundField>
+                            <asp:BoundField DataField="Se" HeaderText="Sexo"></asp:BoundField>
+                            <asp:BoundField DataField="FechaNac" HeaderText="Fecha nacimiento"></asp:BoundField>
+                            <asp:BoundField DataField="Domi" HeaderText="Funcionario"></asp:BoundField>
+                            <asp:BoundField DataField="Tele" HeaderText="Estatus"></asp:BoundField>
+                            <asp:BoundField DataField="Ti" HeaderText="Quejosos"></asp:BoundField>
                             
                         </Columns>
                 </asp:GridView>

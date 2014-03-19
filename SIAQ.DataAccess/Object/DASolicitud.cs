@@ -315,6 +315,87 @@ namespace SIAQ.DataAccess.Object
             }
         }
 
+        /// <summary>
+        ///     Busca las solicitudes asignadas a un funcionario, que están en estatus por atender o en proceso.
+        /// </summary>
+        /// <param name="ENTSolicitud">Entidad de solicitud.</param>
+        /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
+        /// <returns>Resultado de la búsqueda.</returns>
+        public DataSet SelectSolicitudFuncionario(ENTSolicitud ENTSolicitud, string ConnectionString)
+        {
+            DataSet ResultData = new DataSet();
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            SqlCommand Command;
+            SqlParameter Parameter;
+            SqlDataAdapter DataAdapter;
+
+            try
+            {
+                Command = new SqlCommand("SelectSolicitudFuncionario", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                Parameter = new SqlParameter("FuncionarioId", SqlDbType.Int);
+                Parameter.Value = ENTSolicitud.FuncinarioId;
+                Command.Parameters.Add(Parameter);
+
+                DataAdapter = new SqlDataAdapter(Command);
+
+                Connection.Open();
+                DataAdapter.Fill(ResultData);
+                Connection.Close();
+
+                return ResultData;
+            }
+            catch (SqlException Exception)
+            {
+                _ErrorId = Exception.Number;
+                _ErrorDescription = Exception.Message;
+
+                if (Connection.State == ConnectionState.Open)
+                    Connection.Close();
+
+                return ResultData;
+            }
+        }
+
+        /// <summary>
+        ///     Busca las solicitudes de la secretaria que están pendientes de aprobar.
+        /// </summary>
+        /// <param name="ENTSolicitud">Entidad de solicitud.</param>
+        /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
+        /// <returns>Resultado de la búsqueda.</returns>
+        public DataSet SelectSolicitudSecretaria(ENTSolicitud ENTSolicitud, string ConnectionString)
+        {
+            DataSet ResultData = new DataSet();
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            SqlCommand Command;
+            SqlDataAdapter DataAdapter;
+
+            try
+            {
+                Command = new SqlCommand("SelectSolicitudSecretaria", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                DataAdapter = new SqlDataAdapter(Command);
+
+                Connection.Open();
+                DataAdapter.Fill(ResultData);
+                Connection.Close();
+
+                return ResultData;
+            }
+            catch (SqlException Exception)
+            {
+                _ErrorId = Exception.Number;
+                _ErrorDescription = Exception.Message;
+
+                if (Connection.State == ConnectionState.Open)
+                    Connection.Close();
+
+                return ResultData;
+            }
+        }
+
         ///<remarks>
         ///   <name>DASolicitud.updateSolicitud</name>
         ///   <create>27/ene/2014</create>

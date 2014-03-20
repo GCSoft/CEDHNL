@@ -53,30 +53,6 @@ namespace SIAQ.DataAccess.Object
         }
 
         ///<remarks>
-        ///   <name>DAExpediente.searchExpedienteDetalle</name>
-        ///   <create>14/Marzo/2014</create>
-        ///   <author>Generador</author>
-        ///</remarks>
-        ///<summary>Metodo para obtener el detalle de los Expedientes del sistema</summary>
-        public ENTResponse searchExpedienteDetalle(ENTExpediente oENTExpediente)
-        {
-            ENTResponse oENTResponse = new ENTResponse();
-
-            oENTResponse.dsResponse = new DataSet();
-
-            try
-            {
-
-                oENTResponse.dsResponse = dbs.ExecuteDataSet("spExpediente_selDetalle", oENTExpediente.ExpedienteId);
-
-            }
-            catch (SqlException sqlEx) { oENTResponse.ExceptionRaised(sqlEx.Message); }
-            catch (Exception ex) { oENTResponse.ExceptionRaised(ex.Message); }
-
-            return oENTResponse;
-        }
-
-        ///<remarks>
         ///   <name>DAExpediente.insertExpediente</name>
         ///   <create>19/feberero/2014</create>
         ///   <author>Generador</author>

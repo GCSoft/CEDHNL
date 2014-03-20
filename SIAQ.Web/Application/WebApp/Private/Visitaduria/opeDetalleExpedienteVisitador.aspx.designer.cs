@@ -175,13 +175,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.TextBox txtObservaciones;
         
         /// <summary>
-        /// txtLugar control.
+        /// ddlLugarHechos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLugar;
+        protected global::System.Web.UI.WebControls.DropDownList ddlLugarHechos;
         
         /// <summary>
         /// txtDireccionHechos control.

@@ -8,7 +8,7 @@
 				Catálogo de Colonias y Fraccionamientos
 			</td>
 		</tr>
-      <tr><td class="tdCeldaMiddleSpace_Title"></td></tr>
+      <tr><td class="tdCeldaMiddleSpace_Title"></td></tr> 
       <tr>
          <td>
             <asp:Panel id="pnlFormulario" runat="server" Visible="true" Width="100%">

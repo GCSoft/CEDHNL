@@ -42,37 +42,6 @@ namespace SIAQ.BusinessProcess.Object
 
         }
         ///<remarks>
-        ///   <name>BPExpediente.searchExpedienteDetalle</name>
-        ///   <create>14/Marzo/2014</create>
-        ///   <author>Generador</author>
-        ///</remarks>
-        ///<summary>Metodo para obtener el detalle del expediente del sistema</summary>
-        public ENTResponse searchExpedienteDetalle(ENTExpediente oENTExpediente)
-        {
-            DAExpediente oDAExpediente = new DAExpediente();
-            ENTResponse oENTResponse = new ENTResponse();
-
-            try
-            {
-
-                // Consulta a base de datos
-                oENTResponse = oDAExpediente.searchExpedienteDetalle(oENTExpediente);
-
-                // Validación de error en consulta
-                if (oENTResponse.GeneratesException) { return oENTResponse; }
-
-                // Validación de mensajes de la BD
-                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-                if (oENTResponse.sMessage != "") { return oENTResponse; }
-
-            }
-            catch (Exception ex) { oENTResponse.ExceptionRaised(ex.Message); }
-
-            // Resultado
-            return oENTResponse;
-
-        }
-        ///<remarks>
         ///   <name>BPExpediente.insertcatTipoSolicitud</name>
         ///   <create>27/ene/2014</create>
         ///   <author>Generador</author>

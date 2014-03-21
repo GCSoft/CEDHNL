@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 // Referencias manuales
+using GCSoft.Utilities.Common;
 using SIAQ.BusinessProcess.Object;
 using SIAQ.BusinessProcess.Page;
 using SIAQ.Entity.Object;
@@ -16,7 +17,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
     public partial class opeAgregarCiudadanosSol : System.Web.UI.Page
     {
+
+        // Utilerías
+        Function utilFunction = new Function();
+
+        //Variables Globales 
         string AllDefault = "-- Todos --";
+        public string _SolicitudId;
 
         protected void gvCiudadano_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -138,6 +145,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 try
                 {
                     SolicitudIDHidden.Value = Request.QueryString["s"].ToString();
+                    _SolicitudId = SolicitudIDHidden.Value;
                     SelectCiudadanosAgregados(int.Parse(SolicitudIDHidden.Value));
                     SolicitudLabel.Text = SolicitudIDHidden.Value;
                     SolicitudLabelSearch.Text = SolicitudIDHidden.Value;
@@ -206,58 +214,197 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         protected void SelectColonia()
         {
+            ENTColonia oENTColonia = new ENTColonia();
+            ENTResponse oENTResponse = new ENTResponse();
 
-            //BPColonia BPColonia = new BPColonia();
+            BPColonia oBPColonia = new BPColonia();
 
-            //BuscadorListaColonia.DataValueField = "ColoniaId";
-            //BuscadorListaColonia.DataTextField = "Nombre";
+            try
+            {
 
+                // Formulario
+                oENTColonia.ColoniaId = 0;
+                oENTColonia.CiudadId = Int32.Parse(this.BuscadorListaCiudad.SelectedValue);
+                oENTColonia.Nombre = "";
+                oENTColonia.Activo = 1;
 
-            //BuscadorListaColonia.DataSource = BPColonia.SelectColonia();
-            //BuscadorListaColonia.DataBind();
-            //BuscadorListaColonia.Items.Insert(0, new ListItem(AllDefault, "0"));
+                // Transacción
+                oENTResponse = oBPColonia.SelectColonia(oENTColonia);
+
+                // Validaciones
+                if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+
+                // Llenado de combo
+                this.BuscadorListaColonia.DataTextField = "Nombre";
+                this.BuscadorListaColonia.DataValueField = "ColoniaId";
+                this.BuscadorListaColonia.DataSource = oENTResponse.dsResponse.Tables[1];
+                this.BuscadorListaColonia.DataBind();
+                BuscadorListaColonia.Items.Insert(0, new ListItem(AllDefault, "-1"));
+
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+
         }
 
         protected void SelectCiudad()
         {
+            ENTCiudad oENTCiudad = new ENTCiudad();
+            ENTResponse oENTResponse = new ENTResponse();
 
-            //BPCiudad BPCiudad = new BPCiudad();
+            BPCiudad oBPCiudad = new BPCiudad();
 
-            //BuscadorListaCiudad.DataValueField = "CiudadId";
-            //BuscadorListaCiudad.DataTextField = "Nombre";
+            try
+            {
 
+                // Formulario
+                oENTCiudad.CiudadId = 0;
+                oENTCiudad.EstadoId = Int32.Parse(this.BuscadorListaEstado.SelectedValue);
+                oENTCiudad.Nombre = "";
+                oENTCiudad.Activo = 1;
 
-            //BuscadorListaCiudad.DataSource = BPCiudad.SelectCiudad();
-            //BuscadorListaCiudad.DataBind();
-            //BuscadorListaCiudad.Items.Insert(0, new ListItem(AllDefault, "0"));
+                // Transacción
+                oENTResponse = oBPCiudad.SelectCiudad(oENTCiudad);
+
+                // Validaciones
+                if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+
+                // Llenado de combo
+                this.BuscadorListaCiudad.DataTextField = "Nombre";
+                this.BuscadorListaCiudad.DataValueField = "CiudadId";
+                this.BuscadorListaCiudad.DataSource = oENTResponse.dsResponse.Tables[1];
+                this.BuscadorListaCiudad.DataBind();
+                BuscadorListaCiudad.Items.Insert(0, new ListItem(AllDefault, "-1"));
+
+            }
+            catch (Exception ex)
+            {
+                //throw (ex);
+            }
         }
 
         protected void SelectPais()
         {
+            ENTPais oENTPais = new ENTPais();
+            ENTResponse oENTResponse = new ENTResponse();
 
-            //BPPais BPPais = new BPPais();
+            BPPais oBPPais = new BPPais();
 
-            //BuscadorListaPais.DataValueField = "PaisId";
-            //BuscadorListaPais.DataTextField = "Nombre";
+            try
+            {
 
+                // Formulario
+                oENTPais.PaisId = 0;
+                oENTPais.Nombre = "";
+                oENTPais.Activo = 1;
 
-            //BuscadorListaPais.DataSource = BPPais.SelectPais();
-            //BuscadorListaPais.DataBind();
-            //BuscadorListaPais.Items.Insert(0, new ListItem(AllDefault, "0"));
+                // Transacción
+                oENTResponse = oBPPais.SelectPais(oENTPais);
+
+                // Validaciones
+                if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+                if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+
+                // Llenado de combo
+                this.BuscadorListaPais.DataTextField = "Nombre";
+                this.BuscadorListaPais.DataValueField = "PaisId";
+                this.BuscadorListaPais.DataSource = oENTResponse.dsResponse.Tables[1];
+                this.BuscadorListaPais.DataBind();
+
+                BuscadorListaPais.Items.Insert(0, new ListItem(AllDefault, "-1"));
+
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
         }
 
         protected void SelectEstado()
         {
+            ENTEstado oENTEstado = new ENTEstado();
+            ENTResponse oENTResponse = new ENTResponse();
 
-            //BPEstado BPEstado = new BPEstado();
+            BPEstado oBPEstado = new BPEstado();
 
-            //BuscadorListaEstado.DataSource = "EstadoId";
-            //BuscadorListaEstado.DataTextField = "Nombre";
+            try
+            {
 
-            //BuscadorListaEstado.DataSource = BPEstado.SelectEstado();
-            //BuscadorListaEstado.DataBind();
-            //BuscadorListaEstado.Items.Insert(0, new ListItem(AllDefault, "0"));
+                // Formulario
+                oENTEstado.EstadoId = 0;
+                oENTEstado.PaisId = Int32.Parse(this.BuscadorListaPais.SelectedValue);
+                oENTEstado.Nombre = "";
+                oENTEstado.Activo = 1;
 
+                // Transacción
+                oENTResponse = oBPEstado.SelectEstado(oENTEstado);
+
+                // Validaciones
+                if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+
+                // Llenado de combo
+                this.BuscadorListaEstado.DataTextField = "Nombre";
+                this.BuscadorListaEstado.DataValueField = "EstadoId";
+                this.BuscadorListaEstado.DataSource = oENTResponse.dsResponse.Tables[1];
+                this.BuscadorListaEstado.DataBind();
+                BuscadorListaEstado.Items.Insert(0, new ListItem(AllDefault, "-1"));
+
+            }
+            catch (Exception ex)
+            {
+                //throw (ex);
+            }
+
+        }
+
+        protected void BuscadorListaCiudad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
+                // Consulta de colonias
+                SelectColonia();
+
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + utilFunction.JSClearText(ex.Message) + "'); focusControl('" + this.txtNombre.ClientID + "');", true);
+            }
+        }
+
+        protected void BuscadorListaEstado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
+                // Consulta de ciudades y colonias
+                SelectCiudad();
+                SelectColonia();
+
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + utilFunction.JSClearText(ex.Message) + "'); focusControl('" + this.txtNombre.ClientID + "');", true);
+            }
+        }
+
+        protected void BuscadorListaPais_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
+                // Consulta de estados, ciudades y colonias
+                SelectEstado();
+                SelectCiudad();
+                SelectColonia();
+
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + utilFunction.JSClearText(ex.Message) + "'); focusControl('" + this.txtNombre.ClientID + "');", true);
+            }
         }
         protected void VerBusquedaRapida()
         {

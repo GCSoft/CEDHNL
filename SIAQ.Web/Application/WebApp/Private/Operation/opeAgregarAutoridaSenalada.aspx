@@ -1,28 +1,34 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeAgregarAutoridaSenalada.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeAgregarAutoridaSenalada" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
     <style type="text/css">
-           .style5
-            {
-                height: 35px;
-                width: 175px;
-                color:#979393;
-	            font-family:Verdana;
-	            font-size:13px;
-	            font-weight:bold;
-	            height: 27px;
-	            text-align:left;
-            }
         .style6
         {
             width: 394px;
         }
         .style7
         {
-            width: 175px;
+            width: 211px;
         }
         .style8
         {
             width: 149px;
+        }
+        .style9
+        {
+            height: 13px;
+            width: 211px;
+        }
+        .style10
+        {
+            font-size: 15px;
+            font-weight: bold;
+            text-align: left;
+            width: 211px;
+        }
+        .style11
+        {
+            height: 9px;
+            width: 211px;
         }
     </style>
 </asp:Content>
@@ -40,11 +46,13 @@
         <td colspan="3" >Seleccione los distintos niveles de la autoridad a señalar en la solicitud</td>
       </tr>
            <tr>
-            <td style="height:13px"></td>
+            <td class="style9"></td>
           </tr>
       <tr>
-        <td class="style5">Solicitud número</td>
-        <td class="style6"></td>
+        <td class="style10">Solicitud número</td>
+        <td style="width:5px;"></td>
+        <td class="tdCeldaItem"><asp:Label CssClass="NumeroSolicitudLabel" ID="SolicitudLabelSearch" runat="server" Text="0"></asp:Label></td>
+        <td style="width:5px;"></td>
         <td rowspan="13">
                   <table border="0" cellpadding="0" cellspacing="0" 
                       style="width: 78%; margin-left: 44px; margin-top: 0px; bottom:120px; height: 212px;">
@@ -60,52 +68,52 @@
         </td>
       </tr>
                  <tr>
-            <td style="height:9px"></td>
+            <td class="style11"></td>
           </tr>
       <tr>
         <td class="style7">Primer nivel</td>
         <td class="style6"><asp:DropDownList runat="server" ID="ddlPrimerNivel" Width="370px" ></asp:DropDownList></td>
       </tr>
                  <tr>
-            <td style="height:13px"></td>
+            <td class="style9"></td>
           </tr>
       <tr>
         <td class="style7">Segundo nivel</td>
         <td class="style6"><asp:DropDownList runat="server" ID="ddlSegundoNivel" Width="370px"  ></asp:DropDownList></td>
       </tr>
                  <tr>
-            <td style="height:13px"></td>
+            <td class="style9"></td>
           </tr>
       <tr>
         <td class="style7">Tercer nivel</td>
         <td class="style6"><asp:DropDownList runat="server" ID="ddlTercerNivel" Width="370px"  ></asp:DropDownList></td>
       </tr>
                        <tr>
-            <td style="height:13px"></td>
+            <td class="style9"></td>
           </tr>
       <tr>
         <td class="style7">Nombre funcionario público a cargo</td>
         <td class="style6"><asp:TextBox runat="server" ID="tbNombreFuncionario" Width="200px" CssClass="Textbox_General" ></asp:TextBox></td>
       </tr>
                  <tr>
-            <td style="height:13px"></td>
+            <td class="style9"></td>
           </tr>
       <tr>
         <td class="style7">Puesto actual</td>
         <td class="style6"><asp:TextBox runat="server" ID="tbPuestoActual" Width="200px" CssClass="Textbox_General" ></asp:TextBox></td>
       </tr>
                  <tr>
-            <td style="height:13px"></td>
+            <td class="style9"></td>
           </tr>
       <tr>
         <td class="style7">Comentarios</td>
         <td class="style6"><asp:TextBox runat="server" ID="tbComentarios" Width="370px" Height="90px" TextMode="MultiLine" CssClass="Textbox_General" ></asp:TextBox></td>
       </tr>
                  <tr>
-            <td style="height:13px"></td>
+            <td class="style9"></td>
           </tr>
                  <tr>
-            <td style="height:13px"></td>
+            <td class="style9"></td>
           </tr>
           <tr>
        <td colspan="2">

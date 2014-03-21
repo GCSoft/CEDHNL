@@ -307,7 +307,19 @@ namespace SIAQ.DataAccess.Object
                 Parameter.Value = ENTCiudadano.ApellidoMaterno;
                 Command.Parameters.Add(Parameter);
 
-                Parameter = new SqlParameter("ColoniaId", SqlDbType.VarChar);
+                Parameter = new SqlParameter("CiudadId", SqlDbType.Int);
+                Parameter.Value = ENTCiudadano.CiudadId;
+                Command.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("EstadoId", SqlDbType.Int);
+                Parameter.Value = ENTCiudadano.EstadoId;
+                Command.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("PaisId", SqlDbType.Int);
+                Parameter.Value = ENTCiudadano.PaisId;
+                Command.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("ColoniaId", SqlDbType.Int);
                 Parameter.Value = ENTCiudadano.ColoniaId;
                 Command.Parameters.Add(Parameter);
 

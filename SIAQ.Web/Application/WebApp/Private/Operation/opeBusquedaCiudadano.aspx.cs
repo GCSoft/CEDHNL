@@ -232,10 +232,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
       }
 
 
-
-
-
-
         protected void gvCiudadano_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             gvCiudadanoGridRowCommand(e);
@@ -259,14 +255,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }       
 
-        protected void BuscarCiudadano(string Nombre, string Paterno, string Materno, string Calle)
-        {
-            //NameSearchHidden.Value = Name;
-
-            BuscarCiudadano(BuscadorListaPais.SelectedValue, BuscadorListaEstado.SelectedValue, BuscadorListaCiudad.SelectedValue, BuscadorListaColonia.SelectedValue, Nombre, Paterno, Materno, Calle, "");
-        }
-
-        protected void BuscarCiudadano(string PaisId, string EstadoId, string CiudadId, string ColoniaId, string Nombre, string Paterno, string Materno, string Calle, string CampoBusqueda)
+        protected void BuscarCiudadano(int PaisId, int EstadoId, int CiudadId, int ColoniaId, string Nombre, string Paterno, string Materno, string Calle, string CampoBusqueda)
         {
             BPCiudadano BPCiudadano = new BPCiudadano();
 

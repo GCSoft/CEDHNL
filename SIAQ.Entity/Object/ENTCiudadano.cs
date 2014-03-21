@@ -22,10 +22,10 @@ namespace SIAQ.Entity.Object
         private DateTime _FechaNacimiento; // Valor de FechaNacimiento
         private DateTime _FechaIngreso; // Valor de FechaIngreso
         private DataSet _ResultData; //Otras propiedades
-        private string _PaisId;
-        private string _EstadoId;
-        private string _CiudadId;
-        private string _ColoniaId;
+        private int _PaisId;
+        private int _EstadoId;
+        private int _CiudadId;
+        private int _ColoniaId;
         private string _Calle;
         private string _CampoBusqueda;
         private int _SolicitudId;
@@ -50,10 +50,10 @@ namespace SIAQ.Entity.Object
             _ApellidoMaterno = "";
             _FechaNacimiento = System.DateTime.Now;
             _FechaIngreso = System.DateTime.Now;
-            _PaisId = string.Empty;
-            _EstadoId = string.Empty;
-            _CiudadId = string.Empty;
-            _ColoniaId = string.Empty;
+            _PaisId = 0;
+            _EstadoId = 0;
+            _CiudadId = 0;
+            _ColoniaId = 0;
             _Calle = string.Empty;
             _CampoBusqueda = string.Empty;
 
@@ -225,25 +225,25 @@ namespace SIAQ.Entity.Object
             set { _FechaIngreso = value; }
         }
 
-        public string PaisId
+        public int PaisId
         {
             get { return _PaisId; }
             set { _PaisId = value; }
         }
 
-        public string EstadoId
+        public int EstadoId
         {
             get { return _EstadoId; }
             set { _EstadoId = value; }
         }
 
-        public string CiudadId
+        public int CiudadId
         {
             get { return _EstadoId; }
             set { _EstadoId = value; }
         }
 
-        public string ColoniaId
+        public int ColoniaId
         {
             get { return _EstadoId; }
             set { _EstadoId = value; }

@@ -88,28 +88,16 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
             }
         }
-        
 
-        protected void QuickSearch(string SearchText)
-        {
-
-            BuscarCiudadano(BuscadorListaPais.SelectedValue, BuscadorListaEstado.SelectedValue, BuscadorListaCiudad.SelectedValue, BuscadorListaColonia.SelectedValue, "", "", "", "", SearchText);
-        }
-
-        protected void BuscarCiudadano(string Nombre, string Paterno, string Materno, string Calle)
-        {
-
-            BuscarCiudadano(BuscadorListaPais.SelectedValue, BuscadorListaEstado.SelectedValue, BuscadorListaCiudad.SelectedValue, BuscadorListaColonia.SelectedValue, Nombre, Paterno, Materno, Calle, "");
-        }
 
         protected void QuickSearchButton_Click(object sender, EventArgs e)
         {
-            QuickSearch(txtNombre.Text.Trim());//cambio de funciones
+            BuscarCiudadano("", "" , "" , "" , -1 , -1 , -1, -1, txtNombre.Text.Trim());
         }
 
         protected void SearchButton_Click(object sender, EventArgs e)
         {
-            BuscarCiudadano(TextBoxNombre.Text.Trim(), TextBoxPaterno.Text.Trim(), TextBoxMaterno.Text.Trim(), TextBoxCalle.Text.Trim());
+            BuscarCiudadano(TextBoxNombre.Text.Trim(), TextBoxPaterno.Text.Trim(), TextBoxMaterno.Text.Trim(), TextBoxCalle.Text.Trim(), int.Parse(BuscadorListaPais.SelectedValue), int.Parse(BuscadorListaEstado.SelectedValue), int.Parse(BuscadorListaCiudad.SelectedValue), int.Parse(BuscadorListaColonia.SelectedValue), "");
         }
 
         protected void BusquedaRapida_Click(object sender, EventArgs e)
@@ -129,8 +117,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
             if (!Page.IsPostBack)
             {
-                SelectEstado();
                 SelectPais();
+                SelectEstado();
                 SelectCiudad();
                 SelectColonia();
 
@@ -157,7 +145,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        protected void BuscarCiudadano(string PaisId, string EstadoId, string CiudadId, string ColoniaId, string Nombre, string Paterno, string Materno, string Calle, string CampoBusqueda)
+        protected void BuscarCiudadano(string Nombre, string Paterno, string Materno, string Calle, int PaisId, int EstadoId, int CiudadId, int ColoniaId, string CampoBusqueda)
         {
             BPCiudadano BPCiudadano = new BPCiudadano();
 
@@ -181,11 +169,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     gvCiudadano.DataBind();
                 }
 
-            }
-            else
-            {
-                gvCiudadano.DataSource = null;
-                gvCiudadano.DataBind();
+
+                else
+                {
+                    gvCiudadano.DataSource = null;
+                    gvCiudadano.DataBind();
+                }
             }
         }
 
@@ -282,7 +271,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
             catch (Exception ex)
             {
-                //throw (ex);
+                throw (ex);
             }
         }
 
@@ -355,7 +344,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
             catch (Exception ex)
             {
-                //throw (ex);
+                throw (ex);
             }
 
         }
@@ -407,6 +396,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + utilFunction.JSClearText(ex.Message) + "'); focusControl('" + this.txtNombre.ClientID + "');", true);
             }
         }
+
         protected void VerBusquedaRapida()
         {
 

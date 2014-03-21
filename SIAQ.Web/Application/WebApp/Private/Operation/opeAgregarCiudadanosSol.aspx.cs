@@ -223,6 +223,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             try
             {
 
+
                 // Formulario
                 oENTColonia.ColoniaId = 0;
                 oENTColonia.CiudadId = Int32.Parse(this.BuscadorListaCiudad.SelectedValue);

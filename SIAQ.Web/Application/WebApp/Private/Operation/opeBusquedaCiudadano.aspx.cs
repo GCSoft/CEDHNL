@@ -173,10 +173,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
          }
       }
 
-
        // Eventos de la página
 
-      protected void Page_Load(object sender, EventArgs e){
+        protected void Page_Load(object sender, EventArgs e){
          try
          {
 
@@ -187,12 +186,26 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
          }
        }
 
-      protected void btnBuscar_Click(object sender, EventArgs e){
-         //    BuscarCiudadano(BuscadorListaPais.SelectedValue, BuscadorListaEstado.SelectedValue, BuscadorListaCiudad.SelectedValue, BuscadorListaColonia.SelectedValue, "", "", "", "", SearchText);
-         //BuscarCiudadano(TextBoxNombre.Text.Trim(), TextBoxPaterno.Text.Trim(), TextBoxMaterno.Text.Trim(), TextBoxCalle.Text.Trim());
-      }
+        protected void btnBuscar_Click(object sender, EventArgs e){
+            /*
+             * primero se valida si está abierto el acordeon para saber que filtro o  filtros de busqueda usaremos
+             */
+            int bandera = acrdBusqueda.SelectedIndex;
+            /*
+             * si bandera es -1 esta cerrado si es 0 esta abierto
+             */
+
+            if (bandera == -1)
+            {
+                BuscarCiudadano("", "", "", "", -1, -1, -1, -1, txtNombre.Text.Trim());
+            }
+            else {
+                BuscarCiudadano(txtNombre.Text.Trim(), TextBoxPaterno.Text.Trim(), TextBoxMaterno.Text.Trim(), TextBoxCalle.Text.Trim(), int.Parse(BuscadorListaPais.SelectedValue), int.Parse(BuscadorListaEstado.SelectedValue), int.Parse(BuscadorListaCiudad.SelectedValue), int.Parse(BuscadorListaColonia.SelectedValue), "");
+       
+            }
+        }
       
-      protected void BuscadorListaCiudad_SelectedIndexChanged(object sender, EventArgs e){
+        protected void BuscadorListaCiudad_SelectedIndexChanged(object sender, EventArgs e){
          try
          {
 
@@ -204,7 +217,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
          }
       }
 
-      protected void BuscadorListaEstado_SelectedIndexChanged(object sender, EventArgs e){
+        protected void BuscadorListaEstado_SelectedIndexChanged(object sender, EventArgs e){
          try
          {
 
@@ -217,7 +230,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
          }
       }
       
-      protected void BuscadorListaPais_SelectedIndexChanged(object sender, EventArgs e){
+        protected void BuscadorListaPais_SelectedIndexChanged(object sender, EventArgs e){
          try
          {
 
@@ -230,7 +243,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + utilFunction.JSClearText(ex.Message) + "'); focusControl('" + this.txtNombre.ClientID + "');", true);
          }
       }
-
 
         protected void gvCiudadano_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -253,9 +265,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     Response.Redirect(ConfigurationManager.AppSettings["Application.Url.RegistroVisita"].ToString() + "?s=" + CiudadanoId);
                     break;
             }
-        }       
+        }
 
-        protected void BuscarCiudadano(int PaisId, int EstadoId, int CiudadId, int ColoniaId, string Nombre, string Paterno, string Materno, string Calle, string CampoBusqueda)
+        protected void BuscarCiudadano(string Nombre, string Paterno, string Materno, string Calle, int PaisId, int EstadoId, int CiudadId, int ColoniaId, string CampoBusqueda)
         {
             BPCiudadano BPCiudadano = new BPCiudadano();
 
@@ -278,12 +290,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     gvCiudadano.DataSource = BPCiudadano.ENTCiudadano.ResultData;
                     gvCiudadano.DataBind();
                 }
-
-            }
-            else
-            {
-                gvCiudadano.DataSource = null;
-                gvCiudadano.DataBind();
+                else
+                {
+                    gvCiudadano.DataSource = null;
+                    gvCiudadano.DataBind();
+                }
             }
         }
 

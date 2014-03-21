@@ -1,12 +1,28 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeLstRecDirector.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Seguimiento.opeLstRecDirector" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master"
+    AutoEventWireup="true" CodeBehind="opeLstRecDirector.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Seguimiento.opeLstRecDirector" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
+    <script type="text/javascript">
+
+        // Funciones del programador
+        function NumbersValidator(e) {
+
+            var tecla = document.all ? tecla = e.keyCode : tecla = e.which;
+            return (tecla > 47 && tecla < 58);
+        }
+
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
-    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <table class="GeneralTable">
         <tr>
-            <td class="tdCeldaTituloEncabezado">
-                Listado de Recomendaciones
+            <td class="tdCeldaTituloEncabezado" style="background-image: url('../../../../Include/Image/Web/BarraTitulo.png');">
+                Listado de recomendaciones
+            </td>
+        </tr>
+        <tr>
+            <td class="SubTitulo">
+                <asp:Label ID="Label2" runat="server" Text="Listado de recomendaciones existentes"></asp:Label>
             </td>
         </tr>
         <tr>
@@ -16,13 +32,13 @@
         <tr>
             <td>
                 <asp:Panel ID="pnlGrid" runat="server" Width="100%">
-                    <asp:GridView ID="gvApps" runat="server" AutoGenerateColumns="False" AutoUpdateAfterCallBack="True"
-                        UpdateAfterCallBack="True" Width="800px" Style="text-align: center" DataKeyNames="Recomendacion"
-                        PageSize="30" ShowHeaderWhenEmpty="True">
-                        <RowStyle CssClass="Grid_Row" />
-                        <EditRowStyle Wrap="True" />
-                        <HeaderStyle CssClass="Grid_Header" ForeColor="#E3EBF5" />
+                    <asp:GridView ID="gvApps" runat="server" AllowPaging="false" AllowSorting="true"
+                        AutoGenerateColumns="False" Width="800px" DataKeyNames="Recomendacion"
+                        OnRowDataBound="gvApps_RowDataBound" OnSorting="gvApps_Sorting" 
+                        onrowcommand="gvApps_RowCommand">
                         <AlternatingRowStyle CssClass="Grid_Row_Alternating" />
+                        <HeaderStyle CssClass="Grid_Header" />
+                        <RowStyle CssClass="Grid_Row" />
                         <EmptyDataTemplate>
                             <table border="1px" cellpadding="0px" cellspacing="0px">
                                 <tr class="Grid_Header">
@@ -57,28 +73,26 @@
                         </EmptyDataTemplate>
                         <Columns>
                             <asp:BoundField DataField="Expediente" Visible="false" />
-                            <asp:BoundField DataField="Recomendacion" HeaderText="Recomendación" />
-                            <asp:BoundField DataField="Asunto" HeaderText="Asunto">
+                            <asp:BoundField DataField="Recomendacion" HeaderText="Recomendación" SortExpression="Recomendacion" />
+                            <asp:BoundField DataField="Asunto" HeaderText="Asunto" SortExpression="Asunto">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="FechaSeguimientos" HeaderText="Fecha Seguimientos">
+                            <asp:BoundField DataField="FechaSeguimientos" HeaderText="Fecha Seguimientos" SortExpression="FechaSeguimientos">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="Estatus" HeaderText="Estatus">
+                            <asp:BoundField DataField="Estatus" HeaderText="Estatus" SortExpression="Estatus">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="Quejosos" HeaderText="Quejosos">
+                            <asp:BoundField DataField="Quejosos" HeaderText="Quejosos" SortExpression="Quejosos">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="Autoridades" HeaderText="Autoridades">
+                            <asp:BoundField DataField="Autoridades" HeaderText="Autoridades" SortExpression="Autoridades">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
-                            <asp:TemplateField HeaderText="">
+                            <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
                                 <ItemTemplate>
-                                    <asp:HyperLink ID="hlkEditar" runat="server" Text="" ToolTip="Editar"
-                                     NavigateUrl='<%# "/Application/WebApp/Private/Seguimiento/opeDetalleRecomendacionDirector.aspx?recomendacionId=" + Eval("Recomendacion") %>'>
-                                        <img alt="Editar" height="16" width="16" src="../../../../Include/Image/Buttons/Edit.png" />
-                                     </asp:HyperLink>
+                                    <asp:ImageButton ID="imgEdit" CommandArgument='<%#Eval("Recomendacion")%>' CommandName="Editar"
+                                        ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
@@ -86,5 +100,10 @@
                 </asp:Panel>
             </td>
         </tr>
+        <tr class="trFilaFooter">
+            <td>
+            </td>
+        </tr>
     </table>
+    <asp:HiddenField ID="hddSort" runat="server" Value="NumeroSol" />
 </asp:Content>

@@ -91,6 +91,14 @@ namespace SIAQ.DataAccess.Object
             }
         }
 
+        ///<remarks>
+        ///<name>DASeguimiento.SelectDetalleRecomendacion</name>
+        ///<create>19/mar/2014</create>
+        ///<author>Jose.gomez</author>
+        ///</remarks>
+        /// <summary>
+        /// Obtiene el detalle de la recomendación
+        /// </summary>
         public DataSet SelectDetalleRecomendacion(ENTRecomendacion entRecomendacion, string connectionString)
         {
             DataSet ds = new DataSet();
@@ -101,7 +109,7 @@ namespace SIAQ.DataAccess.Object
 
             try
             {
-                Command = new SqlCommand("spSelectDetalleRecomendacionDirector", Connection);
+                Command = new SqlCommand("spDetalleRecomendacion_sel", Connection);
                 Command.CommandType = CommandType.StoredProcedure;
 
                 Parameter = new SqlParameter("RecomendacionId", SqlDbType.Int);
@@ -126,7 +134,7 @@ namespace SIAQ.DataAccess.Object
                     Connection.Close();
                 }
 
-                return ds; 
+                return ds;
             }
         }
 
@@ -176,6 +184,97 @@ namespace SIAQ.DataAccess.Object
                 return ds;
             }
 
+        }
+
+        ///<remarks>
+        ///<name>DASeguimiento.SelectRecomendacionGrid</name>
+        ///<create>19/mar/2014</create>
+        ///<author>Jose.Gomez</author>
+        ///</remarks>
+        /// <summary>
+        /// Muestra las recomendaciones para llenado de grid
+        /// </summary>
+        public DataSet SelectRecomendacionGrid(string connectionString)
+        {
+            DataSet ds = new DataSet();
+            SqlConnection Connection = new SqlConnection(connectionString);
+            SqlCommand Command;
+            SqlDataAdapter DataAdapter;
+
+            try
+            {
+                Command = new SqlCommand("spDetalleRecomendacion_selGrid", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                DataAdapter = new SqlDataAdapter(Command);
+
+                Connection.Open();
+                DataAdapter.Fill(ds);
+                Connection.Close();
+
+                return ds;
+            }
+
+            catch (SqlException ex)
+            {
+                _ErrorId = ex.Number;
+                _ErrorString = ex.Message;
+
+                if (Connection.State == ConnectionState.Open)
+                {
+                    Connection.Close();
+                }
+
+                return ds;
+            }
+        }
+
+        ///<remarks>
+        ///<name>DASeguimiento.SelectFuncionariosAsignarCombo</name>
+        ///<create>19/mar/2014</create>
+        ///<author>Jose.gomez</author>
+        ///</remarks>
+        /// <summary>
+        /// Obtiene los funcionarios a los que se van a asignar la recomendacion
+        /// </summary>
+        public DataSet SelectFuncionariosAsignarCombo(ENTRecomendacion ENTRecomendacionEntity, string connectionString)
+        {
+            DataSet ds = new DataSet();
+            SqlConnection Connexion = new SqlConnection(connectionString);
+            SqlCommand Command;
+            SqlParameter Parameter;
+            SqlDataAdapter DataAdapter;
+
+            try
+            {
+                Command = new SqlCommand("spDefRecomendacion_sel_cmb", Connexion);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                Parameter = new SqlParameter("RecomendacionId", DbType.Int32);
+                Parameter.Value = ENTRecomendacionEntity.RecomendacionId;
+                Command.Parameters.Add(Parameter);
+
+                DataAdapter = new SqlDataAdapter(Command);
+
+                Connexion.Open();
+                DataAdapter.Fill(ds);
+                Connexion.Close();
+
+                return ds;
+            }
+
+            catch (SqlException ex)
+            {
+                _ErrorId = ex.Number;
+                _ErrorString = ex.Message;
+
+                if (Connexion.State == ConnectionState.Open)
+                {
+                    Connexion.Close();
+                }
+
+                return ds;
+            }
         }
 
         #endregion

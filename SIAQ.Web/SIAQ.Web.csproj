@@ -412,6 +412,7 @@
     <Content Include="ckeditor\skins\moono\images\lock.png" />
     <Content Include="ckeditor\skins\moono\images\refresh.png" />
     <Content Include="ckeditor\styles.js" />
+    <Content Include="Include\Components\CKEditor\CKEditor.NET.dll" />
     <Content Include="Include\Image\Background\HandsBackgorund.jpg" />
     <Content Include="Include\Image\Buttons\CloseWindow.png" />
     <Content Include="Include\Image\Buttons\Delete.png" />

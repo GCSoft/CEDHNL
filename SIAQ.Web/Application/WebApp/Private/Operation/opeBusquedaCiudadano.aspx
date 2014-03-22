@@ -1,45 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeBusquedaCiudadano.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeBusquedaCiudadano" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
- <style type="text/css">
-        .TablaCiudadano
-        {
-            	border-spacing: 5px;
-	            font-size:11px;
-	            padding: 0px;
-	            width: 100%;
-	            text-align:left;
-            }  
-            
-        .style1
-        {
-            width: 236px;
-            font-size:13.5px;
-        }
-        
-        .style2
-        {
-            width: 127px;
-        }
-        
-        .style3
-        {
-            width: 450px;
-        }
-     .style4
-     {
-         width: 140px;
-     }
-     .style5
-     {
-         width: 7px;
-     }
-     .style6
-     {
-         width: 104px;
-     }
-    </style>
-    
+   
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
    <table class="GeneralTable">

@@ -7,6 +7,7 @@ using System.Text;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.SqlClient;
 using SIAQ.Entity.Object;
+
 namespace SIAQ.DataAccess.Object
 {
     public class DASolicitud : DABase

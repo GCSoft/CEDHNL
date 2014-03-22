@@ -6,11 +6,15 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 using SIAQ.BusinessProcess.Object;
+using GCSoft.Utilities.Common;
 
 namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
     public partial class opeDetalleSolicitud : System.Web.UI.Page
     {
+        // Utilerías
+        Function utilFunction = new Function();
+
         #region "Events"
             protected void AutoridadButton_Click(object sender, ImageClickEventArgs e)
             {
@@ -100,7 +104,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     }
                     catch (Exception Exception)
                     {
-                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + Exception.Message + "', 'Fail', true);", true);
+                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(Exception.Message) + "', 'Fail', true);", true);
                     }
                 }
             }
@@ -122,15 +126,16 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
                 SolicitudProcess.SolicitudEntity.SolicitudId = SolicitudId;
 
-                SolicitudProcess.SelectSolicitudAutoridad();
+                // ToDo: Habilitar la búsqueda de autoridades
+                //SolicitudProcess.SelectSolicitudAutoridad();
 
-                if (SolicitudProcess.ErrorId == 0)
-                {
-                    this.gvAutoridades.DataSource = null;
-                    this.gvAutoridades.DataBind();
-                }
-                else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + SolicitudProcess.ErrorDescription + "', 'Fail', true);", true);
+                //if (SolicitudProcess.ErrorId == 0)
+                //{
+                //    this.gvAutoridades.DataSource = null;
+                //    this.gvAutoridades.DataBind();
+                //}
+                //else
+                //    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(SolicitudProcess.ErrorDescription) + "', 'Fail', true);", true);
 
                 this.gvAutoridades.DataSource = null;
                 this.gvAutoridades.DataBind();
@@ -150,7 +155,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     this.gvCiudadano.DataBind();
                 }
                 else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + SolicitudProcess.ErrorDescription + "', 'Fail', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(SolicitudProcess.ErrorDescription) + "', 'Fail', true);", true);
             }
 
             private void SelectLugarHechos()
@@ -170,7 +175,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     LugarHechosList.Items.Insert(0, new ListItem("-- Seleccione --", "0"));
                 }
                 else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + LugarProcess.ErrorDescription + "', 'Fail', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(LugarProcess.ErrorDescription) + "', 'Fail', true);", true);
             }
 
             private void SelectSolicitud(int SolicitudId)
@@ -183,20 +188,23 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
                 if (SolicitudProcess.ErrorId == 0)
                 {
-                    SolicitudLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["Numero"].ToString();
-                    CalificacionLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["NombreCalificacion"].ToString();
-                    EstatusaLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["NombreEstatus"].ToString();
-                    FuncionarioLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["NombreFuncionario"].ToString();
-                    ContactoLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["NombreContacto"].ToString();
-                    TipoSolicitudLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["NombreTipoSolicitud"].ToString();
-                    LugarHechosList.SelectedValue = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["LugarHechosId"].ToString();
-                    DireccionHechosBox.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["DireccionHechos"].ToString();
-                    ObservacionesLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["Observaciones"].ToString();
+                    if (SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows.Count > 0)
+                    {
+                        SolicitudLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["Numero"].ToString();
+                        CalificacionLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["NombreCalificacion"].ToString();
+                        EstatusaLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["NombreEstatus"].ToString();
+                        FuncionarioLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["NombreFuncionario"].ToString();
+                        ContactoLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["NombreContacto"].ToString();
+                        TipoSolicitudLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["NombreTipoSolicitud"].ToString();
+                        LugarHechosList.SelectedValue = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["LugarHechosId"].ToString();
+                        DireccionHechosBox.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["DireccionHechos"].ToString();
+                        ObservacionesLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["Observaciones"].ToString();
+                    }
                 }
                 else
                 {
                     ResetForm();
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + SolicitudProcess.ErrorDescription + "', 'Fail', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(SolicitudProcess.ErrorDescription) + "', 'Fail', true);", true);
                 }
             }
         #endregion

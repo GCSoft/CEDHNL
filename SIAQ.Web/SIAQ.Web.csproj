@@ -47,8 +47,9 @@
     <None Include="Include\Image\Vectores\vssver2.scc" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="CKEditor.NET">
-      <HintPath>..\..\..\..\Users\cristiano ronaldo 7\Documents\JLGH\Software y dlls\ASP.NET\bin\Release\CKEditor.NET.dll</HintPath>
+    <Reference Include="CKEditor.NET, Version=3.6.4.0, Culture=neutral, PublicKeyToken=e379cdf2f8354999, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\CKEditor.NET.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />

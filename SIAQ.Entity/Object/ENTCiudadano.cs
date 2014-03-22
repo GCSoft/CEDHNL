@@ -239,14 +239,14 @@ namespace SIAQ.Entity.Object
 
         public int CiudadId
         {
-            get { return _EstadoId; }
-            set { _EstadoId = value; }
+           get { return _CiudadId; }
+           set { _CiudadId = value; }
         }
 
         public int ColoniaId
         {
-            get { return _EstadoId; }
-            set { _EstadoId = value; }
+           get { return _ColoniaId; }
+           set { _ColoniaId = value; }
         }
 
 

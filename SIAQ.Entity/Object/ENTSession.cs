@@ -24,8 +24,9 @@ namespace SIAQ.Entity.Object
 
 		// Definiciones
 		private Int32		_idUsuario;			// Identificador único de Usuario
-      private Int32     _idArea;			// Identificador único de la compañía a la que pertenece el usuario
+      private Int32     _idArea;          // Identificador único de la compañía a la que pertenece el usuario
       private Int32     _idRol;           // Identificador único del Rol al que pertenece el usuario
+      private Int32     _FuncionarioId;   // Identificador único del funcionario. 0 si el usuario no es funcionario
 		private Boolean	_TokenGenerado;	// Indica si el Usuario ya generó el Token de autenticación a la aplicación
 		private String		_sEmail;				// Email/username del usuario
 		private String		_sNombre;			// Nombre(s) del usuario
@@ -40,6 +41,7 @@ namespace SIAQ.Entity.Object
 			_idUsuario = 0;
          _idArea = 0;
          _idRol = 0;
+         _FuncionarioId = 1;
 			_TokenGenerado = false;
 			_sEmail = "";
 			_sNombre = "";
@@ -84,6 +86,18 @@ namespace SIAQ.Entity.Object
       {
          get { return _idRol; }
          set { _idRol = value; }
+      }
+
+      ///<remarks>
+      ///   <name>ENTSession.FuncionarioId</name>
+      ///   <create>21-Octubre-2013</create>
+      ///   <author>GCSoft - Web Project Creator BETA 1.0</author>
+      ///</remarks>
+      ///<summary>Obtiene/Asigna el identificador único del funcionario. 0 si el usuario no es funcionario</summary>
+      public Int32 FuncionarioId
+      {
+         get { return _FuncionarioId; }
+         set { _FuncionarioId = value; }
       }
 
 		///<remarks>

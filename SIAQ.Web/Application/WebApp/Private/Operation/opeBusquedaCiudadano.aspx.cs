@@ -27,6 +27,37 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
        
       // Rutinas del programador
 
+      protected void BuscarCiudadano(string Nombre, string Paterno, string Materno, string Calle, int PaisId, int EstadoId, int CiudadId, int ColoniaId){
+
+         BPCiudadano BPCiudadano = new BPCiudadano();
+
+         BPCiudadano.ENTCiudadano.Nombre = Nombre;
+         BPCiudadano.ENTCiudadano.ApellidoPaterno = Paterno;
+         BPCiudadano.ENTCiudadano.ApellidoMaterno = Materno;
+         BPCiudadano.ENTCiudadano.CiudadId = CiudadId;
+         BPCiudadano.ENTCiudadano.EstadoId = EstadoId;
+         BPCiudadano.ENTCiudadano.PaisId = PaisId;
+         BPCiudadano.ENTCiudadano.ColoniaId = ColoniaId;
+         BPCiudadano.ENTCiudadano.Calle = Calle;
+         BPCiudadano.ENTCiudadano.CampoBusqueda = "";
+
+         BPCiudadano.BuscarCiudadano();
+
+         if (BPCiudadano.ErrorId == 0)
+         {
+            if (BPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows.Count > 0)
+            {
+               gvCiudadano.DataSource = BPCiudadano.ENTCiudadano.ResultData;
+               gvCiudadano.DataBind();
+            }
+            else
+            {
+               gvCiudadano.DataSource = null;
+               gvCiudadano.DataBind();
+            }
+         }
+      }
+
       protected void SelectCiudad(){
          ENTCiudad oENTCiudad = new ENTCiudad();
 			ENTResponse oENTResponse = new ENTResponse();
@@ -52,7 +83,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             this.BuscadorListaCiudad.DataValueField = "CiudadId";
             this.BuscadorListaCiudad.DataSource = oENTResponse.dsResponse.Tables[1];
             this.BuscadorListaCiudad.DataBind();
-            BuscadorListaCiudad.Items.Insert(0, new ListItem(AllDefault, "-1"));
+            BuscadorListaCiudad.Items.Insert(0, new ListItem(AllDefault, "0"));
 
 			}catch (Exception ex){
             throw (ex);
@@ -84,7 +115,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             this.BuscadorListaColonia.DataValueField = "ColoniaId";
             this.BuscadorListaColonia.DataSource = oENTResponse.dsResponse.Tables[1];
             this.BuscadorListaColonia.DataBind();
-            BuscadorListaColonia.Items.Insert(0, new ListItem(AllDefault, "-1"));
+            BuscadorListaColonia.Items.Insert(0, new ListItem(AllDefault, "0"));
 
 			}catch (Exception ex){
             throw (ex);
@@ -116,7 +147,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             this.BuscadorListaEstado.DataValueField = "EstadoId";
             this.BuscadorListaEstado.DataSource = oENTResponse.dsResponse.Tables[1];
             this.BuscadorListaEstado.DataBind();
-            BuscadorListaEstado.Items.Insert(0, new ListItem(AllDefault, "-1"));
+            BuscadorListaEstado.Items.Insert(0, new ListItem(AllDefault, "0"));
 
 			}catch (Exception ex){
             throw (ex);
@@ -149,7 +180,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             this.BuscadorListaPais.DataSource = oENTResponse.dsResponse.Tables[1];
             this.BuscadorListaPais.DataBind();
 
-            BuscadorListaPais.Items.Insert(0, new ListItem(AllDefault, "-1"));
+            BuscadorListaPais.Items.Insert(0, new ListItem(AllDefault, "0"));
 
 			}catch (Exception ex){
             throw (ex);
@@ -173,6 +204,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
          }
       }
 
+       
        // Eventos de la página
 
         protected void Page_Load(object sender, EventArgs e){
@@ -187,21 +219,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
        }
 
         protected void btnBuscar_Click(object sender, EventArgs e){
-            /*
-             * primero se valida si está abierto el acordeon para saber que filtro o  filtros de busqueda usaremos
-             */
-            int bandera = acrdBusqueda.SelectedIndex;
-            /*
-             * si bandera es -1 esta cerrado si es 0 esta abierto
-             */
-
-            if (bandera == -1)
+            try
             {
-                BuscarCiudadano("", "", "", "", -1, -1, -1, -1, txtNombre.Text.Trim());
-            }
-            else {
-                BuscarCiudadano(txtNombre.Text.Trim(), TextBoxPaterno.Text.Trim(), TextBoxMaterno.Text.Trim(), TextBoxCalle.Text.Trim(), int.Parse(BuscadorListaPais.SelectedValue), int.Parse(BuscadorListaEstado.SelectedValue), int.Parse(BuscadorListaCiudad.SelectedValue), int.Parse(BuscadorListaColonia.SelectedValue), "");
-       
+
+               BuscarCiudadano(txtNombre.Text.Trim(), TextBoxPaterno.Text.Trim(), TextBoxMaterno.Text.Trim(), TextBoxCalle.Text.Trim(), int.Parse(BuscadorListaPais.SelectedValue), int.Parse(BuscadorListaEstado.SelectedValue), int.Parse(BuscadorListaCiudad.SelectedValue), int.Parse(BuscadorListaColonia.SelectedValue));
+
+            }catch (Exception ex){
+               ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + utilFunction.JSClearText(ex.Message) + "'); focusControl('" + this.txtNombre.ClientID + "');", true);
             }
         }
       
@@ -264,37 +288,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 case "Visita":
                     Response.Redirect(ConfigurationManager.AppSettings["Application.Url.RegistroVisita"].ToString() + "?s=" + CiudadanoId);
                     break;
-            }
-        }
-
-        protected void BuscarCiudadano(string Nombre, string Paterno, string Materno, string Calle, int PaisId, int EstadoId, int CiudadId, int ColoniaId, string CampoBusqueda)
-        {
-            BPCiudadano BPCiudadano = new BPCiudadano();
-
-            BPCiudadano.ENTCiudadano.Nombre = Nombre;
-            BPCiudadano.ENTCiudadano.ApellidoPaterno = Paterno;
-            BPCiudadano.ENTCiudadano.ApellidoMaterno = Materno;
-            BPCiudadano.ENTCiudadano.CiudadId = CiudadId;
-            BPCiudadano.ENTCiudadano.EstadoId = EstadoId;
-            BPCiudadano.ENTCiudadano.PaisId = PaisId;
-            BPCiudadano.ENTCiudadano.ColoniaId = ColoniaId;
-            BPCiudadano.ENTCiudadano.Calle = Calle;
-            BPCiudadano.ENTCiudadano.CampoBusqueda = CampoBusqueda;
-
-            BPCiudadano.BuscarCiudadano();
-
-            if (BPCiudadano.ErrorId == 0)
-            {
-                if (BPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows.Count > 0)
-                {
-                    gvCiudadano.DataSource = BPCiudadano.ENTCiudadano.ResultData;
-                    gvCiudadano.DataBind();
-                }
-                else
-                {
-                    gvCiudadano.DataSource = null;
-                    gvCiudadano.DataBind();
-                }
             }
         }
 

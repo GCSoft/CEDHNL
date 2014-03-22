@@ -12,7 +12,7 @@ namespace SIAQ.BusinessProcess.Object
 
         private int _ErrorId;
         private string _ErrorDescription;
-        private ENTCiudadano _ENTCiudadano;//
+        private ENTCiudadano _ENTCiudadano;
 
         public BPCiudadano()
         {
@@ -22,6 +22,7 @@ namespace SIAQ.BusinessProcess.Object
             _ENTCiudadano = new ENTCiudadano();
 
         }
+
         /// <summary>
         ///     Número de error ocurrido. Cero por default
         /// </summary>
@@ -39,6 +40,7 @@ namespace SIAQ.BusinessProcess.Object
             get { return _ErrorDescription; }
             set { _ErrorDescription = value; }
         }
+
         /// <summary>
         ///     Entidad de ciudadano
         /// </summary>
@@ -77,6 +79,39 @@ namespace SIAQ.BusinessProcess.Object
             return oENTResponse;
 
         }
+
+      /////<remarks>
+      /////   <name>BPCiudadano.SelectCiudadano</name>
+      /////   <create>22-Marzo-2014</create>
+      /////   <author>Ruben.Cobos</author>
+      /////</remarks>
+      /////<summary>Consulta el catálogo de Ciudadanos</summary>
+      /////<param name="oENTCiudadano">Entidad de Ciudadano con los filtros necesarios para la consulta</param>
+      /////<returns>Una entidad de respuesta</returns>
+      //public ENTResponse SelectCiudadano(ENTCiudadano oENTCiudadano){
+      //   DACiudadano oDACiudadano = new DACiudadano();
+      //   ENTResponse oENTResponse = new ENTResponse();
+
+      //   try{
+
+      //      // Transacción en base de datos
+      //      oENTResponse = oDACiudadano.SelectCiudadano(oENTCiudadano, this.sConnectionApplication, 0);
+
+      //      // Validación de error en consulta
+      //      if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+      //      // Validación de mensajes de la BD
+      //      oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+      //      if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+      //   }catch (Exception ex){
+      //      oENTResponse.ExceptionRaised(ex.Message);
+      //   }
+
+      //   // Resultado
+      //   return oENTResponse;
+      //}
+
         ///<remarks>
         ///   <name>BPCiudadanoinsertCiudadano</name>
         ///   <create>27/ene/2014</create>
@@ -106,6 +141,7 @@ namespace SIAQ.BusinessProcess.Object
             return oENTResponse;
 
         }
+
         ///<remarks>
         ///   <name>BPCiudadanoupdateCiudadano</name>
         ///   <create>27/ene/2014</create>
@@ -135,6 +171,7 @@ namespace SIAQ.BusinessProcess.Object
             return oENTResponse;
 
         }
+
         ///<remarks>
         ///   <name>BPCiudadanodeleteCiudadano</name>
         ///   <create>27/ene/2014</create>
@@ -177,6 +214,18 @@ namespace SIAQ.BusinessProcess.Object
             _ErrorDescription = DACiudadano.ErrorDescription;
         }
 
+        public void BuscarCiudadano()
+        {
+           string ConnectionString = string.Empty;
+           DACiudadano DACiudadano = new DACiudadano();
+
+           ConnectionString = sConnectionApplication;
+           _ENTCiudadano.ResultData = DACiudadano.SelectCiudadano(_ENTCiudadano, ConnectionString);
+
+           _ErrorId = DACiudadano.ErrorId;
+           _ErrorDescription = DACiudadano.ErrorDescription;
+
+        }
 
         public void EliminarCiudadanoSolicitud()
         {
@@ -188,19 +237,6 @@ namespace SIAQ.BusinessProcess.Object
 
             _ErrorId = DACiudadano.ErrorId;
             _ErrorDescription = DACiudadano.ErrorDescription;
-        }
-
-        public void BuscarCiudadano()
-        {
-            string ConnectionString = string.Empty;
-            DACiudadano DACiudadano = new DACiudadano();
-
-            ConnectionString = sConnectionApplication;
-            _ENTCiudadano.ResultData = DACiudadano.SelectCiudadano(_ENTCiudadano, ConnectionString);
-
-            _ErrorId = DACiudadano.ErrorId;
-            _ErrorDescription = DACiudadano.ErrorDescription;
-
         }
 
         public void SelectCiudadanosAgregados()
@@ -215,5 +251,6 @@ namespace SIAQ.BusinessProcess.Object
             _ErrorDescription = DACiudadano.ErrorDescription;
 
         }
+
     }
 }

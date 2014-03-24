@@ -218,4 +218,32 @@ width: 158px;
  width: 158px;
 }
 
+.AlturaCeldaIntermedia
+ {
+  height: 6px;
+   width: 186px;
+ }
+ 
+ .EspacioIntermedio
+  {
+   width: 186px;
+  }
 
+.AnchoTablaCalSol
+{
+   width: 146px;
+   font-size: 11px;
+}
+
+.TamanoLetraNormal
+ {
+  font-size:11px;
+}
+        
+.SolicitudCalSol
+ {
+     font-size: 15px;
+     font-weight: bold;
+     text-align: left;
+     width: 129px;
+}

@@ -19,6 +19,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         #endregion
 
         #region
+
             private void PageLoad()
             {
                 int SolicitudId = 0;
@@ -36,6 +37,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                         ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + Exception.Message + "', 'Fail', true);", true);
                     }
                 }
+            }
+
+            protected void gvAutoridadesAgregadas_RowCommand(object sender, GridViewCommandEventArgs e)
+            {
+
+
             }
         #endregion
     }

@@ -13,22 +13,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
     public partial class opeAgregarAutoridaSenalada {
         
         /// <summary>
-        /// SolicitudLabelSearch control.
+        /// SolicitudLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label SolicitudLabelSearch;
+        protected global::System.Web.UI.WebControls.Label SolicitudLabel;
         
         /// <summary>
-        /// chkListCiudadanos control.
+        /// gvAutoridadesAgregadas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList chkListCiudadanos;
+        protected global::System.Web.UI.WebControls.GridView gvAutoridadesAgregadas;
         
         /// <summary>
         /// ddlPrimerNivel control.

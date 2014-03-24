@@ -92,7 +92,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         protected void QuickSearchButton_Click(object sender, EventArgs e)
         {
-            BuscarCiudadano("", "" , "" , "" , -1 , -1 , -1, -1, txtNombre.Text.Trim());
+            BuscarCiudadano("", "" , "" , "" , 0 , 0 , 0, 0, txtNombre.Text.Trim());
         }
 
         protected void SearchButton_Click(object sender, EventArgs e)
@@ -229,7 +229,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 this.BuscadorListaColonia.DataValueField = "ColoniaId";
                 this.BuscadorListaColonia.DataSource = oENTResponse.dsResponse.Tables[1];
                 this.BuscadorListaColonia.DataBind();
-                BuscadorListaColonia.Items.Insert(0, new ListItem(AllDefault, "-1"));
+                BuscadorListaColonia.Items.Insert(0, new ListItem(AllDefault, "0"));
 
             }
             catch (Exception ex)
@@ -266,7 +266,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 this.BuscadorListaCiudad.DataValueField = "CiudadId";
                 this.BuscadorListaCiudad.DataSource = oENTResponse.dsResponse.Tables[1];
                 this.BuscadorListaCiudad.DataBind();
-                BuscadorListaCiudad.Items.Insert(0, new ListItem(AllDefault, "-1"));
+                BuscadorListaCiudad.Items.Insert(0, new ListItem(AllDefault, "0"));
 
             }
             catch (Exception ex)
@@ -303,7 +303,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 this.BuscadorListaPais.DataSource = oENTResponse.dsResponse.Tables[1];
                 this.BuscadorListaPais.DataBind();
 
-                BuscadorListaPais.Items.Insert(0, new ListItem(AllDefault, "-1"));
+                BuscadorListaPais.Items.Insert(0, new ListItem(AllDefault, "0"));
 
             }
             catch (Exception ex)
@@ -339,7 +339,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 this.BuscadorListaEstado.DataValueField = "EstadoId";
                 this.BuscadorListaEstado.DataSource = oENTResponse.dsResponse.Tables[1];
                 this.BuscadorListaEstado.DataBind();
-                BuscadorListaEstado.Items.Insert(0, new ListItem(AllDefault, "-1"));
+                BuscadorListaEstado.Items.Insert(0, new ListItem(AllDefault, "0"));
 
             }
             catch (Exception ex)

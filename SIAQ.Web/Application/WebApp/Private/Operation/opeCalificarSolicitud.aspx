@@ -1,29 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeCalificarSolicitud.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeCalificarSolicitud" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
-    <style type="text/css">
-        .style2
-        {
-            width: 146px;
-            font-size: 11px;
-        }
-        .style3
-        {
-            width: 151px;
-            
-        }
-        .TamanoLetraNormal
-        {
-            font-size:11px;
-            
-            }
-        .style4
-        {
-            font-size: 15px;
-            font-weight: bold;
-            text-align: left;
-            width: 129px;
-        }
-        </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -48,19 +24,19 @@
   <br />
     <table  width="100%" border="0" cellspacing="0" style="text-align:left">
         <tr>
-          <td class="style2">Calificación</td>
+          <td class="AnchoTablaCalSol">Calificación</td>
           <td><asp:DropDownList ID="ddlCalificacion" width="214px" runat="server"></asp:DropDownList></td>
         </tr>
         <tr>
-          <td class="style2">Cierre de orientación</td>
+          <td class="AnchoTablaCalSol">Cierre de orientación</td>
           <td><asp:DropDownList ID="ddlCierre" width="214px" runat="server" AutoPostBack="true" OnSelectedIndexChanged="Orientacion_OnSelectedIndexChanged"></asp:DropDownList></td>
         </tr>
        <tr id="CeldaCanalizado" runat="server" visible="false">
-         <td class="style2">Canalizado a</td>
+         <td class="AnchoTablaCalSol">Canalizado a</td>
          <td><asp:DropDownList ID="ddlCanalizado" width="214px" runat="server"></asp:DropDownList></td>
        </tr>
        <tr id="CeldaFundamento" runat="server" visible="false">
-        <td class="style2">Fundamento</td>
+        <td class="AnchoTablaCalSol">Fundamento</td>
         <td>
             <asp:TextBox ID="TextBoxFundamento" runat="server" CssClass="Textbox_General" TextMode="MultiLine" Height="100px" width="360px" ></asp:TextBox></td>
      </tr>
@@ -68,7 +44,7 @@
         <br />  <br />
     <table width="100%" border="0">
           <tr>
-          <td style="text-align:left;" class="style3"><asp:Button ID="Button1" runat="server" 
+          <td style="text-align:left; width: 151px;"><asp:Button ID="Button1" runat="server" 
                   Text="Guardar" CssClass="Button_General" width="125px" onclick="GuardarCalificacionSol_Click"/></td>
           <td style="text-align:left;"><input class="Button_General" id="RegresarButton" onclick="document.location.href='opeDetalleSolicitud.aspx?s=<%= _SolicitudId %>';" style="width: 125px;" type="button" value="Regresar" /></td>
           </tr>

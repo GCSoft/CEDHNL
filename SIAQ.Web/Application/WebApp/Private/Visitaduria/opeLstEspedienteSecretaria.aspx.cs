@@ -96,11 +96,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 // Acción
                 switch (strCommand) { 
                     case "Detalle":
-                        Response.Redirect("opeDetalleExpedienteVisitador.aspx?id=" + idExpediente);
+                        Response.Redirect("~/Application/WebApp/Private/Visitaduria/opeDetalleExpedienteVisitador.aspx?expId=" + idExpediente);
                         break;
 
                     case "Asignar":
-                        Response.Redirect("opeDetalleExpedienteVisitador.aspx?id=" + idExpediente);
+                        Response.Redirect("~/Application/WebApp/Private/Visitaduria/opeDetalleExpedienteVisitador.aspx?expId=" + idExpediente);
                         break;
                 
                 }

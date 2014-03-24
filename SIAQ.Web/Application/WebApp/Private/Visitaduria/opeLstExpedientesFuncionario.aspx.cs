@@ -14,7 +14,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
     public partial class opeLstExpedientesFuncionario : System.Web.UI.Page
     {
-         
+
         // Rutinas del programador
         private void selectExpediente()
         {
@@ -99,13 +99,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 switch (strCommand)
                 {
                     case "Detalle":
-                        Response.Redirect("opeDetalleExpedienteVisitador.aspx?id=" + idExpediente);
+                        Response.Redirect("~/Application/WebApp/Private/Visitaduria/opeDetalleExpedienteVisitador.aspx?expId=" + idExpediente);
                         break;
 
                     case "Asignar":
-                        Response.Redirect("opeDetalleExpedienteVisitador.aspx?id=" + idExpediente);
+                        Response.Redirect("~/Application/WebApp/Private/Visitaduria/opeDetalleExpedienteVisitador.aspx?expId=" + idExpediente);
                         break;
-
                 }
 
             }

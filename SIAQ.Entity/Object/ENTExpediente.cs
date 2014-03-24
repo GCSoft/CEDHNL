@@ -2,25 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 
 namespace SIAQ.Entity.Object
 {
     public class ENTExpediente : ENTBase
     {
 
-        private Int32 _ExpedienteId;                        // Identificacor unico del expediente
-        private Int32 _SolicitudId;                         // Identificacor unico de la solicitud
-        private Int32 _CalificacionId;                      // Identificacor unico de la Calificación
-        private Int32 _TipoSolicitudId;                     // Identificacor unico del tipo de solicitud
-        private Int32 _LugarHechosId;                       // Identificacor unico de LugarHechos
-        private Int32 _EstatusId;                           // Identificacor unico de Esttus
+        private int _ExpedienteId;                        // Identificacor unico del expediente
+        private int _SolicitudId;                         // Identificacor unico de la solicitud
+        private int _CalificacionId;                      // Identificacor unico de la Calificación
+        private int _TipoSolicitudId;                     // Identificacor unico del tipo de solicitud
+        private int _LugarHechosId;                       // Identificacor unico de LugarHechos
+        private int _EstatusId;                           // Identificacor unico de Esttus
+        private int _AutoridadId;                          // Identificacor unico de Autoridad
         private string _Numero;                             // Numero de expediente
         private string _Fecha;                              // Fecha de creacion de expediente
         private string _Observaciones;                      // Observaciones de expediente
+        private DataSet _ResultData;                        // DataSet que devuelve resultados
 
         private string _Ciudadano;                          // Nombre del ciudadano
-        private Int32 _FuncionarioId;                       // Identificacor unico de FuncionarioId
-        private Int32 _MedioComunicacionId;                 // Identificador unico MedioComunicacionId
+        private int _FuncionarioId;                       // Identificacor unico de FuncionarioId
+        private int _MedioComunicacionId;                 // Identificador unico MedioComunicacionId
 
         public ENTExpediente()
         {
@@ -47,7 +50,7 @@ namespace SIAQ.Entity.Object
         ///   <author>Daniel.Chavez</author>
         ///</remarks>
         ///<summary>Obtiene/Asigna ExpedienteId</summary>
-        public Int32 ExpedienteId
+        public int ExpedienteId
         {
             get { return _ExpedienteId; }
             set { _ExpedienteId = value; }
@@ -59,10 +62,10 @@ namespace SIAQ.Entity.Object
         ///   <author>Daniel.Chavez</author>
         ///</remarks>
         ///<summary>Obtiene/Asigna SolicitudId</summary>
-        public Int32 SolicitudId
+        public int SolicitudId
         {
             get { return _SolicitudId; }
-            set{ _SolicitudId = value;}
+            set { _SolicitudId = value; }
         }
 
         ///<remarks>
@@ -71,7 +74,7 @@ namespace SIAQ.Entity.Object
         ///   <author>Daniel.Chavez</author>
         ///</remarks>
         ///<summary>Obtiene/Asigna CalificacionId</summary>
-        public Int32 CalificacionId
+        public int CalificacionId
         {
             get { return _CalificacionId; }
             set { _CalificacionId = value; }
@@ -83,10 +86,10 @@ namespace SIAQ.Entity.Object
         ///   <author>Daniel.Chavez</author>
         ///</remarks>
         ///<summary>Obtiene/Asigna TipoSolicitudId</summary>
-        public Int32 TipoSolicitudId
+        public int TipoSolicitudId
         {
             get { return _TipoSolicitudId; }
-            set { _TipoSolicitudId = value;}
+            set { _TipoSolicitudId = value; }
         }
 
         ///<remarks>
@@ -95,7 +98,8 @@ namespace SIAQ.Entity.Object
         ///   <author>Daniel.Chavez</author>
         ///</remarks>
         ///<summary>Obtiene/Asigna LugarHechosId</summary>
-        public Int32 LugarHechosId {
+        public int LugarHechosId
+        {
             get { return _LugarHechosId; }
             set { _LugarHechosId = value; }
         }
@@ -106,10 +110,22 @@ namespace SIAQ.Entity.Object
         ///   <author>Daniel.Chavez</author>
         ///</remarks>
         ///<summary>Obtiene/Asigna EstatusId</summary>
-        public Int32 EstatusId
+        public int EstatusId
         {
             get { return _EstatusId; }
             set { _EstatusId = value; }
+        }
+
+        ///<remarks>
+        ///   <name>ENTExpediente.AutoridadId</name>
+        ///   <create>24/Marzo/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        ///<summary>Obtiene/Asigna AutoridadId</summary>
+        public int AutoridadId
+        {
+            get { return _AutoridadId; }
+            set { _AutoridadId = value; }
         }
 
         ///<remarks>
@@ -166,7 +182,7 @@ namespace SIAQ.Entity.Object
         ///   <author>Daniel.Chavez</author>
         ///</remarks>
         ///<summary>Obtiene/Asigna FuncionarioId</summary>
-        public Int32 FuncionarioId
+        public int FuncionarioId
         {
             get { return _FuncionarioId; }
             set { _FuncionarioId = value; }
@@ -178,10 +194,22 @@ namespace SIAQ.Entity.Object
         ///   <author>Daniel.Chavez</author>
         ///</remarks>
         ///<summary>Obtiene/Asigna FuncionarioId</summary>
-        public Int32 MedioComunicacionId
+        public int MedioComunicacionId
         {
             get { return _MedioComunicacionId; }
             set { _MedioComunicacionId = value; }
+        }
+
+        ///<remarks>
+        ///   <name>ENTExpediente.ResultData</name>
+        ///   <create>23/Marzo/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        ///<summary>Obtiene resultado de consulta</summary>
+        public DataSet ResultData
+        {
+            get { return _ResultData; }
+            set { _ResultData = value; }
         }
 
     }

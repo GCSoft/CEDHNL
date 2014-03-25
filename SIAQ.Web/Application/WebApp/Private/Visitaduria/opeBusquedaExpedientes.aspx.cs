@@ -5,21 +5,29 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
+using System.Text.RegularExpressions;
 
 // Referencias manuales
 using SIAQ.BusinessProcess.Object;
 using SIAQ.Entity.Object;
+using GCSoft.Utilities.Common;
 
 namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
     public partial class opeBusquedaExpedientes : System.Web.UI.Page
     {
         // Rutinas del programador
-        private void clear() {
+
+        Function utilFunction = new Function();
+
+        private void clear()
+        {
             this.txtNumeroExpediente.Text = "";
             this.txtQuejoso.Text = "";
-            this.ddlFormaContacto.SelectedValue = "0";
+            this.ddlEstatus.SelectedValue = "0";
             this.ddlVisitador.SelectedValue = "0";
+            txtNumeroExpediente.Focus();
         }
 
         private void selectExpediente(int Tipo)
@@ -28,21 +36,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             ENTExpediente oENTExpediente = new ENTExpediente();
             ENTResponse oENTResponse = new ENTResponse();
 
-            try { 
-                
+            try
+            {
+
                 // Formulario
                 oENTExpediente.Numero = this.txtNumeroExpediente.Text.Trim();
                 oENTExpediente.Ciudadano = this.txtQuejoso.Text.Trim();
-                oENTExpediente.MedioComunicacionId = Int32.Parse(this.ddlFormaContacto.SelectedValue);
+                oENTExpediente.EstatusId = Int32.Parse(this.ddlEstatus.SelectedValue);
                 oENTExpediente.FuncionarioId = Int32.Parse(this.ddlVisitador.SelectedValue);
 
                 // Transacción 
                 oENTResponse = oBPExpediente.searchExpediente(oENTExpediente);
 
                 // Validacion de error en consulta
-                if (oENTResponse.GeneratesException) 
-                { 
-                    ScriptManager.RegisterStartupScript(this.Page,this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sErrorMessage + "', 'Fail', true); focusControl('" + this.txtNumeroExpediente.ClientID + "');", true);
+                if (oENTResponse.GeneratesException)
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sErrorMessage + "', 'Fail', true); focusControl('" + this.txtNumeroExpediente.ClientID + "');", true);
                     return;
                 }
 
@@ -57,7 +66,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
 
                 // Llenado de controles
-                
+
                 if (Tipo == 0)
                 {
                     this.gvApps.DataSource = oENTResponse.dsResponse.Tables[1];
@@ -69,27 +78,52 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     this.gvApps.DataBind();
                     clear();
                 }
-                
+
 
             }
-            catch(Exception ex){
+            catch (Exception ex)
+            {
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true); focusControl('" + this.txtNumeroExpediente.ClientID + "');", true);
             }
 
         }
-        
-        private void selectMediosContacto()
-        {
 
-            BPMedioComunicacion oBPMedioComunicacion = new BPMedioComunicacion();
-            ENTMedioComunicacion oENTMedioComunicacion = new ENTMedioComunicacion();
+        private void selectEstatusVisitaduria()
+        {
+            BPEstatus oBPEstatus = new BPEstatus();
+
+            oBPEstatus.selectEstatusVisitaduria();
+
+            if (oBPEstatus.ErrorId == 0)
+            {
+                if (oBPEstatus.EstatusEntity.ResultData.Tables[0].Rows.Count > 0)
+                {
+                    ddlEstatus.DataSource = oBPEstatus.EstatusEntity.ResultData;
+                    ddlEstatus.DataTextField = "Nombre";
+                    ddlEstatus.DataValueField = "EstatusId";
+                    ddlEstatus.DataBind();
+                }
+            }
+            else
+            {
+                ddlEstatus.DataSource = null;
+                ddlEstatus.DataTextField = "Nombre";
+                ddlEstatus.DataValueField = "EstatusId";
+                ddlEstatus.DataBind();
+            }
+        }
+
+        private void selectVisitador()
+        {
+            BPFuncionario oBPFuncionario = new BPFuncionario();
+            ENTFuncionario oENTFuncionario = new ENTFuncionario();
             ENTResponse oENTResponse = new ENTResponse();
 
-            // Transacción
+            // transacción
             try
             {
 
-                oENTResponse = oBPMedioComunicacion.searchcatMedioComunicacion(oENTMedioComunicacion);
+                oENTResponse = oBPFuncionario.searchFuncionario(oENTFuncionario);
 
                 // Validación de error en consulta
                 if (oENTResponse.GeneratesException)
@@ -102,47 +136,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 if (oENTResponse.sMessage != "")
                 {
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Success', true); focusControl('" + this.txtNumeroExpediente.ClientID + "');", true);
-                    return;
-                }
 
-                // Llenado de controles
-                this.ddlFormaContacto.DataTextField = "Nombre";
-                this.ddlFormaContacto.DataValueField = "MedioComunicacionId";
-                this.ddlFormaContacto.DataSource = oENTResponse.dsResponse.Tables[1];
-                this.ddlFormaContacto.DataBind();
-
-                this.ddlFormaContacto.Items.Insert(0,new ListItem("--Seleccionar--","0"));
-
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true); focusControl('" + this.txtNumeroExpediente.ClientID + "');", true);
-            }
-        }
-
-        private void selectVisitador()
-        {
-            BPFuncionario oBPFuncionario = new BPFuncionario();
-            ENTFuncionario oENTFuncionario = new ENTFuncionario();
-            ENTResponse oENTResponse = new ENTResponse();
-
-            // transacción
-            try { 
-            
-                oENTResponse= oBPFuncionario.searchFuncionario(oENTFuncionario);
-
-                // Validación de error en consulta
-                if( oENTResponse.GeneratesException)
-                {
-                    ScriptManager.RegisterStartupScript(this.Page,this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sErrorMessage + "', 'Fail', true); focusControl('" + this.txtNumeroExpediente.ClientID + "');", true);
-                    return;
-                }
-
-                // Validación mensaje base de datos
-                if(oENTResponse.sMessage !="")
-                {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Success', true); focusControl('" + this.txtNumeroExpediente.ClientID + "');", true);
-                    
                 }
 
                 // LLenado de Controles
@@ -154,9 +148,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 this.ddlVisitador.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
 
             }
-            catch(Exception ex){
+            catch (Exception ex)
+            {
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true); focusControl('" + this.txtNumeroExpediente.ClientID + "');", true);
-               
+
             }
         }
 
@@ -165,9 +160,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         {
             if (this.Page.IsPostBack) { return; }
 
-            try {
-                
-                selectMediosContacto();
+            try
+            {
+                selectEstatusVisitaduria();
                 selectVisitador();
                 selectExpediente(0);
             }
@@ -185,80 +180,95 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             clear();
         }
 
+        protected void gvApps_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            string ExpedienteId = String.Empty;
+
+            ExpedienteId = e.CommandArgument.ToString();
+
+            switch (e.CommandName.ToString())
+            {
+                case "Editar":
+                    Response.Redirect("~/Application/WebApp/Private/Visitaduria/opeDetalleExpedienteVisitador.aspx?expId=" + ExpedienteId);
+                    break;
+            }
+        }
+
         protected void gvApps_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             ImageButton imgEdit = null;
-            
+            String sNumeroExpediente = "";
+            String sImagesAttributes = "";
+            String sToolTip = "";
 
-            String ExpedienteId = "";
-            String FuncionarioId = "";
-            String EstatusId = "";
-            String CiudadanoId = "";
+            try
+            {
+                //Validación de que sea fila 
+                if (e.Row.RowType != DataControlRowType.DataRow) { return; }
 
-            try { 
-            
-                // Validación de que sea fila
-                if(e.Row.RowType != DataControlRowType.DataRow){ return; }
+                //Decodificar HTML
+                string decodedText = HttpUtility.HtmlDecode(e.Row.Cells[2].Text);
+                decodedText = Regex.Replace(decodedText, "<[^>]*>", string.Empty);
+                e.Row.Cells[2].Text = decodedText;
 
-                // Obtener imagenes
+                //Obtener imagenes
                 imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
-                
-                
 
-                // Datakeys
-                ExpedienteId = this.gvApps.DataKeys[e.Row.RowIndex]["ExpedienteId"].ToString();
-                FuncionarioId = this.gvApps.DataKeys[e.Row.RowIndex]["FuncionarioId"].ToString();
-                EstatusId= this.gvApps.DataKeys[e.Row.RowIndex]["EstatusId"].ToString();
-                CiudadanoId= this.gvApps.DataKeys[e.Row.RowIndex]["CiudadanoId"].ToString();
+                //DataKeys
+                sNumeroExpediente = gvApps.DataKeys[e.Row.RowIndex]["Numero"].ToString();
 
-            }
-            catch(Exception ex){
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true); focusControl('" + this.txtNumeroExpediente.ClientID + "');", true);
-            }
-             
-        }
+                //Tooltip Edición
+                sToolTip = "Editar expediente [" + sNumeroExpediente + "]";
+                imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
+                imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
+                imgEdit.Attributes.Add("style", "curosr:hand;");
 
-        protected void gvApps_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            String idExpediente = "";
-            String strCommand = "";
-            Int32 iRow = 0;
+                //Atributos Over
+                sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png';";
 
-            try {
+                //Puntero y Sombra en fila Over
+                e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
 
-                // Opción seleccionada
-                strCommand = e.CommandName.ToString();
+                //Atributos Out
+                sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png';";
 
-                // Se dispara el evento RowCommand en el ordenamient
-                if (strCommand == "Sort") { return; }
-
-                // Fila
-                iRow = Int32.Parse(e.CommandArgument.ToString());
-
-                // Datakeys
-                idExpediente = this.gvApps.DataKeys[iRow]["ExpedienteId"].ToString();
-
-                // Acción
-                switch (strCommand) { 
-                    case "Detalle":
-                        Response.Redirect("opeDetalleExpedienteVisitador.aspx?id=" + idExpediente);
-                        break;
-
-                    case "Editar":
-                        Response.Redirect("opeDetalleExpedienteVisitador.aspx?id=" + idExpediente);
-                        break;
-                
-                }
+                //Puntero y Sombra en fila Out
+                e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
 
             }
             catch (Exception ex)
             {
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true); focusControl('" + this.txtNumeroExpediente.ClientID + "');", true);
-                return;
+                throw (ex);
             }
-
         }
 
-        
+        protected void gvApps_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            DataTable TableExpediente = null;
+            DataView ViewExpediente = null;
+
+            try
+            {
+                //Obtener DataTable y View del GridView
+                TableExpediente = utilFunction.ParseGridViewToDataTable(gvApps, false);
+                ViewExpediente = new DataView(TableExpediente);
+
+                //Determinar ordenamiento
+                hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
+
+                //Ordenar Vista
+                ViewExpediente.Sort = hddSort.Value;
+
+                //Vaciar datos
+                gvApps.DataSource = ViewExpediente;
+                gvApps.DataBind();
+
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+            }
+        }
+
     }
 }

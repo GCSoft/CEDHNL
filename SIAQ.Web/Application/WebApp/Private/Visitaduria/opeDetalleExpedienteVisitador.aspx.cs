@@ -471,7 +471,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 // Detalle 
                 if (oENTExpediente.ResultData.Tables[0].Rows.Count > 0)
                 {
-                    SolicitudLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["ExpedienteId"].ToString();
+                    SolicitudLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Numero"].ToString();
                     CalificacionLlabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Calificacion"].ToString();
                     EstatusaLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Estatus"].ToString();
                     VisitadorLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Visitador"].ToString();

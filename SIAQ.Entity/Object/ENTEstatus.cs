@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Data;
+
 namespace SIAQ.Entity.Object
 {
     public class ENTEstatus : ENTBase
@@ -9,6 +11,8 @@ namespace SIAQ.Entity.Object
         private int _TipoEstatusId; // Valor de TipoEstatusId
         private string _Nombre; // Valor de Nombre
         private string _Descripcion; // Valor de Descripcion
+        private DataSet _ResultData; // Valor de tabla de datos 
+
         public ENTEstatus()
         {
             _EstatusId = 0;
@@ -60,5 +64,17 @@ namespace SIAQ.Entity.Object
             get { return _Descripcion; }
             set { _Descripcion = value; }
         }
+        ///<remarks>
+        ///   <name>Estatus.ResultData</name>
+        ///   <create>25/MAR/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        ///<summary>Obtiene/Asigna Dataset</summary>
+        public DataSet ResultData
+        {
+            get { return _ResultData; }
+            set { _ResultData = value; }
+        }
+
     }
 }

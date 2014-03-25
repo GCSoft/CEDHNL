@@ -69,8 +69,8 @@
                             </table>
                         </EmptyDataTemplate>
                         <Columns>
-                            <asp:BoundField DataField="Numero" Visible="false" />
-                            <asp:BoundField DataField="ExpedienteId" HeaderText="Expediente" SortExpression="Numero" />
+                            <asp:BoundField DataField="ExpedienteId" Visible="false" />
+                            <asp:BoundField DataField="Numero" HeaderText="Expediente" SortExpression="Numero" />
                             <asp:BoundField DataField="Observaciones" HeaderText="Asunto" SortExpression="Asunto">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>

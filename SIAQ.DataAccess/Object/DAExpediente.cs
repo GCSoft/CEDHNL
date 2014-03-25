@@ -49,7 +49,7 @@ namespace SIAQ.DataAccess.Object
             // Transacción
             try
             {
-                ds = dbs.ExecuteDataSet("spExpediente_sel", oENTExpediente.Numero, oENTExpediente.Ciudadano, oENTExpediente.MedioComunicacionId, oENTExpediente.FuncionarioId);
+                ds = dbs.ExecuteDataSet("spExpediente_sel", oENTExpediente.Numero, oENTExpediente.Ciudadano, oENTExpediente.EstatusId, oENTExpediente.FuncionarioId);
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)

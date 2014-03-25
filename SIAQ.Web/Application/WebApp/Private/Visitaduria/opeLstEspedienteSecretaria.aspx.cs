@@ -11,11 +11,15 @@ using System.Data;
 // Referencias manuales
 using SIAQ.BusinessProcess.Object;
 using SIAQ.Entity.Object;
+using GCSoft.Utilities.Common;
 
 namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
     public partial class opeLstEspedienteSecretaria : System.Web.UI.Page
     {
+
+        Function utilFunction = new Function();
+
         // Rutinas del programador
         private void selectExpediente()
         {
@@ -114,7 +118,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
 
                 //DataKeys
-                sNumeroExpediente = gvApps.DataKeys[e.Row.RowIndex]["ExpedienteId"].ToString();
+                sNumeroExpediente = gvApps.DataKeys[e.Row.RowIndex]["Numero"].ToString();
 
                 //Tooltip Edición
                 sToolTip = "Editar expediente [" + sNumeroExpediente + "]";
@@ -144,7 +148,30 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         protected void gvApps_Sorting(object sender, GridViewSortEventArgs e)
         {
+            DataTable TableExpediente = null;
+            DataView ViewExpediente = null;
 
+            try
+            {
+                //Obtener DataTable y View del GridView
+                TableExpediente = utilFunction.ParseGridViewToDataTable(gvApps, false);
+                ViewExpediente = new DataView(TableExpediente);
+
+                //Determinar ordenamiento
+                hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
+
+                //Ordenar Vista
+                ViewExpediente.Sort = hddSort.Value;
+
+                //Vaciar datos
+                gvApps.DataSource = ViewExpediente;
+                gvApps.DataBind();
+
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+            }
         }
 
     }

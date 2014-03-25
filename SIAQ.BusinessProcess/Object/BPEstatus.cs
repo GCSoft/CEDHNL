@@ -8,6 +8,28 @@ namespace SIAQ.BusinessProcess.Object
 {
     public class BPEstatus : BPBase
     {
+        protected int _ErrorId;
+        protected string _ErrorDescription;
+        protected ENTEstatus _EstatusEntity;
+
+        public int ErrorId
+        {
+            get { return _ErrorId; }
+            set { _ErrorId = value; }
+        }
+
+        public string ErrorDescription
+        {
+            get { return _ErrorDescription; }
+            set { _ErrorDescription = value; }
+        }
+
+        public ENTEstatus EstatusEntity
+        {
+            get { return _EstatusEntity; }
+            set { _EstatusEntity = value; }
+        }
+
         ///<remarks>
         ///   <name>BPcatEstatus.searchcatEstatus</name>
         ///   <create>27/ene/2014</create>
@@ -123,6 +145,26 @@ namespace SIAQ.BusinessProcess.Object
             // Resultado
             return oENTResponse;
 
+        }
+
+        ///<remarks>
+        ///   <name>selectEstatusVisitaduria</name>
+        ///   <create>25/MAR/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        ///<summary>Metodo para obtener los estatus de visitadurías de catEstatus del sistema</summary>
+        public void selectEstatusVisitaduria()
+        {
+            _EstatusEntity = new ENTEstatus();
+
+            string ConnectionString = string.Empty;
+            DAEstatus DAEstatus = new DAEstatus();
+
+            ConnectionString = sConnectionApplication;
+
+            _EstatusEntity.ResultData = DAEstatus.selectEstatusVisitaduria(ConnectionString);
+            _ErrorId = DAEstatus.ErrorId;
+            _ErrorDescription = DAEstatus.ErrorDescription;
         }
     }
 }

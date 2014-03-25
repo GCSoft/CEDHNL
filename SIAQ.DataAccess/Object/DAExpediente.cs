@@ -482,5 +482,52 @@ namespace SIAQ.DataAccess.Object
 
             return oENTResponse;
         }
+
+        ///<remarks>
+        ///   <name>DASolicitud.SelectExpediente_Funcionario</name>
+        ///   <create>25/mar/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        /// <summary>
+        /// Obtiene los expedientes asignados a un funcionario en específico
+        /// </summary>
+        public DataSet SelectExpediente_Funcionario(ENTExpediente oENTExpediente, string sConnectionString)
+        {
+            DataSet ds = new DataSet();
+            SqlConnection Connection = new SqlConnection(sConnectionString);
+            SqlCommand Command;
+            SqlDataAdapter DataAdapter;
+            SqlParameter Parameter;
+
+            try
+            {
+                Command = new SqlCommand("spExpedienteFuncionario_sel", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                Parameter = new SqlParameter("FuncionarioId", SqlDbType.Int);
+                Parameter.Value = oENTExpediente.FuncionarioId;
+                Command.Parameters.Add(Parameter);
+
+                DataAdapter = new SqlDataAdapter(Command);
+
+                Connection.Open();
+                DataAdapter.Fill(ds);
+                Connection.Close();
+
+                return ds;
+            }
+            catch (SqlException ex)
+            {
+                _ErrorId = ex.Number;
+                _ErrorDescription = ex.Message;
+
+                if (Connection.State == ConnectionState.Open)
+                {
+                    Connection.Close();
+                }
+
+                return ds;
+            }
+        }
     }
 }

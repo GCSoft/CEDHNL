@@ -274,5 +274,22 @@ namespace SIAQ.BusinessProcess.Object
             //Resultado 
             return oENTResponse;
         }
+
+        /// <summary>
+        ///     Obtiene los expedientes asignados a un funcionario en específico
+        /// </summary>
+        public void SelectExpediente_Funcionario(ENTExpediente oENTExpediente)
+        {
+            _ExpedienteEntity = new ENTExpediente();
+            
+            string sConnectionString = string.Empty;
+            DAExpediente oDAExpediente = new DAExpediente();
+
+            sConnectionString = sConnectionApplication;
+
+            _ExpedienteEntity.ResultData = oDAExpediente.SelectExpediente_Funcionario(oENTExpediente, sConnectionString);
+            _ErrorId = oDAExpediente.ErrorId;
+            _ErrorDescription = oDAExpediente.ErrorDescription;
+        }
     }
 }

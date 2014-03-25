@@ -17,7 +17,7 @@
     <table class="GeneralTable">
         <tr>
             <td class="tdCeldaTituloEncabezado" style="background-image: url('../../../../Include/Image/Web/BarraTitulo.png');">
-                Listado de expedientes
+                Expedientes por asignar
             </td>
         </tr>
         <tr>

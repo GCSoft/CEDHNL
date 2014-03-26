@@ -130,6 +130,6 @@
        </td>
       </tr>
 </table>
-
+<asp:HiddenField ID="SolicitudIdHidden" runat="server" Value="0" />
 </asp:Content>
 

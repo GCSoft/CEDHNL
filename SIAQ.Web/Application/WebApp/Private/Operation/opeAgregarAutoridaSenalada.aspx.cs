@@ -22,15 +22,16 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
             private void PageLoad()
             {
-                int SolicitudId = 0;
 
                 if (!this.Page.IsPostBack)
                 {
                     try
                     {
-                        SolicitudId = int.Parse(Request.QueryString["s"].ToString());
+                        _SolicitudId = Request.QueryString["s"].ToString();
 
-                        _SolicitudId = SolicitudId.ToString();
+                        SolicitudLabel.Text = _SolicitudId;
+
+                        SolicitudIdHidden.Value = _SolicitudId;
                     }
                     catch (Exception Exception)
                     {

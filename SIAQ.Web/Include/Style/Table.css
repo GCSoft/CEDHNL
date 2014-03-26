@@ -16,6 +16,11 @@
 	width: 100%;
 }
 
+.SolicitudTable .Botones
+{
+	text-align: left;
+}
+
 .SolicitudTable .Campo
 {
 	text-align: left;
@@ -86,6 +91,7 @@
 
 .GeneralTable .Especial
 {
+	color: #a9a9a9;
 	font-size: 15px;
 	font-weight: bold;
 	text-align: left;

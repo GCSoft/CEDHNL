@@ -10,12 +10,13 @@ using System.Data;
 
 // Referencias manuales
 using SIAQ.BusinessProcess.Object;
+using SIAQ.BusinessProcess.Page;
 using SIAQ.Entity.Object;
 using GCSoft.Utilities.Common;
 
 namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
-    public partial class opeLstEspedienteSecretaria : System.Web.UI.Page
+    public partial class opeLstEspedienteSecretaria : BPPage
     {
 
         Function utilFunction = new Function();

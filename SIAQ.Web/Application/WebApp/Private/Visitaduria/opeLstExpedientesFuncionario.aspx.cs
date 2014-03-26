@@ -10,12 +10,13 @@ using System.Text.RegularExpressions;
 
 // Referencias manuales
 using SIAQ.BusinessProcess.Object;
+using SIAQ.BusinessProcess.Page;
 using SIAQ.Entity.Object;
 using GCSoft.Utilities.Common;
 
 namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
-    public partial class opeLstExpedientesFuncionario : System.Web.UI.Page
+    public partial class opeLstExpedientesFuncionario : BPPage 
     {
         Function utilFunction = new Function();
 

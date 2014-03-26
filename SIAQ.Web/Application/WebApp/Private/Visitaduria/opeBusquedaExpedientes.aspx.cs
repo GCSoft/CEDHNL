@@ -10,12 +10,13 @@ using System.Text.RegularExpressions;
 
 // Referencias manuales
 using SIAQ.BusinessProcess.Object;
+using SIAQ.BusinessProcess.Page;
 using SIAQ.Entity.Object;
 using GCSoft.Utilities.Common;
 
 namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
-    public partial class opeBusquedaExpedientes : System.Web.UI.Page
+    public partial class opeBusquedaExpedientes : BPPage
     {
         // Rutinas del programador
 

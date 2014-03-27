@@ -18,37 +18,37 @@
 
     <div id="SubMenuDiv">
         <asp:Panel CssClass="IconoPanel" ID="InformacionPanel" runat="server" Visible="true">
-            <asp:ImageButton ID="InformacionGeneralButton" ImageUrl="/Include/Image/Icon/GeneralIcon.png" runat="server" onclick="InformacionGeneralButton_Click"></asp:ImageButton>
+            <asp:ImageButton ID="InformacionGeneralButton" ImageUrl="/Include/Image/Icon/GeneralIcon.png" runat="server" onclick="InformacionGeneralButton_Click"></asp:ImageButton><br />
             Información general
         </asp:Panel>
 
         <asp:Panel CssClass="IconoPanel" ID="CiudadanoPanel" runat="server" Visible="true">
-            <asp:ImageButton ID="CiudadanoButton" ImageUrl="/Include/Image/Icon/CiudadanoIcon.png" runat="server" onclick="CiudadanoButton_Click"></asp:ImageButton>
+            <asp:ImageButton ID="CiudadanoButton" ImageUrl="/Include/Image/Icon/CiudadanoIcon.png" runat="server" onclick="CiudadanoButton_Click"></asp:ImageButton><br />
             Agregar ciudadanos
         </asp:Panel>
 
         <asp:Panel CssClass="IconoPanel" ID="AutoridadPanel" runat="server" Visible="true">
-            <asp:ImageButton ID="AutoridadButton" ImageUrl="/Include/Image/Icon/GeneralIcon.png" runat="server" onclick="AutoridadButton_Click"></asp:ImageButton>
+            <asp:ImageButton ID="AutoridadButton" ImageUrl="/Include/Image/Icon/GeneralIcon.png" runat="server" onclick="AutoridadButton_Click"></asp:ImageButton><br />
             Agegar autoridades señaladas y voces
         </asp:Panel>
 
         <asp:Panel CssClass="IconoPanel" ID="IndicadorPanel" runat="server" Visible="true">
-            <asp:ImageButton ID="IndicadorButton" ImageUrl="/Include/Image/Icon/IndicadorIcon.png" runat="server" onclick="IndicadorButton_Click"></asp:ImageButton>
+            <asp:ImageButton ID="IndicadorButton" ImageUrl="/Include/Image/Icon/IndicadorIcon.png" runat="server" onclick="IndicadorButton_Click"></asp:ImageButton><br />
             Indicadores
         </asp:Panel>
 
         <asp:Panel CssClass="IconoPanel" ID="DocumentoPanel" runat="server" Visible="true">
-            <asp:ImageButton ID="DocumentoButton" ImageUrl="/Include/Image/Icon/DocumentoIcon.png" runat="server" onclick="DocumentoButton_Click"></asp:ImageButton>
+            <asp:ImageButton ID="DocumentoButton" ImageUrl="/Include/Image/Icon/DocumentoIcon.png" runat="server" onclick="DocumentoButton_Click"></asp:ImageButton><br />
             Agregar documentos
         </asp:Panel>
 
         <asp:Panel CssClass="IconoPanel" ID="CalificarPanel" runat="server" Visible="true">
-            <asp:ImageButton ID="CalificarButton" ImageUrl="/Include/Image/Icon/CalificarIcon.png" runat="server" onclick="CalificarButton_Click"></asp:ImageButton>
+            <asp:ImageButton ID="CalificarButton" ImageUrl="/Include/Image/Icon/CalificarIcon.png" runat="server" onclick="CalificarButton_Click"></asp:ImageButton><br />
             Calificar solicitud
         </asp:Panel>
 
         <asp:Panel CssClass="IconoPanel" ID="EnviarPanel" runat="server" Visible="true">
-            <asp:ImageButton ID="EnviarButton" ImageUrl="/Include/Image/Icon/EnviarIcon.png" runat="server" onclick="EnviarButton_Click"></asp:ImageButton>
+            <asp:ImageButton ID="EnviarButton" ImageUrl="/Include/Image/Icon/EnviarIcon.png" runat="server" onclick="EnviarButton_Click"></asp:ImageButton><br />
             Enviar solicitud
         </asp:Panel>
     </div>

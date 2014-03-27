@@ -165,7 +165,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             {
                 selectEstatusVisitaduria();
                 selectVisitador();
-                selectExpediente(0);
+                selectExpediente(1);
             }
             catch (Exception ex)
             { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true); focusControl('" + this.txtNumeroExpediente.ClientID + "');", true); }
@@ -184,13 +184,27 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         protected void gvApps_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             string ExpedienteId = String.Empty;
+            ENTSession oENTSession;
+
+            oENTSession = (ENTSession)this.Session["oENTSession"];
 
             ExpedienteId = e.CommandArgument.ToString();
+
+            int rolId = oENTSession.idRol;
 
             switch (e.CommandName.ToString())
             {
                 case "Editar":
-                    Response.Redirect("~/Application/WebApp/Private/Visitaduria/opeDetalleExpedienteVisitador.aspx?expId=" + ExpedienteId);
+
+                    if (rolId == 9)
+                    {
+                        Response.Redirect("~/Application/WebApp/Private/Visitaduria/opeDetalleExpedienteTitular.aspx?expId=" + ExpedienteId);
+                    }
+                    else
+                    {
+                        Response.Redirect("~/Application/WebApp/Private/Visitaduria/opeDetalleExpedienteVisitador.aspx?expId=" + ExpedienteId);
+                    }
+
                     break;
             }
         }

@@ -13,7 +13,7 @@ using System.Data;
 
 namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
-    public partial class opeDetalleExpedienteVisitador : System.Web.UI.Page 
+    public partial class opeDetalleExpedienteVisitador : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -91,27 +91,30 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         protected void AcuerdoCalificacionButton_Click(object sender, ImageClickEventArgs e)
         {
+            string sExpedienteId = hdnExpedienteId.Value;
+            if (String.IsNullOrEmpty(sExpedienteId)) { sExpedienteId = GetRawQueryParameter("expId"); }
 
+            Response.Redirect("~/Application/WebApp/Private/Operation/opeAcuerdoCalifDefinitiva.aspx?expId=" + sExpedienteId);
         }
 
         protected void DiligenciasButton_Click(object sender, ImageClickEventArgs e)
         {
-
+            // TO DO: Falta hacer el html
         }
 
         protected void SeguimientoButton_Click(object sender, ImageClickEventArgs e)
         {
-
+            // TO DO: Falta hacer el html
         }
 
         protected void ResolucionButton_Click(object sender, ImageClickEventArgs e)
         {
-
+            // TO DO: Falta hacer el html
         }
 
         protected void EnviarExpedienteButton_Click(object sender, ImageClickEventArgs e)
         {
-
+            // TO DO: Falta hacer el html
         }
 
         #endregion

@@ -186,12 +186,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         protected void AprobarCalificacionButton_Click(object sender, ImageClickEventArgs e)
         {
-
+            //TO DO: Pendiente de crear html de la pagina de aprobar calificación
         }
 
         protected void AsignarVisitadorButton_Click(object sender, ImageClickEventArgs e)
         {
+            string sExpedienteId = hdnExpedienteId.Value;
+            if (String.IsNullOrEmpty(sExpedienteId)) { sExpedienteId = GetRawQueryParameter("expId"); }
 
+            Response.Redirect("~/Application/WebApp/Private/Operation/opeAsignarVisitador.aspx?expId=" + sExpedienteId);
         }
 
         #endregion

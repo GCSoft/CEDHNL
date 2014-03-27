@@ -22,7 +22,7 @@
         </tr>
         <tr>
             <td class="SubTitulo">
-                <asp:Label ID="Label2" runat="server" Text="Listado de expedientes existentes"></asp:Label>
+                <asp:Label ID="Label2" runat="server" Text="Listado de expedientes por asignar existentes"></asp:Label>
             </td>
         </tr>
         <tr>

@@ -13,6 +13,24 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
     public partial class opeDetalleSolicitud {
         
         /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+        
+        /// <summary>
+        /// InformacionPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel InformacionPanel;
+        
+        /// <summary>
         /// InformacionGeneralButton control.
         /// </summary>
         /// <remarks>
@@ -20,6 +38,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton InformacionGeneralButton;
+        
+        /// <summary>
+        /// CiudadanoPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel CiudadanoPanel;
         
         /// <summary>
         /// CiudadanoButton control.
@@ -31,6 +58,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.ImageButton CiudadanoButton;
         
         /// <summary>
+        /// AutoridadPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel AutoridadPanel;
+        
+        /// <summary>
         /// AutoridadButton control.
         /// </summary>
         /// <remarks>
@@ -38,6 +74,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton AutoridadButton;
+        
+        /// <summary>
+        /// IndicadorPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel IndicadorPanel;
         
         /// <summary>
         /// IndicadorButton control.
@@ -49,6 +94,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.ImageButton IndicadorButton;
         
         /// <summary>
+        /// DocumentoPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel DocumentoPanel;
+        
+        /// <summary>
         /// DocumentoButton control.
         /// </summary>
         /// <remarks>
@@ -58,6 +112,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.ImageButton DocumentoButton;
         
         /// <summary>
+        /// CalificarPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel CalificarPanel;
+        
+        /// <summary>
         /// CalificarButton control.
         /// </summary>
         /// <remarks>
@@ -65,6 +128,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton CalificarButton;
+        
+        /// <summary>
+        /// EnviarPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel EnviarPanel;
         
         /// <summary>
         /// EnviarButton control.

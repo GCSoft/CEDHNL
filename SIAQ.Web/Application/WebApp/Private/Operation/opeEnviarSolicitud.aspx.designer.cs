@@ -13,13 +13,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
     public partial class opeEnviarSolicitud {
         
         /// <summary>
-        /// DocumentUpdate control.
+        /// PageUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel DocumentUpdate;
+        protected global::System.Web.UI.UpdatePanel PageUpdate;
         
         /// <summary>
         /// SolicitudLabel control.
@@ -146,14 +146,5 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button SendButton;
-        
-        /// <summary>
-        /// SolicitudIdHidden control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField SolicitudIdHidden;
     }
 }

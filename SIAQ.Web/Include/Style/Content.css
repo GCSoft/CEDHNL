@@ -178,3 +178,20 @@
 	vertical-align: middle;
 }
 
+.IconoPanel
+{
+	border: 1px solid;
+	float: left;
+	font-size: 10px;
+	height: 120px;
+	margin-top: 5px;
+	text-align: center;
+	width: 85px;
+}
+
+.IconoPanel img
+{
+	margin-bottom: 10px;
+	padding: 5px;
+}
+

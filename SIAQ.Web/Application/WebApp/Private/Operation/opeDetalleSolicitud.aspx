@@ -6,50 +6,53 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
     <div id="TituloPaginaDiv">
-        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <table class="GeneralTable">
             <tr>
-                <td class="tdCeldaTituloEncabezado">
+                <td class="tdCeldaTituloEncabezado" style="background-image:url('../../../../Include/Image/Web/BarraTitulo.png');">
                     Detalle de Solictud
                 </td>
             </tr>
+            <tr><td class="SubTitulo"><asp:Label ID="Label2" runat="server" Text="Seleccione las opciones disponibles para capturar la información de la solicitud."></asp:Label></td></tr>
         </table>
     </div>
+
     <div id="SubMenuDiv">
-        <table border="0" cellpadding="0" cellspacing="0" width="100%">
-            <tr>
-                <td style="width:65px;"><asp:ImageButton ID="InformacionGeneralButton" ImageUrl="/Include/Image/Icon/GeneralIcon.png" runat="server" onclick="InformacionGeneralButton_Click"></asp:ImageButton></td>
-                <td></td>
-                <td style="width:65px;"><asp:ImageButton ID="CiudadanoButton" ImageUrl="/Include/Image/Icon/CiudadanoIcon.png" runat="server" onclick="CiudadanoButton_Click"></asp:ImageButton></td>
-                <td></td>
-                <td style="width:65px;"><asp:ImageButton ID="AutoridadButton" ImageUrl="/Include/Image/Icon/GeneralIcon.png" runat="server" onclick="AutoridadButton_Click"></asp:ImageButton></td>
-                <td></td>
-                <td style="width:65px;"><asp:ImageButton ID="IndicadorButton" ImageUrl="/Include/Image/Icon/IndicadorIcon.png" runat="server" onclick="IndicadorButton_Click"></asp:ImageButton></td>
-                <td></td>
-                <td style="width:65px;"><asp:ImageButton ID="DocumentoButton" ImageUrl="/Include/Image/Icon/DocumentoIcon.png" runat="server" onclick="DocumentoButton_Click"></asp:ImageButton></td>
-                <td></td>
-                <td style="width:65px;"><asp:ImageButton ID="CalificarButton" ImageUrl="/Include/Image/Icon/CalificarIcon.png" runat="server" onclick="CalificarButton_Click"></asp:ImageButton></td>
-                <td></td>
-                <td style="width:65px;"><asp:ImageButton ID="EnviarButton" ImageUrl="/Include/Image/Icon/EnviarIcon.png" runat="server" onclick="EnviarButton_Click"></asp:ImageButton></td>
-            </tr>
-            <tr style=" height:2px;"><td colspan="13"></td></tr>
-            <tr>
-                <td style="width:65px; font-size:10px;">Información general</td>
-                <td></td>
-                <td style="width:65px; font-size:10px;">Agregar ciudadanos</td>
-                <td></td>
-                <td style="width:65px; font-size:10px;">Agegar autoridades señaladas y voces</td>
-                <td></td>
-                <td style="width:65px; font-size:10px;">Indicadores</td>
-                <td></td>
-                <td style="width:65px; font-size:10px;">Agregar documentos</td>
-                <td></td>
-                <td style="width:65px; font-size:10px;">Calificar solicitud</td>
-                <td></td>
-                <td style="width:65px; font-size:10px;">Enviar solicitud</td>
-            </tr>
-            <tr style=" height:30px; "><td colspan="13"></td></tr>
-        </table>
+        <asp:Panel CssClass="IconoPanel" ID="InformacionPanel" runat="server" Visible="true">
+            <asp:ImageButton ID="InformacionGeneralButton" ImageUrl="/Include/Image/Icon/GeneralIcon.png" runat="server" onclick="InformacionGeneralButton_Click"></asp:ImageButton>
+            Información general
+        </asp:Panel>
+
+        <asp:Panel CssClass="IconoPanel" ID="CiudadanoPanel" runat="server" Visible="true">
+            <asp:ImageButton ID="CiudadanoButton" ImageUrl="/Include/Image/Icon/CiudadanoIcon.png" runat="server" onclick="CiudadanoButton_Click"></asp:ImageButton>
+            Agregar ciudadanos
+        </asp:Panel>
+
+        <asp:Panel CssClass="IconoPanel" ID="AutoridadPanel" runat="server" Visible="true">
+            <asp:ImageButton ID="AutoridadButton" ImageUrl="/Include/Image/Icon/GeneralIcon.png" runat="server" onclick="AutoridadButton_Click"></asp:ImageButton>
+            Agegar autoridades señaladas y voces
+        </asp:Panel>
+
+        <asp:Panel CssClass="IconoPanel" ID="IndicadorPanel" runat="server" Visible="true">
+            <asp:ImageButton ID="IndicadorButton" ImageUrl="/Include/Image/Icon/IndicadorIcon.png" runat="server" onclick="IndicadorButton_Click"></asp:ImageButton>
+            Indicadores
+        </asp:Panel>
+
+        <asp:Panel CssClass="IconoPanel" ID="DocumentoPanel" runat="server" Visible="true">
+            <asp:ImageButton ID="DocumentoButton" ImageUrl="/Include/Image/Icon/DocumentoIcon.png" runat="server" onclick="DocumentoButton_Click"></asp:ImageButton>
+            Agregar documentos
+        </asp:Panel>
+
+        <asp:Panel CssClass="IconoPanel" ID="CalificarPanel" runat="server" Visible="true">
+            <asp:ImageButton ID="CalificarButton" ImageUrl="/Include/Image/Icon/CalificarIcon.png" runat="server" onclick="CalificarButton_Click"></asp:ImageButton>
+            Calificar solicitud
+        </asp:Panel>
+
+        <asp:Panel CssClass="IconoPanel" ID="EnviarPanel" runat="server" Visible="true">
+            <asp:ImageButton ID="EnviarButton" ImageUrl="/Include/Image/Icon/EnviarIcon.png" runat="server" onclick="EnviarButton_Click"></asp:ImageButton>
+            Enviar solicitud
+        </asp:Panel>
     </div>
+
     <div id="InformacionDiv">
         <table class="SolicitudTable">
             <tr>
@@ -115,6 +118,7 @@
 				<td class="Campo" colspan="5"><asp:TextBox CssClass="Textarea_General" ID="DireccionHechosBox" runat="server" TextMode="multiline" width="193px" ></asp:TextBox></td>
             </tr>
         </table>
+
         <table border="0" cellpadding="0" cellspacing="0" width="100%">
             <tr><td class="tdCeldaMiddleSpace"></td></tr>
             <tr><td style="text-align:left;">Ciudadanos</td></tr>
@@ -247,5 +251,6 @@
             </tr>
         </table>
     </div>
+
     <asp:HiddenField ID="SolicitudIdHidden" runat="server" Value="0" />
 </asp:Content>

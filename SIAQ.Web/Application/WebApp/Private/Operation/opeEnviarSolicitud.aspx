@@ -5,7 +5,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
-    <asp:UpdatePanel ID="DocumentUpdate" runat="server">
+    <asp:UpdatePanel ID="PageUpdate" runat="server">
         <ContentTemplate>
             <table class="GeneralTable">
                 <tr>
@@ -74,12 +74,20 @@
                             <tr>
                                 <td class="Nombre">Lugar de los hechos</td>
                                 <td class="Espacio"></td>
-				                <td class="Observaciones" colspan="5"><asp:Label ID="LugarHechosLabel" runat="server" Text=""></asp:Label></td>
+				                <td class="Etiqueta"><asp:Label ID="LugarHechosLabel" runat="server" Text=""></asp:Label></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+				                <td></td>
                             </tr>
                             <tr>
                                 <td class="Nombre">Dirección de los hechos</td>
                                 <td class="Espacio"></td>
-				                <td class="Observaciones" colspan="5"><asp:Label ID="DireccionHechosLabel" runat="server" Text=""></asp:Label></td>
+				                <td class="Etiqueta"><asp:Label ID="DireccionHechosLabel" runat="server" Text=""></asp:Label></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+				                <td></td>
                             </tr>
                             <tr>
                                 <td class="Botones" colspan="3">
@@ -92,11 +100,6 @@
                     </td>
                 </tr>
             </table>
-
-            <asp:HiddenField ID="SolicitudIdHidden" runat="server" Value="0" />
         </ContentTemplate>
-        <Triggers>
-            
-        </Triggers>
     </asp:UpdatePanel>
 </asp:Content>

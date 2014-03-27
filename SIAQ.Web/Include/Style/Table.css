@@ -43,7 +43,7 @@
 {
 	background-color: #ededed;
 	text-align: left;
-	width: 200px;
+	width: 180px;
 }
 
 .SolicitudTable .Observaciones
@@ -99,8 +99,9 @@
 
 .GeneralTable .Etiqueta
 {
+	background-color: #ededed;
 	text-align: left;
-	width: 114px;
+	width: 180px;
 }
 
 .GeneralTable .Nombre

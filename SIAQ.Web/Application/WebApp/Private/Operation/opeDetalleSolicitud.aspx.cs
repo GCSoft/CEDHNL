@@ -5,8 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-using SIAQ.BusinessProcess.Object;
 using GCSoft.Utilities.Common;
+using SIAQ.BusinessProcess.Object;
+using SIAQ.Entity.Object;
 
 namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
@@ -110,6 +111,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     {
                         SolicitudId = int.Parse(Request.QueryString["s"].ToString());
 
+                        SetPermisos();
                         SelectLugarHechos();
                         SelectSolicitud(SolicitudId);
                         SelectCiudadano(SolicitudId);
@@ -243,6 +245,104 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 {
                     ResetForm();
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(SolicitudProcess.ErrorDescription) + "', 'Fail', true);", true);
+                }
+            }
+
+            private void SetPermisos()
+            {
+                ENTSession SessionEntity = new ENTSession();
+
+                SessionEntity = (ENTSession)Session["oENTSession"];
+
+                if (SessionEntity != null)
+                {
+                    switch(SessionEntity.idRol)
+                    {
+                        case 1:
+                        case 2:
+                            CiudadanoPanel.Visible = true;
+                            AutoridadPanel.Visible = true;
+                            IndicadorPanel.Visible = true;
+                            DocumentoPanel.Visible = true;
+                            CalificarPanel.Visible = true;
+                            EnviarPanel.Visible = true;
+
+                            LugarHechosList.Enabled = false;
+                            DireccionHechosBox.Enabled = false;
+                            GuardarButton.Enabled = false;
+
+                            break;
+
+                        case 3:
+                            CiudadanoPanel.Visible = false;
+                            AutoridadPanel.Visible = false;
+                            IndicadorPanel.Visible = false;
+                            DocumentoPanel.Visible = false;
+                            CalificarPanel.Visible = false;
+                            EnviarPanel.Visible = false;
+
+                            LugarHechosList.Enabled = false;
+                            DireccionHechosBox.Enabled = false;
+                            GuardarButton.Enabled = false;
+
+                            break;
+
+                        case 4:
+                            CiudadanoPanel.Visible = false;
+                            AutoridadPanel.Visible = false;
+                            IndicadorPanel.Visible = false;
+                            DocumentoPanel.Visible = false;
+                            CalificarPanel.Visible = false;
+                            EnviarPanel.Visible = false;
+
+                            LugarHechosList.Enabled = false;
+                            DireccionHechosBox.Enabled = false;
+                            GuardarButton.Enabled = false;
+
+                            break;
+
+                        case 5:
+                            CiudadanoPanel.Visible = true;
+                            AutoridadPanel.Visible = true;
+                            IndicadorPanel.Visible = true;
+                            DocumentoPanel.Visible = true;
+                            CalificarPanel.Visible = true;
+                            EnviarPanel.Visible = true;
+
+                            LugarHechosList.Enabled = true;
+                            DireccionHechosBox.Enabled = true;
+                            GuardarButton.Enabled = true;
+
+                            break;
+
+                        case 6:
+                            CiudadanoPanel.Visible = false;
+                            AutoridadPanel.Visible = false;
+                            IndicadorPanel.Visible = false;
+                            DocumentoPanel.Visible = false;
+                            CalificarPanel.Visible = false;
+                            EnviarPanel.Visible = false;
+
+                            LugarHechosList.Enabled = false;
+                            DireccionHechosBox.Enabled = false;
+                            GuardarButton.Enabled = false;
+
+                            break;
+
+                        default:
+                            CiudadanoPanel.Visible = false;
+                            AutoridadPanel.Visible = false;
+                            IndicadorPanel.Visible = false;
+                            DocumentoPanel.Visible = false;
+                            CalificarPanel.Visible = false;
+                            EnviarPanel.Visible = false;
+
+                            LugarHechosList.Enabled = false;
+                            DireccionHechosBox.Enabled = false;
+                            GuardarButton.Enabled = false;
+
+                            break;
+                    }
                 }
             }
         #endregion

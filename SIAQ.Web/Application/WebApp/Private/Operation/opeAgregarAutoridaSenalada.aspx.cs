@@ -32,6 +32,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                         SolicitudLabel.Text = _SolicitudId;
 
                         SolicitudIdHidden.Value = _SolicitudId;
+
+                        ddlPrimerNivel.Items.Insert(0, new ListItem("-- Seleccione --", "0"));
+                        ddlSegundoNivel.Items.Insert(0, new ListItem("-- Seleccione --", "0"));
+                        ddlTercerNivel.Items.Insert(0, new ListItem("-- Seleccione --", "0"));
                     }
                     catch (Exception Exception)
                     {

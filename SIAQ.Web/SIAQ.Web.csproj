@@ -919,6 +919,7 @@
     <Compile Include="Application\WebApp\Private\SysCat\scatUsuario.aspx.designer.cs">
       <DependentUpon>scatUsuario.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Include\Handler\ObtenerRepositorio.cs" />
     <Compile Include="Include\WebUserControls\wucBusquedaCiudadano.ascx.cs">
       <DependentUpon>wucBusquedaCiudadano.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

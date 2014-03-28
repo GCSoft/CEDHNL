@@ -207,18 +207,25 @@
             </tr>
             <tr><td class="tdCeldaMiddleSpace"></td></tr>
         </table>
+        <br />
 
         <!-- Datalist para documentos -->
-        <div>Documentos anexos</div>
 
-        <asp:DataList ID="DocumentList" OnItemDataBound="DocumentList_ItemDataBound" runat="server">
-            <ItemTemplate>
-                <asp:Image ID="DocumentImage" runat="server" />
-                <asp:Label ID="DocumentLabel" runat="server" Text="Nombre del documento"></asp:Label>
-            </ItemTemplate>
-        </asp:DataList>
+        <div style="text-align: left;">Documentos anexos</div>
 
+        <div class="DocumentoListDiv">
+            <asp:DataList CellPadding="5" CellSpacing="5" ID="DocumentoList" HorizontalAlign="Left" RepeatDirection="Horizontal" RepeatLayout="Table"
+                OnItemDataBound="DocumentList_ItemDataBound" runat="server">
+                <ItemTemplate>
+                    <asp:Image ID="DocumentoImage" runat="server" />
+                    <br />
+                    <asp:Label ID="DocumentoLabel" runat="server" Text="Nombre del documento"></asp:Label>
+                </ItemTemplate>
+            </asp:DataList>
 
+            <asp:Label CssClass="Texto" ID="SinDocumentoLabel" runat="server" Text=""></asp:Label>
+        </div>
+        
         <!-- Fin datalist -->
 
         <table border="0" cellpadding="0" cellspacing="0" width="100%">

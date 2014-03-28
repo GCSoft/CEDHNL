@@ -301,13 +301,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.GridView gvAutoridades;
         
         /// <summary>
-        /// DocumentList control.
+        /// DocumentoList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList DocumentList;
+        protected global::System.Web.UI.WebControls.DataList DocumentoList;
+        
+        /// <summary>
+        /// SinDocumentoLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SinDocumentoLabel;
         
         /// <summary>
         /// pnlDocumentos control.

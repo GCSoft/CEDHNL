@@ -38,7 +38,17 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
             protected void DocumentList_ItemDataBound(Object sender, DataListItemEventArgs e)
             {
+                Label DocumentoLabel;
+                Image DocumentoImage;
 
+                if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+                {
+                    DocumentoImage = (Image)e.Item.FindControl("DocumentoImage");
+                    DocumentoLabel = (Label)e.Item.FindControl("DocumentoLabel");
+
+
+
+                }
             }
 
             protected void EnviarButton_Click(object sender, ImageClickEventArgs e)
@@ -174,8 +184,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
                 if (DocumentoProcess.ErrorId == 0)
                 {
-                    DocumentList.DataSource = DocumentoProcess.DocumentoEntity.ResultData;
-                    DocumentList.DataBind();
+                    if (DocumentoProcess.DocumentoEntity.ResultData.Tables[0].Rows.Count == 0)
+                        SinDocumentoLabel.Text = "<br /><br />No hay documentos anexados a la solicitud";
+                    else
+                        SinDocumentoLabel.Text = "";
+
+                    DocumentoList.DataSource = DocumentoProcess.DocumentoEntity.ResultData;
+                    DocumentoList.DataBind();
                 }
                 else
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(DocumentoProcess.ErrorDescription) + "', 'Fail', true);", true);

@@ -305,6 +305,35 @@ namespace SIAQ.BusinessProcess.Object
         }
 
         /// <summary>
+        /// Agrega el acuerdo de calificación definitiva
+        /// </summary>
+        public ENTResponse InsertAcuerdoCalificacionDefinitiva(ENTExpediente oENTExpediente)
+        {
+            DAExpediente oDAExpediente = new DAExpediente();
+            ENTResponse oENTResponse = new ENTResponse();
+
+            try
+            {
+                //Transacción
+                oENTResponse = oDAExpediente.InsertAcuerdoCalificacionDefinitiva(oENTExpediente, sConnectionApplication, 0);
+
+                // Validación error 
+                if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+                //Validacion de mensajes de base de datos 
+                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+                if (oENTResponse.sMessage != "") { return oENTResponse; }
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+
+            //Resultado 
+            return oENTResponse;
+        }
+
+        /// <summary>
         ///     Obtiene los expedientes asignados a un funcionario en específico
         /// </summary>
         public void SelectExpediente_Funcionario(ENTExpediente oENTExpediente)

@@ -535,7 +535,66 @@ namespace SIAQ.DataAccess.Object
                 if (Connection.State == ConnectionState.Open) { Connection.Close(); }
             }
 
-            return oENTResponse; 
+            return oENTResponse;
+        }
+
+        ///<remarks>
+        ///   <name>DASolicitud.InsertAcuerdoCalificacionDefinitiva</name>
+        ///   <create>28/mar/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        /// <summary>
+        /// Agrega el acuerdo de calificación definitiva
+        /// </summary>
+        public ENTResponse InsertAcuerdoCalificacionDefinitiva(ENTExpediente oENTExpediente, string sConnectionString, int iAlternativeTimeOut)
+        {
+            //Declaración 
+            SqlConnection Connection = new SqlConnection(sConnectionString);
+            SqlCommand Command;
+            SqlDataAdapter DataAdapter;
+            SqlParameter Parameter;
+
+            ENTResponse oENTResponse = new ENTResponse();
+
+            //Configuracion 
+            Command = new SqlCommand("spExpedienteCalificacionDefinitiva", Connection);
+            Command.CommandType = CommandType.StoredProcedure;
+
+            //TimeOut
+            if (iAlternativeTimeOut > 0) { Command.CommandTimeout = iAlternativeTimeOut; }
+
+            //Parametros 
+            Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
+            Parameter.Value = oENTExpediente.ExpedienteId;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("FuncionarioId", SqlDbType.Int);
+            Parameter.Value = oENTExpediente.FuncionarioId;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("Acuerdo", SqlDbType.VarChar);
+            Parameter.Value = oENTExpediente.Acuerdo;
+            Command.Parameters.Add(Parameter);
+
+            //Inicializador 
+            oENTResponse.dsResponse = new DataSet();
+            DataAdapter = new SqlDataAdapter(Command);
+
+            //Transacción
+            try
+            {
+                Connection.Open();
+                DataAdapter.Fill(oENTResponse.dsResponse);
+                Connection.Close();
+            }
+            catch (SqlException sqlex) { oENTResponse.ExceptionRaised(sqlex.Message); }
+            catch (Exception ex) { oENTResponse.ExceptionRaised(ex.Message); }
+            finally
+            {
+                if (Connection.State == ConnectionState.Open) { Connection.Close(); }
+            }
+
+            return oENTResponse;
         }
 
         ///<remarks>

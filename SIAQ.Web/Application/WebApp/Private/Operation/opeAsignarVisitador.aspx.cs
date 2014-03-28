@@ -523,10 +523,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             ENTExpediente oENTExpediente = new ENTExpediente();
             ENTResponse oENTResponse = new ENTResponse();
             BPExpediente oBPExpediente = new BPExpediente();
-            ENTSession oENTSession;
-
-            oENTSession = (ENTSession)this.Session["sResponse"];
-
+            
             if (funcionarioId == 0)
             {
                 throw new Exception("Debe seleccionar un funcionario");

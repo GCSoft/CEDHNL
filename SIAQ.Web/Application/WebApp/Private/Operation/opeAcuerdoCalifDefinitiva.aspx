@@ -1,153 +1,236 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeAcuerdoCalifDefinitiva.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeAcuerdoCalifDefinitiva" %>
+
+<%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
+    <script type="text/javascript">
+
+        // Funciones del programador
+        function NumbersValidator(e) {
+
+            var tecla = document.all ? tecla = e.keyCode : tecla = e.which;
+            return (tecla > 47 && tecla < 58);
+        }
+
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
-    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <table class="GeneralTable">
         <tr>
-			<td class="tdCeldaTituloEncabezado">
-				Acuerdo de calificación definitiva
-			</td>
-		</tr>
-      <tr><td class="tdCeldaMiddleSpace_Title"></td></tr>
-      <tr>
-         <td>
-         <asp:Label ID="Label1" runat="server" Text="Proporcione la información del acuerdo de calificación definitiva para anexarla al expediente."></asp:Label>
-         <br /><br />
-         </td>      
-      </tr>
-      <tr>
-         <td>
-            <asp:Panel id="pnlFormulario" runat="server" Visible="true" Width="100%">
-                <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                    <tr class="trFilaItem">
-                        <td class="tdCeldaLeyendaItemFondoBlanco">Expediente Número</td>
-                        <td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:Label ID="lbNumeroSolictud" runat="server" Text="2000"></asp:Label></td>
-                        <td style="width:5px;"></td>
-                        <td class="tdCeldaLeyendaItemFondoBlanco"></td>
-                        <td style="width:5px;"></td>
-						<td class="tdCeldaItem"></td>
-                        <td style="width:5px;"></td>
-                    </tr>
-                    <tr style=" height:20px;"><td colspan="8"></td></tr>
-                    <tr class="trFilaItem">
-                        <td class="tdCeldaLeyendaItemFondoBlanco">Calificación</td>
-                        <td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtCalificacion" runat="server" CssClass="Textbox_General" width="177px" ></asp:TextBox>&nbsp;</td>
-                        <td style="width:5px;"></td>
-                        <td class="tdCeldaLeyendaItemFondoBlanco"></td>
-                        <td style="width:5px;"></td>
-						<td class="tdCeldaItem"></td>
-                        <td style="width:5px;"></td>
-                    </tr>
-                    <tr style=" height:3px;"><td colspan="8"></td></tr>
-                    <tr class="trFilaItem">
-                        <td class="tdCeldaLeyendaItemFondoBlanco">Estatus</td>
-                        <td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtEstatus" runat="server" CssClass="Textbox_General" width="177px" ></asp:TextBox>&nbsp;</td>
-                        <td style="width:5px;"></td>
-                        <td class="tdCeldaLeyendaItemFondoBlanco">Fecha recepción</td>
-                        <td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtFechaRecepcion" runat="server" CssClass="Textbox_General" width="177px" ></asp:TextBox>&nbsp;</td>
-                        <td style="width:5px;"></td>
-                    </tr>
-                    <tr style=" height:3px;"><td colspan="8"></td></tr>
-                    <tr class="trFilaItem">
-                        <td class="tdCeldaLeyendaItemFondoBlanco">Visitador</td>
-                        <td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtFuncionario" runat="server" CssClass="Textbox_General" width="177px" ></asp:TextBox>&nbsp;</td>
-                        <td style="width:5px;"></td>
-                        <td class="tdCeldaLeyendaItemFondoBlanco">Fecha asignación</td>
-                        <td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtFechaAsignacion" runat="server" CssClass="Textbox_General" Width="177px"></asp:TextBox></td>
-                        <td style="width:5px;"></td>
-                    </tr>
-                    <tr style=" height:3px;"><td colspan="8"></td></tr>
-                    <tr class="trFilaItem">
-                        <td class="tdCeldaLeyendaItemFondoBlanco">Forma de contacto</td>
-                        <td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtFormaContacto" runat="server" CssClass="Textbox_General" width="177px" ></asp:TextBox>&nbsp;</td>
-                        <td style="width:5px;"></td>
-                        <td class="tdCeldaLeyendaItemFondoBlanco">Fecha inicio gestión</td>
-                        <td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtFechaGestion" runat="server" CssClass="Textbox_General" Width="177px"></asp:TextBox></td>
-                        <td style="width:5px;"></td>
-                    </tr>
-                    <tr style=" height:3px;"><td colspan="8"></td></tr>
-                    <tr class="trFilaItem">
-                        <td class="tdCeldaLeyendaItemFondoBlanco">Tipo de solicitud</td>
-                        <td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtTipoSolicitud" runat="server" CssClass="Textbox_General"></asp:TextBox></td>
-                        <td style="width:5px;"></td>
-                        <td class="tdCeldaLeyendaItemFondoBlanco">Última modificación</td>
-                        <td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtFechamodificacion" runat="server" CssClass="Textbox_General"></asp:TextBox></td>
-                        <td style="width:5px;"></td>
-                    </tr>
-                    <tr style=" height:3px;"><td colspan="8"></td></tr>
-                    <tr class="trFilaItem">
-                        <td class="tdCeldaLeyendaItemFondoBlanco">Observaciones (Recepción)</td>
-                        <td style="width:5px;"></td>
-						<td class="tdCeldaItem" colspan="5"><asp:TextBox ID="txtObservaciones" runat="server" CssClass="Textarea_General" width="586px" ></asp:TextBox>&nbsp;</td>
-                    </tr>
-                    <tr style=" height:3px;"><td colspan="8"></td></tr>
-                    <tr class="trFilaItem">
-                        <td class="tdCeldaLeyendaItemFondoBlanco">Lugar de los hechos</td>
-                        <td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtLugarHechos" runat="server" CssClass="Textbox_General"></asp:TextBox></td>
-                        <td style="width:5px;"></td>
-                        <td class="tdCeldaLeyendaItemFondoBlanco"></td>
-                        <td style="width:5px;"></td>
-						<td class="tdCeldaItem"></td>
-                        <td style="width:5px;"></td>
-                    </tr>
-                    <tr style=" height:3px;"><td colspan="8"></td></tr>
-                    <tr class="trFilaItem">
-                        <td class="tdCeldaLeyendaItemFondoBlanco">Dirección de los hechos</td>
-                        <td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtDireccionHechos" runat="server" CssClass="Textarea_General" width="177px" ></asp:TextBox>&nbsp;</td>
-                        <td style="width:5px;"></td>
-                        <td class="tdCeldaLeyendaItemFondoBlanco"></td>
-                        <td style="width:5px;"></td>
-						<td class="tdCeldaItem"></td>
-                        <td style="width:5px;"></td>
-                    </tr>
-                </table>
-            </asp:Panel>
-         </td>
-      </tr>
-      <tr><td class="tdCeldaMiddleSpace"></td></tr>
-      <tr>
-        <td>
-            <asp:panel ID="pnlDocumentos" runat="server" Width="100%">
-                <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                    <tr>
-                        <td style="text-align:left;">Acuerdo de calificación definitiva</td>
-                    </tr>
-                    <tr>
-                        <td style="background-color:Gray;">Barra de Herramientas</td>
-                    </tr>
-                    <tr>
-                        <td style="background-color:Gray;">
-                        <asp:TextBox ID="txtAsunto" runat="server" TextMode="MultiLine" CssClass="Textarea_General" Width="800px"></asp:TextBox>
-                        </td>
-                    </tr>
-                </table>
-            </asp:panel>
-        </td>
-      </tr>
-      <tr><td class="tdCeldaMiddleSpace"></td></tr>
-      <tr>
-         <td>
-            <asp:Panel id="pnlBotones" runat="server" Width="100%">
-               <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                  <tr>
-                     <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="btnGuardar" runat="server" CssClass="Button_General_Verde" Text="Guardar" width="120px"></asp:Button></td>
-                     <td style="height:24px; text-align:left; width:530px;"><asp:Button ID="btnRegresar" runat="server" CssClass="Button_General_Verde" Text="Regresar" width="120px"></asp:Button></td>
-                  </tr>
-               </table>
-            </asp:Panel>
-         </td>
-      </tr>
+            <td class="tdCeldaTituloEncabezado" style="background-image: url('../../../../Include/Image/Web/BarraTitulo.png');">
+                Acuerdo de calificación definitiva
+            </td>
+        </tr>
+        <tr>
+            <td class="SubTitulo">
+                <asp:Label ID="Label2" runat="server" Text="Proporcione la información del acuerdo de calificación definitiva para anexarla al expediente"></asp:Label>
+            </td>
+        </tr>
+        <tr style="height: 2px;">
+            <td colspan="13">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Panel ID="pnlFormularioSecretaria" runat="server" Visible="true" Width="100%">
+                    <table class="SolicitudTable">
+                        <tr>
+                            <td class="Especial">
+                                Expediente número
+                            </td>
+                            <td class="Espacio">
+                            </td>
+                            <td class="Campo">
+                                <asp:Label CssClass="NumeroSolicitudLabel" ID="SolicitudLabel" runat="server" Text="0"></asp:Label>
+                            </td>
+                            <td colspan="4">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="Nombre">
+                                Calificación
+                            </td>
+                            <td class="Espacio">
+                            </td>
+                            <td class="Etiqueta">
+                                <asp:Label ID="CalificacionLlabel" runat="server" Text=""></asp:Label>
+                            </td>
+                            <td colspan="4">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="Nombre">
+                                Estatus
+                            </td>
+                            <td class="Espacio">
+                            </td>
+                            <td class="Etiqueta">
+                                <asp:Label ID="EstatusaLabel" runat="server" Text=""></asp:Label>
+                            </td>
+                            <td class="Espacio">
+                            </td>
+                            <td class="Nombre">
+                                Fecha de recepción
+                            </td>
+                            <td class="Espacio">
+                            </td>
+                            <td class="Etiqueta">
+                                <asp:Label ID="FechaRecepcionLabel" runat="server" Text=""></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="Nombre">
+                                Visitador
+                            </td>
+                            <td class="Espacio">
+                            </td>
+                            <td class="Etiqueta">
+                                <asp:Label ID="VisitadorLabel" runat="server"></asp:Label>
+                            </td>
+                            <td class="Espacio">
+                            </td>
+                            <td class="Nombre">
+                                Fecha de asignación
+                            </td>
+                            <td class="Espacio">
+                            </td>
+                            <td class="Etiqueta">
+                                <asp:Label ID="FechaAsignacionLabel" runat="server" Text=""></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="Nombre">
+                                Forma de contacto
+                            </td>
+                            <td class="Espacio">
+                            </td>
+                            <td class="Etiqueta">
+                                <asp:Label ID="FormaContactoLabel" runat="server" Text=""></asp:Label>
+                            </td>
+                            <td class="Espacio">
+                            </td>
+                            <td class="Nombre">
+                                Fecha de inicio gestión
+                            </td>
+                            <td class="Espacio">
+                            </td>
+                            <td class="Etiqueta">
+                                <asp:Label ID="FechaGestionLabel" runat="server" Text=""></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="Nombre">
+                                Tipo de solicitud
+                            </td>
+                            <td class="Espacio">
+                            </td>
+                            <td class="Etiqueta">
+                                <asp:Label ID="TipoSolicitudLabel" runat="server" Text=""></asp:Label>
+                            </td>
+                            <td class="Espacio">
+                            </td>
+                            <td class="Nombre">
+                                Última modificación
+                            </td>
+                            <td class="Espacio">
+                            </td>
+                            <td class="Etiqueta">
+                                <asp:Label ID="FechaModificacionLabel" runat="server" Text=""></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="Nombre">
+                                Observaciones (Recepción)
+                            </td>
+                            <td class="Espacio">
+                            </td>
+                            <td class="Observaciones" colspan="5">
+                                <asp:Label ID="ObservacionesLabel" runat="server" Text=""></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="Nombre">
+                                Lugar de los hechos
+                            </td>
+                            <td class="Espacio">
+                            </td>
+                            <td class="Etiqueta" colspan="5">
+                                <asp:Label ID="LugarHechosLabel" runat="server"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="Nombre">
+                                Dirección de los hechos
+                            </td>
+                            <td class="Espacio">
+                            </td>
+                            <td class="Etiqueta" colspan="5">
+                                <asp:Label ID="DireccionHechos" runat="server"></asp:Label>
+                            </td>
+                        </tr>
+                    </table>
+                </asp:Panel>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdCeldaMiddleSpace">
+            </td>
+        </tr>
+        <tr>
+            <td class="tdCeldaMiddleSpace">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Panel ID="pnlDocumentos" runat="server" Width="100%">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                            <td colspan="4" style="text-align: left;">
+                                Acuerdo de calificación definitiva
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="background-color: Gray;">
+                                Barra de Herramientas
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="background-color: Gray;">
+                                <CKEditor:CKEditorControl ID="txtAsuntoSolicitud" BasePath="/ckeditor/" runat="server"></CKEditor:CKEditorControl>
+                            </td>
+                        </tr>
+                    </table>
+                </asp:Panel>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdCeldaMiddleSpace">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Panel ID="pnlBotones" runat="server" Width="100%">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                            <td style="height: 24px; text-align: left; width: 130px;">
+                                <asp:Button ID="cmdGuardar" runat="server" Text="Guardar"
+                                    CssClass="Button_General" Width="125px" onclick="cmdGuardar_Click" />
+                            </td>
+                            <td style="height: 24px; text-align: left; width: 130px;">
+                                <asp:Button ID="cmdRegresar" runat="server" Text="Regresar" CssClass="Button_General"
+                                    Width="125px" onclick="cmdRegresar_Click"/>
+                            </td>
+                            <td style="height: 24px; width: 530px;">
+                            </td>
+                        </tr>
+                    </table>
+                </asp:Panel>
+            </td>
+        </tr>
+        <tr class="trFilaFooter">
+            <td>
+            </td>
+        </tr>
     </table>
+    <asp:HiddenField ID="hddSort" runat="server" Value="NumeroSol" />
+    <asp:HiddenField ID="hdnExpedienteId" runat="server" />
 </asp:Content>

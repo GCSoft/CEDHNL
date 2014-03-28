@@ -13,139 +13,139 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
     public partial class opeAcuerdoCalifDefinitiva {
         
         /// <summary>
-        /// Label1 control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// pnlFormulario control.
+        /// pnlFormularioSecretaria control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlFormulario;
+        protected global::System.Web.UI.WebControls.Panel pnlFormularioSecretaria;
         
         /// <summary>
-        /// lbNumeroSolictud control.
+        /// SolicitudLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbNumeroSolictud;
+        protected global::System.Web.UI.WebControls.Label SolicitudLabel;
         
         /// <summary>
-        /// txtCalificacion control.
+        /// CalificacionLlabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCalificacion;
+        protected global::System.Web.UI.WebControls.Label CalificacionLlabel;
         
         /// <summary>
-        /// txtEstatus control.
+        /// EstatusaLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEstatus;
+        protected global::System.Web.UI.WebControls.Label EstatusaLabel;
         
         /// <summary>
-        /// txtFechaRecepcion control.
+        /// FechaRecepcionLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaRecepcion;
+        protected global::System.Web.UI.WebControls.Label FechaRecepcionLabel;
         
         /// <summary>
-        /// txtFuncionario control.
+        /// VisitadorLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFuncionario;
+        protected global::System.Web.UI.WebControls.Label VisitadorLabel;
         
         /// <summary>
-        /// txtFechaAsignacion control.
+        /// FechaAsignacionLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaAsignacion;
+        protected global::System.Web.UI.WebControls.Label FechaAsignacionLabel;
         
         /// <summary>
-        /// txtFormaContacto control.
+        /// FormaContactoLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFormaContacto;
+        protected global::System.Web.UI.WebControls.Label FormaContactoLabel;
         
         /// <summary>
-        /// txtFechaGestion control.
+        /// FechaGestionLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaGestion;
+        protected global::System.Web.UI.WebControls.Label FechaGestionLabel;
         
         /// <summary>
-        /// txtTipoSolicitud control.
+        /// TipoSolicitudLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTipoSolicitud;
+        protected global::System.Web.UI.WebControls.Label TipoSolicitudLabel;
         
         /// <summary>
-        /// txtFechamodificacion control.
+        /// FechaModificacionLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechamodificacion;
+        protected global::System.Web.UI.WebControls.Label FechaModificacionLabel;
         
         /// <summary>
-        /// txtObservaciones control.
+        /// ObservacionesLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtObservaciones;
+        protected global::System.Web.UI.WebControls.Label ObservacionesLabel;
         
         /// <summary>
-        /// txtLugarHechos control.
+        /// LugarHechosLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLugarHechos;
+        protected global::System.Web.UI.WebControls.Label LugarHechosLabel;
         
         /// <summary>
-        /// txtDireccionHechos control.
+        /// DireccionHechos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDireccionHechos;
+        protected global::System.Web.UI.WebControls.Label DireccionHechos;
         
         /// <summary>
         /// pnlDocumentos control.
@@ -157,13 +157,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.Panel pnlDocumentos;
         
         /// <summary>
-        /// txtAsunto control.
+        /// txtAsuntoSolicitud control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAsunto;
+        protected global::CKEditor.NET.CKEditorControl txtAsuntoSolicitud;
         
         /// <summary>
         /// pnlBotones control.
@@ -175,21 +175,39 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.Panel pnlBotones;
         
         /// <summary>
-        /// btnGuardar control.
+        /// cmdGuardar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardar;
+        protected global::System.Web.UI.WebControls.Button cmdGuardar;
         
         /// <summary>
-        /// btnRegresar control.
+        /// cmdRegresar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRegresar;
+        protected global::System.Web.UI.WebControls.Button cmdRegresar;
+        
+        /// <summary>
+        /// hddSort control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hddSort;
+        
+        /// <summary>
+        /// hdnExpedienteId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnExpedienteId;
     }
 }

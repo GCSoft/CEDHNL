@@ -19,6 +19,7 @@ namespace SIAQ.Entity.Object
         private string _Numero;                             // Numero de expediente
         private string _Fecha;                              // Fecha de creacion de expediente
         private string _Observaciones;                      // Observaciones de expediente
+        private string _Acuerdo;                            // Acuerdo de calificación definitiva 
         private DataSet _ResultData;                        // DataSet que devuelve resultados
 
         private string _Ciudadano;                          // Nombre del ciudadano
@@ -33,14 +34,15 @@ namespace SIAQ.Entity.Object
             _TipoSolicitudId = 0;
             _LugarHechosId = 0;
             _EstatusId = 0;
+            _AutoridadId = 0;
             _Numero = "";
             _Fecha = "";
             _Observaciones = "";
+            _Acuerdo = "";
 
             _Ciudadano = "";
             _FuncionarioId = 0;
             _MedioComunicacionId = 0;
-
         }
 
 
@@ -174,6 +176,18 @@ namespace SIAQ.Entity.Object
         {
             get { return _Ciudadano; }
             set { _Ciudadano = value; }
+        }
+
+        ///<remarks>
+        ///   <name>ENTExpediente.Acuerdo</name>
+        ///   <create>28/Marzo/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        ///<summary>Obtiene/Asigna Acuerdo</summary>
+        public string Acuerdo
+        {
+            get { return _Acuerdo; }
+            set { _Acuerdo = value; }
         }
 
         ///<remarks>

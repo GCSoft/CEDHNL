@@ -206,27 +206,26 @@
                 </td>
             </tr>
             <tr><td class="tdCeldaMiddleSpace"></td></tr>
+        </table>
+
+        <!-- Datalist para documentos -->
+        <div>Documentos anexos</div>
+
+        <asp:DataList ID="DocumentList" OnItemDataBound="DocumentList_ItemDataBound" runat="server">
+            <ItemTemplate>
+                <asp:Image ID="DocumentImage" runat="server" />
+                <asp:Label ID="DocumentLabel" runat="server" Text="Nombre del documento"></asp:Label>
+            </ItemTemplate>
+        </asp:DataList>
+
+
+        <!-- Fin datalist -->
+
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
             <tr>
                 <td>
                     <asp:panel ID="pnlDocumentos" runat="server" Width="100%">
                         <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                            <tr>
-                                <td style="text-align:left;">Documentos anexos</td>
-                            </tr>
-                            <tr style=" height:3px;"><td colspan="4"></td></tr>
-                            <tr>
-                                <td style="text-align:left;"><asp:ImageButton ID="imgWord" runat="server" ImageUrl="~/Include/Image/Web/word.png"></asp:ImageButton></td>
-                                <td style="text-align:left;"><asp:ImageButton ID="imgPdf" runat="server" ImageUrl="~/Include/Image/Web/pdf.png"></asp:ImageButton></td>
-                                <td style="text-align:left;"><asp:ImageButton ID="imgImages" runat="server" ImageUrl="~/Include/Image/Web/imgs.png"></asp:ImageButton></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="tdCeldaLeyendaItemFondoBlanco">Dictamen médico</td>
-                                <td class="tdCeldaLeyendaItemFondoBlanco">Anotaciones</td>
-                                <td class="tdCeldaLeyendaItemFondoBlanco">Foto 1</td>
-                                <td></td>
-                            </tr>
-                            <tr style=" height:3px;"><td colspan="4"></td></tr>
                             <tr>
                                 <td colspan="4" style="text-align:left;">Asuto de la solicitud</td>
                             </tr>

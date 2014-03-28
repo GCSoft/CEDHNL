@@ -36,6 +36,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 Response.Redirect("/Application/WebApp/Private/Operation/opeAgregarDocumentos.aspx?s=" + SolicitudIdHidden.Value.ToString());
             }
 
+            protected void DocumentList_ItemDataBound(Object sender, DataListItemEventArgs e)
+            {
+
+            }
+
             protected void EnviarButton_Click(object sender, ImageClickEventArgs e)
             {
                 Response.Redirect("/Application/WebApp/Private/Operation/opeEnviarSolicitud.aspx?s=" + SolicitudIdHidden.Value.ToString());
@@ -82,7 +87,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 if (SolicitudProcess.ErrorId == 0)
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('La información fue guardada con éxito!', 'Success', true);", true);
                 else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + SolicitudProcess.ErrorDescription + "', 'Error', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(SolicitudProcess.ErrorDescription) + "', 'Error', true);", true);
             }
 
             private void PageLoad()
@@ -99,6 +104,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                         SelectSolicitud(SolicitudId);
                         SelectCiudadano(SolicitudId);
                         SelectAutoridades(SolicitudId);
+                        SelectDocumento(SolicitudId);
 
                         SolicitudIdHidden.Value = SolicitudId.ToString();
                     }
@@ -156,6 +162,23 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 }
                 else
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(SolicitudProcess.ErrorDescription) + "', 'Fail', true);", true);
+            }
+
+            private void SelectDocumento(int SolicitudId)
+            {
+                BPDocumento DocumentoProcess = new BPDocumento();
+
+                DocumentoProcess.DocumentoEntity.SolicitudId = SolicitudId;
+
+                DocumentoProcess.SelectDocumentoSE();
+
+                if (DocumentoProcess.ErrorId == 0)
+                {
+                    DocumentList.DataSource = DocumentoProcess.DocumentoEntity.ResultData;
+                    DocumentList.DataBind();
+                }
+                else
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(DocumentoProcess.ErrorDescription) + "', 'Fail', true);", true);
             }
 
             private void SelectLugarHechos()

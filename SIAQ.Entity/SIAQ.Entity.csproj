@@ -48,6 +48,7 @@
     <Compile Include="Object\ENTCiudad.cs" />
     <Compile Include="Object\ENTCiudadano.cs" />
     <Compile Include="Object\ENTColonia.cs" />
+    <Compile Include="Object\ENTDiligencia.cs" />
     <Compile Include="Object\ENTDocumento.cs" />
     <Compile Include="Object\ENTEscolaridad.cs" />
     <Compile Include="Object\ENTEstado.cs" />

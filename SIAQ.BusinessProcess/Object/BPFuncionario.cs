@@ -9,9 +9,26 @@ namespace SIAQ.BusinessProcess.Object
     public class BPFuncionario : BPBase
     {
         protected ENTFuncionario _FuncionarioEntity;
+        protected string _ErrorDescription;
+        protected int _ErrorId;
 
+        public string ErrorDescription
+        {
+            get
+            {
+                return _ErrorDescription;
+            }
+            set
+            { _ErrorDescription = value; }
+        }
 
-        public ENTFuncionario Funcionario
+        public int ErrorId
+        {
+            get { return _ErrorId; }
+            set { _ErrorId = value; }
+        }
+
+        public ENTFuncionario FuncionarioEntity
         {
             get { return _FuncionarioEntity; }
             set { _FuncionarioEntity = value; }
@@ -30,6 +47,19 @@ namespace SIAQ.BusinessProcess.Object
             _FuncionarioEntity.ResultData = DAFuncionario.SelectFuncionario(_FuncionarioEntity, ConnectionString);
             return _FuncionarioEntity.ResultData;
         }
+
+        /// <summary>
+        /// Obtiene el listado de los funcionarios del área de visitadurias
+        /// </summary>
+        public DataSet SelectFuncionarioVistaduria()
+        {
+            string sConnectionString = string.Empty;
+            DAFuncionario oDAFuncionario = new DAFuncionario();
+            sConnectionString = sConnectionApplication;
+            _FuncionarioEntity.ResultData = oDAFuncionario.SelectFuncionarioVistaduria(_FuncionarioEntity, sConnectionString);
+            return _FuncionarioEntity.ResultData;
+        }
+
         ///<remarks>
         ///   <name>BPFuncionario.searchFuncionario</name>
         ///   <create>27/ene/2014</create>

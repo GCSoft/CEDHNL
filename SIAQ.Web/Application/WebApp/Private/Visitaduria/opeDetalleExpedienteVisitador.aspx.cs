@@ -99,7 +99,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         protected void DiligenciasButton_Click(object sender, ImageClickEventArgs e)
         {
-            // TO DO: Falta hacer el html
+            string expedienteId = hdnExpedienteId.Value;
+            if (String.IsNullOrEmpty(expedienteId)) { expedienteId = GetRawQueryParameter("expId"); }
+            Response.Redirect("~/Application/WebApp/Private/Operation/opeDiligencias.aspx?id=" + expedienteId);
         }
 
         protected void SeguimientoButton_Click(object sender, ImageClickEventArgs e)

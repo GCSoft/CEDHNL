@@ -153,7 +153,7 @@
             </td>
         </tr>
         <tr>
-            <td style="text-align: left;">
+            <td style="background-color:#CCCCCC; text-align:left;"">
                 Detalle del expediente
             </td>
         </tr>

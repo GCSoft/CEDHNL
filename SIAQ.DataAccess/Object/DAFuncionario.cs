@@ -186,5 +186,44 @@ namespace SIAQ.DataAccess.Object
                 return ResultData;
             }
         }
+
+        ///<remarks>
+        ///   <name>DAFuncionario.SelectFuncionarioVistaduria</name>
+        ///   <create>30/mar/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        ///<summary>Obtiene el listado de los funcionarios del área de visitadurias</summary>
+        public DataSet SelectFuncionarioVistaduria(ENTFuncionario oENTFuncionario, string sConnectionString)
+        {
+            SqlConnection Connection = new SqlConnection(sConnectionString);
+            SqlCommand Command;
+            SqlDataAdapter DataAdapter;
+            DataSet ds = new DataSet();
+
+            try
+            {
+                Command = new SqlCommand("spExpedienteFuncionarioVisitaduria_sel", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                DataAdapter = new SqlDataAdapter(Command);
+
+                Connection.Open();
+                DataAdapter.Fill(ds);
+                Connection.Close();
+
+                return ds;
+            }
+            catch (SqlException ex)
+            {
+                _ErrorId = ex.Number;
+                _ErrorDescription = ex.Message;
+
+                if (Connection.State == ConnectionState.Open)
+                {
+                    Connection.Close();
+                }
+                return ds;
+            }
+        }
     }
 }

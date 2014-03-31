@@ -178,8 +178,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             ddlFuncionario.DataValueField = "FuncionarioId";
             ddlFuncionario.DataTextField = "NombreApellido";
             BPFuncionario.SelectFuncionario();
-            if (BPFuncionario.Funcionario.ResultData.Tables[0].Rows.Count > 0)
-                ddlFuncionario.DataSource = BPFuncionario.Funcionario.ResultData;
+            if (BPFuncionario.FuncionarioEntity.ResultData.Tables[0].Rows.Count > 0)
+                ddlFuncionario.DataSource = BPFuncionario.FuncionarioEntity.ResultData;
             ddlFuncionario.DataBind();
             ddlFuncionario.Items.Insert(0, new ListItem(AllDefault, "0"));
        }

@@ -44,16 +44,59 @@ namespace SIAQ.BusinessProcess.Object
 
         #region Funciones
 
-        public DataSet SelectTipoDiligencias(ENTDiligencia oENTDiligencia)
+        public BPDiligencia()
+        {
+            _ErrorId = 0;
+            _ErrorDescription = "";
+            _DiligenciaEntity = new ENTDiligencia();
+        }
+
+        /// <summary>
+        /// Selecciona el listado de tipo de diligencias para llenado del combobox
+        /// </summary>
+        public DataSet SelectTipoDiligencias()
         {
             string sConnectionString = string.Empty;
             DADiligencia oDADiligencia = new DADiligencia();
 
             sConnectionString = sConnectionApplication;
 
-            _DiligenciaEntity.DataResult = oDADiligencia.SelectTipoDiligencias(oENTDiligencia, sConnectionString);
+            _DiligenciaEntity.DataResult = oDADiligencia.SelectTipoDiligencias(_DiligenciaEntity, sConnectionString);
             _ErrorId = oDADiligencia.ErrorId;
             _ErrorDescription = oDADiligencia.ErrorDescription;
+            return _DiligenciaEntity.DataResult;
+        }
+
+        /// <summary>
+        /// Selecciona el listado de los lugares de diligencias para llenado del combobox
+        /// </summary>
+        public DataSet SelectLugarDiligencias()
+        {
+            string sConnectionString = string.Empty;
+            DADiligencia oDADiligencia = new DADiligencia();
+
+            sConnectionString = sConnectionApplication;
+
+            _DiligenciaEntity.DataResult = oDADiligencia.SelectLugarDiligencias(_DiligenciaEntity, sConnectionString);
+            _ErrorId = oDADiligencia.ErrorId;
+            _ErrorDescription = oDADiligencia.ErrorDescription;
+            return _DiligenciaEntity.DataResult;
+        }
+
+        /// <summary>
+        /// Obtiene el listado de las diligencias de solicitudes, expedientes y recomendaciones
+        /// </summary>
+        public DataSet SelectDiligencias()
+        {
+            DADiligencia oDADiligencia = new DADiligencia();
+            string ConnectionString = string.Empty;
+
+            ConnectionString = sConnectionApplication;
+
+            _DiligenciaEntity.DataResult = oDADiligencia.SelectDiligencias(_DiligenciaEntity, ConnectionString);
+            _ErrorId = oDADiligencia.ErrorId;
+            _ErrorDescription = oDADiligencia.ErrorDescription;
+
             return _DiligenciaEntity.DataResult;
         }
 

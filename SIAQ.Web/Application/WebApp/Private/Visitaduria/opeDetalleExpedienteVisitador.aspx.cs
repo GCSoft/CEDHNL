@@ -101,7 +101,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         {
             string expedienteId = hdnExpedienteId.Value;
             if (String.IsNullOrEmpty(expedienteId)) { expedienteId = GetRawQueryParameter("expId"); }
-            Response.Redirect("~/Application/WebApp/Private/Operation/opeDiligencias.aspx?id=" + expedienteId);
+            string numeroExpediente = SolicitudLabel.Text;
+
+            Response.Redirect("~/Application/WebApp/Private/Operation/opeDiligenciaExpediente.aspx?expId=" + expedienteId + "&numEx=" + numeroExpediente);
         }
 
         protected void SeguimientoButton_Click(object sender, ImageClickEventArgs e)

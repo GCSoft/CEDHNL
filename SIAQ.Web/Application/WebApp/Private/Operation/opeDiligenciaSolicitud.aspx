@@ -1,5 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master"
-    AutoEventWireup="true" CodeBehind="opeDiligencias.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeDiligencias" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeDiligenciaSolicitud.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeDiligenciaSolicitud" %>
+
 
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 <%@ Register Src="~/Include/WebUserControls/wucCalendar.ascx" TagName="caldenar"
@@ -264,7 +264,7 @@
         </tr>
         <tr>
             <td style="text-align: left;">
-                Diligencias registradas para este expediente
+                Diligencias registradas para esta solicitud
             </td>
         </tr>
         <tr style="height: 3px;">
@@ -273,7 +273,7 @@
         </tr>
         <tr>
             <td>
-                <asp:Panel ID="pnlGridDiligenciasSolicitud" runat="server" Width="100%" Visible="false">
+                <asp:Panel ID="pnlGridDiligenciasSolicitud" runat="server" Width="100%">
                     <asp:GridView ID="gvDiligenciasSolicitud" runat="server" AllowPaging="false" AllowSorting="true"
                         AutoGenerateColumns="False" Width="800px" DataKeyNames="DiligenciaId" OnRowCommand="gvDiligenciasSolicitud_RowCommand"
                         OnRowDataBound="gvDiligenciasSolicitud_RowDataBound" 
@@ -324,115 +324,7 @@
                             <asp:BoundField DataField="SolicitudId" Visible="false" />
                         </Columns>
                     </asp:GridView>
-                </asp:Panel>
-
-                <asp:Panel ID="pnlDiligenciasExpediente" runat="server" Width="100%" Visible="false">
-                    <asp:GridView ID="gvDiligenciasExpediente" runat="server" AllowPaging="false" AllowSorting="true"
-                        AutoGenerateColumns="False" Width="800px" DataKeyNames="DiligenciaId" 
-                        onrowcommand="gvDiligenciasExpediente_RowCommand" 
-                        onrowdatabound="gvDiligenciasExpediente_RowDataBound" 
-                        onsorting="gvDiligenciasExpediente_Sorting">
-                        <AlternatingRowStyle CssClass="Grid_Row_Alternating" />
-                        <HeaderStyle CssClass="Grid_Header" />
-                        <RowStyle CssClass="Grid_Row" />
-                        <EmptyDataTemplate>
-                            <table border="1px" cellpadding="0px" cellspacing="0px">
-                                <tr class="Grid_Header">
-                                    <td style="width: 150px;">
-                                        Fecha
-                                    </td>
-                                    <td style="width: 220px;">
-                                        Visitador que ejecuta
-                                    </td>
-                                    <td style="width: 120px;">
-                                        Tipo
-                                    </td>
-                                    <td style="width: 200px;">
-                                        Detalle
-                                    </td>
-                                    <td style="width: 100px;">
-                                        Editar
-                                    </td>
-                                </tr>
-                                <tr class="Grid_Row">
-                                    <td colspan="7">
-                                        No se encontraron diligencias registradas en este expediente
-                                    </td>
-                                </tr>
-                            </table>
-                        </EmptyDataTemplate>
-                        <Columns>
-                            <asp:BoundField DataField="DiligenciaId" Visible="false" />
-                            <asp:BoundField DataField="Fecha" HeaderText="Fecha" SortExpression="Fecha" />
-                            <asp:BoundField DataField="NombreVisitadorEjecuta" HeaderText="Visitador que ejecuta"
-                                SortExpression="NombreVisitadorEjecuta"></asp:BoundField>
-                            <asp:BoundField DataField="Tipo" HeaderText="Tipo" SortExpression="Tipo"></asp:BoundField>
-                            <asp:BoundField DataField="Detalle" HeaderText="Detalle" SortExpression="Detalle">
-                            </asp:BoundField>
-                            <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
-                                <ItemTemplate>
-                                    <asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Borrar"
-                                        ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:BoundField DataField="ExpedienteId" Visible="false" />
-                        </Columns>
-                    </asp:GridView>
-                </asp:Panel>
-                <asp:Panel ID="pnlDiligenciaRecomendacion" runat="server" Width="100%" Visible="false">
-                    <asp:GridView ID="gvDiligenciasRecomendacion" runat="server" 
-                        AllowPaging="false" AllowSorting="true"
-                        AutoGenerateColumns="False" Width="800px" DataKeyNames="DiligenciaId" 
-                        onrowcommand="gvDiligenciasRecomendacion_RowCommand" 
-                        onrowdatabound="gvDiligenciasRecomendacion_RowDataBound" 
-                        onsorting="gvDiligenciasRecomendacion_Sorting">
-                        <AlternatingRowStyle CssClass="Grid_Row_Alternating" />
-                        <HeaderStyle CssClass="Grid_Header" />
-                        <RowStyle CssClass="Grid_Row" />
-                        <EmptyDataTemplate>
-                            <table border="1px" cellpadding="0px" cellspacing="0px">
-                                <tr class="Grid_Header">
-                                    <td style="width: 150px;">
-                                        Fecha
-                                    </td>
-                                    <td style="width: 220px;">
-                                        Visitador que ejecuta
-                                    </td>
-                                    <td style="width: 120px;">
-                                        Tipo
-                                    </td>
-                                    <td style="width: 200px;">
-                                        Detalle
-                                    </td>
-                                    <td style="width: 100px;">
-                                        Editar
-                                    </td>
-                                </tr>
-                                <tr class="Grid_Row">
-                                    <td colspan="7">
-                                        No se encontraron diligencias registradas en este expediente
-                                    </td>
-                                </tr>
-                            </table>
-                        </EmptyDataTemplate>
-                        <Columns>
-                            <asp:BoundField DataField="DiligenciaId" Visible="false" />
-                            <asp:BoundField DataField="Fecha" HeaderText="Fecha" SortExpression="Fecha" />
-                            <asp:BoundField DataField="NombreVisitadorEjecuta" HeaderText="Visitador que ejecuta"
-                                SortExpression="NombreVisitadorEjecuta"></asp:BoundField>
-                            <asp:BoundField DataField="Tipo" HeaderText="Tipo" SortExpression="Tipo"></asp:BoundField>
-                            <asp:BoundField DataField="Detalle" HeaderText="Detalle" SortExpression="Detalle">
-                            </asp:BoundField>
-                            <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
-                                <ItemTemplate>
-                                    <asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Borrar"
-                                        ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:BoundField DataField="RecomendacionId" Visible="false" />
-                        </Columns>
-                    </asp:GridView>
-                </asp:Panel>
+                </asp:Panel>                
             </td>
         </tr>
         <tr>

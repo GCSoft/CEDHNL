@@ -100,7 +100,10 @@
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlscatOcupacion.aspx" />
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsColonia.aspx" />
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsNacionalidad.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeDiligenciaExpediente.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeDiligenciaRecomendacion.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeDiligencias.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeDiligenciaSolicitud.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeSolicitudFuncionario.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeSolicitudSecretaria.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\lstRecSectretarias.aspx" />
@@ -549,12 +552,33 @@
     <Compile Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsNacionalidad.aspx.designer.cs">
       <DependentUpon>xlsNacionalidad.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeDiligenciaExpediente.aspx.cs">
+      <DependentUpon>opeDiligenciaExpediente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeDiligenciaExpediente.aspx.designer.cs">
+      <DependentUpon>opeDiligenciaExpediente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeDiligenciaRecomendacion.aspx.cs">
+      <DependentUpon>opeDiligenciaRecomendacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeDiligenciaRecomendacion.aspx.designer.cs">
+      <DependentUpon>opeDiligenciaRecomendacion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeDiligencias.aspx.cs">
       <DependentUpon>opeDiligencias.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeDiligencias.aspx.designer.cs">
       <DependentUpon>opeDiligencias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeDiligenciaSolicitud.aspx.cs">
+      <DependentUpon>opeDiligenciaSolicitud.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeDiligenciaSolicitud.aspx.designer.cs">
+      <DependentUpon>opeDiligenciaSolicitud.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeSolicitudFuncionario.aspx.cs">
       <DependentUpon>opeSolicitudFuncionario.aspx</DependentUpon>

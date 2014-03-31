@@ -11,16 +11,17 @@ using SIAQ.BusinessProcess.Object;
 using SIAQ.Entity.Object;
 using GCSoft.Utilities.Common;
 
+
 namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
-    public partial class opeDiligencias : System.Web.UI.Page
+    public partial class opeDiligenciaRecomendacion : System.Web.UI.Page
     {
 
         #region Atributos
 
         Function utilFunction = new Function();
-        protected string id;
-        protected int tipo;
+        protected string RecomendacionId;
+        protected string NumeroRecomendacion;
 
         #endregion
 
@@ -34,50 +35,29 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         {
             if (Page.IsPostBack) { return; }
 
-            id = GetRawQueryParameter("id");
-            tipo = Convert.ToInt32(GetRawQueryParameter("tip"));
+            RecomendacionId = GetRawQueryParameter("recId");
+            NumeroRecomendacion = GetRawQueryParameter("numRec");
 
             ComboFuncionariosEjecuta();
             ComboLugarDiligencia();
             ComboTipoDiligencia();
-            GridDiligencias(tipo, id);
+            GridDiligencias(RecomendacionId);
         }
 
         #region "Grid diligencias"
 
-        #region "Solicitud"
-
-        protected void gvDiligenciasSolicitud_Sorting(object sender, GridViewSortEventArgs e)
+        protected void gvDiligenciasRecomendacion_RowCommand(object sender, GridViewCommandEventArgs e)
         {
 
         }
 
-        protected void gvDiligenciasSolicitud_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-
-        }
-
-        protected void gvDiligenciasSolicitud_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-
-        }
-
-        #endregion
-
-        #region  "Expediente"
-
-        protected void gvDiligenciasExpediente_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-
-        }
-
-        protected void gvDiligenciasExpediente_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void gvDiligenciasRecomendacion_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             ImageButton imgEdit = null;
 
             String sImagesAttributes = "";
             String sToolTip = "";
-            String sNumeroDiligencia = ""; 
+            String sNumeroDiligencia = "";
 
             try
             {
@@ -87,7 +67,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 //Obtener imagenes
                 imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
 
-                sNumeroDiligencia = gvDiligenciasExpediente.DataKeys[e.Row.RowIndex]["DiligenciaId"].ToString();
+                sNumeroDiligencia = gvDiligenciasRecomendacion.DataKeys[e.Row.RowIndex]["DiligenciaId"].ToString();
 
                 //Tooltip Edición
                 sToolTip = "Editar diligencia [" + sNumeroDiligencia + "]";
@@ -114,7 +94,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        protected void gvDiligenciasExpediente_Sorting(object sender, GridViewSortEventArgs e)
+        protected void gvDiligenciasRecomendacion_Sorting(object sender, GridViewSortEventArgs e)
         {
             DataTable TableExpediente = null;
             DataView ViewExpediente = null;
@@ -122,7 +102,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             try
             {
                 //Obtener DataTable y View del GridView
-                TableExpediente = utilFunction.ParseGridViewToDataTable(gvDiligenciasExpediente, false);
+                TableExpediente = utilFunction.ParseGridViewToDataTable(gvDiligenciasRecomendacion, false);
                 ViewExpediente = new DataView(TableExpediente);
 
                 //Determinar ordenamiento
@@ -132,8 +112,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 ViewExpediente.Sort = hddSort.Value;
 
                 //Vaciar datos
-                gvDiligenciasExpediente.DataSource = ViewExpediente;
-                gvDiligenciasExpediente.DataBind();
+                gvDiligenciasRecomendacion.DataSource = ViewExpediente;
+                gvDiligenciasRecomendacion.DataBind();
 
             }
             catch (Exception ex)
@@ -141,27 +121,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
             }
         }
-
-        #endregion
-
-        #region "Recomendacion"
-
-        protected void gvDiligenciasRecomendacion_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-
-        }
-
-        protected void gvDiligenciasRecomendacion_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-
-        }
-
-        protected void gvDiligenciasRecomendacion_Sorting(object sender, GridViewSortEventArgs e)
-        {
-
-        }
-
-        #endregion
 
         #endregion
 
@@ -257,86 +216,43 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        private void GridDiligencias(int tipo, string id)
+        private void GridDiligencias(string ExpedienteId)
         {
             BPDiligencia oBPDiligencias = new BPDiligencia();
 
-            switch (tipo)
-            {
-                case 1:// Solicitud 
-                    pnlGridDiligenciasSolicitud.Visible = true;
-                    pnlDiligenciaRecomendacion.Visible = false;
-                    pnlDiligenciasExpediente.Visible = false;
-                    break;
-                case 2: // Expediente
-                    pnlGridDiligenciasSolicitud.Visible = false;
-                    pnlDiligenciaRecomendacion.Visible = false;
-                    pnlDiligenciasExpediente.Visible = true;
-                    break;
-                case 3: // Recomendaciones
-                    pnlGridDiligenciasSolicitud.Visible = false;
-                    pnlDiligenciaRecomendacion.Visible = true;
-                    pnlDiligenciasExpediente.Visible = false;
-                    break;
-            }
-
-            oBPDiligencias.DiligenciaEntity.SolicitudId = Convert.ToInt32(id);
+            oBPDiligencias.DiligenciaEntity.SolicitudId = Convert.ToInt32(ExpedienteId);
             oBPDiligencias.SelectDiligencias();
 
             if (oBPDiligencias.ErrorId == 0)
             {
-                if (tipo == 1)
+                if (oBPDiligencias.DiligenciaEntity.DataResult.Tables[2].Rows.Count > 0)
                 {
-                    if (oBPDiligencias.DiligenciaEntity.DataResult.Tables[0].Rows.Count > 0)
-                    {
-                        gvDiligenciasSolicitud.DataSource = oBPDiligencias.DiligenciaEntity.DataResult.Tables[0];
-                        gvDiligenciasSolicitud.DataBind();
-                    }
-                    else
-                    {
-                        gvDiligenciasSolicitud.DataSource = null;
-                        gvDiligenciasSolicitud.DataBind();
-                    }
+                    gvDiligenciasRecomendacion.DataSource = oBPDiligencias.DiligenciaEntity.DataResult.Tables[2];
+                    gvDiligenciasRecomendacion.DataBind();
                 }
-
-                else if (tipo == 2)
+                else
                 {
-                    if (oBPDiligencias.DiligenciaEntity.DataResult.Tables[1].Rows.Count > 0)
-                    {
-                        gvDiligenciasExpediente.DataSource = oBPDiligencias.DiligenciaEntity.DataResult.Tables[1];
-                        gvDiligenciasExpediente.DataBind();
-                    }
-                    else
-                    {
-                        gvDiligenciasExpediente.DataSource = null;
-                        gvDiligenciasExpediente.DataBind();
-                    }
+                    gvDiligenciasRecomendacion.DataSource = null;
+                    gvDiligenciasRecomendacion.DataBind();
                 }
-
-                else if (tipo == 3)
-                {
-                    if (oBPDiligencias.DiligenciaEntity.DataResult.Tables[2].Rows.Count > 0)
-                    {
-                        gvDiligenciasRecomendacion.DataSource = oBPDiligencias.DiligenciaEntity.DataResult.Tables[2];
-                        gvDiligenciasRecomendacion.DataBind();
-                    }
-                    else
-                    {
-                        gvDiligenciasRecomendacion.DataSource = null;
-                        gvDiligenciasRecomendacion.DataBind();
-                    }
-                }
-
             }
             else
             {
-                gvDiligenciasSolicitud.DataSource = null;
-                gvDiligenciasSolicitud.DataBind();
-                gvDiligenciasExpediente.DataSource = null;
-                gvDiligenciasExpediente.DataBind();
                 gvDiligenciasRecomendacion.DataSource = null;
                 gvDiligenciasRecomendacion.DataBind();
             }
+        }
+
+        private void LlenarDetalle(string numeroRecomendacion)
+        {
+            ENTSession oENTSession;
+
+            oENTSession = (ENTSession)this.Session["oENTSession"];
+
+
+            SolicitudLabel.Text = numeroRecomendacion;
+            VisitadorAtiendeLabel.Text = oENTSession.sNombre;
+            FechaRegistroLabel.Text = DateTime.Now.ToShortDateString();
         }
 
         #endregion

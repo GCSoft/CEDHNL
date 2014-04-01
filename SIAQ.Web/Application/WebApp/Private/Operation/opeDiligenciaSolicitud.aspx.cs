@@ -34,7 +34,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         {
             if (Page.IsPostBack) { return; }
 
-            SolicitudId = GetRawQueryParameter("id");
+            SolicitudId = GetRawQueryParameter("solId");
             NumeroSolicitud = GetRawQueryParameter("numSol");
 
             ComboFuncionariosEjecuta();
@@ -133,7 +133,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-
+            string expedienteId = hdnExpedienteId.Value;
+            if (String.IsNullOrEmpty(expedienteId)) { expedienteId = GetRawQueryParameter("solId"); }
         }
 
         #endregion
@@ -254,6 +255,55 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             SolicitudLabel.Text = numeroSolicitud;
             VisitadorAtiendeLabel.Text = oENTSession.sNombre;
             FechaRegistroLabel.Text = DateTime.Now.ToShortDateString();
+        }
+
+        private void AgregarDiligencia(string solicitudId)
+        {
+            ENTResponse oENTResponse = new ENTResponse();
+            ENTDiligencia oENTDiligencia = new ENTDiligencia();
+            ENTSession oENTSession;
+
+            oENTSession = (ENTSession)this.Session["oENTSession"];
+            BPDiligencia oBPDiligencia = new BPDiligencia();
+
+            if (ddlVisitadorEjecuta.SelectedValue == "0") { throw new Exception("* El campo [Visitador que ejecuta] es requerido"); }
+            if (ddlTipoDiligencia.SelectedValue == "0") { throw new Exception("* El campo [Tipo de diligencia] es requerido"); }
+            if (ddlLugarDiligencia.SelectedValue == "0") { throw new Exception("* El campo [Lugar de diligencia] es requerido"); }
+            if (String.IsNullOrEmpty(txtCampo.Text)) { throw new Exception("* El campo [Detalle] es requerido"); }
+            if (String.IsNullOrEmpty(txtSolicitadaPor.Text)) { throw new Exception("* El campo [Solicitada por] es requerido"); }
+            if (String.IsNullOrEmpty(txtResultado.Text)) { throw new Exception("* El campo [Resultado] es requerido"); }
+
+            try
+            {
+                //Formulario
+                oENTDiligencia.SolicitudId = Convert.ToInt32(solicitudId);
+                oENTDiligencia.FuncionarioAtiendeId = oENTSession.FuncionarioId;
+                oENTDiligencia.FuncionarioEjecuta = Convert.ToInt32(ddlVisitadorEjecuta.SelectedValue);
+                //Fecha
+                oENTDiligencia.TipoDiligencia = Convert.ToInt32(ddlTipoDiligencia.SelectedValue);
+                oENTDiligencia.LugarDiligenciaId = Convert.ToInt32(ddlLugarDiligencia.SelectedValue);
+                oENTDiligencia.Detalle = txtCampo.Text;
+                oENTDiligencia.SolicitadaPor = txtSolicitadaPor.Text;
+                oENTDiligencia.Resultado = txtResultado.Text;
+
+                //Transacción
+                oENTResponse = oBPDiligencia.InsertDiligenciaExpediente(oENTDiligencia);
+
+                //Validación
+                if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+                if (oENTResponse.sMessage == "") { throw new Exception(oENTResponse.sMessage); }
+
+                //Mensaje de usuario
+                ScriptManager.RegisterStartupScript(this.Page
+                    , this.GetType()
+                    , Convert.ToString(Guid.NewGuid())
+                    , "tinyboxMessage('Diligencia agregada con éxito', 'Success', true);"
+                    , true);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
         }
 
         #endregion

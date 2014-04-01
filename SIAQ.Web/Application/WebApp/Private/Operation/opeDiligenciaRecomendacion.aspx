@@ -304,7 +304,7 @@
                                 </tr>
                                 <tr class="Grid_Row">
                                     <td colspan="7">
-                                        No se encontraron diligencias registradas en este expediente
+                                        No se encontraron diligencias registradas en esta recomendación
                                     </td>
                                 </tr>
                             </table>
@@ -343,6 +343,6 @@
         </tr>
     </table>
     <asp:HiddenField ID="hddSort" runat="server" Value="NumeroSol" />
-    <asp:HiddenField ID="hdnExpedienteId" runat="server" />
+    <asp:HiddenField ID="hdnRecomendacionId" runat="server" />
     <asp:HiddenField ID="hdnDiligenciaId" runat="server" />
 </asp:Content>

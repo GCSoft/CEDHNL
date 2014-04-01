@@ -42,6 +42,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             ComboLugarDiligencia();
             ComboTipoDiligencia();
             GridDiligencias(RecomendacionId);
+            LlenarDetalle(NumeroRecomendacion);
         }
 
         #region "Grid diligencias"

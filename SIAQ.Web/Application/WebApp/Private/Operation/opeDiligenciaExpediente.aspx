@@ -317,8 +317,14 @@
                             </asp:BoundField>
                             <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
                                 <ItemTemplate>
-                                    <asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Borrar"
+                                    <asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar"
                                         ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
+                                <ItemTemplate>
+                                    <asp:ImageButton ID="imgDelete" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Borrar"
+                                        ImageUrl="~/Include/Image/Buttons/Delete.png" runat="server" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:BoundField DataField="ExpedienteId" Visible="false" />

@@ -17,334 +17,344 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         Function utilFunction = new Function();
 
         #region "Events"
-            protected void AutoridadButton_Click(object sender, ImageClickEventArgs e)
+        protected void AutoridadButton_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("/Application/WebApp/Private/Operation/opeAgregarAutoridaSenalada.aspx?s=" + SolicitudIdHidden.Value.ToString());
+        }
+
+        protected void CalificarButton_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("/Application/WebApp/Private/Operation/opeCalificarSolicitud.aspx?s=" + SolicitudIdHidden.Value.ToString());
+        }
+
+        protected void CiudadanoButton_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("/Application/WebApp/Private/Operation/opeAgregarCiudadanosSol.aspx?s=" + SolicitudIdHidden.Value.ToString());
+        }
+
+        protected void DiligenciaPanel_Click(object sender, ImageClickEventArgs e)
+        {
+            string solicitudId = SolicitudIdHidden.Value;
+            if (String.IsNullOrEmpty(solicitudId)) { solicitudId = Request.QueryString["s"].ToString(); }
+
+            Response.Redirect("~/Application/WebApp/Private/Operation/opeDiligenciaSolicitud.aspx?solId=" + solicitudId + "&numSol=" + SolicitudLabel.Text);
+        }
+
+        protected void DocumentoButton_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("/Application/WebApp/Private/Operation/opeAgregarDocumentos.aspx?s=" + SolicitudIdHidden.Value.ToString());
+        }
+
+        protected void DocumentList_ItemDataBound(Object sender, DataListItemEventArgs e)
+        {
+            Label DocumentoLabel;
+            Image DocumentoImage;
+
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                Response.Redirect("/Application/WebApp/Private/Operation/opeAgregarAutoridaSenalada.aspx?s=" + SolicitudIdHidden.Value.ToString());
+                DocumentoImage = (Image)e.Item.FindControl("DocumentoImage");
+                DocumentoLabel = (Label)e.Item.FindControl("DocumentoLabel");
+
+
+
             }
+        }
 
-            protected void CalificarButton_Click(object sender, ImageClickEventArgs e)
-            {
-                Response.Redirect("/Application/WebApp/Private/Operation/opeCalificarSolicitud.aspx?s=" + SolicitudIdHidden.Value.ToString());
-            }
+        protected void EnviarButton_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("/Application/WebApp/Private/Operation/opeEnviarSolicitud.aspx?s=" + SolicitudIdHidden.Value.ToString());
+        }
 
-            protected void CiudadanoButton_Click(object sender, ImageClickEventArgs e)
-            {
-                Response.Redirect("/Application/WebApp/Private/Operation/opeAgregarCiudadanosSol.aspx?s=" + SolicitudIdHidden.Value.ToString());
-            }
+        protected void GuardarButton_Click(object sender, EventArgs e)
+        {
+            GuardarSolicitud();
+        }
 
-            protected void DocumentoButton_Click(object sender, ImageClickEventArgs e)
-            {
-                Response.Redirect("/Application/WebApp/Private/Operation/opeAgregarDocumentos.aspx?s=" + SolicitudIdHidden.Value.ToString());
-            }
+        protected void IndicadorButton_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("/Application/WebApp/Private/Operation/opeAgregarIndicadores.aspx?s=" + SolicitudIdHidden.Value.ToString());
+        }
 
-            protected void DocumentList_ItemDataBound(Object sender, DataListItemEventArgs e)
-            {
-                Label DocumentoLabel;
-                Image DocumentoImage;
+        protected void InformacionGeneralButton_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("/Application/WebApp/Private/Operation/opeDetalleSolicitud.aspx?s=" + SolicitudIdHidden.Value.ToString());
+        }
 
-                if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-                {
-                    DocumentoImage = (Image)e.Item.FindControl("DocumentoImage");
-                    DocumentoLabel = (Label)e.Item.FindControl("DocumentoLabel");
-
-
-
-                }
-            }
-
-            protected void EnviarButton_Click(object sender, ImageClickEventArgs e)
-            {
-                Response.Redirect("/Application/WebApp/Private/Operation/opeEnviarSolicitud.aspx?s=" + SolicitudIdHidden.Value.ToString());
-            }
-
-            protected void GuardarButton_Click(object sender, EventArgs e)
-            {
-                GuardarSolicitud();
-            }
-
-            protected void IndicadorButton_Click(object sender, ImageClickEventArgs e)
-            {
-                Response.Redirect("/Application/WebApp/Private/Operation/opeAgregarIndicadores.aspx?s=" + SolicitudIdHidden.Value.ToString());
-            }
-
-            protected void InformacionGeneralButton_Click(object sender, ImageClickEventArgs e)
-            {
-                Response.Redirect("/Application/WebApp/Private/Operation/opeDetalleSolicitud.aspx?s=" + SolicitudIdHidden.Value.ToString());
-            }
-
-            protected void Page_Load(object sender, EventArgs e)
-            {
-                PageLoad();
-            }
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            PageLoad();
+        }
         #endregion
 
         #region "Methods"
-            private void GuardarSolicitud()
+        private void GuardarSolicitud()
+        {
+            GuardarSolicitud(int.Parse(SolicitudIdHidden.Value), int.Parse(LugarHechosList.SelectedValue), DireccionHechosBox.Text.Trim(), AsuntoBox.Text.Trim());
+        }
+
+        private void GuardarSolicitud(int SolicitudId, int LugarHechosId, string DireccionHechos, string Observaciones)
+        {
+            BPSolicitud SolicitudProcess = new BPSolicitud();
+
+            SolicitudProcess.SolicitudEntity.SolicitudId = SolicitudId;
+            SolicitudProcess.SolicitudEntity.LugarHechosId = LugarHechosId;
+            SolicitudProcess.SolicitudEntity.DireccionHechos = DireccionHechos;
+            SolicitudProcess.SolicitudEntity.Observaciones = Observaciones;
+
+            SolicitudProcess.SaveSolicitudGeneral();
+
+            if (SolicitudProcess.ErrorId == 0)
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('La información fue guardada con éxito!', 'Success', true);", true);
+            else
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(SolicitudProcess.ErrorDescription) + "', 'Error', true);", true);
+        }
+
+        private void PageLoad()
+        {
+            int SolicitudId = 0;
+
+            if (!this.Page.IsPostBack)
             {
-                GuardarSolicitud(int.Parse(SolicitudIdHidden.Value), int.Parse(LugarHechosList.SelectedValue), DireccionHechosBox.Text.Trim(), AsuntoBox.Text.Trim());
+                try
+                {
+                    SolicitudId = int.Parse(Request.QueryString["s"].ToString());
+
+                    SetPermisos();
+                    SelectLugarHechos();
+                    SelectSolicitud(SolicitudId);
+                    SelectCiudadano(SolicitudId);
+                    SelectAutoridades(SolicitudId);
+                    SelectDocumento(SolicitudId);
+
+                    SolicitudIdHidden.Value = SolicitudId.ToString();
+                }
+                catch (Exception Exception)
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(Exception.Message) + "', 'Fail', true);", true);
+                }
             }
+        }
 
-            private void GuardarSolicitud(int SolicitudId, int LugarHechosId, string DireccionHechos, string Observaciones)
+        private void ResetForm()
+        {
+            SolicitudLabel.Text = "";
+            CalificacionLabel.Text = "";
+            EstatusaLabel.Text = "";
+            FuncionarioLabel.Text = "";
+            ContactoLabel.Text = "";
+            TipoSolicitudLabel.Text = "";
+            ObservacionesLabel.Text = "";
+        }
+
+        private void SelectAutoridades(int SolicitudId)
+        {
+            BPSolicitud SolicitudProcess = new BPSolicitud();
+
+            SolicitudProcess.SolicitudEntity.SolicitudId = SolicitudId;
+
+            // ToDo: Habilitar la búsqueda de autoridades
+            //SolicitudProcess.SelectSolicitudAutoridad();
+
+            //if (SolicitudProcess.ErrorId == 0)
+            //{
+            //    this.gvAutoridades.DataSource = null;
+            //    this.gvAutoridades.DataBind();
+            //}
+            //else
+            //    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(SolicitudProcess.ErrorDescription) + "', 'Fail', true);", true);
+
+            this.gvAutoridades.DataSource = null;
+            this.gvAutoridades.DataBind();
+        }
+
+        private void SelectCiudadano(int SolicitudId)
+        {
+            BPSolicitud SolicitudProcess = new BPSolicitud();
+
+            SolicitudProcess.SolicitudEntity.SolicitudId = SolicitudId;
+
+            SolicitudProcess.SelectSolicitudCiudadano();
+
+            if (SolicitudProcess.ErrorId == 0)
             {
-                BPSolicitud SolicitudProcess = new BPSolicitud();
+                this.gvCiudadano.DataSource = SolicitudProcess.SolicitudEntity.ResultData.Tables[0];
+                this.gvCiudadano.DataBind();
+            }
+            else
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(SolicitudProcess.ErrorDescription) + "', 'Fail', true);", true);
+        }
 
-                SolicitudProcess.SolicitudEntity.SolicitudId = SolicitudId;
-                SolicitudProcess.SolicitudEntity.LugarHechosId = LugarHechosId;
-                SolicitudProcess.SolicitudEntity.DireccionHechos = DireccionHechos;
-                SolicitudProcess.SolicitudEntity.Observaciones = Observaciones;
+        private void SelectDocumento(int SolicitudId)
+        {
+            BPDocumento DocumentoProcess = new BPDocumento();
 
-                SolicitudProcess.SaveSolicitudGeneral();
+            DocumentoProcess.DocumentoEntity.SolicitudId = SolicitudId;
 
-                if (SolicitudProcess.ErrorId == 0)
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('La información fue guardada con éxito!', 'Success', true);", true);
+            DocumentoProcess.SelectDocumentoSE();
+
+            if (DocumentoProcess.ErrorId == 0)
+            {
+                if (DocumentoProcess.DocumentoEntity.ResultData.Tables[0].Rows.Count == 0)
+                    SinDocumentoLabel.Text = "<br /><br />No hay documentos anexados a la solicitud";
                 else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(SolicitudProcess.ErrorDescription) + "', 'Error', true);", true);
+                    SinDocumentoLabel.Text = "";
+
+                DocumentoList.DataSource = DocumentoProcess.DocumentoEntity.ResultData;
+                DocumentoList.DataBind();
             }
+            else
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(DocumentoProcess.ErrorDescription) + "', 'Fail', true);", true);
+        }
 
-            private void PageLoad()
+        private void SelectLugarHechos()
+        {
+            BPLugarHechos LugarProcess = new BPLugarHechos();
+
+            LugarProcess.SelectLugarHechos();
+
+            if (LugarProcess.ErrorId == 0)
             {
-                int SolicitudId = 0;
+                LugarHechosList.DataValueField = "LugarHechosId";
+                LugarHechosList.DataTextField = "Nombre";
 
-                if (!this.Page.IsPostBack)
+                LugarHechosList.DataSource = LugarProcess.LugarEntity.ResultData.Tables[0];
+                LugarHechosList.DataBind();
+
+                LugarHechosList.Items.Insert(0, new ListItem("-- Seleccione --", "0"));
+            }
+            else
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(LugarProcess.ErrorDescription) + "', 'Fail', true);", true);
+        }
+
+        private void SelectSolicitud(int SolicitudId)
+        {
+            BPSolicitud SolicitudProcess = new BPSolicitud();
+
+            SolicitudProcess.SolicitudEntity.SolicitudId = SolicitudId;
+
+            SolicitudProcess.SelectSolicitudDetalle();
+
+            if (SolicitudProcess.ErrorId == 0)
+            {
+                if (SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows.Count > 0)
                 {
-                    try
-                    {
-                        SolicitudId = int.Parse(Request.QueryString["s"].ToString());
-
-                        SetPermisos();
-                        SelectLugarHechos();
-                        SelectSolicitud(SolicitudId);
-                        SelectCiudadano(SolicitudId);
-                        SelectAutoridades(SolicitudId);
-                        SelectDocumento(SolicitudId);
-
-                        SolicitudIdHidden.Value = SolicitudId.ToString();
-                    }
-                    catch (Exception Exception)
-                    {
-                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(Exception.Message) + "', 'Fail', true);", true);
-                    }
+                    SolicitudLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["Numero"].ToString();
+                    CalificacionLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["NombreCalificacion"].ToString();
+                    EstatusaLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["NombreEstatus"].ToString();
+                    FuncionarioLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["NombreFuncionario"].ToString();
+                    ContactoLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["NombreContacto"].ToString();
+                    TipoSolicitudLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["NombreTipoSolicitud"].ToString();
+                    LugarHechosList.SelectedValue = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["LugarHechosId"].ToString();
+                    DireccionHechosBox.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["DireccionHechos"].ToString();
+                    ObservacionesLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["Observaciones"].ToString();
                 }
             }
-
-            private void ResetForm()
+            else
             {
-                SolicitudLabel.Text = "";
-                CalificacionLabel.Text = "";
-                EstatusaLabel.Text = "";
-                FuncionarioLabel.Text = "";
-                ContactoLabel.Text = "";
-                TipoSolicitudLabel.Text = "";
-                ObservacionesLabel.Text = "";
+                ResetForm();
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(SolicitudProcess.ErrorDescription) + "', 'Fail', true);", true);
             }
+        }
 
-            private void SelectAutoridades(int SolicitudId)
+        private void SetPermisos()
+        {
+            ENTSession SessionEntity = new ENTSession();
+
+            SessionEntity = (ENTSession)Session["oENTSession"];
+
+            if (SessionEntity != null)
             {
-                BPSolicitud SolicitudProcess = new BPSolicitud();
-
-                SolicitudProcess.SolicitudEntity.SolicitudId = SolicitudId;
-
-                // ToDo: Habilitar la búsqueda de autoridades
-                //SolicitudProcess.SelectSolicitudAutoridad();
-
-                //if (SolicitudProcess.ErrorId == 0)
-                //{
-                //    this.gvAutoridades.DataSource = null;
-                //    this.gvAutoridades.DataBind();
-                //}
-                //else
-                //    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(SolicitudProcess.ErrorDescription) + "', 'Fail', true);", true);
-
-                this.gvAutoridades.DataSource = null;
-                this.gvAutoridades.DataBind();
-            }
-
-            private void SelectCiudadano(int SolicitudId)
-            {
-                BPSolicitud SolicitudProcess = new BPSolicitud();
-
-                SolicitudProcess.SolicitudEntity.SolicitudId = SolicitudId;
-
-                SolicitudProcess.SelectSolicitudCiudadano();
-
-                if (SolicitudProcess.ErrorId == 0)
+                switch (SessionEntity.idRol)
                 {
-                    this.gvCiudadano.DataSource = SolicitudProcess.SolicitudEntity.ResultData.Tables[0];
-                    this.gvCiudadano.DataBind();
-                }
-                else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(SolicitudProcess.ErrorDescription) + "', 'Fail', true);", true);
-            }
+                    case 1:
+                    case 2:
+                        CiudadanoPanel.Visible = true;
+                        AutoridadPanel.Visible = true;
+                        IndicadorPanel.Visible = true;
+                        DocumentoPanel.Visible = true;
+                        CalificarPanel.Visible = true;
+                        EnviarPanel.Visible = true;
 
-            private void SelectDocumento(int SolicitudId)
-            {
-                BPDocumento DocumentoProcess = new BPDocumento();
+                        LugarHechosList.Enabled = false;
+                        DireccionHechosBox.Enabled = false;
+                        GuardarButton.Enabled = false;
 
-                DocumentoProcess.DocumentoEntity.SolicitudId = SolicitudId;
+                        break;
 
-                DocumentoProcess.SelectDocumentoSE();
+                    case 3:
+                        CiudadanoPanel.Visible = false;
+                        AutoridadPanel.Visible = false;
+                        IndicadorPanel.Visible = false;
+                        DocumentoPanel.Visible = false;
+                        CalificarPanel.Visible = false;
+                        EnviarPanel.Visible = false;
 
-                if (DocumentoProcess.ErrorId == 0)
-                {
-                    if (DocumentoProcess.DocumentoEntity.ResultData.Tables[0].Rows.Count == 0)
-                        SinDocumentoLabel.Text = "<br /><br />No hay documentos anexados a la solicitud";
-                    else
-                        SinDocumentoLabel.Text = "";
+                        LugarHechosList.Enabled = false;
+                        DireccionHechosBox.Enabled = false;
+                        GuardarButton.Enabled = false;
 
-                    DocumentoList.DataSource = DocumentoProcess.DocumentoEntity.ResultData;
-                    DocumentoList.DataBind();
-                }
-                else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(DocumentoProcess.ErrorDescription) + "', 'Fail', true);", true);
-            }
+                        break;
 
-            private void SelectLugarHechos()
-            {
-                BPLugarHechos LugarProcess = new BPLugarHechos();
+                    case 4:
+                        CiudadanoPanel.Visible = false;
+                        AutoridadPanel.Visible = false;
+                        IndicadorPanel.Visible = false;
+                        DocumentoPanel.Visible = false;
+                        CalificarPanel.Visible = false;
+                        EnviarPanel.Visible = false;
 
-                LugarProcess.SelectLugarHechos();
+                        LugarHechosList.Enabled = false;
+                        DireccionHechosBox.Enabled = false;
+                        GuardarButton.Enabled = false;
 
-                if (LugarProcess.ErrorId == 0)
-                {
-                    LugarHechosList.DataValueField = "LugarHechosId";
-                    LugarHechosList.DataTextField = "Nombre";
+                        break;
 
-                    LugarHechosList.DataSource = LugarProcess.LugarEntity.ResultData.Tables[0];
-                    LugarHechosList.DataBind();
+                    case 5:
+                        CiudadanoPanel.Visible = true;
+                        AutoridadPanel.Visible = true;
+                        IndicadorPanel.Visible = true;
+                        DocumentoPanel.Visible = true;
+                        CalificarPanel.Visible = true;
+                        EnviarPanel.Visible = true;
 
-                    LugarHechosList.Items.Insert(0, new ListItem("-- Seleccione --", "0"));
-                }
-                else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(LugarProcess.ErrorDescription) + "', 'Fail', true);", true);
-            }
+                        LugarHechosList.Enabled = true;
+                        DireccionHechosBox.Enabled = true;
+                        GuardarButton.Enabled = true;
 
-            private void SelectSolicitud(int SolicitudId)
-            {
-                BPSolicitud SolicitudProcess = new BPSolicitud();
+                        break;
 
-                SolicitudProcess.SolicitudEntity.SolicitudId = SolicitudId;
+                    case 6:
+                        CiudadanoPanel.Visible = false;
+                        AutoridadPanel.Visible = false;
+                        IndicadorPanel.Visible = false;
+                        DocumentoPanel.Visible = false;
+                        CalificarPanel.Visible = false;
+                        EnviarPanel.Visible = false;
 
-                SolicitudProcess.SelectSolicitudDetalle();
+                        LugarHechosList.Enabled = false;
+                        DireccionHechosBox.Enabled = false;
+                        GuardarButton.Enabled = false;
 
-                if (SolicitudProcess.ErrorId == 0)
-                {
-                    if (SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows.Count > 0)
-                    {
-                        SolicitudLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["Numero"].ToString();
-                        CalificacionLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["NombreCalificacion"].ToString();
-                        EstatusaLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["NombreEstatus"].ToString();
-                        FuncionarioLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["NombreFuncionario"].ToString();
-                        ContactoLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["NombreContacto"].ToString();
-                        TipoSolicitudLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["NombreTipoSolicitud"].ToString();
-                        LugarHechosList.SelectedValue = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["LugarHechosId"].ToString();
-                        DireccionHechosBox.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["DireccionHechos"].ToString();
-                        ObservacionesLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["Observaciones"].ToString();
-                    }
-                }
-                else
-                {
-                    ResetForm();
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(SolicitudProcess.ErrorDescription) + "', 'Fail', true);", true);
+                        break;
+
+                    default:
+                        CiudadanoPanel.Visible = false;
+                        AutoridadPanel.Visible = false;
+                        IndicadorPanel.Visible = false;
+                        DocumentoPanel.Visible = false;
+                        CalificarPanel.Visible = false;
+                        EnviarPanel.Visible = false;
+
+                        LugarHechosList.Enabled = false;
+                        DireccionHechosBox.Enabled = false;
+                        GuardarButton.Enabled = false;
+
+                        break;
                 }
             }
-
-            private void SetPermisos()
-            {
-                ENTSession SessionEntity = new ENTSession();
-
-                SessionEntity = (ENTSession)Session["oENTSession"];
-
-                if (SessionEntity != null)
-                {
-                    switch(SessionEntity.idRol)
-                    {
-                        case 1:
-                        case 2:
-                            CiudadanoPanel.Visible = true;
-                            AutoridadPanel.Visible = true;
-                            IndicadorPanel.Visible = true;
-                            DocumentoPanel.Visible = true;
-                            CalificarPanel.Visible = true;
-                            EnviarPanel.Visible = true;
-
-                            LugarHechosList.Enabled = false;
-                            DireccionHechosBox.Enabled = false;
-                            GuardarButton.Enabled = false;
-
-                            break;
-
-                        case 3:
-                            CiudadanoPanel.Visible = false;
-                            AutoridadPanel.Visible = false;
-                            IndicadorPanel.Visible = false;
-                            DocumentoPanel.Visible = false;
-                            CalificarPanel.Visible = false;
-                            EnviarPanel.Visible = false;
-
-                            LugarHechosList.Enabled = false;
-                            DireccionHechosBox.Enabled = false;
-                            GuardarButton.Enabled = false;
-
-                            break;
-
-                        case 4:
-                            CiudadanoPanel.Visible = false;
-                            AutoridadPanel.Visible = false;
-                            IndicadorPanel.Visible = false;
-                            DocumentoPanel.Visible = false;
-                            CalificarPanel.Visible = false;
-                            EnviarPanel.Visible = false;
-
-                            LugarHechosList.Enabled = false;
-                            DireccionHechosBox.Enabled = false;
-                            GuardarButton.Enabled = false;
-
-                            break;
-
-                        case 5:
-                            CiudadanoPanel.Visible = true;
-                            AutoridadPanel.Visible = true;
-                            IndicadorPanel.Visible = true;
-                            DocumentoPanel.Visible = true;
-                            CalificarPanel.Visible = true;
-                            EnviarPanel.Visible = true;
-
-                            LugarHechosList.Enabled = true;
-                            DireccionHechosBox.Enabled = true;
-                            GuardarButton.Enabled = true;
-
-                            break;
-
-                        case 6:
-                            CiudadanoPanel.Visible = false;
-                            AutoridadPanel.Visible = false;
-                            IndicadorPanel.Visible = false;
-                            DocumentoPanel.Visible = false;
-                            CalificarPanel.Visible = false;
-                            EnviarPanel.Visible = false;
-
-                            LugarHechosList.Enabled = false;
-                            DireccionHechosBox.Enabled = false;
-                            GuardarButton.Enabled = false;
-
-                            break;
-
-                        default:
-                            CiudadanoPanel.Visible = false;
-                            AutoridadPanel.Visible = false;
-                            IndicadorPanel.Visible = false;
-                            DocumentoPanel.Visible = false;
-                            CalificarPanel.Visible = false;
-                            EnviarPanel.Visible = false;
-
-                            LugarHechosList.Enabled = false;
-                            DireccionHechosBox.Enabled = false;
-                            GuardarButton.Enabled = false;
-
-                            break;
-                    }
-                }
-            }
+        }
         #endregion
+
+
     }
 }

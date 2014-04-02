@@ -27,6 +27,13 @@
             Agregar ciudadanos
         </asp:Panel>
 
+        <asp:Panel CssClass="IconoPanel" ID="DiligenciasPanel" runat="server" Visible="true">
+            <asp:ImageButton ID="DiligenciaPanel" 
+                ImageUrl="/Include/Image/Icon/CiudadanoIcon.png" runat="server" 
+                onclick="DiligenciaPanel_Click"></asp:ImageButton><br />
+            Diligencias
+        </asp:Panel>
+
         <asp:Panel CssClass="IconoPanel" ID="AutoridadPanel" runat="server" Visible="true">
             <asp:ImageButton ID="AutoridadButton" ImageUrl="/Include/Image/Icon/GeneralIcon.png" runat="server" onclick="AutoridadButton_Click"></asp:ImageButton><br />
             Agegar autoridades señaladas y voces

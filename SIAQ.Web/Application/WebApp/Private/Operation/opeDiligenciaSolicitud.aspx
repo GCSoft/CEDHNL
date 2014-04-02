@@ -26,7 +26,7 @@
         </tr>
         <tr>
             <td class="SubTitulo">
-                <asp:Label ID="Label2" runat="server" Text="En esta sección puede registrar diligencias o dar de alta nuevas diligencias relacionadas a un expediente."></asp:Label>
+                <asp:Label ID="Label2" runat="server" Text="En esta sección puede registrar diligencias o dar de alta nuevas diligencias relacionadas a una solicitud."></asp:Label>
             </td>
         </tr>
         <tr style="height: 2px;">
@@ -39,7 +39,7 @@
                     <table class="SolicitudTable">
                         <tr>
                             <td class="Especial">
-                                Expediente número
+                                Solicitud número
                             </td>
                             <td class="Espacio">
                             </td>
@@ -273,11 +273,12 @@
         </tr>
         <tr>
             <td>
-                <asp:Panel ID="pnlGridDiligenciasSolicitud" runat="server" Width="100%">
+                <asp:Panel ID="pnlDiligenciasSolicitud" runat="server" Width="100%">
                     <asp:GridView ID="gvDiligenciasSolicitud" runat="server" AllowPaging="false" AllowSorting="true"
-                        AutoGenerateColumns="False" Width="800px" DataKeyNames="DiligenciaId" OnRowCommand="gvDiligenciasSolicitud_RowCommand"
-                        OnRowDataBound="gvDiligenciasSolicitud_RowDataBound" 
-                        OnSorting="gvDiligenciasSolicitud_Sorting">
+                        AutoGenerateColumns="False" Width="800px" DataKeyNames="DiligenciaId" 
+                        onrowcommand="gvDiligenciasSolicitud_RowCommand" 
+                        onrowdatabound="gvDiligenciasSolicitud_RowDataBound" 
+                        onsorting="gvDiligenciasSolicitud_Sorting">
                         <AlternatingRowStyle CssClass="Grid_Row_Alternating" />
                         <HeaderStyle CssClass="Grid_Header" />
                         <RowStyle CssClass="Grid_Row" />
@@ -317,14 +318,20 @@
                             </asp:BoundField>
                             <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
                                 <ItemTemplate>
-                                    <asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Borrar"
+                                    <asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar"
                                         ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
+                                <ItemTemplate>
+                                    <asp:ImageButton ID="imgDelete" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Borrar"
+                                        ImageUrl="~/Include/Image/Buttons/Delete.png" runat="server" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:BoundField DataField="SolicitudId" Visible="false" />
                         </Columns>
                     </asp:GridView>
-                </asp:Panel>                
+                </asp:Panel>
             </td>
         </tr>
         <tr>
@@ -341,6 +348,6 @@
         </tr>
     </table>
     <asp:HiddenField ID="hddSort" runat="server" Value="NumeroSol" />
-    <asp:HiddenField ID="hdnExpedienteId" runat="server" />
+    <asp:HiddenField ID="hdnSolicitudId" runat="server" />
     <asp:HiddenField ID="hdnDiligenciaId" runat="server" />
 </asp:Content>

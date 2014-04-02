@@ -616,7 +616,7 @@ namespace SIAQ.DataAccess.Object
 
             ENTResponse oENTResponse = new ENTResponse();
 
-            Command = new SqlCommand("spDiligenciaExpediente_upd", Connection);
+            Command = new SqlCommand("spDiligenciaSolicitud_upd", Connection);
             Command.CommandType = CommandType.StoredProcedure;
 
             if (iAlternativeTimeOut > 0) { Command.CommandTimeout = iAlternativeTimeOut; }

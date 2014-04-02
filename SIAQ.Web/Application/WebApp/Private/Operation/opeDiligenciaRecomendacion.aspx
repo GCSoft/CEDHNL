@@ -1,6 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeDiligenciaRecomendacion.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeDiligenciaRecomendacion" %>
 
-
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 <%@ Register Src="~/Include/WebUserControls/wucCalendar.ascx" TagName="caldenar"
     TagPrefix="cln" %>
@@ -26,7 +25,7 @@
         </tr>
         <tr>
             <td class="SubTitulo">
-                <asp:Label ID="Label2" runat="server" Text="En esta sección puede registrar diligencias o dar de alta nuevas diligencias relacionadas a un expediente."></asp:Label>
+                <asp:Label ID="Label2" runat="server" Text="En esta sección puede registrar diligencias o dar de alta nuevas diligencias relacionadas a una recomendación."></asp:Label>
             </td>
         </tr>
         <tr style="height: 2px;">
@@ -39,7 +38,7 @@
                     <table class="SolicitudTable">
                         <tr>
                             <td class="Especial">
-                                Expediente número
+                                Recomendación número
                             </td>
                             <td class="Espacio">
                             </td>
@@ -264,7 +263,7 @@
         </tr>
         <tr>
             <td style="text-align: left;">
-                Diligencias registradas para este expediente
+                Diligencias registradas para esta recomendación
             </td>
         </tr>
         <tr style="height: 3px;">
@@ -273,13 +272,13 @@
         </tr>
         <tr>
             <td>
-                <asp:Panel ID="pnlDiligenciaRecomendacion" runat="server" Width="100%" Visible="false">
+                <asp:Panel ID="pnlDiligenciasRecomendacion" runat="server" Width="100%">
                     <asp:GridView ID="gvDiligenciasRecomendacion" runat="server" 
                         AllowPaging="false" AllowSorting="true"
                         AutoGenerateColumns="False" Width="800px" DataKeyNames="DiligenciaId" 
                         onrowcommand="gvDiligenciasRecomendacion_RowCommand" 
-                        onrowdatabound="gvDiligenciasRecomendacion_RowDataBound" 
-                        onsorting="gvDiligenciasRecomendacion_Sorting">
+                        onrowdatabound="gvDiligenciasRecomendacion_RowDataBound" onsorting="gvDiligenciasRecomendacion_Sorting" 
+                       >
                         <AlternatingRowStyle CssClass="Grid_Row_Alternating" />
                         <HeaderStyle CssClass="Grid_Header" />
                         <RowStyle CssClass="Grid_Row" />
@@ -319,8 +318,14 @@
                             </asp:BoundField>
                             <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
                                 <ItemTemplate>
-                                    <asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Borrar"
+                                    <asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar"
                                         ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
+                                <ItemTemplate>
+                                    <asp:ImageButton ID="imgDelete" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Borrar"
+                                        ImageUrl="~/Include/Image/Buttons/Delete.png" runat="server" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:BoundField DataField="RecomendacionId" Visible="false" />

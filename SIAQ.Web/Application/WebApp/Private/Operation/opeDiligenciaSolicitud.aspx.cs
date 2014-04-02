@@ -37,6 +37,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             SolicitudId = GetRawQueryParameter("solId");
             NumeroSolicitud = GetRawQueryParameter("numSol");
 
+            hdnSolicitudId.Value = SolicitudId;
+
             ComboFuncionariosEjecuta();
             ComboLugarDiligencia();
             ComboTipoDiligencia();
@@ -46,25 +48,118 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         #region "Grid diligencias"
 
+        protected void gvDiligenciasSolicitud_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            string SolicitudId = string.Empty;
+            string DiligenciaId = string.Empty;
+            int intRow = 0;
+
+            try
+            {
+                string sCommandName = e.CommandName.ToString();
+
+                if (sCommandName == "Sort") { return; }
+
+                //Fila 
+                intRow = Convert.ToInt32(e.CommandArgument.ToString());
+
+                // SolicitudId 
+                SolicitudId = hdnSolicitudId.Value;
+                if (String.IsNullOrEmpty(SolicitudId)) { SolicitudId = GetRawQueryParameter("solId"); }
+                DiligenciaId = gvDiligenciasSolicitud.DataKeys[intRow]["DiligenciaId"].ToString();
+
+                switch (sCommandName)
+                {
+                    case "Editar":
+                        MostrarDatosEdicion(SolicitudId, DiligenciaId);
+                        break;
+
+                    case "Borrar":
+                        EliminarDiligencia(SolicitudId, DiligenciaId);
+                        break;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+            }
+        }
+
+        protected void gvDiligenciasSolicitud_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            ImageButton imgEdit = null;
+            ImageButton imgDelete = null;
+
+            String sImagesAttributes = "";
+            String sToolTip = "";
+            String sNumeroDiligencia = "";
+
+            String sImagesAttributesDelete = "";
+            String sToolTipDelete = "";
+
+            try
+            {
+                //Validación de que sea fila 
+                if (e.Row.RowType != DataControlRowType.DataRow) { return; }
+
+                //Obtener imagenes
+                imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
+                imgDelete = (ImageButton)e.Row.FindControl("imgDelete");
+
+                sNumeroDiligencia = gvDiligenciasSolicitud.DataKeys[e.Row.RowIndex]["DiligenciaId"].ToString();
+
+                //Tooltip Edición
+                sToolTip = "Editar diligencia [" + sNumeroDiligencia + "]";
+                sToolTipDelete = "Eliminar diligencia [" + sNumeroDiligencia + "]";
+
+                imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
+                imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
+                imgEdit.Attributes.Add("style", "cursor:hand;");
+
+                imgDelete.Attributes.Add("onmouseover", "tooltip.show('" + sToolTipDelete + "', 'Izq');");
+                imgDelete.Attributes.Add("onmouseout", "tooltip.hide();");
+                imgDelete.Attributes.Add("style", "cursor:hand;");
+
+                //Atributos Over
+                sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png';";
+                sImagesAttributesDelete = "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png';";
+
+                //Puntero y Sombra en fila Over
+                e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes + sImagesAttributesDelete);
+
+                //Atributos Out
+                sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png';";
+                sImagesAttributesDelete = "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png';";
+
+                //Puntero y Sombra en fila Out
+                e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes + sImagesAttributesDelete);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+        }
+
         protected void gvDiligenciasSolicitud_Sorting(object sender, GridViewSortEventArgs e)
         {
-            DataTable TableExpediente = null;
-            DataView ViewExpediente = null;
+            DataTable TableSolicitud = null;
+            DataView ViewSolicitud = null;
 
             try
             {
                 //Obtener DataTable y View del GridView
-                TableExpediente = utilFunction.ParseGridViewToDataTable(gvDiligenciasSolicitud, false);
-                ViewExpediente = new DataView(TableExpediente);
+                TableSolicitud = utilFunction.ParseGridViewToDataTable(gvDiligenciasSolicitud, false);
+                ViewSolicitud = new DataView(TableSolicitud);
 
                 //Determinar ordenamiento
                 hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
 
                 //Ordenar Vista
-                ViewExpediente.Sort = hddSort.Value;
+                ViewSolicitud.Sort = hddSort.Value;
 
                 //Vaciar datos
-                gvDiligenciasSolicitud.DataSource = ViewExpediente;
+                gvDiligenciasSolicitud.DataSource = ViewSolicitud;
                 gvDiligenciasSolicitud.DataBind();
 
             }
@@ -74,53 +169,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        protected void gvDiligenciasSolicitud_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-
-        }
-
-        protected void gvDiligenciasSolicitud_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            ImageButton imgEdit = null;
-
-            String sImagesAttributes = "";
-            String sToolTip = "";
-            String sNumeroDiligencia = "";
-
-            try
-            {
-                //Validación de que sea fila 
-                if (e.Row.RowType != DataControlRowType.DataRow) { return; }
-
-                //Obtener imagenes
-                imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
-
-                sNumeroDiligencia = gvDiligenciasSolicitud.DataKeys[e.Row.RowIndex]["DiligenciaId"].ToString();
-
-                //Tooltip Edición
-                sToolTip = "Editar diligencia [" + sNumeroDiligencia + "]";
-                imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
-                imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
-                imgEdit.Attributes.Add("style", "curosr:hand;");
-
-                //Atributos Over
-                sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png';";
-
-                //Puntero y Sombra en fila Over
-                e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
-
-                //Atributos Out
-                sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png';";
-
-                //Puntero y Sombra en fila Out
-                e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
-
-            }
-            catch (Exception ex)
-            {
-                throw (ex);
-            }
-        }
 
         #endregion
 
@@ -128,13 +176,46 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         protected void btnRegresar_Click(object sender, EventArgs e)
         {
+            if (String.IsNullOrEmpty(SolicitudId))
+            {
+                SolicitudId = hdnSolicitudId.Value;
+            }
 
+            Response.Redirect("~/Application/WebApp/Private/Operation/opeDetalleSolicitud.aspx?s=" + SolicitudId);
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            string expedienteId = hdnExpedienteId.Value;
-            if (String.IsNullOrEmpty(expedienteId)) { expedienteId = GetRawQueryParameter("solId"); }
+            string solicitudId = hdnSolicitudId.Value;
+            if (String.IsNullOrEmpty(solicitudId)) { solicitudId = GetRawQueryParameter("solId"); }
+
+            string diligenciaId = hdnDiligenciaId.Value;
+
+            try
+            {
+                if (String.IsNullOrEmpty(diligenciaId))
+                {
+                    //Agregar
+                    AgregarDiligencia(solicitudId);
+                    GridDiligencias(solicitudId);
+                    LimpiarControles();
+                }
+                else
+                {
+                    //Modificar
+                    ModificarDiligencia(solicitudId, diligenciaId);
+                    GridDiligencias(solicitudId);
+                    LimpiarControles();
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page
+                    , this.GetType()
+                    , Convert.ToString(Guid.NewGuid())
+                    , "tinyboxMessage('" + ex.Message + "', 'Fail', true);"
+                    , true);
+            }
         }
 
         #endregion
@@ -217,11 +298,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        private void GridDiligencias(string SolicitudId)
+        private void GridDiligencias(string solicitudId)
         {
             BPDiligencia oBPDiligencias = new BPDiligencia();
 
-            oBPDiligencias.DiligenciaEntity.SolicitudId = Convert.ToInt32(SolicitudId);
+            oBPDiligencias.DiligenciaEntity.SolicitudId = Convert.ToInt32(solicitudId);
             oBPDiligencias.SelectDiligencias();
 
             if (oBPDiligencias.ErrorId == 0)
@@ -267,6 +348,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             BPDiligencia oBPDiligencia = new BPDiligencia();
 
             if (ddlVisitadorEjecuta.SelectedValue == "0") { throw new Exception("* El campo [Visitador que ejecuta] es requerido"); }
+            if (String.IsNullOrEmpty(calFecha.DisplayDate)) { throw new Exception("* El campo [Fecha de la diligencia] es requerido"); }
             if (ddlTipoDiligencia.SelectedValue == "0") { throw new Exception("* El campo [Tipo de diligencia] es requerido"); }
             if (ddlLugarDiligencia.SelectedValue == "0") { throw new Exception("* El campo [Lugar de diligencia] es requerido"); }
             if (String.IsNullOrEmpty(txtCampo.Text)) { throw new Exception("* El campo [Detalle] es requerido"); }
@@ -279,7 +361,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 oENTDiligencia.SolicitudId = Convert.ToInt32(solicitudId);
                 oENTDiligencia.FuncionarioAtiendeId = oENTSession.FuncionarioId;
                 oENTDiligencia.FuncionarioEjecuta = Convert.ToInt32(ddlVisitadorEjecuta.SelectedValue);
-                //Fecha
+                oENTDiligencia.FechaDiligencia = Convert.ToDateTime(calFecha.DisplayDate);
                 oENTDiligencia.TipoDiligencia = Convert.ToInt32(ddlTipoDiligencia.SelectedValue);
                 oENTDiligencia.LugarDiligenciaId = Convert.ToInt32(ddlLugarDiligencia.SelectedValue);
                 oENTDiligencia.Detalle = txtCampo.Text;
@@ -287,11 +369,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 oENTDiligencia.Resultado = txtResultado.Text;
 
                 //Transacción
-                oENTResponse = oBPDiligencia.InsertDiligenciaExpediente(oENTDiligencia);
+                oENTResponse = oBPDiligencia.InsertDiligenciaSolicitud(oENTDiligencia);
 
                 //Validación
                 if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
-                if (oENTResponse.sMessage == "") { throw new Exception(oENTResponse.sMessage); }
+                if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
 
                 //Mensaje de usuario
                 ScriptManager.RegisterStartupScript(this.Page
@@ -303,6 +385,121 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             catch (Exception ex)
             {
                 throw (ex);
+            }
+        }
+
+        private void ModificarDiligencia(string solicitudId, string diligenciaId)
+        {
+            ENTResponse oENTResponse = new ENTResponse();
+            ENTDiligencia oENTDiligencia = new ENTDiligencia();
+            BPDiligencia oBPDiligencia = new BPDiligencia();
+
+
+            if (ddlVisitadorEjecuta.SelectedValue == "0") { throw new Exception("* El campo [Visitador que ejecuta] es requerido"); }
+            if (String.IsNullOrEmpty(calFecha.DisplayDate)) { throw new Exception("* El campo [Fecha de la diligencia] es requerido"); }
+            if (ddlTipoDiligencia.SelectedValue == "0") { throw new Exception("* El campo [Tipo de diligencia] es requerido"); }
+            if (ddlLugarDiligencia.SelectedValue == "0") { throw new Exception("* El campo [Lugar de diligencia] es requerido"); }
+            if (String.IsNullOrEmpty(txtCampo.Text)) { throw new Exception("* El campo [Detalle] es requerido"); }
+            if (String.IsNullOrEmpty(txtSolicitadaPor.Text)) { throw new Exception("* El campo [Solicitada por] es requerido"); }
+            if (String.IsNullOrEmpty(txtResultado.Text)) { throw new Exception("* El campo [Resultado] es requerido"); }
+
+            try
+            {
+                //Formulario
+                oENTDiligencia.DiligenciaId = Convert.ToInt32(diligenciaId);
+                oENTDiligencia.SolicitudId = Convert.ToInt32(solicitudId);
+                oENTDiligencia.FuncionarioEjecuta = Convert.ToInt32(ddlVisitadorEjecuta.SelectedValue);
+                oENTDiligencia.FechaDiligencia = Convert.ToDateTime(calFecha.DisplayDate);
+                oENTDiligencia.TipoDiligencia = Convert.ToInt32(ddlTipoDiligencia.SelectedValue);
+                oENTDiligencia.LugarDiligenciaId = Convert.ToInt32(ddlLugarDiligencia.SelectedValue);
+                oENTDiligencia.Detalle = txtCampo.Text;
+                oENTDiligencia.SolicitadaPor = txtSolicitadaPor.Text;
+                oENTDiligencia.Resultado = txtResultado.Text;
+
+                //Transacción
+                oENTResponse = oBPDiligencia.UpdateDiligenciaSolicitud(oENTDiligencia);
+
+                //Validación
+                if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+                if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+
+                //Mensaje usuario
+                ScriptManager.RegisterStartupScript(this.Page
+                    , this.GetType()
+                    , Convert.ToString(Guid.NewGuid())
+                    , "tinyboxMessage('Diligencia modificada con éxito', 'Success', true);"
+                    , true);
+
+            }
+
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+
+        }
+
+        private void EliminarDiligencia(string solicitudId, string diligenciaId)
+        {
+            ENTResponse oENTResponse = new ENTResponse();
+            ENTDiligencia oENTDiligencia = new ENTDiligencia();
+            BPDiligencia oBPDiligencia = new BPDiligencia();
+
+            try
+            {
+                oENTDiligencia.DiligenciaId = Convert.ToInt32(diligenciaId);
+                oENTDiligencia.SolicitudId = Convert.ToInt32(solicitudId);
+
+                oENTResponse = oBPDiligencia.DeleteDiligenciaSolicitud(oENTDiligencia);
+
+                if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+                if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+
+                GridDiligencias(solicitudId);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+        }
+
+        private void LimpiarControles()
+        {
+            ddlVisitadorEjecuta.SelectedIndex = 0;
+            calFecha.SetCurrentDate();
+            ddlTipoDiligencia.SelectedIndex = 0;
+            ddlLugarDiligencia.SelectedIndex = 0;
+            txtCampo.Text = String.Empty;
+            txtSolicitadaPor.Text = String.Empty;
+            txtResultado.Text = String.Empty;
+            hdnDiligenciaId.Value = String.Empty;
+
+            ddlVisitadorEjecuta.Focus();
+
+        }
+
+        private void MostrarDatosEdicion(string solicitudId, string diligenciaId)
+        {
+            BPDiligencia oBPDiligencia = new BPDiligencia();
+
+            oBPDiligencia.DiligenciaEntity.SolicitudId = Convert.ToInt32(solicitudId);
+            oBPDiligencia.DiligenciaEntity.DiligenciaId = Convert.ToInt32(diligenciaId);
+
+            oBPDiligencia.SelectDetalleDiligenciaSolicitud();
+
+            if (oBPDiligencia.ErrorId == 0)
+            {
+                if (oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows.Count > 0)
+                {
+                    hdnDiligenciaId.Value = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["DiligenciaId"].ToString();
+                    ddlVisitadorEjecuta.SelectedValue = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["FuncionarioEjecuta"].ToString();
+                    calFecha.SetDate = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["FechaDiligencia"].ToString();
+                    ddlTipoDiligencia.SelectedValue = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["TipoDiligencia"].ToString();
+                    ddlLugarDiligencia.SelectedValue = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["LugarDiligencia"].ToString();
+                    txtCampo.Text = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["Detalle"].ToString();
+                    txtSolicitadaPor.Text = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["SolicitadaPor"].ToString();
+                    txtResultado.Text = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["Resultado"].ToString();
+                }
             }
         }
 

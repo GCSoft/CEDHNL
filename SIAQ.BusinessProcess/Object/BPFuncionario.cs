@@ -60,6 +60,30 @@ namespace SIAQ.BusinessProcess.Object
             return _FuncionarioEntity.ResultData;
         }
 
+        /// <summary>
+        /// Obtiene el listado de los funcionarios del área de quejas
+        /// </summary>
+        public DataSet SelectFuncionarioQuejas()
+        {
+            string sConnectionString = string.Empty;
+            DAFuncionario oDAFuncionario = new DAFuncionario();
+            sConnectionString = sConnectionApplication;
+            _FuncionarioEntity.ResultData = oDAFuncionario.SelectFuncionarioQuejas(_FuncionarioEntity, sConnectionString);
+            return _FuncionarioEntity.ResultData;
+        }
+
+        /// <summary>
+        /// Obtiene el listado de los funcionarios del área de seguimiento
+        /// </summary>
+        public DataSet SelectFuncionarioRecomendacion()
+        {
+            string sConnectionString = string.Empty;
+            DAFuncionario oDAFuncionario = new DAFuncionario();
+            sConnectionString = sConnectionApplication;
+            _FuncionarioEntity.ResultData = oDAFuncionario.SelectFuncionarioRecomendacion(_FuncionarioEntity, sConnectionString);
+            return _FuncionarioEntity.ResultData;
+        }
+
         ///<remarks>
         ///   <name>BPFuncionario.searchFuncionario</name>
         ///   <create>27/ene/2014</create>

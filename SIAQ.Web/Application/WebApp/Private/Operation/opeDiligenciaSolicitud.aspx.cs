@@ -248,7 +248,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         {
             BPFuncionario oBPFuncionario = new BPFuncionario();
 
-            oBPFuncionario.SelectFuncionarioVistaduria();
+            oBPFuncionario.SelectFuncionarioQuejas
+                ();
 
             if (oBPFuncionario.ErrorId == 0)
             {

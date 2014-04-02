@@ -225,5 +225,86 @@ namespace SIAQ.DataAccess.Object
                 return ds;
             }
         }
+
+        ///<remarks>
+        ///   <name>DAFuncionario.SelectFuncionarioQuejas</name>
+        ///   <create>02/abr/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        ///<summary>Obtiene el listado de los funcionarios del área de quejas</summary>
+        public DataSet SelectFuncionarioQuejas(ENTFuncionario oENTFuncionario, string sConnectionString)
+        {
+            SqlConnection Connection = new SqlConnection(sConnectionString);
+            SqlCommand Command;
+            SqlDataAdapter DataAdapter;
+            DataSet ds = new DataSet();
+
+            try
+            {
+                Command = new SqlCommand("spExpedienteFuncionarioQuejas_sel", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                DataAdapter = new SqlDataAdapter(Command);
+
+                Connection.Open();
+                DataAdapter.Fill(ds);
+                Connection.Close();
+
+                return ds;
+            }
+            catch (SqlException ex)
+            {
+                _ErrorId = ex.Number;
+                _ErrorDescription = ex.Message;
+
+                if (Connection.State == ConnectionState.Open)
+                {
+                    Connection.Close();
+                }
+                return ds;
+            }
+        }
+
+        ///<remarks>
+        ///   <name>DAFuncionario.SelectFuncionarioRecomendacion</name>
+        ///   <create>02/abr/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        ///<summary>Obtiene el listado de los funcionarios del área de seguimientos</summary>
+        public DataSet SelectFuncionarioRecomendacion(ENTFuncionario oENTFuncionario, string sConnectionString)
+        {
+            SqlConnection Connection = new SqlConnection(sConnectionString);
+            SqlCommand Command;
+            SqlDataAdapter DataAdapter;
+            DataSet ds = new DataSet();
+
+            try
+            {
+                Command = new SqlCommand("spExpedienteFuncionarioSeguimiento_sel", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                DataAdapter = new SqlDataAdapter(Command);
+
+                Connection.Open();
+                DataAdapter.Fill(ds);
+                Connection.Close();
+
+                return ds;
+            }
+            catch (SqlException ex)
+            {
+                _ErrorId = ex.Number;
+                _ErrorDescription = ex.Message;
+
+                if (Connection.State == ConnectionState.Open)
+                {
+                    Connection.Close();
+                }
+                return ds;
+            }
+        }
+
+
+
     }
 }

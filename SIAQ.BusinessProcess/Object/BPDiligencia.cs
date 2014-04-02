@@ -100,6 +100,8 @@ namespace SIAQ.BusinessProcess.Object
             return _DiligenciaEntity.DataResult;
         }
 
+        //Detalle
+
         /// <summary>
         /// Muestra los datos de la diligencia seleccionada
         /// </summary>
@@ -116,6 +118,42 @@ namespace SIAQ.BusinessProcess.Object
 
             return _DiligenciaEntity.DataResult;
         }
+
+        /// <summary>
+        /// Muestra los datos de la diligencia seleccionada
+        /// </summary>
+        public DataSet SelectDetalleDiligenciaSolicitud()
+        {
+            DADiligencia oDADiligencia = new DADiligencia();
+            string ConnectionString = string.Empty;
+
+            ConnectionString = sConnectionApplication;
+
+            _DiligenciaEntity.DataResult = oDADiligencia.SelectDetalleDiligenciaSolicitud(_DiligenciaEntity, ConnectionString);
+            _ErrorId = oDADiligencia.ErrorId;
+            _ErrorDescription = oDADiligencia.ErrorDescription;
+
+            return _DiligenciaEntity.DataResult;
+        }
+
+        /// <summary>
+        /// Muestra los datos de la diligencia seleccionada
+        /// </summary>
+        public DataSet SelectDetalleDiligenciaRecomendacion()
+        {
+            DADiligencia oDADiligencia = new DADiligencia();
+            string ConnectionString = string.Empty;
+
+            ConnectionString = sConnectionApplication;
+
+            _DiligenciaEntity.DataResult = oDADiligencia.SelectDetalleDiligenciaRecomendacion(_DiligenciaEntity, ConnectionString);
+            _ErrorId = oDADiligencia.ErrorId;
+            _ErrorDescription = oDADiligencia.ErrorDescription;
+
+            return _DiligenciaEntity.DataResult;
+        }
+
+        //Insertar
 
         /// <summary>
         /// Crea una nueva diligencia para un expediente
@@ -145,6 +183,66 @@ namespace SIAQ.BusinessProcess.Object
             //Resultado
             return oENTResponse;
         }
+
+        /// <summary>
+        /// Crea una nueva diligencia para una solicitud
+        /// </summary>
+        public ENTResponse InsertDiligenciaSolicitud(ENTDiligencia oENTDiligencia)
+        {
+            DADiligencia oDADiligencia = new DADiligencia();
+            ENTResponse oENTResponse = new ENTResponse();
+
+            try
+            {
+                //Transaccion
+                oENTResponse = oDADiligencia.InsertDiligenciaSolicitud(oENTDiligencia, sConnectionApplication, 0);
+
+                //Validacion error
+                if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+                // Validación de mensajes de base de datos
+                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+                if (oENTResponse.sMessage != "") { return oENTResponse; }
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+
+            //Resultado
+            return oENTResponse;
+        }
+
+        /// <summary>
+        /// Crea una nueva diligencia para una recomendación
+        /// </summary>
+        public ENTResponse InsertDiligenciaRecomendacion(ENTDiligencia oENTDiligencia)
+        {
+            DADiligencia oDADiligencia = new DADiligencia();
+            ENTResponse oENTResponse = new ENTResponse();
+
+            try
+            {
+                //Transaccion
+                oENTResponse = oDADiligencia.InsertDiligenciaRecomendacion(oENTDiligencia, sConnectionApplication, 0);
+
+                //Validacion error
+                if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+                // Validación de mensajes de base de datos
+                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+                if (oENTResponse.sMessage != "") { return oENTResponse; }
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+
+            //Resultado
+            return oENTResponse;
+        }
+
+        //Modificar
 
         /// <summary>
         /// Modifica una diligencia para un expediente
@@ -179,6 +277,72 @@ namespace SIAQ.BusinessProcess.Object
         }
 
         /// <summary>
+        /// Modifica una diligencia para una solicitud
+        /// </summary>
+        public ENTResponse UpdateDiligenciaSolicitud(ENTDiligencia oENTDiligencia)
+        {
+            DADiligencia oDADiligencia = new DADiligencia();
+            ENTResponse oENTResponse = new ENTResponse();
+
+            try
+            {
+                //Transacción 
+                oENTResponse = oDADiligencia.UpdateDiligenciaSolicitud(oENTDiligencia, sConnectionApplication, 0);
+
+                //Validación error
+                if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+                //Validacion de mensajes de error de base de datos
+                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+                if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+
+
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+
+            //Resultado
+            return oENTResponse;
+        }
+
+        /// <summary>
+        /// Modifica una diligencia para una solicitud
+        /// </summary>
+        public ENTResponse UpdateDiligenciaRecomendacion(ENTDiligencia oENTDiligencia)
+        {
+            DADiligencia oDADiligencia = new DADiligencia();
+            ENTResponse oENTResponse = new ENTResponse();
+
+            try
+            {
+                //Transacción 
+                oENTResponse = oDADiligencia.UpdateDiligenciaRecomendacion(oENTDiligencia, sConnectionApplication, 0);
+
+                //Validación error
+                if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+                //Validacion de mensajes de error de base de datos
+                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+                if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+
+
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+
+            //Resultado
+            return oENTResponse;
+        }
+
+        //Eliminar
+
+        /// <summary>
         /// Borra una diligencia de un expediente
         /// </summary>
         public ENTResponse DeleteDiligenciaExpediente(ENTDiligencia oENTDiligencia)
@@ -189,6 +353,58 @@ namespace SIAQ.BusinessProcess.Object
             try
             {
                 oENTResponse = oDADiligencia.DeleteDiligenciaExpediente(oENTDiligencia, sConnectionApplication, 0);
+
+                if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+                if (oENTResponse.sMessage != "") { return oENTResponse; }
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+
+            //Resultado
+            return oENTResponse;
+        }
+
+        /// <summary>
+        /// Borra una diligencia de una solicitud
+        /// </summary>
+        public ENTResponse DeleteDiligenciaSolicitud(ENTDiligencia oENTDiligencia)
+        {
+            DADiligencia oDADiligencia = new DADiligencia();
+            ENTResponse oENTResponse = new ENTResponse();
+
+            try
+            {
+                oENTResponse = oDADiligencia.DeleteDiligenciaSolicitud(oENTDiligencia, sConnectionApplication, 0);
+
+                if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+                if (oENTResponse.sMessage != "") { return oENTResponse; }
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+
+            //Resultado
+            return oENTResponse;
+        }
+
+        /// <summary>
+        /// Borra una diligencia de una recomendacion
+        /// </summary>
+        public ENTResponse DeleteDiligenciaRecomendacion(ENTDiligencia oENTDiligencia)
+        {
+            DADiligencia oDADiligencia = new DADiligencia();
+            ENTResponse oENTResponse = new ENTResponse();
+
+            try
+            {
+                oENTResponse = oDADiligencia.DeleteDiligenciaRecomendacion(oENTDiligencia, sConnectionApplication, 0);
 
                 if (oENTResponse.GeneratesException) { return oENTResponse; }
 

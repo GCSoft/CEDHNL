@@ -18,12 +18,25 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Page.IsPostBack) { return; }
 
+            ENTSession oENTSession;
+
+            oENTSession = (ENTSession)this.Session["oENTSession"];
+
+            sExpedienteId = GetRawQueryParameter("expId");
+            hdnExpedienteId.Value = sExpedienteId;
+
+            LlenarCiudadanos(sExpedienteId);
+            LlenarAutoridades(sExpedienteId);
+            LlenarDetalle(sExpedienteId, oENTSession.FuncionarioId.ToString());
         }
 
         #region Atributos
 
         Function utilFunction = new Function();
+        string sExpedienteId;
+
 
         #endregion
 
@@ -37,12 +50,40 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         protected void btnAprobarResolucion_Click(object sender, EventArgs e)
         {
+            string expedienteId = hdnExpedienteId.Value;
+            if (String.IsNullOrEmpty(expedienteId)) { expedienteId = GetRawQueryParameter("expId"); }
 
+            try
+            {
+                AprobarResolucion(Convert.ToInt32(expedienteId));
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page
+                    , this.GetType()
+                    , Convert.ToString(Guid.NewGuid())
+                    , "tinyboxMessage('" + ex.Message + "', 'Fail', true);"
+                    , true);
+            }
         }
 
         protected void btnRechazarResolucion_Click(object sender, EventArgs e)
         {
+            string expedienteId = hdnExpedienteId.Value;
+            if (String.IsNullOrEmpty(expedienteId)) { expedienteId = GetRawQueryParameter("expId"); }
 
+            try
+            {
+                RechazarResolucion(Convert.ToInt32(expedienteId));
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page
+                    , this.GetType()
+                    , Convert.ToString(Guid.NewGuid())
+                    , "tinyboxMessage('" + ex.Message + "', 'Fail', true);"
+                    , true);
+            }
         }
 
         #endregion
@@ -403,6 +444,118 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             catch (Exception ex)
             {
                 throw (ex);
+            }
+        }
+
+        private void AprobarResolucion(int expedienteId)
+        {
+            ENTExpediente oENTExpediente = new ENTExpediente();
+            BPExpediente oBPExpediente = new BPExpediente();
+            ENTResponse oENTResponse = new ENTResponse();
+
+            try
+            {
+                //Formulario 
+                oENTExpediente.ExpedienteId = expedienteId;
+
+                //Transacción 
+                oBPExpediente.AprobarResolucionTitular(oENTExpediente);
+
+                //Validaciones 
+                if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+                if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+
+                //Mensaje Usuario 
+                ScriptManager.RegisterStartupScript(this.Page
+                    , this.GetType()
+                    , Convert.ToString(Guid.NewGuid())
+                    , "tinyboxMessage('Resolución aprobada', 'Success', true);"
+                    , true);
+
+            }
+
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+        }
+
+        private void RechazarResolucion(int expedienteId)
+        {
+            ENTExpediente oENTExpediente = new ENTExpediente();
+            BPExpediente oBPExpediente = new BPExpediente();
+            ENTResponse oENTResponse = new ENTResponse();
+
+            try
+            {
+                //Formulario 
+                oENTExpediente.ExpedienteId = expedienteId;
+
+                //Transacción 
+                oBPExpediente.RechazarResolucionTitular(oENTExpediente);
+
+                //Validaciones 
+                if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+                if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+
+                //Mensaje Usuario 
+                ScriptManager.RegisterStartupScript(this.Page
+                    , this.GetType()
+                    , Convert.ToString(Guid.NewGuid())
+                    , "tinyboxMessage('Resolución rechazada', 'Success', true);"
+                    , true);
+
+            }
+
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+        }
+
+        protected void LlenarDetalle(string ExpedienteId, string FuncionarioId)
+        {
+            BPExpediente BPExpediente = new BPExpediente();
+            ENTExpediente oENTExpediente = new ENTExpediente();
+
+            if (String.IsNullOrEmpty(ExpedienteId))
+            {
+                ExpedienteId = "0";
+            }
+            if (String.IsNullOrEmpty(FuncionarioId))
+            {
+                FuncionarioId = "0";
+            }
+
+            oENTExpediente.ExpedienteId = Convert.ToInt32(ExpedienteId);
+            oENTExpediente.FuncionarioId = Convert.ToInt32(FuncionarioId);
+
+            BPExpediente.SelectDetalleExpediente(oENTExpediente);
+
+            if (BPExpediente.ErrorId == 0)
+            {
+                // Detalle 
+                if (oENTExpediente.ResultData.Tables[0].Rows.Count > 0)
+                {
+                    SolicitudLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Numero"].ToString();
+                    EstatusaLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Estatus"].ToString();
+                    VisitadorLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Visitador"].ToString();
+                    TipoResolucionLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["TipoResolucion"].ToString();
+                    TipoSolicitudLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["TipoSolicitud"].ToString();
+                    ObservacionesLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Observaciones"].ToString();
+                    LugarHechosLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["LugarHechos"].ToString();
+                    DireccionHechos.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["DireccionHechos"].ToString();
+
+                }
+
+                //Fechas
+                if (oENTExpediente.ResultData.Tables[1].Rows.Count > 0)
+                {
+                    FechaRecepcionLabel.Text = oENTExpediente.ResultData.Tables[1].Rows[0]["FechaRecepcion"].ToString();
+                    FechaAsignacionLabel.Text = oENTExpediente.ResultData.Tables[1].Rows[0]["FechaAsignacion"].ToString();
+                    FechaInicioGestionLabel.Text = oENTExpediente.ResultData.Tables[1].Rows[0]["FechaInicioGestion"].ToString();
+                    //FechaResolucionLabel.Text = oENTExpediente.ResultData.Tables[1].Rows[0][""].ToString();
+                }
             }
         }
 

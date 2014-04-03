@@ -598,6 +598,100 @@ namespace SIAQ.DataAccess.Object
         }
 
         ///<remarks>
+        ///   <name>DASolicitud.AprobarResolucionTitular</name>
+        ///   <create>02/abr/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        /// <summary>
+        /// Aprueba resolución de expediente 
+        /// </summary>
+        public ENTResponse AprobarResolucionTitular(ENTExpediente oENTExpediente, string sConnectionString, int iAlternativeTimeOut)
+        {
+            SqlConnection Connection = new SqlConnection(sConnectionString);
+            SqlCommand Command;
+            SqlDataAdapter DataAdapter;
+            SqlParameter Parameter;
+
+            ENTResponse oENTResponse = new ENTResponse();
+
+            Command = new SqlCommand("spAprobarResolucionTitular_upd", Connection);
+            Command.CommandType = CommandType.StoredProcedure;
+
+            if (iAlternativeTimeOut > 0) { Command.CommandTimeout = iAlternativeTimeOut; }
+
+            Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
+            Parameter.Value = oENTExpediente.ExpedienteId;
+            Command.Parameters.Add(Parameter);
+
+            oENTResponse.dsResponse = new DataSet();
+            DataAdapter = new SqlDataAdapter(Command);
+
+            try
+            {
+                Connection.Open();
+                DataAdapter.Fill(oENTResponse.dsResponse);
+                Connection.Close();
+            }
+            catch (SqlException ex) { oENTResponse.ExceptionRaised(ex.Message); }
+            catch (Exception ex) { oENTResponse.ExceptionRaised(ex.Message); }
+            finally
+            {
+                if (Connection.State == ConnectionState.Open) { Connection.Close(); }
+            }
+
+            return oENTResponse;
+        }
+
+        ///<remarks>
+        ///   <name>DASolicitud.RechazarResolucionTitular</name>
+        ///   <create>01/abr/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        /// <summary>
+        /// Rechaza resolución de expediente 
+        /// </summary>
+        public ENTResponse RechazarResolucionTitular(ENTExpediente oENTExpediente, string sConnectionString, int iAlternativeTimeOut)
+        {
+            SqlConnection Connection = new SqlConnection(sConnectionString);
+            SqlCommand Command;
+            SqlDataAdapter DataAdapter;
+            SqlParameter Parameter;
+
+            ENTResponse oENTResponse = new ENTResponse();
+
+            Command = new SqlCommand("spRechazarResolucionTitular_upd", Connection);
+            Command.CommandType = CommandType.StoredProcedure;
+
+            if (iAlternativeTimeOut > 0) { Command.CommandTimeout = iAlternativeTimeOut; }
+
+            Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
+            Parameter.Value = oENTExpediente.ExpedienteId;
+            Command.Parameters.Add(Parameter);
+
+            oENTResponse.dsResponse = new DataSet();
+            DataAdapter = new SqlDataAdapter(Command);
+
+            try
+            {
+                Connection.Open();
+                DataAdapter.Fill(oENTResponse.dsResponse);
+                Connection.Close();
+            }
+            catch (SqlException ex) { oENTResponse.ExceptionRaised(ex.Message); }
+            catch (Exception ex) { oENTResponse.ExceptionRaised(ex.Message); }
+            finally
+            {
+                if (Connection.State == ConnectionState.Open)
+                {
+                    Connection.Close();
+                }
+            }
+
+            return oENTResponse;
+
+        }
+
+        ///<remarks>
         ///   <name>DASolicitud.SelectExpediente_Funcionario</name>
         ///   <create>25/mar/2014</create>
         ///   <author>Jose.Gomez</author>
@@ -690,5 +784,6 @@ namespace SIAQ.DataAccess.Object
                 return ds;
             }
         }
+
     }
 }

@@ -184,9 +184,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             Response.Redirect("~/Application/WebApp/Private/Visitaduria/opeLstExpedientesTitular.aspx");
         }
 
-        protected void AprobarCalificacionButton_Click(object sender, ImageClickEventArgs e)
+        protected void AprobarResolucionButton_Click(object sender, ImageClickEventArgs e)
         {
-            //TO DO: Pendiente de crear html de la pagina de aprobar calificación
+            string expedienteId = hdnExpedienteId.Value;
+            if (String.IsNullOrEmpty(expedienteId)) { expedienteId = GetRawQueryParameter("expId"); }
+
+            Response.Redirect("~/Application/WebApp/Private/Operation/opeAprobarResolucionTitular.aspx?expId=" + expedienteId);
         }
 
         protected void AsignarVisitadorButton_Click(object sender, ImageClickEventArgs e)

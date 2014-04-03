@@ -118,13 +118,12 @@
                         </tr>
                         <tr>
                             <td class="Nombre">
-                                Núm de recomendación
+                                
                             </td>
                             <td class="Espacio">
                             </td>
-                            <td class="Campo">
-                                <asp:TextBox ID="NumRecomendacionText" runat="server" Width="200px" CssClass="Textbox_General"></asp:TextBox>
-                            </td>
+                            <td class="Espacio">
+                                </td>
                             <td class="Espacio">
                             </td>
                             <td class="Nombre">

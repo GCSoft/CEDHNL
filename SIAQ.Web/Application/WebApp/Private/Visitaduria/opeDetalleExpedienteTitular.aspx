@@ -41,8 +41,8 @@
                             <td>
                             </td>
                             <td style="width: 65px;">
-                                <asp:ImageButton ID="AprobarCalificacionButton" ImageUrl="/Include/Image/Icon/CalificarIcon.png"
-                                    runat="server" onclick="AprobarCalificacionButton_Click"></asp:ImageButton>
+                                <asp:ImageButton ID="AprobarResolucionButton" ImageUrl="/Include/Image/Icon/CalificarIcon.png"
+                                    runat="server" onclick="AprobarResolucionButton_Click"></asp:ImageButton>
                             </td>
                             <td>
                             </td>
@@ -53,8 +53,7 @@
                             <td>
                             </td>
                             <td style="width: 65px;">
-                                
-                            </td>
+                                &nbsp;</td>
                             <td>
                             </td>
                             <td style="width: 65px;">

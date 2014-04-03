@@ -80,37 +80,37 @@ namespace SIAQ.BusinessProcess.Object
 
         }
 
-      /////<remarks>
-      /////   <name>BPCiudadano.SelectCiudadano</name>
-      /////   <create>22-Marzo-2014</create>
-      /////   <author>Ruben.Cobos</author>
-      /////</remarks>
-      /////<summary>Consulta el catálogo de Ciudadanos</summary>
-      /////<param name="oENTCiudadano">Entidad de Ciudadano con los filtros necesarios para la consulta</param>
-      /////<returns>Una entidad de respuesta</returns>
-      //public ENTResponse SelectCiudadano(ENTCiudadano oENTCiudadano){
-      //   DACiudadano oDACiudadano = new DACiudadano();
-      //   ENTResponse oENTResponse = new ENTResponse();
+        /////<remarks>
+        /////   <name>BPCiudadano.SelectCiudadano</name>
+        /////   <create>22-Marzo-2014</create>
+        /////   <author>Ruben.Cobos</author>
+        /////</remarks>
+        /////<summary>Consulta el catálogo de Ciudadanos</summary>
+        /////<param name="oENTCiudadano">Entidad de Ciudadano con los filtros necesarios para la consulta</param>
+        /////<returns>Una entidad de respuesta</returns>
+        //public ENTResponse SelectCiudadano(ENTCiudadano oENTCiudadano){
+        //   DACiudadano oDACiudadano = new DACiudadano();
+        //   ENTResponse oENTResponse = new ENTResponse();
 
-      //   try{
+        //   try{
 
-      //      // Transacción en base de datos
-      //      oENTResponse = oDACiudadano.SelectCiudadano(oENTCiudadano, this.sConnectionApplication, 0);
+        //      // Transacción en base de datos
+        //      oENTResponse = oDACiudadano.SelectCiudadano(oENTCiudadano, this.sConnectionApplication, 0);
 
-      //      // Validación de error en consulta
-      //      if (oENTResponse.GeneratesException) { return oENTResponse; }
+        //      // Validación de error en consulta
+        //      if (oENTResponse.GeneratesException) { return oENTResponse; }
 
-      //      // Validación de mensajes de la BD
-      //      oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-      //      if (oENTResponse.sMessage != "") { return oENTResponse; }
+        //      // Validación de mensajes de la BD
+        //      oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+        //      if (oENTResponse.sMessage != "") { return oENTResponse; }
 
-      //   }catch (Exception ex){
-      //      oENTResponse.ExceptionRaised(ex.Message);
-      //   }
+        //   }catch (Exception ex){
+        //      oENTResponse.ExceptionRaised(ex.Message);
+        //   }
 
-      //   // Resultado
-      //   return oENTResponse;
-      //}
+        //   // Resultado
+        //   return oENTResponse;
+        //}
 
         ///<remarks>
         ///   <name>BPCiudadanoinsertCiudadano</name>
@@ -206,7 +206,7 @@ namespace SIAQ.BusinessProcess.Object
         {
             string ConnectionString = string.Empty;
             DACiudadano DACiudadano = new DACiudadano();
-            
+
             ConnectionString = sConnectionApplication;
             DACiudadano.AgregarCiudadanoSolicitud(_ENTCiudadano, ConnectionString);
 
@@ -216,14 +216,14 @@ namespace SIAQ.BusinessProcess.Object
 
         public void BuscarCiudadano()
         {
-           string ConnectionString = string.Empty;
-           DACiudadano DACiudadano = new DACiudadano();
+            string ConnectionString = string.Empty;
+            DACiudadano DACiudadano = new DACiudadano();
 
-           ConnectionString = sConnectionApplication;
-           _ENTCiudadano.ResultData = DACiudadano.SelectCiudadano(_ENTCiudadano, ConnectionString);
+            ConnectionString = sConnectionApplication;
+            _ENTCiudadano.ResultData = DACiudadano.SelectCiudadano(_ENTCiudadano, ConnectionString);
 
-           _ErrorId = DACiudadano.ErrorId;
-           _ErrorDescription = DACiudadano.ErrorDescription;
+            _ErrorId = DACiudadano.ErrorId;
+            _ErrorDescription = DACiudadano.ErrorDescription;
 
         }
 
@@ -250,6 +250,174 @@ namespace SIAQ.BusinessProcess.Object
             _ErrorId = DACiudadano.ErrorId;
             _ErrorDescription = DACiudadano.ErrorDescription;
 
+        }
+
+        /// <summary>
+        /// Metodo para obtener las escolaridades del sistema
+        /// </summary>
+        public void SelectComboEscolaridad()
+        {
+            string ConnectionString = string.Empty;
+            DACiudadano oDACiudadano = new DACiudadano();
+
+            ConnectionString = sConnectionApplication;
+            _ENTCiudadano.ResultData = oDACiudadano.SelectComboEscolaridad(_ENTCiudadano, ConnectionString);
+
+            _ErrorId = oDACiudadano.ErrorId;
+            _ErrorDescription = oDACiudadano.ErrorDescription;
+        }
+
+        /// <summary>
+        /// Metodo para obtener los estados civiles del sistema
+        /// </summary>
+        public void SelectComboEstadoCivil()
+        {
+            string ConnectionString = string.Empty;
+            DACiudadano oDACiudadano = new DACiudadano();
+
+            ConnectionString = sConnectionApplication;
+            _ENTCiudadano.ResultData = oDACiudadano.SelectComboEstadoCivil(_ENTCiudadano, ConnectionString);
+
+            _ErrorId = oDACiudadano.ErrorId;
+            _ErrorDescription = oDACiudadano.ErrorDescription;
+        }
+
+        /// <summary>
+        /// Metodo para obtener los sexos del sistema
+        /// </summary>
+        public void SelectComboSexo()
+        {
+            string ConnectionString = string.Empty;
+            DACiudadano oDACiudadano = new DACiudadano();
+
+            ConnectionString = sConnectionApplication;
+            _ENTCiudadano.ResultData = oDACiudadano.SelectComboSexo(_ENTCiudadano, ConnectionString);
+
+            _ErrorId = oDACiudadano.ErrorId;
+            _ErrorDescription = oDACiudadano.ErrorDescription;
+        }
+
+        /// <summary>
+        /// Metodo para obtener las ocupaciones del sistema
+        /// </summary>
+        public void SelectComboOcupacion()
+        {
+            string ConnectionString = string.Empty;
+            DACiudadano oDACiudadano = new DACiudadano();
+
+            ConnectionString = sConnectionApplication;
+            _ENTCiudadano.ResultData = oDACiudadano.SelectComboOcupacion(_ENTCiudadano, ConnectionString);
+
+            _ErrorId = oDACiudadano.ErrorId;
+            _ErrorDescription = oDACiudadano.ErrorDescription;
+        }
+
+        /// <summary>
+        /// Metodo para obtener las formas de contacto del sistema
+        /// </summary>
+        public void SelectComboFormaContacto()
+        {
+            string ConnectionString = string.Empty;
+            DACiudadano oDACiudadano = new DACiudadano();
+
+            ConnectionString = sConnectionApplication;
+            _ENTCiudadano.ResultData = oDACiudadano.SelectComboFormaContacto(_ENTCiudadano, ConnectionString);
+
+            _ErrorId = oDACiudadano.ErrorId;
+            _ErrorDescription = oDACiudadano.ErrorDescription;
+        }
+
+        /// <summary>
+        /// Metodo para obtener las colonias del sistema
+        /// </summary>
+        public void SelectComboColonia()
+        {
+            string ConnectionString = string.Empty;
+            DACiudadano oDACiudadano = new DACiudadano();
+
+            ConnectionString = sConnectionApplication;
+            _ENTCiudadano.ResultData = oDACiudadano.SelectComboColonia(_ENTCiudadano, ConnectionString);
+
+            _ErrorId = oDACiudadano.ErrorId;
+            _ErrorDescription = oDACiudadano.ErrorDescription;
+        }
+
+        /// <summary>
+        /// Metodo para obtener los estados del sistema
+        /// </summary>
+        public void SelectComboEstado()
+        {
+            string ConnectionString = string.Empty;
+            DACiudadano oDACiudadano = new DACiudadano();
+
+            ConnectionString = sConnectionApplication;
+            _ENTCiudadano.ResultData = oDACiudadano.SelectComboEstado(_ENTCiudadano, ConnectionString);
+
+            _ErrorId = oDACiudadano.ErrorId;
+            _ErrorDescription = oDACiudadano.ErrorDescription;
+        }
+
+        /// <summary>
+        /// Metodo para obtener las ciudades del sistema
+        /// </summary>
+        public void SelectComboCiudad()
+        {
+            string ConnectionString = string.Empty;
+            DACiudadano oDACiudadano = new DACiudadano();
+
+            ConnectionString = sConnectionApplication;
+            _ENTCiudadano.ResultData = oDACiudadano.SelectComboCiudad(_ENTCiudadano, ConnectionString);
+
+            _ErrorId = oDACiudadano.ErrorId;
+            _ErrorDescription = oDACiudadano.ErrorDescription;
+        }
+
+        /// <summary>
+        /// Metodo para obtener las nacionalidades del sistema
+        /// </summary>
+        public ENTResponse SelectComboNacionalidad(ENTCiudadano oENTCiudadano)
+        {
+            DACiudadano oDACiudadano = new DACiudadano();
+            ENTResponse oENTResponse = new ENTResponse();
+
+            try
+            {
+                oENTResponse = oDACiudadano.SelectComboNacionalidad(oENTCiudadano, sConnectionApplication, 0);
+                if (oENTResponse.GeneratesException) { return oENTResponse; }
+                oENTResponse.sMessage = String.Empty;
+                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+                if (oENTResponse.sMessage != "") { return oENTResponse; }
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+
+            return oENTResponse;
+        }
+
+        /// <summary>
+        /// Metodo para obtener los países del sistema
+        /// </summary>
+        public ENTResponse SelectComboPais(ENTCiudadano oENTCiudadano)
+        {
+            DACiudadano oDACiudadano = new DACiudadano();
+            ENTResponse oENTResponse = new ENTResponse();
+
+            try
+            {
+                oENTResponse = oDACiudadano.SelectComboPais(oENTCiudadano, sConnectionApplication, 0);
+                if (oENTResponse.GeneratesException) { return oENTResponse; }
+                oENTResponse.sMessage = String.Empty;
+                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+                if (oENTResponse.sMessage != "") { return oENTResponse; }
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+
+            return oENTResponse;
         }
 
     }

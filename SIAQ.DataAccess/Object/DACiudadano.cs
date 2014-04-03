@@ -71,91 +71,6 @@ namespace SIAQ.DataAccess.Object
 
         }
 
-      /////<remarks>
-      /////   <name>DACiudadano.SelectCiudadano</name>
-      /////   <create>22-Marzo-2014</create>
-      /////   <author>Ruben.Cobos</author>
-      /////</remarks>
-      /////<summary>Obtiene un listado de Ciudadanos en base a los parámetros proporcionados</summary>
-      /////<param name="oENTCiudadano">Entidad de Ciudadano con los parámetros necesarios para consultar la información</param>
-      /////<param name="sConnection">Cadena de conexión a la base de datos</param>
-      /////<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
-      /////<returns>Una entidad de respuesta</returns>
-      //public ENTResponse SelectCiudadano(ENTCiudadano oENTCiudadano, String sConnection, Int32 iAlternateDBTimeout){
-      //   SqlConnection sqlCnn = new SqlConnection(sConnection);
-      //   SqlCommand sqlCom;
-      //   SqlParameter sqlPar;
-      //   SqlDataAdapter sqlDA;
-
-      //   ENTResponse oENTResponse = new ENTResponse();
-
-      //   // Configuración de objetos
-      //   sqlCom = new SqlCommand("uspcatCiudadano_Sel", sqlCnn);
-      //   sqlCom.CommandType = CommandType.StoredProcedure;
-
-      //   // Timeout alternativo en caso de ser solicitado
-      //   if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
-
-      //   // Parametros
-      //   sqlPar = new SqlParameter("CiudadanoId", SqlDbType.Int);
-      //   sqlPar.Value = oENTCiudadano.CiudadanoId;
-      //   sqlCom.Parameters.Add(sqlPar);
-
-      //   Parameter = new SqlParameter("Nombre", SqlDbType.VarChar);
-      //   Parameter.Value = ENTCiudadano.Nombre;
-      //   Command.Parameters.Add(Parameter);
-
-      //   Parameter = new SqlParameter("ApellidoPaterno", SqlDbType.VarChar);
-      //   Parameter.Value = ENTCiudadano.ApellidoPaterno;
-      //   Command.Parameters.Add(Parameter);
-
-      //   Parameter = new SqlParameter("ApellidoMaterno", SqlDbType.VarChar);
-      //   Parameter.Value = ENTCiudadano.ApellidoMaterno;
-      //   Command.Parameters.Add(Parameter);
-
-      //   Parameter = new SqlParameter("CiudadId", SqlDbType.Int);
-      //   Parameter.Value = ENTCiudadano.CiudadId;
-      //   Command.Parameters.Add(Parameter);
-
-      //   Parameter = new SqlParameter("CiudadanoId", SqlDbType.Int);
-      //   Parameter.Value = ENTCiudadano.CiudadanoId;
-      //   Command.Parameters.Add(Parameter);
-
-      //   Parameter = new SqlParameter("PaisId", SqlDbType.Int);
-      //   Parameter.Value = ENTCiudadano.PaisId;
-      //   Command.Parameters.Add(Parameter);
-
-      //   Parameter = new SqlParameter("ColoniaId", SqlDbType.Int);
-      //   Parameter.Value = ENTCiudadano.ColoniaId;
-      //   Command.Parameters.Add(Parameter);
-
-      //   Parameter = new SqlParameter("Calle", SqlDbType.VarChar);
-      //   Parameter.Value = ENTCiudadano.Calle;
-      //   Command.Parameters.Add(Parameter);
-
-      //   // Inicializaciones
-      //   oENTResponse.dsResponse = new DataSet();
-      //   sqlDA = new SqlDataAdapter(sqlCom);
-
-      //   // Transacción
-      //   try
-      //   {
-      //      sqlCnn.Open();
-      //      sqlDA.Fill(oENTResponse.dsResponse);
-      //      sqlCnn.Close();
-      //   }catch (SqlException sqlEx){
-      //      oENTResponse.ExceptionRaised(sqlEx.Message);
-      //   }catch (Exception ex){
-      //      oENTResponse.ExceptionRaised(ex.Message);
-      //   }finally{
-      //      if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
-      //      sqlCnn.Dispose();
-      //   }
-
-      //   // Resultado
-      //   return oENTResponse;
-      //}
-
         ///<remarks>
         ///   <name>DACiudadano.insertCiudadano</name>
         ///   <create>27/ene/2014</create>
@@ -277,7 +192,7 @@ namespace SIAQ.DataAccess.Object
                 Parameter.Value = ENTCiudadano.TipoCiudadanoId;
                 Command.Parameters.Add(Parameter);
 
-                 DataAdapter = new SqlDataAdapter(Command);
+                DataAdapter = new SqlDataAdapter(Command);
 
                 Connection.Open();
                 Command.ExecuteNonQuery();
@@ -296,72 +211,72 @@ namespace SIAQ.DataAccess.Object
 
         public DataSet SelectCiudadano(ENTCiudadano ENTCiudadano, string ConnectionString)
         {
-           DataSet ResultData = new DataSet();
-           SqlConnection Connection = new SqlConnection(ConnectionString);
-           SqlCommand Command;
-           SqlParameter Parameter;
-           SqlDataAdapter DataAdapter;
+            DataSet ResultData = new DataSet();
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            SqlCommand Command;
+            SqlParameter Parameter;
+            SqlDataAdapter DataAdapter;
 
-           try
-           {
-              Command = new SqlCommand("ConsultarCiudadano", Connection);
-              Command.CommandType = CommandType.StoredProcedure;
+            try
+            {
+                Command = new SqlCommand("ConsultarCiudadano", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
 
-              Parameter = new SqlParameter("Nombre", SqlDbType.VarChar);
-              Parameter.Value = ENTCiudadano.Nombre;
-              Command.Parameters.Add(Parameter);
+                Parameter = new SqlParameter("Nombre", SqlDbType.VarChar);
+                Parameter.Value = ENTCiudadano.Nombre;
+                Command.Parameters.Add(Parameter);
 
-              Parameter = new SqlParameter("ApellidoPaterno", SqlDbType.VarChar);
-              Parameter.Value = ENTCiudadano.ApellidoPaterno;
-              Command.Parameters.Add(Parameter);
+                Parameter = new SqlParameter("ApellidoPaterno", SqlDbType.VarChar);
+                Parameter.Value = ENTCiudadano.ApellidoPaterno;
+                Command.Parameters.Add(Parameter);
 
-              Parameter = new SqlParameter("ApellidoMaterno", SqlDbType.VarChar);
-              Parameter.Value = ENTCiudadano.ApellidoMaterno;
-              Command.Parameters.Add(Parameter);
+                Parameter = new SqlParameter("ApellidoMaterno", SqlDbType.VarChar);
+                Parameter.Value = ENTCiudadano.ApellidoMaterno;
+                Command.Parameters.Add(Parameter);
 
-              Parameter = new SqlParameter("ColoniaId", SqlDbType.Int);
-              Parameter.Value = ENTCiudadano.ColoniaId;
-              Command.Parameters.Add(Parameter);
+                Parameter = new SqlParameter("ColoniaId", SqlDbType.Int);
+                Parameter.Value = ENTCiudadano.ColoniaId;
+                Command.Parameters.Add(Parameter);
 
-              Parameter = new SqlParameter("CiudadId", SqlDbType.Int);
-              Parameter.Value = ENTCiudadano.CiudadId;
-              Command.Parameters.Add(Parameter);
+                Parameter = new SqlParameter("CiudadId", SqlDbType.Int);
+                Parameter.Value = ENTCiudadano.CiudadId;
+                Command.Parameters.Add(Parameter);
 
-              Parameter = new SqlParameter("EstadoId", SqlDbType.Int);
-              Parameter.Value = ENTCiudadano.EstadoId;
-              Command.Parameters.Add(Parameter);
+                Parameter = new SqlParameter("EstadoId", SqlDbType.Int);
+                Parameter.Value = ENTCiudadano.EstadoId;
+                Command.Parameters.Add(Parameter);
 
-              Parameter = new SqlParameter("PaisId", SqlDbType.Int);
-              Parameter.Value = ENTCiudadano.PaisId;
-              Command.Parameters.Add(Parameter);
+                Parameter = new SqlParameter("PaisId", SqlDbType.Int);
+                Parameter.Value = ENTCiudadano.PaisId;
+                Command.Parameters.Add(Parameter);
 
-              Parameter = new SqlParameter("Calle", SqlDbType.VarChar);
-              Parameter.Value = ENTCiudadano.Calle;
-              Command.Parameters.Add(Parameter);
+                Parameter = new SqlParameter("Calle", SqlDbType.VarChar);
+                Parameter.Value = ENTCiudadano.Calle;
+                Command.Parameters.Add(Parameter);
 
-              Parameter = new SqlParameter("CampoBusqueda", SqlDbType.VarChar);
-              Parameter.Value = ENTCiudadano.CampoBusqueda;
-              Command.Parameters.Add(Parameter);
+                Parameter = new SqlParameter("CampoBusqueda", SqlDbType.VarChar);
+                Parameter.Value = ENTCiudadano.CampoBusqueda;
+                Command.Parameters.Add(Parameter);
 
-              DataAdapter = new SqlDataAdapter(Command);
+                DataAdapter = new SqlDataAdapter(Command);
 
-              Connection.Open();
-              DataAdapter.Fill(ResultData);
-              Connection.Close();
+                Connection.Open();
+                DataAdapter.Fill(ResultData);
+                Connection.Close();
 
-              return ResultData;
+                return ResultData;
 
-           }
-           catch (SqlException Exception)
-           {
-              _ErrorId = Exception.Number;
-              _ErrorDescription = Exception.Message;
+            }
+            catch (SqlException Exception)
+            {
+                _ErrorId = Exception.Number;
+                _ErrorDescription = Exception.Message;
 
-              if (Connection.State == ConnectionState.Open)
-                 Connection.Close();
+                if (Connection.State == ConnectionState.Open)
+                    Connection.Close();
 
-              return ResultData;
-           }
+                return ResultData;
+            }
         }
 
         public void EliminarCiudadanoSolicitud(ENTCiudadano ENTCiudadano, string ConnectionString)
@@ -441,5 +356,420 @@ namespace SIAQ.DataAccess.Object
             }
         }
 
+        ///<remarks>
+        ///   <name>DACiudadano.SelectComboEscolaridad</name>
+        ///   <create>03/abr/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        ///<summary>Metodo para obtener las escolaridades del sistema</summary>
+        public DataSet SelectComboEscolaridad(ENTCiudadano oENTCiudadano, string ConnectionString)
+        {
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            SqlCommand Command;
+            SqlDataAdapter DataAdapter;
+            DataSet ds = new DataSet();
+
+            try
+            {
+                Command = new SqlCommand("spcatEscolaridad_SelForControl", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                DataAdapter = new SqlDataAdapter(Command);
+
+                Connection.Open();
+                DataAdapter.Fill(ds);
+                Connection.Close();
+            }
+            catch (SqlException ex)
+            {
+                _ErrorId = ex.Number;
+                _ErrorDescription = ex.Message;
+                if (Connection.State == ConnectionState.Open) { Connection.Close(); }
+            }
+
+            return ds;
+        }
+
+        ///<remarks>
+        ///   <name>DACiudadano.SelectComboEstadoCivil</name>
+        ///   <create>03/abr/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        ///<summary>Metodo para obtener los estados civiles del sistema</summary>
+        public DataSet SelectComboEstadoCivil(ENTCiudadano oENTCiudadano, string ConnectionString)
+        {
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            SqlCommand Command;
+            SqlDataAdapter DataAdapter;
+            DataSet ds = new DataSet();
+
+            try
+            {
+                Command = new SqlCommand("spcatEstadoCivil_SelForControl", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                DataAdapter = new SqlDataAdapter(Command);
+
+                Connection.Open();
+                DataAdapter.Fill(ds);
+                Connection.Close();
+            }
+            catch (SqlException ex)
+            {
+                _ErrorId = ex.Number;
+                _ErrorDescription = ex.Message;
+                if (Connection.State == ConnectionState.Open) { Connection.Close(); }
+            }
+
+            return ds;
+        }
+
+        ///<remarks>
+        ///   <name>DACiudadano.SelectComboSexo</name>
+        ///   <create>03/abr/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        ///<summary>Metodo para obtener los sexos del sistema</summary>
+        public DataSet SelectComboSexo(ENTCiudadano oENTCiudadano, string ConnectionString)
+        {
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            SqlCommand Command;
+            SqlDataAdapter DataAdapter;
+            DataSet ds = new DataSet();
+
+            try
+            {
+                Command = new SqlCommand("spcatSexo_SelForControl", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                DataAdapter = new SqlDataAdapter(Command);
+
+                Connection.Open();
+                DataAdapter.Fill(ds);
+                Connection.Close();
+            }
+            catch (SqlException ex)
+            {
+                _ErrorId = ex.Number;
+                _ErrorDescription = ex.Message;
+                if (Connection.State == ConnectionState.Open) { Connection.Close(); }
+            }
+
+            return ds;
+        }
+
+        ///<remarks>
+        ///   <name>DACiudadano.SelectComboOcupacion</name>
+        ///   <create>03/abr/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        ///<summary>Metodo para obtener las ocupaciones del sistema</summary>
+        public DataSet SelectComboOcupacion(ENTCiudadano oENTCiudadano, string ConnectionString)
+        {
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            SqlCommand Command;
+            SqlDataAdapter DataAdapter;
+            DataSet ds = new DataSet();
+
+            try
+            {
+                Command = new SqlCommand("spcatOcupacion_SelForControl", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                DataAdapter = new SqlDataAdapter(Command);
+
+                Connection.Open();
+                DataAdapter.Fill(ds);
+                Connection.Close();
+            }
+            catch (SqlException ex)
+            {
+                _ErrorId = ex.Number;
+                _ErrorDescription = ex.Message;
+                if (Connection.State == ConnectionState.Open) { Connection.Close(); }
+            }
+
+            return ds;
+        }
+
+        ///<remarks>
+        ///   <name>DACiudadano.SelectComboFormaContacto</name>
+        ///   <create>03/abr/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        ///<summary>Metodo para obtener las formas de contacto del sistema</summary>
+        public DataSet SelectComboFormaContacto(ENTCiudadano oENTCiudadano, string ConnectionString)
+        {
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            SqlCommand Command;
+            SqlDataAdapter DataAdapter;
+            DataSet ds = new DataSet();
+
+            try
+            {
+                Command = new SqlCommand("spcatFormaContacto_SelForControl", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                DataAdapter = new SqlDataAdapter(Command);
+
+                Connection.Open();
+                DataAdapter.Fill(ds);
+                Connection.Close();
+            }
+            catch (SqlException ex)
+            {
+                _ErrorId = ex.Number;
+                _ErrorDescription = ex.Message;
+                if (Connection.State == ConnectionState.Open) { Connection.Close(); }
+            }
+
+            return ds;
+        }
+
+        ///<remarks>
+        ///   <name>DACiudadano.SelectComboColonia</name>
+        ///   <create>03/abr/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        ///<summary>Metodo para obtener las colonias del sistema</summary>
+        public DataSet SelectComboColonia(ENTCiudadano oENTCiudadano, string ConnectionString)
+        {
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            SqlCommand Command;
+            SqlDataAdapter DataAdapter;
+            DataSet ds = new DataSet();
+            SqlParameter Parameter;
+
+            try
+            {
+                Command = new SqlCommand("spcatColonia_SelForControl", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                Parameter = new SqlParameter("CiudadId", SqlDbType.Int);
+                Parameter.Value = oENTCiudadano.CiudadId;
+                Command.Parameters.Add(Parameter);
+
+                DataAdapter = new SqlDataAdapter(Command);
+
+                Connection.Open();
+                DataAdapter.Fill(ds);
+                Connection.Close();
+            }
+            catch (SqlException ex)
+            {
+                _ErrorId = ex.Number;
+                _ErrorDescription = ex.Message;
+                if (Connection.State == ConnectionState.Open) { Connection.Close(); }
+            }
+
+            return ds;
+        }
+
+        ///<remarks>
+        ///   <name>DACiudadano.SelectComboEstado</name>
+        ///   <create>03/abr/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        ///<summary>Metodo para obtener los estados del sistema</summary>
+        public DataSet SelectComboEstado(ENTCiudadano oENTCiudadano, string ConnectionString)
+        {
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            SqlCommand Command;
+            SqlDataAdapter DataAdapter;
+            DataSet ds = new DataSet();
+            SqlParameter Parameter;
+
+            try
+            {
+                Command = new SqlCommand("spEstado_SelForControl", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                Parameter = new SqlParameter("PaisId", SqlDbType.Int);
+                Parameter.Value = oENTCiudadano.PaisId;
+                Command.Parameters.Add(Parameter);
+
+                DataAdapter = new SqlDataAdapter(Command);
+
+                Connection.Open();
+                DataAdapter.Fill(ds);
+                Connection.Close();
+            }
+            catch (SqlException ex)
+            {
+                _ErrorId = ex.Number;
+                _ErrorDescription = ex.Message;
+                if (Connection.State == ConnectionState.Open) { Connection.Close(); }
+            }
+
+            return ds;
+        }
+
+        ///<remarks>
+        ///   <name>DACiudadano.SelectComboCiudad</name>
+        ///   <create>03/abr/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        ///<summary>Metodo para obtener las ciudades del sistema</summary>
+        public DataSet SelectComboCiudad(ENTCiudadano oENTCiudadano, string ConnectionString)
+        {
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            SqlCommand Command;
+            SqlDataAdapter DataAdapter;
+            DataSet ds = new DataSet();
+            SqlParameter Parameter;
+
+            try
+            {
+                Command = new SqlCommand("spCiudad_SelForControl", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                Parameter = new SqlParameter("EstadoId", SqlDbType.Int);
+                Parameter.Value = oENTCiudadano.EstadoId;
+                Command.Parameters.Add(Parameter);
+
+                DataAdapter = new SqlDataAdapter(Command);
+
+                Connection.Open();
+                DataAdapter.Fill(ds);
+                Connection.Close();
+            }
+            catch (SqlException ex)
+            {
+                _ErrorId = ex.Number;
+                _ErrorDescription = ex.Message;
+                if (Connection.State == ConnectionState.Open) { Connection.Close(); }
+            }
+
+            return ds;
+        }
+        
+
+        ///<remarks>
+        ///   <name>DACiudadano.SelectComboNacionalidad</name>
+        ///   <create>03/abr/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        ///<summary>Metodo para obtener las nacionalidades del sistema</summary>
+        public ENTResponse SelectComboNacionalidad(ENTCiudadano oENTCiudadano, string ConnectionString, int iAlternativeTimeOut)
+        {
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            SqlCommand Command;
+            SqlDataAdapter DataAdapter;
+
+            ENTResponse oENTResponse = new ENTResponse();
+
+            Command = new SqlCommand("spcatNacionalidad_SelForControl", Connection);
+            Command.CommandType = CommandType.StoredProcedure;
+
+            if (iAlternativeTimeOut > 0) { Command.CommandTimeout = iAlternativeTimeOut; }
+
+            oENTResponse.dsResponse = new DataSet();
+            DataAdapter = new SqlDataAdapter(Command);
+
+            try
+            {
+                Connection.Open();
+                DataAdapter.Fill(oENTResponse.dsResponse);
+                Connection.Close();
+            }
+            catch (SqlException ex) { oENTResponse.ExceptionRaised(ex.Message); }
+            catch (Exception ex) { oENTResponse.ExceptionRaised(ex.Message); }
+            finally
+            {
+                if (Connection.State == ConnectionState.Open)
+                {
+                    Connection.Close();
+                }
+            }
+
+            return oENTResponse;
+        }
+
+        ///<remarks>
+        ///   <name>DACiudadano.SelectComboPais</name>
+        ///   <create>03/abr/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        ///<summary>Metodo para obtener los países del sistema</summary>
+        public ENTResponse SelectComboPais(ENTCiudadano oENTCiudadano, string ConnectionString, int iAlternativeTimeOut)
+        {
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            SqlCommand Command;
+            SqlDataAdapter DataAdapter;
+
+            ENTResponse oENTResponse = new ENTResponse();
+
+            Command = new SqlCommand("spcatPais_SelForControl", Connection);
+            Command.CommandType = CommandType.StoredProcedure;
+
+            if (iAlternativeTimeOut > 0) { Command.CommandTimeout = iAlternativeTimeOut; }
+
+            oENTResponse.dsResponse = new DataSet();
+            DataAdapter = new SqlDataAdapter(Command);
+
+            try
+            {
+                Connection.Open();
+                DataAdapter.Fill(oENTResponse.dsResponse);
+                Connection.Close();
+            }
+            catch (SqlException ex) { oENTResponse.ExceptionRaised(ex.Message); }
+            catch (Exception ex) { oENTResponse.ExceptionRaised(ex.Message); }
+            finally
+            {
+                if (Connection.State == ConnectionState.Open)
+                {
+                    Connection.Close();
+                }
+            }
+
+            return oENTResponse;
+        }
+
+        ///<remarks>
+        ///   <name>DACiudadano.SelectComboCiudad</name>
+        ///   <create>03/abr/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        ///<summary>Metodo para obtener las ciudades del sistema</summary>
+        public ENTResponse SelectComboCiudad(ENTCiudadano oENTCiudadano, string ConnectionString, int iAlternativeTimeOut)
+        {
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            SqlCommand Command;
+            SqlDataAdapter DataAdapter;
+            SqlParameter Parameter;
+
+            ENTResponse oENTResponse = new ENTResponse();
+
+            Command = new SqlCommand("spcatCiudad_SelForControl", Connection);
+            Command.CommandType = CommandType.StoredProcedure;
+
+            if (iAlternativeTimeOut > 0) { Command.CommandTimeout = iAlternativeTimeOut; }
+
+            Parameter = new SqlParameter("EstadoId", SqlDbType.Int);
+            Parameter.Value = oENTCiudadano.EstadoId;
+            Command.Parameters.Add(Parameter);
+
+            oENTResponse.dsResponse = new DataSet();
+            DataAdapter = new SqlDataAdapter(Command);
+
+            try
+            {
+                Connection.Open();
+                DataAdapter.Fill(oENTResponse.dsResponse);
+                Connection.Close();
+            }
+            catch (SqlException ex) { oENTResponse.ExceptionRaised(ex.Message); }
+            catch (Exception ex) { oENTResponse.ExceptionRaised(ex.Message); }
+            finally
+            {
+                if (Connection.State == ConnectionState.Open)
+                {
+                    Connection.Close();
+                }
+            }
+
+            return oENTResponse;
+        }
     }
 }

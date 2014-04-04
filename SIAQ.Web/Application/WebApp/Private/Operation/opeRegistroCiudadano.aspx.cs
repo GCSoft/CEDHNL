@@ -19,6 +19,17 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         {
             if (Page.IsPostBack) { return; }
 
+            string ciudadanoId = GetRawQueryParameter("s");
+            if (String.IsNullOrEmpty(ciudadanoId))
+            {
+                hdnCiudadanoId.Value = String.Empty;
+            }
+            else
+            {
+                hdnCiudadanoId.Value = ciudadanoId;
+            }
+
+
             ComboEscolaridad();
             ComboEstadoCivil();
             ComboSexo();
@@ -27,6 +38,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             ComboNacionalidad();
             ComboPaises();
             ComboPaisesOrigen();
+
+            if (!String.IsNullOrEmpty(ciudadanoId))
+            {
+                ObtenerDetalleCiudadano(Convert.ToInt32(ciudadanoId));
+            }
         }
 
         #region Atributos
@@ -40,15 +56,127 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         #region Eventos
 
+        #region "Botones"
+
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (String.IsNullOrEmpty(hdnCiudadanoId.Value))
+                {
+                    AgregarCiudadano();
+                }
+                else
+                {
+                    ModificarCiudadano(Convert.ToInt32(hdnCiudadanoId.Value));
+                }
 
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page
+                    , this.GetType()
+                    , Convert.ToString(Guid.NewGuid())
+                    , "tinyboxMessage('" + ex.Message + "','Fail',true);"
+                    , true);
+            }
         }
 
         protected void btnRegresar_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("~/Application/WebApp/Private/Operation/opeBusquedaCiudadano.aspx");
         }
+
+        #endregion
+
+        #region "DropDownList"
+
+
+        protected void ddlPais_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                ComboEstados();
+                ComboCiudades();
+                ComboColonia();
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page
+                       , this.GetType()
+                       , Convert.ToString(Guid.NewGuid())
+                       , "tinyboxMessage('" + ex.Message + "', 'Fail', true);"
+                      , true);
+            }
+        }
+
+        protected void ddlPaisOrigen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                ComboEstadosOrigen();
+                ComboCiudadesOrigen();
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page
+                       , this.GetType()
+                       , Convert.ToString(Guid.NewGuid())
+                       , "tinyboxMessage('" + ex.Message + "', 'Fail', true);"
+                      , true);
+            }
+        }
+
+        protected void ddlEstado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                ComboCiudades();
+                ComboColonia();
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page
+                       , this.GetType()
+                       , Convert.ToString(Guid.NewGuid())
+                       , "tinyboxMessage('" + ex.Message + "', 'Fail', true);"
+                      , true);
+            }
+        }
+
+        protected void ddlEstadoOrigen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                ComboCiudadesOrigen();
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page
+                       , this.GetType()
+                       , Convert.ToString(Guid.NewGuid())
+                       , "tinyboxMessage('" + ex.Message + "', 'Fail', true);"
+                      , true);
+            }
+        }
+
+        protected void ddlCiudad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                ComboColonia();
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page
+                       , this.GetType()
+                       , Convert.ToString(Guid.NewGuid())
+                       , "tinyboxMessage('" + ex.Message + "', 'Fail', true);"
+                      , true);
+            }
+        }
+
+        #endregion
 
         #endregion
 
@@ -446,91 +574,309 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
+        private void AgregarCiudadano()
+        {
+            BPCiudadano oBPCiudadano = new BPCiudadano();
+            ENTResponse oENTResponse = new ENTResponse();
+            ENTCiudadano oENTCiudadano = new ENTCiudadano();
+
+            try
+            {
+                //Validaciones 
+                if (String.IsNullOrEmpty(txtNombre.Text)) { throw new Exception("El campo [Nombre] es requerido"); }
+                if (String.IsNullOrEmpty(txtApellidoPaterno.Text)) { throw new Exception("El campo [Apellido paterno] es requerido"); }
+                if (ddlSexo.SelectedValue == "0") { throw new Exception("El campo [Sexo] es requerido"); }
+                if (ddlNacionalidad.SelectedValue == "0") { throw new Exception("El campo [Nacionalidad] es requerido"); }
+                if (ddlOcupacion.SelectedValue == "0") { throw new Exception("El campo [Ocupación] es requerido"); }
+                if (ddlEscolaridad.SelectedValue == "0") { throw new Exception("El campo [Escolaridad] es requerido"); }
+                if (ddlEstadoCivil.SelectedValue == "0") { throw new Exception("El campo [Estado civil] es requerido"); }
+                if (String.IsNullOrEmpty(txtTelefonoPrincipal.Text)) { throw new Exception("El campo [Teléfono principal] es requerido"); }
+                if (String.IsNullOrEmpty(txtOtroTelefono.Text)) { throw new Exception("El campo [Otro teléfono] es requerido"); }
+                if (ddlPais.SelectedValue == "0") { throw new Exception("El campo [País] es requerido"); }
+                if (ddlEstado.SelectedValue == "0") { throw new Exception("El campo [Estado] es requerido"); }
+                if (ddlCiudad.SelectedValue == "0") { throw new Exception("El campo [Ciudad] es requerido"); }
+                if (ddlColonia.SelectedValue == "0") { throw new Exception("El campo [Colonia] es requerido"); }
+                if (String.IsNullOrEmpty(txtNombreCalle.Text)) { throw new Exception("El campo [Nombre calle] es requerido"); }
+                if (ddlPaisOrigen.SelectedValue == "0") { throw new Exception("El campo [País de origen] es requerido"); }
+                if (ddlEstadoOrigen.SelectedValue == "0") { throw new Exception("El campo [Estado de origen] es requerido"); }
+                if (ddlCiudadOrigen.SelectedValue == "0") { throw new Exception("El campo [Ciudad de origen] es requerido"); }
+
+                //Asignación de parametros 
+                //Info general
+                oENTCiudadano.Nombre = txtNombre.Text;
+                oENTCiudadano.ApellidoPaterno = txtApellidoPaterno.Text;
+                oENTCiudadano.ApellidoMaterno = txtApellidoMaterno.Text;
+                oENTCiudadano.SexoId = Convert.ToInt32(ddlSexo.SelectedValue);
+                oENTCiudadano.FechaNacimiento = Convert.ToDateTime(calFechaNacimiento.DisplayDate);
+                oENTCiudadano.NacionalidadId = Convert.ToInt32(ddlNacionalidad.SelectedValue);
+                oENTCiudadano.OcupacionId = Convert.ToInt32(ddlOcupacion.SelectedValue);
+                oENTCiudadano.EscolaridadId = Convert.ToInt32(ddlEscolaridad.SelectedValue);
+                oENTCiudadano.EstadoCivilId = Convert.ToInt32(ddlEstadoCivil.SelectedValue);
+                oENTCiudadano.TelefonoPrincipal = txtTelefonoPrincipal.Text;
+                oENTCiudadano.TelefonoOtro = txtOtroTelefono.Text;
+                oENTCiudadano.CorreoElectronico = txtCorreoElectronico.Text;
+                if (String.IsNullOrEmpty(txtDependientesEconomicos.Text))
+                {
+                    oENTCiudadano.DependientesEconomicos = 0;
+                }
+                else
+                {
+                    oENTCiudadano.DependientesEconomicos = Convert.ToByte(txtDependientesEconomicos.Text);
+                }
+
+                oENTCiudadano.MedioComunicacionId = Convert.ToInt32(ddlFormaEnterarse.SelectedValue);
+                //Domicilio
+                oENTCiudadano.PaisId = Convert.ToInt32(ddlPais.SelectedValue);
+                oENTCiudadano.EstadoId = Convert.ToInt32(ddlEstado.SelectedValue);
+                oENTCiudadano.CiudadId = Convert.ToInt32(ddlCiudad.SelectedValue);
+                oENTCiudadano.ColoniaId = Convert.ToInt32(ddlColonia.SelectedValue);
+                oENTCiudadano.Calle = txtNombreCalle.Text;
+                oENTCiudadano.NumeroExterior = txtNumExterior.Text;
+                oENTCiudadano.NumeroInterior = txtNumInterior.Text;
+                if (String.IsNullOrEmpty(txtAniosResidiendo.Text))
+                {
+                    oENTCiudadano.AniosResidiendoNL = 0;
+                }
+                else
+                {
+                    oENTCiudadano.AniosResidiendoNL = Convert.ToByte(txtAniosResidiendo.Text);
+                }
+
+                //Info de origen
+                oENTCiudadano.PaisOrigenId = Convert.ToInt32(ddlPaisOrigen.SelectedValue);
+                oENTCiudadano.EstadoOrigenId = Convert.ToInt32(ddlEstadoOrigen.SelectedValue);
+                oENTCiudadano.CiudadOrigenId = Convert.ToInt32(ddlCiudadOrigen.SelectedValue);
+
+                //Transacción 
+                oENTResponse = oBPCiudadano.InsertCiudadano(oENTCiudadano);
+
+                //Validación 
+                if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+                if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+
+                ScriptManager.RegisterStartupScript(this.Page
+                    , this.GetType()
+                    , Convert.ToString(Guid.NewGuid())
+                    , "tinyboxMessage('Ciudadano agregado con éxito','Success',true);"
+                    , true);
+
+                Limpiar();
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+        }
+
+        private void Limpiar()
+        {
+            txtNombre.Text = String.Empty;
+            txtApellidoPaterno.Text = String.Empty;
+            txtApellidoMaterno.Text = String.Empty;
+            ddlSexo.SelectedIndex = 0;
+            calFechaNacimiento.SetCurrentDate();
+            ddlNacionalidad.SelectedIndex = 0;
+            ddlOcupacion.SelectedIndex = 0;
+            ddlEscolaridad.SelectedIndex = 0;
+            ddlEstadoCivil.SelectedIndex = 0;
+            txtTelefonoPrincipal.Text = String.Empty;
+            txtOtroTelefono.Text = String.Empty;
+            txtCorreoElectronico.Text = String.Empty;
+            txtDependientesEconomicos.Text = String.Empty;
+            ddlFormaEnterarse.SelectedIndex = 0;
+
+            ComboPaises();
+            ComboPaisesOrigen();
+            ComboEstados();
+            ComboEstadosOrigen();
+            ComboCiudades();
+            ComboCiudadesOrigen();
+            ComboColonia();
+
+            txtNombreCalle.Text = String.Empty;
+            txtNumExterior.Text = String.Empty;
+            txtNumInterior.Text = String.Empty;
+            txtAniosResidiendo.Text = String.Empty;
+
+            hdnCiudadanoId.Value = String.Empty;
+
+            txtNombre.Focus();
+
+        }
+
+        private void ModificarCiudadano(int CiudadanoId)
+        {
+            BPCiudadano oBPCiudadano = new BPCiudadano();
+            ENTResponse oENTResponse = new ENTResponse();
+            ENTCiudadano oENTCiudadano = new ENTCiudadano();
+
+            try
+            {
+                //Validaciones 
+                if (String.IsNullOrEmpty(txtNombre.Text)) { throw new Exception("El campo [Nombre] es requerido"); }
+                if (String.IsNullOrEmpty(txtApellidoPaterno.Text)) { throw new Exception("El campo [Apellido paterno] es requerido"); }
+                if (ddlSexo.SelectedValue == "0") { throw new Exception("El campo [Sexo] es requerido"); }
+                if (ddlNacionalidad.SelectedValue == "0") { throw new Exception("El campo [Nacionalidad] es requerido"); }
+                if (ddlOcupacion.SelectedValue == "0") { throw new Exception("El campo [Ocupación] es requerido"); }
+                if (ddlEscolaridad.SelectedValue == "0") { throw new Exception("El campo [Escolaridad] es requerido"); }
+                if (ddlEstadoCivil.SelectedValue == "0") { throw new Exception("El campo [Estado civil] es requerido"); }
+                if (String.IsNullOrEmpty(txtTelefonoPrincipal.Text)) { throw new Exception("El campo [Teléfono principal] es requerido"); }
+                if (String.IsNullOrEmpty(txtOtroTelefono.Text)) { throw new Exception("El campo [Otro teléfono] es requerido"); }
+                if (ddlPais.SelectedValue == "0") { throw new Exception("El campo [País] es requerido"); }
+                if (ddlEstado.SelectedValue == "0") { throw new Exception("El campo [Estado] es requerido"); }
+                if (ddlCiudad.SelectedValue == "0") { throw new Exception("El campo [Ciudad] es requerido"); }
+                if (ddlColonia.SelectedValue == "0") { throw new Exception("El campo [Colonia] es requerido"); }
+                if (String.IsNullOrEmpty(txtNombreCalle.Text)) { throw new Exception("El campo [Nombre calle] es requerido"); }
+                if (ddlPaisOrigen.SelectedValue == "0") { throw new Exception("El campo [País de origen] es requerido"); }
+                if (ddlEstadoOrigen.SelectedValue == "0") { throw new Exception("El campo [Estado de origen] es requerido"); }
+                if (ddlCiudadOrigen.SelectedValue == "0") { throw new Exception("El campo [Ciudad de origen] es requerido"); }
+
+                //Asignación de parametros 
+                //Info general
+                oENTCiudadano.CiudadanoId = CiudadanoId;
+                oENTCiudadano.Nombre = txtNombre.Text;
+                oENTCiudadano.ApellidoPaterno = txtApellidoPaterno.Text;
+                oENTCiudadano.ApellidoMaterno = txtApellidoMaterno.Text;
+                oENTCiudadano.SexoId = Convert.ToInt32(ddlSexo.SelectedValue);
+                oENTCiudadano.FechaNacimiento = Convert.ToDateTime(calFechaNacimiento.DisplayDate);
+                oENTCiudadano.NacionalidadId = Convert.ToInt32(ddlNacionalidad.SelectedValue);
+                oENTCiudadano.OcupacionId = Convert.ToInt32(ddlOcupacion.SelectedValue);
+                oENTCiudadano.EscolaridadId = Convert.ToInt32(ddlEscolaridad.SelectedValue);
+                oENTCiudadano.EstadoCivilId = Convert.ToInt32(ddlEstadoCivil.SelectedValue);
+                oENTCiudadano.TelefonoPrincipal = txtTelefonoPrincipal.Text;
+                oENTCiudadano.TelefonoOtro = txtOtroTelefono.Text;
+                oENTCiudadano.CorreoElectronico = txtCorreoElectronico.Text;
+                if (String.IsNullOrEmpty(txtDependientesEconomicos.Text))
+                {
+                    oENTCiudadano.DependientesEconomicos = 0;
+                }
+                else
+                {
+                    oENTCiudadano.DependientesEconomicos = Convert.ToByte(txtDependientesEconomicos.Text);
+                }
+
+                oENTCiudadano.MedioComunicacionId = Convert.ToInt32(ddlFormaEnterarse.SelectedValue);
+                //Domicilio
+                oENTCiudadano.PaisId = Convert.ToInt32(ddlPais.SelectedValue);
+                oENTCiudadano.EstadoId = Convert.ToInt32(ddlEstado.SelectedValue);
+                oENTCiudadano.CiudadId = Convert.ToInt32(ddlCiudad.SelectedValue);
+                oENTCiudadano.ColoniaId = Convert.ToInt32(ddlColonia.SelectedValue);
+                oENTCiudadano.Calle = txtNombreCalle.Text;
+                oENTCiudadano.NumeroExterior = txtNumExterior.Text;
+                oENTCiudadano.NumeroInterior = txtNumInterior.Text;
+                if (String.IsNullOrEmpty(txtAniosResidiendo.Text))
+                {
+                    oENTCiudadano.AniosResidiendoNL = 0;
+                }
+                else
+                {
+                    oENTCiudadano.AniosResidiendoNL = Convert.ToByte(txtAniosResidiendo.Text);
+                }
+
+                //Info de origen
+                oENTCiudadano.PaisOrigenId = Convert.ToInt32(ddlPaisOrigen.SelectedValue);
+                oENTCiudadano.EstadoOrigenId = Convert.ToInt32(ddlEstadoOrigen.SelectedValue);
+                oENTCiudadano.CiudadOrigenId = Convert.ToInt32(ddlCiudadOrigen.SelectedValue);
+
+                //Transacción 
+                oENTResponse = oBPCiudadano.UpdateCiudadano(oENTCiudadano);
+
+                //Validación 
+                if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+                if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+
+                ScriptManager.RegisterStartupScript(this.Page
+                    , this.GetType()
+                    , Convert.ToString(Guid.NewGuid())
+                    , "tinyboxMessage('Ciudadano modificado con éxito','Success',true);"
+                    , true);
+
+                Limpiar();
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+        }
+
+        public string GetRawQueryParameter(string parameterName)
+        {
+            string raw = Request.RawUrl;
+            int startQueryIdx = raw.IndexOf('?');
+            if (startQueryIdx < 0)
+                return null;
+
+            int nameLength = parameterName.Length + 1;
+            int startIdx = raw.IndexOf(parameterName + "=", startQueryIdx);
+            if (startIdx < 0)
+                return null;
+
+            startIdx += nameLength;
+            int endIdx = raw.IndexOf('&', startIdx);
+            if (endIdx < 0)
+                endIdx = raw.Length;
+
+            return raw.Substring(startIdx, endIdx - startIdx);
+        }
+
+        private void ObtenerDetalleCiudadano(int ciudadanoId)
+        {
+            BPCiudadano oBPCiudadano = new BPCiudadano();
+
+            try
+            {
+                oBPCiudadano.ENTCiudadano.CiudadanoId = ciudadanoId;
+                oBPCiudadano.SelectDetalleCiudadano();
+
+                if (oBPCiudadano.ErrorId == 0)
+                {
+                    if (oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows.Count > 0)
+                    {
+                        txtNombre.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["Nombre"].ToString();
+                        txtApellidoPaterno.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["ApellidoPaterno"].ToString();
+                        txtApellidoMaterno.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["ApellidoMaterno"].ToString();
+                        ddlSexo.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["SexoId"].ToString();
+                        calFechaNacimiento.SetDate = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["FechaNacimiento"].ToString();
+                        ddlNacionalidad.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["NacionalidadId"].ToString();
+                        ddlOcupacion.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["OcupacionId"].ToString();
+                        ddlEscolaridad.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["EscolaridadId"].ToString();
+                        ddlEstadoCivil.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["EstadoCivilId"].ToString();
+                        txtTelefonoPrincipal.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["TelefonoPrincipal"].ToString();
+                        txtOtroTelefono.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["TelefonoOtro"].ToString();
+                        txtCorreoElectronico.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["CorreoElectronico"].ToString();
+                        txtDependientesEconomicos.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["DependientesEconomicos"].ToString();
+                        ddlFormaEnterarse.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["MedioComunicacionId"].ToString();
+                        ddlPais.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["PaisId"].ToString();
+                        ComboEstados();
+                        ddlEstado.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["EstadoId"].ToString();
+                        ComboCiudades();
+                        ddlCiudad.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["CiudadId"].ToString();
+                        ComboColonia();
+                        ddlColonia.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["ColoniaId"].ToString();
+                        txtNombreCalle.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["Calle"].ToString();
+                        txtNumExterior.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["NumeroExterior"].ToString();
+                        txtNumInterior.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["NumeroInterior"].ToString();
+                        txtAniosResidiendo.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["AniosResidiendoNL"].ToString();
+                        ddlPaisOrigen.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["PaisOrigenId"].ToString();
+                        ComboEstadosOrigen();
+                        ddlEstadoOrigen.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["EstadoOrigenId"].ToString();
+                        ComboCiudadesOrigen();
+                        ddlCiudadOrigen.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["CiudadOrigenId"].ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page
+                    , this.GetType()
+                    , Convert.ToString(Guid.NewGuid())
+                    , "tinyboxMessage('" + ex.Message + "','Fail',true);"
+                    , true);
+            }
+        }
+
         #endregion
 
-        protected void ddlPais_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                ComboEstados();
-                ComboCiudades();
-                ComboColonia();
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this.Page
-                       , this.GetType()
-                       , Convert.ToString(Guid.NewGuid())
-                       , "tinyboxMessage('" + ex.Message + "', 'Fail', true);"
-                      , true);
-            }
-        }
-
-        protected void ddlPaisOrigen_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                ComboEstadosOrigen();
-                ComboCiudadesOrigen();
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this.Page
-                       , this.GetType()
-                       , Convert.ToString(Guid.NewGuid())
-                       , "tinyboxMessage('" + ex.Message + "', 'Fail', true);"
-                      , true);
-            }
-        }
-
-        protected void ddlEstado_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                ComboCiudades();
-                ComboColonia();
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this.Page
-                       , this.GetType()
-                       , Convert.ToString(Guid.NewGuid())
-                       , "tinyboxMessage('" + ex.Message + "', 'Fail', true);"
-                      , true);
-            }
-        }
-
-        protected void ddlEstadoOrigen_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                ComboCiudadesOrigen();
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this.Page
-                       , this.GetType()
-                       , Convert.ToString(Guid.NewGuid())
-                       , "tinyboxMessage('" + ex.Message + "', 'Fail', true);"
-                      , true);
-            }
-        }
-
-        protected void ddlCiudad_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                ComboColonia();
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this.Page
-                       , this.GetType()
-                       , Convert.ToString(Guid.NewGuid())
-                       , "tinyboxMessage('" + ex.Message + "', 'Fail', true);"
-                      , true);
-            }
-        }
 
     }
 }

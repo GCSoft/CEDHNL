@@ -10,9 +10,12 @@ namespace SIAQ.Entity.Object
         private int _CiudadanoId; // Valor de CiudadanoId
         private int _SexoId; // Valor de SexoId
         private int _EstadoCivilId; // Valor de EstadoCivilId
+        private int _PaisOrigenId;   // Valor de _PaisOrigenId
+        private int _EstadoOrigenId; //Valor de _EstadoOrigenId
         private int _CiudadOrigenId; // Valor de CiudadOrigenId
         private int _NacionalidadId; // Valor de NacionalidadId
         private int _EscolaridadId; // Valor de EscolaridadId
+        private int _OcupacionId;   // Valor de OcupacionId 
         private int _IngresoEconomicoId; // Valor de IngresoEconomicoId
         private int _TipoViviendaId; // Valor de TipoViviendaId
         private int _MedioComunicacionId; // Valor de MedioComunicacionId
@@ -30,7 +33,13 @@ namespace SIAQ.Entity.Object
         private string _CampoBusqueda;
         private int _SolicitudId;
         private int _TipoCiudadanoId;
-
+        private string _NumeroExterior;
+        private string _NumeroInterior;
+        private string _TelefonoPrincipal;
+        private string _TelefonoOtro;
+        private string _CorreoElectronico;
+        private byte _AniosResidiendoNL;
+        private byte _DependientesEconomicos;
 
         public ENTCiudadano()
         {
@@ -92,6 +101,28 @@ namespace SIAQ.Entity.Object
             set { _EstadoCivilId = value; }
         }
         ///<remarks>
+        ///   <name>Ciudadano.PaisOrigenId</name>
+        ///   <create>04/abr/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        ///<summary>Obtiene/Asigna PaisOrigenId</summary>
+        public int PaisOrigenId
+        {
+            get { return _PaisOrigenId; }
+            set { _PaisOrigenId = value; }
+        }
+        ///<remarks>
+        ///   <name>Ciudadano.EstadoOrigenId</name>
+        ///   <create>04/abr/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        ///<summary>Obtiene/Asigna EstadoOrigenId</summary>
+        public int EstadoOrigenId
+        {
+            get { return _EstadoOrigenId; }
+            set { _EstadoOrigenId = value; }
+        }
+        ///<remarks>
         ///   <name>Ciudadano.CiudadOrigenId</name>
         ///   <create>27/ene/2014</create>
         ///   <author>Generador</author>
@@ -123,6 +154,17 @@ namespace SIAQ.Entity.Object
         {
             get { return _EscolaridadId; }
             set { _EscolaridadId = value; }
+        }
+        ///<remarks>
+        ///   <name>Ciudadano.OcupacionId</name>
+        ///   <create>04/abr/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        ///<summary>Obtiene/Asigna OcupacionId</summary>
+        public int OcupacionId
+        {
+            get { return _OcupacionId; }
+            set { _OcupacionId = value; }
         }
         ///<remarks>
         ///   <name>Ciudadano.IngresoEconomicoId</name>
@@ -174,7 +216,12 @@ namespace SIAQ.Entity.Object
             get { return _Nombre; }
             set { _Nombre = value; }
         }
-
+        ///<remarks>
+        ///   <name>Ciudadano.SolicitudId</name>
+        ///   <create>27/ene/2014</create>
+        ///   <author>Generador</author>
+        ///</remarks>
+        ///<summary>Obtiene/Asigna SolicitudId</summary>
         public int SolicitudId
         {
             get { return _SolicitudId; }
@@ -239,16 +286,15 @@ namespace SIAQ.Entity.Object
 
         public int CiudadId
         {
-           get { return _CiudadId; }
-           set { _CiudadId = value; }
+            get { return _CiudadId; }
+            set { _CiudadId = value; }
         }
 
         public int ColoniaId
         {
-           get { return _ColoniaId; }
-           set { _ColoniaId = value; }
+            get { return _ColoniaId; }
+            set { _ColoniaId = value; }
         }
-
 
         public string Calle
         {
@@ -260,6 +306,48 @@ namespace SIAQ.Entity.Object
         {
             get { return _CampoBusqueda; }
             set { _CampoBusqueda = value; }
+        }
+
+        public string NumeroExterior
+        {
+            get { return _NumeroExterior; }
+            set { _NumeroExterior = value; }
+        }
+
+        public string NumeroInterior
+        {
+            get { return _NumeroInterior; }
+            set { _NumeroInterior = value; }
+        }
+
+        public string TelefonoPrincipal
+        {
+            get { return _TelefonoPrincipal; }
+            set { _TelefonoPrincipal = value; }
+        }
+
+        public string TelefonoOtro
+        {
+            get { return _TelefonoOtro; }
+            set { _TelefonoOtro = value; }
+        }
+
+        public string CorreoElectronico
+        {
+            get { return _CorreoElectronico; }
+            set { _CorreoElectronico = value; }
+        }
+
+        public byte AniosResidiendoNL
+        {
+            get { return _AniosResidiendoNL; }
+            set { _AniosResidiendoNL = value; }
+        }
+
+        public byte DependientesEconomicos
+        {
+            get { return _DependientesEconomicos; }
+            set { _DependientesEconomicos = value; }
         }
 
         ///     DataSet resultante de las busquedas en la base de datos

@@ -7,11 +7,23 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
     <script type="text/javascript">
 
-        // Funciones del programador
-        function NumbersValidator(e) {
+        function CheckNumeric(e) {
 
-            var tecla = document.all ? tecla = e.keyCode : tecla = e.which;
-            return (tecla > 47 && tecla < 58);
+            if (window.event) // IE 
+            {
+                if ((e.keyCode < 48 || e.keyCode > 57) & e.keyCode != 8) {
+                    event.returnValue = false;
+                    return false;
+
+                }
+            }
+            else { // Fire Fox
+                if ((e.which < 48 || e.which > 57) & e.which != 8) {
+                    e.preventDefault();
+                    return false;
+
+                }
+            }
         }
 
     </script>
@@ -59,7 +71,8 @@
                                 <font class="MarcadorObligatorio">&nbsp;*</font>
                             </td>
                             <td class="Campo">
-                                <asp:TextBox ID="txtNombre" runat="server" CssClass="Textbox_General" Width="210px"></asp:TextBox>
+                                <asp:TextBox ID="txtNombre" runat="server" CssClass="Textbox_General" 
+                                    Width="210px" TabIndex="1" MaxLength="50"></asp:TextBox>
                             </td>
                             <td class="Espacio">
                             </td>
@@ -71,7 +84,7 @@
                             </td>
                             <td class="Campo">
                                 <asp:DropDownList ID="ddlEscolaridad" runat="server" CssClass="DropDownList_General"
-                                    Width="216px">
+                                    Width="216px" TabIndex="7">
                                 </asp:DropDownList>
                             </td>
                         </tr>
@@ -83,7 +96,8 @@
                                 <font class="MarcadorObligatorio">&nbsp;*</font>
                             </td>
                             <td class="Campo">
-                                <asp:TextBox ID="txtApellidoPaterno" runat="server" CssClass="Textbox_General" Width="210px"></asp:TextBox>
+                                <asp:TextBox ID="txtApellidoPaterno" runat="server" CssClass="Textbox_General" 
+                                    Width="210px" TabIndex="2" MaxLength="50"></asp:TextBox>
                             </td>
                             <td class="Espacio">
                             </td>
@@ -95,7 +109,7 @@
                             </td>
                             <td class="Campo">
                                 <asp:DropDownList ID="ddlEstadoCivil" runat="server" CssClass="DropDownList_General"
-                                    Width="216px">
+                                    Width="216px" TabIndex="8">
                                 </asp:DropDownList>
                             </td>
                         </tr>
@@ -106,7 +120,8 @@
                             <td class="Espacio">
                             </td>
                             <td class="Campo">
-                                <asp:TextBox ID="txtApellidoMaterno" runat="server" CssClass="Textbox_General" Width="210px"></asp:TextBox>
+                                <asp:TextBox ID="txtApellidoMaterno" runat="server" CssClass="Textbox_General" 
+                                    Width="210px" TabIndex="3" MaxLength="50"></asp:TextBox>
                             </td>
                             <td class="Espacio">
                             </td>
@@ -117,8 +132,8 @@
                                 <font class="MarcadorObligatorio">&nbsp;*</font>
                             </td>
                             <td class="Campo">
-                                <asp:TextBox ID="txtTelefonoPrincipal" runat="server" CssClass="Textbox_General"
-                                    Width="108px"></asp:TextBox>
+                                <asp:TextBox ID="txtTelefonoPrincipal" runat="server" CssClass="Textbox_General" onkeydown="return CheckNumeric(event)"
+                                    Width="108px" TabIndex="9" MaxLength="15"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -129,7 +144,8 @@
                                 <font class="MarcadorObligatorio">&nbsp;*</font>
                             </td>
                             <td class="Campo">
-                                <asp:DropDownList ID="ddlSexo" runat="server" CssClass="DropDownList_General" Width="216px">
+                                <asp:DropDownList ID="ddlSexo" runat="server" CssClass="DropDownList_General" 
+                                    Width="216px" TabIndex="4">
                                 </asp:DropDownList>
                             </td>
                             <td class="Espacio">
@@ -141,7 +157,8 @@
                                 <font class="MarcadorObligatorio">&nbsp;*</font>
                             </td>
                             <td class="Campo">
-                                <asp:TextBox ID="txtOtroTelefono" runat="server" CssClass="Textbox_General" Width="108px"></asp:TextBox>
+                                <asp:TextBox ID="txtOtroTelefono" runat="server" CssClass="Textbox_General" onkeydown="return CheckNumeric(event)"
+                                    Width="108px" TabIndex="10" MaxLength="15"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -162,7 +179,7 @@
                             </td>
                             <td class="Campo">
                                 <asp:TextBox ID="txtCorreoElectronico" runat="server" CssClass="Textbox_General"
-                                    Width="210px"></asp:TextBox>
+                                    Width="210px" TabIndex="11" MaxLength="50"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -174,7 +191,7 @@
                             </td>
                             <td class="Campo">
                                 <asp:DropDownList ID="ddlNacionalidad" runat="server" CssClass="DropDownList_General"
-                                    Width="216px">
+                                    Width="216px" TabIndex="5">
                                 </asp:DropDownList>
                             </td>
                             <td class="Espacio">
@@ -186,7 +203,7 @@
                             </td>
                             <td class="Campo">
                                 <asp:TextBox ID="txtDependientesEconomicos" runat="server" CssClass="Textbox_General"
-                                    Width="108px"></asp:TextBox>
+                                    Width="108px" TabIndex="12" MaxLength="3"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -198,7 +215,7 @@
                             </td>
                             <td class="Campo">
                                 <asp:DropDownList ID="ddlOcupacion" runat="server" CssClass="DropDownList_General"
-                                    Width="216px">
+                                    Width="216px" TabIndex="6">
                                 </asp:DropDownList>
                             </td>
                             <td class="Espacio">
@@ -210,7 +227,7 @@
                             </td>
                             <td class="Campo">
                                 <asp:DropDownList ID="ddlFormaEnterarse" runat="server" CssClass="DropDownList_General"
-                                    Width="216px">
+                                    Width="216px" TabIndex="13">
                                 </asp:DropDownList>
                             </td>
                         </tr>
@@ -251,7 +268,7 @@
                             <td class="Campo">
                                 <asp:DropDownList ID="ddlPais" runat="server" CssClass="DropDownList_General" 
                                     Width="216px" AutoPostBack="true" 
-                                    onselectedindexchanged="ddlPais_SelectedIndexChanged">
+                                    onselectedindexchanged="ddlPais_SelectedIndexChanged" TabIndex="14">
                                 </asp:DropDownList>
                             </td>
                             <td class="Espacio">
@@ -263,7 +280,8 @@
                                 <font class="MarcadorObligatorio">&nbsp;*</font>
                             </td>
                             <td class="Campo">
-                                <asp:TextBox ID="txtNombreCalle" runat="server" CssClass="Textbox_General" Width="210px"></asp:TextBox>
+                                <asp:TextBox ID="txtNombreCalle" runat="server" CssClass="Textbox_General" 
+                                    Width="210px" TabIndex="18" MaxLength="50"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -276,7 +294,7 @@
                             <td class="Campo">
                                 <asp:DropDownList ID="ddlEstado" runat="server" CssClass="DropDownList_General" 
                                     Width="216px" AutoPostBack="True" 
-                                    onselectedindexchanged="ddlEstado_SelectedIndexChanged">
+                                    onselectedindexchanged="ddlEstado_SelectedIndexChanged" TabIndex="15">
                                 </asp:DropDownList>
                             </td>
                             <td class="Espacio">
@@ -287,7 +305,8 @@
                             <td class="Espacio">
                             </td>
                             <td class="Campo">
-                                <asp:TextBox ID="txtNumExterior" runat="server" CssClass="Textbox_General" Width="108px"></asp:TextBox>
+                                <asp:TextBox ID="txtNumExterior" runat="server" CssClass="Textbox_General" onkeydown="return CheckNumeric(event)" 
+                                    Width="108px" TabIndex="19" MaxLength="10"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -300,7 +319,7 @@
                             <td class="Campo">
                                 <asp:DropDownList ID="ddlCiudad" runat="server" CssClass="DropDownList_General" 
                                     Width="216px" AutoPostBack="True" 
-                                    onselectedindexchanged="ddlCiudad_SelectedIndexChanged">
+                                    onselectedindexchanged="ddlCiudad_SelectedIndexChanged" TabIndex="16">
                                 </asp:DropDownList>
                             </td>
                             <td class="Espacio">
@@ -311,7 +330,8 @@
                             <td class="Espacio">
                             </td>
                             <td class="Campo">
-                                <asp:TextBox ID="txtNumInterior" runat="server" CssClass="Textbox_General" Width="108px"></asp:TextBox>
+                                <asp:TextBox ID="txtNumInterior" runat="server" CssClass="Textbox_General" onkeydown="return CheckNumeric(event)"
+                                    Width="108px" TabIndex="20" MaxLength="10"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -323,7 +343,7 @@
                             </td>
                             <td class="Campo">
                                 <asp:DropDownList ID="ddlColonia" runat="server" CssClass="DropDownList_General"
-                                    Width="216px">
+                                    Width="216px" TabIndex="17">
                                 </asp:DropDownList>
                             </td>
                             <td class="Espacio">
@@ -334,7 +354,8 @@
                             <td class="Espacio">
                             </td>
                             <td class="Campo">
-                                <asp:TextBox ID="txtAniosResidiendo" runat="server" CssClass="Textbox_General" Width="108px"></asp:TextBox>
+                                <asp:TextBox ID="txtAniosResidiendo" runat="server" CssClass="Textbox_General" onkeydown="return CheckNumeric(event)"
+                                    Width="108px" TabIndex="21" MaxLength="3"></asp:TextBox>
                             </td>
                         </tr>
                     </table>
@@ -374,7 +395,7 @@
                             <td class="Campo">
                                 <asp:DropDownList ID="ddlPaisOrigen" runat="server" CssClass="DropDownList_General"
                                     Width="216px" AutoPostBack="True" 
-                                    onselectedindexchanged="ddlPaisOrigen_SelectedIndexChanged">
+                                    onselectedindexchanged="ddlPaisOrigen_SelectedIndexChanged" TabIndex="22">
                                 </asp:DropDownList>
                             </td>
                             <td class="Espacio">
@@ -398,7 +419,8 @@
                             <td class="Campo">
                                 <asp:DropDownList ID="ddlEstadoOrigen" runat="server" CssClass="DropDownList_General"
                                     Width="216px" AutoPostBack="True" 
-                                    onselectedindexchanged="ddlEstadoOrigen_SelectedIndexChanged">
+                                    onselectedindexchanged="ddlEstadoOrigen_SelectedIndexChanged" 
+                                    TabIndex="23">
                                 </asp:DropDownList>
                             </td>
                             <td class="Espacio">
@@ -419,7 +441,7 @@
                             </td>
                             <td class="Campo">
                                 <asp:DropDownList ID="ddlCiudadOrigen" runat="server" CssClass="DropDownList_General"
-                                    Width="216px">
+                                    Width="216px" TabIndex="24">
                                 </asp:DropDownList>
                             </td>
                             <td class="Espacio">

@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeDetalleCiudadano.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeDetalleCiudadano" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
 <style type="text/css">
     

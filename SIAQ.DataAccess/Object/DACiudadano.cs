@@ -71,102 +71,6 @@ namespace SIAQ.DataAccess.Object
 
         }
 
-        ///<remarks>
-        ///   <name>DACiudadano.insertCiudadano</name>
-        ///   <create>27/ene/2014</create>
-        ///   <author>Generador</author>
-        ///</remarks>
-        ///<summary>Metodo para insertar Ciudadano del sistema</summary>
-        public ENTResponse insertCiudadano(ENTCiudadano entCiudadano)
-        {
-            ENTResponse oENTResponse = new ENTResponse();
-            DataSet ds = new DataSet();
-            // Transacción
-            try
-            {
-                ds = dbs.ExecuteDataSet("CiudadanoIns");
-                oENTResponse.dsResponse = ds;
-            }
-            catch (SqlException sqlEx)
-            {
-                oENTResponse.ExceptionRaised(sqlEx.Message);
-            }
-            catch (Exception ex)
-            {
-                oENTResponse.ExceptionRaised(ex.Message);
-            }
-            finally
-            {
-            }
-            // Resultado
-            return oENTResponse;
-
-        }
-
-        ///<remarks>
-        ///   <name>DACiudadano.updateCiudadano</name>
-        ///   <create>27/ene/2014</create>
-        ///   <author>Generador</author>
-        ///</remarks>
-        ///<summary>Metodo que actualiza Ciudadano del sistema</summary>
-        public ENTResponse updateCiudadano(ENTCiudadano entCiudadano)
-        {
-            ENTResponse oENTResponse = new ENTResponse();
-            DataSet ds = new DataSet();
-            // Transacción
-            try
-            {
-                dbs.ExecuteDataSet("CiudadanoUpd");
-                oENTResponse.dsResponse = ds;
-            }
-            catch (SqlException sqlEx)
-            {
-                oENTResponse.ExceptionRaised(sqlEx.Message);
-            }
-            catch (Exception ex)
-            {
-                oENTResponse.ExceptionRaised(ex.Message);
-            }
-            finally
-            {
-            }
-            // Resultado
-            return oENTResponse;
-
-        }
-
-        ///<remarks>
-        ///   <name>DACiudadano.deleteCiudadano</name>
-        ///   <create>27/ene/2014</create>
-        ///   <author>Generador</author>
-        ///</remarks>
-        ///<summary>Metodo para eliminar de Ciudadano del sistema</summary>
-        public ENTResponse deleteCiudadano(ENTCiudadano entCiudadano)
-        {
-            ENTResponse oENTResponse = new ENTResponse();
-            DataSet ds = new DataSet();
-            // Transacción
-            try
-            {
-                dbs.ExecuteDataSet("CiudadanoDel");
-                oENTResponse.dsResponse = ds;
-            }
-            catch (SqlException sqlEx)
-            {
-                oENTResponse.ExceptionRaised(sqlEx.Message);
-            }
-            catch (Exception ex)
-            {
-                oENTResponse.ExceptionRaised(ex.Message);
-            }
-            finally
-            {
-            }
-            // Resultado
-            return oENTResponse;
-
-        }
-
         public void AgregarCiudadanoSolicitud(ENTCiudadano ENTCiudadano, string ConnectionString)
         {
 
@@ -642,7 +546,45 @@ namespace SIAQ.DataAccess.Object
 
             return ds;
         }
-        
+
+        ///<remarks>
+        ///   <name>DACiudadano.SelectDetalleCiudadano</name>
+        ///   <create>04/abr/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        ///<summary>Selecciona los detalles del ciudadano en específico del sistema para el llenado de controles</summary>
+        public DataSet SelectDetalleCiudadano(ENTCiudadano oENTCiudadano, string ConnectionString)
+        {
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            SqlCommand Command;
+            SqlDataAdapter DataAdapter;
+            DataSet ds = new DataSet();
+            SqlParameter Parameter;
+
+            try
+            {
+                Command = new SqlCommand("spDetalleCiudadanoEditar_sel", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                Parameter = new SqlParameter("CiudadanoId", SqlDbType.Int);
+                Parameter.Value = oENTCiudadano.CiudadanoId;
+                Command.Parameters.Add(Parameter);
+
+                DataAdapter = new SqlDataAdapter(Command);
+
+                Connection.Open();
+                DataAdapter.Fill(ds);
+                Connection.Close();
+            }
+            catch (SqlException ex)
+            {
+                _ErrorId = ex.Number;
+                _ErrorDescription = ex.Message;
+                if (Connection.State == ConnectionState.Open) { Connection.Close(); }
+            }
+
+            return ds;
+        }
 
         ///<remarks>
         ///   <name>DACiudadano.SelectComboNacionalidad</name>
@@ -771,5 +713,255 @@ namespace SIAQ.DataAccess.Object
 
             return oENTResponse;
         }
+
+        ///<remarks>
+        ///   <name>DACiudadano.InsertCiudadano</name>
+        ///   <create>04/abr/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        ///<summary>Inserta ciudadanos en el sistema</summary>
+        public ENTResponse InsertCiudadano(ENTCiudadano oENTCiudadano, string sConnectionString, int iAlternativeTimeOut)
+        {
+            SqlConnection Connection = new SqlConnection(sConnectionString);
+            SqlCommand Command;
+            SqlDataAdapter DataAdapter;
+            SqlParameter Parameter;
+
+            ENTResponse oENTResponse = new ENTResponse();
+
+            Command = new SqlCommand("spCiudadanos_ins", Connection);
+            Command.CommandType = CommandType.StoredProcedure;
+
+            if (iAlternativeTimeOut > 0) { Command.CommandTimeout = iAlternativeTimeOut; }
+
+            Parameter = new SqlParameter("SexoId", SqlDbType.Int);
+            Parameter.Value = oENTCiudadano.SexoId;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("EstadoCivilId", SqlDbType.Int);
+            Parameter.Value = oENTCiudadano.EstadoCivilId;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("ColoniaId", SqlDbType.Int);
+            Parameter.Value = oENTCiudadano.ColoniaId;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("CiudadOrigenId", SqlDbType.Int);
+            Parameter.Value = oENTCiudadano.CiudadOrigenId;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("NacionalidadId", SqlDbType.Int);
+            Parameter.Value = oENTCiudadano.NacionalidadId;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("EscolaridadId", SqlDbType.Int);
+            Parameter.Value = oENTCiudadano.EscolaridadId;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("OcupacionId", SqlDbType.Int);
+            Parameter.Value = oENTCiudadano.OcupacionId;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("MedioComunicacionId", SqlDbType.Int);
+            Parameter.Value = oENTCiudadano.MedioComunicacionId;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("Nombre", SqlDbType.VarChar);
+            Parameter.Value = oENTCiudadano.Nombre;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("ApellidoPaterno", SqlDbType.VarChar);
+            Parameter.Value = oENTCiudadano.ApellidoPaterno;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("ApellidoMaterno", SqlDbType.VarChar);
+            Parameter.Value = oENTCiudadano.ApellidoMaterno;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("FechaNacimiento", SqlDbType.DateTime);
+            Parameter.Value = oENTCiudadano.FechaNacimiento;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("Calle", SqlDbType.VarChar);
+            Parameter.Value = oENTCiudadano.Calle;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("NumeroExterior", SqlDbType.VarChar);
+            Parameter.Value = oENTCiudadano.NumeroExterior;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("NumeroInterior", SqlDbType.VarChar);
+            Parameter.Value = oENTCiudadano.NumeroInterior;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("TelefonoPrincipal", SqlDbType.VarChar);
+            Parameter.Value = oENTCiudadano.TelefonoPrincipal;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("TelefonoOtro", SqlDbType.VarChar);
+            Parameter.Value = oENTCiudadano.TelefonoOtro;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("CorreoElectronico", SqlDbType.VarChar);
+            Parameter.Value = oENTCiudadano.CorreoElectronico;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("AniosResidiendoNL", SqlDbType.TinyInt);
+            Parameter.Value = oENTCiudadano.AniosResidiendoNL;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("DependientesEconomicos", SqlDbType.Int);
+            Parameter.Value = oENTCiudadano.DependientesEconomicos;
+            Command.Parameters.Add(Parameter);
+
+            oENTResponse.dsResponse = new DataSet();
+            DataAdapter = new SqlDataAdapter(Command);
+
+            try
+            {
+                Connection.Open();
+                DataAdapter.Fill(oENTResponse.dsResponse);
+                Connection.Close();
+            }
+            catch (SqlException ex) { oENTResponse.ExceptionRaised(ex.Message); }
+            catch (Exception ex) { oENTResponse.ExceptionRaised(ex.Message); }
+            finally
+            {
+                if (Connection.State == ConnectionState.Open)
+                {
+                    Connection.Close();
+                }
+            }
+
+            return oENTResponse;
+        }
+
+        ///<remarks>
+        ///   <name>DACiudadano.InsertCiudadano</name>
+        ///   <create>04/abr/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        ///<summary>Modifica ciudadanos en el sistema</summary>
+        public ENTResponse UpdateCiudadano(ENTCiudadano oENTCiudadano, string sConnectionString, int iAlternativeTimeOut)
+        {
+            SqlConnection Connection = new SqlConnection(sConnectionString);
+            SqlCommand Command;
+            SqlDataAdapter DataAdapter;
+            SqlParameter Parameter;
+
+            ENTResponse oENTResponse = new ENTResponse();
+
+            Command = new SqlCommand("spCiudadanos_upd", Connection);
+            Command.CommandType = CommandType.StoredProcedure;
+
+            if (iAlternativeTimeOut > 0) { Command.CommandTimeout = iAlternativeTimeOut; }
+
+            Parameter = new SqlParameter("CiudadanoId", SqlDbType.Int);
+            Parameter.Value = oENTCiudadano.CiudadanoId;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("SexoId", SqlDbType.Int);
+            Parameter.Value = oENTCiudadano.SexoId;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("EstadoCivilId", SqlDbType.Int);
+            Parameter.Value = oENTCiudadano.EstadoCivilId;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("ColoniaId", SqlDbType.Int);
+            Parameter.Value = oENTCiudadano.ColoniaId;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("CiudadOrigenId", SqlDbType.Int);
+            Parameter.Value = oENTCiudadano.CiudadOrigenId;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("NacionalidadId", SqlDbType.Int);
+            Parameter.Value = oENTCiudadano.NacionalidadId;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("EscolaridadId", SqlDbType.Int);
+            Parameter.Value = oENTCiudadano.EscolaridadId;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("OcupacionId", SqlDbType.Int);
+            Parameter.Value = oENTCiudadano.OcupacionId;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("MedioComunicacionId", SqlDbType.Int);
+            Parameter.Value = oENTCiudadano.MedioComunicacionId;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("Nombre", SqlDbType.VarChar);
+            Parameter.Value = oENTCiudadano.Nombre;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("ApellidoPaterno", SqlDbType.VarChar);
+            Parameter.Value = oENTCiudadano.ApellidoPaterno;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("ApellidoMaterno", SqlDbType.VarChar);
+            Parameter.Value = oENTCiudadano.ApellidoMaterno;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("FechaNacimiento", SqlDbType.DateTime);
+            Parameter.Value = oENTCiudadano.FechaNacimiento;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("Calle", SqlDbType.VarChar);
+            Parameter.Value = oENTCiudadano.Calle;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("NumeroExterior", SqlDbType.VarChar);
+            Parameter.Value = oENTCiudadano.NumeroExterior;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("NumeroInterior", SqlDbType.VarChar);
+            Parameter.Value = oENTCiudadano.NumeroInterior;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("TelefonoPrincipal", SqlDbType.VarChar);
+            Parameter.Value = oENTCiudadano.TelefonoPrincipal;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("TelefonoOtro", SqlDbType.VarChar);
+            Parameter.Value = oENTCiudadano.TelefonoOtro;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("CorreoElectronico", SqlDbType.VarChar);
+            Parameter.Value = oENTCiudadano.CorreoElectronico;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("AniosResidiendoNL", SqlDbType.TinyInt);
+            Parameter.Value = oENTCiudadano.AniosResidiendoNL;
+            Command.Parameters.Add(Parameter);
+
+            Parameter = new SqlParameter("DependientesEconomicos", SqlDbType.Int);
+            Parameter.Value = oENTCiudadano.DependientesEconomicos;
+            Command.Parameters.Add(Parameter);
+
+            oENTResponse.dsResponse = new DataSet();
+            DataAdapter = new SqlDataAdapter(Command);
+
+            try
+            {
+                Connection.Open();
+                DataAdapter.Fill(oENTResponse.dsResponse);
+                Connection.Close();
+            }
+            catch (SqlException ex) { oENTResponse.ExceptionRaised(ex.Message); }
+            catch (Exception ex) { oENTResponse.ExceptionRaised(ex.Message); }
+            finally
+            {
+                if (Connection.State == ConnectionState.Open)
+                {
+                    Connection.Close();
+                }
+            }
+
+            return oENTResponse;
+        }
+
+
     }
 }

@@ -80,128 +80,6 @@ namespace SIAQ.BusinessProcess.Object
 
         }
 
-        /////<remarks>
-        /////   <name>BPCiudadano.SelectCiudadano</name>
-        /////   <create>22-Marzo-2014</create>
-        /////   <author>Ruben.Cobos</author>
-        /////</remarks>
-        /////<summary>Consulta el catálogo de Ciudadanos</summary>
-        /////<param name="oENTCiudadano">Entidad de Ciudadano con los filtros necesarios para la consulta</param>
-        /////<returns>Una entidad de respuesta</returns>
-        //public ENTResponse SelectCiudadano(ENTCiudadano oENTCiudadano){
-        //   DACiudadano oDACiudadano = new DACiudadano();
-        //   ENTResponse oENTResponse = new ENTResponse();
-
-        //   try{
-
-        //      // Transacción en base de datos
-        //      oENTResponse = oDACiudadano.SelectCiudadano(oENTCiudadano, this.sConnectionApplication, 0);
-
-        //      // Validación de error en consulta
-        //      if (oENTResponse.GeneratesException) { return oENTResponse; }
-
-        //      // Validación de mensajes de la BD
-        //      oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-        //      if (oENTResponse.sMessage != "") { return oENTResponse; }
-
-        //   }catch (Exception ex){
-        //      oENTResponse.ExceptionRaised(ex.Message);
-        //   }
-
-        //   // Resultado
-        //   return oENTResponse;
-        //}
-
-        ///<remarks>
-        ///   <name>BPCiudadanoinsertCiudadano</name>
-        ///   <create>27/ene/2014</create>
-        ///   <author>Generador</author>
-        ///</remarks>
-        ///<summary>Metodo para insertar Ciudadano del sistema</summary>
-        public ENTResponse insertCiudadano(ENTCiudadano entCiudadano)
-        {
-
-            ENTResponse oENTResponse = new ENTResponse();
-            try
-            {
-                // Consulta a base de datos
-                DACiudadano dataCiudadano = new DACiudadano();
-                oENTResponse = dataCiudadano.searchCiudadano(entCiudadano);
-                // Validación de error en consulta
-                if (oENTResponse.GeneratesException) { return oENTResponse; }
-                // Validación de mensajes de la BD
-                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-                if (oENTResponse.sMessage != "") { return oENTResponse; }
-            }
-            catch (Exception ex)
-            {
-                oENTResponse.ExceptionRaised(ex.Message);
-            }
-            // Resultado
-            return oENTResponse;
-
-        }
-
-        ///<remarks>
-        ///   <name>BPCiudadanoupdateCiudadano</name>
-        ///   <create>27/ene/2014</create>
-        ///   <author>Generador</author>
-        ///</remarks>
-        ///<summary>Metodo que actualiza Ciudadano del sistema</summary>
-        public ENTResponse updateCiudadano(ENTCiudadano entCiudadano)
-        {
-
-            ENTResponse oENTResponse = new ENTResponse();
-            try
-            {
-                // Consulta a base de datos
-                DACiudadano dataCiudadano = new DACiudadano();
-                oENTResponse = dataCiudadano.searchCiudadano(entCiudadano);
-                // Validación de error en consulta
-                if (oENTResponse.GeneratesException) { return oENTResponse; }
-                // Validación de mensajes de la BD
-                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-                if (oENTResponse.sMessage != "") { return oENTResponse; }
-            }
-            catch (Exception ex)
-            {
-                oENTResponse.ExceptionRaised(ex.Message);
-            }
-            // Resultado
-            return oENTResponse;
-
-        }
-
-        ///<remarks>
-        ///   <name>BPCiudadanodeleteCiudadano</name>
-        ///   <create>27/ene/2014</create>
-        ///   <author>Generador</author>
-        ///</remarks>
-        ///<summary>Metodo para eliminar de Ciudadano del sistema</summary>
-        public ENTResponse deleteCiudadano(ENTCiudadano entCiudadano)
-        {
-
-            ENTResponse oENTResponse = new ENTResponse();
-            try
-            {
-                // Consulta a base de datos
-                DACiudadano dataCiudadano = new DACiudadano();
-                oENTResponse = dataCiudadano.searchCiudadano(entCiudadano);
-                // Validación de error en consulta
-                if (oENTResponse.GeneratesException) { return oENTResponse; }
-                // Validación de mensajes de la BD
-                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-                if (oENTResponse.sMessage != "") { return oENTResponse; }
-            }
-            catch (Exception ex)
-            {
-                oENTResponse.ExceptionRaised(ex.Message);
-            }
-            // Resultado
-            return oENTResponse;
-
-        }
-
         public void AgregarCiudadanoSolicitud()
         {
             string ConnectionString = string.Empty;
@@ -371,6 +249,70 @@ namespace SIAQ.BusinessProcess.Object
             _ErrorId = oDACiudadano.ErrorId;
             _ErrorDescription = oDACiudadano.ErrorDescription;
         }
+
+        /// <summary>
+        /// Selecciona los detalles del ciudadano en específico del sistema para el llenado de controles
+        /// </summary>
+        public void SelectDetalleCiudadano()
+        {
+            string ConnectionString = string.Empty;
+            DACiudadano oDACiudadano = new DACiudadano();
+
+            ConnectionString = sConnectionApplication;
+            _ENTCiudadano.ResultData = oDACiudadano.SelectDetalleCiudadano(_ENTCiudadano, ConnectionString);
+
+            _ErrorId = oDACiudadano.ErrorId;
+            _ErrorDescription = oDACiudadano.ErrorDescription;
+        }
+
+        /// <summary>
+        /// Inserta ciudadanos en el sistema
+        /// </summary>
+        public ENTResponse InsertCiudadano(ENTCiudadano oENTCiudadano)
+        {
+            DACiudadano oDACiudadano = new DACiudadano();
+            ENTResponse oENTResponse = new ENTResponse();
+
+            try
+            {
+                oENTResponse = oDACiudadano.InsertCiudadano(oENTCiudadano, sConnectionApplication, 0);
+                if (oENTResponse.GeneratesException) { return oENTResponse; }
+                oENTResponse.sMessage = String.Empty;
+                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+                if (oENTResponse.sMessage != "") { return oENTResponse; }
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+
+            return oENTResponse;
+        }
+
+        /// <summary>
+        /// Modifica ciudadanos en el sistema
+        /// </summary>
+        public ENTResponse UpdateCiudadano(ENTCiudadano oENTCiudadano)
+        {
+            DACiudadano oDACiudadano = new DACiudadano();
+            ENTResponse oENTResponse = new ENTResponse();
+
+            try
+            {
+                oENTResponse = oDACiudadano.UpdateCiudadano(oENTCiudadano, sConnectionApplication, 0);
+                if (oENTResponse.GeneratesException) { return oENTResponse; }
+                oENTResponse.sMessage = String.Empty;
+                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+                if (oENTResponse.sMessage != "") { return oENTResponse; }
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+
+            return oENTResponse;
+        }
+
 
         /// <summary>
         /// Metodo para obtener las nacionalidades del sistema

@@ -124,7 +124,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             try
             {
 
-                oENTResponse = oBPFuncionario.searchFuncionario(oENTFuncionario);
+                oENTResponse = oBPFuncionario.SelectFuncionario(oENTFuncionario);
 
                 // Validación de error en consulta
                 if (oENTResponse.GeneratesException)

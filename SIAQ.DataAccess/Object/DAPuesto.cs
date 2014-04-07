@@ -1,144 +1,83 @@
+/*---------------------------------------------------------------------------------------------------------------------------------
+' Clase: DAPuesto
+' Autor: Ruben.Cobos
+' Fecha: 06-Abril-2014
+'
+' Proposito:
+'          Clase que modela la capa de capa de acceso a datos de la aplicación con métodos relacionados con los Puestos
+'----------------------------------------------------------------------------------------------------------------------------------*/
+
+// Referencias
 using System;
-using System.Data;
-using System.Configuration;
-using System.Web;
 using System.Collections.Generic;
 using System.Text;
-using Microsoft.Practices.EnterpriseLibrary.Data;
+
+// Referencias manuales
+using System.Data;
 using System.Data.SqlClient;
 using SIAQ.Entity.Object;
+
 namespace SIAQ.DataAccess.Object
 {
     public class DAPuesto : DABase
     {
-        Database dbs;
-        public DAPuesto()
-        {
-            dbs = DatabaseFactory.CreateDatabase("Conn");
-        }
-        ///<remarks>
-        ///   <name>DAcatPuesto.searchcatPuesto</name>
-        ///   <create>27/ene/2014</create>
-        ///   <author>Generador</author>
-        ///</remarks>
-        ///<summary>Metodo para obtener las catPuesto del sistema</summary>
-        public ENTResponse searchcatPuesto(ENTPuesto entPuesto)
-        {
-            ENTResponse oENTResponse = new ENTResponse();
-            DataSet ds = new DataSet();
-            // Transacción
-            try
-            {
-                ds = dbs.ExecuteDataSet("catPuestoSel");
-                oENTResponse.dsResponse = ds;
-            }
-            catch (SqlException sqlEx)
-            {
-                oENTResponse.ExceptionRaised(sqlEx.Message);
-            }
-            catch (Exception ex)
-            {
-                oENTResponse.ExceptionRaised(ex.Message);
-            }
-            finally
-            {
-            }
-            // Resultado
-            return oENTResponse;
+        
+      ///<remarks>
+		///   <name>DAPuesto.SelectPuesto</name>
+		///   <create>06-Abril-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene un listado de Puestos en base a los parámetros proporcionados</summary>
+		///<param name="oENTPuesto">Entidad de Puesto con los parámetros necesarios para consultar la información</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse SelectPuesto(ENTPuesto oENTPuesto, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
 
-        }
-        ///<remarks>
-        ///   <name>DAcatPuesto.insertcatPuesto</name>
-        ///   <create>27/ene/2014</create>
-        ///   <author>Generador</author>
-        ///</remarks>
-        ///<summary>Metodo para insertar catPuesto del sistema</summary>
-        public ENTResponse insertcatPuesto(ENTPuesto entPuesto)
-        {
-            ENTResponse oENTResponse = new ENTResponse();
-            DataSet ds = new DataSet();
-            // Transacción
-            try
-            {
-                ds = dbs.ExecuteDataSet("catPuestoIns");
-                oENTResponse.dsResponse = ds;
-            }
-            catch (SqlException sqlEx)
-            {
-                oENTResponse.ExceptionRaised(sqlEx.Message);
-            }
-            catch (Exception ex)
-            {
-                oENTResponse.ExceptionRaised(ex.Message);
-            }
-            finally
-            {
-            }
-            // Resultado
-            return oENTResponse;
+			ENTResponse oENTResponse = new ENTResponse();
 
-        }
-        ///<remarks>
-        ///   <name>DAcatPuesto.updatecatPuesto</name>
-        ///   <create>27/ene/2014</create>
-        ///   <author>Generador</author>
-        ///</remarks>
-        ///<summary>Metodo que actualiza catPuesto del sistema</summary>
-        public ENTResponse updatecatPuesto(ENTPuesto entPuesto)
-        {
-            ENTResponse oENTResponse = new ENTResponse();
-            DataSet ds = new DataSet();
-            // Transacción
-            try
-            {
-                dbs.ExecuteDataSet("catPuestoUpd");
-                oENTResponse.dsResponse = ds;
-            }
-            catch (SqlException sqlEx)
-            {
-                oENTResponse.ExceptionRaised(sqlEx.Message);
-            }
-            catch (Exception ex)
-            {
-                oENTResponse.ExceptionRaised(ex.Message);
-            }
-            finally
-            {
-            }
-            // Resultado
-            return oENTResponse;
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspcatPuesto_Sel", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
 
-        }
-        ///<remarks>
-        ///   <name>DAcatPuesto.deletecatPuesto</name>
-        ///   <create>27/ene/2014</create>
-        ///   <author>Generador</author>
-        ///</remarks>
-        ///<summary>Metodo para eliminar de catPuesto del sistema</summary>
-        public ENTResponse deletecatPuesto(ENTPuesto entPuesto)
-        {
-            ENTResponse oENTResponse = new ENTResponse();
-            DataSet ds = new DataSet();
-            // Transacción
-            try
-            {
-                dbs.ExecuteDataSet("catPuestoDel");
-                oENTResponse.dsResponse = ds;
-            }
-            catch (SqlException sqlEx)
-            {
-                oENTResponse.ExceptionRaised(sqlEx.Message);
-            }
-            catch (Exception ex)
-            {
-                oENTResponse.ExceptionRaised(ex.Message);
-            }
-            finally
-            {
-            }
-            // Resultado
-            return oENTResponse;
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
 
-        }
+			// Parametros
+         sqlPar = new SqlParameter("PuestoId", SqlDbType.Int);
+			sqlPar.Value = oENTPuesto.PuestoId;
+			sqlCom.Parameters.Add(sqlPar);
+
+         sqlPar = new SqlParameter("Nombre", SqlDbType.VarChar);
+			sqlPar.Value = oENTPuesto.Nombre;
+			sqlCom.Parameters.Add(sqlPar);
+
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try{
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+			}catch (SqlException sqlEx){
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}finally{
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
     }
 }

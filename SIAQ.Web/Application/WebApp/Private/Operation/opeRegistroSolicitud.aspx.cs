@@ -42,7 +42,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
            {
 
                // Transacción
-               oENTResponse = oBPFuncionario.searchFuncionario(oENTFuncionario);
+               oENTResponse = oBPFuncionario.SelectFuncionario(oENTFuncionario);
 
                // Validación de error en la consulta
                if (oENTResponse.GeneratesException)

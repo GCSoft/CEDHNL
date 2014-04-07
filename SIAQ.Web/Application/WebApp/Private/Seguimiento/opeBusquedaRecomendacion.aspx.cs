@@ -24,7 +24,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
             try
             {
 
-                oENTResponse = oBPFuncionario.searchFuncionario(oENTFuncionario);
+                oENTResponse = oBPFuncionario.SelectFuncionario(oENTFuncionario);
 
                 // validación de error
                 if (oENTResponse.GeneratesException)

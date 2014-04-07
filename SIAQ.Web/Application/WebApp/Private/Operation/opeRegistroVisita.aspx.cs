@@ -122,13 +122,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         }
 
         protected void SelectFuncionario(){
-            
+            ENTFuncionario oENTFuncionario = new ENTFuncionario();
             BPFuncionario BPFuncionario = new BPFuncionario();
                 
             ddlFuncionario.DataValueField = "FuncionarioId";
             ddlFuncionario.DataTextField = "Nombre";
 
-            ddlFuncionario.DataSource = BPFuncionario.SelectFuncionario();
+            ddlFuncionario.DataSource = BPFuncionario.SelectFuncionario(oENTFuncionario);
             ddlFuncionario.DataBind();
             ddlFuncionario.Items.Insert(0, new ListItem(AllDefault, "0"));
         }

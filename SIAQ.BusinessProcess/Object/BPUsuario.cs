@@ -240,6 +240,76 @@ namespace SIAQ.BusinessProcess.Object
       }
 
       ///<remarks>
+      /// <name>BPUsuario.SelectUsuario_ParaFuncionario</name>
+      /// <create>06-Abril-2014</create>
+      /// <author>Ruben.Cobos</author>
+      ///</remarks>
+      ///<summary>Consulta el catálogo de Usuarios y filtra los que son candidatos a ser funcionarios</summary>
+      ///<param name="oENTUsuario">Entidad de usuario con los filtros necesarios para la consulta</param>
+      ///<returns>Una entidad de respuesta</returns>
+      public ENTResponse SelectUsuario_ParaFuncionario(ENTUsuario oENTUsuario)
+      {
+          DAUsuario oDAUsuario = new DAUsuario();
+          ENTResponse oENTResponse = new ENTResponse();
+
+          DataTable tblFuncionario;
+          DataRow rowFuncionario;
+
+          try
+          {
+
+              // Transacción en base de datos
+              oENTResponse = oDAUsuario.SelectUsuario(oENTUsuario, this.sConnectionApplication, 0);
+
+              // Validación de error en consulta
+              if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+              // Mensajes de la BD
+              oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+
+              // Filtrar solo los registros candidatos a funcionarios
+              tblFuncionario = oENTResponse.dsResponse.Tables[1].Clone();
+              foreach (DataRow rowFilter in oENTResponse.dsResponse.Tables[1].Select("FuncionarioId = 0 And idRol Not In (1, 2)"))
+              {
+
+                  rowFuncionario = tblFuncionario.NewRow();
+                  foreach (DataColumn colFilter in tblFuncionario.Columns)
+                  {
+                      rowFuncionario[colFilter.ColumnName] = rowFilter[colFilter.ColumnName];
+                  }
+                  tblFuncionario.Rows.Add(rowFuncionario);
+              }
+
+              // Reescribir DataTable de respuesta
+              oENTResponse.dsResponse.Tables[1].Clear();
+              foreach (DataRow rowActual in tblFuncionario.Rows)
+              {
+
+                  rowFuncionario = oENTResponse.dsResponse.Tables[1].NewRow();
+                  foreach (DataColumn colFilter in tblFuncionario.Columns)
+                  {
+                      rowFuncionario[colFilter.ColumnName] = rowActual[colFilter.ColumnName];
+                  }
+                  oENTResponse.dsResponse.Tables[1].Rows.Add(rowFuncionario);
+              }
+
+              // Validación - Consulta Vacía
+              if (oENTResponse.dsResponse.Tables[1].Rows.Count == 0 && oENTResponse.sMessage != "")
+              {
+                  oENTResponse.sMessage = "No se encontraron usuarios disponibles para convertirse en funcionarios";
+              }
+
+          }
+          catch (Exception ex)
+          {
+              oENTResponse.ExceptionRaised(ex.Message);
+          }
+
+          // Resultado
+          return oENTResponse;
+      }
+
+      ///<remarks>
       ///   <name>BPUsuario.SelectUsuario_RecuperaContrasena</name>
       ///   <create>21-Octubre-2013</create>
       ///   <author>GCSoft - Web Project Creator BETA 1.0</author>

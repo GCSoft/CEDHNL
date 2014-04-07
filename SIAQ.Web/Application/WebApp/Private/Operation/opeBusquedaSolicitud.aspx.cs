@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 // Referencias manuales
 using SIAQ.BusinessProcess.Object;
 using SIAQ.BusinessProcess.Page;
+using SIAQ.Entity.Object;
 using GCSoft.Utilities.Common;
 using System.Data;
 
@@ -172,12 +173,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         protected void SelectFuncionario()
         {
-
+            ENTFuncionario oENTFuncionario = new ENTFuncionario();
             BPFuncionario BPFuncionario = new BPFuncionario();
 
             ddlFuncionario.DataValueField = "FuncionarioId";
             ddlFuncionario.DataTextField = "NombreApellido";
-            BPFuncionario.SelectFuncionario();
+            BPFuncionario.SelectFuncionario(oENTFuncionario);
             if (BPFuncionario.FuncionarioEntity.ResultData.Tables[0].Rows.Count > 0)
                 ddlFuncionario.DataSource = BPFuncionario.FuncionarioEntity.ResultData;
             ddlFuncionario.DataBind();

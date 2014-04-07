@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="ENTBase.cs" />
     <Compile Include="Object\ENTArea.cs" />
+    <Compile Include="Object\ENTAutoridad.cs" />
     <Compile Include="Object\ENTCalificacion.cs" />
     <Compile Include="Object\ENTCanalizacion.cs" />
     <Compile Include="Object\ENTCiudad.cs" />

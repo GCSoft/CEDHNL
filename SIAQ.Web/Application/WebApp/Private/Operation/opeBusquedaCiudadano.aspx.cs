@@ -288,6 +288,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 case "Visita":
                     Response.Redirect(ConfigurationManager.AppSettings["Application.Url.RegistroVisita"].ToString() + "?s=" + CiudadanoId);
                     break;
+
+                case "Consultar":
+                    Response.Redirect(ConfigurationManager.AppSettings["Application.Url.DetalleCiudadano"].ToString() + "?s=" + CiudadanoId);
+                    break;
             }
         }
 

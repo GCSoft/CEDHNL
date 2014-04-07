@@ -10,7 +10,7 @@ using SIAQ.Entity.Object;
 
 namespace SIAQ.DataAccess.Object
 {
-    public class DAVisita 
+    public class DAVisita
     {
         protected int _ErrorId;
         protected string _ErrorDescription;
@@ -20,15 +20,11 @@ namespace SIAQ.DataAccess.Object
             _ErrorId = 0;
             _ErrorDescription = string.Empty;
         }
-
-
         public int ErrorId
         {
             get { return _ErrorId; }
             set { _ErrorId = value; }
         }
-
-
         public string ErrorDescription
         {
             get { return _ErrorDescription; }
@@ -77,6 +73,42 @@ namespace SIAQ.DataAccess.Object
                 if (Connection.State == ConnectionState.Open)
                     Connection.Close();
             }
+        }
+
+        public DataSet SelectVisitaCiudadano(ENTVisita oENTVisita, string ConnectionString)
+        {
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            SqlCommand Command;
+            SqlDataAdapter DataAdapter;
+            SqlParameter Parameter;
+            DataSet ds = new DataSet();
+
+            try
+            {
+                Command = new SqlCommand("spCiudadanoVisitas_sel", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                Parameter = new SqlParameter("CiudadanoId", SqlDbType.Int);
+                Parameter.Value = oENTVisita.UsuarioIdInsert;
+                Command.Parameters.Add(Parameter);
+
+                DataAdapter = new SqlDataAdapter(Command);
+
+                Connection.Open();
+                DataAdapter.Fill(ds);
+                Connection.Close();
+            }
+            catch (SqlException ex)
+            {
+                _ErrorId = ex.Number;
+                _ErrorDescription = ex.Message;
+                if (Connection.State == ConnectionState.Open)
+                {
+                    Connection.Close();
+                }
+            }
+
+            return ds;
         }
     }
 }

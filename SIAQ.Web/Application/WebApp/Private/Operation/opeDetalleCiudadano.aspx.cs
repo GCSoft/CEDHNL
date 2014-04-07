@@ -25,9 +25,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             hdnCiudadanoId.Value = ciudadanoId;
 
             ObtenerDetalleCiudadano(Convert.ToInt32(ciudadanoId));
+            ComboSolicitudes(Convert.ToInt32(ciudadanoId));
+            ComboVisitas(Convert.ToInt32(ciudadanoId));
         }
 
         #region Atributos
+
+        Function utilFunction = new Function();
+
         #endregion
 
         #region Propiedades
@@ -93,7 +98,158 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
+        private void ComboSolicitudes(int ciudadanoId)
+        {
+            BPSolicitudCiudadano oBPSolicitudCiudadano = new BPSolicitudCiudadano();
+
+            oBPSolicitudCiudadano.SolicitudCiudadanoEntity.CiudadanoId = ciudadanoId;
+            oBPSolicitudCiudadano.SelectSolicitudesCiudadano();
+
+            if (oBPSolicitudCiudadano.ErrorId == 0)
+            {
+                if (oBPSolicitudCiudadano.SolicitudCiudadanoEntity.dsResponse.Tables[0].Rows.Count > 0)
+                {
+                    gvSollicitudesIntervencion.DataSource = oBPSolicitudCiudadano.SolicitudCiudadanoEntity.dsResponse;
+                    gvSollicitudesIntervencion.DataBind();
+                }
+                else
+                {
+                    gvSollicitudesIntervencion.DataSource = null;
+                    gvSollicitudesIntervencion.DataBind();
+                }
+            }
+            else
+            {
+                gvSollicitudesIntervencion.DataSource = null;
+                gvSollicitudesIntervencion.DataBind();
+            }
+        }
+
+        private void ComboVisitas(int ciudadanoId)
+        {
+            BPVisita oBPVisita = new BPVisita();
+
+            oBPVisita.ENTVisita.UsuarioIdInsert = ciudadanoId;
+            oBPVisita.SelectVisitaCiudadano();
+
+            if (oBPVisita.ErrorId == 0)
+            {
+                if (oBPVisita.ENTVisita.dsResponse.Tables[0].Rows.Count > 0)
+                {
+                    gvVisitasCEDH.DataSource = oBPVisita.ENTVisita.dsResponse;
+                    gvVisitasCEDH.DataBind();
+                }
+                else
+                {
+                    gvVisitasCEDH.DataSource = null;
+                    gvVisitasCEDH.DataBind();
+                }
+            }
+            else
+            {
+                gvVisitasCEDH.DataSource = null;
+                gvVisitasCEDH.DataBind();
+            }
+        }
+
         #endregion
+
+        protected void btnRegresar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Application/WebApp/Private/Operation/opeBusquedaCiudadano.aspx");
+        }
+
+        protected void gvSollicitudesIntervencion_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            try
+            {
+                //Validación de que sea fila 
+                if (e.Row.RowType != DataControlRowType.DataRow) { return; }
+
+                //Puntero y Sombra en fila Over
+                e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over';");
+                //Puntero y Sombra en fila Out
+                e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; ");
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+        }
+
+        protected void gvSollicitudesIntervencion_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            DataTable TableSolicitudes = null;
+            DataView ViewSolicitudes = null;
+
+            try
+            {
+                //Obtener DataTable y View del GridView
+                TableSolicitudes = utilFunction.ParseGridViewToDataTable(gvSollicitudesIntervencion, false);
+                ViewSolicitudes = new DataView(TableSolicitudes);
+
+                //Determinar ordenamiento
+                hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
+
+                //Ordenar Vista
+                ViewSolicitudes.Sort = hddSort.Value;
+
+                //Vaciar datos
+                gvSollicitudesIntervencion.DataSource = ViewSolicitudes;
+                gvSollicitudesIntervencion.DataBind();
+
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+            }
+        }
+
+        protected void gvVisitasCEDH_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            try
+            {
+                //Validación de que sea fila 
+                if (e.Row.RowType != DataControlRowType.DataRow) { return; }
+
+                //Puntero y Sombra en fila Over
+                e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over';");
+                //Puntero y Sombra en fila Out
+                e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; ");
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+        }
+
+        protected void gvVisitasCEDH_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            DataTable TableVisitas = null;
+            DataView ViewVisitas = null;
+
+            try
+            {
+                //Obtener DataTable y View del GridView
+                TableVisitas = utilFunction.ParseGridViewToDataTable(gvVisitasCEDH, false);
+                ViewVisitas = new DataView(TableVisitas);
+
+                //Determinar ordenamiento
+                hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
+
+                //Ordenar Vista
+                ViewVisitas.Sort = hddSort.Value;
+
+                //Vaciar datos
+                gvVisitasCEDH.DataSource = ViewVisitas;
+                gvVisitasCEDH.DataBind();
+
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+            }
+        }
 
     }
 }

@@ -147,6 +147,11 @@
                            <asp:LinkButton CommandArgument='<%#Eval("CiudadanoId")%>' CommandName="Editar" ID="EditarLink" runat="server" Text='Editar' Width="80px"></asp:LinkButton>
                         </ItemTemplate>
                      </asp:TemplateField>
+                     <asp:TemplateField HeaderText="Consultar">
+                        <ItemTemplate>
+                           <asp:LinkButton CommandArgument='<%#Eval("CiudadanoId")%>' CommandName="Consultar" ID="ConsultarLink" runat="server" Text='Consultar' Width="80px"></asp:LinkButton>
+                        </ItemTemplate>
+                     </asp:TemplateField>
 						</Columns>
 					</asp:GridView>
             </asp:Panel>

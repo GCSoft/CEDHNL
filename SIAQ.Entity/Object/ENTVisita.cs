@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Data;
 using System.Text;
 
 namespace SIAQ.Entity.Object
@@ -13,8 +13,10 @@ namespace SIAQ.Entity.Object
         private Int32 _UsuarioIdInsert;
         private string _Observaciones;
         private string _Fecha;
+        private DataSet _dsResponse;
 
-        public ENTVisita() {
+        public ENTVisita()
+        {
 
             _AreaId = 0;
             _FuncionarioId = 0;
@@ -58,6 +60,12 @@ namespace SIAQ.Entity.Object
         {
             get { return _Fecha; }
             set { _Fecha = value; }
+        }
+
+        public DataSet dsResponse
+        {
+            get { return _dsResponse; }
+            set { _dsResponse = value; }
         }
     }
 }

@@ -331,7 +331,10 @@
             <td>
                 <asp:Panel ID="pnlSollicitudesIntervencion" runat="server" Width="100%">
                     <asp:GridView ID="gvSollicitudesIntervencion" runat="server" AllowPaging="false"
-                        AllowSorting="true" AutoGenerateColumns="False" Width="800px" DataKeyNames="SolicitudId">
+                        AllowSorting="true" AutoGenerateColumns="False" Width="800px" 
+                        DataKeyNames="SolicitudId"
+                        onrowdatabound="gvSollicitudesIntervencion_RowDataBound" 
+                        onsorting="gvSollicitudesIntervencion_Sorting">
                         <AlternatingRowStyle CssClass="Grid_Row_Alternating" />
                         <HeaderStyle CssClass="Grid_Header" />
                         <RowStyle CssClass="Grid_Row" />
@@ -369,19 +372,16 @@
                         </EmptyDataTemplate>
                         <Columns>
                             <asp:BoundField DataField="SolicitudId" Visible="false" />
-                            <asp:TemplateField HeaderText="Solicitud" SortExpression="SolicitudId">
-                                <ItemTemplate>
-                                    <asp:HyperLink ID="hlnkSolicitudId" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "SolicitudId") %>'>
-                                    </asp:HyperLink>
-                                </ItemTemplate>
-                            </asp:TemplateField>
+                            <asp:BoundField DataField="Solicitud" HeaderText="Solicitud" SortExpression="Solicitud">
+                                <ItemStyle HorizontalAlign="Left" />
+                            </asp:BoundField>
                             <asp:BoundField DataField="Fecha" HeaderText="Fecha" SortExpression="Fecha">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
                             <asp:BoundField DataField="ParticipaComo" HeaderText="Participa como" SortExpression="ParticipaComo">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="Calificacion" HeaderText="Calificacion" SortExpression="Calificacion">
+                            <asp:BoundField DataField="Calificacion" HeaderText="Calificación" SortExpression="Calificacion">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
                             <asp:BoundField DataField="NumeroExpediente" HeaderText="Expediente" SortExpression="NumeroExpediente">
@@ -390,7 +390,7 @@
                             <asp:BoundField DataField="Estatus" HeaderText="Estatus" SortExpression="Estatus">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="Tipo" HeaderText="Tipo" SortExpression="Tipo">
+                            <asp:BoundField DataField="TipoSolicitud" HeaderText="Tipo" SortExpression="TipoSolicitud">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
                         </Columns>
@@ -415,7 +415,8 @@
             <td>
                 <asp:Panel ID="pnlVisitasCEDH" runat="server" Width="100%">
                     <asp:GridView ID="gvVisitasCEDH" runat="server" AllowPaging="false" AllowSorting="true"
-                        AutoGenerateColumns="False" Width="800px" DataKeyNames="VisitaId">
+                        AutoGenerateColumns="False" Width="800px" DataKeyNames="VisitaId" 
+                        onrowdatabound="gvVisitasCEDH_RowDataBound" onsorting="gvVisitasCEDH_Sorting">
                         <AlternatingRowStyle CssClass="Grid_Row_Alternating" />
                         <HeaderStyle CssClass="Grid_Header" />
                         <RowStyle CssClass="Grid_Row" />
@@ -443,7 +444,9 @@
                             </table>
                         </EmptyDataTemplate>
                         <Columns>
-                            <asp:BoundField DataField="VisitaId" Visible="false" />
+                            <asp:BoundField DataField="VisitaId" Visible="false">
+                                <ItemStyle HorizontalAlign="Left" />
+                            </asp:BoundField>
                             <asp:BoundField DataField="Fecha" HeaderText="Fecha" SortExpression="Fecha">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
@@ -453,7 +456,7 @@
                             <asp:BoundField DataField="AreaVisitada" HeaderText="Area visitada" SortExpression="AreaVisitada">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="Motivo" HeaderText="Motivo de la visita" SortExpression="Motivo">
+                            <asp:BoundField DataField="Observaciones" HeaderText="Motivo de la visita" SortExpression="Observaciones">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
                         </Columns>
@@ -522,7 +525,7 @@
                         <tr>
                             <td style="height: 24px; text-align: left; width: 130px;">
                                 <asp:Button ID="btnRegresar" runat="server" Text="Regresar" CssClass="Button_General"
-                                    Width="125px" />
+                                    Width="125px" onclick="btnRegresar_Click" />
                             </td>
                             <td style="height: 24px; text-align: left; width: 130px;">
                                 
@@ -549,4 +552,5 @@
         </tr>
     </table>
     <asp:HiddenField ID="hdnCiudadanoId" runat="server" />
+    <asp:HiddenField ID="hddSort" runat="server" Value="NumeroSol" />
 </asp:Content>

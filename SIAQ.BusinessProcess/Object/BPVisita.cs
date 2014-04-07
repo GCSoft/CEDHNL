@@ -16,11 +16,12 @@ namespace SIAQ.BusinessProcess.Object
 
         public ENTVisita ENTVisita
         {
-            get {return _VisitaEntity;}
+            get { return _VisitaEntity; }
             set { _VisitaEntity = value; }
         }
 
-        public BPVisita(){
+        public BPVisita()
+        {
 
             _ErrorId = 0;
             _ErrorDescription = string.Empty;
@@ -39,17 +40,30 @@ namespace SIAQ.BusinessProcess.Object
             set { _ErrorDescription = value; }
         }
 
-        public void GuardarVisita() {
+        public void GuardarVisita()
+        {
 
             string ConnectionString = string.Empty;
             DAVisita DAVisita = new DAVisita();
 
             ConnectionString = sConnectionApplication;
 
-            DAVisita.GuardarVisita(_VisitaEntity , ConnectionString);
+            DAVisita.GuardarVisita(_VisitaEntity, ConnectionString);
 
             _ErrorId = DAVisita.ErrorId;
             _ErrorDescription = DAVisita.ErrorDescription;
+        }
+
+        public void SelectVisitaCiudadano()
+        {
+            DAVisita oDAVisita = new DAVisita();
+            string sConnectionString = string.Empty;
+
+            sConnectionString = sConnectionApplication;
+
+            _VisitaEntity.dsResponse = oDAVisita.SelectVisitaCiudadano(_VisitaEntity, sConnectionString);
+            _ErrorId = oDAVisita.ErrorId;
+            _ErrorDescription = oDAVisita.ErrorDescription;
         }
     }
 

@@ -8,6 +8,35 @@ namespace SIAQ.BusinessProcess.Object
 {
     public class BPSolicitudCiudadano : BPBase
     {
+        protected int _ErrorId;
+        protected string _ErrorDescription;
+        protected ENTSolicitudCiudadano _SolicitudCiudadanoEntity;
+
+        public int ErrorId
+        {
+            get { return _ErrorId; }
+            set { _ErrorId = value; }
+        }
+
+        public string ErrorDescription
+        {
+            get { return _ErrorDescription; }
+            set { _ErrorDescription = value; }
+        }
+
+        public ENTSolicitudCiudadano SolicitudCiudadanoEntity
+        {
+            get { return _SolicitudCiudadanoEntity; }
+            set { _SolicitudCiudadanoEntity = value; }
+        }
+
+        public BPSolicitudCiudadano()
+        {
+            _ErrorId = 0;
+            _ErrorDescription = String.Empty;
+            _SolicitudCiudadanoEntity = new ENTSolicitudCiudadano();
+        }
+
         ///<remarks>
         ///   <name>BPcatSolicitudCiudadano.searchcatSolicitudCiudadano</name>
         ///   <create>27/ene/2014</create>
@@ -123,6 +152,21 @@ namespace SIAQ.BusinessProcess.Object
             // Resultado
             return oENTResponse;
 
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void SelectSolicitudesCiudadano()
+        {
+            string sConnectionString = String.Empty;
+            DASolicitudCiudadano oDASolicitudCiudadano = new DASolicitudCiudadano();
+
+            sConnectionString = sConnectionApplication;
+
+            _SolicitudCiudadanoEntity.dsResponse = oDASolicitudCiudadano.SelectSolicitudesCiudadano(_SolicitudCiudadanoEntity, sConnectionString);
+            _ErrorId = oDASolicitudCiudadano.ErrorId;
+            _ErrorDescription = oDASolicitudCiudadano.ErrorDescription;
         }
     }
 }

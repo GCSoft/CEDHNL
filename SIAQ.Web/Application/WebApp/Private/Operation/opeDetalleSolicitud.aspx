@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeDetalleSolicitud.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeDetalleSolicitud" %>
 
+<%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
     
 </asp:Content>
@@ -29,7 +31,7 @@
 
         <asp:Panel CssClass="IconoPanel" ID="DiligenciasPanel" runat="server" Visible="true">
             <asp:ImageButton ID="DiligenciaPanel" 
-                ImageUrl="/Include/Image/Icon/CiudadanoIcon.png" runat="server" 
+                ImageUrl="/Include/Image/Icon/DiligenciaIcon.png" runat="server" 
                 onclick="DiligenciaPanel_Click"></asp:ImageButton><br />
             Diligencias
         </asp:Panel>
@@ -248,7 +250,7 @@
                             </tr>
                             <tr>
                                 <td colspan="4" style="background-color:Gray;">
-                                <asp:TextBox ID="AsuntoBox" runat="server" TextMode="MultiLine" CssClass="Textarea_General" Width="800px"></asp:TextBox>
+                                    <CKEditor:CKEditorControl ID="txtAsuntoSolicitud" BasePath="/ckeditor/" runat="server"></CKEditor:CKEditorControl>
                                 </td>
                             </tr>
                         </table>

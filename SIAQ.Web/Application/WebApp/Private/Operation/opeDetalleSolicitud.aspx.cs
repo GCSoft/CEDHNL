@@ -89,7 +89,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         #region "Methods"
         private void GuardarSolicitud()
         {
-            GuardarSolicitud(int.Parse(SolicitudIdHidden.Value), int.Parse(LugarHechosList.SelectedValue), DireccionHechosBox.Text.Trim(), AsuntoBox.Text.Trim());
+            GuardarSolicitud(int.Parse(SolicitudIdHidden.Value), int.Parse(LugarHechosList.SelectedValue), DireccionHechosBox.Text.Trim(), "");
         }
 
         private void GuardarSolicitud(int SolicitudId, int LugarHechosId, string DireccionHechos, string Observaciones)
@@ -99,7 +99,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             SolicitudProcess.SolicitudEntity.SolicitudId = SolicitudId;
             SolicitudProcess.SolicitudEntity.LugarHechosId = LugarHechosId;
             SolicitudProcess.SolicitudEntity.DireccionHechos = DireccionHechos;
-            SolicitudProcess.SolicitudEntity.Observaciones = Observaciones;
+            SolicitudProcess.SolicitudEntity.Observaciones = "";    // ToDo: Cambiar por el editor de texto
 
             SolicitudProcess.SaveSolicitudGeneral();
 

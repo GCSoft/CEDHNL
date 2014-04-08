@@ -346,13 +346,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.Panel pnlDocumentos;
         
         /// <summary>
-        /// AsuntoBox control.
+        /// txtAsuntoSolicitud control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AsuntoBox;
+        protected global::CKEditor.NET.CKEditorControl txtAsuntoSolicitud;
         
         /// <summary>
         /// GuardarButton control.

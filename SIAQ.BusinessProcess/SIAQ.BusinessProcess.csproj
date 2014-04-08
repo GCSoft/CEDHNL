@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="BPBase.cs" />
     <Compile Include="Object\BPArea.cs" />
+    <Compile Include="Object\BPAutoridad.cs" />
     <Compile Include="Object\BPCalificacion.cs" />
     <Compile Include="Object\BPCanalizacion.cs" />
     <Compile Include="Object\BPCiudad.cs" />

@@ -176,11 +176,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             ENTFuncionario oENTFuncionario = new ENTFuncionario();
             BPFuncionario BPFuncionario = new BPFuncionario();
 
+            ENTResponse oENTResponse = new ENTResponse();
+
             ddlFuncionario.DataValueField = "FuncionarioId";
-            ddlFuncionario.DataTextField = "NombreApellido";
-            BPFuncionario.SelectFuncionario(oENTFuncionario);
-            if (BPFuncionario.FuncionarioEntity.ResultData.Tables[0].Rows.Count > 0)
-                ddlFuncionario.DataSource = BPFuncionario.FuncionarioEntity.ResultData;
+            ddlFuncionario.DataTextField = "Nombre";
+            BPFuncionario.SelectFuncionarioBusqueda();
+            if (BPFuncionario.FuncionarioEntity.ResultData.Tables[1].Rows.Count > 0)
+                ddlFuncionario.DataSource = BPFuncionario.FuncionarioEntity.ResultData.Tables[1];
             ddlFuncionario.DataBind();
             ddlFuncionario.Items.Insert(0, new ListItem(AllDefault, "0"));
        }

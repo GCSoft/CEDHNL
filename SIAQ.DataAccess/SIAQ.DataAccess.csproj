@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="DABase.cs" />
     <Compile Include="Object\DAArea.cs" />
+    <Compile Include="Object\DAAutoridad.cs" />
     <Compile Include="Object\DACalificacion.cs" />
     <Compile Include="Object\DACanalizacion.cs" />
     <Compile Include="Object\DACiudad.cs" />

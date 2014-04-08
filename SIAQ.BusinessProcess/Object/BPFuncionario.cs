@@ -79,6 +79,20 @@ namespace SIAQ.BusinessProcess.Object
              return _FuncionarioEntity.ResultData;
           }
 
+          /// <summary>
+          /// Obtiene el listado de los funcionarios para su búsqueda 
+          /// </summary>
+          public DataSet SelectFuncionarioBusqueda()
+          {
+              string sConnectionString = string.Empty;
+              DAFuncionario oDAFuncionario = new DAFuncionario();
+              sConnectionString = sConnectionApplication;
+              _FuncionarioEntity.ResultData = oDAFuncionario.SelectFuncionarioBusqueda(_FuncionarioEntity, sConnectionString);
+              return _FuncionarioEntity.ResultData;
+          }
+
+
+
        #endregion
 
       

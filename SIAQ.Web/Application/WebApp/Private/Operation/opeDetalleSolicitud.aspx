@@ -246,9 +246,6 @@
                                 <td colspan="4" style="text-align:left;">Asuto de la solicitud</td>
                             </tr>
                             <tr>
-                                <td colspan="4" style="background-color:Gray;">Barra de Herramientas</td>
-                            </tr>
-                            <tr>
                                 <td colspan="4" style="background-color:Gray;">
                                     <CKEditor:CKEditorControl ID="txtAsuntoSolicitud" BasePath="/ckeditor/" runat="server"></CKEditor:CKEditorControl>
                                 </td>

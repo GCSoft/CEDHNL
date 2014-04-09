@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -97,6 +98,53 @@ namespace SIAQ.BusinessProcess.Object
                 }
 
                 return Result;
+            }
+
+            public static string GetIconoDocumento(string TipoDocumentoId)
+            {
+                string IconoPath = string.Empty;
+
+                switch (TipoDocumentoId)
+                {
+                    // .jpg
+                    case "81944c0f-8fa6-4e9b-b7b8-74afeccfc54c":
+                        IconoPath = "FotoIcon.png";
+                        break;
+
+                    // .gif
+                    case "31bb2d11-2f6f-47be-891b-4ff3113b8b73":
+                        IconoPath = "FotoIcon.png";
+                        break;
+
+                    // .png
+                    case "0d4186fa-3b0f-49dc-a55f-a362ad893211":
+                        IconoPath = "FotoIcon.png";
+                        break;
+
+                    // .bmp
+                    case "8f455f2a-0492-487c-a729-7b4c4913257d":
+                        IconoPath = "FotoIcon.png";
+                        break;
+
+                    // .doc y .docx
+                    case "275ebe4c-d4a8-4f4d-8dda-98f8c9ccfe70":
+                    case "96a31530-202c-44ad-ba1e-3e07777a0d7c":
+                        IconoPath = "WordIcon.png";
+                        break;
+
+                    // .pdf
+                    case "523e371f-07e8-46c7-81f4-a92a843fa1a1":
+                        IconoPath = "PdfIcon.png";
+                        break;
+
+                    // .ppt y .pptx
+                    case "cba3eb71-5c11-489d-9b92-da1cc7fbe8af":
+                    case "bd168a5e-ec4c-47d7-96a7-03f05ad77bca":
+                        IconoPath = "PowerPointIcon.png";
+                        break;
+                }
+
+                return ConfigurationManager.AppSettings["Application.Url.Icon"].ToString() + IconoPath;
             }
 
             public void SaveDocumentoSE()

@@ -226,9 +226,11 @@
             <asp:DataList CellPadding="5" CellSpacing="5" ID="DocumentoList" HorizontalAlign="Left" RepeatDirection="Horizontal" RepeatLayout="Table"
                 OnItemDataBound="DocumentList_ItemDataBound" runat="server">
                 <ItemTemplate>
-                    <asp:Image ID="DocumentoImage" runat="server" />
-                    <br />
-                    <asp:Label ID="DocumentoLabel" runat="server" Text="Nombre del documento"></asp:Label>
+                    <div class="Item">
+                        <asp:Image ID="DocumentoImage" runat="server" />
+                        <br />
+                        <asp:Label CssClass="Texto" ID="DocumentoLabel" runat="server" Text="Nombre del documento"></asp:Label>
+                    </div>
                 </ItemTemplate>
             </asp:DataList>
 

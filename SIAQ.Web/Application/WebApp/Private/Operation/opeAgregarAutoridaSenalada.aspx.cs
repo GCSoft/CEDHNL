@@ -53,7 +53,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         {
             try
             {
-                string solicitudId = SolicitudIdHidden.Value; 
+                string solicitudId = SolicitudIdHidden.Value;
 
                 AgregarAutoridad(Convert.ToInt32(solicitudId));
 
@@ -62,14 +62,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     , Convert.ToString(Guid.NewGuid())
                     , "tinyboxMessage('Autoridad agregada con éxito', 'Success', true);", true);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true);", true);
             }
         }
 
         protected void btnRegresar_Click(object sender, EventArgs e)
         {
-            string solicitudId = SolicitudIdHidden.Value; 
+            string solicitudId = SolicitudIdHidden.Value;
             Response.Redirect("~/Application/WebApp/Private/Operation/opeDetalleSolicitud.aspx?s=" + solicitudId);
         }
 
@@ -126,7 +127,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 imgEdit = (ImageButton)e.Row.FindControl("ImagenEliminar");
 
                 //Tooltip Edición
-                sToolTip = "Eliminar ciudadano";
+                sToolTip = "Eliminar autoridad";
                 imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
                 imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
                 imgEdit.Attributes.Add("style", "curosr:hand;");
@@ -307,28 +308,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 // Formulario 
                 oENTAutoridad.SolicitudId = solicitudId;
 
-                if (ddlPrimerNivel.SelectedValue == "0") { throw new Exception("Debe elegir una autoridad"); }
+                if (ddlTercerNivel.SelectedValue == "0") { throw new Exception("Debe elegir una autoridad"); }
                 if (String.IsNullOrEmpty(tbNombreFuncionario.Text)) { throw new Exception("El campo [Nombre] es requerido"); }
-
-                if (ddlTercerNivel.SelectedValue != "0")
-                {
-                    oENTAutoridad.AutoridadId = Convert.ToInt32(ddlTercerNivel.SelectedValue);
-                }
-                else
-                {
-                    if (ddlSegundoNivel.SelectedValue != "0")
-                    {
-                        oENTAutoridad.AutoridadId = Convert.ToInt32(ddlSegundoNivel.SelectedValue);
-                    }
-                    else
-                    {
-                        oENTAutoridad.AutoridadId = Convert.ToInt32(ddlPrimerNivel.SelectedValue);
-                    }
-                }
 
                 oENTAutoridad.Nombre = tbNombreFuncionario.Text;
                 oENTAutoridad.Puesto = tbPuestoActual.Text;
                 oENTAutoridad.Comentario = tbComentarios.Text;
+                oENTAutoridad.AutoridadId = Convert.ToInt32(ddlTercerNivel.SelectedValue);
 
                 //Transacción 
                 oENTResponse = oBPAutoridad.InsertSolicitudAutoridad(oENTAutoridad);

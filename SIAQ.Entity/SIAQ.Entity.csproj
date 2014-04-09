@@ -81,6 +81,7 @@
     <Compile Include="Object\ENTResponse.cs" />
     <Compile Include="Object\ENTRol.cs" />
     <Compile Include="Object\ENTVisita.cs" />
+    <Compile Include="Object\ENTVocesSenaladas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -45,6 +45,23 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             ComboAutoridadTercerNivel();
         }
 
+        protected void ddlVozPrimerNivel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboVocesSegundoNivel();
+            ddlVozSegundoNivel.SelectedIndex = 0;
+            ComboVocesTercerNivel();
+        }
+
+        protected void ddlVozSegundoNivel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboVocesTercerNivel();
+        }
+
+        protected void ddlAutoridad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListaVocesSenaladas(Convert.ToInt32(SolicitudIdHidden.Value), Convert.ToInt32(ddlAutoridad.SelectedValue));
+        }
+
         #endregion
 
         #region "Botones"
@@ -72,6 +89,30 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         {
             string solicitudId = SolicitudIdHidden.Value;
             Response.Redirect("~/Application/WebApp/Private/Operation/opeDetalleSolicitud.aspx?s=" + solicitudId);
+        }
+
+        protected void btnAgregarVoz_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string solicitudId = SolicitudIdHidden.Value;
+                AgregarVoz(Convert.ToInt32(solicitudId), Convert.ToInt32(ddlAutoridad.SelectedValue)
+                    , Convert.ToInt32(ddlVozTercerNivel.SelectedValue));
+
+                ScriptManager.RegisterStartupScript(this.Page
+                   , this.GetType()
+                   , Convert.ToString(Guid.NewGuid())
+                   , "tinyboxMessage('Voz agregada con éxito', 'Success', true);", true);
+
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page
+                    , this.GetType()
+                    , Convert.ToString(Guid.NewGuid())
+                    , "tinyboxMessage('" + ex.Message + "','Fail',true);"
+                    , true);
+            }
         }
 
         #endregion
@@ -151,6 +192,81 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
+
+        protected void gvVocesSenaladas_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            string SolicitudId = String.Empty;
+            int intRow = 0;
+            string AutoridadId = String.Empty;
+            string VozId = String.Empty;
+
+            try
+            {
+                // Opción seleccionada 
+                string sCommandName = e.CommandName.ToString();
+
+                if (sCommandName == "Sort") { return; }
+
+                // Fila
+                intRow = Convert.ToInt32(e.CommandArgument.ToString());
+
+                //Ciudadano Id 
+                VozId = e.CommandArgument.ToString();
+                AutoridadId = ddlAutoridad.SelectedValue;
+                SolicitudId = SolicitudIdHidden.Value;
+
+                switch (sCommandName)
+                {
+                    case "Borrar":
+                        BorrarVoz(Convert.ToInt32(SolicitudId), Convert.ToInt32(AutoridadId), Convert.ToInt32(VozId));
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+            }
+        }
+
+        protected void gvVocesSenaladas_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            ImageButton imgEdit = null;
+
+            String sImagesAttributes = "";
+            String sToolTip = "";
+
+            try
+            {
+                //Validación de que sea fila 
+                if (e.Row.RowType != DataControlRowType.DataRow) { return; }
+
+                //Obtener imagenes
+                imgEdit = (ImageButton)e.Row.FindControl("ImagenEliminar");
+
+                //Tooltip Edición
+                sToolTip = "Eliminar voz";
+                imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
+                imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
+                imgEdit.Attributes.Add("style", "curosr:hand;");
+
+                //Atributos Over
+                sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png';";
+
+                //Puntero y Sombra en fila Over
+                e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
+
+                //Atributos Out
+                sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png';";
+
+                //Puntero y Sombra en fila Out
+                e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+        }
+
         #endregion
 
         #endregion
@@ -174,6 +290,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     ddlSegundoNivel.SelectedIndex = 0;
                     ComboAutoridadTercerNivel();
                     LlenarListaAutoridades();
+
+                    ComboAutoridadesAgregadas(Convert.ToInt32(_SolicitudId));
+                    ComboVocesPrimerNivel();
+                    ddlVozPrimerNivel.SelectedIndex = 0;
+                    ComboVocesSegundoNivel();
+                    ddlVozSegundoNivel.SelectedIndex = 0;
+                    ComboVocesTercerNivel();
+                    ddlVozTercerNivel.SelectedIndex = 0;
+                    ListaVocesSenaladas(Convert.ToInt32(_SolicitudId), Convert.ToInt32(ddlAutoridad.SelectedValue));
                 }
                 catch (Exception Exception)
                 {
@@ -181,6 +306,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 }
             }
         }
+
+        #region "Autoridades"
 
         private void ComboAutoridadPrimerNivel()
         {
@@ -326,6 +453,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 //Actualizar Datos
                 LlenarListaAutoridades();
                 LimpiarCampos();
+                ComboAutoridadesAgregadas(solicitudId);
             }
             catch (Exception ex)
             {
@@ -347,6 +475,197 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             ddlPrimerNivel.Focus();
         }
 
+        #endregion
+
+        #region "Voces"
+
+        private void ComboVocesPrimerNivel()
+        {
+            BPVocesSenaladas oBPVocesSenaladas = new BPVocesSenaladas();
+
+            oBPVocesSenaladas.VocesSenaladasEntity.VozIdPadrePrimerNivel = 0;
+            oBPVocesSenaladas.VocesSenaladasEntity.VozIdPadreSegundoNivel = 0;
+
+            oBPVocesSenaladas.SelectNivelesVoces();
+
+            if (oBPVocesSenaladas.ErrorId == 0)
+            {
+                if (oBPVocesSenaladas.VocesSenaladasEntity.dsResponse.Tables[0].Rows.Count > 0)
+                {
+                    ddlVozPrimerNivel.DataSource = oBPVocesSenaladas.VocesSenaladasEntity.dsResponse.Tables[0];
+                    ddlVozPrimerNivel.DataTextField = "Nombre";
+                    ddlVozPrimerNivel.DataValueField = "VozId";
+                    ddlVozPrimerNivel.DataBind();
+                }
+            }
+        }
+
+        private void ComboVocesSegundoNivel()
+        {
+            BPVocesSenaladas oBPVocesSenaladas = new BPVocesSenaladas();
+
+            oBPVocesSenaladas.VocesSenaladasEntity.VozIdPadrePrimerNivel = Convert.ToInt32(ddlVozPrimerNivel.SelectedValue);
+            oBPVocesSenaladas.VocesSenaladasEntity.VozIdPadreSegundoNivel = 0;
+
+            oBPVocesSenaladas.SelectNivelesVoces();
+
+            if (oBPVocesSenaladas.ErrorId == 0)
+            {
+                if (oBPVocesSenaladas.VocesSenaladasEntity.dsResponse.Tables[1].Rows.Count > 0)
+                {
+                    ddlVozSegundoNivel.DataSource = oBPVocesSenaladas.VocesSenaladasEntity.dsResponse.Tables[1];
+                    ddlVozSegundoNivel.DataTextField = "Nombre";
+                    ddlVozSegundoNivel.DataValueField = "VozId";
+                    ddlVozSegundoNivel.DataBind();
+                }
+            }
+        }
+
+        private void ComboVocesTercerNivel()
+        {
+            BPVocesSenaladas oBPVocesSenaladas = new BPVocesSenaladas();
+
+            oBPVocesSenaladas.VocesSenaladasEntity.VozIdPadrePrimerNivel = Convert.ToInt32(ddlVozPrimerNivel.SelectedValue);
+            oBPVocesSenaladas.VocesSenaladasEntity.VozIdPadreSegundoNivel = Convert.ToInt32(ddlVozSegundoNivel.SelectedValue);
+
+            oBPVocesSenaladas.SelectNivelesVoces();
+
+            if (oBPVocesSenaladas.ErrorId == 0)
+            {
+                if (oBPVocesSenaladas.VocesSenaladasEntity.dsResponse.Tables[2].Rows.Count > 0)
+                {
+                    ddlVozTercerNivel.DataSource = oBPVocesSenaladas.VocesSenaladasEntity.dsResponse.Tables[2];
+                    ddlVozTercerNivel.DataTextField = "Nombre";
+                    ddlVozTercerNivel.DataValueField = "VozId";
+                    ddlVozTercerNivel.DataBind();
+                }
+            }
+        }
+
+        private void ComboAutoridadesAgregadas(int SolicitudId)
+        {
+            BPVocesSenaladas oBPVocesSenaladas = new BPVocesSenaladas();
+
+            oBPVocesSenaladas.VocesSenaladasEntity.SolicitudId = SolicitudId;
+
+            oBPVocesSenaladas.SelectAutoridadesSolicitud();
+
+            if (oBPVocesSenaladas.ErrorId == 0)
+            {
+                if (oBPVocesSenaladas.VocesSenaladasEntity.dsResponse.Tables[0].Rows.Count > 0)
+                {
+                    ddlAutoridad.DataSource = oBPVocesSenaladas.VocesSenaladasEntity.dsResponse.Tables[0];
+                    ddlAutoridad.DataTextField = "Nombre";
+                    ddlAutoridad.DataValueField = "AutoridadId";
+                    ddlAutoridad.DataBind();
+                }
+            }
+        }
+
+        private void ListaVocesSenaladas(int SolicitudId, int AutoridadId)
+        {
+            BPVocesSenaladas oBPVocesSenaladas = new BPVocesSenaladas();
+
+            oBPVocesSenaladas.VocesSenaladasEntity.SolicitudId = SolicitudId;
+            oBPVocesSenaladas.VocesSenaladasEntity.AutoridadId = AutoridadId;
+
+            oBPVocesSenaladas.SelectListaVocesAutoridad();
+
+            if (oBPVocesSenaladas.ErrorId == 0)
+            {
+                if (oBPVocesSenaladas.VocesSenaladasEntity.dsResponse.Tables[0].Rows.Count > 0)
+                {
+                    gvVocesSenaladas.DataSource = oBPVocesSenaladas.VocesSenaladasEntity.dsResponse.Tables[0];
+                    gvVocesSenaladas.DataBind();
+                }
+                else
+                {
+                    gvVocesSenaladas.DataSource = null;
+                    gvVocesSenaladas.DataBind();
+                }
+            }
+            else
+            {
+                gvVocesSenaladas.DataSource = null;
+                gvVocesSenaladas.DataBind();
+            }
+        }
+
+        private void AgregarVoz(int solicitudId, int AutoridadId, int VozId)
+        {
+            BPVocesSenaladas oBPVocesSenaladas = new BPVocesSenaladas();
+            ENTVocesSenaladas oENTVocesSenaladas = new ENTVocesSenaladas();
+            ENTResponse oENTResponse = new ENTResponse();
+
+            try
+            {
+
+                if (ddlAutoridad.SelectedValue == "0") { throw new Exception("El campo [Autoridad] es requerido"); }
+                if (ddlVozTercerNivel.SelectedValue == "0") { throw new Exception("Debe elegir una voz señalada"); }
+
+                // Formulario 
+                oENTVocesSenaladas.SolicitudId = solicitudId;
+                oENTVocesSenaladas.AutoridadId = AutoridadId;
+                oENTVocesSenaladas.VozId = VozId;
+
+                //Transacción 
+                oENTResponse = oBPVocesSenaladas.InsertSolicitudAutoridadVoces(oENTVocesSenaladas);
+
+                //Validaciones 
+                if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+                if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+
+                //Actualizar Datos
+                ListaVocesSenaladas(solicitudId, AutoridadId);
+                LimpiarCamposVoces();
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+        }
+
+        private void BorrarVoz(int solicitudId, int AutoridadId, int VozId)
+        {
+            BPVocesSenaladas oBPVocesSenaladas = new BPVocesSenaladas();
+            ENTVocesSenaladas oENTVocesSenaladas = new ENTVocesSenaladas();
+            ENTResponse oENTResponse = new ENTResponse();
+
+            try
+            {
+                // Formulario 
+                oENTVocesSenaladas.SolicitudId = solicitudId;
+                oENTVocesSenaladas.AutoridadId = AutoridadId;
+                oENTVocesSenaladas.VozId = VozId;
+
+                //Transacción 
+                oENTResponse = oBPVocesSenaladas.DeleteSolicitudAutoridadVoces(oENTVocesSenaladas);
+
+                //Validaciones 
+                if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+                if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+
+                //Actualizar Datos
+                ListaVocesSenaladas(solicitudId, AutoridadId);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+        }
+
+        private void LimpiarCamposVoces()
+        {
+            ComboVocesPrimerNivel();
+            ddlVozPrimerNivel.SelectedIndex = 0;
+            ComboVocesSegundoNivel();
+            ddlVozSegundoNivel.SelectedIndex = 0;
+            ComboVocesTercerNivel();
+            ddlVozTercerNivel.SelectedIndex = 0;
+
+        }
+
+        #endregion
 
         #endregion
 

@@ -227,11 +227,12 @@
                 Autoridad
             </td>
             <td class="style6">
-                <asp:DropDownList ID="ddlAutoridad" runat="server" CssClass="DropDownList_General" AutoPostBack="true"
-                    Width="216px">
+                <asp:DropDownList ID="ddlAutoridad" runat="server" 
+                    CssClass="DropDownList_General" AutoPostBack="true"
+                    Width="216px" onselectedindexchanged="ddlAutoridad_SelectedIndexChanged">
                 </asp:DropDownList>
             </td>
-            <td rowspan="7" style="vertical-align: super">
+            <td rowspan="13" style="vertical-align: super">
                 <table width="100%" border="0">
                     <tr>
                         <td style="width: 10px">
@@ -249,7 +250,8 @@
                                         <!--aqui se estaran ingresando los ciudadanos agregados-->
                                         <asp:GridView ID="gvVocesSenaladas" runat="server" AllowPaging="false" AllowSorting="false"
                                             AutoGenerateColumns="False" DataKeyNames="VozId"
-                                            BorderWidth="0">
+                                            BorderWidth="0" onrowcommand="gvVocesSenaladas_RowCommand" 
+                                            onrowdatabound="gvVocesSenaladas_RowDataBound">
                                             <HeaderStyle CssClass="Grid_Encabezado" />
                                             <RowStyle CssClass="Grid_Filas" />
                                             <EmptyDataRowStyle CssClass="Empty" BorderStyle="None" BorderWidth="0px" />
@@ -309,9 +311,10 @@
             </td>
             <td class="style6">
                 <asp:DropDownList ID="ddlVozPrimerNivel" runat="server" CssClass="DropDownList_General"
-                    Width="216px" AutoPostBack="True">
+                    Width="216px" AutoPostBack="True" 
+                    onselectedindexchanged="ddlVozPrimerNivel_SelectedIndexChanged">
                 </asp:DropDownList>
-            </td>
+                </td>
         </tr>
         <tr>
             <td class="EspacioIntermedio">
@@ -323,7 +326,8 @@
             </td>
             <td class="style6">
                 <asp:DropDownList ID="ddlVozSegundoNivel" runat="server" CssClass="DropDownList_General"
-                    Width="216px" AutoPostBack="True">
+                    Width="216px" AutoPostBack="True" 
+                    onselectedindexchanged="ddlVozSegundoNivel_SelectedIndexChanged">
                 </asp:DropDownList>
             </td>
         </tr>
@@ -351,7 +355,7 @@
                     <tr>
                         <td style="text-align: left; width: 139px;">
                             <asp:Button ID="btnAgregarVoz" runat="server" Text="Agregar" CssClass="Button_General"
-                                Width="125px" onclick="btnAgregar_Click" />
+                                Width="125px" onclick="btnAgregarVoz_Click"/>
                         </td>
                         <td style="text-align: left;">
                             &nbsp;</td>

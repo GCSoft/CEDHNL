@@ -9,7 +9,7 @@ using SIAQ.Entity.Object;
 
 namespace SIAQ.BusinessProcess.Object
 {
-    class BPVocesSenaladas : BPBase
+    public class BPVocesSenaladas : BPBase
     {
 
         #region Atributos
@@ -41,6 +41,13 @@ namespace SIAQ.BusinessProcess.Object
         #endregion
 
         #region Funciones
+
+        public BPVocesSenaladas()
+        {
+            _ErrorDescription = String.Empty;
+            _ErrorId = 0;
+            _VocesSenaladasEntity = new ENTVocesSenaladas();
+        }
 
         /// <summary>
         /// Selecciona las Autoridades seleccionadas para una solicitud 

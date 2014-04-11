@@ -172,7 +172,7 @@ namespace SIAQ.DataAccess.Object
 
                 Parameter = new SqlParameter("FechaHasta", SqlDbType.DateTime);
                 Parameter.Value = ENTSolicitud.FechaHasta;
-                Command.Parameters.Add(Parameter); 
+                Command.Parameters.Add(Parameter);
 
                 DataAdapter = new SqlDataAdapter(Command);
 
@@ -194,7 +194,7 @@ namespace SIAQ.DataAccess.Object
                 return ResultData;
             }
         }
-        
+
         /// <summary>
         ///     Busca las autoridades que están señaladas en una solicitud.
         /// </summary>
@@ -533,6 +533,90 @@ namespace SIAQ.DataAccess.Object
                 if (Connection.State == ConnectionState.Open)
                     Connection.Close();
             }
+        }
+
+        ///<remarks>
+        ///   <name>DASolicitud.EnviarSolicitud</name>
+        ///   <create>11/04/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        ///<summary>Metodo para enviar la solicitud a Visitadurías</summary>
+        public ENTResponse EnviarSolicitud(ENTSolicitud oENTSolicitud, string sConnectionString, int iAlternativeTimeoOut)
+        {
+            SqlConnection Connection = new SqlConnection(sConnectionString);
+            SqlCommand Command;
+            SqlDataAdapter DataAdapter;
+            SqlParameter Parameter;
+
+            ENTResponse oENTResponse = new ENTResponse();
+
+            // TO DO: Agregar nombre del SP
+            Command = new SqlCommand("", Connection);
+            Command.CommandType = CommandType.StoredProcedure;
+
+            if (iAlternativeTimeoOut > 0) { Command.CommandTimeout = iAlternativeTimeoOut; }
+
+            // TO DO: Agregar parametros 
+
+            oENTResponse.dsResponse = new DataSet();
+            DataAdapter = new SqlDataAdapter(Command);
+
+            try
+            {
+                Connection.Open();
+                DataAdapter.Fill(oENTResponse.dsResponse);
+                Connection.Close();
+            }
+            catch (SqlException ex) { oENTResponse.ExceptionRaised(ex.Message); }
+            catch (Exception ex) { oENTResponse.ExceptionRaised(ex.Message); }
+            finally
+            {
+                if (Connection.State == ConnectionState.Open)
+                {
+                    Connection.Close();
+                }
+            }
+
+            return oENTResponse;
+        }
+
+        ///<remarks>
+        ///   <name>DASolicitud.ValidarEnviarSolicitud</name>
+        ///   <create>11/04/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        ///<summary>Valida la solicitud antes de enviarla, que haya ciudadanos agregados, que se haya calificado, que haya autoridades agregadas y que se hayan agregado voces señaladas a dichas autoridades</summary>
+        public DataSet ValidarEnviarSolicitud(ENTSolicitud oENTSolicitud, string sConnectionString)
+        {
+            SqlConnection Connection = new SqlConnection(sConnectionString);
+            SqlCommand Command;
+            SqlDataAdapter DataAdapter;
+            SqlParameter Parameter;
+            DataSet ds = new DataSet();
+
+            try
+            {
+                Command = new SqlCommand("spValidarEnviarSolicitud_sel", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                Parameter = new SqlParameter("SolicitudId", SqlDbType.Int);
+                Parameter.Value = oENTSolicitud.SolicitudId;
+                Command.Parameters.Add(Parameter);
+
+                DataAdapter = new SqlDataAdapter(Command);
+
+                Connection.Open();
+                DataAdapter.Fill(ds);
+                Connection.Close();
+            }
+            catch (SqlException ex)
+            {
+                _ErrorId = ex.Number;
+                _ErrorDescription = ex.Message;
+                if (Connection.State == ConnectionState.Open) { Connection.Close(); }
+            }
+
+            return ds;
         }
     }
 }

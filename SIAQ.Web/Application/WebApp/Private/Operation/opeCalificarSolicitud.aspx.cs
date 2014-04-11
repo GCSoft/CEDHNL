@@ -27,6 +27,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             {
                 GuardarCalificacionSol();
             }
+            protected void btnCancelar_Click(object sender, EventArgs e)
+            {
+                string sSolicitudId = SolicitudIdHidden.Value;
+                Response.Redirect("~/Application/WebApp/Private/Operation/opeDetalleSolicitud.aspx?s=" + sSolicitudId);
+            }
         #endregion
 
         #region
@@ -121,7 +126,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 SessionEntity = (ENTSession)Session["oENTSession"];
 
                    if (this.ddlCalificacion.SelectedValue == "0"){
-                      ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo de Calificacion es obligatorio ', 'Success', true); focusControl('" + this.ddlCalificacion.ClientID + "');", true);
+                       ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo de Calificacion es obligatorio ', 'Fail', true); focusControl('" + this.ddlCalificacion.ClientID + "');", true);
                       return;
                    }
 
@@ -129,13 +134,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
                       if (this.ddlCanalizado.SelectedValue == "0")
                       {
-                          ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo de Canalizado es obligatorio ', 'Success', true); focusControl('" + this.ddlCanalizado.ClientID + "');", true);
+                          ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo de Canalizado es obligatorio ', 'Fail', true); focusControl('" + this.ddlCanalizado.ClientID + "');", true);
                           return;
                       }
 
                       if (this.TextBoxFundamento.Text =="")
                       {
-                          ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo de Canalizado es obligatorio ', 'Success', true); focusControl('" + this.ddlCanalizado.ClientID + "');", true);
+                          ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo de Canalizado es obligatorio ', 'Fail', true); focusControl('" + this.ddlCanalizado.ClientID + "');", true);
                           return;
                       }
                    }
@@ -167,5 +172,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
 
         #endregion
+
     }
 }

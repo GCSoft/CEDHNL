@@ -421,5 +421,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         {
 
         }
+
+        protected void btnRegresar_Click(object sender, EventArgs e)
+        {
+            string sSolicitudId = SolicitudIDHidden.Value;
+            Response.Redirect("~/Application/WebApp/Private/Operation/opeDetalleSolicitud.aspx?s=" + sSolicitudId);
+        }
     }
 }

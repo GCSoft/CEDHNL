@@ -129,7 +129,7 @@ namespace SIAQ.BusinessProcess.Object
             return oENTResponse;
 
         }
-  
+
         /// <summary>
         ///     
         /// </summary>
@@ -266,7 +266,8 @@ namespace SIAQ.BusinessProcess.Object
             _ErrorDescription = SolicitudAccess.ErrorDescription;
         }
 
-        public void GuardarCalificacionSol() {
+        public void GuardarCalificacionSol()
+        {
 
             DASolicitud SolicitudAccess = new DASolicitud();
 
@@ -274,6 +275,46 @@ namespace SIAQ.BusinessProcess.Object
 
             _ErrorId = SolicitudAccess.ErrorId;
             _ErrorDescription = SolicitudAccess.ErrorDescription;
+        }
+
+        /// <summary>
+        /// Metodo para enviar la solicitud a Visitadurías
+        /// </summary>
+        public ENTResponse EnviarSolicitud(ENTSolicitud oENTSolicitud)
+        {
+            ENTResponse oENTResponse = new ENTResponse();
+
+            try
+            {
+                //Consulta 
+                DASolicitud oDASolicitud = new DASolicitud();
+                oENTResponse = oDASolicitud.EnviarSolicitud(oENTSolicitud, sConnectionApplication, 0);
+                //Validacion de error en consulta
+                if (oENTResponse.GeneratesException) { return oENTResponse; }
+                oENTResponse.sMessage = String.Empty;
+                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+                if (oENTResponse.sMessage != "") { return oENTResponse; }
+            }
+            catch (Exception ex) { oENTResponse.ExceptionRaised(ex.Message); }
+
+            //Resultado
+            return oENTResponse;
+        }
+        
+        /// <summary>
+        /// Valida la solicitud antes de enviarla, que haya ciudadanos agregados, que se haya calificado, que haya autoridades agregadas y que se hayan agregado voces señaladas a dichas autoridades
+        /// </summary>
+        public void ValidarEnviarSolicitud()
+        {
+            string sConnectionString = String.Empty;
+            DASolicitud oDASolicitud = new DASolicitud();
+
+            sConnectionString = sConnectionApplication;
+
+            _SolicitudEntity.ResultData = oDASolicitud.ValidarEnviarSolicitud(_SolicitudEntity, sConnectionString);
+
+            _ErrorId = oDASolicitud.ErrorId;
+            _ErrorDescription = oDASolicitud.ErrorDescription;
         }
     }
 }

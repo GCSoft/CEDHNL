@@ -25,12 +25,14 @@ namespace SIAQ.Entity.Object
         private int _idUsuarioInsert;
         private int _idUsuarioLastUpdate;
         private int _CierreOrientacionId;
+        private DateTime _FechaDesde;
+        private DateTime _FechaHasta;
 
         private int _CiudadanoId;                   // Identificador unico del ciudadano
 
         public ENTSolicitud()
         {
-            
+
             _SolicitudId = 0;
             _FuncionarioId = 0;
             _CalificacionId = 0;
@@ -38,7 +40,7 @@ namespace SIAQ.Entity.Object
             _LugarHechosId = 0;
             _EstatusId = 0;
             _Numero = 0;
-            _MedioComunicacion = 0; 
+            _MedioComunicacion = 0;
             _Fecha = "";
             _Nombre = "";
             _Observaciones = "";
@@ -192,7 +194,7 @@ namespace SIAQ.Entity.Object
 
         public string Observaciones
         {
-            get{ return _Observaciones;}
+            get { return _Observaciones; }
             set { _Observaciones = value; }
         }
 
@@ -215,6 +217,18 @@ namespace SIAQ.Entity.Object
         {
             get { return _CiudadanoId; }
             set { _CiudadanoId = value; }
+        }
+
+        public DateTime FechaDesde
+        {
+            get { return _FechaDesde; }
+            set { _FechaDesde = value; }
+        }
+
+        public DateTime FechaHasta
+        {
+            get { return _FechaHasta; }
+            set { _FechaHasta = value; }
         }
 
     }

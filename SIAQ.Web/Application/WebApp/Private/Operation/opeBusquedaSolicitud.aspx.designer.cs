@@ -67,6 +67,24 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.DropDownList ddlFuncionario;
         
         /// <summary>
+        /// calDesde control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::SIAQ.Web.Include.WebUserControls.wucCalendario calDesde;
+        
+        /// <summary>
+        /// calHasta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::SIAQ.Web.Include.WebUserControls.wucCalendario calHasta;
+        
+        /// <summary>
         /// pnlBotones control.
         /// </summary>
         /// <remarks>

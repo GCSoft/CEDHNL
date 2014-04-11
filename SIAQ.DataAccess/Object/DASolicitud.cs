@@ -166,6 +166,14 @@ namespace SIAQ.DataAccess.Object
                 Parameter.Value = ENTSolicitud.FuncinarioId;
                 Command.Parameters.Add(Parameter);
 
+                Parameter = new SqlParameter("FechaDesde", SqlDbType.DateTime);
+                Parameter.Value = ENTSolicitud.FechaDesde;
+                Command.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("FechaHasta", SqlDbType.DateTime);
+                Parameter.Value = ENTSolicitud.FechaHasta;
+                Command.Parameters.Add(Parameter); 
+
                 DataAdapter = new SqlDataAdapter(Command);
 
                 Connection.Open();

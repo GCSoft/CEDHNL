@@ -70,7 +70,7 @@
 							</td>
 							<td style="text-align: center;">
 								<asp:Panel ID="pnlPrivateTemplateBody" CssClass="Body" runat="server">
-									<table width="790px" border="0" cellpadding="0" cellspacing="0" style="margin-left: 10px;">
+									<table width="99%" border="0" cellpadding="0" cellspacing="0" style="margin-left: 10px;">
 										<tr>
 											<td style="height: 20px;"></td>
 										</tr>

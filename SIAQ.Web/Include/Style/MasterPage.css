@@ -52,7 +52,7 @@ html, body, form
 	margin:0px auto;
 	min-height:500px;
 	position:relative;
-	width:800px;
+	width: auto;
 }
 
 .Canvas {

@@ -108,55 +108,59 @@
       <tr>
          <td>
             <asp:Panel id="pnlGrid" runat="server" Width="100%">
-               <asp:GridView id="gvCiudadano" runat="server" AllowPaging="false" AllowSorting="true" AutoGenerateColumns="False" Width="790px"
-						DataKeyNames="CiudadanoId"
-						OnRowDataBound="gvCiudadano_RowDataBound"
-						OnRowCommand="gvCiudadano_RowCommand"
-                  OnSorting="gvCiudadano_Sorting">
-						<alternatingrowstyle cssclass="Grid_Row_Alternating" />
-						<headerstyle cssclass="Grid_Header" />
-						<rowstyle cssclass="Grid_Row" />
-						<EmptyDataTemplate>
-							<table border="1px" cellpadding="0px" cellspacing="0px">
-								<tr class="Grid_Header">
-									<td style="width:200px;">Nombre</td>
-									<td style="width:50px;">Sexo</td>
-                           <td style="width:65px;">Fecha Nacimiento</td>
-                           <td style="width:280px;">Domicilio</td>
-                           <td style="width:65px;">Telefono</td>
-                           <td style="width:50px;">Visita</td>
-                           <td style="width:53px;">Solicitud</td>
-                           <td style="width:30px;">Editar</td>
-								</tr>
-								<tr class="Grid_Row">
-									<td colspan="8">No se encontraron ciudadanos registradas en el sistema</td>
-								</tr>
-							</table>
-						</EmptyDataTemplate>
-						<Columns>
-                     <asp:BoundField HeaderText="Nombre"             ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="170px" DataField="NombreCompleto"></asp:BoundField>
-                     <asp:BoundField HeaderText="Sexo"               ItemStyle-HorizontalAlign="Left"		ItemStyle-Width="50px"  DataField="SexoNombre"></asp:BoundField>
-                     <asp:BoundField HeaderText="Fecha Nacimiento"   ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="65px"  DataField="FechaNacimiento"></asp:BoundField>
-                     <asp:BoundField HeaderText="Domicilio"          ItemStyle-HorizontalAlign="Left"		ItemStyle-Width="280px" DataField="DireccionCompleta"></asp:BoundField>
-                     <asp:BoundField HeaderText="Telefono"           ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="65px"  DataField="TelefonoPrincipal"></asp:BoundField>
-                     <asp:TemplateField HeaderText="Visita">
-                        <ItemTemplate>
-                           <asp:LinkButton CommandArgument='<%#Eval("CiudadanoId")%>' CommandName="Visita" ID="VisitaLink" runat="server" Text='Visita' Width="80px"></asp:LinkButton>
-                        </ItemTemplate>
-                     </asp:TemplateField>
-                     <asp:BoundField HeaderText="Solicitud"         ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="50px"></asp:BoundField>
-                     <asp:TemplateField HeaderText="Editar">
-                        <ItemTemplate>
-                           <asp:LinkButton CommandArgument='<%#Eval("CiudadanoId")%>' CommandName="Editar" ID="EditarLink" runat="server" Text='Editar' Width="80px"></asp:LinkButton>
-                        </ItemTemplate>
-                     </asp:TemplateField>
-                     <asp:TemplateField HeaderText="Consultar">
-                        <ItemTemplate>
-                           <asp:LinkButton CommandArgument='<%#Eval("CiudadanoId")%>' CommandName="Consultar" ID="ConsultarLink" runat="server" Text='Consultar' Width="80px"></asp:LinkButton>
-                        </ItemTemplate>
-                     </asp:TemplateField>
-						</Columns>
-					</asp:GridView>
+               <asp:GridView id="gvCiudadano" runat="server" AllowPaging="false" AllowSorting="true" AutoGenerateColumns="False" Width="100%"
+					DataKeyNames="CiudadanoId"
+					OnRowDataBound="gvCiudadano_RowDataBound"
+					OnRowCommand="gvCiudadano_RowCommand"
+                    OnSorting="gvCiudadano_Sorting">
+					<alternatingrowstyle cssclass="Grid_Row_Alternating" />
+					<headerstyle cssclass="Grid_Header" />
+					<rowstyle cssclass="Grid_Row" />
+					<EmptyDataTemplate>
+						<table border="1px" cellpadding="0px" cellspacing="0px" width="100%">
+							<tr class="Grid_Header">
+                                <td>Nombre</td>
+								<td style="width:100px;">Sexo</td>
+                                <td style="width:75px;">Fecha Nacimiento</td>
+                                <td style="width:280px;">Domicilio</td>
+                                <td style="width:75px;">Telefono</td>
+                                <td style="width:55px;">Visita</td>
+                                <td style="width:55px;">Solicitud</td>
+                                <td style="width:50px;">Editar</td>
+                                <td style="width:50px;">Consultar</td>
+							</tr>
+							<tr class="Grid_Row">
+								<td colspan="9">No se encontraron ciudadanos registradas en el sistema</td>
+							</tr>
+						</table>
+					</EmptyDataTemplate>
+					<Columns>
+                         <asp:BoundField HeaderText="Nombre"             ItemStyle-HorizontalAlign="Left"    DataField="NombreCompleto"></asp:BoundField>
+                         <asp:BoundField HeaderText="Sexo"               ItemStyle-HorizontalAlign="Center"	 ItemStyle-Width="100px"  DataField="SexoNombre"></asp:BoundField>
+                         <asp:BoundField HeaderText="Fecha Nacimiento"   ItemStyle-HorizontalAlign="Center"    ItemStyle-Width="75px"  DataField="FechaNacimiento"></asp:BoundField>
+                         <asp:BoundField HeaderText="Domicilio"          ItemStyle-HorizontalAlign="Left"	 ItemStyle-Width="280px" DataField="DireccionCompleta"></asp:BoundField>
+                         <asp:BoundField HeaderText="Telefono"           ItemStyle-HorizontalAlign="Center"    ItemStyle-Width="75px"  DataField="TelefonoPrincipal"></asp:BoundField>
+                         <asp:TemplateField HeaderText="Visita">
+                            <ItemTemplate>
+                               <asp:LinkButton CommandArgument='<%#Eval("CiudadanoId")%>' CommandName="Visita" ID="VisitaLink" runat="server" Text='Visita'></asp:LinkButton>
+                            </ItemTemplate>
+                            <ItemStyle Width="55px" />
+                         </asp:TemplateField>
+                         <asp:BoundField HeaderText="Solicitud"         ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="55px"></asp:BoundField>
+                         <asp:TemplateField HeaderText="Editar">
+                            <ItemTemplate>
+                               <asp:LinkButton CommandArgument='<%#Eval("CiudadanoId")%>' CommandName="Editar" ID="EditarLink" runat="server" Text='Editar'></asp:LinkButton>
+                            </ItemTemplate>
+                            <ItemStyle Width="50px" />
+                         </asp:TemplateField>
+                         <asp:TemplateField HeaderText="Consultar">
+                            <ItemTemplate>
+                               <asp:LinkButton CommandArgument='<%#Eval("CiudadanoId")%>' CommandName="Consultar" ID="ConsultarLink" runat="server" Text='Consultar'></asp:LinkButton>
+                            </ItemTemplate>
+                            <ItemStyle Width="50px" />
+                         </asp:TemplateField>
+					</Columns>
+				</asp:GridView>
             </asp:Panel>
          </td>
       </tr>

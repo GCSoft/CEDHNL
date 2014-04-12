@@ -1,8 +1,11 @@
 <%@ Page Language="C#" MasterPageFile="~/Include/MasterPage/LoginTemplate.Master" AutoEventWireup="true" CodeBehind="frmLogin.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.frmLogin" Title="SIAQ - Autenticación de Usuario" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="cntLoginHeader" runat="server">
   
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="cntLoginBody" runat="server">
    <asp:Panel id="pnlLogin" runat="server" style="background-color:#E5E9EC; width:310px;">
 		<table border="0" cellpadding="0" cellspacing="0" style="height:100%; width:300px">
@@ -74,6 +77,7 @@
 			<tr><td colspan="3"></td></tr>
 		</table>		
 	</asp:Panel>
+
 	<ajaxToolkit:DropShadowExtender ID="dseLogin" runat="server" TargetControlID="pnlLogin" Width="0" Rounded="true" Radius="6" Opacity=".75" TrackPosition="true" />
 	<asp:HiddenField id="hddEncryption" runat="server" value="1"></asp:HiddenField>
 </asp:Content>

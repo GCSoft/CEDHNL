@@ -104,7 +104,7 @@
       <tr>
          <td style="text-align: left;">
             <asp:Label Text="Los campos marcados con " runat="server"></asp:Label> 
-            <asp:Label CssClass="style3" Text="*" runat="server"></asp:Label>
+            <asp:Label CssClass="VinetaObligatorio" Text="*" runat="server"></asp:Label>
             <asp:Label ID="Label4" Text="son obligatorios." runat="server"></asp:Label> 
          </td>
       </tr>

@@ -29,11 +29,9 @@
             Agregar ciudadanos
         </asp:Panel>
 
-        <asp:Panel CssClass="IconoPanel" ID="DiligenciasPanel" runat="server" Visible="true">
-            <asp:ImageButton ID="DiligenciaPanel" 
-                ImageUrl="/Include/Image/Icon/DiligenciaIcon.png" runat="server" 
-                onclick="DiligenciaPanel_Click"></asp:ImageButton><br />
-            Diligencias
+        <asp:Panel CssClass="IconoPanel" ID="CalificarPanel" runat="server" Visible="true">
+            <asp:ImageButton ID="CalificarButton" ImageUrl="/Include/Image/Icon/CalificarIcon.png" runat="server" onclick="CalificarButton_Click"></asp:ImageButton><br />
+            Calificar solicitud
         </asp:Panel>
 
         <asp:Panel CssClass="IconoPanel" ID="AutoridadPanel" runat="server" Visible="true">
@@ -41,19 +39,21 @@
             Agegar autoridades señaladas y voces
         </asp:Panel>
 
+        <asp:Panel CssClass="IconoPanel" ID="DiligenciasPanel" runat="server" Visible="true">
+            <asp:ImageButton ID="DiligenciaPanel" 
+                ImageUrl="/Include/Image/Icon/DiligenciaIcon.png" runat="server" 
+                onclick="DiligenciaPanel_Click"></asp:ImageButton><br />
+            Diligencias
+        </asp:Panel>
+
         <asp:Panel CssClass="IconoPanel" ID="IndicadorPanel" runat="server" Visible="true">
             <asp:ImageButton ID="IndicadorButton" ImageUrl="/Include/Image/Icon/IndicadorIcon.png" runat="server" onclick="IndicadorButton_Click"></asp:ImageButton><br />
-            Indicadores
+            Grupos minoritarios
         </asp:Panel>
 
         <asp:Panel CssClass="IconoPanel" ID="DocumentoPanel" runat="server" Visible="true">
             <asp:ImageButton ID="DocumentoButton" ImageUrl="/Include/Image/Icon/DocumentoIcon.png" runat="server" onclick="DocumentoButton_Click"></asp:ImageButton><br />
             Agregar documentos
-        </asp:Panel>
-
-        <asp:Panel CssClass="IconoPanel" ID="CalificarPanel" runat="server" Visible="true">
-            <asp:ImageButton ID="CalificarButton" ImageUrl="/Include/Image/Icon/CalificarIcon.png" runat="server" onclick="CalificarButton_Click"></asp:ImageButton><br />
-            Calificar solicitud
         </asp:Panel>
 
         <asp:Panel CssClass="IconoPanel" ID="EnviarPanel" runat="server" Visible="true">

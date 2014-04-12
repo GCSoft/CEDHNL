@@ -65,7 +65,7 @@
 .GeneralTable
 {
 	border-spacing: 5px;
-	font-size:11px;
+	font-size:12px;
 	padding: 0px;
 	width: 100%;
 }
@@ -121,7 +121,7 @@
 
 .GeneralTable .SubTitulo
 {
-	font-size: 11px;
+	font-size: 12px;
 	text-align: left;
 }
 

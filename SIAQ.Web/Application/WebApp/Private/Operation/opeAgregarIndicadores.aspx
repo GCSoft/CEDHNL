@@ -25,13 +25,13 @@
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
           <tr>
 			    <td class="tdCeldaTituloEncabezado" style="background-image:url('../../../../Include/Image/Web/BarraTitulo.png');">
-				     Agregar Indicadores
+				     Agregar grupos minoritarios
 			    </td>
 		    </tr>
      </table>
      <br />
      <div style="text-align:left;">
-        <label style="font-size: 11px;">Seleccione los distintos indicadores que cumplan con una mejor descripción de la solicitud y del quejoso</label>
+        <label style="font-size: 13px;">Seleccione los distintos indicadores que cumplan con una mejor descripción de la solicitud y del quejoso</label>
      </div>
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
            <tr>

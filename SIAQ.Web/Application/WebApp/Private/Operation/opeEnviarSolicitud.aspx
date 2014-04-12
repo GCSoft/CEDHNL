@@ -93,13 +93,15 @@
                                 <td class="Botones" colspan="3">
                                     <br />
                                     <asp:Button ID="SendButton" runat="server" Text="Enviar solicitud" CssClass="Button_General" width="125px" onclick="SendButton_Click"/> &nbsp;&nbsp;&nbsp;
-                                    <input class="Button_General" id="RegresarButton" onclick="document.location.href='opeDetalleSolicitud.aspx?s=<%= _SolicitudId %>';" style="width: 125px;" type="button" value="Regresar" />
+                                    <asp:Button ID="RegresarButton" runat="server" Text="Regresar" 
+                                        CssClass="Button_General" width="125px" onclick="RegresarButton_Click"/>
                                 </td>
                             </tr>
                         </table>
                     </td>
                 </tr>
             </table>
+            <asp:HiddenField ID="hdnSolicitudId" runat="server" />
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

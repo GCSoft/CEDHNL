@@ -19,7 +19,19 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         #region "Events"
         protected void SendButton_Click(object sender, EventArgs e)
         {
-            SendSolicitud();
+            try
+            {
+                string sSolicitudId = hdnSolicitudId.Value;
+                ValidarEnvio(Convert.ToInt32(sSolicitudId));
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page
+                    , this.GetType()
+                    , Convert.ToString(Guid.NewGuid())
+                    , "tinyboxMessage('" + ex.Message + "','Fail',true);"
+                    , true);
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -39,9 +51,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 try
                 {
                     SolicitudId = int.Parse(Request.QueryString["s"].ToString());
+                    hdnSolicitudId.Value = SolicitudId.ToString();
 
                     SelectSolicitud(SolicitudId);
-
                     _SolicitudId = SolicitudId.ToString();
                 }
                 catch (Exception Exception)
@@ -80,9 +92,33 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        private void SendSolicitud()
+        private void SendSolicitud(int solicitudId)
         {
+            BPSolicitud oBPSolicitud = new BPSolicitud();
+            ENTResponse oENTResponse = new ENTResponse();
+            ENTSolicitud oENTSolicitud = new ENTSolicitud();
 
+            try
+            {
+                //Transacción
+                oENTSolicitud.SolicitudId = solicitudId;
+                oENTResponse = oBPSolicitud.EnviarSolicitud(oENTSolicitud);
+                //Validación
+                if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+                if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+
+                ScriptManager.RegisterStartupScript(this.Page
+                    , this.GetType()
+                    , Convert.ToString(Guid.NewGuid())
+                    , "tinyboxMessage('Solicitud enviada con éxito','Success',true);"
+                    , true);
+
+                SendButton.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
         }
 
         private void ValidarEnvio(int solicitudId)
@@ -98,7 +134,39 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 {
                     if (oBPSolicitud.SolicitudEntity.ResultData.Tables[0].Rows.Count > 0)
                     {
-                        
+                        int iNumeroCiudadanos = Convert.ToInt32(oBPSolicitud.SolicitudEntity.ResultData.Tables[0].Rows[0]["NumeroCiudadanos"].ToString());
+                        int iCalificada = Convert.ToInt32(oBPSolicitud.SolicitudEntity.ResultData.Tables[0].Rows[0]["Calificada"].ToString());
+                        int iNumeroAutoridad = Convert.ToInt32(oBPSolicitud.SolicitudEntity.ResultData.Tables[0].Rows[0]["NumeroAutoridad"].ToString());
+                        string sAutoridadesSinVoz = oBPSolicitud.SolicitudEntity.ResultData.Tables[0].Rows[0]["AutoridadesSinVoz"].ToString();
+
+                        if (iNumeroCiudadanos == 0)
+                        {
+                            throw new Exception("No se ha podido realizar el envío, no se han agregado ciudadanos a la solicitud.");
+                        }
+
+                        if (iCalificada == 0)
+                        {
+                            throw new Exception("No se ha podido realizar el envío, no se ha calificado la solicitud.");
+                        }
+
+                        if (iNumeroAutoridad == 0)
+                        {
+                            throw new Exception("No se ha podido realizar el envío, no se han agregado autoridades a la solicitud.");
+                        }
+
+                        if (String.IsNullOrEmpty(sAutoridadesSinVoz))
+                        {
+                            throw new Exception("No se ha podido realizar el envío, no se han agregado voces señaladas a alguna de las autoridades.");
+                        }
+                        else
+                        {
+                            if (Convert.ToInt32(sAutoridadesSinVoz) > 0)
+                            {
+                                throw new Exception("No se ha podido realizar el envío, no se han agregado voces señaladas a alguna de las autoridades.");
+                            }
+                        }
+
+                        SendSolicitud(solicitudId);
                     }
                 }
             }
@@ -109,5 +177,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         }
 
         #endregion
+
+        protected void RegresarButton_Click(object sender, EventArgs e)
+        {
+            string sSolicitudId = hdnSolicitudId.Value;
+            Response.Redirect("~/Application/WebApp/Private/Operation/opeDetalleSolicitud.aspx?s=" + sSolicitudId);
+        }
     }
 }

@@ -111,7 +111,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
                 BPCanalizacion BPCanalizacion = new BPCanalizacion();
                 
-                ddlCanalizado.DataValueField = "CalificacionId";
+                ddlCanalizado.DataValueField = "CanalizacionId";
                 ddlCanalizado.DataTextField = "Nombre";
 
                 ddlCanalizado.DataSource = BPCanalizacion.SelectCanalizacion();

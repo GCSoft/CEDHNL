@@ -77,16 +77,7 @@
                         </tr>
                         <tr>
                             <td class="Etiqueta">
-                                Buscar por fecha
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                            <td class="Campo">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="Etiqueta">
-                                Desde
+                                Fecha inicio
                             </td>
                             <td class="Espacio">
                             </td>
@@ -96,7 +87,7 @@
                         </tr>
                         <tr>
                             <td class="Etiqueta">
-                                Hasta
+                                Fecha fin
                             </td>
                             <td class="Espacio">
                             </td>

@@ -92,7 +92,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             try
             {
                 oBPSolicitud.SolicitudEntity.SolicitudId = solicitudId;
+                oBPSolicitud.ValidarEnviarSolicitud();
 
+                if (oBPSolicitud.ErrorId == 0)
+                {
+                    if (oBPSolicitud.SolicitudEntity.ResultData.Tables[0].Rows.Count > 0)
+                    {
+                        
+                    }
+                }
             }
             catch (Exception ex)
             {

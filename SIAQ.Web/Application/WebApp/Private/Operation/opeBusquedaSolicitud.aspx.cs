@@ -203,8 +203,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     this.gvSolicitud.DataBind();
                 }
 
-                DateTime dtDesde = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1, 0, 0, 0);
-                DateTime dtHasta = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month), 23, 59, 59);
+                DateTime dtDesde = new DateTime(DateTime.Now.Year, 1, 1, 0, 0, 0);
+                DateTime dtHasta = new DateTime(DateTime.Now.Year, 12, DateTime.DaysInMonth(DateTime.Now.Year, 12), 23, 59, 59);
 
                 calDesde.SetDate = dtDesde.ToString();
                 calHasta.SetDate = dtHasta.ToString();

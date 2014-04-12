@@ -550,13 +550,14 @@ namespace SIAQ.DataAccess.Object
 
             ENTResponse oENTResponse = new ENTResponse();
 
-            // TO DO: Agregar nombre del SP
-            Command = new SqlCommand("", Connection);
+            Command = new SqlCommand("spEnviarSolicitud_ins", Connection);
             Command.CommandType = CommandType.StoredProcedure;
 
             if (iAlternativeTimeoOut > 0) { Command.CommandTimeout = iAlternativeTimeoOut; }
 
-            // TO DO: Agregar parametros 
+            Parameter = new SqlParameter("SolicitudId", SqlDbType.Int);
+            Parameter.Value = oENTSolicitud.SolicitudId;
+            Command.Parameters.Add(Parameter); 
 
             oENTResponse.dsResponse = new DataSet();
             DataAdapter = new SqlDataAdapter(Command);

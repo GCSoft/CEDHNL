@@ -479,6 +479,7 @@
                         </tr>
                         <tr>
                             <td colspan="3" style="text-align: left">
+                                <br />
                                 Los campos marcados con <font class="MarcadorObligatorio">&nbsp;*</font> son obligatorios
                             </td>
                         </tr>

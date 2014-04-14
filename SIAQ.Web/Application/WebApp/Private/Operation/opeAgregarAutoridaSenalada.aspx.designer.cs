@@ -103,22 +103,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.Button btnRegresar;
         
         /// <summary>
-        /// ddlAutoridad control.
+        /// pnlVoces control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAutoridad;
-        
-        /// <summary>
-        /// gvVocesSenaladas control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvVocesSenaladas;
+        protected global::System.Web.UI.WebControls.Panel pnlVoces;
         
         /// <summary>
         /// ddlVozPrimerNivel control.
@@ -128,6 +119,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlVozPrimerNivel;
+        
+        /// <summary>
+        /// gvVocesSenaladas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvVocesSenaladas;
         
         /// <summary>
         /// ddlVozSegundoNivel control.
@@ -157,6 +157,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.Button btnAgregarVoz;
         
         /// <summary>
+        /// btnTerminarVoz control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnTerminarVoz;
+        
+        /// <summary>
         /// SolicitudIdHidden control.
         /// </summary>
         /// <remarks>
@@ -164,5 +173,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField SolicitudIdHidden;
+        
+        /// <summary>
+        /// hdnAutoridadId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnAutoridadId;
     }
 }

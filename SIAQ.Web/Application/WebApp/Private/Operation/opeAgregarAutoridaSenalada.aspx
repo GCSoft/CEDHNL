@@ -55,9 +55,8 @@
                                     <td style="height: 175px; background-color: #EFF2FB; vertical-align: top;">
                                         <!--aqui se estaran ingresando los ciudadanos agregados-->
                                         <asp:GridView ID="gvAutoridadesAgregadas" runat="server" AllowPaging="false" AllowSorting="false"
-                                            AutoGenerateColumns="False" DataKeyNames="AutoridadId"
-                                            BorderWidth="0" onrowcommand="gvAutoridadesAgregadas_RowCommand" 
-                                            onrowdatabound="gvAutoridadesAgregadas_RowDataBound">
+                                            AutoGenerateColumns="False" DataKeyNames="AutoridadId" BorderWidth="0" OnRowCommand="gvAutoridadesAgregadas_RowCommand"
+                                            OnRowDataBound="gvAutoridadesAgregadas_RowDataBound">
                                             <HeaderStyle CssClass="Grid_Encabezado" />
                                             <RowStyle CssClass="Grid_Filas" />
                                             <EmptyDataRowStyle CssClass="Empty" BorderStyle="None" BorderWidth="0px" />
@@ -90,7 +89,8 @@
                                                     <ItemTemplate>
                                                         <asp:ImageButton CommandArgument='<%#Eval("AutoridadId")%>' CommandName="Borrar"
                                                             runat="server" ID="ImagenEliminar" ImageUrl="~/Include/Image/Buttons/Delete.png"
-                                                            Height="11px"></asp:ImageButton>
+                                                            Height="11px" OnClientClick="return confirm('¿Seguro que desea eliminar esta autoridad?, se eliminarán todas las voces señaladas relacionadas a esta autoridad.')">
+                                                        </asp:ImageButton>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                             </Columns>
@@ -176,13 +176,12 @@
             </td>
         </tr>
         <tr>
-            <td class="EspacioIntermedio" style="vertical-align:top">
+            <td class="EspacioIntermedio" style="vertical-align: top">
                 Comentarios
             </td>
             <td class="style6">
-                <asp:TextBox ID="tbComentarios" runat="server" CssClass="Textbox_General" 
-                    Width="210px" Height="70px"
-                    MaxLength="50" TextMode="MultiLine"></asp:TextBox>
+                <asp:TextBox ID="tbComentarios" runat="server" CssClass="Textbox_General" Width="210px"
+                    Height="70px" MaxLength="50" TextMode="MultiLine"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -199,11 +198,11 @@
                     <tr>
                         <td style="text-align: left; width: 139px;">
                             <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="Button_General"
-                                Width="125px" onclick="btnAgregar_Click" />
+                                Width="125px" OnClick="btnAgregar_Click" />
                         </td>
                         <td style="text-align: left;">
                             <asp:Button ID="btnRegresar" runat="server" Text="Regresar" CssClass="Button_General"
-                                Width="125px" onclick="btnRegresar_Click" />
+                                Width="125px" OnClick="btnRegresar_Click" />
                         </td>
                     </tr>
                 </table>
@@ -214,8 +213,8 @@
             </td>
         </tr>
         <tr>
-            <td colspan="3" style="background-color: #CCCCCC; text-align: left;">
-                Voces señaladas
+            <td colspan="3">
+                Recuerde que al agregar una autoridad deberá agregar una voz señalada a dicha autoridad
             </td>
         </tr>
         <tr>
@@ -223,144 +222,145 @@
             </td>
         </tr>
         <tr>
-            <td class="EspacioIntermedio">
-                Autoridad
-            </td>
-            <td class="style6">
-                <asp:DropDownList ID="ddlAutoridad" runat="server" 
-                    CssClass="DropDownList_General" AutoPostBack="true"
-                    Width="216px" onselectedindexchanged="ddlAutoridad_SelectedIndexChanged">
-                </asp:DropDownList>
-            </td>
-            <td rowspan="13" style="vertical-align: super">
-                <table width="100%" border="0">
-                    <tr>
-                        <td style="width: 10px">
-                        </td>
-                        <td style="border: 0px">
-                            <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                <tr>
-                                    <td style="background-color: #DDDDFF; height: 30px; font-size: 10px; border: 0px;
-                                        text-align: center;">
-                                        &nbsp;Voces Señaladas a la Autoridad&nbsp;
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="height: 175px; background-color: #EFF2FB; vertical-align: top;">
-                                        <!--aqui se estaran ingresando los ciudadanos agregados-->
-                                        <asp:GridView ID="gvVocesSenaladas" runat="server" AllowPaging="false" AllowSorting="false"
-                                            AutoGenerateColumns="False" DataKeyNames="VozId"
-                                            BorderWidth="0" onrowcommand="gvVocesSenaladas_RowCommand" 
-                                            onrowdatabound="gvVocesSenaladas_RowDataBound">
-                                            <HeaderStyle CssClass="Grid_Encabezado" />
-                                            <RowStyle CssClass="Grid_Filas" />
-                                            <EmptyDataRowStyle CssClass="Empty" BorderStyle="None" BorderWidth="0px" />
-                                            <EmptyDataTemplate>
-                                                <table border="0px" cellpadding="0" style="border: 0px;" cellspacing="0">
-                                                    <tr>
-                                                        <td style="height: 5px">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="height: 5px">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="font-size: 9.5px; text-align: center;">
-                                                            No se han agregado voces a esta autoridad
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="height: 130px;">
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </EmptyDataTemplate>
-                                            <Columns>
-                                                <asp:TemplateField>
-                                                    <ItemTemplate>
-                                                        <asp:LinkButton Width="150px" CommandArgument='<%#Eval("VozId")%>'
-                                                            ID="VozButton" runat="server" Text='<%#Eval("Nombre")%>'></asp:LinkButton>
-                                                    </ItemTemplate>
-                                                    <ItemStyle HorizontalAlign="Left" />
-                                                </asp:TemplateField>
-                                                <asp:TemplateField>
-                                                    <ItemTemplate>
-                                                        <asp:ImageButton CommandArgument='<%#Eval("VozId")%>' CommandName="Borrar"
-                                                            runat="server" ID="ImagenEliminar" ImageUrl="~/Include/Image/Buttons/Delete.png"
-                                                            Height="11px"></asp:ImageButton>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                            </Columns>
-                                        </asp:GridView>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-        <tr>
-            <td class="EspacioIntermedio">
-            </td>
-        </tr>
-        <tr>
-            <td class="EspacioIntermedio">
-                Primer nivel
-            </td>
-            <td class="style6">
-                <asp:DropDownList ID="ddlVozPrimerNivel" runat="server" CssClass="DropDownList_General"
-                    Width="216px" AutoPostBack="True" 
-                    onselectedindexchanged="ddlVozPrimerNivel_SelectedIndexChanged">
-                </asp:DropDownList>
-                </td>
-        </tr>
-        <tr>
-            <td class="EspacioIntermedio">
-            </td>
-        </tr>
-        <tr>
-            <td class="EspacioIntermedio">
-                Segundo nivel
-            </td>
-            <td class="style6">
-                <asp:DropDownList ID="ddlVozSegundoNivel" runat="server" CssClass="DropDownList_General"
-                    Width="216px" AutoPostBack="True" 
-                    onselectedindexchanged="ddlVozSegundoNivel_SelectedIndexChanged">
-                </asp:DropDownList>
-            </td>
-        </tr>
-        <tr>
-            <td class="EspacioIntermedio">
-            </td>
-        </tr>
-        <tr>
-            <td class="EspacioIntermedio">
-                Tercer nivel
-            </td>
-            <td class="style6">
-                <asp:DropDownList ID="ddlVozTercerNivel" runat="server" CssClass="DropDownList_General"
-                    Width="216px">
-                </asp:DropDownList>
-            </td>
-        </tr>
-        <tr>
-            <td class="EspacioIntermedio">
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <table width="100%" border="0">
-                    <tr>
-                        <td style="text-align: left; width: 139px;">
-                            <asp:Button ID="btnAgregarVoz" runat="server" Text="Agregar" CssClass="Button_General"
-                                Width="125px" onclick="btnAgregarVoz_Click"/>
-                        </td>
-                        <td style="text-align: left;">
-                            &nbsp;</td>
-                    </tr>
-                </table>
+            <td colspan="3">
+                <asp:Panel ID="pnlVoces" runat="server" Visible="false">
+                    <table style="text-align: left; font-size: 11px">
+                        <tr>
+                            <td colspan="3" style="background-color: #CCCCCC; text-align: left;">
+                                Voces señaladas
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="EspacioIntermedio">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="EspacioIntermedio">
+                                Primer nivel
+                            </td>
+                            <td class="style6">
+                                <asp:DropDownList ID="ddlVozPrimerNivel" runat="server" CssClass="DropDownList_General"
+                                    Width="216px" AutoPostBack="True" OnSelectedIndexChanged="ddlVozPrimerNivel_SelectedIndexChanged">
+                                </asp:DropDownList>
+                            </td>
+                            <td rowspan="12" style="vertical-align: super">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td style="width: 10px">
+                                        </td>
+                                        <td style="border: 0px">
+                                            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                    <td style="background-color: #DDDDFF; height: 30px; font-size: 10px; border: 0px;
+                                                        text-align: center;">
+                                                        &nbsp;Voces Señaladas a la Autoridad&nbsp;
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="height: 175px; background-color: #EFF2FB; vertical-align: top;">
+                                                        <!--aqui se estaran ingresando los ciudadanos agregados-->
+                                                        <asp:GridView ID="gvVocesSenaladas" runat="server" AllowPaging="false" AllowSorting="false"
+                                                            AutoGenerateColumns="False" DataKeyNames="VozId" BorderWidth="0" OnRowCommand="gvVocesSenaladas_RowCommand"
+                                                            OnRowDataBound="gvVocesSenaladas_RowDataBound">
+                                                            <HeaderStyle CssClass="Grid_Encabezado" />
+                                                            <RowStyle CssClass="Grid_Filas" />
+                                                            <EmptyDataRowStyle CssClass="Empty" BorderStyle="None" BorderWidth="0px" />
+                                                            <EmptyDataTemplate>
+                                                                <table border="0px" cellpadding="0" style="border: 0px;" cellspacing="0">
+                                                                    <tr>
+                                                                        <td style="height: 5px">
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="height: 5px">
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="font-size: 9.5px; text-align: center;">
+                                                                            No se han agregado voces a esta autoridad
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="height: 130px;">
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </EmptyDataTemplate>
+                                                            <Columns>
+                                                                <asp:TemplateField>
+                                                                    <ItemTemplate>
+                                                                        <asp:LinkButton Width="150px" CommandArgument='<%#Eval("VozId")%>' ID="VozButton"
+                                                                            runat="server" Text='<%#Eval("Nombre")%>'></asp:LinkButton>
+                                                                    </ItemTemplate>
+                                                                    <ItemStyle HorizontalAlign="Left" />
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField>
+                                                                    <ItemTemplate>
+                                                                        <asp:ImageButton CommandArgument='<%#Eval("VozId")%>' CommandName="Borrar" runat="server"
+                                                                            ID="ImagenEliminar" ImageUrl="~/Include/Image/Buttons/Delete.png" Height="11px">
+                                                                        </asp:ImageButton>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                            </Columns>
+                                                        </asp:GridView>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="EspacioIntermedio">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="EspacioIntermedio">
+                                Segundo nivel
+                            </td>
+                            <td class="style6">
+                                <asp:DropDownList ID="ddlVozSegundoNivel" runat="server" CssClass="DropDownList_General"
+                                    Width="216px" AutoPostBack="True" OnSelectedIndexChanged="ddlVozSegundoNivel_SelectedIndexChanged">
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="EspacioIntermedio">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="EspacioIntermedio">
+                                Tercer nivel
+                            </td>
+                            <td class="style6">
+                                <asp:DropDownList ID="ddlVozTercerNivel" runat="server" CssClass="DropDownList_General"
+                                    Width="216px">
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="EspacioIntermedio">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td style="text-align: left; width: 139px;">
+                                            <asp:Button ID="btnAgregarVoz" runat="server" Text="Agregar" CssClass="Button_General"
+                                                Width="125px" OnClick="btnAgregarVoz_Click" />
+                                        </td>
+                                        <td style="text-align: left;">
+                                            <asp:Button ID="btnTerminarVoz" runat="server" Text="Terminar" CssClass="Button_General"
+                                                Width="125px" OnClick="btnTerminarVoz_Click" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </asp:Panel>
             </td>
         </tr>
         <tr>
@@ -369,4 +369,5 @@
         </tr>
     </table>
     <asp:HiddenField ID="SolicitudIdHidden" runat="server" Value="0" />
+    <asp:HiddenField ID="hdnAutoridadId" runat="server" />
 </asp:Content>

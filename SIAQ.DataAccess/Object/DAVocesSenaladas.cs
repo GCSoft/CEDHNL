@@ -36,47 +36,6 @@ namespace SIAQ.DataAccess.Object
         #region Funciones
 
         ///<remarks>
-        ///   <name>DAVocesSenaladas.SelectAutoridadesSolicitud</name>
-        ///   <create>09/abr/2014</create>
-        ///   <author>Jose.Gomez</author>
-        ///</remarks>
-        /// <summary>
-        /// Selecciona las Autoridades seleccionadas para una solicitud 
-        /// </summary>
-        public DataSet SelectAutoridadesSolicitud(ENTVocesSenaladas oENTVocesSenaladas, string sConnectionString)
-        {
-            SqlConnection Connection = new SqlConnection(sConnectionString);
-            SqlCommand Command;
-            SqlDataAdapter DataAdapter;
-            SqlParameter Parameter;
-            DataSet ds = new DataSet();
-
-            try
-            {
-                Command = new SqlCommand("spComboAutoridadSolicitud_sel", Connection);
-                Command.CommandType = CommandType.StoredProcedure;
-
-                Parameter = new SqlParameter("SolicitudId", SqlDbType.Int);
-                Parameter.Value = oENTVocesSenaladas.SolicitudId;
-                Command.Parameters.Add(Parameter);
-
-                DataAdapter = new SqlDataAdapter(Command);
-
-                Connection.Open();
-                DataAdapter.Fill(ds);
-                Connection.Close();
-            }
-            catch (SqlException ex)
-            {
-                _ErrorId = ex.Number;
-                _ErrorDescription = ex.Message;
-                if (Connection.State == ConnectionState.Open) { Connection.Close(); }
-            }
-
-            return ds;
-        }
-
-        ///<remarks>
         ///   <name>DAVocesSenaladas.SelectNivelesVoces</name>
         ///   <create>09/abr/2014</create>
         ///   <author>Jose.Gomez</author>

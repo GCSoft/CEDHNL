@@ -57,11 +57,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             ComboVocesTercerNivel();
         }
 
-        protected void ddlAutoridad_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ListaVocesSenaladas(Convert.ToInt32(SolicitudIdHidden.Value), Convert.ToInt32(ddlAutoridad.SelectedValue));
-        }
-
         #endregion
 
         #region "Botones"
@@ -72,15 +67,28 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             {
                 string solicitudId = SolicitudIdHidden.Value;
 
-                AgregarAutoridad(Convert.ToInt32(solicitudId));
+                if (String.IsNullOrEmpty(hdnAutoridadId.Value))
+                {
+                    AgregarAutoridad(Convert.ToInt32(solicitudId));
 
-                ScriptManager.RegisterStartupScript(this.Page
-                    , this.GetType()
-                    , Convert.ToString(Guid.NewGuid())
-                    , "tinyboxMessage('Autoridad agregada con éxito', 'Success', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page
+                        , this.GetType()
+                        , Convert.ToString(Guid.NewGuid())
+                        , "tinyboxMessage('Autoridad agregada con éxito', 'Success', true);", true);
+                }
+                else
+                {
+                    ModificarAutoridad(Convert.ToInt32(solicitudId));
+
+                    ScriptManager.RegisterStartupScript(this.Page
+                        , this.GetType()
+                        , Convert.ToString(Guid.NewGuid())
+                        , "tinyboxMessage('Autoridad modificada con éxito', 'Success', true);", true);
+                }
             }
             catch (Exception ex)
             {
+                hdnAutoridadId.Value = String.Empty;
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true);", true);
             }
         }
@@ -96,8 +104,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             try
             {
                 string solicitudId = SolicitudIdHidden.Value;
-                AgregarVoz(Convert.ToInt32(solicitudId), Convert.ToInt32(ddlAutoridad.SelectedValue)
-                    , Convert.ToInt32(ddlVozTercerNivel.SelectedValue));
+                AgregarVoz(Convert.ToInt32(solicitudId), Convert.ToInt32(hdnAutoridadId.Value), Convert.ToInt32(ddlVozTercerNivel.SelectedValue));
 
                 ScriptManager.RegisterStartupScript(this.Page
                    , this.GetType()
@@ -110,9 +117,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 ScriptManager.RegisterStartupScript(this.Page
                     , this.GetType()
                     , Convert.ToString(Guid.NewGuid())
-                    , "tinyboxMessage('" + ex.Message + "','Fail',true);"
+                    , "tinyboxMessage('" + ex.Message + "', 'Fail', true);"
                     , true);
             }
+        }
+
+        protected void btnTerminarVoz_Click(object sender, EventArgs e)
+        {
+            LimpiarCamposVoces();
+            LimpiarCampos();
+            hdnAutoridadId.Value = String.Empty;
+            LlenarListaAutoridades();
+            pnlVoces.Visible = false;
+            btnAgregar.Enabled = true;
+
+            btnAgregar.Text = "Agregar";
+            ddlPrimerNivel.Focus();
         }
 
         #endregion
@@ -142,7 +162,17 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 switch (sCommandName)
                 {
                     case "Borrar":
+
+                        if (!String.IsNullOrEmpty(hdnAutoridadId.Value)) { return; }
+
                         BorrarAutoridad(Convert.ToInt32(AutoridadId), Convert.ToInt32(SolicitudId));
+                        break;
+                    case "SelectCiudadano":
+                        hdnAutoridadId.Value = AutoridadId;
+                        pnlVoces.Visible = true;
+                        LlenarListaAutoridades();
+                        ListaVocesSenaladas(Convert.ToInt32(SolicitudId), Convert.ToInt32(AutoridadId));
+                        MostrarDetalleAutoridad(Convert.ToInt32(SolicitudId), Convert.ToInt32(AutoridadId));
                         break;
                 }
             }
@@ -185,6 +215,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 //Puntero y Sombra en fila Out
                 e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
 
+                // Si se est{a editando no se puede borrar la autoridad
+                if (String.IsNullOrEmpty(hdnAutoridadId.Value))
+                {
+                    imgEdit.Enabled = true;
+                }
+                else
+                {
+                    imgEdit.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
@@ -212,7 +251,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
                 //Ciudadano Id 
                 VozId = e.CommandArgument.ToString();
-                AutoridadId = ddlAutoridad.SelectedValue;
+                AutoridadId = hdnAutoridadId.Value;
                 SolicitudId = SolicitudIdHidden.Value;
 
                 switch (sCommandName)
@@ -291,14 +330,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     ComboAutoridadTercerNivel();
                     LlenarListaAutoridades();
 
-                    ComboAutoridadesAgregadas(Convert.ToInt32(_SolicitudId));
                     ComboVocesPrimerNivel();
                     ddlVozPrimerNivel.SelectedIndex = 0;
                     ComboVocesSegundoNivel();
                     ddlVozSegundoNivel.SelectedIndex = 0;
                     ComboVocesTercerNivel();
                     ddlVozTercerNivel.SelectedIndex = 0;
-                    ListaVocesSenaladas(Convert.ToInt32(_SolicitudId), Convert.ToInt32(ddlAutoridad.SelectedValue));
                 }
                 catch (Exception Exception)
                 {
@@ -442,6 +479,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 oENTAutoridad.Puesto = tbPuestoActual.Text;
                 oENTAutoridad.Comentario = tbComentarios.Text;
                 oENTAutoridad.AutoridadId = Convert.ToInt32(ddlTercerNivel.SelectedValue);
+                hdnAutoridadId.Value = ddlTercerNivel.SelectedValue;
 
                 //Transacción 
                 oENTResponse = oBPAutoridad.InsertSolicitudAutoridad(oENTAutoridad);
@@ -452,8 +490,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
                 //Actualizar Datos
                 LlenarListaAutoridades();
-                LimpiarCampos();
-                ComboAutoridadesAgregadas(solicitudId);
+                pnlVoces.Visible = true;
+                btnAgregar.Enabled = false;
+                ListaVocesSenaladas(Convert.ToInt32(solicitudId), Convert.ToInt32(hdnAutoridadId.Value));
+                ddlVozPrimerNivel.Focus();
             }
             catch (Exception ex)
             {
@@ -472,7 +512,86 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             tbPuestoActual.Text = String.Empty;
             tbComentarios.Text = String.Empty;
 
+            ddlPrimerNivel.Enabled = true;
+            ddlSegundoNivel.Enabled = true;
+            ddlTercerNivel.Enabled = true;
+
             ddlPrimerNivel.Focus();
+        }
+
+        private void MostrarDetalleAutoridad(int SolicitudId, int AutoridadId)
+        {
+            BPAutoridad oBPAutoridad = new BPAutoridad();
+
+            oBPAutoridad.AutoridadEntity.SolicitudId = SolicitudId;
+            oBPAutoridad.AutoridadEntity.AutoridadId = AutoridadId;
+
+            oBPAutoridad.SelectDetalleAutoridadesSolicitud();
+
+            if (oBPAutoridad.ErrorId == 0)
+            {
+                if (oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows.Count > 0)
+                {
+                    // se llenan los datos de los combos
+                    ddlPrimerNivel.SelectedValue = oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows[0]["AutoridadPrimerNivel"].ToString();
+                    ComboAutoridadSegundoNivel();
+                    ddlSegundoNivel.SelectedValue = oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows[0]["AutoridadSegundoNivel"].ToString();
+                    ComboAutoridadTercerNivel();
+                    ddlTercerNivel.SelectedValue = oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows[0]["AutoridadTercerNivel"].ToString();
+
+                    // se inhabilitan para que no se puedan modificar 
+                    ddlPrimerNivel.Enabled = false;
+                    ddlSegundoNivel.Enabled = false;
+                    ddlTercerNivel.Enabled = false;
+
+                    // se pone la variable para que se sepa que es una modificación 
+                    hdnAutoridadId.Value = oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows[0]["AutoridadTercerNivel"].ToString();
+                    tbNombreFuncionario.Focus();
+
+                    btnAgregar.Text = "Modificar";
+
+                    tbNombreFuncionario.Text = oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows[0]["Nombre"].ToString();
+                    tbPuestoActual.Text = oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows[0]["Puesto"].ToString();
+                    tbComentarios.Text = oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows[0]["Comentarios"].ToString();
+                }
+            }
+        }
+
+        private void ModificarAutoridad(int SolicitudId)
+        {
+            BPAutoridad oBPAutoridad = new BPAutoridad();
+            ENTAutoridad oENTAutoridad = new ENTAutoridad();
+            ENTResponse oENTResponse = new ENTResponse();
+
+            try
+            {
+                // Formulario 
+                oENTAutoridad.SolicitudId = SolicitudId;
+
+                if (ddlTercerNivel.SelectedValue == "0") { throw new Exception("Debe elegir una autoridad"); }
+                if (String.IsNullOrEmpty(tbNombreFuncionario.Text)) { throw new Exception("El campo [Nombre] es requerido"); }
+
+                oENTAutoridad.Nombre = tbNombreFuncionario.Text;
+                oENTAutoridad.Puesto = tbPuestoActual.Text;
+                oENTAutoridad.Comentario = tbComentarios.Text;
+                oENTAutoridad.AutoridadId = Convert.ToInt32(ddlTercerNivel.SelectedValue);
+                hdnAutoridadId.Value = ddlTercerNivel.SelectedValue;
+
+                //Transacción 
+                oENTResponse = oBPAutoridad.UpdateSolicitudAutoridad(oENTAutoridad);
+
+                //Validaciones 
+                if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+                if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+
+                //Actualizar Datos
+                LlenarListaAutoridades();
+                ddlVozPrimerNivel.Focus();
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
         }
 
         #endregion
@@ -542,26 +661,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        private void ComboAutoridadesAgregadas(int SolicitudId)
-        {
-            BPVocesSenaladas oBPVocesSenaladas = new BPVocesSenaladas();
-
-            oBPVocesSenaladas.VocesSenaladasEntity.SolicitudId = SolicitudId;
-
-            oBPVocesSenaladas.SelectAutoridadesSolicitud();
-
-            if (oBPVocesSenaladas.ErrorId == 0)
-            {
-                if (oBPVocesSenaladas.VocesSenaladasEntity.dsResponse.Tables[0].Rows.Count > 0)
-                {
-                    ddlAutoridad.DataSource = oBPVocesSenaladas.VocesSenaladasEntity.dsResponse.Tables[0];
-                    ddlAutoridad.DataTextField = "Nombre";
-                    ddlAutoridad.DataValueField = "AutoridadId";
-                    ddlAutoridad.DataBind();
-                }
-            }
-        }
-
         private void ListaVocesSenaladas(int SolicitudId, int AutoridadId)
         {
             BPVocesSenaladas oBPVocesSenaladas = new BPVocesSenaladas();
@@ -599,8 +698,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
             try
             {
-
-                if (ddlAutoridad.SelectedValue == "0") { throw new Exception("El campo [Autoridad] es requerido"); }
                 if (ddlVozTercerNivel.SelectedValue == "0") { throw new Exception("Debe elegir una voz señalada"); }
 
                 // Formulario 

@@ -83,6 +83,21 @@ namespace SIAQ.BusinessProcess.Object
         }
 
         /// <summary>
+        /// Obtiene el detalle de una autoridad agregada
+        /// </summary>
+        public void SelectDetalleAutoridadesSolicitud()
+        {
+            string sConnectionString = string.Empty;
+            DAAutoridad oDAAutoridad = new DAAutoridad();
+
+            sConnectionString = sConnectionApplication;
+
+            _AutoridadEntity.dsResponse = oDAAutoridad.SelectDetalleAutoridadesSolicitud(_AutoridadEntity, sConnectionString);
+            _ErrorId = oDAAutoridad.ErrorId;
+            _ErrorDescription = oDAAutoridad.ErrorDescription;
+        }
+
+        /// <summary>
         /// Elimina autoridades de la solicitud
         /// </summary>
         public ENTResponse DeleteSolicitudAutoridad(ENTAutoridad oENTAutoridad)
@@ -117,6 +132,30 @@ namespace SIAQ.BusinessProcess.Object
                 //Consulta base de datos 
                 DAAutoridad oDAAutoridad = new DAAutoridad();
                 oENTResponse = oDAAutoridad.InsertSolicitudAutoridad(oENTAutoridad, sConnectionApplication, 0);
+                //Validación de error de consulta
+                if (oENTResponse.GeneratesException) { return oENTResponse; }
+                oENTResponse.sMessage = String.Empty;
+                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+                if (oENTResponse.sMessage != "") { return oENTResponse; }
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+            return oENTResponse;
+        }
+
+        /// <summary>
+        /// Agrega autoridades de la solicitud
+        /// </summary>
+        public ENTResponse UpdateSolicitudAutoridad(ENTAutoridad oENTAutoridad)
+        {
+            ENTResponse oENTResponse = new ENTResponse();
+            try
+            {
+                //Consulta base de datos 
+                DAAutoridad oDAAutoridad = new DAAutoridad();
+                oENTResponse = oDAAutoridad.UpdateSolicitudAutoridad(oENTAutoridad, sConnectionApplication, 0);
                 //Validación de error de consulta
                 if (oENTResponse.GeneratesException) { return oENTResponse; }
                 oENTResponse.sMessage = String.Empty;

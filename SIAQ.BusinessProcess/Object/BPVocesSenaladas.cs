@@ -50,22 +50,6 @@ namespace SIAQ.BusinessProcess.Object
         }
 
         /// <summary>
-        /// Selecciona las Autoridades seleccionadas para una solicitud 
-        /// </summary>
-        public void SelectAutoridadesSolicitud()
-        {
-            string sConnectionString = String.Empty;
-            DAVocesSenaladas oDAVocesSenaladas = new DAVocesSenaladas();
-
-            sConnectionString = sConnectionApplication;
-
-            _VocesSenaladasEntity.dsResponse = oDAVocesSenaladas.SelectAutoridadesSolicitud(_VocesSenaladasEntity, sConnectionString);
-
-            _ErrorId = oDAVocesSenaladas.ErrorId;
-            _ErrorDescription = oDAVocesSenaladas.ErrorDescription;
-        }
-
-        /// <summary>
         /// Selecciona las Voces para llenado de Combobox
         /// </summary>
         public void SelectNivelesVoces()

@@ -201,6 +201,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 {
                     this.gvSolicitud.DataSource = null;
                     this.gvSolicitud.DataBind();
+
+                    oENTSession.dsResultado = null;
                 }
 
                 DateTime dtDesde = new DateTime(DateTime.Now.Year, 1, 1, 0, 0, 0);

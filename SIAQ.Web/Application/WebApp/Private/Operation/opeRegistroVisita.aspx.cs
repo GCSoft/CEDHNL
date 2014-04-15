@@ -17,40 +17,45 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
     public partial class opeRegistroVisita : System.Web.UI.Page
     {
 
-      // Utilerías
-      Function utilFunction = new Function();
-       
+        // Utilerías
+        Function utilFunction = new Function();
+
         string AllDefault = "[Seleccione]";
 
-        protected void GuardarButton_Click(object sender, EventArgs e){
+        protected void GuardarButton_Click(object sender, EventArgs e)
+        {
 
-           // Validaciones
-           if (this.ddlArea.SelectedValue == "0"){
-              ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo de Área es obligatorio ', 'Success', true); focusControl('" + this.ddlArea.ClientID + "');", true);
-              return;
-           }
+            // Validaciones
+            if (this.ddlArea.SelectedValue == "0")
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo de Área es obligatorio ', 'Success', true); focusControl('" + this.ddlArea.ClientID + "');", true);
+                return;
+            }
 
-           if (this.ddlFuncionario.SelectedValue == "0"){
-              ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo de Funcionario es obligatorio ', 'Success', true); focusControl('" + this.ddlFuncionario.ClientID + "');", true);
-              return;
-           }
+            if (this.ddlFuncionario.SelectedValue == "0")
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo de Funcionario es obligatorio ', 'Success', true); focusControl('" + this.ddlFuncionario.ClientID + "');", true);
+                return;
+            }
 
-           if (this.ddlMotivo.SelectedValue == "0"){
-              ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo de Motivo es obligatorio ', 'Success', true); focusControl('" + this.ddlMotivo.ClientID + "');", true);
-              return;
-           }
+            if (this.ddlMotivo.SelectedValue == "0")
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo de Motivo es obligatorio ', 'Success', true); focusControl('" + this.ddlMotivo.ClientID + "');", true);
+                return;
+            }
 
-           if (DescriptionBox.Text == ""){
-              ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo Detalle de visita es obligatorio ', 'Success', true); focusControl('" + this.DescriptionBox.ClientID + "');", true);
-              return;
-           }
+            if (DescriptionBox.Text == "")
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo Detalle de visita es obligatorio ', 'Success', true); focusControl('" + this.DescriptionBox.ClientID + "');", true);
+                return;
+            }
 
-           // Transacción
-           ENTSession SessionEntity = new ENTSession();
+            // Transacción
+            ENTSession SessionEntity = new ENTSession();
 
-           SessionEntity = (ENTSession)Session["oENTSession"];
-           GuardarVisita(SessionEntity.idUsuario);
-              
+            SessionEntity = (ENTSession)Session["oENTSession"];
+            GuardarVisita(SessionEntity.idUsuario);
+
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
@@ -67,7 +72,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         {
             if (!Page.IsPostBack)
             {
-                
+
                 //Consultas para los DropdownList
                 SelectArea();
                 SelectFuncionario();
@@ -79,53 +84,58 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         }
 
-        protected void SelectArea(){
+        protected void SelectArea()
+        {
             ENTArea oENTArea = new ENTArea();
-			   ENTResponse oENTResponse = new ENTResponse();
+            ENTResponse oENTResponse = new ENTResponse();
 
-			   BPArea oBPArea = new BPArea();
+            BPArea oBPArea = new BPArea();
             String sMessage = "tinyboxToolTipMessage_ClearOld();";
 
-			   try{
+            try
+            {
 
-               // Parámetros de consulta
-               oENTArea.idArea = 0;
-               oENTArea.sNombre = "";
-               oENTArea.tiActivo = 1;
-               oENTArea.tiSistema = 0;
+                // Parámetros de consulta
+                oENTArea.idArea = 0;
+                oENTArea.sNombre = "";
+                oENTArea.tiActivo = 1;
+                oENTArea.tiSistema = 0;
 
-				   // Transacción
-				   oENTResponse = oBPArea.SelectArea(oENTArea);
+                // Transacción
+                oENTResponse = oBPArea.SelectArea(oENTArea);
 
-				   // Validaciones
-               if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+                // Validaciones
+                if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
 
-               // Mensaje de la BD
-               if (oENTResponse.sMessage != "") { sMessage = "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', true);"; }
+                // Mensaje de la BD
+                if (oENTResponse.sMessage != "") { sMessage = "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', true);"; }
 
-               // Llenado de controles
-               this.ddlArea.DataValueField = "idArea";
-               this.ddlArea.DataTextField = "sNombre";
+                // Llenado de controles
+                this.ddlArea.DataValueField = "idArea";
+                this.ddlArea.DataTextField = "sNombre";
 
-               this.ddlArea.DataSource = oENTResponse.dsResponse.Tables[1];
-               this.ddlArea.DataBind();
-               this.ddlArea.Items.Insert(0, new ListItem(AllDefault, "0"));
+                this.ddlArea.DataSource = oENTResponse.dsResponse.Tables[1];
+                this.ddlArea.DataBind();
+                this.ddlArea.Items.Insert(0, new ListItem(AllDefault, "0"));
 
-               // Mensaje al usuario
-               ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), sMessage, true);
+                // Mensaje al usuario
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), sMessage, true);
 
-			   }catch (Exception ex){
-               throw (ex);
-			   }
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
 
 
         }
 
-        protected void SelectFuncionario(){
+        protected void SelectFuncionario()
+        {
             ENTFuncionario oENTFuncionario = new ENTFuncionario();
             ENTResponse oENTResponse = new ENTResponse();
             BPFuncionario BPFuncionario = new BPFuncionario();
-                
+
             ddlFuncionario.DataValueField = "FuncionarioId";
             ddlFuncionario.DataTextField = "sFullName";
 
@@ -136,7 +146,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             ddlFuncionario.Items.Insert(0, new ListItem(AllDefault, "0"));
         }
 
-        protected void GuardarVisita(int UsuarioIdInsert){
+        protected void GuardarVisita(int UsuarioIdInsert)
+        {
             BPVisita BPVisita = new BPVisita();
 
             BPVisita.ENTVisita.AreaId = Int32.Parse(ddlArea.SelectedValue);
@@ -147,23 +158,27 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
             BPVisita.GuardarVisita();
 
-            if (BPVisita.ErrorId == 0) {
+            if (BPVisita.ErrorId == 0)
+            {
                 ResetearCampos();
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Visita registrada con éxito', 'Success', true); focusControl('" + this.ddlArea.ClientID + "');", true);
             }
-            else {
-               ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Problema al intentar de guardar la visita', 'Success', true); focusControl('" + this.ddlArea.ClientID + "');", true);
+            else
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Problema al intentar de guardar la visita', 'Success', true); focusControl('" + this.ddlArea.ClientID + "');", true);
             }
         }
 
-        protected void ResetearCampos() { 
+        protected void ResetearCampos()
+        {
             ddlArea.SelectedIndex = 0;
             ddlMotivo.SelectedIndex = 0;
             ddlFuncionario.SelectedIndex = 0;
             DescriptionBox.Text = "";
-        }    
+        }
 
-        protected void SelectMotivo(){
+        protected void SelectMotivo()
+        {
 
             BPMotivo BPMotivo = new BPMotivo();
             ddlMotivo.DataValueField = "MotivoId";
@@ -172,6 +187,21 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             ddlMotivo.DataSource = BPMotivo.SelectMotivo();
             ddlMotivo.DataBind();
             ddlMotivo.Items.Insert(0, new ListItem(AllDefault, "0"));
+        }
+
+        protected void btnRegresar_Click(object sender, EventArgs e)
+        {
+            string tipo = Request.QueryString["t"];
+
+            switch (tipo)
+            {
+                case "1":
+                    Response.Redirect("~/Application/WebApp/Private/Operation/opeInicio.aspx");
+                    break;
+                case "2":
+                    Response.Redirect("~/Application/WebApp/Private/Operation/opeBusquedaCiudadano.aspx");
+                    break;
+            }
         }
     }
 }

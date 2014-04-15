@@ -533,11 +533,6 @@
                             <td style="height: 24px; width: 530px;">
                             </td>
                         </tr>
-                        <tr>
-                            <td colspan="3" style="text-align: left">
-                                Los campos marcados con son obligatorios
-                            </td>
-                        </tr>
                     </table>
                 </asp:Panel>
             </td>

@@ -201,6 +201,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 case "2":
                     Response.Redirect("~/Application/WebApp/Private/Operation/opeBusquedaCiudadano.aspx");
                     break;
+                default:
+                    Response.Redirect("~/Application/WebApp/Private/Operation/opeInicio.aspx");
+                    break;
             }
         }
     }

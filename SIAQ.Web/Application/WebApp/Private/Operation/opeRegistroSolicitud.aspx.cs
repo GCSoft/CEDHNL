@@ -59,7 +59,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                }
 
                //LLenado de control
-               this.ddlAbogado.DataTextField = "Nombre";
+               this.ddlAbogado.DataTextField = "sFullName";
                this.ddlAbogado.DataValueField = "FuncionarioId";
                this.ddlAbogado.DataSource = oENTResponse.dsResponse.Tables[1];
                this.ddlAbogado.DataBind();

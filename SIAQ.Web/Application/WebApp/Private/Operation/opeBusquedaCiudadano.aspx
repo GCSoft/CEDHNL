@@ -219,18 +219,17 @@
                             </table>
                         </EmptyDataTemplate>
                         <Columns>
-                            <asp:BoundField HeaderText="Nombre" ItemStyle-HorizontalAlign="Left" DataField="NombreCompleto">
+                            <asp:BoundField DataField="CiudadanoId" Visible="false" />
+                            <asp:BoundField HeaderText="Nombre" ItemStyle-HorizontalAlign="Left" DataField="NombreCompleto" SortExpression="NombreCompleto">
                             </asp:BoundField>
-                            <asp:BoundField HeaderText="Sexo" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100px"
+                            <asp:BoundField HeaderText="Sexo" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100px" SortExpression="SexoNombre"
                                 DataField="SexoNombre"></asp:BoundField>
-                            <asp:BoundField HeaderText="Fecha Nacimiento" ItemStyle-HorizontalAlign="Center"
+                            <asp:BoundField HeaderText="Fecha Nacimiento" ItemStyle-HorizontalAlign="Center" SortExpression="FechaNacimiento"
                                 ItemStyle-Width="75px" DataField="FechaNacimiento"></asp:BoundField>
-                            <asp:BoundField HeaderText="Domicilio" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="280px"
+                            <asp:BoundField HeaderText="Domicilio" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="280px" SortExpression="DireccionCompleta"
                                 DataField="DireccionCompleta"></asp:BoundField>
-                            <asp:BoundField HeaderText="Telefono" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="75px"
+                            <asp:BoundField HeaderText="Telefono" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="75px" SortExpression="TelefonoPrincipal"
                                 DataField="TelefonoPrincipal"></asp:BoundField>
-                            <asp:BoundField HeaderText="Solicitud" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="55px">
-                            </asp:BoundField>
                             <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px" HeaderText="Visita">
                                 <ItemTemplate>
                                     <asp:ImageButton ID="imgVisita" CommandArgument='<%#Eval("CiudadanoId")%>' CommandName="Visita"

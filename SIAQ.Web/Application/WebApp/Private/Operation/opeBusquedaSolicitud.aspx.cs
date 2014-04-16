@@ -40,12 +40,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         private void gvSolicitudGridRowCommand(GridViewCommandEventArgs e)
         {
             string SolicitudId = string.Empty;
+            ENTSession oENTSession = new ENTSession();
 
+            oENTSession = (ENTSession)this.Session["oENTSession"];
             SolicitudId = e.CommandArgument.ToString();
 
             switch (e.CommandName.ToString())
             {
                 case "Editar":
+                    oENTSession.dsResultado = utilFunction.ParseGridViewToDataTable(gvSolicitud, false);
                     Response.Redirect(ConfigurationManager.AppSettings["Application.Url.SolicitudDetalle"].ToString() + "?s=" + SolicitudId);
                     break;
             }
@@ -167,7 +170,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     gvSolicitud.DataSource = BPSolicitud.SolicitudEntity.ResultData;
                     gvSolicitud.DataBind();
 
-                    oENTSession.dsResultado = BPSolicitud.SolicitudEntity.ResultData;
+                    oENTSession.dsResultado = BPSolicitud.SolicitudEntity.ResultData.Tables[0];
                 }
 
                 else
@@ -194,8 +197,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
                 if (oENTSession.dsResultado != null)
                 {
-                    this.gvSolicitud.DataSource = oENTSession.dsResultado.Tables[0];
+                    this.gvSolicitud.DataSource = oENTSession.dsResultado;
                     this.gvSolicitud.DataBind();
+
+                    oENTSession.dsResultado = null;
                 }
                 else
                 {

@@ -32,8 +32,8 @@ namespace SIAQ.Entity.Object
         private String _sNombre;			// Nombre(s) del usuario
         private DataTable _tblMenu;			// Contienen un DataTable con las opciones del Menú válidas para el usuario
         private DataTable _tblSubMenu;		// Contienen un DataTable con las opciones del SubMenú válidas para el usuario
-        private DataSet _dsResultados;          // Contiene los datos de una busqueda para regresar y tener los mismos datos
-        private DataSet _dsResultadoBusCiudadano; // COntiene los datos de una búsqueda para regresar y tener los mismos datos en la pantalla de búsqueda ciudadano
+        private DataTable _dsResultados;          // Contiene los datos de una busqueda para regresar y tener los mismos datos
+        private DataTable _dsResultadoBusCiudadano; // COntiene los datos de una búsqueda para regresar y tener los mismos datos en la pantalla de búsqueda ciudadano
         //Constructor
 
         public ENTSession()
@@ -165,7 +165,7 @@ namespace SIAQ.Entity.Object
         ///   <author>Jose.Gomez</author>
         ///</remarks>
         ///<summary>Obtiene/Asigna un DataSet para retornar la busqueda que se haya hecho cuando se cambio de pagina</summary>
-        public DataSet dsResultado
+        public DataTable dsResultado
         {
             get { return _dsResultados; }
             set { _dsResultados = value; }
@@ -176,12 +176,9 @@ namespace SIAQ.Entity.Object
         ///   <author>Jose.Gomez</author>
         ///</remarks>
         ///<summary>Obtiene/Asigna un DataSet para retornar la busqueda que se haya hecho cuando se cambio de pagina de busqueda ciudadanos</summary>
-        public DataSet dsResultadoBusCiudadano
+        public DataTable dsResultadoBusCiudadano
         {
-            get
-            {
-                return _dsResultadoBusCiudadano;
-            }
+            get { return _dsResultadoBusCiudadano; }
             set { _dsResultadoBusCiudadano = value; }
         }
     }

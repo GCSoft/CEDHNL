@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
 
 // Referencias manuales
 using GCSoft.Utilities.Common;
@@ -53,7 +54,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     gvCiudadano.DataSource = BPCiudadano.ENTCiudadano.ResultData;
                     gvCiudadano.DataBind();
 
-                    oENTSession.dsResultadoBusCiudadano = BPCiudadano.ENTCiudadano.ResultData;
+                    oENTSession.dsResultadoBusCiudadano = BPCiudadano.ENTCiudadano.ResultData.Tables[0];
                 }
                 else
                 {
@@ -223,10 +224,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 SelectColonia();
 
                 oENTSession = (ENTSession)this.Session["oENTSession"];
+                // Verifica si en la variable de sesión de resultado hay algo guardado, si lo hay lo muestra
                 if (oENTSession.dsResultadoBusCiudadano != null)
                 {
                     gvCiudadano.DataSource = oENTSession.dsResultadoBusCiudadano;
                     gvCiudadano.DataBind();
+
+                    // al llenar la busuqeda anterior se limpia la variable de sesion 
+                    oENTSession.dsResultadoBusCiudadano = null;
                 }
                 else
                 {
@@ -327,20 +332,28 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         private void gvCiudadanoGridRowCommand(GridViewCommandEventArgs e)
         {
             string CiudadanoId = string.Empty;
+            ENTSession oENTSession = new ENTSession();
 
+            oENTSession = (ENTSession)this.Session["oENTSession"];
             CiudadanoId = e.CommandArgument.ToString();
 
             switch (e.CommandName.ToString())
             {
                 case "Editar":
+                    // vuelve a llenar el datatable de busqueda para que al regresar conserve el resultado de la busqueda en el grid
+                    oENTSession.dsResultadoBusCiudadano = utilFunction.ParseGridViewToDataTable(gvCiudadano, false);
                     Response.Redirect(ConfigurationManager.AppSettings["Application.Url.RegistroCiudadano"].ToString() + "?s=" + CiudadanoId);
                     break;
 
                 case "Visita":
+                    // vuelve a llenar el datatable de busqueda para que al regresar conserve el resultado de la busqueda en el grid
+                    oENTSession.dsResultadoBusCiudadano = utilFunction.ParseGridViewToDataTable(gvCiudadano, false);
                     Response.Redirect(ConfigurationManager.AppSettings["Application.Url.RegistroVisita"].ToString() + "?s=" + CiudadanoId + "&t=2");
                     break;
 
                 case "Consultar":
+                    // vuelve a llenar el datatable de busqueda para que al regresar conserve el resultado de la busqueda en el grid
+                    oENTSession.dsResultadoBusCiudadano = utilFunction.ParseGridViewToDataTable(gvCiudadano, false);
                     Response.Redirect(ConfigurationManager.AppSettings["Application.Url.DetalleCiudadano"].ToString() + "?s=" + CiudadanoId);
                     break;
             }
@@ -413,7 +426,30 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         protected void gvCiudadano_Sorting(object sender, GridViewSortEventArgs e)
         {
+            DataTable TableRecomendacion = null;
+            DataView ViewRecomendacion = null;
 
+            try
+            {
+                //Obtener DataTable y View del GridView
+                TableRecomendacion = utilFunction.ParseGridViewToDataTable(gvCiudadano, false);
+                ViewRecomendacion = new DataView(TableRecomendacion);
+
+                //Determinar ordenamiento
+                hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
+
+                //Ordenar Vista
+                ViewRecomendacion.Sort = hddSort.Value;
+
+                //Vaciar datos
+                gvCiudadano.DataSource = ViewRecomendacion;
+                gvCiudadano.DataBind();
+
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+            }
         }
 
     }

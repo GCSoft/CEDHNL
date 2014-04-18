@@ -282,6 +282,50 @@ namespace SIAQ.DataAccess.Object
         }
 
         /// <summary>
+        ///     Busca los comentarios realizados para una solicitud.
+        /// </summary>
+        /// <param name="ENTSolicitudComentario">Entidad del comentario de la solicitud.</param>
+        /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
+        /// <returns>Resultado de la búsqueda.</returns>
+        public DataSet SelectSolicitudComentario(ENTSolicitud ComentarioEntity, string ConnectionString)
+        {
+            DataSet ResultData = new DataSet();
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            SqlCommand Command;
+            SqlParameter Parameter;
+            SqlDataAdapter DataAdapter;
+
+            try
+            {
+                Command = new SqlCommand("SelectSolicitudComentario", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                Parameter = new SqlParameter("SolicitudId", SqlDbType.Int);
+                Parameter.Value = ComentarioEntity.SolicitudId;
+                Command.Parameters.Add(Parameter);
+
+                DataAdapter = new SqlDataAdapter(Command);
+
+                Connection.Open();
+                DataAdapter.Fill(ResultData);
+                Connection.Close();
+
+                return ResultData;
+
+            }
+            catch (SqlException Exception)
+            {
+                _ErrorId = Exception.Number;
+                _ErrorDescription = Exception.Message;
+
+                if (Connection.State == ConnectionState.Open)
+                    Connection.Close();
+
+                return ResultData;
+            }
+        }
+
+        /// <summary>
         ///     Busca el detalle completo de una solicitud.
         /// </summary>
         /// <param name="ENTSolicitud">Entidad de solicitud.</param>

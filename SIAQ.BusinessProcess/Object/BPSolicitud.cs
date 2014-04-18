@@ -4,6 +4,7 @@ using System.Text;
 using System.Data;
 using SIAQ.DataAccess.Object;
 using SIAQ.Entity.Object;
+
 namespace SIAQ.BusinessProcess.Object
 {
     public class BPSolicitud : BPBase
@@ -130,6 +131,17 @@ namespace SIAQ.BusinessProcess.Object
 
         }
 
+        public void GuardarCalificacionSol()
+        {
+
+            DASolicitud SolicitudAccess = new DASolicitud();
+
+            SolicitudAccess.GuardarCalificacionSol(_SolicitudEntity, sConnectionApplication);
+
+            _ErrorId = SolicitudAccess.ErrorId;
+            _ErrorDescription = SolicitudAccess.ErrorDescription;
+        }
+
         /// <summary>
         ///     
         /// </summary>
@@ -173,6 +185,22 @@ namespace SIAQ.BusinessProcess.Object
             ConnectionString = sConnectionApplication;
 
             _SolicitudEntity.ResultData = DASolicitud.SelectSolicitudCiudadano(_SolicitudEntity, ConnectionString);
+
+            _ErrorId = DASolicitud.ErrorId;
+            _ErrorDescription = DASolicitud.ErrorDescription;
+        }
+
+        /// <summary>
+        ///     Busca los comentarios realizados para una solicitud.
+        /// </summary>
+        public void SelectSolicitudComentario()
+        {
+            string ConnectionString = string.Empty;
+            DASolicitud DASolicitud = new DASolicitud();
+
+            ConnectionString = sConnectionApplication;
+
+            _SolicitudEntity.ResultData = DASolicitud.SelectSolicitudComentario(_SolicitudEntity, ConnectionString);
 
             _ErrorId = DASolicitud.ErrorId;
             _ErrorDescription = DASolicitud.ErrorDescription;
@@ -261,17 +289,6 @@ namespace SIAQ.BusinessProcess.Object
             DASolicitud SolicitudAccess = new DASolicitud();
 
             SolicitudAccess.UpdateSolicitudGeneral(_SolicitudEntity, sConnectionApplication);
-
-            _ErrorId = SolicitudAccess.ErrorId;
-            _ErrorDescription = SolicitudAccess.ErrorDescription;
-        }
-
-        public void GuardarCalificacionSol()
-        {
-
-            DASolicitud SolicitudAccess = new DASolicitud();
-
-            SolicitudAccess.GuardarCalificacionSol(_SolicitudEntity, sConnectionApplication);
 
             _ErrorId = SolicitudAccess.ErrorId;
             _ErrorDescription = SolicitudAccess.ErrorDescription;

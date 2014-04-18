@@ -1,9 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master"
-    AutoEventWireup="true" CodeBehind="opeDetalleSolicitud.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeDetalleSolicitud" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeDetalleSolicitud.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeDetalleSolicitud" %>
 
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
+    
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
     <div id="TituloPaginaDiv">
         <table class="GeneralTable">
@@ -19,6 +21,7 @@
             </tr>
         </table>
     </div>
+
     <div id="SubMenuDiv">
         <asp:Panel CssClass="IconoPanel" ID="InformacionPanel" runat="server" Visible="true">
             <asp:ImageButton ID="InformacionGeneralButton" ImageUrl="/Include/Image/Icon/GeneralIcon.png"
@@ -61,6 +64,7 @@
             Enviar solicitud
         </asp:Panel>
     </div>
+
     <div id="InformacionDiv">
         <table class="SolicitudTable">
             <tr>
@@ -201,6 +205,7 @@
                 </td>
             </tr>
         </table>
+
         <table border="0" cellpadding="0" cellspacing="0" width="100%">
             <tr>
                 <td class="tdCeldaMiddleSpace">
@@ -334,10 +339,11 @@
                 </td>
             </tr>
         </table>
+
         <br />
         <!-- Datalist para documentos -->
-        <div style="text-align: left;">
-            Documentos anexos</div>
+        <div style="text-align: left;">Documentos anexos</div>
+
         <div class="DocumentoListDiv">
             <asp:DataList CellPadding="5" CellSpacing="5" ID="DocumentoList" HorizontalAlign="Left"
                 RepeatDirection="Horizontal" RepeatLayout="Table" OnItemDataBound="DocumentList_ItemDataBound"
@@ -350,26 +356,54 @@
                     </div>
                 </ItemTemplate>
             </asp:DataList>
+
             <asp:Label CssClass="Texto" ID="SinDocumentoLabel" runat="server" Text=""></asp:Label>
         </div>
         <!-- Fin datalist -->
+
+        <!-- Repeater para los comentarios -->
+        <div class="SolicitudComentarioDiv">
+            <div style="text-align: left;">Comentarios</div>
+
+            <div class="TituloDiv"><asp:Label ID="ComentarioTituloLabel" runat="server" Text=""></asp:Label></div>
+
+            <asp:Repeater ID="ComentarioRepeater" runat="server">
+                <HeaderTemplate>
+                    <table class="ComentarioSolicitudTable">
+                </HeaderTemplate>
+
+                <ItemTemplate>
+                    <tr>
+                        <td><%# DataBinder.Eval(Container.DataItem, "Numero") %></td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td><%# DataBinder.Eval(Container.DataItem, "NombreUsuario") %></td>
+                                    <td><%# DataBinder.Eval(Container.DataItem, "Fecha") %></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <%# DataBinder.Eval(Container.DataItem, "Comentario") %>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </ItemTemplate>
+
+                <FooterTemplate>
+                    </table>
+                </FooterTemplate>
+            </asp:Repeater>
+
+            <asp:Label CssClass="Texto" ID="SinComentariosLabel" runat="server" Text=""></asp:Label>
+        </div>
+        <!-- Fin repeater -->
+
         <table border="0" cellpadding="0" cellspacing="0" width="100%">
             <tr>
                 <td>
-                    <asp:Panel ID="pnlDocumentos" runat="server" Width="100%">
-                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                            <tr>
-                                <td colspan="4" style="text-align: left;">
-                                    Asuto de la solicitud
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="4" style="background-color: Gray;">
-                                    <CKEditor:CKEditorControl ID="txtAsuntoSolicitud" BasePath="/ckeditor/" runat="server"></CKEditor:CKEditorControl>
-                                </td>
-                            </tr>
-                        </table>
-                    </asp:Panel>
+                    
                 </td>
             </tr>
             <tr>
@@ -386,6 +420,22 @@
             </tr>
         </table>
     </div>
+
+    <asp:Panel ID="pnlDocumentos" runat="server" Visible="false" Width="100%">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <td colspan="4" style="text-align: left;">
+                    Asuto de la solicitud
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="background-color: Gray;">
+                    <CKEditor:CKEditorControl ID="txtAsuntoSolicitud" BasePath="/ckeditor/" runat="server"></CKEditor:CKEditorControl>
+                </td>
+            </tr>
+        </table>
+    </asp:Panel>
+
     <asp:HiddenField ID="SolicitudIdHidden" runat="server" Value="0" />
     <asp:HiddenField ID="hddSort" runat="server" Value="NumeroSol" />
 </asp:Content>

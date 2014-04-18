@@ -19,22 +19,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         Function utilFunction = new Function();
 
         #region "Events"
-        protected void AutoridadButton_Click(object sender, ImageClickEventArgs e)
+            protected void AutoridadButton_Click(object sender, ImageClickEventArgs e)
         {
             Response.Redirect("/Application/WebApp/Private/Operation/opeAgregarAutoridaSenalada.aspx?s=" + SolicitudIdHidden.Value.ToString());
         }
 
-        protected void CalificarButton_Click(object sender, ImageClickEventArgs e)
+            protected void CalificarButton_Click(object sender, ImageClickEventArgs e)
         {
             Response.Redirect("/Application/WebApp/Private/Operation/opeCalificarSolicitud.aspx?s=" + SolicitudIdHidden.Value.ToString());
         }
 
-        protected void CiudadanoButton_Click(object sender, ImageClickEventArgs e)
+            protected void CiudadanoButton_Click(object sender, ImageClickEventArgs e)
         {
             Response.Redirect("/Application/WebApp/Private/Operation/opeAgregarCiudadanosSol.aspx?s=" + SolicitudIdHidden.Value.ToString());
         }
 
-        protected void DiligenciaPanel_Click(object sender, ImageClickEventArgs e)
+            protected void DiligenciaPanel_Click(object sender, ImageClickEventArgs e)
         {
             string solicitudId = SolicitudIdHidden.Value;
             if (String.IsNullOrEmpty(solicitudId)) { solicitudId = Request.QueryString["s"].ToString(); }
@@ -42,12 +42,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             Response.Redirect("~/Application/WebApp/Private/Operation/opeDiligenciaSolicitud.aspx?solId=" + solicitudId + "&numSol=" + SolicitudLabel.Text);
         }
 
-        protected void DocumentoButton_Click(object sender, ImageClickEventArgs e)
+            protected void DocumentoButton_Click(object sender, ImageClickEventArgs e)
         {
             Response.Redirect("/Application/WebApp/Private/Operation/opeAgregarDocumentos.aspx?s=" + SolicitudIdHidden.Value.ToString());
         }
 
-        protected void DocumentList_ItemDataBound(Object sender, DataListItemEventArgs e)
+            protected void DocumentList_ItemDataBound(Object sender, DataListItemEventArgs e)
         {
             Label DocumentoLabel;
             Image DocumentoImage;
@@ -66,33 +66,32 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        protected void EnviarButton_Click(object sender, ImageClickEventArgs e)
+            protected void EnviarButton_Click(object sender, ImageClickEventArgs e)
         {
             Response.Redirect("/Application/WebApp/Private/Operation/opeEnviarSolicitud.aspx?s=" + SolicitudIdHidden.Value.ToString());
         }
 
-        protected void GuardarButton_Click(object sender, EventArgs e)
+            protected void GuardarButton_Click(object sender, EventArgs e)
         {
             GuardarSolicitud();
         }
 
-        protected void IndicadorButton_Click(object sender, ImageClickEventArgs e)
+            protected void IndicadorButton_Click(object sender, ImageClickEventArgs e)
         {
             Response.Redirect("/Application/WebApp/Private/Operation/opeAgregarIndicadores.aspx?s=" + SolicitudIdHidden.Value.ToString());
         }
 
-        protected void InformacionGeneralButton_Click(object sender, ImageClickEventArgs e)
+            protected void InformacionGeneralButton_Click(object sender, ImageClickEventArgs e)
         {
             Response.Redirect("/Application/WebApp/Private/Operation/opeDetalleSolicitud.aspx?s=" + SolicitudIdHidden.Value.ToString());
         }
 
-
-        protected void gvCiudadano_RowCommand(object sender, GridViewCommandEventArgs e)
+            protected void gvCiudadano_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             // Pendiente de ver si tendrá botones de comando 
         }
 
-        protected void gvCiudadano_RowDataBound(object sender, GridViewRowEventArgs e)
+            protected void gvCiudadano_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             //ImageButton imgEdit = null;
             //String sNumeroSolicitud = "";
@@ -135,7 +134,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        protected void gvCiudadano_Sorting(object sender, GridViewSortEventArgs e)
+            protected void gvCiudadano_Sorting(object sender, GridViewSortEventArgs e)
         {
             DataTable TableRecomendacion = null;
             DataView ViewRecomendacion = null;
@@ -163,12 +162,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        protected void gvAutoridades_RowCommand(object sender, GridViewCommandEventArgs e)
+            protected void gvAutoridades_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             // Pendiente de ver si tendrá botones de comando 
         }
 
-        protected void gvAutoridades_RowDataBound(object sender, GridViewRowEventArgs e)
+            protected void gvAutoridades_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             //ImageButton imgEdit = null;
             //String sNumeroSolicitud = "";
@@ -211,7 +210,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        protected void gvAutoridades_Sorting(object sender, GridViewSortEventArgs e)
+            protected void gvAutoridades_Sorting(object sender, GridViewSortEventArgs e)
         {
             DataTable TableRecomendacion = null;
             DataView ViewRecomendacion = null;
@@ -239,24 +238,24 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        protected void Page_Load(object sender, EventArgs e)
+            protected void Page_Load(object sender, EventArgs e)
         {
             PageLoad();
         }
         #endregion
 
         #region "Methods"
-        private void GetIconoDocumento()
+            private void GetIconoDocumento()
         {
 
         }
 
-        private void GuardarSolicitud()
+            private void GuardarSolicitud()
         {
             GuardarSolicitud(int.Parse(SolicitudIdHidden.Value), int.Parse(LugarHechosList.SelectedValue), DireccionHechosBox.Text.Trim(), "");
         }
 
-        private void GuardarSolicitud(int SolicitudId, int LugarHechosId, string DireccionHechos, string Observaciones)
+            private void GuardarSolicitud(int SolicitudId, int LugarHechosId, string DireccionHechos, string Observaciones)
         {
             BPSolicitud SolicitudProcess = new BPSolicitud();
 
@@ -273,7 +272,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(SolicitudProcess.ErrorDescription) + "', 'Error', true);", true);
         }
 
-        private void LimpiarFormulario()
+            private void LimpiarFormulario()
         {
             SolicitudLabel.Text = "";
             CalificacionLabel.Text = "";
@@ -284,7 +283,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             ObservacionesLabel.Text = "";
         }
 
-        private void PageLoad()
+            private void PageLoad()
         {
             int SolicitudId = 0;
 
@@ -310,7 +309,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        private void SelectAutoridades(int SolicitudId)
+            private void SelectAutoridades(int SolicitudId)
         {
             BPSolicitud SolicitudProcess = new BPSolicitud();
 
@@ -338,7 +337,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        private void SelectCiudadano(int SolicitudId)
+            private void SelectCiudadano(int SolicitudId)
         {
             BPSolicitud SolicitudProcess = new BPSolicitud();
 
@@ -355,7 +354,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(SolicitudProcess.ErrorDescription) + "', 'Fail', true);", true);
         }
 
-        private void SelectDocumento(int SolicitudId)
+            private void SelectDocumento(int SolicitudId)
         {
             BPDocumento DocumentoProcess = new BPDocumento();
 
@@ -377,7 +376,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(DocumentoProcess.ErrorDescription) + "', 'Fail', true);", true);
         }
 
-        private void SelectLugarHechos()
+            private void SelectLugarHechos()
         {
             BPLugarHechos LugarProcess = new BPLugarHechos();
 
@@ -397,7 +396,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(LugarProcess.ErrorDescription) + "', 'Fail', true);", true);
         }
 
-        private void SelectSolicitud(int SolicitudId)
+            private void SelectSolicitud(int SolicitudId)
         {
             BPSolicitud SolicitudProcess = new BPSolicitud();
 
@@ -427,7 +426,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        private void SetPermisos()
+            private void SetPermisos()
         {
             ENTSession SessionEntity = new ENTSession();
 

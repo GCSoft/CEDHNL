@@ -76,6 +76,7 @@
     <Compile Include="Object\DASeguimientoRecomendacion.cs" />
     <Compile Include="Object\DASolicitud.cs" />
     <Compile Include="Object\DASolicitudCiudadano.cs" />
+    <Compile Include="Object\DASolicitudComentario.cs" />
     <Compile Include="Object\DATipoCiudadano.cs" />
     <Compile Include="Object\DATipoEstatus.cs" />
     <Compile Include="Object\DATipoOrientacion.cs" />

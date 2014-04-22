@@ -247,7 +247,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         protected void imgCloseWindow_Click(object sender, ImageClickEventArgs e)
         {
-            txtAsuntoSolicitud.Text = String.Empty; 
+            txtAsuntoSolicitud.Text = String.Empty;
             pnlAction.Visible = false;
         }
 
@@ -474,8 +474,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         private void SelectSolicitud(int SolicitudId)
         {
             BPSolicitud SolicitudProcess = new BPSolicitud();
+            ENTSession oENTSession = new ENTSession();
+
+            oENTSession = (ENTSession)this.Session["oENTSession"];
 
             SolicitudProcess.SolicitudEntity.SolicitudId = SolicitudId;
+            SolicitudProcess.SolicitudEntity.FuncinarioId = oENTSession.FuncionarioId;
 
             SolicitudProcess.SelectSolicitudDetalle();
 
@@ -492,6 +496,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     LugarHechosList.SelectedValue = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["LugarHechosId"].ToString();
                     DireccionHechosBox.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["DireccionHechos"].ToString();
                     ObservacionesLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["Observaciones"].ToString();
+
+                    FechaRecepcionLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[1].Rows[0]["FechaRecepcion"].ToString();
+                    FechaAsignacionLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[1].Rows[0]["FechaAsignacion"].ToString();
+                    FechaGestionLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[1].Rows[0]["FechaInicioGestion"].ToString();
+                    FechaModificacionLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[1].Rows[0]["UltimaModificacion"].ToString(); 
+
                 }
             }
             else
@@ -688,6 +698,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         }
 
         #endregion
+
+        protected void ImprimirButton_Click(object sender, ImageClickEventArgs e)
+        {
+            string SolicitudId = Request.QueryString["s"];
+            Response.Redirect("~/Application/WebApp/Private/Operation/opeSolicitudPaginaImpresion.aspx?s=" + SolicitudId);
+        }
 
     }
 }

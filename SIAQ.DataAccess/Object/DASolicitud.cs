@@ -348,6 +348,10 @@ namespace SIAQ.DataAccess.Object
                 Parameter.Value = ENTSolicitud.SolicitudId;
                 Command.Parameters.Add(Parameter);
 
+                Parameter = new SqlParameter("FuncionarioId", SqlDbType.Int);
+                Parameter.Value = ENTSolicitud.FuncinarioId;
+                Command.Parameters.Add(Parameter);
+
                 DataAdapter = new SqlDataAdapter(Command);
 
                 Connection.Open();
@@ -601,7 +605,7 @@ namespace SIAQ.DataAccess.Object
 
             Parameter = new SqlParameter("SolicitudId", SqlDbType.Int);
             Parameter.Value = oENTSolicitud.SolicitudId;
-            Command.Parameters.Add(Parameter); 
+            Command.Parameters.Add(Parameter);
 
             oENTResponse.dsResponse = new DataSet();
             DataAdapter = new SqlDataAdapter(Command);

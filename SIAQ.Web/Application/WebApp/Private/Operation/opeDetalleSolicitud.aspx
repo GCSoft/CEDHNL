@@ -56,6 +56,11 @@
                 runat="server" OnClick="DocumentoButton_Click"></asp:ImageButton><br />
             Agregar documentos
         </asp:Panel>
+        <asp:Panel CssClass="IconoPanel" ID="ImprimirPanel" runat="server" Visible="true">
+            <asp:ImageButton ID="ImprimirButton" ImageUrl="/Include/Image/Icon/DocumentoIcon.png"
+                runat="server" onclick="ImprimirButton_Click"></asp:ImageButton><br />
+            Imprimir
+        </asp:Panel>
         <asp:Panel CssClass="IconoPanel" ID="EnviarPanel" runat="server" Visible="true">
             <asp:ImageButton ID="EnviarButton" ImageUrl="/Include/Image/Icon/EnviarIcon.png"
                 runat="server" OnClick="EnviarButton_Click"></asp:ImageButton><br />

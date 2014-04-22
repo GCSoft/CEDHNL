@@ -105,6 +105,7 @@
     <Content Include="Application\WebApp\Private\Operation\opeDiligencias.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeDiligenciaSolicitud.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeSolicitudFuncionario.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeSolicitudPaginaImpresion.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeSolicitudSecretaria.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\lstRecSectretarias.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\opeAsignarDefensorDirector.aspx" />
@@ -587,6 +588,13 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeSolicitudFuncionario.aspx.designer.cs">
       <DependentUpon>opeSolicitudFuncionario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeSolicitudPaginaImpresion.aspx.cs">
+      <DependentUpon>opeSolicitudPaginaImpresion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeSolicitudPaginaImpresion.aspx.designer.cs">
+      <DependentUpon>opeSolicitudPaginaImpresion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeSolicitudSecretaria.aspx.cs">
       <DependentUpon>opeSolicitudSecretaria.aspx</DependentUpon>

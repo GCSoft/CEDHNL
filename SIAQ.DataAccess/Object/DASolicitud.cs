@@ -239,6 +239,50 @@ namespace SIAQ.DataAccess.Object
         }
 
         /// <summary>
+        ///     Muestra las voces señaladas de una autoridad de una solicitud
+        /// </summary>
+        /// <param name="ENTAutoridad">Entidad de autoridad.</param>
+        /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
+        /// <returns>Resultado de la búsqueda.</returns>
+        public DataSet SelectSolicitudAutoridadVoces(ENTAutoridad oENTAutoridad, string ConnectionString)
+        {
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            SqlCommand Command;
+            SqlDataAdapter DataAdapter;
+            SqlParameter Parameter;
+            DataSet ds = new DataSet();
+
+            try
+            {
+                Command = new SqlCommand("SelectSolicitudAutoridadVoces_sel", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                Parameter = new SqlParameter("SolicitudId", SqlDbType.Int);
+                Parameter.Value = oENTAutoridad.SolicitudId;
+                Command.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("AutoridadId", SqlDbType.Int);
+                Parameter.Value = oENTAutoridad.AutoridadId;
+                Command.Parameters.Add(Parameter);
+
+                DataAdapter = new SqlDataAdapter(Command);
+
+                Connection.Open();
+                DataAdapter.Fill(ds);
+                Connection.Close();
+            }
+            catch (SqlException ex)
+            {
+                _ErrorId = ex.Number;
+                _ErrorDescription = ex.Message;
+
+                if (Connection.State == ConnectionState.Open) { Connection.Close(); }
+            }
+
+            return ds;
+        }
+
+        /// <summary>
         ///     Busca los ciudadanos que están relacionados a una solicitud.
         /// </summary>
         /// <param name="ENTSolicitud">Entidad de solicitud.</param>

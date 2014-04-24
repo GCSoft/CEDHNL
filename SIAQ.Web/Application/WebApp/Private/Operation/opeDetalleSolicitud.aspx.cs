@@ -66,15 +66,21 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
+        protected void ImprimirButton_Click(object sender, ImageClickEventArgs e)
+        {
+            string SolicitudId = Request.QueryString["s"];
+            Response.Redirect("~/Application/WebApp/Private/Operation/opeSolicitudPaginaImpresion.aspx?s=" + SolicitudId);
+        }
+
         protected void EnviarButton_Click(object sender, ImageClickEventArgs e)
         {
             Response.Redirect("/Application/WebApp/Private/Operation/opeEnviarSolicitud.aspx?s=" + SolicitudIdHidden.Value.ToString());
         }
 
-        protected void GuardarButton_Click(object sender, EventArgs e)
-        {
-            GuardarSolicitud();
-        }
+        //protected void GuardarButton_Click(object sender, EventArgs e)
+        //{
+        //    GuardarSolicitud();
+        //}
 
         protected void IndicadorButton_Click(object sender, ImageClickEventArgs e)
         {
@@ -162,81 +168,81 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        protected void gvAutoridades_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            // Pendiente de ver si tendrá botones de comando 
-        }
+        //protected void gvAutoridades_RowCommand(object sender, GridViewCommandEventArgs e)
+        //{
+        //    // Pendiente de ver si tendrá botones de comando 
+        //}
 
-        protected void gvAutoridades_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            //ImageButton imgEdit = null;
-            //String sNumeroSolicitud = "";
-            //String sImagesAttributes = "";
-            //String sToolTip = "";
+        //protected void gvAutoridades_RowDataBound(object sender, GridViewRowEventArgs e)
+        //{
+        //    //ImageButton imgEdit = null;
+        //    //String sNumeroSolicitud = "";
+        //    //String sImagesAttributes = "";
+        //    //String sToolTip = "";
 
-            try
-            {
-                //Validación de que sea fila 
-                if (e.Row.RowType != DataControlRowType.DataRow) { return; }
+        //    try
+        //    {
+        //        //Validación de que sea fila 
+        //        if (e.Row.RowType != DataControlRowType.DataRow) { return; }
 
-                //Obtener imagenes
-                //imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
+        //        //Obtener imagenes
+        //        //imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
 
-                //DataKeys
-                //sNumeroSolicitud = gvApps.DataKeys[e.Row.RowIndex]["Recomendacion"].ToString();
+        //        //DataKeys
+        //        //sNumeroSolicitud = gvApps.DataKeys[e.Row.RowIndex]["Recomendacion"].ToString();
 
-                //Tooltip Edición
-                //sToolTip = "Editar recomendación [" + sNumeroSolicitud + "]";
-                //imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
-                //imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
-                //imgEdit.Attributes.Add("style", "curosr:hand;");
+        //        //Tooltip Edición
+        //        //sToolTip = "Editar recomendación [" + sNumeroSolicitud + "]";
+        //        //imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
+        //        //imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
+        //        //imgEdit.Attributes.Add("style", "curosr:hand;");
 
-                //Atributos Over
-                //sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png';";
+        //        //Atributos Over
+        //        //sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png';";
 
-                //Puntero y Sombra en fila Over
-                e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; ");
+        //        //Puntero y Sombra en fila Over
+        //        e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; ");
 
-                //Atributos Out
-                //sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png';";
+        //        //Atributos Out
+        //        //sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png';";
 
-                //Puntero y Sombra en fila Out
-                e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "';");
+        //        //Puntero y Sombra en fila Out
+        //        e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "';");
 
-            }
-            catch (Exception ex)
-            {
-                throw (ex);
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw (ex);
+        //    }
+        //}
 
-        protected void gvAutoridades_Sorting(object sender, GridViewSortEventArgs e)
-        {
-            DataTable TableRecomendacion = null;
-            DataView ViewRecomendacion = null;
+        //protected void gvAutoridades_Sorting(object sender, GridViewSortEventArgs e)
+        //{
+        //    DataTable TableRecomendacion = null;
+        //    DataView ViewRecomendacion = null;
 
-            try
-            {
-                //Obtener DataTable y View del GridView
-                TableRecomendacion = utilFunction.ParseGridViewToDataTable(gvAutoridades, false);
-                ViewRecomendacion = new DataView(TableRecomendacion);
+        //    try
+        //    {
+        //        //Obtener DataTable y View del GridView
+        //        TableRecomendacion = utilFunction.ParseGridViewToDataTable(gvAutoridades, false);
+        //        ViewRecomendacion = new DataView(TableRecomendacion);
 
-                //Determinar ordenamiento
-                hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
+        //        //Determinar ordenamiento
+        //        hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
 
-                //Ordenar Vista
-                ViewRecomendacion.Sort = hddSort.Value;
+        //        //Ordenar Vista
+        //        ViewRecomendacion.Sort = hddSort.Value;
 
-                //Vaciar datos
-                gvAutoridades.DataSource = ViewRecomendacion;
-                gvAutoridades.DataBind();
+        //        //Vaciar datos
+        //        gvAutoridades.DataSource = ViewRecomendacion;
+        //        gvAutoridades.DataBind();
 
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+        //    }
+        //}
 
         protected void lnkAgregarComentario_Click(object sender, EventArgs e)
         {
@@ -347,7 +353,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     SelectLugarHechos();
                     SelectSolicitud(SolicitudId);
                     SelectCiudadano(SolicitudId);
-                    SelectAutoridades(SolicitudId);
+                    //SelectAutoridades(SolicitudId);
                     SelectDocumento(SolicitudId);
                     SelectComentario(SolicitudId);
 
@@ -360,33 +366,33 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        private void SelectAutoridades(int SolicitudId)
-        {
-            BPSolicitud SolicitudProcess = new BPSolicitud();
+        //private void SelectAutoridades(int SolicitudId)
+        //{
+        //    BPSolicitud SolicitudProcess = new BPSolicitud();
 
-            SolicitudProcess.SolicitudEntity.SolicitudId = SolicitudId;
+        //    SolicitudProcess.SolicitudEntity.SolicitudId = SolicitudId;
 
-            // ToDo: Habilitar la búsqueda de autoridades
-            SolicitudProcess.SelectSolicitudAutoridad();
+        //    // ToDo: Habilitar la búsqueda de autoridades
+        //    SolicitudProcess.SelectSolicitudAutoridad();
 
-            if (SolicitudProcess.ErrorId == 0)
-            {
-                if (SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows.Count > 0)
-                {
-                    this.gvAutoridades.DataSource = SolicitudProcess.SolicitudEntity.ResultData;
-                    this.gvAutoridades.DataBind();
-                }
-                else
-                {
-                    this.gvAutoridades.DataSource = null;
-                    this.gvAutoridades.DataBind();
-                }
-            }
-            else
-            {
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(SolicitudProcess.ErrorDescription) + "', 'Fail', true);", true);
-            }
-        }
+        //    if (SolicitudProcess.ErrorId == 0)
+        //    {
+        //        if (SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows.Count > 0)
+        //        {
+        //            this.gvAutoridades.DataSource = SolicitudProcess.SolicitudEntity.ResultData;
+        //            this.gvAutoridades.DataBind();
+        //        }
+        //        else
+        //        {
+        //            this.gvAutoridades.DataSource = null;
+        //            this.gvAutoridades.DataBind();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(SolicitudProcess.ErrorDescription) + "', 'Fail', true);", true);
+        //    }
+        //}
 
         private void SelectCiudadano(int SolicitudId)
         {
@@ -532,7 +538,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
                         LugarHechosList.Enabled = false;
                         DireccionHechosBox.Enabled = false;
-                        GuardarButton.Enabled = false;
+                        //GuardarButton.Enabled = false;
 
                         break;
 
@@ -546,7 +552,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
                         LugarHechosList.Enabled = false;
                         DireccionHechosBox.Enabled = false;
-                        GuardarButton.Enabled = false;
+                        //GuardarButton.Enabled = false;
 
                         break;
 
@@ -560,7 +566,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
                         LugarHechosList.Enabled = false;
                         DireccionHechosBox.Enabled = false;
-                        GuardarButton.Enabled = false;
+                        //GuardarButton.Enabled = false;
 
                         break;
 
@@ -574,7 +580,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
                         LugarHechosList.Enabled = true;
                         DireccionHechosBox.Enabled = true;
-                        GuardarButton.Enabled = true;
+                        //GuardarButton.Enabled = true;
 
                         break;
 
@@ -588,7 +594,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
                         LugarHechosList.Enabled = false;
                         DireccionHechosBox.Enabled = false;
-                        GuardarButton.Enabled = false;
+                        //GuardarButton.Enabled = false;
 
                         break;
 
@@ -602,7 +608,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
                         LugarHechosList.Enabled = false;
                         DireccionHechosBox.Enabled = false;
-                        GuardarButton.Enabled = false;
+                        //GuardarButton.Enabled = false;
 
                         break;
                 }
@@ -698,12 +704,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         }
 
         #endregion
-
-        protected void ImprimirButton_Click(object sender, ImageClickEventArgs e)
-        {
-            string SolicitudId = Request.QueryString["s"];
-            Response.Redirect("~/Application/WebApp/Private/Operation/opeSolicitudPaginaImpresion.aspx?s=" + SolicitudId);
-        }
 
     }
 }

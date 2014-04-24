@@ -285,60 +285,6 @@
                 <td class="tdCeldaMiddleSpace">
                 </td>
             </tr>
-            <tr>
-                <td style="text-align: left;">
-                    Autoridades
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:Panel ID="pnlGrid2" runat="server" Width="100%">
-                        <asp:GridView ID="gvAutoridades" runat="server" AutoGenerateColumns="False" AutoUpdateAfterCallBack="True"
-                            UpdateAfterCallBack="True" Width="800px" Style="text-align: center" DataKeyNames="AutoridadId"
-                            PageSize="30" OnRowCommand="gvAutoridades_RowCommand" OnRowDataBound="gvAutoridades_RowDataBound"
-                            OnSorting="gvAutoridades_Sorting">
-                            <RowStyle CssClass="Grid_Row" />
-                            <EditRowStyle Wrap="True" />
-                            <HeaderStyle CssClass="Grid_Header" ForeColor="#E3EBF5" />
-                            <AlternatingRowStyle CssClass="Grid_Row_Alternating" />
-                            <EmptyDataTemplate>
-                                <table border="1px" cellpadding="0px" cellspacing="0px">
-                                    <tr class="Grid_Header">
-                                        <td style="width: 250px;">
-                                            Nombre
-                                        </td>
-                                        <td style="width: 220px;">
-                                            Puesto
-                                        </td>
-                                        <td style="width: 250px;">
-                                            Comentarios
-                                        </td>
-                                    </tr>
-                                    <tr class="Grid_Row">
-                                        <td colspan="7">
-                                            No se encontraron autoridades relacionados con la solicitud
-                                        </td>
-                                    </tr>
-                                </table>
-                            </EmptyDataTemplate>
-                            <Columns>
-                                <asp:BoundField DataField="AutoridadId" Visible="false" />
-                                <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="Nombre" />
-                                <asp:BoundField DataField="Puesto" HeaderText="Puesto" SortExpression="Puesto">
-                                    <ItemStyle HorizontalAlign="Left" />
-                                </asp:BoundField>
-                                <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" SortExpression="Comentarios">
-                                    <ItemStyle HorizontalAlign="Left" />
-                                </asp:BoundField>
-                            </Columns>
-                        </asp:GridView>
-                    </asp:Panel>
-                </td>
-            </tr>
-            <tr>
-                <td class="tdCeldaMiddleSpace">
-                </td>
-            </tr>
         </table>
         <br />
         <!-- Datalist para documentos -->
@@ -414,8 +360,6 @@
             </tr>
             <tr>
                 <td style="text-align: left;">
-                    <asp:Button ID="GuardarButton" runat="server" Text="Guardar información de solicitud"
-                        CssClass="Button_General" Width="200px" OnClick="GuardarButton_Click" />
                     <input class="Button_General" id="RegresarButton" onclick="document.location.href='opeBusquedaSolicitud.aspx';"
                         style="width: 125px;" type="button" value="Regresar" />
                 </td>

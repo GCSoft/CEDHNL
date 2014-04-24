@@ -12,6 +12,7 @@ namespace SIAQ.BusinessProcess.Object
         private int _ErrorId;
         private string _ErrorDescription;
         protected ENTSolicitud _SolicitudEntity;
+        protected ENTAutoridad _AutoridadEntity;
 
         public ENTSolicitud SolicitudEntity
         {
@@ -19,9 +20,16 @@ namespace SIAQ.BusinessProcess.Object
             set { _SolicitudEntity = value; }
         }
 
+        public ENTAutoridad AutoridadEntity
+        {
+            get { return _AutoridadEntity; }
+            set { _AutoridadEntity = value; }
+        }
+
         public BPSolicitud()
         {
             _SolicitudEntity = new ENTSolicitud();
+            _AutoridadEntity = new ENTAutoridad();
         }
 
         /// <summary>
@@ -175,6 +183,21 @@ namespace SIAQ.BusinessProcess.Object
         }
 
         /// <summary>
+        /// Muestra las voces señaladas de una autoridad de una solicitud
+        /// </summary>
+        public void SelectSolicitudAutoridadVoces()
+        {
+            string sConnectionString = String.Empty;
+            DASolicitud oDASolicitud = new DASolicitud();
+
+            sConnectionString = sConnectionApplication;
+            _AutoridadEntity.dsResponse = oDASolicitud.SelectSolicitudAutoridadVoces(_AutoridadEntity, sConnectionString);
+
+            _ErrorId = oDASolicitud.ErrorId;
+            _ErrorDescription = oDASolicitud.ErrorDescription;
+        }
+
+        /// <summary>
         ///     Busca los ciudadanos que están relacionados a una solicitud.
         /// </summary>
         public void SelectSolicitudCiudadano()
@@ -317,7 +340,7 @@ namespace SIAQ.BusinessProcess.Object
             //Resultado
             return oENTResponse;
         }
-        
+
         /// <summary>
         /// Valida la solicitud antes de enviarla, que haya ciudadanos agregados, que se haya calificado, que haya autoridades agregadas y que se hayan agregado voces señaladas a dichas autoridades
         /// </summary>

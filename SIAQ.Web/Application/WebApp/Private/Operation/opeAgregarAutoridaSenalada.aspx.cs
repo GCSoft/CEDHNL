@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using GCSoft.Utilities.Common;
+using System.Data;
+using System.Text.RegularExpressions;
 
 using SIAQ.Entity.Object;
 using SIAQ.BusinessProcess.Object;
@@ -45,15 +47,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             ComboAutoridadTercerNivel();
         }
 
-        protected void ddlVozPrimerNivel_SelectedIndexChanged(object sender, EventArgs e)
+
+        protected void ddlVocesNivel2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ComboVocesSegundoNivel();
-            ddlVozSegundoNivel.SelectedIndex = 0;
             ComboVocesTercerNivel();
         }
 
-        protected void ddlVozSegundoNivel_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ddlVocesNivel1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ComboVocesSegundoNivel();
             ComboVocesTercerNivel();
         }
 
@@ -61,56 +63,43 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         #region "Botones"
 
-        protected void btnAgregar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string solicitudId = SolicitudIdHidden.Value;
-
-                if (String.IsNullOrEmpty(hdnAutoridadId.Value))
-                {
-                    AgregarAutoridad(Convert.ToInt32(solicitudId));
-
-                    ScriptManager.RegisterStartupScript(this.Page
-                        , this.GetType()
-                        , Convert.ToString(Guid.NewGuid())
-                        , "tinyboxMessage('Autoridad agregada con éxito', 'Success', true);", true);
-                }
-                else
-                {
-                    ModificarAutoridad(Convert.ToInt32(solicitudId));
-
-                    ScriptManager.RegisterStartupScript(this.Page
-                        , this.GetType()
-                        , Convert.ToString(Guid.NewGuid())
-                        , "tinyboxMessage('Autoridad modificada con éxito', 'Success', true);", true);
-                }
-            }
-            catch (Exception ex)
-            {
-                hdnAutoridadId.Value = String.Empty;
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true);", true);
-            }
-        }
-
         protected void btnRegresar_Click(object sender, EventArgs e)
         {
             string solicitudId = SolicitudIdHidden.Value;
             Response.Redirect("~/Application/WebApp/Private/Operation/opeDetalleSolicitud.aspx?s=" + solicitudId);
         }
 
-        protected void btnAgregarVoz_Click(object sender, EventArgs e)
+        protected void imgCloseWindow_Click(object sender, ImageClickEventArgs e)
         {
+            LimpiarPopUp();
+            pnlAction.Visible = false;
+        }
+
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+            string AutoridadId = hdnAutoridadId.Value;
+            string SolicitudId = SolicitudIdHidden.Value;
+
             try
             {
-                string solicitudId = SolicitudIdHidden.Value;
-                AgregarVoz(Convert.ToInt32(solicitudId), Convert.ToInt32(hdnAutoridadId.Value), Convert.ToInt32(ddlVozTercerNivel.SelectedValue));
-
-                ScriptManager.RegisterStartupScript(this.Page
-                   , this.GetType()
-                   , Convert.ToString(Guid.NewGuid())
-                   , "tinyboxMessage('Voz agregada con éxito', 'Success', true);", true);
-
+                if (String.IsNullOrEmpty(AutoridadId))
+                {
+                    // Agregar autoridad
+                    AgregarAutoridad(Convert.ToInt32(SolicitudId));
+                    LimpiarPopUp();
+                    pnlAction.Visible = false;
+                    LlenarGridAutoridades(Convert.ToInt32(SolicitudId));
+                    LimpiarLabelsDetalle();
+                }
+                else
+                {
+                    //Modifiar autoridad
+                    ModificarAutoridad(Convert.ToInt32(SolicitudId));
+                    LimpiarPopUp();
+                    pnlAction.Visible = false;
+                    LlenarGridAutoridades(Convert.ToInt32(SolicitudId));
+                    LimpiarLabelsDetalle();
+                }
             }
             catch (Exception ex)
             {
@@ -122,108 +111,149 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        protected void btnTerminarVoz_Click(object sender, EventArgs e)
+        protected void btnRegresarPop_Click(object sender, EventArgs e)
         {
-            LimpiarCamposVoces();
-            LimpiarCampos();
-            hdnAutoridadId.Value = String.Empty;
-            LlenarListaAutoridades();
-            pnlVoces.Visible = false;
-            btnAgregar.Enabled = true;
+            LimpiarPopUp();
+            pnlAction.Visible = false;
+        }
 
-            btnAgregar.Text = "Agregar";
-            ddlPrimerNivel.Focus();
+        protected void btnRegresarPopVoz_Click(object sender, EventArgs e)
+        {
+            ComboVocesPrimerNivel();
+            ddlVocesNivel1.SelectedIndex = 0;
+            ComboVocesSegundoNivel();
+            ComboVocesTercerNivel();
+
+            pnlVocesPop.Visible = false;
+        }
+
+        protected void btnAgregarVoz_Click(object sender, EventArgs e)
+        {
+            string SolicitudId = SolicitudIdHidden.Value;
+            string AutoridadId = hdnAutoridadId.Value;
+
+            try
+            {
+                AgregarVoz(Convert.ToInt32(SolicitudId), Convert.ToInt32(AutoridadId), Convert.ToInt32(ddlVocesNivel3.SelectedValue));
+                ddlVocesNivel1.SelectedIndex = 0;
+                ComboVocesSegundoNivel();
+                ComboVocesTercerNivel();
+                pnlVocesPop.Visible = false;
+                LlenarGridVoces(Convert.ToInt32(SolicitudId), Convert.ToInt32(AutoridadId));
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page
+                    , this.GetType()
+                    , Convert.ToString(Guid.NewGuid())
+                    , "tinyboxMessage('" + ex.Message + "', 'Fail', true);"
+                    , true);
+            }
         }
 
         #endregion
 
         #region "GridView"
 
-        protected void gvAutoridadesAgregadas_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void gvAutoridades_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            string SolicitudId = String.Empty;
-            int intRow = 0;
             string AutoridadId = String.Empty;
 
-            try
+            AutoridadId = e.CommandArgument.ToString();
+
+
+            switch (e.CommandName.ToString())
             {
-                // Opción seleccionada 
-                string sCommandName = e.CommandName.ToString();
+                case "Seleccionar":
+                    //Detalle y mostrar voces
+                    MostrarDetalleAutoridad(Convert.ToInt32(SolicitudIdHidden.Value), Convert.ToInt32(AutoridadId));
+                    LlenarGridVoces(Convert.ToInt32(SolicitudIdHidden.Value), Convert.ToInt32(AutoridadId));
+                    DetallePanel.Visible = true;
+                    VocesPanel.Visible = true;
+                    break;
+                case "Editar":
+                    MostrarDetalleAutoridadPopUp(Convert.ToInt32(SolicitudIdHidden.Value), Convert.ToInt32(AutoridadId));
+                    btnAgregar.Text = "Modificar autoridad";
+                    pnlAction.Visible = true;
 
-                if (sCommandName == "Sort") { return; }
+                    break;
 
-                // Fila
-                intRow = Convert.ToInt32(e.CommandArgument.ToString());
-
-                //Ciudadano Id 
-                AutoridadId = e.CommandArgument.ToString();
-                SolicitudId = SolicitudIdHidden.Value;
-
-                switch (sCommandName)
-                {
-                    case "Borrar":
-
-                        if (!String.IsNullOrEmpty(hdnAutoridadId.Value)) { return; }
-
-                        BorrarAutoridad(Convert.ToInt32(AutoridadId), Convert.ToInt32(SolicitudId));
-                        break;
-                    case "SelectCiudadano":
-                        hdnAutoridadId.Value = AutoridadId;
-                        pnlVoces.Visible = true;
-                        LlenarListaAutoridades();
-                        ListaVocesSenaladas(Convert.ToInt32(SolicitudId), Convert.ToInt32(AutoridadId));
-                        MostrarDetalleAutoridad(Convert.ToInt32(SolicitudId), Convert.ToInt32(AutoridadId));
-                        break;
-                }
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+                case "Borrar":
+                    BorrarAutoridad(Convert.ToInt32(AutoridadId), Convert.ToInt32(SolicitudIdHidden.Value));
+                    LlenarGridAutoridades(Convert.ToInt32(SolicitudIdHidden.Value));
+                    LimpiarLabelsDetalle();
+                    break;
             }
         }
 
-        protected void gvAutoridadesAgregadas_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void gvAutoridades_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             ImageButton imgEdit = null;
-
+            ImageButton imgBorrar = null;
+            ImageButton imgSeleccionar = null;
+            String sNumeroExpediente = "";
             String sImagesAttributes = "";
+            String sImagesAttributesSeleccionar = "";
+            String sImagesAttributesBorrar = "";
             String sToolTip = "";
+            String sToolTipBorrar = "";
+            String sToolTipSeleccionar = "";
 
             try
             {
                 //Validación de que sea fila 
-                if (e.Row.RowType != DataControlRowType.DataRow) { return; }
+                if (e.Row.RowType != DataControlRowType.DataRow)
+                {
+                    return;
+                }
+
+                //Decodificar HTML
+                string decodedText = HttpUtility.HtmlDecode(e.Row.Cells[6].Text);
+                decodedText = Regex.Replace(decodedText, "<[^>]*>", string.Empty);
+                e.Row.Cells[6].Text = decodedText;
 
                 //Obtener imagenes
-                imgEdit = (ImageButton)e.Row.FindControl("ImagenEliminar");
+                imgEdit = (ImageButton)e.Row.FindControl("EditButton");
+                imgBorrar = (ImageButton)e.Row.FindControl("DeleteButton");
+                imgSeleccionar = (ImageButton)e.Row.FindControl("SelectButton");
+
+                //DataKeys
+                sNumeroExpediente = gvAutoridades.DataKeys[e.Row.RowIndex]["AutoridadId"].ToString();
 
                 //Tooltip Edición
-                sToolTip = "Eliminar autoridad";
+                sToolTip = "Editar autoridad [" + sNumeroExpediente + "]";
+                sToolTipBorrar = "Borrar autoridad con sus voces";
+                sToolTipSeleccionar = "Agregar voces";
+
                 imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
                 imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
                 imgEdit.Attributes.Add("style", "curosr:hand;");
 
+                imgBorrar.Attributes.Add("onmouseover", "tooltip.show('" + sToolTipBorrar + "', 'Izq');");
+                imgBorrar.Attributes.Add("onmouseout", "tooltip.hide();");
+                imgBorrar.Attributes.Add("style", "cursor:hand;");
+
+                imgSeleccionar.Attributes.Add("onmouseover", "tooltip.show('" + sToolTipSeleccionar + "', 'Izq');");
+                imgSeleccionar.Attributes.Add("onmouseout", "tooltip.hide();");
+                imgSeleccionar.Attributes.Add("style", "cursor:hand;");
+
                 //Atributos Over
-                sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png';";
+                sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png';";
+                sImagesAttributesBorrar = "document.getElementById('" + imgBorrar.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png';";
+                sImagesAttributesSeleccionar = "document.getElementById('" + imgSeleccionar.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png';";
 
                 //Puntero y Sombra en fila Over
-                e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
+                e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes + sImagesAttributesBorrar + sImagesAttributesSeleccionar);
 
                 //Atributos Out
-                sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png';";
+                sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png';";
+                sImagesAttributesBorrar = "document.getElementById('" + imgBorrar.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png';";
+                sImagesAttributesSeleccionar = "document.getElementById('" + imgSeleccionar.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png';";
 
                 //Puntero y Sombra en fila Out
-                e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
+                e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes + sImagesAttributesBorrar
+                    + sImagesAttributesSeleccionar);
 
-                // Si se est{a editando no se puede borrar la autoridad
-                if (String.IsNullOrEmpty(hdnAutoridadId.Value))
-                {
-                    imgEdit.Enabled = true;
-                }
-                else
-                {
-                    imgEdit.Enabled = false;
-                }
             }
             catch (Exception ex)
             {
@@ -231,35 +261,117 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-
-        protected void gvVocesSenaladas_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void gvAutoridades_Sorting(object sender, GridViewSortEventArgs e)
         {
-            string SolicitudId = String.Empty;
-            int intRow = 0;
-            string AutoridadId = String.Empty;
+            DataTable TableAutoridad = null;
+            DataView ViewAutoridad = null;
+
+            try
+            {
+                //Obtener DataTable y View del GridView
+                TableAutoridad = utilFunction.ParseGridViewToDataTable(gvAutoridades, false);
+                ViewAutoridad = new DataView(TableAutoridad);
+
+                //Determinar ordenamiento
+                hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
+
+                //Ordenar Vista
+                ViewAutoridad.Sort = hddSort.Value;
+
+                //Vaciar datos
+                gvAutoridades.DataSource = ViewAutoridad;
+                gvAutoridades.DataBind();
+
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+            }
+        }
+
+        protected void gvVoces_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
             string VozId = String.Empty;
 
+            VozId = e.CommandArgument.ToString();
+
+            switch (e.CommandName.ToString())
+            {
+                case "Borrar":
+                    BorrarVoz(Convert.ToInt32(SolicitudIdHidden.Value), Convert.ToInt32(hdnAutoridadId.Value), Convert.ToInt32(VozId));
+                    LlenarGridVoces(Convert.ToInt32(SolicitudIdHidden.Value), Convert.ToInt32(hdnAutoridadId.Value));
+                    break;
+            }
+        }
+
+        protected void gvVoces_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            ImageButton imgBorrar = null;
+            String sNumeroVoz = "";
+            String sImagesAttributesBorrar = "";
+            String sToolTipBorrar = "";
+
             try
             {
-                // Opción seleccionada 
-                string sCommandName = e.CommandName.ToString();
-
-                if (sCommandName == "Sort") { return; }
-
-                // Fila
-                intRow = Convert.ToInt32(e.CommandArgument.ToString());
-
-                //Ciudadano Id 
-                VozId = e.CommandArgument.ToString();
-                AutoridadId = hdnAutoridadId.Value;
-                SolicitudId = SolicitudIdHidden.Value;
-
-                switch (sCommandName)
+                //Validación de que sea fila 
+                if (e.Row.RowType != DataControlRowType.DataRow)
                 {
-                    case "Borrar":
-                        BorrarVoz(Convert.ToInt32(SolicitudId), Convert.ToInt32(AutoridadId), Convert.ToInt32(VozId));
-                        break;
+                    return;
                 }
+
+                //Obtener imagenes
+                imgBorrar = (ImageButton)e.Row.FindControl("DeleteButton");
+
+                //DataKeys
+                sNumeroVoz = gvAutoridades.DataKeys[e.Row.RowIndex]["AutoridadId"].ToString();
+
+                //Tooltip Edición
+                sToolTipBorrar = "Borrar voz señalada [" + sNumeroVoz + "]";
+
+                imgBorrar.Attributes.Add("onmouseover", "tooltip.show('" + sToolTipBorrar + "', 'Izq');");
+                imgBorrar.Attributes.Add("onmouseout", "tooltip.hide();");
+                imgBorrar.Attributes.Add("style", "cursor:hand;");
+
+                //Atributos Over
+                sImagesAttributesBorrar = "document.getElementById('" + imgBorrar.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png';";
+
+                //Puntero y Sombra en fila Over
+                e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributesBorrar);
+
+                //Atributos Out
+                sImagesAttributesBorrar = "document.getElementById('" + imgBorrar.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png';";
+
+                //Puntero y Sombra en fila Out
+                e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributesBorrar);
+
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+        }
+
+        protected void gvVoces_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            DataTable TableVoz = null;
+            DataView VistaVoz = null;
+
+            try
+            {
+                //Obtener DataTable y View del GridView
+                TableVoz = utilFunction.ParseGridViewToDataTable(gvVoces, false);
+                VistaVoz = new DataView(TableVoz);
+
+                //Determinar ordenamiento
+                hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
+
+                //Ordenar Vista
+                VistaVoz.Sort = hddSort.Value;
+
+                //Vaciar datos
+                gvVoces.DataSource = VistaVoz;
+                gvVoces.DataBind();
+
             }
             catch (Exception ex)
             {
@@ -267,43 +379,28 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        protected void gvVocesSenaladas_RowDataBound(object sender, GridViewRowEventArgs e)
+
+        #endregion
+
+        #region "LinkButton"
+
+        protected void AgregarAutoridadButton_Click(object sender, EventArgs e)
         {
-            ImageButton imgEdit = null;
+            //Abrir popup
+            ddlPrimerNivel.Enabled = true;
+            ddlSegundoNivel.Enabled = true;
+            ddlTercerNivel.Enabled = true;
+            hdnAutoridadId.Value = String.Empty;
+            btnAgregar.Text = "Agregar autoridad";
+            pnlAction.Visible = true;
+        }
 
-            String sImagesAttributes = "";
-            String sToolTip = "";
-
-            try
-            {
-                //Validación de que sea fila 
-                if (e.Row.RowType != DataControlRowType.DataRow) { return; }
-
-                //Obtener imagenes
-                imgEdit = (ImageButton)e.Row.FindControl("ImagenEliminar");
-
-                //Tooltip Edición
-                sToolTip = "Eliminar voz";
-                imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
-                imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
-                imgEdit.Attributes.Add("style", "curosr:hand;");
-
-                //Atributos Over
-                sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png';";
-
-                //Puntero y Sombra en fila Over
-                e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
-
-                //Atributos Out
-                sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png';";
-
-                //Puntero y Sombra en fila Out
-                e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
-            }
-            catch (Exception ex)
-            {
-                throw (ex);
-            }
+        protected void lnkAgregarVoces_Click(object sender, EventArgs e)
+        {
+            ComboVocesPrimerNivel();
+            ComboVocesSegundoNivel();
+            ComboVocesTercerNivel();
+            pnlVocesPop.Visible = true;
         }
 
         #endregion
@@ -324,18 +421,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     SolicitudIdHidden.Value = _SolicitudId;
 
                     ComboAutoridadPrimerNivel();
-                    ddlPrimerNivel.SelectedIndex = 0;
                     ComboAutoridadSegundoNivel();
-                    ddlSegundoNivel.SelectedIndex = 0;
                     ComboAutoridadTercerNivel();
-                    LlenarListaAutoridades();
 
-                    ComboVocesPrimerNivel();
-                    ddlVozPrimerNivel.SelectedIndex = 0;
-                    ComboVocesSegundoNivel();
-                    ddlVozSegundoNivel.SelectedIndex = 0;
-                    ComboVocesTercerNivel();
-                    ddlVozTercerNivel.SelectedIndex = 0;
+                    LlenarGridAutoridades(Convert.ToInt32(SolicitudIdHidden.Value));
                 }
                 catch (Exception Exception)
                 {
@@ -406,30 +495,30 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        private void LlenarListaAutoridades()
+        private void LlenarGridAutoridades(int SolicitudId)
         {
-            BPAutoridad oBPAutoridad = new BPAutoridad();
+            BPSolicitud oBPSolicitud = new BPSolicitud();
 
-            oBPAutoridad.AutoridadEntity.SolicitudId = Convert.ToInt32(SolicitudIdHidden.Value);
-            oBPAutoridad.SelectListaAutoridadesSolicitud();
+            oBPSolicitud.SolicitudEntity.SolicitudId = SolicitudId;
+            oBPSolicitud.SelectSolicitudAutoridad();
 
-            if (oBPAutoridad.ErrorId == 0)
+            if (oBPSolicitud.ErrorId == 0)
             {
-                if (oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows.Count > 0)
+                if (oBPSolicitud.SolicitudEntity.ResultData.Tables[0].Rows.Count > 0)
                 {
-                    gvAutoridadesAgregadas.DataSource = oBPAutoridad.AutoridadEntity.dsResponse;
-                    gvAutoridadesAgregadas.DataBind();
+                    gvAutoridades.DataSource = oBPSolicitud.SolicitudEntity.ResultData;
+                    gvAutoridades.DataBind();
                 }
                 else
                 {
-                    gvAutoridadesAgregadas.DataSource = null;
-                    gvAutoridadesAgregadas.DataBind();
+                    gvAutoridades.DataSource = null;
+                    gvAutoridades.DataBind();
                 }
             }
             else
             {
-                gvAutoridadesAgregadas.DataSource = null;
-                gvAutoridadesAgregadas.DataBind();
+                gvAutoridades.DataSource = null;
+                gvAutoridades.DataBind();
             }
         }
 
@@ -453,12 +542,39 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
 
                 //Actualizar Datos
-                LlenarListaAutoridades();
+                //LlenarListaAutoridades();
             }
             catch (Exception ex)
             {
                 throw (ex);
             }
+        }
+
+        private void LimpiarPopUp()
+        {
+            ComboAutoridadPrimerNivel();
+            ddlPrimerNivel.SelectedIndex = 0;
+            ComboAutoridadSegundoNivel();
+            ComboAutoridadTercerNivel();
+            tbNombreFuncionario.Text = String.Empty;
+            tbPuestoActual.Text = String.Empty;
+            tbComentarios.Text = String.Empty;
+        }
+
+        private void LimpiarLabelsDetalle()
+        {
+            NombreLabel.Text = String.Empty;
+            PuestoLabel.Text = String.Empty;
+            ObservacionesBox.Text = String.Empty;
+            Nivel1Label.Text = String.Empty;
+            Nivel2Label.Text = String.Empty;
+            Nivel3Label.Text = String.Empty;
+
+            gvVoces.DataSource = null;
+            gvVoces.DataBind();
+
+            DetallePanel.Visible = false;
+            VocesPanel.Visible = false;
         }
 
         private void AgregarAutoridad(int solicitudId)
@@ -488,12 +604,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
                 if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
 
-                //Actualizar Datos
-                LlenarListaAutoridades();
-                pnlVoces.Visible = true;
-                btnAgregar.Enabled = false;
-                ListaVocesSenaladas(Convert.ToInt32(solicitudId), Convert.ToInt32(hdnAutoridadId.Value));
-                ddlVozPrimerNivel.Focus();
+                ScriptManager.RegisterStartupScript(this.Page
+                    , this.GetType()
+                    , Convert.ToString(Guid.NewGuid())
+                    , "tinyboxMessage('Autoridad agregada con éxito', 'Success', true);"
+                    , true);
             }
             catch (Exception ex)
             {
@@ -501,22 +616,37 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        private void LimpiarCampos()
+        private void MostrarDetalleAutoridadPopUp(int SolicitudId, int AutoridadId)
         {
-            ComboAutoridadPrimerNivel();
-            ddlPrimerNivel.SelectedIndex = 0;
-            ComboAutoridadSegundoNivel();
-            ddlSegundoNivel.SelectedIndex = 0;
-            ComboAutoridadTercerNivel();
-            tbNombreFuncionario.Text = String.Empty;
-            tbPuestoActual.Text = String.Empty;
-            tbComentarios.Text = String.Empty;
+            BPAutoridad oBPAutoridad = new BPAutoridad();
 
-            ddlPrimerNivel.Enabled = true;
-            ddlSegundoNivel.Enabled = true;
-            ddlTercerNivel.Enabled = true;
+            oBPAutoridad.AutoridadEntity.SolicitudId = SolicitudId;
+            oBPAutoridad.AutoridadEntity.AutoridadId = AutoridadId;
 
-            ddlPrimerNivel.Focus();
+            oBPAutoridad.SelectDetalleAutoridadesSolicitud();
+
+            if (oBPAutoridad.ErrorId == 0)
+            {
+                if (oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows.Count > 0)
+                {
+                    ddlPrimerNivel.SelectedValue = oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows[0]["NivelId1"].ToString();
+                    ComboAutoridadSegundoNivel();
+                    ddlSegundoNivel.SelectedValue = oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows[0]["NivelId2"].ToString();
+                    ComboAutoridadTercerNivel();
+                    ddlTercerNivel.SelectedValue = oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows[0]["NivelId3"].ToString();
+                    tbNombreFuncionario.Text = oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows[0]["Nombre"].ToString();
+                    tbPuestoActual.Text = oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows[0]["Puesto"].ToString();
+                    tbComentarios.Text = oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows[0]["Comentarios"].ToString();
+                    hdnAutoridadId.Value = oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows[0]["NivelId3"].ToString();
+
+                    ddlPrimerNivel.Enabled = false;
+                    ddlSegundoNivel.Enabled = false;
+                    ddlTercerNivel.Enabled = false;
+
+                    btnAgregar.Text = "Modificar autoridad";
+                    pnlAction.Visible = true;
+                }
+            }
         }
 
         private void MostrarDetalleAutoridad(int SolicitudId, int AutoridadId)
@@ -532,27 +662,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             {
                 if (oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows.Count > 0)
                 {
-                    // se llenan los datos de los combos
-                    ddlPrimerNivel.SelectedValue = oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows[0]["AutoridadPrimerNivel"].ToString();
-                    ComboAutoridadSegundoNivel();
-                    ddlSegundoNivel.SelectedValue = oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows[0]["AutoridadSegundoNivel"].ToString();
-                    ComboAutoridadTercerNivel();
-                    ddlTercerNivel.SelectedValue = oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows[0]["AutoridadTercerNivel"].ToString();
-
-                    // se inhabilitan para que no se puedan modificar 
-                    ddlPrimerNivel.Enabled = false;
-                    ddlSegundoNivel.Enabled = false;
-                    ddlTercerNivel.Enabled = false;
-
-                    // se pone la variable para que se sepa que es una modificación 
-                    hdnAutoridadId.Value = oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows[0]["AutoridadTercerNivel"].ToString();
-                    tbNombreFuncionario.Focus();
-
-                    btnAgregar.Text = "Modificar";
-
-                    tbNombreFuncionario.Text = oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows[0]["Nombre"].ToString();
-                    tbPuestoActual.Text = oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows[0]["Puesto"].ToString();
-                    tbComentarios.Text = oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows[0]["Comentarios"].ToString();
+                    Nivel1Label.Text = oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows[0]["Nivel1"].ToString();
+                    Nivel2Label.Text = oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows[0]["Nivel2"].ToString();
+                    Nivel3Label.Text = oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows[0]["Nivel3"].ToString();
+                    NombreLabel.Text = oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows[0]["Nombre"].ToString();
+                    PuestoLabel.Text = oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows[0]["Puesto"].ToString();
+                    ObservacionesBox.Text = oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows[0]["Comentarios"].ToString();
+                    hdnAutoridadId.Value = oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows[0]["NivelId3"].ToString();
                 }
             }
         }
@@ -584,9 +700,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
                 if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
 
-                //Actualizar Datos
-                LlenarListaAutoridades();
-                ddlVozPrimerNivel.Focus();
+                ScriptManager.RegisterStartupScript(this.Page
+                    , this.GetType()
+                    , Convert.ToString(Guid.NewGuid())
+                    , "tinyboxMessage('Autoridad modificada con éxito', 'Success', true);"
+                    , true);
             }
             catch (Exception ex)
             {
@@ -611,10 +729,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             {
                 if (oBPVocesSenaladas.VocesSenaladasEntity.dsResponse.Tables[0].Rows.Count > 0)
                 {
-                    ddlVozPrimerNivel.DataSource = oBPVocesSenaladas.VocesSenaladasEntity.dsResponse.Tables[0];
-                    ddlVozPrimerNivel.DataTextField = "Nombre";
-                    ddlVozPrimerNivel.DataValueField = "VozId";
-                    ddlVozPrimerNivel.DataBind();
+                    ddlVocesNivel1.DataSource = oBPVocesSenaladas.VocesSenaladasEntity.dsResponse.Tables[0];
+                    ddlVocesNivel1.DataTextField = "Nombre";
+                    ddlVocesNivel1.DataValueField = "VozId";
+                    ddlVocesNivel1.DataBind();
                 }
             }
         }
@@ -623,7 +741,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         {
             BPVocesSenaladas oBPVocesSenaladas = new BPVocesSenaladas();
 
-            oBPVocesSenaladas.VocesSenaladasEntity.VozIdPadrePrimerNivel = Convert.ToInt32(ddlVozPrimerNivel.SelectedValue);
+            oBPVocesSenaladas.VocesSenaladasEntity.VozIdPadrePrimerNivel = Convert.ToInt32(ddlVocesNivel1.SelectedValue);
             oBPVocesSenaladas.VocesSenaladasEntity.VozIdPadreSegundoNivel = 0;
 
             oBPVocesSenaladas.SelectNivelesVoces();
@@ -632,10 +750,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             {
                 if (oBPVocesSenaladas.VocesSenaladasEntity.dsResponse.Tables[1].Rows.Count > 0)
                 {
-                    ddlVozSegundoNivel.DataSource = oBPVocesSenaladas.VocesSenaladasEntity.dsResponse.Tables[1];
-                    ddlVozSegundoNivel.DataTextField = "Nombre";
-                    ddlVozSegundoNivel.DataValueField = "VozId";
-                    ddlVozSegundoNivel.DataBind();
+                    ddlVocesNivel2.DataSource = oBPVocesSenaladas.VocesSenaladasEntity.dsResponse.Tables[1];
+                    ddlVocesNivel2.DataTextField = "Nombre";
+                    ddlVocesNivel2.DataValueField = "VozId";
+                    ddlVocesNivel2.DataBind();
                 }
             }
         }
@@ -644,8 +762,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         {
             BPVocesSenaladas oBPVocesSenaladas = new BPVocesSenaladas();
 
-            oBPVocesSenaladas.VocesSenaladasEntity.VozIdPadrePrimerNivel = Convert.ToInt32(ddlVozPrimerNivel.SelectedValue);
-            oBPVocesSenaladas.VocesSenaladasEntity.VozIdPadreSegundoNivel = Convert.ToInt32(ddlVozSegundoNivel.SelectedValue);
+            oBPVocesSenaladas.VocesSenaladasEntity.VozIdPadrePrimerNivel = Convert.ToInt32(ddlVocesNivel1.SelectedValue);
+            oBPVocesSenaladas.VocesSenaladasEntity.VozIdPadreSegundoNivel = Convert.ToInt32(ddlVocesNivel2.SelectedValue);
 
             oBPVocesSenaladas.SelectNivelesVoces();
 
@@ -653,40 +771,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             {
                 if (oBPVocesSenaladas.VocesSenaladasEntity.dsResponse.Tables[2].Rows.Count > 0)
                 {
-                    ddlVozTercerNivel.DataSource = oBPVocesSenaladas.VocesSenaladasEntity.dsResponse.Tables[2];
-                    ddlVozTercerNivel.DataTextField = "Nombre";
-                    ddlVozTercerNivel.DataValueField = "VozId";
-                    ddlVozTercerNivel.DataBind();
+                    ddlVocesNivel3.DataSource = oBPVocesSenaladas.VocesSenaladasEntity.dsResponse.Tables[2];
+                    ddlVocesNivel3.DataTextField = "Nombre";
+                    ddlVocesNivel3.DataValueField = "VozId";
+                    ddlVocesNivel3.DataBind();
                 }
-            }
-        }
-
-        private void ListaVocesSenaladas(int SolicitudId, int AutoridadId)
-        {
-            BPVocesSenaladas oBPVocesSenaladas = new BPVocesSenaladas();
-
-            oBPVocesSenaladas.VocesSenaladasEntity.SolicitudId = SolicitudId;
-            oBPVocesSenaladas.VocesSenaladasEntity.AutoridadId = AutoridadId;
-
-            oBPVocesSenaladas.SelectListaVocesAutoridad();
-
-            if (oBPVocesSenaladas.ErrorId == 0)
-            {
-                if (oBPVocesSenaladas.VocesSenaladasEntity.dsResponse.Tables[0].Rows.Count > 0)
-                {
-                    gvVocesSenaladas.DataSource = oBPVocesSenaladas.VocesSenaladasEntity.dsResponse.Tables[0];
-                    gvVocesSenaladas.DataBind();
-                }
-                else
-                {
-                    gvVocesSenaladas.DataSource = null;
-                    gvVocesSenaladas.DataBind();
-                }
-            }
-            else
-            {
-                gvVocesSenaladas.DataSource = null;
-                gvVocesSenaladas.DataBind();
             }
         }
 
@@ -698,7 +787,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
             try
             {
-                if (ddlVozTercerNivel.SelectedValue == "0") { throw new Exception("Debe elegir una voz señalada"); }
+                if (ddlVocesNivel3.SelectedValue == "0") { throw new Exception("Debe elegir una voz señalada"); }
 
                 // Formulario 
                 oENTVocesSenaladas.SolicitudId = solicitudId;
@@ -712,9 +801,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
                 if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
 
-                //Actualizar Datos
-                ListaVocesSenaladas(solicitudId, AutoridadId);
-                LimpiarCamposVoces();
+                ScriptManager.RegisterStartupScript(this.Page
+                    , this.GetType()
+                    , Convert.ToString(Guid.NewGuid())
+                    , "tinyboxMessage('Voz agregada con éxito', 'Success', true);"
+                    , true);
             }
             catch (Exception ex)
             {
@@ -742,8 +833,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
                 if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
 
-                //Actualizar Datos
-                ListaVocesSenaladas(solicitudId, AutoridadId);
             }
             catch (Exception ex)
             {
@@ -751,18 +840,40 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        private void LimpiarCamposVoces()
+        private void LlenarGridVoces(int SolicitudId, int AutoridadId)
         {
-            ComboVocesPrimerNivel();
-            ddlVozPrimerNivel.SelectedIndex = 0;
-            ComboVocesSegundoNivel();
-            ddlVozSegundoNivel.SelectedIndex = 0;
-            ComboVocesTercerNivel();
-            ddlVozTercerNivel.SelectedIndex = 0;
+            BPSolicitud oBPSolicitud = new BPSolicitud();
 
+            oBPSolicitud.AutoridadEntity.SolicitudId = SolicitudId;
+            oBPSolicitud.AutoridadEntity.AutoridadId = AutoridadId;
+            oBPSolicitud.SelectSolicitudAutoridadVoces();
+
+            if (oBPSolicitud.ErrorId == 0)
+            {
+                if (oBPSolicitud.AutoridadEntity.dsResponse.Tables[0].Rows.Count > 0)
+                {
+                    gvVoces.DataSource = oBPSolicitud.AutoridadEntity.dsResponse;
+                    gvVoces.DataBind();
+                }
+                else
+                {
+                    gvVoces.DataSource = null;
+                    gvVoces.DataBind();
+                }
+            }
+            else
+            {
+                gvVoces.DataSource = null;
+                gvVoces.DataBind();
+            }
         }
 
         #endregion
+
+        protected void btnTerminar_Click(object sender, EventArgs e)
+        {
+            LimpiarLabelsDetalle();
+        }
 
         #endregion
 

@@ -116,38 +116,25 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         private void selectVisitador()
         {
-            BPFuncionario oBPFuncionario = new BPFuncionario();
-            ENTFuncionario oENTFuncionario = new ENTFuncionario();
-            ENTResponse oENTResponse = new ENTResponse();
+            BPExpediente oBPExpediente = new BPExpediente();
+            ENTExpediente oENTExpediente = new ENTExpediente();
 
             // transacción
             try
             {
+                oENTExpediente.ExpedienteId = 0; //Porque no queremos hacer ninguna excepcion de funcionario, muestra todos
+                oBPExpediente.SelectFuncionario_Asignar(oENTExpediente);
 
-                oENTResponse = oBPFuncionario.SelectFuncionario(oENTFuncionario);
-
-                // Validación de error en consulta
-                if (oENTResponse.GeneratesException)
+                if (oBPExpediente.ErrorId == 0)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sErrorMessage + "', 'Fail', true); focusControl('" + this.txtNumeroExpediente.ClientID + "');", true);
-                    return;
+                    if (oENTExpediente.ResultData.Tables[0].Rows.Count > 0)
+                    {
+                        ddlVisitador.DataSource = oENTExpediente.ResultData;
+                        ddlVisitador.DataTextField = "NombreFuncionario";
+                        ddlVisitador.DataValueField = "FuncionarioId";
+                        ddlVisitador.DataBind();
+                    }
                 }
-
-                // Validación mensaje base de datos
-                if (oENTResponse.sMessage != "")
-                {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Success', true); focusControl('" + this.txtNumeroExpediente.ClientID + "');", true);
-
-                }
-
-                // LLenado de Controles
-                this.ddlVisitador.DataTextField = "Nombre";
-                this.ddlVisitador.DataValueField = "FuncionarioId";
-                this.ddlVisitador.DataSource = oENTResponse.dsResponse.Tables[1];
-                this.ddlVisitador.DataBind();
-
-                this.ddlVisitador.Items.Insert(0, new ListItem("--Seleccionar--", "0"));
-
             }
             catch (Exception ex)
             {

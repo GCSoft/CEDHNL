@@ -71,7 +71,7 @@
                         <Columns>
                             <asp:BoundField DataField="ExpedienteId" Visible="false" />
                             <asp:BoundField DataField="Numero" HeaderText="Expediente" SortExpression="Numero" />
-                            <asp:BoundField DataField="Observaciones" HeaderText="Asunto" SortExpression="Asunto">
+                            <asp:BoundField DataField="Observaciones" HeaderText="Asunto" SortExpression="Observaciones">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
                             <asp:BoundField DataField="Fecha" HeaderText="Fecha Visitadurías" SortExpression="Fecha">
@@ -83,7 +83,7 @@
                             <asp:BoundField DataField="NombreCiudadano" HeaderText="Quejosos" SortExpression="NombreCiudadano">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="NombreAutoridad" HeaderText="Autoridades" SortExpression="Autoridades">
+                            <asp:BoundField DataField="NombreAutoridad" HeaderText="Autoridades" SortExpression="NombreAutoridad">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
                             <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">

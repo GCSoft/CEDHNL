@@ -70,6 +70,7 @@
     <Compile Include="Object\ENTSolicitudCiudadano.cs" />
     <Compile Include="Object\ENTSolicitudComentario.cs" />
     <Compile Include="Object\ENTTipoCiudadano.cs" />
+    <Compile Include="Object\ENTTipoDocumento.cs" />
     <Compile Include="Object\ENTTipoEstatus.cs" />
     <Compile Include="Object\ENTTipoOrientacion.cs" />
     <Compile Include="Object\ENTTipoSolicitud.cs" />

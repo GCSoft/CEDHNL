@@ -87,6 +87,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                         SolicitudLabel.Text = _SolicitudId;
 
                         SelectDocumento(int.Parse(_SolicitudId));
+                        SelectTipoDocumento();
 
                         SolicitudIdHidden.Value = _SolicitudId;
                     }
@@ -155,7 +156,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
             private void SelectTipoDocumento()
             {
+                BPTipoDocumento TipoDocumentoProcess = new BPTipoDocumento();
 
+                TipoDocumentoProcess.SelectTipoDocumento();
+
+                if (TipoDocumentoProcess.ErrorId == 0)
+                {
+                    TipoDocumentoList.DataValueField = "TipoDocumentoId";
+                    TipoDocumentoList.DataTextField = "Nombre";
+
+                    TipoDocumentoList.DataSource = TipoDocumentoProcess.TipoDocumentoEntity.ResultData;
+                    TipoDocumentoList.DataBind();
+
+                    TipoDocumentoList.Items.Insert(0, new ListItem("-- Seleccione --", "0"));
+                }
+                else
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + TipoDocumentoProcess.ErrorDescription + "', 'Error', true);", true);
             }
         #endregion
     }

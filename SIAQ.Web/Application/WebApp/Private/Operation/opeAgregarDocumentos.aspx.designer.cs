@@ -49,6 +49,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.FileUpload DocumentoFile;
         
         /// <summary>
+        /// TipoDocumentoList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList TipoDocumentoList;
+        
+        /// <summary>
         /// NombreBox control.
         /// </summary>
         /// <remarks>

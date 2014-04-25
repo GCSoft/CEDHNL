@@ -41,6 +41,49 @@ namespace SIAQ.DataAccess.Object
 
         #region "Method"
             /// <summary>
+            ///     Elimina un documento del repositorio.
+            /// </summary>
+            /// <param name="DocumentoEntity"></param>
+            /// <param name="ConnectionString"></param>
+            public void DeleteDocumentoSE(ENTDocumento DocumentoEntity, string ConnectionString)
+            {
+                DataSet ResultData = new DataSet();
+                SqlCommand Command;
+                SqlParameter Parameter;
+                SqlConnection Connection = new SqlConnection(ConnectionString);
+
+                try
+                {
+                    Command = new SqlCommand("DeleteDocumentoSE", Connection);
+                    Command.CommandType = CommandType.StoredProcedure;
+
+                    Parameter = new SqlParameter("RepositorioId", SqlDbType.VarChar);
+                    Parameter.Value = DocumentoEntity.RepositorioId;
+                    Command.Parameters.Add(Parameter);
+
+                    Parameter = new SqlParameter("SolicitudId", SqlDbType.Int);
+                    Parameter.Value = DocumentoEntity.SolicitudId;
+                    Command.Parameters.Add(Parameter);
+
+                    Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
+                    Parameter.Value = DocumentoEntity.ExpedienteId;
+                    Command.Parameters.Add(Parameter);
+
+                    Connection.Open();
+                    Command.ExecuteNonQuery();
+                    Connection.Close();
+                }
+                catch (SqlException Exception)
+                {
+                    _ErrorId = Exception.Number;
+                    _ErrorDescription = Exception.Message;
+
+                    if (Connection.State == ConnectionState.Open)
+                        Connection.Close();
+                }
+            }
+
+            /// <summary>
             ///     Guarda un documento en el repositorio.
             /// </summary>
             /// <param name="ENTDocumento">Entidad de documento.</param>
@@ -71,6 +114,10 @@ namespace SIAQ.DataAccess.Object
 
                     Parameter = new SqlParameter("TipoDocumentoId", SqlDbType.VarChar);
                     Parameter.Value = DocumentoEntity.TipoDocumentoId;
+                    Command.Parameters.Add(Parameter);
+
+                    Parameter = new SqlParameter("FormatoDocumentoId", SqlDbType.VarChar);
+                    Parameter.Value = DocumentoEntity.FormatoDocumentoId;
                     Command.Parameters.Add(Parameter);
 
                     Parameter = new SqlParameter("idUsuarioInsert", SqlDbType.Int);

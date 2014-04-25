@@ -54,7 +54,17 @@ namespace SIAQ.BusinessProcess.Object
         }
 
         #region "Methods"
-            public string GetFileType(string FileExtension)
+            public void DeleteDocumentoSE()
+            {
+                DADocumento DocumentoAccess = new DADocumento();
+
+                DocumentoAccess.DeleteDocumentoSE(_DocumentoEntity, sConnectionRepositorio);
+
+                _ErrorId = DocumentoAccess.ErrorId;
+                _ErrorDescription = DocumentoAccess.ErrorDescription;
+            }
+
+            public string GetFileFormat(string FileExtension)
             {
                 string Result = string.Empty;
 
@@ -196,7 +206,7 @@ namespace SIAQ.BusinessProcess.Object
                         DocumentoStream.Read(DocumentoBytes, 0, DocumentoLen);
 
                         _DocumentoEntity.RepositorioId = Guid.NewGuid().ToString();
-                        _DocumentoEntity.TipoDocumentoId = GetFileType(Extension);
+                        _DocumentoEntity.FormatoDocumentoId = GetFileFormat(Extension);
                         _DocumentoEntity.Documento = DocumentoBytes;
                     }
                     catch (Exception ex)

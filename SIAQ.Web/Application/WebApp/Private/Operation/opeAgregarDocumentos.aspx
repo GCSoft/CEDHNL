@@ -30,7 +30,8 @@
 
                                         <div class="ContenidoDiv">
                                             <asp:GridView AllowPaging="false" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
-                                                CssClass="AgregadosGrid" ID="DocumentoGrid" ShowHeader="false" ShowFooter="false" runat="server" Width="100%">
+                                                CssClass="AgregadosGrid" ID="DocumentoGrid" OnRowCommand="DocumentoGrid_RowCommand" ShowHeader="false" 
+                                                ShowFooter="false" runat="server" Width="100%">
                                                 <EmptyDataTemplate>
                                                     No se han agregado documentos a la solicitud
                                                 </EmptyDataTemplate>
@@ -43,7 +44,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField>
                                                         <ItemTemplate>
-                                                            <asp:ImageButton ID="EliminarButton" CommandArgument='<%#Eval("RepositorioId")%>' CommandName="Eliminar" ImageUrl="~/Include/Image/Buttons/Delete.png" runat="server" />
+                                                            <asp:ImageButton ID="EliminarButton" CommandArgument='<%#Eval("RepositorioId")%>' CommandName="Eliminar" ImageUrl="~/Include/Image/Buttons/Delete.png" OnClientClick="return confirm('¿En realidad desea eliminar este documento?');" runat="server" />
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="Center" Width="30px" />
                                                     </asp:TemplateField>
@@ -57,6 +58,12 @@
                                 <td class="Nombre">Archivo</td>
                                 <td class="Espacio"></td>
                                 <td class="Campo"><asp:FileUpload ID="DocumentoFile" runat="server" Width="210px" /></td>
+                                <td class="Espacio"></td>
+                            </tr>
+                            <tr>
+                                <td class="Nombre">Tipo de documento</td>
+                                <td class="Espacio"></td>
+                                <td class="Campo"><asp:DropDownList ID="TipoDocumentoList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
                                 <td class="Espacio"></td>
                             </tr>
                             <tr>

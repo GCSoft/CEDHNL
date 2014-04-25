@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+using GCSoft.Utilities.Common;
 using SIAQ.BusinessProcess.Object;
 using SIAQ.Entity.Object;
 
@@ -13,11 +14,17 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
     public partial class opeAgregarDocumentos : System.Web.UI.Page
     {
         public string _SolicitudId;
+        Function utilFunction = new Function();
 
         #region "Events"
+            protected void DocumentoGrid_RowCommand(Object sender, GridViewCommandEventArgs e)
+            {
+                DocumentoGridRowCommand(e);
+            }
+
             protected void GuardarButton_Click(object sender, EventArgs e)
             {
-                GuardarDocumento();
+                SaveDocumento();
             }
 
             protected void Page_Load(object sender, EventArgs e)
@@ -30,6 +37,45 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         #endregion
 
         #region
+            private void DeleteRepositorio(string RepositorioId)
+            {
+                DeleteRepositorio(RepositorioId, int.Parse(SolicitudIdHidden.Value), 0);
+            }
+
+            private void DeleteRepositorio(string RepositorioId, int SolicitudId, int ExpedienteId)
+            {
+                BPDocumento DocumentoProcess = new BPDocumento();
+
+                DocumentoProcess.DocumentoEntity.RepositorioId = RepositorioId;
+                DocumentoProcess.DocumentoEntity.SolicitudId = SolicitudId;
+                DocumentoProcess.DocumentoEntity.ExpedienteId = ExpedienteId;
+
+                DocumentoProcess.DeleteDocumentoSE();
+
+                if (DocumentoProcess.ErrorId == 0)
+                {
+                    SelectDocumento(int.Parse(SolicitudIdHidden.Value));
+
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('La información fue guardada con éxito!', 'Success', true);", true);
+                }
+                else
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(DocumentoProcess.ErrorDescription) + "', 'Error', true);", true);
+            }
+
+            private void DocumentoGridRowCommand(GridViewCommandEventArgs e)
+            {
+                string RepositorioId = string.Empty;
+
+                RepositorioId = e.CommandArgument.ToString();
+
+                switch (e.CommandName.ToString())
+                {
+                    case "Eliminar":
+                        DeleteRepositorio(RepositorioId);
+                        break;
+                }
+            }
+
             private void PageLoad()
             {
                 if (!this.Page.IsPostBack)
@@ -57,21 +103,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 DescripcionBox.Text = "";
             }
 
-            private void GuardarDocumento()
+            private void SaveDocumento()
             {
                 ENTSession SessionEntity = new ENTSession();
 
                 SessionEntity = (ENTSession)Session["oENTSession"];
 
-                GuardarDocumento(int.Parse(SolicitudIdHidden.Value), SessionEntity.idUsuario, NombreBox.Text.Trim(), DescripcionBox.Text.Trim(), DocumentoFile);
+                SaveDocumento(int.Parse(SolicitudIdHidden.Value), SessionEntity.idUsuario, NombreBox.Text.Trim(), DescripcionBox.Text.Trim(), DocumentoFile);
             }
 
-            private void GuardarDocumento(int SolicitudId, int idUsuarioInsert, string Nombre, string Descripcion, FileUpload DocumentoFile)
+            private void SaveDocumento(int SolicitudId, int idUsuarioInsert, string Nombre, string Descripcion, FileUpload DocumentoFile)
             {
                 BPDocumento DocumentoProcess = new BPDocumento();
 
                 DocumentoProcess.DocumentoEntity.SolicitudId = SolicitudId;
                 DocumentoProcess.DocumentoEntity.idUsuarioInsert = idUsuarioInsert;
+                DocumentoProcess.DocumentoEntity.TipoDocumentoId = TipoDocumentoList.SelectedValue;
                 DocumentoProcess.DocumentoEntity.Nombre = Nombre;
                 DocumentoProcess.DocumentoEntity.Descripcion = Descripcion;
                 DocumentoProcess.DocumentoEntity.FileUpload = DocumentoFile;
@@ -86,7 +133,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('La información fue guardada con éxito!', 'Success', true);", true);
                 }
                 else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + DocumentoProcess.ErrorDescription + "', 'Error', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(DocumentoProcess.ErrorDescription) + "', 'Error', true);", true);
             }
 
             private void SelectDocumento(int SolicitudId)
@@ -104,6 +151,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 }
                 else
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + DocumentoProcess.ErrorDescription + "', 'Error', true);", true);
+            }
+
+            private void SelectTipoDocumento()
+            {
+
             }
         #endregion
     }

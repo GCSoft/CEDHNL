@@ -14,6 +14,7 @@ namespace SIAQ.Entity.Object
         private int _ExpedienteId;
         private int _RecomendacionId;
         private string _TipoDocumentoId;
+        private string _FormatoDocumentoId;
         private int _idUsuarioInsert;
         private int _idUsuarioLastUpdate;
         private string _Nombre;
@@ -29,6 +30,7 @@ namespace SIAQ.Entity.Object
             _ExpedienteId = 0;
             _RecomendacionId = 0;
             _TipoDocumentoId = string.Empty;
+            _FormatoDocumentoId = string.Empty;
             _idUsuarioInsert = 0;
             _idUsuarioLastUpdate = 0;
             _Nombre = string.Empty;
@@ -81,6 +83,15 @@ namespace SIAQ.Entity.Object
         {
             get { return _TipoDocumentoId; }
             set { _TipoDocumentoId = value; }
+        }
+
+        /// <summary>
+        ///     Identificador del formato del documento.
+        /// </summary>
+        public string FormatoDocumentoId
+        {
+            get { return _FormatoDocumentoId; }
+            set { _FormatoDocumentoId = value; }
         }
 
         /// <summary>

@@ -1,6 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeAprobarResolucionTitular.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeAprobarResolucionTitular" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master"
+    AutoEventWireup="true" CodeBehind="opeAprobarResolucionTitular.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeAprobarResolucionTitular" %>
 
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
     <script type="text/javascript">
 
@@ -102,7 +104,7 @@
                             <td class="Espacio">
                             </td>
                             <td class="Etiqueta">
-                                <asp:Label ID="VisitadorLabel" runat="server" Text=""></asp:Label> 
+                                <asp:Label ID="VisitadorLabel" runat="server" Text=""></asp:Label>
                             </td>
                             <td class="Espacio">
                             </td>
@@ -110,7 +112,6 @@
                                 Fecha de inicio de gestión
                             </td>
                             <td class="Espacio">
-
                             </td>
                             <td class="Etiqueta">
                                 <asp:Label ID="FechaInicioGestionLabel" runat="server" Text=""></asp:Label>
@@ -118,19 +119,17 @@
                         </tr>
                         <tr>
                             <td class="Nombre">
-                                
                             </td>
                             <td class="Espacio">
                             </td>
                             <td class="Espacio">
-                                </td>
+                            </td>
                             <td class="Espacio">
                             </td>
                             <td class="Nombre">
                                 Fecha de resolución
                             </td>
                             <td class="Espacio">
-
                             </td>
                             <td class="Etiqueta">
                                 <asp:Label ID="FechaResolucionLabel" runat="server" Text=""></asp:Label>
@@ -150,14 +149,12 @@
                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
                         <tr>
                             <td style="height: 24px; text-align: left; width: 130px;">
-                                <asp:Button ID="btnAprobarResolucion" runat="server" Text="Aprobar resolución"
-                                    CssClass="Button_General" Width="125px" onclick="btnAprobarResolucion_Click" 
-                                    />
+                                <asp:Button ID="btnAprobarResolucion" runat="server" Text="Aprobar resolución" CssClass="Button_General"
+                                    Width="125px" OnClick="btnAprobarResolucion_Click" />
                             </td>
                             <td style="height: 24px; text-align: left; width: 130px;">
-                                <asp:Button ID="btnRechazarResolucion" runat="server" 
-                                    Text="Rechazar resolución" CssClass="Button_General"
-                                    Width="125px" onclick="btnRechazarResolucion_Click" />
+                                <asp:Button ID="btnRechazarResolucion" runat="server" Text="Rechazar resolución"
+                                    CssClass="Button_General" Width="125px" OnClick="btnRechazarResolucion_Click" />
                             </td>
                             <td style="height: 24px; width: 530px;">
                             </td>
@@ -175,7 +172,7 @@
             </td>
         </tr>
         <tr>
-            <td style="background-color:#CCCCCC; text-align:left;"">
+            <td style="background-color: #CCCCCC; text-align: left;">
                 Detalle del expediente
             </td>
         </tr>
@@ -262,9 +259,8 @@
             <td>
                 <asp:Panel ID="pnlGridCiudadanos" runat="server" Width="100%">
                     <asp:GridView ID="gvCiudadanos" runat="server" AllowPaging="false" AllowSorting="true"
-                        AutoGenerateColumns="False" Width="800px" DataKeyNames="CiudadanoId" 
-                        onrowcommand="gvCiudadanos_RowCommand" 
-                        onrowdatabound="gvCiudadanos_RowDataBound" onsorting="gvCiudadanos_Sorting">
+                        AutoGenerateColumns="False" Width="800px" DataKeyNames="CiudadanoId" OnRowCommand="gvCiudadanos_RowCommand"
+                        OnRowDataBound="gvCiudadanos_RowDataBound" OnSorting="gvCiudadanos_Sorting">
                         <AlternatingRowStyle CssClass="Grid_Row_Alternating" />
                         <HeaderStyle CssClass="Grid_Header" />
                         <RowStyle CssClass="Grid_Row" />
@@ -306,88 +302,16 @@
                             <asp:BoundField DataField="Sexo" HeaderText="Sexo" SortExpression="Sexo">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="FechaNacimiento" HeaderText="Fecha nacimiento" SortExpression="Fecha nacimiento">
+                            <asp:BoundField DataField="FechaNacimiento" HeaderText="Fecha nacimiento" SortExpression="FechaNacimiento">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
                             <asp:BoundField DataField="Domicilio" HeaderText="Domicilio" SortExpression="Domicilio">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="TelefonoPrincipal" HeaderText="Teléfono" SortExpression="Teléfono">
+                            <asp:BoundField DataField="TelefonoPrincipal" HeaderText="Teléfono" SortExpression="TelefonoPrincipal">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
                             <asp:BoundField DataField="Tipo" HeaderText="Tipo" SortExpression="Tipo">
-                                <ItemStyle HorizontalAlign="Left" />
-                            </asp:BoundField>
-                            <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
-                                <ItemTemplate>
-                                    <asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Borrar"
-                                        ImageUrl="~/Include/Image/Buttons/Delete.png" runat="server" />
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                        </Columns>
-                    </asp:GridView>
-                </asp:Panel>
-            </td>
-        </tr>
-        <tr>
-            <td class="tdCeldaMiddleSpace">
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: left;">
-                Autoridades
-            </td>
-        </tr>
-        <tr style="height: 3px;">
-            <td colspan="4">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <asp:Panel ID="pnlGridAutoridades" runat="server" Width="100%">
-                    <asp:GridView ID="gvAutoridades" runat="server" AllowPaging="false" AllowSorting="true"
-                        AutoGenerateColumns="False" Width="800px" DataKeyNames="AutoridadId" 
-                        onrowcommand="gvAutoridades_RowCommand" 
-                        onrowdatabound="gvAutoridades_RowDataBound" onsorting="gvAutoridades_Sorting">
-                        <AlternatingRowStyle CssClass="Grid_Row_Alternating" />
-                        <HeaderStyle CssClass="Grid_Header" />
-                        <RowStyle CssClass="Grid_Row" />
-                        <EmptyDataTemplate>
-                            <table border="1px" cellpadding="0px" cellspacing="0px">
-                                <tr class="Grid_Header">
-                                    <td style="width: 228px;">
-                                        Nombre
-                                    </td>
-                                    <td style="width: 220px;">
-                                        Puesto
-                                    </td>
-                                    <td style="width: 142px;">
-                                        Autoridad
-                                    </td>
-                                    <td style="width: 100px;">
-                                        Comentarios
-                                    </td>
-                                    <td style="width: 100px;">
-                                        Editar
-                                    </td>
-                                </tr>
-                                <tr class="Grid_Row">
-                                    <td colspan="7">
-                                        No se encontraron autoridades relacionados con el expediente
-                                    </td>
-                                </tr>
-                            </table>
-                        </EmptyDataTemplate>
-                        <Columns>
-                            <asp:BoundField DataField="AutoridadId" Visible="false" />
-                            <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="Nombre" />
-                            <asp:BoundField DataField="Puesto" HeaderText="Puesto" SortExpression="Puesto">
-                                <ItemStyle HorizontalAlign="Left" />
-                            </asp:BoundField>
-                            <asp:BoundField DataField="Autoridad" HeaderText="Autoridad" SortExpression="Autoridad">
-                                <ItemStyle HorizontalAlign="Left" />
-                            </asp:BoundField>
-                            <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" SortExpression="Comentarios">
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
                             <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
@@ -414,64 +338,125 @@
                 <asp:Panel ID="pnlDocumentos" runat="server" Width="100%">
                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
                         <tr>
-                            <td style="text-align: left;">
-                                Documentos anexos
-                            </td>
-                        </tr>
-                        <tr style="height: 3px;">
-                            <td colspan="4">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left;">
-                                <asp:ImageButton ID="imgWord" runat="server" ImageUrl="~/Include/Image/Web/word.png">
-                                </asp:ImageButton>
-                            </td>
-                            <td style="text-align: left;">
-                                <asp:ImageButton ID="imgPdf" runat="server" ImageUrl="~/Include/Image/Web/pdf.png">
-                                </asp:ImageButton>
-                            </td>
-                            <td style="text-align: left;">
-                                <asp:ImageButton ID="imgImages" runat="server" ImageUrl="~/Include/Image/Web/imgs.png">
-                                </asp:ImageButton>
-                            </td>
                             <td>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tdCeldaLeyendaItemFondoBlanco">
-                                Dictamen médico
-                            </td>
-                            <td class="tdCeldaLeyendaItemFondoBlanco">
-                                Anotaciones
-                            </td>
-                            <td class="tdCeldaLeyendaItemFondoBlanco">
-                                Foto 1
-                            </td>
-                            <td>
+                                <div style="text-align: left;">
+                                    Documentos anexos</div>
+                                <div class="DocumentoListDiv">
+                                    <asp:DataList CellPadding="5" CellSpacing="5" ID="DocumentoList" HorizontalAlign="Left"
+                                        RepeatDirection="Horizontal" RepeatLayout="Table" OnItemDataBound="DocumentList_ItemDataBound"
+                                        runat="server">
+                                        <ItemTemplate>
+                                            <div class="Item">
+                                                <asp:Image ID="DocumentoImage" runat="server" />
+                                                <br />
+                                                <asp:Label CssClass="Texto" ID="DocumentoLabel" runat="server" Text="Nombre del documento"></asp:Label>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:DataList>
+                                    <asp:Label CssClass="Texto" ID="SinDocumentoLabel" runat="server" Text=""></asp:Label>
+                                </div>
+                                <div class="SolicitudComentarioDiv">
+                                    <div style="text-align: left;">
+                                        Comentarios &nbsp;&nbsp;
+                                        <asp:LinkButton ID="lnkAgregarComentario" runat="server" CssClass="LinkButton_Regular"
+                                            Text="Agregar comentario" OnClick="lnkAgregarComentario_Click"></asp:LinkButton>
+                                    </div>
+                                    <div class="TituloDiv">
+                                        <asp:Label ID="ComentarioTituloLabel" runat="server" Text=""></asp:Label></div>
+                                    <asp:Repeater ID="ComentarioRepeater" runat="server">
+                                        <HeaderTemplate>
+                                            <table class="ComentarioSolicitudTable">
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <tr>
+                                                <td>
+                                                    <%# DataBinder.Eval(Container.DataItem, "Numero") %>
+                                                </td>
+                                                <td>
+                                                    <table>
+                                                        <tr>
+                                                            <td>
+                                                                <%# DataBinder.Eval(Container.DataItem, "NombreUsuario") %>
+                                                            </td>
+                                                            <td>
+                                                                <%# DataBinder.Eval(Container.DataItem, "Fecha") %>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">
+                                                                <%# DataBinder.Eval(Container.DataItem, "Comentario") %>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </ItemTemplate>
+                                        <FooterTemplate>
+                                            </table>
+                                        </FooterTemplate>
+                                    </asp:Repeater>
+                                    <asp:Label CssClass="Texto" ID="SinComentariosLabel" runat="server" Text=""></asp:Label>
+                                </div>
+                                <asp:Panel ID="pnlAction" runat="server" CssClass="ActionBlock" Visible="false">
+                                    <asp:Panel ID="pnlActionContent" runat="server" CssClass="ActionContent" Style="top: 200px;"
+                                        Height="400px" Width="800px">
+                                        <asp:Panel ID="pnlActionHeader" runat="server" CssClass="ActionHeader">
+                                            <table border="0" cellpadding="0" cellspacing="0" style="height: 100%; width: 100%">
+                                                <tr>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                    <td style="text-align: left;">
+                                                        <asp:Label ID="lblActionTitle" runat="server" CssClass="ActionHeaderTitle" Text="Asunto de la solicitud"></asp:Label>
+                                                    </td>
+                                                    <td style="vertical-align: middle; width: 14px;">
+                                                        <asp:ImageButton ID="imgCloseWindow" runat="server" ImageUrl="~/Include/Image/Buttons/CloseWindow.png"
+                                                            ToolTip="Cerrar Ventana" OnClick="imgCloseWindow_Click"></asp:ImageButton>
+                                                    </td>
+                                                    <td style="width: 10px">
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </asp:Panel>
+                                        <asp:Panel ID="pnlActionBody" runat="server" CssClass="ActionBody">
+                                            <div style="margin: 0 auto; width: 98%;">
+                                                <table border="0" cellpadding="0" cellspacing="0" style="height: 100%; text-align: left;"
+                                                    width="100%">
+                                                    <tr style="height: 20px;">
+                                                        <td colspan="3">
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trFilaItem">
+                                                        <td class="tdActionCeldaLeyendaItem" colspan="3">
+                                                            <CKEditor:CKEditorControl ID="txtAsuntoSolicitud" BasePath="/ckeditor/" runat="server"></CKEditor:CKEditorControl>
+                                                        </td>
+                                                    </tr>
+                                                    <tr style="height: 5px;">
+                                                        <td colspan="3">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="3" style="text-align: right;">
+                                                            <asp:Button ID="btnAction" runat="server" Text="Agregar comentario" CssClass="Button_General"
+                                                                Width="200px" OnClick="btnAction_Click" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="3">
+                                                            <asp:Label ID="lblActionMessage" runat="server" CssClass="ActionContentMessage"></asp:Label>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </asp:Panel>
+                                    </asp:Panel>
+                                    <ajaxToolkit:DragPanelExtender ID="dragPanelAction" runat="server" TargetControlID="pnlAction"
+                                        DragHandleID="pnlActionHeader">
+                                    </ajaxToolkit:DragPanelExtender>
+                                </asp:Panel>
                             </td>
                         </tr>
                         <tr>
                             <td class="tdCeldaMiddleSpace">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tdCeldaMiddleSpace">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="4" style="text-align: left;">
-                                Asunto de la solicitud
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="4" style="background-color: Gray;">
-                                Barra de Herramientas
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="4" style="background-color: Gray;">
-                                <CKEditor:CKEditorControl ID="txtAsuntoSolicitud" BasePath="/ckeditor/" runat="server"></CKEditor:CKEditorControl>
                             </td>
                         </tr>
                     </table>
@@ -482,6 +467,24 @@
             <td class="tdCeldaMiddleSpace">
             </td>
         </tr>
+        <tr>
+            <td>
+                <asp:Panel ID="pnlBotones" runat="server" Width="100%">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                            <td style="height: 24px; text-align: left; width: 205px;">
+                                <asp:Button ID="cmdRegresar" runat="server" Text="Regresar" CssClass="Button_General"
+                                    Width="125px" OnClick="cmdRegresar_Click" />
+                            </td>
+                            <td style="height: 24px; text-align: left; width: 130px;">
+                            </td>
+                            <td style="height: 24px; width: 530px;">
+                            </td>
+                        </tr>
+                    </table>
+                </asp:Panel>
+            </td>
+        </tr>
         <tr class="trFilaFooter">
             <td>
             </td>
@@ -489,4 +492,5 @@
     </table>
     <asp:HiddenField ID="hddSort" runat="server" Value="NumeroSol" />
     <asp:HiddenField ID="hdnExpedienteId" runat="server" />
+    <asp:HiddenField ID="hdnComentarioId" runat="server" />
 </asp:Content>

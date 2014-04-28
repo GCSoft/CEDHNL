@@ -91,6 +91,48 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         }
 
+        protected void btnAction_Click(object sender, EventArgs e)
+        {
+            ENTSession oENTSession = new ENTSession();
+            oENTSession = (ENTSession)this.Session["oENTSession"];
+
+            try
+            {
+                if (String.IsNullOrEmpty(hdnComentarioId.Value))
+                {
+                    if (String.IsNullOrEmpty(txtAsuntoSolicitud.Text)) { throw new Exception("Campo [comentario] requerido"); }
+                    // Insertar
+                    AgregarComentario(Convert.ToInt32(hdnExpedienteId.Value), oENTSession.idUsuario, txtAsuntoSolicitud.Text);
+                    SelectComentario(Convert.ToInt32(hdnExpedienteId.Value));
+                    txtAsuntoSolicitud.Text = String.Empty;
+                    pnlAction.Visible = false;
+                }
+                else
+                {
+                    //Modificar Comentario
+                    if (String.IsNullOrEmpty(txtAsuntoSolicitud.Text)) { throw new Exception("Campo [comentario] requerido"); }
+                    ModificarComentario(Convert.ToInt32(hdnExpedienteId.Value), oENTSession.idUsuario, txtAsuntoSolicitud.Text, Convert.ToInt32(hdnComentarioId.Value));
+                    SelectComentario(Convert.ToInt32(hdnExpedienteId.Value));
+                    txtAsuntoSolicitud.Text = String.Empty;
+                    pnlAction.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page
+                    , this.GetType()
+                    , Convert.ToString(Guid.NewGuid())
+                    , "tinyboxMessage('" + ex.Message + "','Fail',true);"
+                    , true);
+            }
+        }
+
+        protected void imgCloseWindow_Click(object sender, ImageClickEventArgs e)
+        {
+            txtAsuntoSolicitud.Text = String.Empty;
+            pnlAction.Visible = false;
+        }
+
         #endregion
 
         #region "GridView ciudadanos"
@@ -194,6 +236,40 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             catch (Exception ex)
             {
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+            }
+        }
+
+        #endregion
+
+        #region "LinkButton"
+
+        protected void lnkAgregarComentario_Click(object sender, EventArgs e)
+        {
+            btnAction.Text = "Agregar comentario";
+            hdnComentarioId.Value = String.Empty;
+            pnlAction.Visible = true;
+        }
+
+        #endregion
+
+        #region "Documents"
+
+        protected void DocumentList_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+            Label DocumentoLabel;
+            Image DocumentoImage;
+            DataRowView DataRow;
+
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                DocumentoImage = (Image)e.Item.FindControl("DocumentoImage");
+                DocumentoLabel = (Label)e.Item.FindControl("DocumentoLabel");
+
+                DataRow = (DataRowView)e.Item.DataItem;
+
+                //DocumentoImage.ImageUrl = ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.cs?R=SE&id=" + DataRow["RepositrioId"].ToString();
+                DocumentoImage.ImageUrl = BPDocumento.GetIconoDocumento(DataRow["TipoDocumentoId"].ToString());
+                DocumentoLabel.Text = DataRow["NombreDocumento"].ToString();
             }
         }
 
@@ -504,74 +580,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         }
 
         #endregion
-
-        protected void DocumentList_ItemDataBound(object sender, DataListItemEventArgs e)
-        {
-            Label DocumentoLabel;
-            Image DocumentoImage;
-            DataRowView DataRow;
-
-            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-            {
-                DocumentoImage = (Image)e.Item.FindControl("DocumentoImage");
-                DocumentoLabel = (Label)e.Item.FindControl("DocumentoLabel");
-
-                DataRow = (DataRowView)e.Item.DataItem;
-
-                //DocumentoImage.ImageUrl = ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.cs?R=SE&id=" + DataRow["RepositrioId"].ToString();
-                DocumentoImage.ImageUrl = BPDocumento.GetIconoDocumento(DataRow["TipoDocumentoId"].ToString());
-                DocumentoLabel.Text = DataRow["NombreDocumento"].ToString();
-            }
-        }
-
-        protected void lnkAgregarComentario_Click(object sender, EventArgs e)
-        {
-            btnAction.Text = "Agregar comentario";
-            hdnComentarioId.Value = String.Empty;
-            pnlAction.Visible = true;
-        }
-
-        protected void btnAction_Click(object sender, EventArgs e)
-        {
-            ENTSession oENTSession = new ENTSession();
-            oENTSession = (ENTSession)this.Session["oENTSession"];
-
-            try
-            {
-                if (String.IsNullOrEmpty(hdnComentarioId.Value))
-                {
-                    if (String.IsNullOrEmpty(txtAsuntoSolicitud.Text)) { throw new Exception("Campo [comentario] requerido"); }
-                    // Insertar
-                    AgregarComentario(Convert.ToInt32(hdnExpedienteId.Value), oENTSession.idUsuario, txtAsuntoSolicitud.Text);
-                    SelectComentario(Convert.ToInt32(hdnExpedienteId.Value));
-                    txtAsuntoSolicitud.Text = String.Empty;
-                    pnlAction.Visible = false;
-                }
-                else
-                {
-                    //Modificar Comentario
-                    if (String.IsNullOrEmpty(txtAsuntoSolicitud.Text)) { throw new Exception("Campo [comentario] requerido"); }
-                    ModificarComentario(Convert.ToInt32(hdnExpedienteId.Value), oENTSession.idUsuario, txtAsuntoSolicitud.Text, Convert.ToInt32(hdnComentarioId.Value));
-                    SelectComentario(Convert.ToInt32(hdnExpedienteId.Value));
-                    txtAsuntoSolicitud.Text = String.Empty;
-                    pnlAction.Visible = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this.Page
-                    , this.GetType()
-                    , Convert.ToString(Guid.NewGuid())
-                    , "tinyboxMessage('" + ex.Message + "','Fail',true);"
-                    , true);
-            }
-        }
-
-        protected void imgCloseWindow_Click(object sender, ImageClickEventArgs e)
-        {
-            txtAsuntoSolicitud.Text = String.Empty;
-            pnlAction.Visible = false;
-        }
 
     }
 }

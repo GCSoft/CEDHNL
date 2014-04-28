@@ -31,11 +31,11 @@
                 return false;
             }
 
-            if (iAbogado == "0") {
+            /*if (iAbogado == "0") {
                 tinyboxMessage('El campo Abogado es obligatorio favor de seleccionar uno', 'Fail', true);
                 focusControl('cntPrivateTemplateBody_ddlAbogado');
                 return false;
-            }
+            }*/
 
             if (sObservaciones == "") {
                 tinyboxMessage('El campo Observaciones es obligatorio', 'Fail', true);
@@ -43,7 +43,6 @@
                 return false;
             }
 
-            
             return true;
         }
     </script>
@@ -74,7 +73,7 @@
                      </tr>
                      <tr>
                         <td class="Etiqueta">Abogado</td>
-                        <td class="VinetaObligatorio">*</td>
+                        <td class="Espacio"></td>
                         <td class="Campo"><asp:DropDownList ID="ddlAbogado" runat="server" CssClass="DropDownList_General" width="216px" ></asp:DropDownList></td>
                      </tr>
                      <tr>

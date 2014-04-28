@@ -39,6 +39,7 @@ namespace SIAQ.Entity.Object
             _Fecha = "";
             _Observaciones = "";
             _Acuerdo = "";
+            
 
             _Ciudadano = "";
             _FuncionarioId = 0;

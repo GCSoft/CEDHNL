@@ -47,6 +47,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 string ExpedienteId = GetRawQueryParameter("expId");
                 hdnExpedienteId.Value = ExpedienteId;
 
+                SelectComentario(Convert.ToInt32(ExpedienteId));
                 LlenarCiudadanos(ExpedienteId);
                 LlenarDetalle(ExpedienteId, oENTSession.FuncionarioId.ToString());
             }
@@ -293,7 +294,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         }
 
-        protected void LlenarDetalle(string ExpedienteId, string FuncionarioId)
+        protected void
+            LlenarDetalle(string ExpedienteId, string FuncionarioId)
         {
             BPExpediente BPExpediente = new BPExpediente();
             ENTExpediente oENTExpediente = new ENTExpediente();
@@ -553,6 +555,19 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     , "tinyboxMessage('" + ex.Message + "','Fail',true);"
                     , true);
             }
+        }
+
+        protected void lnkAgregarComentario_Click(object sender, EventArgs e)
+        {
+            btnAction.Text = "Agregar comentario";
+            hdnComentarioId.Value = String.Empty;
+            pnlAction.Visible = true;
+        }
+
+        protected void imgCloseWindow_Click(object sender, ImageClickEventArgs e)
+        {
+            txtAsuntoSolicitud.Text = String.Empty;
+            pnlAction.Visible = false;
         }
     }
 }

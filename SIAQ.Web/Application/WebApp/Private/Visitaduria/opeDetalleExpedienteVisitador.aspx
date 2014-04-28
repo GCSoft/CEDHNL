@@ -3,7 +3,6 @@
 
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
     <script type="text/javascript">
 
@@ -498,7 +497,7 @@
                         <tr>
                             <td class="tdCeldaMiddleSpace">
                             </td>
-                        </tr>                        
+                        </tr>
                     </table>
                 </asp:Panel>
             </td>
@@ -513,72 +512,73 @@
                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
                         <tr>
                             <td style="height: 24px; text-align: left; width: 205px;">
-                                <asp:Button ID="cmdRegresar" runat="server" Text="Regresar"
-                                    CssClass="Button_General" Width="125px" OnClick="cmdRegresar_Click" />
+                                <asp:Button ID="cmdRegresar" runat="server" Text="Regresar" CssClass="Button_General"
+                                    Width="125px" OnClick="cmdRegresar_Click" />
                             </td>
                             <td style="height: 24px; text-align: left; width: 130px;">
-                                &nbsp;</td>
+                                &nbsp;
+                            </td>
                             <td style="height: 24px; width: 530px;">
                             </td>
                         </tr>
                     </table>
                 </asp:Panel>
                 <asp:Panel ID="pnlAction" runat="server" CssClass="ActionBlock" Visible="false">
-        <asp:Panel ID="pnlActionContent" runat="server" CssClass="ActionContent" Style="top: 200px;"
-            Height="400px" Width="800px">
-            <asp:Panel ID="pnlActionHeader" runat="server" CssClass="ActionHeader">
-                <table border="0" cellpadding="0" cellspacing="0" style="height: 100%; width: 100%">
-                    <tr>
-                        <td style="width: 10px">
-                        </td>
-                        <td style="text-align: left;">
-                            <asp:Label ID="lblActionTitle" runat="server" CssClass="ActionHeaderTitle" Text="Asunto de la solicitud"></asp:Label>
-                        </td>
-                        <td style="vertical-align: middle; width: 14px;">
-                            <asp:ImageButton ID="imgCloseWindow" runat="server" ImageUrl="~/Include/Image/Buttons/CloseWindow.png"
-                                ToolTip="Cerrar Ventana" onclick="imgCloseWindow_Click"></asp:ImageButton>
-                        </td>
-                        <td style="width: 10px">
-                        </td>
-                    </tr>
-                </table>
-            </asp:Panel>
-            <asp:Panel ID="pnlActionBody" runat="server" CssClass="ActionBody">
-                <div style="margin: 0 auto; width: 98%;">
-                    <table border="0" cellpadding="0" cellspacing="0" style="height: 100%; text-align: left;"
-                        width="100%">
-                        <tr style="height: 20px;">
-                            <td colspan="3">
-                            </td>
-                        </tr>
-                        <tr class="trFilaItem">
-                            <td class="tdActionCeldaLeyendaItem" colspan="3">
-                                <CKEditor:CKEditorControl ID="txtAsuntoSolicitud" BasePath="/ckeditor/" runat="server"></CKEditor:CKEditorControl>
-                            </td>
-                        </tr>
-                        <tr style="height: 5px;">
-                            <td colspan="3">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="3" style="text-align: right;">
-                                <asp:Button ID="btnAction" runat="server" Text="Agregar comentario" CssClass="Button_General"
-                                    Width="200px" onclick="btnAction_Click" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="3">
-                                <asp:Label ID="lblActionMessage" runat="server" CssClass="ActionContentMessage"></asp:Label>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </asp:Panel>
-        </asp:Panel>
-        <ajaxToolkit:DragPanelExtender ID="dragPanelAction" runat="server" TargetControlID="pnlAction"
-            DragHandleID="pnlActionHeader">
-        </ajaxToolkit:DragPanelExtender>
-    </asp:Panel>
+                    <asp:Panel ID="pnlActionContent" runat="server" CssClass="ActionContent" Style="top: 200px;"
+                        Height="400px" Width="800px">
+                        <asp:Panel ID="pnlActionHeader" runat="server" CssClass="ActionHeader">
+                            <table border="0" cellpadding="0" cellspacing="0" style="height: 100%; width: 100%">
+                                <tr>
+                                    <td style="width: 10px">
+                                    </td>
+                                    <td style="text-align: left;">
+                                        <asp:Label ID="lblActionTitle" runat="server" CssClass="ActionHeaderTitle" Text="Asunto de la solicitud"></asp:Label>
+                                    </td>
+                                    <td style="vertical-align: middle; width: 14px;">
+                                        <asp:ImageButton ID="imgCloseWindow" runat="server" ImageUrl="~/Include/Image/Buttons/CloseWindow.png"
+                                            ToolTip="Cerrar Ventana" OnClick="imgCloseWindow_Click"></asp:ImageButton>
+                                    </td>
+                                    <td style="width: 10px">
+                                    </td>
+                                </tr>
+                            </table>
+                        </asp:Panel>
+                        <asp:Panel ID="pnlActionBody" runat="server" CssClass="ActionBody">
+                            <div style="margin: 0 auto; width: 98%;">
+                                <table border="0" cellpadding="0" cellspacing="0" style="height: 100%; text-align: left;"
+                                    width="100%">
+                                    <tr style="height: 20px;">
+                                        <td colspan="3">
+                                        </td>
+                                    </tr>
+                                    <tr class="trFilaItem">
+                                        <td class="tdActionCeldaLeyendaItem" colspan="3">
+                                            <CKEditor:CKEditorControl ID="txtAsuntoSolicitud" BasePath="/ckeditor/" runat="server"></CKEditor:CKEditorControl>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 5px;">
+                                        <td colspan="3">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="text-align: right;">
+                                            <asp:Button ID="btnAction" runat="server" Text="Agregar comentario" CssClass="Button_General"
+                                                Width="200px" OnClick="btnAction_Click" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">
+                                            <asp:Label ID="lblActionMessage" runat="server" CssClass="ActionContentMessage"></asp:Label>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </asp:Panel>
+                    </asp:Panel>
+                    <ajaxToolkit:DragPanelExtender ID="dragPanelAction" runat="server" TargetControlID="pnlAction"
+                        DragHandleID="pnlActionHeader">
+                    </ajaxToolkit:DragPanelExtender>
+                </asp:Panel>
             </td>
         </tr>
         <tr class="trFilaFooter">

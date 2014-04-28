@@ -28,7 +28,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 hdnExpedienteId.Value = ExpedienteId;
 
                 LlenarCiudadanos(ExpedienteId);
-                LlenarAutoridades(ExpedienteId);
                 LlenarDetalle(ExpedienteId, oENTSession.FuncionarioId.ToString());
             }
         }
@@ -85,58 +84,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 //Vaciar datos
                 gvCiudadanos.DataSource = ViewExpediente;
                 gvCiudadanos.DataBind();
-
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
-            }
-        }
-
-        #endregion
-
-        #region "GridView Autoridades"
-
-        protected void gvAutoridades_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            try
-            {
-                //Validación de que sea fila 
-                if (e.Row.RowType != DataControlRowType.DataRow) { return; }
-
-                //Puntero y Sombra en fila Over
-                e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; ");
-
-                //Puntero y Sombra en fila Out
-                e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; ");
-
-            }
-            catch (Exception ex)
-            {
-                throw (ex);
-            }
-        }
-
-        protected void gvAutoridades_Sorting(object sender, GridViewSortEventArgs e)
-        {
-            DataTable TableExpediente = null;
-            DataView ViewExpediente = null;
-
-            try
-            {
-                //Obtener DataTable y View del GridView
-                TableExpediente = utilFunction.ParseGridViewToDataTable(gvAutoridades, false);
-                ViewExpediente = new DataView(TableExpediente);
-
-                //Determinar ordenamiento
-                hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
-
-                //Ordenar Vista
-                ViewExpediente.Sort = hddSort.Value;
-
-                //Vaciar datos
-                gvAutoridades.DataSource = ViewExpediente;
-                gvAutoridades.DataBind();
 
             }
             catch (Exception ex)
@@ -261,40 +208,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         }
 
-        protected void LlenarAutoridades(string ExpedienteId)
-        {
-            BPExpediente BPExpediente = new BPExpediente();
-            ENTExpediente oENTExpediente = new ENTExpediente();
-
-            if (String.IsNullOrEmpty(ExpedienteId))
-            {
-                ExpedienteId = "0";
-            }
-
-            oENTExpediente.ExpedienteId = Convert.ToInt32(ExpedienteId);
-            BPExpediente.SelectAutoridadesGrid(oENTExpediente);
-
-            if (BPExpediente.ErrorId == 0)
-            {
-                if (oENTExpediente.ResultData.Tables[0].Rows.Count > 0)
-                {
-                    gvAutoridades.DataSource = oENTExpediente.ResultData;
-                    gvAutoridades.DataBind();
-                }
-                else
-                {
-                    gvAutoridades.DataSource = null;
-                    gvAutoridades.DataBind();
-                }
-            }
-            else
-            {
-                gvAutoridades.DataSource = null;
-                gvAutoridades.DataBind();
-            }
-
-        }
-
         protected void LlenarDetalle(string ExpedienteId, string FuncionarioId)
         {
             BPExpediente BPExpediente = new BPExpediente();
@@ -383,8 +296,187 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             catch (Exception ex) { throw (ex); }
         }
 
+        private void AgregarComentario(int ExpedienteId, int idUsuario, string Comentario)
+        {
+            BPExpedienteComentario oBPExpedienteComentario = new BPExpedienteComentario();
+            ENTExpedienteComentario oENTExpedienteComentario = new ENTExpedienteComentario();
+
+            ENTResponse oENTResponse = new ENTResponse();
+
+            try
+            {
+                oENTExpedienteComentario.ExpedienteId = ExpedienteId;
+                oENTExpedienteComentario.idUsuario = idUsuario;
+                oENTExpedienteComentario.Comentario = Comentario;
+
+                oENTResponse = oBPExpedienteComentario.AgregarComentario(oENTExpedienteComentario);
+                if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+                if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+
+                ScriptManager.RegisterStartupScript(this.Page
+                    , this.GetType()
+                    , Convert.ToString(Guid.NewGuid())
+                    , "tinyboxMessage('Comentario agregado con éxito','Success', true);"
+                    , true);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+        }
+
+        private void ModificarComentario(int ExpedienteId, int idUsuario, string Comentario, int ComentarioId)
+        {
+            BPExpedienteComentario oBPExpedienteComentario = new BPExpedienteComentario();
+            ENTExpedienteComentario oENTExpedienteComentario = new ENTExpedienteComentario();
+
+            ENTResponse oENTResponse = new ENTResponse();
+
+            try
+            {
+                oENTExpedienteComentario.ExpedienteId = ExpedienteId;
+                oENTExpedienteComentario.idUsuario = idUsuario;
+                oENTExpedienteComentario.Comentario = Comentario;
+                oENTExpedienteComentario.ComentarioId = ComentarioId;
+
+                oENTResponse = oBPExpedienteComentario.ModificarComentario(oENTExpedienteComentario);
+                if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+                if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+
+                ScriptManager.RegisterStartupScript(this.Page
+                    , this.GetType()
+                    , Convert.ToString(Guid.NewGuid())
+                    , "tinyboxMessage('Comentario modificado con éxito','Success', true);"
+                    , true);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+        }
+
+        private void EliminarComentario(int ExpedienteId, int idUsuario, int ComentarioId)
+        {
+            BPExpedienteComentario oBPExpedienteComentario = new BPExpedienteComentario();
+            ENTExpedienteComentario oENTExpedienteComentario = new ENTExpedienteComentario();
+
+            ENTResponse oENTResponse = new ENTResponse();
+
+            try
+            {
+                oENTExpedienteComentario.ExpedienteId = ExpedienteId;
+                oENTExpedienteComentario.idUsuario = idUsuario;
+                oENTExpedienteComentario.ComentarioId = ComentarioId;
+
+                oENTResponse = oBPExpedienteComentario.EliminarComentario(oENTExpedienteComentario);
+                if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+                if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+
+                ScriptManager.RegisterStartupScript(this.Page
+                    , this.GetType()
+                    , Convert.ToString(Guid.NewGuid())
+                    , "tinyboxMessage('Comentario modificado con éxito','Success', true);"
+                    , true);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+        }
+
+        private void SelectComentario(int ExpedienteId)
+        {
+            BPExpediente ExpedienteProcess = new BPExpediente();
+
+            ExpedienteProcess.ExpedienteEntity.ExpedienteId = ExpedienteId;
+
+            ExpedienteProcess.SelectSolicitudComentario();
+
+            if (ExpedienteProcess.ErrorId == 0)
+            {
+                if (ExpedienteProcess.ExpedienteEntity.ResultData.Tables[0].Rows.Count == 0)
+                    SinComentariosLabel.Text = "<br /><br />No hay comentarios para esta solicitud";
+                else
+                    SinComentariosLabel.Text = "";
+
+                ComentarioRepeater.DataSource = ExpedienteProcess.ExpedienteEntity.ResultData.Tables[0];
+                ComentarioRepeater.DataBind();
+
+                ComentarioTituloLabel.Text = ExpedienteProcess.ExpedienteEntity.ResultData.Tables[0].Rows.Count.ToString() + " comentarios";
+            }
+            else
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ExpedienteProcess.ErrorDescription) + "', 'Fail', true);", true);
+        }
 
         #endregion
+
+        protected void lnkAgregarComentario_Click(object sender, EventArgs e)
+        {
+            btnAction.Text = "Agregar comentario";
+            hdnComentarioId.Value = String.Empty;
+            pnlAction.Visible = true;
+        }
+
+        protected void DocumentList_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+            Label DocumentoLabel;
+            Image DocumentoImage;
+            DataRowView DataRow;
+
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                DocumentoImage = (Image)e.Item.FindControl("DocumentoImage");
+                DocumentoLabel = (Label)e.Item.FindControl("DocumentoLabel");
+
+                DataRow = (DataRowView)e.Item.DataItem;
+
+                //DocumentoImage.ImageUrl = ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.cs?R=SE&id=" + DataRow["RepositrioId"].ToString();
+                DocumentoImage.ImageUrl = BPDocumento.GetIconoDocumento(DataRow["TipoDocumentoId"].ToString());
+                DocumentoLabel.Text = DataRow["NombreDocumento"].ToString();
+            }
+        }
+
+        protected void btnAction_Click(object sender, EventArgs e)
+        {
+            ENTSession oENTSession = new ENTSession();
+            oENTSession = (ENTSession)this.Session["oENTSession"];
+
+            try
+            {
+                if (String.IsNullOrEmpty(hdnComentarioId.Value))
+                {
+                    if (String.IsNullOrEmpty(txtAsuntoSolicitud.Text)) { throw new Exception("Campo [comentario] requerido"); }
+                    // Insertar
+                    AgregarComentario(Convert.ToInt32(hdnExpedienteId.Value), oENTSession.idUsuario, txtAsuntoSolicitud.Text);
+                    SelectComentario(Convert.ToInt32(hdnExpedienteId.Value));
+                    txtAsuntoSolicitud.Text = String.Empty;
+                    pnlAction.Visible = false;
+                }
+                else
+                {
+                    //Modificar Comentario
+                    if (String.IsNullOrEmpty(txtAsuntoSolicitud.Text)) { throw new Exception("Campo [comentario] requerido"); }
+                    ModificarComentario(Convert.ToInt32(hdnExpedienteId.Value), oENTSession.idUsuario, txtAsuntoSolicitud.Text, Convert.ToInt32(hdnComentarioId.Value));
+                    SelectComentario(Convert.ToInt32(hdnExpedienteId.Value));
+                    txtAsuntoSolicitud.Text = String.Empty;
+                    pnlAction.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page
+                    , this.GetType()
+                    , Convert.ToString(Guid.NewGuid())
+                    , "tinyboxMessage('" + ex.Message + "','Fail',true);"
+                    , true);
+            }
+        }
+
+        protected void imgCloseWindow_Click(object sender, ImageClickEventArgs e)
+        {
+            txtAsuntoSolicitud.Text = String.Empty;
+            pnlAction.Visible = false;
+        }
 
     }
 }

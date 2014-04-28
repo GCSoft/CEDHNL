@@ -34,6 +34,11 @@ namespace SIAQ.BusinessProcess.Object
             set { _ExpedienteEntity = value; }
         }
 
+        public BPExpediente()
+        {
+            _ExpedienteEntity = new ENTExpediente();
+        }
+
         ///<remarks>
         ///   <name>BPExpediente.searchcatTipoSolicitud</name>
         ///   <create>27/ene/2014</create>

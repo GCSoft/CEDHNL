@@ -256,24 +256,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.GridView gvCiudadanos;
         
         /// <summary>
-        /// pnlGridAutoridades control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlGridAutoridades;
-        
-        /// <summary>
-        /// gvAutoridades control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvAutoridades;
-        
-        /// <summary>
         /// pnlDocumentos control.
         /// </summary>
         /// <remarks>
@@ -283,40 +265,58 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.Panel pnlDocumentos;
         
         /// <summary>
-        /// imgWord control.
+        /// DocumentoList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imgWord;
+        protected global::System.Web.UI.WebControls.DataList DocumentoList;
         
         /// <summary>
-        /// imgPdf control.
+        /// SinDocumentoLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imgPdf;
+        protected global::System.Web.UI.WebControls.Label SinDocumentoLabel;
         
         /// <summary>
-        /// imgImages control.
+        /// lnkAgregarComentario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imgImages;
+        protected global::System.Web.UI.WebControls.LinkButton lnkAgregarComentario;
         
         /// <summary>
-        /// txtAsuntoSolicitud control.
+        /// ComentarioTituloLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::CKEditor.NET.CKEditorControl txtAsuntoSolicitud;
+        protected global::System.Web.UI.WebControls.Label ComentarioTituloLabel;
+        
+        /// <summary>
+        /// ComentarioRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater ComentarioRepeater;
+        
+        /// <summary>
+        /// SinComentariosLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SinComentariosLabel;
         
         /// <summary>
         /// pnlBotones control.
@@ -328,15 +328,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.Panel pnlBotones;
         
         /// <summary>
-        /// cmdGuardar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button cmdGuardar;
-        
-        /// <summary>
         /// cmdRegresar control.
         /// </summary>
         /// <remarks>
@@ -344,6 +335,96 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button cmdRegresar;
+        
+        /// <summary>
+        /// pnlAction control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlAction;
+        
+        /// <summary>
+        /// pnlActionContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlActionContent;
+        
+        /// <summary>
+        /// pnlActionHeader control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlActionHeader;
+        
+        /// <summary>
+        /// lblActionTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblActionTitle;
+        
+        /// <summary>
+        /// imgCloseWindow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton imgCloseWindow;
+        
+        /// <summary>
+        /// pnlActionBody control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlActionBody;
+        
+        /// <summary>
+        /// txtAsuntoSolicitud control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::CKEditor.NET.CKEditorControl txtAsuntoSolicitud;
+        
+        /// <summary>
+        /// btnAction control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAction;
+        
+        /// <summary>
+        /// lblActionMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblActionMessage;
+        
+        /// <summary>
+        /// dragPanelAction control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.DragPanelExtender dragPanelAction;
         
         /// <summary>
         /// hddSort control.
@@ -362,5 +443,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnExpedienteId;
+        
+        /// <summary>
+        /// hdnComentarioId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnComentarioId;
     }
 }

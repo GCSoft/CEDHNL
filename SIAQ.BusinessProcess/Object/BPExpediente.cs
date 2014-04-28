@@ -423,5 +423,21 @@ namespace SIAQ.BusinessProcess.Object
             _ErrorId = oDAExpediente.ErrorId;
             _ErrorDescription = oDAExpediente.ErrorDescription;
         }
+
+        /// <summary>
+        ///     Busca los comentarios realizados para una solicitud.
+        /// </summary>
+        public void SelectSolicitudComentario()
+        {
+            string ConnectionString = string.Empty;
+            DAExpediente DAExpediente = new DAExpediente();
+
+            ConnectionString = sConnectionApplication;
+
+            _ExpedienteEntity.ResultData = DAExpediente.SelectExpedienteComentario(_ExpedienteEntity, ConnectionString);
+
+            _ErrorId = DAExpediente.ErrorId;
+            _ErrorDescription = DAExpediente.ErrorDescription;
+        }
     }
 }

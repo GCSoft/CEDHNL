@@ -785,5 +785,49 @@ namespace SIAQ.DataAccess.Object
             }
         }
 
+        /// <summary>
+        ///     Busca los comentarios realizados para un expediente.
+        /// </summary>
+        /// <param name="ComentarioEntity">Entidad del comentario del expediente.</param>
+        /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
+        /// <returns>Resultado de la búsqueda.</returns>
+        public DataSet SelectExpedienteComentario(ENTExpediente ComentarioEntity, string ConnectionString)
+        {
+            DataSet ResultData = new DataSet();
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            SqlCommand Command;
+            SqlParameter Parameter;
+            SqlDataAdapter DataAdapter;
+
+            try
+            {
+                Command = new SqlCommand("SelectExpedienteComentario", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
+                Parameter.Value = ComentarioEntity.ExpedienteId;
+                Command.Parameters.Add(Parameter);
+
+                DataAdapter = new SqlDataAdapter(Command);
+
+                Connection.Open();
+                DataAdapter.Fill(ResultData);
+                Connection.Close();
+
+                return ResultData;
+
+            }
+            catch (SqlException Exception)
+            {
+                _ErrorId = Exception.Number;
+                _ErrorDescription = Exception.Message;
+
+                if (Connection.State == ConnectionState.Open)
+                    Connection.Close();
+
+                return ResultData;
+            }
+        }
+
     }
 }

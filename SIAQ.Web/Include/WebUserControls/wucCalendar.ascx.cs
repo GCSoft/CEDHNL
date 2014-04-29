@@ -112,7 +112,8 @@ namespace SIAQ.Web.Include.WebUserControls
             }
         }
 
-        // Eventos del control
+        
+       // Eventos del control
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -123,8 +124,8 @@ namespace SIAQ.Web.Include.WebUserControls
             // Validación. Solo la primera vez que se ejecuta la página
             if (this.IsPostBack) { return; }
 
-            // Atributos
-            this.txtCanvas.Attributes.Add("onkeydown", "return false;");
+            //// Inhabilitar captura sobre el calendario
+            //this.txtCanvas.Attributes.Add("onkeydown", "return false;");
 
             // Fecha actual
             this.ceManager.SelectedDate = DateTime.Now;

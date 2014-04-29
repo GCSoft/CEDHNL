@@ -160,7 +160,7 @@
 
 /*CALENDAR*/
 .Calendar_Canvas{
-	background:url('../../../../Include/Image/Web/Calendar.png') 98% 50% no-repeat;
+	background:url('../../../../Include/Image/Buttons/Calendar.png') 98% 50% no-repeat;
 	background-color:#EFEFEF;
 	border:1px solid #4B4878;
 	color:#4B4878;
@@ -171,7 +171,8 @@
 	height:20px;
 	line-height:20px;
 	text-align:center;
-	width:176px;
+	/*width:176px;*/
+	width:211px;
 }
 
 .Calendar_General .ajax__calendar_container {

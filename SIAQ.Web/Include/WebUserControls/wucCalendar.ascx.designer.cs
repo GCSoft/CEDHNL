@@ -22,6 +22,24 @@ namespace SIAQ.Web.Include.WebUserControls {
         protected global::System.Web.UI.WebControls.TextBox txtCanvas;
         
         /// <summary>
+        /// maskCalendar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.MaskedEditExtender maskCalendar;
+        
+        /// <summary>
+        /// validatorMask control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.MaskedEditValidator validatorMask;
+        
+        /// <summary>
         /// ceManager control.
         /// </summary>
         /// <remarks>

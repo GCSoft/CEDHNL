@@ -533,6 +533,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     {
                         case 1:
                         case 2:
+                            AsignarPanel.Visible = true;
                             CiudadanoPanel.Visible = true;
                             AutoridadPanel.Visible = true;
                             IndicadorPanel.Visible = true;
@@ -547,6 +548,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                             break;
 
                         case 3:
+                            AsignarPanel.Visible = false;
                             CiudadanoPanel.Visible = false;
                             AutoridadPanel.Visible = false;
                             IndicadorPanel.Visible = false;
@@ -561,6 +563,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                             break;
 
                         case 4:
+                            AsignarPanel.Visible = true;
                             CiudadanoPanel.Visible = false;
                             AutoridadPanel.Visible = false;
                             IndicadorPanel.Visible = false;
@@ -575,6 +578,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                             break;
 
                         case 5:
+                            AsignarPanel.Visible = false;
                             CiudadanoPanel.Visible = true;
                             AutoridadPanel.Visible = true;
                             IndicadorPanel.Visible = true;
@@ -589,6 +593,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                             break;
 
                         case 6:
+                            AsignarPanel.Visible = true;
                             CiudadanoPanel.Visible = false;
                             AutoridadPanel.Visible = false;
                             IndicadorPanel.Visible = false;
@@ -603,6 +608,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                             break;
 
                         default:
+                            AsignarPanel.Visible = false;
                             CiudadanoPanel.Visible = false;
                             AutoridadPanel.Visible = false;
                             IndicadorPanel.Visible = false;
@@ -613,7 +619,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                             LugarHechosList.Enabled = false;
                             DireccionHechosBox.Enabled = false;
                             //GuardarButton.Enabled = false;
-
                             break;
                     }
                 }

@@ -180,7 +180,7 @@ namespace SIAQ.Entity.Object
             set { _Nombre = value; }
         }
 
-        public int FuncinarioId
+        public int FuncionarioId
         {
             get { return _FuncionarioId; }
             set { _FuncionarioId = value; }

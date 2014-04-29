@@ -49,6 +49,17 @@ namespace SIAQ.BusinessProcess.Object
             get { return _ErrorDescription; }
         }
 
+
+        public void SaveFuncionarioSolicitud()
+        {
+            DASolicitud SolicitudAccess = new DASolicitud();
+
+            SolicitudAccess.UpdateFuncionarioSolicitud(_SolicitudEntity, sConnectionApplication);
+
+            _ErrorId = SolicitudAccess.ErrorId;
+            _ErrorDescription = SolicitudAccess.ErrorDescription;
+        }
+
         ///<remarks>
         ///   <name>BPSolicituddeleteSolicitud</name>
         ///   <create>27/ene/2014</create>

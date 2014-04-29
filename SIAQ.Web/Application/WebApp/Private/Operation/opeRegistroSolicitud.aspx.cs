@@ -88,7 +88,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             if (wucBusquedaCiudadano.Text != wucBusquedaCiudadano.NombreCiud) { wucBusquedaCiudadano.CiudadanoID = 0; }
 
             // Formulario
-            oENTSolicitud.FuncinarioId = Int32.Parse(this.ddlAbogado.SelectedValue);
+            oENTSolicitud.FuncionarioId = Int32.Parse(this.ddlAbogado.SelectedValue);
             oENTSolicitud.CalificacionId = 1;
             oENTSolicitud.TipoSolicitudId = 1;
             oENTSolicitud.LugarHechosId = 5;

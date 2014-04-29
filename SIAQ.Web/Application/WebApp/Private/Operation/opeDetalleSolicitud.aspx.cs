@@ -489,7 +489,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 oENTSession = (ENTSession)this.Session["oENTSession"];
 
                 SolicitudProcess.SolicitudEntity.SolicitudId = SolicitudId;
-                SolicitudProcess.SolicitudEntity.FuncinarioId = oENTSession.FuncionarioId;
+                SolicitudProcess.SolicitudEntity.FuncionarioId = oENTSession.FuncionarioId;
 
                 SolicitudProcess.SelectSolicitudDetalle();
 

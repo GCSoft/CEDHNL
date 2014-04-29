@@ -80,7 +80,7 @@ namespace SIAQ.DataAccess.Object
             // Transacción
             try
             {
-                ds = dbs.ExecuteDataSet("spSolicitud_Ins", oENTSolicitud.FuncinarioId, oENTSolicitud.CalificacionId, oENTSolicitud.TipoSolicitudId, oENTSolicitud.LugarHechosId, oENTSolicitud.EstatusId, oENTSolicitud.Fecha, oENTSolicitud.Nombre, oENTSolicitud.Observaciones, oENTSolicitud.CiudadanoId);
+                ds = dbs.ExecuteDataSet("spSolicitud_Ins", oENTSolicitud.FuncionarioId, oENTSolicitud.CalificacionId, oENTSolicitud.TipoSolicitudId, oENTSolicitud.LugarHechosId, oENTSolicitud.EstatusId, oENTSolicitud.Fecha, oENTSolicitud.Nombre, oENTSolicitud.Observaciones, oENTSolicitud.CiudadanoId);
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)
@@ -163,7 +163,7 @@ namespace SIAQ.DataAccess.Object
                 Command.Parameters.Add(Parameter);
 
                 Parameter = new SqlParameter("FuncionarioId", SqlDbType.Int);
-                Parameter.Value = ENTSolicitud.FuncinarioId;
+                Parameter.Value = ENTSolicitud.FuncionarioId;
                 Command.Parameters.Add(Parameter);
 
                 Parameter = new SqlParameter("FechaDesde", SqlDbType.DateTime);
@@ -393,7 +393,7 @@ namespace SIAQ.DataAccess.Object
                 Command.Parameters.Add(Parameter);
 
                 Parameter = new SqlParameter("FuncionarioId", SqlDbType.Int);
-                Parameter.Value = ENTSolicitud.FuncinarioId;
+                Parameter.Value = ENTSolicitud.FuncionarioId;
                 Command.Parameters.Add(Parameter);
 
                 DataAdapter = new SqlDataAdapter(Command);
@@ -436,7 +436,7 @@ namespace SIAQ.DataAccess.Object
                 Command.CommandType = CommandType.StoredProcedure;
 
                 Parameter = new SqlParameter("FuncionarioId", SqlDbType.Int);
-                Parameter.Value = ENTSolicitud.FuncinarioId;
+                Parameter.Value = ENTSolicitud.FuncionarioId;
                 Command.Parameters.Add(Parameter);
 
                 DataAdapter = new SqlDataAdapter(Command);
@@ -494,6 +494,45 @@ namespace SIAQ.DataAccess.Object
                     Connection.Close();
 
                 return ResultData;
+            }
+        }
+
+        /// <summary>
+        ///     Asigna un funcionario a una solicitud.
+        /// </summary>
+        /// <param name="SolicitudEntity">Entidad de la solicitud.</param>
+        /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
+        public void UpdateFuncionarioSolicitud(ENTSolicitud SolicitudEntity, string ConnectionString)
+        {
+            DataSet ResultData = new DataSet();
+            SqlCommand Command;
+            SqlParameter Parameter;
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+
+            try
+            {
+                Command = new SqlCommand("UpdateFuncionarioSolicitud", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                Parameter = new SqlParameter("SolicitudId", SqlDbType.Int);
+                Parameter.Value = SolicitudEntity.SolicitudId;
+                Command.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("FuncionarioId", SqlDbType.VarChar);
+                Parameter.Value = SolicitudEntity.FuncionarioId;
+                Command.Parameters.Add(Parameter);
+
+                Connection.Open();
+                Command.ExecuteNonQuery();
+                Connection.Close();
+            }
+            catch (SqlException Exception)
+            {
+                _ErrorId = Exception.Number;
+                _ErrorDescription = Exception.Message;
+
+                if (Connection.State == ConnectionState.Open)
+                    Connection.Close();
             }
         }
 

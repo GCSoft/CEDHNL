@@ -116,7 +116,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
                 SessionEntity = (ENTSession)Session["oENTSession"];
 
-                SolicitudProcess.SolicitudEntity.FuncinarioId = 1;  // ToDo: Cambiar por FuncionarioId
+                SolicitudProcess.SolicitudEntity.FuncionarioId = 1;  // ToDo: Cambiar por FuncionarioId
 
                 SolicitudProcess.SelectSolicitudFuncionario();
 

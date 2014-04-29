@@ -150,7 +150,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             BPSolicitud.SolicitudEntity.Numero = Int32.Parse(NumeroSolicitud);
             BPSolicitud.SolicitudEntity.Nombre = Ciudadano;
             BPSolicitud.SolicitudEntity.FormaContactoId = Int32.Parse(ddlFormaContacto.SelectedValue);
-            BPSolicitud.SolicitudEntity.FuncinarioId = Int32.Parse(ddlFuncionario.SelectedValue);
+            BPSolicitud.SolicitudEntity.FuncionarioId = Int32.Parse(ddlFuncionario.SelectedValue);
 
             DateTime dtDesde = Convert.ToDateTime(calDesde.GetDate);
             DateTime dtHasta = Convert.ToDateTime(calHasta.GetDate);

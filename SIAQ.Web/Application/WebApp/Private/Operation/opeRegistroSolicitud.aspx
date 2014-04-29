@@ -72,7 +72,7 @@
                         <td class="Campo"><wuc:wucBusquedaCiudadano ID="wucBusquedaCiudadano" runat="server" OnItemSelected="wucBusquedaCiudadano_ItemSelected" /></td>
                      </tr>
                      <tr>
-                        <td class="Etiqueta">Abogado</td>
+                        <td class="Etiqueta">Funcionario</td>
                         <td class="Espacio"></td>
                         <td class="Campo"><asp:DropDownList ID="ddlAbogado" runat="server" CssClass="DropDownList_General" width="216px" ></asp:DropDownList></td>
                      </tr>

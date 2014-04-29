@@ -367,6 +367,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
 
             String sNumeroCiudadano = "";
+            String sNombreCiudadano = "";
             String sImagesAttributes = "";
             String sImagesAttributesConsulta = "";
             String sImagesAttributesVisita = "";
@@ -385,6 +386,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
                 //DataKeys
                 sNumeroCiudadano = gvCiudadano.DataKeys[e.Row.RowIndex]["CiudadanoId"].ToString();
+                sNombreCiudadano = this.gvCiudadano.DataKeys[e.Row.RowIndex]["NombreCompleto"].ToString();
 
                 //Tooltip Edición
                 sToolTip = "Agregar visita";
@@ -392,28 +394,28 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 imgVisita.Attributes.Add("onmouseout", "tooltip.hide();");
                 imgVisita.Attributes.Add("style", "cursor:hand;");
 
-                sToolTip = "Editar ciudadano [" + sNumeroCiudadano + "]";
+                sToolTip = "Editar ciudadano [" + sNombreCiudadano + "]";
                 imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
                 imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
                 imgEdit.Attributes.Add("style", "curosr:hand;");
 
-                sToolTip = "Consultar ciudadano [" + sNumeroCiudadano + "]";
+                sToolTip = "Consultar ciudadano [" + sNombreCiudadano + "]";
                 imgConsultar.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
                 imgConsultar.Attributes.Add("onmouseout", "tooltip.hide();");
                 imgConsultar.Attributes.Add("style", "cursor:hand;");
 
                 //Atributos Over
                 sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png';";
-                sImagesAttributesConsulta = "document.getElementById('" + imgConsultar.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png';";
-                sImagesAttributesVisita = "document.getElementById('" + imgVisita.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png';";
+                sImagesAttributesConsulta = "document.getElementById('" + imgConsultar.ClientID + "').src='../../../../Include/Image/Buttons/ConsultarCiudadano_Over.png';";
+                sImagesAttributesVisita = "document.getElementById('" + imgVisita.ClientID + "').src='../../../../Include/Image/Buttons/AgregarVisita_Over.png';";
 
                 //Puntero y Sombra en fila Over
                 e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes + sImagesAttributesConsulta + sImagesAttributesVisita);
 
                 //Atributos Out
                 sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png';";
-                sImagesAttributesConsulta = "document.getElementById('" + imgConsultar.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png';";
-                sImagesAttributesVisita = "document.getElementById('" + imgVisita.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png';";
+                sImagesAttributesConsulta = "document.getElementById('" + imgConsultar.ClientID + "').src='../../../../Include/Image/Buttons/ConsultarCiudadano.png';";
+                sImagesAttributesVisita = "document.getElementById('" + imgVisita.ClientID + "').src='../../../../Include/Image/Buttons/AgregarVisita.png';";
 
                 //Puntero y Sombra en fila Out
                 e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes + sImagesAttributesConsulta + sImagesAttributesVisita);

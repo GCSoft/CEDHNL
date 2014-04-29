@@ -175,7 +175,7 @@
             <td>
                 <asp:Panel ID="pnlGrid" runat="server" Width="100%">
                     <asp:GridView ID="gvCiudadano" runat="server" AllowPaging="false" AllowSorting="true"
-                        AutoGenerateColumns="False" Width="100%" DataKeyNames="CiudadanoId" OnRowDataBound="gvCiudadano_RowDataBound"
+                        AutoGenerateColumns="False" Width="100%" DataKeyNames="CiudadanoId,NombreCompleto" OnRowDataBound="gvCiudadano_RowDataBound"
                         OnRowCommand="gvCiudadano_RowCommand" OnSorting="gvCiudadano_Sorting">
                         <AlternatingRowStyle CssClass="Grid_Row_Alternating" />
                         <HeaderStyle CssClass="Grid_Header" />
@@ -233,7 +233,7 @@
                             <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px" HeaderText="Visita">
                                 <ItemTemplate>
                                     <asp:ImageButton ID="imgVisita" CommandArgument='<%#Eval("CiudadanoId")%>' CommandName="Visita"
-                                        ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
+                                        ImageUrl="~/Include/Image/Buttons/AgregarVisita.png" runat="server" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px" HeaderText="Editar">
@@ -245,7 +245,7 @@
                             <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px" HeaderText="Consultar">
                                 <ItemTemplate>
                                     <asp:ImageButton ID="imgConsultar" CommandArgument='<%#Eval("CiudadanoId")%>' CommandName="Consultar"
-                                        ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
+                                        ImageUrl="~/Include/Image/Buttons/ConsultarCiudadano.png" runat="server" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>

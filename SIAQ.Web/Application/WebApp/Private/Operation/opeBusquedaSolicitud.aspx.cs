@@ -186,6 +186,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         protected void PageLoad()
         {
 
+           txtNumeroSolicitud.Attributes.Add("onkeypress", "javascript:return NumbersValidator(event);");
+
             if (!Page.IsPostBack)
             {
                 SelectFuncionario();
@@ -220,7 +222,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtNumeroSolicitud.ClientID + "');", true);
             }
 
-            txtNumeroSolicitud.Attributes.Add("onkeypress", "javascript:return NumbersValidator(event);");
         }
 
         protected void SelectFuncionario()

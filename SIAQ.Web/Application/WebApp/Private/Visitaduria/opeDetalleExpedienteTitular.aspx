@@ -276,13 +276,13 @@
             <td>
                 <asp:Panel ID="pnlGridCiudadanos" runat="server" Width="100%">
                     <asp:GridView ID="gvCiudadanos" runat="server" AllowPaging="false" AllowSorting="true"
-                        AutoGenerateColumns="False" Width="800px" DataKeyNames="CiudadanoId" OnRowDataBound="gvCiudadanos_RowDataBound"
+                        AutoGenerateColumns="False" Width="100%" DataKeyNames="CiudadanoId" OnRowDataBound="gvCiudadanos_RowDataBound"
                         OnSorting="gvCiudadanos_Sorting">
                         <AlternatingRowStyle CssClass="Grid_Row_Alternating" />
                         <HeaderStyle CssClass="Grid_Header" />
                         <RowStyle CssClass="Grid_Row" />
                         <EmptyDataTemplate>
-                            <table border="1px" cellpadding="0px" cellspacing="0px">
+                            <table border="1px" width="100%" cellpadding="0px" cellspacing="0px">
                                 <tr class="Grid_Header">
                                     <td style="width: 100px;">
                                         Nombre
@@ -316,21 +316,14 @@
                         <Columns>
                             <asp:BoundField DataField="CiudadanoId" Visible="false" />
                             <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="Nombre" />
-                            <asp:BoundField DataField="Sexo" HeaderText="Sexo" SortExpression="Sexo">
-                                <ItemStyle HorizontalAlign="Left" />
-                            </asp:BoundField>
+                            <asp:BoundField DataField="Sexo" HeaderText="Sexo" SortExpression="Sexo"></asp:BoundField>
                             <asp:BoundField DataField="FechaNacimiento" HeaderText="Fecha nacimiento" SortExpression="FechaNacimiento">
-                                <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
                             <asp:BoundField DataField="Domicilio" HeaderText="Domicilio" SortExpression="Domicilio">
-                                <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
                             <asp:BoundField DataField="TelefonoPrincipal" HeaderText="Teléfono" SortExpression="TelefonoPrincipal">
-                                <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="Tipo" HeaderText="Tipo" SortExpression="Tipo">
-                                <ItemStyle HorizontalAlign="Left" />
-                            </asp:BoundField>
+                            <asp:BoundField DataField="Tipo" HeaderText="Tipo" SortExpression="Tipo"></asp:BoundField>
                         </Columns>
                     </asp:GridView>
                 </asp:Panel>

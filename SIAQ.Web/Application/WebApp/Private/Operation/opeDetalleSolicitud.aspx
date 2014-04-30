@@ -217,14 +217,14 @@
                     <asp:Panel ID="pnlGrid" runat="server" Width="100%">
                         <asp:GridView AutoGenerateColumns="False" AutoUpdateAfterCallBack="True" DataKeyNames="SolicitudId"
                             ID="gvCiudadano" PageSize="30" runat="server" Style="text-align: center" UpdateAfterCallBack="True"
-                            Width="800px" OnRowCommand="gvCiudadano_RowCommand" OnRowDataBound="gvCiudadano_RowDataBound"
+                            Width="100%" OnRowCommand="gvCiudadano_RowCommand" OnRowDataBound="gvCiudadano_RowDataBound"
                             OnSorting="gvCiudadano_Sorting">
                             <RowStyle CssClass="Grid_Row" />
                             <EditRowStyle Wrap="True" />
                             <HeaderStyle CssClass="Grid_Header" ForeColor="#E3EBF5" />
                             <AlternatingRowStyle CssClass="Grid_Row_Alternating" />
                             <EmptyDataTemplate>
-                                <table border="1px" cellpadding="0px" cellspacing="0px" width="800px">
+                                <table border="1px" width="100%" cellpadding="0px" cellspacing="0px">
                                     <tr class="Grid_Header">
                                         <td style="width: 100px;">
                                             Nombre

@@ -33,13 +33,13 @@
             <td>
                 <asp:Panel ID="pnlGrid" runat="server" Width="100%">
                     <asp:GridView ID="gvApps" runat="server" AllowPaging="false" AllowSorting="true"
-                        AutoGenerateColumns="False" Width="800px" DataKeyNames="ExpedienteId,Numero" OnRowDataBound="gvApps_RowDataBound"
+                        AutoGenerateColumns="False" Width="100%" DataKeyNames="ExpedienteId,Numero" OnRowDataBound="gvApps_RowDataBound"
                         OnSorting="gvApps_Sorting" OnRowCommand="gvApps_RowCommand">
                         <AlternatingRowStyle CssClass="Grid_Row_Alternating" />
                         <HeaderStyle CssClass="Grid_Header" />
                         <RowStyle CssClass="Grid_Row" />
                         <EmptyDataTemplate>
-                            <table border="1px" cellpadding="0px" cellspacing="0px">
+                            <table border="1px" width="100%" cellpadding="0px" cellspacing="0px">
                                 <tr class="Grid_Header">
                                     <td style="width: 100px;">
                                         Expediente
@@ -72,19 +72,14 @@
                             <asp:BoundField DataField="ExpedienteId" Visible="false" />
                             <asp:BoundField DataField="Numero" HeaderText="Expediente" SortExpression="Numero" />
                             <asp:BoundField DataField="Observaciones" HeaderText="Asunto" SortExpression="Observaciones">
-                                <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
                             <asp:BoundField DataField="Fecha" HeaderText="Fecha Visitadurías" SortExpression="Fecha">
-                                <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
                             <asp:BoundField DataField="Estatus" HeaderText="Estatus" SortExpression="Estatus">
-                                <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
                             <asp:BoundField DataField="NombreCiudadano" HeaderText="Quejosos" SortExpression="NombreCiudadano">
-                                <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
                             <asp:BoundField DataField="NombreAutoridad" HeaderText="Autoridades" SortExpression="NombreAutoridad">
-                                <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
                             <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
                                 <ItemTemplate>

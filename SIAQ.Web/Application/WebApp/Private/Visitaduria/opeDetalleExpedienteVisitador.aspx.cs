@@ -250,6 +250,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             {
                 Response.Redirect("~/Application/WebApp/Private/Visitaduria/opeLstExpedientesFuncionario.aspx");
             }
+            else
+            {
+                Response.Redirect("~/Application/WebApp/Private/Visitaduria/opeLstEspedienteSecretaria.aspx");
+            }
 
         }
 

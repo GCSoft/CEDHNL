@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeLstExpedientesFuncionario.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeLstExpedientesFuncionario" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master"
+    AutoEventWireup="true" CodeBehind="opeLstExpedientesFuncionario.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeLstExpedientesFuncionario" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
     <script type="text/javascript">
@@ -32,14 +33,13 @@
             <td>
                 <asp:Panel ID="pnlGrid" runat="server" Width="100%">
                     <asp:GridView ID="gvApps" runat="server" AllowPaging="false" AllowSorting="true"
-                        AutoGenerateColumns="False" Width="800px" 
-                        DataKeyNames="ExpedienteId,Numero" onrowcommand="gvApps_RowCommand" 
-                        onrowdatabound="gvApps_RowDataBound" onsorting="gvApps_Sorting">
+                        AutoGenerateColumns="False" Width="100%" DataKeyNames="ExpedienteId,Numero" OnRowCommand="gvApps_RowCommand"
+                        OnRowDataBound="gvApps_RowDataBound" OnSorting="gvApps_Sorting">
                         <AlternatingRowStyle CssClass="Grid_Row_Alternating" />
                         <HeaderStyle CssClass="Grid_Header" />
                         <RowStyle CssClass="Grid_Row" />
                         <EmptyDataTemplate>
-                            <table border="1px" cellpadding="0px" cellspacing="0px">
+                            <table border="1px" width="100%" cellpadding="0px" cellspacing="0px">
                                 <tr class="Grid_Header">
                                     <td style="width: 100px;">
                                         Expediente
@@ -56,7 +56,10 @@
                                     <td style="width: 100px;">
                                         Quejosos
                                     </td>
-                                    <td style="width:100px;">Autoridades</td>-->
+                                    <td style="width: 100px;">
+                                        Autoridades
+                                    </td>
+                                    -->
                                     <td style="width: 100px;">
                                         Atender
                                     </td>
@@ -72,19 +75,14 @@
                             <asp:BoundField DataField="ExpedienteId" Visible="false" />
                             <asp:BoundField DataField="Numero" HeaderText="Expediente" SortExpression="Numero" />
                             <asp:BoundField DataField="Observaciones" HeaderText="Asunto" SortExpression="Observaciones">
-                                <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
                             <asp:BoundField DataField="Fecha" HeaderText="Fecha Visitadurías" SortExpression="Fecha">
-                                <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
                             <asp:BoundField DataField="Estatus" HeaderText="Estatus" SortExpression="Estatus">
-                                <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
                             <asp:BoundField DataField="NombreCiudadano" HeaderText="Quejosos" SortExpression="NombreCiudadano">
-                                <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
                             <asp:BoundField DataField="NombreAutoridad" HeaderText="Autoridades" SortExpression="NombreAutoridad">
-                                <ItemStyle HorizontalAlign="Left" />
                             </asp:BoundField>
                             <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
                                 <ItemTemplate>

@@ -66,6 +66,104 @@ namespace SIAQ.DataAccess.Object
         }
 
         ///<remarks>
+        ///   <name>DASolicitud.EnviarSolicitud</name>
+        ///   <create>11/04/2014</create>
+        ///   <author>Jose.Gomez</author>
+        ///</remarks>
+        ///<summary>Metodo para enviar la solicitud a Visitadurías</summary>
+        public ENTResponse EnviarSolicitud(ENTSolicitud oENTSolicitud, string sConnectionString, int iAlternativeTimeoOut)
+        {
+            SqlConnection Connection = new SqlConnection(sConnectionString);
+            SqlCommand Command;
+            SqlDataAdapter DataAdapter;
+            SqlParameter Parameter;
+
+            ENTResponse oENTResponse = new ENTResponse();
+
+            Command = new SqlCommand("spEnviarSolicitud_ins", Connection);
+            Command.CommandType = CommandType.StoredProcedure;
+
+            if (iAlternativeTimeoOut > 0) { Command.CommandTimeout = iAlternativeTimeoOut; }
+
+            Parameter = new SqlParameter("SolicitudId", SqlDbType.Int);
+            Parameter.Value = oENTSolicitud.SolicitudId;
+            Command.Parameters.Add(Parameter);
+
+            oENTResponse.dsResponse = new DataSet();
+            DataAdapter = new SqlDataAdapter(Command);
+
+            try
+            {
+                Connection.Open();
+                DataAdapter.Fill(oENTResponse.dsResponse);
+                Connection.Close();
+            }
+            catch (SqlException ex) { oENTResponse.ExceptionRaised(ex.Message); }
+            catch (Exception ex) { oENTResponse.ExceptionRaised(ex.Message); }
+            finally
+            {
+                if (Connection.State == ConnectionState.Open)
+                {
+                    Connection.Close();
+                }
+            }
+
+            return oENTResponse;
+        }
+
+        public void GuardarCalificacionSol(ENTSolicitud ENTSolicitud, string ConnectionString)
+        {
+            DataSet ResultData = new DataSet();
+            SqlCommand Command;
+            SqlParameter Parameter;
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+
+            try
+            {
+                Command = new SqlCommand("InsertarCalificacionSol", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                Parameter = new SqlParameter("SolicitudId", SqlDbType.Int);
+                Parameter.Value = ENTSolicitud.SolicitudId;
+                Command.Parameters.Add(Parameter);
+                /*
+                 * Esta entidad queda pendientee de revisar se propone que lleve el idUsuarioInsert para saber
+                 * quien calificó la solicitud FelipeVéliz
+                Parameter = new SqlParameter("IdUsuarioInsert", SqlDbType.Int);
+                Parameter.Value = ENTSolicitud.idUsuarioInsert;
+                Command.Parameters.Add(Parameter);*/
+
+                Parameter = new SqlParameter("Fundamento", SqlDbType.VarChar);
+                Parameter.Value = ENTSolicitud.Fundamento;
+                Command.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("CanalizacionId", SqlDbType.Int);
+                Parameter.Value = ENTSolicitud.CalificacionId;
+                Command.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("CalificacionId", SqlDbType.Int);
+                Parameter.Value = ENTSolicitud.CalificacionId;
+                Command.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("TipoOrientacionId", SqlDbType.Int);
+                Parameter.Value = ENTSolicitud.CierreOrientacionId;
+                Command.Parameters.Add(Parameter);
+
+                Connection.Open();
+                Command.ExecuteNonQuery();
+                Connection.Close();
+            }
+            catch (SqlException Exception)
+            {
+                _ErrorId = Exception.Number;
+                _ErrorDescription = Exception.Message;
+
+                if (Connection.State == ConnectionState.Open)
+                    Connection.Close();
+            }
+        }
+
+        ///<remarks>
         ///   <name>DASolicitud.insertSolicitud</name>
         ///   <create>27/ene/2014</create>
         ///   <author>Generador</author>
@@ -614,7 +712,12 @@ namespace SIAQ.DataAccess.Object
             }
         }
 
-        public void GuardarCalificacionSol(ENTSolicitud ENTSolicitud, string ConnectionString)
+        /// <summary>
+        ///     Cambia el estatus de una solicitud.
+        /// </summary>
+        /// <param name="SolicitudEntity">Entidad de la solicitud.</param>
+        /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
+        public void UpdateSolicitudEstatus(ENTSolicitud SolicitudEntity, string ConnectionString)
         {
             DataSet ResultData = new DataSet();
             SqlCommand Command;
@@ -623,33 +726,15 @@ namespace SIAQ.DataAccess.Object
 
             try
             {
-                Command = new SqlCommand("InsertarCalificacionSol", Connection);
+                Command = new SqlCommand("UpdateSolicitudEstatus", Connection);
                 Command.CommandType = CommandType.StoredProcedure;
 
                 Parameter = new SqlParameter("SolicitudId", SqlDbType.Int);
-                Parameter.Value = ENTSolicitud.SolicitudId;
-                Command.Parameters.Add(Parameter);
-                /*
-                 * Esta entidad queda pendientee de revisar se propone que lleve el idUsuarioInsert para saber
-                 * quien calificó la solicitud FelipeVéliz
-                Parameter = new SqlParameter("IdUsuarioInsert", SqlDbType.Int);
-                Parameter.Value = ENTSolicitud.idUsuarioInsert;
-                Command.Parameters.Add(Parameter);*/
-
-                Parameter = new SqlParameter("Fundamento", SqlDbType.VarChar);
-                Parameter.Value = ENTSolicitud.Fundamento;
+                Parameter.Value = SolicitudEntity.SolicitudId;
                 Command.Parameters.Add(Parameter);
 
-                Parameter = new SqlParameter("CanalizacionId", SqlDbType.Int);
-                Parameter.Value = ENTSolicitud.CalificacionId;
-                Command.Parameters.Add(Parameter);
-
-                Parameter = new SqlParameter("CalificacionId", SqlDbType.Int);
-                Parameter.Value = ENTSolicitud.CalificacionId;
-                Command.Parameters.Add(Parameter);
-
-                Parameter = new SqlParameter("TipoOrientacionId", SqlDbType.Int);
-                Parameter.Value = ENTSolicitud.CierreOrientacionId;
+                Parameter = new SqlParameter("EstatusId", SqlDbType.Int);
+                Parameter.Value = SolicitudEntity.EstatusId;
                 Command.Parameters.Add(Parameter);
 
                 Connection.Open();
@@ -664,52 +749,6 @@ namespace SIAQ.DataAccess.Object
                 if (Connection.State == ConnectionState.Open)
                     Connection.Close();
             }
-        }
-
-        ///<remarks>
-        ///   <name>DASolicitud.EnviarSolicitud</name>
-        ///   <create>11/04/2014</create>
-        ///   <author>Jose.Gomez</author>
-        ///</remarks>
-        ///<summary>Metodo para enviar la solicitud a Visitadurías</summary>
-        public ENTResponse EnviarSolicitud(ENTSolicitud oENTSolicitud, string sConnectionString, int iAlternativeTimeoOut)
-        {
-            SqlConnection Connection = new SqlConnection(sConnectionString);
-            SqlCommand Command;
-            SqlDataAdapter DataAdapter;
-            SqlParameter Parameter;
-
-            ENTResponse oENTResponse = new ENTResponse();
-
-            Command = new SqlCommand("spEnviarSolicitud_ins", Connection);
-            Command.CommandType = CommandType.StoredProcedure;
-
-            if (iAlternativeTimeoOut > 0) { Command.CommandTimeout = iAlternativeTimeoOut; }
-
-            Parameter = new SqlParameter("SolicitudId", SqlDbType.Int);
-            Parameter.Value = oENTSolicitud.SolicitudId;
-            Command.Parameters.Add(Parameter);
-
-            oENTResponse.dsResponse = new DataSet();
-            DataAdapter = new SqlDataAdapter(Command);
-
-            try
-            {
-                Connection.Open();
-                DataAdapter.Fill(oENTResponse.dsResponse);
-                Connection.Close();
-            }
-            catch (SqlException ex) { oENTResponse.ExceptionRaised(ex.Message); }
-            catch (Exception ex) { oENTResponse.ExceptionRaised(ex.Message); }
-            finally
-            {
-                if (Connection.State == ConnectionState.Open)
-                {
-                    Connection.Close();
-                }
-            }
-
-            return oENTResponse;
         }
 
         ///<remarks>

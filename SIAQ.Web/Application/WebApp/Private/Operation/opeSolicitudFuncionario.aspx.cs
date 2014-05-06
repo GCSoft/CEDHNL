@@ -109,6 +109,21 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 }
             }
 
+            private void SaveSolicitudEstatus(int SolicitudId)
+            {
+                BPSolicitud SolicitudProcess = new BPSolicitud();
+
+                SolicitudProcess.SolicitudEntity.SolicitudId = SolicitudId;
+                SolicitudProcess.SolicitudEntity.EstatusId = 3;     // En proceso de Quejas
+
+                SolicitudProcess.SaveSolicitudEstatus();
+
+                if (SolicitudProcess.ErrorId == 0)
+                    Response.Redirect(ConfigurationManager.AppSettings["Application.Url.SolicitudDetalle"].ToString() + "?s=" + SolicitudId.ToString());
+                else
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(SolicitudProcess.ErrorDescription) + "', 'Error', true);", true);
+            }
+
             private void SelectSolicitud()
             {
                 BPSolicitud SolicitudProcess = new BPSolicitud();
@@ -131,14 +146,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
             private void SolicitudGridRowCommand(GridViewCommandEventArgs e)
             {
-                string SolicitudId = string.Empty;
+                int SolicitudId = 0;
 
-                SolicitudId = e.CommandArgument.ToString();
+                SolicitudId = int.Parse(e.CommandArgument.ToString());
 
                 switch (e.CommandName.ToString())
                 {
                     case "Editar":
-                        Response.Redirect(ConfigurationManager.AppSettings["Application.Url.SolicitudDetalle"].ToString() + "?s=" + SolicitudId);
+                        // Cambiar el estatus de la solicitud
+                        SaveSolicitudEstatus(SolicitudId);
                         break;
                 }
             }

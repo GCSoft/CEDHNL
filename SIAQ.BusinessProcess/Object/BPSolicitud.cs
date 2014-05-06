@@ -48,18 +48,7 @@ namespace SIAQ.BusinessProcess.Object
         {
             get { return _ErrorDescription; }
         }
-
-
-        public void SaveFuncionarioSolicitud()
-        {
-            DASolicitud SolicitudAccess = new DASolicitud();
-
-            SolicitudAccess.UpdateFuncionarioSolicitud(_SolicitudEntity, sConnectionApplication);
-
-            _ErrorId = SolicitudAccess.ErrorId;
-            _ErrorDescription = SolicitudAccess.ErrorDescription;
-        }
-
+        
         ///<remarks>
         ///   <name>BPSolicituddeleteSolicitud</name>
         ///   <create>27/ene/2014</create>
@@ -88,6 +77,41 @@ namespace SIAQ.BusinessProcess.Object
             // Resultado
             return oENTResponse;
 
+        }
+
+        /// <summary>
+        /// Metodo para enviar la solicitud a Visitadurías
+        /// </summary>
+        public ENTResponse EnviarSolicitud(ENTSolicitud oENTSolicitud)
+        {
+            ENTResponse oENTResponse = new ENTResponse();
+
+            try
+            {
+                //Consulta 
+                DASolicitud oDASolicitud = new DASolicitud();
+                oENTResponse = oDASolicitud.EnviarSolicitud(oENTSolicitud, sConnectionApplication, 0);
+                //Validacion de error en consulta
+                if (oENTResponse.GeneratesException) { return oENTResponse; }
+                oENTResponse.sMessage = String.Empty;
+                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+                if (oENTResponse.sMessage != "") { return oENTResponse; }
+            }
+            catch (Exception ex) { oENTResponse.ExceptionRaised(ex.Message); }
+
+            //Resultado
+            return oENTResponse;
+        }
+
+        public void GuardarCalificacionSol()
+        {
+
+            DASolicitud SolicitudAccess = new DASolicitud();
+
+            SolicitudAccess.GuardarCalificacionSol(_SolicitudEntity, sConnectionApplication);
+
+            _ErrorId = SolicitudAccess.ErrorId;
+            _ErrorDescription = SolicitudAccess.ErrorDescription;
         }
 
         ///<remarks>
@@ -150,12 +174,11 @@ namespace SIAQ.BusinessProcess.Object
 
         }
 
-        public void GuardarCalificacionSol()
+        public void SaveFuncionarioSolicitud()
         {
-
             DASolicitud SolicitudAccess = new DASolicitud();
 
-            SolicitudAccess.GuardarCalificacionSol(_SolicitudEntity, sConnectionApplication);
+            SolicitudAccess.UpdateFuncionarioSolicitud(_SolicitudEntity, sConnectionApplication);
 
             _ErrorId = SolicitudAccess.ErrorId;
             _ErrorDescription = SolicitudAccess.ErrorDescription;
@@ -175,6 +198,32 @@ namespace SIAQ.BusinessProcess.Object
 
             _ErrorId = DASolicitud.ErrorId;
             _ErrorDescription = DASolicitud.ErrorDescription;
+        }
+
+        /// <summary>
+        ///     Cambia el estatus de una solicitud.
+        /// </summary>
+        public void SaveSolicitudEstatus()
+        {
+            DASolicitud SolicitudAccess = new DASolicitud();
+
+            SolicitudAccess.UpdateSolicitudEstatus(_SolicitudEntity, sConnectionApplication);
+
+            _ErrorId = SolicitudAccess.ErrorId;
+            _ErrorDescription = SolicitudAccess.ErrorDescription;
+        }
+
+        /// <summary>
+        ///     Actualiza la información del detalle de la solicitud.
+        /// </summary>
+        public void SaveSolicitudGeneral()
+        {
+            DASolicitud SolicitudAccess = new DASolicitud();
+
+            SolicitudAccess.UpdateSolicitudGeneral(_SolicitudEntity, sConnectionApplication);
+
+            _ErrorId = SolicitudAccess.ErrorId;
+            _ErrorDescription = SolicitudAccess.ErrorDescription;
         }
 
         /// <summary>
@@ -313,43 +362,6 @@ namespace SIAQ.BusinessProcess.Object
             // Resultado
             return oENTResponse;
 
-        }
-
-        /// <summary>
-        ///     Actualiza la información del detalle de la solicitud.
-        /// </summary>
-        public void SaveSolicitudGeneral()
-        {
-            DASolicitud SolicitudAccess = new DASolicitud();
-
-            SolicitudAccess.UpdateSolicitudGeneral(_SolicitudEntity, sConnectionApplication);
-
-            _ErrorId = SolicitudAccess.ErrorId;
-            _ErrorDescription = SolicitudAccess.ErrorDescription;
-        }
-
-        /// <summary>
-        /// Metodo para enviar la solicitud a Visitadurías
-        /// </summary>
-        public ENTResponse EnviarSolicitud(ENTSolicitud oENTSolicitud)
-        {
-            ENTResponse oENTResponse = new ENTResponse();
-
-            try
-            {
-                //Consulta 
-                DASolicitud oDASolicitud = new DASolicitud();
-                oENTResponse = oDASolicitud.EnviarSolicitud(oENTSolicitud, sConnectionApplication, 0);
-                //Validacion de error en consulta
-                if (oENTResponse.GeneratesException) { return oENTResponse; }
-                oENTResponse.sMessage = String.Empty;
-                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-                if (oENTResponse.sMessage != "") { return oENTResponse; }
-            }
-            catch (Exception ex) { oENTResponse.ExceptionRaised(ex.Message); }
-
-            //Resultado
-            return oENTResponse;
         }
 
         /// <summary>

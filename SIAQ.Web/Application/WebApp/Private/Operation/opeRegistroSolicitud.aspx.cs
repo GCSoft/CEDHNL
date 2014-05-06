@@ -92,8 +92,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             oENTSolicitud.CalificacionId = 1;
             oENTSolicitud.TipoSolicitudId = 1;
             oENTSolicitud.LugarHechosId = 5;
-            oENTSolicitud.EstatusId = 1;
-            oENTSolicitud.CiudadanoId = wucBusquedaCiudadano.CiudadanoID;
+
+            if (ddlAbogado.SelectedValue == "0")
+                oENTSolicitud.EstatusId = 1;
+            else
+                oENTSolicitud.EstatusId = 2;
+            
+             oENTSolicitud.CiudadanoId = wucBusquedaCiudadano.CiudadanoID;
             oENTSolicitud.Nombre = wucBusquedaCiudadano.Text;
             oENTSolicitud.Fecha = this.wucFixedDateTime.GetDateTime;
             oENTSolicitud.Observaciones = this.txtObservaciones.Text.Trim();

@@ -484,7 +484,9 @@
     <Content Include="App.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="DB.config" />
+    <Content Include="DB.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Include\Image\Buttons\Calendar.png" />
     <Content Include="Include\Image\Buttons\Graph.png" />

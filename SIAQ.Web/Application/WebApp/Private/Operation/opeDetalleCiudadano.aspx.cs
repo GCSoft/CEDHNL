@@ -67,7 +67,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                         lblApellidoPaterno.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["ApellidoPaterno"].ToString();
                         lblApellidoMaterno.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["ApellidoMaterno"].ToString();
                         lblSexo.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["Sexo"].ToString();
-                        lblFechaNacimiento.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["FechaNacimiento"].ToString();
+                        lblFechaNacimiento.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["FechaNacimiento"].ToString().Split(new Char[] { ' ' })[0];
                         lblNacionalidad.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["Nacionalidad"].ToString();
                         lblOcupacion.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["Ocupacion"].ToString();
                         lblEscolaridad.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["Escolaridad"].ToString();

@@ -7,18 +7,17 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
     <script type="text/javascript">
 
-        function CheckNumeric(e) {
-
+       function CheckNumeric(e) {
             if (window.event) // IE 
             {
-                if ((e.keyCode < 48 || e.keyCode > 57) & e.keyCode != 8) {
+               if ((e.keyCode < 48 || e.keyCode > 57) & e.keyCode != 8 & e.keyCode != 9 & e.keyCode != 37 & e.keyCode != 39) {
                     event.returnValue = false;
                     return false;
 
                 }
             }
             else { // Fire Fox
-                if ((e.which < 48 || e.which > 57) & e.which != 8) {
+               if ((e.which < 48 || e.which > 57) & e.which != 8 & e.which != 9 & e.which != 37 & e.which != 39) {
                     e.preventDefault();
                     return false;
 
@@ -154,7 +153,6 @@
                                 Otro teléfono
                             </td>
                             <td class="Espacio">
-                                <font class="MarcadorObligatorio">&nbsp;*</font>
                             </td>
                             <td class="Campo">
                                 <asp:TextBox ID="txtOtroTelefono" runat="server" CssClass="Textbox_General" onkeydown="return CheckNumeric(event)"
@@ -224,6 +222,7 @@
                                 Forma de enterarse de la CEDH
                             </td>
                             <td class="Espacio">
+                              <font class="MarcadorObligatorio">&nbsp;*</font>
                             </td>
                             <td class="Campo">
                                 <asp:DropDownList ID="ddlFormaEnterarse" runat="server" CssClass="DropDownList_General"

@@ -101,14 +101,14 @@ namespace SIAQ.Web.Include.WebUserControls
 
         public void SetCurrentDate()
         {
-            ceManager.SelectedDate = DateTime.Now;
+            this.ceManager.SelectedDate = DateTime.Now;
         }
 
         public string SetDate
         {
             set
             {
-                ceManager.SelectedDate = Convert.ToDateTime(value);
+                this.ceManager.SelectedDate = Convert.ToDateTime(value);
             }
         }
 
@@ -128,7 +128,7 @@ namespace SIAQ.Web.Include.WebUserControls
             //this.txtCanvas.Attributes.Add("onkeydown", "return false;");
 
             // Fecha actual
-            this.ceManager.SelectedDate = DateTime.Now;
+            if (this.ceManager.SelectedDate == null) { this.ceManager.SelectedDate = DateTime.Now; }
 
         }
 

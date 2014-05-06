@@ -43,6 +43,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             {
                 ObtenerDetalleCiudadano(Convert.ToInt32(ciudadanoId));
             }
+
+            // Foco
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtNombre.ClientID + "');", true);
+
         }
 
         #region Atributos
@@ -58,10 +62,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         #region "Botones"
 
-        protected void btnGuardar_Click(object sender, EventArgs e)
-        {
+        protected void btnGuardar_Click(object sender, EventArgs e){
             try
             {
+
                 if (String.IsNullOrEmpty(hdnCiudadanoId.Value))
                 {
                     AgregarCiudadano();
@@ -72,13 +76,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 }
 
             }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this.Page
-                    , this.GetType()
-                    , Convert.ToString(Guid.NewGuid())
-                    , "tinyboxMessage('" + ex.Message + "','Fail',true);"
-                    , true);
+            catch (Exception ex){
+               ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
             }
         }
 
@@ -92,13 +91,16 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         #region "DropDownList"
 
 
-        protected void ddlPais_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        protected void ddlPais_SelectedIndexChanged(object sender, EventArgs e){
             try
             {
                 ComboEstados();
                 ComboCiudades();
                 ComboColonia();
+
+               // Foco
+               ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlEstado.ClientID + "');", true);
+
             }
             catch (Exception ex)
             {
@@ -110,15 +112,16 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        protected void ddlPaisOrigen_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        protected void ddlPaisOrigen_SelectedIndexChanged(object sender, EventArgs e){
             try
             {
                 ComboEstadosOrigen();
                 ComboCiudadesOrigen();
-            }
-            catch (Exception ex)
-            {
+
+                // Foco
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlEstadoOrigen.ClientID + "');", true);
+
+            }catch (Exception ex){
                 ScriptManager.RegisterStartupScript(this.Page
                        , this.GetType()
                        , Convert.ToString(Guid.NewGuid())
@@ -127,15 +130,16 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        protected void ddlEstado_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        protected void ddlEstado_SelectedIndexChanged(object sender, EventArgs e){
             try
             {
                 ComboCiudades();
                 ComboColonia();
-            }
-            catch (Exception ex)
-            {
+
+                // Foco
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlCiudad.ClientID + "');", true);
+
+            }catch (Exception ex){
                 ScriptManager.RegisterStartupScript(this.Page
                        , this.GetType()
                        , Convert.ToString(Guid.NewGuid())
@@ -144,14 +148,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        protected void ddlEstadoOrigen_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        protected void ddlEstadoOrigen_SelectedIndexChanged(object sender, EventArgs e){
             try
             {
                 ComboCiudadesOrigen();
-            }
-            catch (Exception ex)
-            {
+
+                // Foco
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlCiudadOrigen.ClientID + "');", true);
+
+            }catch (Exception ex){
                 ScriptManager.RegisterStartupScript(this.Page
                        , this.GetType()
                        , Convert.ToString(Guid.NewGuid())
@@ -160,14 +165,16 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        protected void ddlCiudad_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        protected void ddlCiudad_SelectedIndexChanged(object sender, EventArgs e){
             try
             {
+
                 ComboColonia();
-            }
-            catch (Exception ex)
-            {
+
+                // Foco
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlColonia.ClientID + "');", true);
+
+            }catch (Exception ex){
                 ScriptManager.RegisterStartupScript(this.Page
                        , this.GetType()
                        , Convert.ToString(Guid.NewGuid())
@@ -583,23 +590,74 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             try
             {
                 //Validaciones 
-                if (String.IsNullOrEmpty(txtNombre.Text)) { throw new Exception("El campo [Nombre] es requerido"); }
-                if (String.IsNullOrEmpty(txtApellidoPaterno.Text)) { throw new Exception("El campo [Apellido paterno] es requerido"); }
-                if (ddlSexo.SelectedValue == "0") { throw new Exception("El campo [Sexo] es requerido"); }
-                if (ddlNacionalidad.SelectedValue == "0") { throw new Exception("El campo [Nacionalidad] es requerido"); }
-                if (ddlOcupacion.SelectedValue == "0") { throw new Exception("El campo [Ocupación] es requerido"); }
-                if (ddlEscolaridad.SelectedValue == "0") { throw new Exception("El campo [Escolaridad] es requerido"); }
-                if (ddlEstadoCivil.SelectedValue == "0") { throw new Exception("El campo [Estado civil] es requerido"); }
-                if (String.IsNullOrEmpty(txtTelefonoPrincipal.Text)) { throw new Exception("El campo [Teléfono principal] es requerido"); }
-                if (String.IsNullOrEmpty(txtOtroTelefono.Text)) { throw new Exception("El campo [Otro teléfono] es requerido"); }
-                if (ddlPais.SelectedValue == "0") { throw new Exception("El campo [País] es requerido"); }
-                if (ddlEstado.SelectedValue == "0") { throw new Exception("El campo [Estado] es requerido"); }
-                if (ddlCiudad.SelectedValue == "0") { throw new Exception("El campo [Ciudad] es requerido"); }
-                if (ddlColonia.SelectedValue == "0") { throw new Exception("El campo [Colonia] es requerido"); }
-                if (String.IsNullOrEmpty(txtNombreCalle.Text)) { throw new Exception("El campo [Nombre calle] es requerido"); }
-                if (ddlPaisOrigen.SelectedValue == "0") { throw new Exception("El campo [País de origen] es requerido"); }
-                if (ddlEstadoOrigen.SelectedValue == "0") { throw new Exception("El campo [Estado de origen] es requerido"); }
-                if (ddlCiudadOrigen.SelectedValue == "0") { throw new Exception("El campo [Ciudad de origen] es requerido"); }
+                if (String.IsNullOrEmpty(txtNombre.Text)) {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Nombre] es requerido', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+                   return;
+                }
+                if (String.IsNullOrEmpty(txtApellidoPaterno.Text)) {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Apellido Paterno] es requerido', 'Fail', true); focusControl('" + this.txtApellidoPaterno.ClientID + "');", true);
+                   return;
+                }
+                if (ddlSexo.SelectedValue == "0") {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Sexo] es requerido', 'Fail', true); focusControl('" + this.ddlSexo.ClientID + "');", true);
+                   return;
+                }
+                if (ddlNacionalidad.SelectedValue == "0") {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Nacionalidad] es requerido', 'Fail', true); focusControl('" + this.ddlNacionalidad.ClientID + "');", true);
+                   return;
+                }
+                if (ddlOcupacion.SelectedValue == "0") {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Ocupación] es requerido', 'Fail', true); focusControl('" + this.ddlOcupacion.ClientID + "');", true);
+                   return;
+                }
+                if (ddlEscolaridad.SelectedValue == "0"){
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Escolaridad] es requerido', 'Fail', true); focusControl('" + this.ddlEscolaridad.ClientID + "');", true);
+                   return;
+                }
+                if (ddlEstadoCivil.SelectedValue == "0") {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Estado Civil] es requerido', 'Fail', true); focusControl('" + this.ddlEstadoCivil.ClientID + "');", true);
+                   return;
+                }
+                if (String.IsNullOrEmpty(txtTelefonoPrincipal.Text)) {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Teléfono Principal] es requerido', 'Fail', true); focusControl('" + this.txtTelefonoPrincipal.ClientID + "');", true);
+                   return;
+                }
+                if (ddlPais.SelectedValue == "0") {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [País] es requerido', 'Fail', true); focusControl('" + this.ddlPais.ClientID + "');", true);
+                   return;
+                }
+                if (ddlEstado.SelectedValue == "0") {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Estado] es requerido', 'Fail', true); focusControl('" + this.ddlEstado.ClientID + "');", true);
+                   return;
+                }
+                if (ddlCiudad.SelectedValue == "0") {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Ciudad] es requerido', 'Fail', true); focusControl('" + this.ddlCiudad.ClientID + "');", true);
+                   return;
+                }
+                if (ddlColonia.SelectedValue == "0") {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Colonia] es requerido', 'Fail', true); focusControl('" + this.ddlColonia.ClientID + "');", true);
+                   return;
+                }
+                if (String.IsNullOrEmpty(txtNombreCalle.Text)) {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Nombre Calle] es requerido', 'Fail', true); focusControl('" + this.txtNombreCalle.ClientID + "');", true);
+                   return;
+                }
+                if (this.ddlFormaEnterarse.SelectedValue == "0"){
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Forma de Enterarse] es requerido', 'Fail', true); focusControl('" + this.ddlFormaEnterarse.ClientID + "');", true);
+                   return;
+                }
+                if (ddlPaisOrigen.SelectedValue == "0") {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [País de Origen] es requerido', 'Fail', true); focusControl('" + this.ddlPaisOrigen.ClientID + "');", true);
+                   return;
+                }
+                if (ddlEstadoOrigen.SelectedValue == "0") {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Estado de Origen] es requerido', 'Fail', true); focusControl('" + this.ddlEstadoOrigen.ClientID + "');", true);
+                   return;
+                }
+                if (ddlCiudadOrigen.SelectedValue == "0") {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Ciudad de origen] es requerido', 'Fail', true); focusControl('" + this.ddlCiudadOrigen.ClientID + "');", true);
+                   return;
+                }
 
                 //Asignación de parametros 
                 //Info general
@@ -713,23 +771,74 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             try
             {
                 //Validaciones 
-                if (String.IsNullOrEmpty(txtNombre.Text)) { throw new Exception("El campo [Nombre] es requerido"); }
-                if (String.IsNullOrEmpty(txtApellidoPaterno.Text)) { throw new Exception("El campo [Apellido paterno] es requerido"); }
-                if (ddlSexo.SelectedValue == "0") { throw new Exception("El campo [Sexo] es requerido"); }
-                if (ddlNacionalidad.SelectedValue == "0") { throw new Exception("El campo [Nacionalidad] es requerido"); }
-                if (ddlOcupacion.SelectedValue == "0") { throw new Exception("El campo [Ocupación] es requerido"); }
-                if (ddlEscolaridad.SelectedValue == "0") { throw new Exception("El campo [Escolaridad] es requerido"); }
-                if (ddlEstadoCivil.SelectedValue == "0") { throw new Exception("El campo [Estado civil] es requerido"); }
-                if (String.IsNullOrEmpty(txtTelefonoPrincipal.Text)) { throw new Exception("El campo [Teléfono principal] es requerido"); }
-                if (String.IsNullOrEmpty(txtOtroTelefono.Text)) { throw new Exception("El campo [Otro teléfono] es requerido"); }
-                if (ddlPais.SelectedValue == "0") { throw new Exception("El campo [País] es requerido"); }
-                if (ddlEstado.SelectedValue == "0") { throw new Exception("El campo [Estado] es requerido"); }
-                if (ddlCiudad.SelectedValue == "0") { throw new Exception("El campo [Ciudad] es requerido"); }
-                if (ddlColonia.SelectedValue == "0") { throw new Exception("El campo [Colonia] es requerido"); }
-                if (String.IsNullOrEmpty(txtNombreCalle.Text)) { throw new Exception("El campo [Nombre calle] es requerido"); }
-                if (ddlPaisOrigen.SelectedValue == "0") { throw new Exception("El campo [País de origen] es requerido"); }
-                if (ddlEstadoOrigen.SelectedValue == "0") { throw new Exception("El campo [Estado de origen] es requerido"); }
-                if (ddlCiudadOrigen.SelectedValue == "0") { throw new Exception("El campo [Ciudad de origen] es requerido"); }
+               if (String.IsNullOrEmpty(txtNombre.Text)) {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Nombre] es requerido', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+                   return;
+                }
+                if (String.IsNullOrEmpty(txtApellidoPaterno.Text)) {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Apellido Paterno] es requerido', 'Fail', true); focusControl('" + this.txtApellidoPaterno.ClientID + "');", true);
+                   return;
+                }
+                if (ddlSexo.SelectedValue == "0") {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Sexo] es requerido', 'Fail', true); focusControl('" + this.ddlSexo.ClientID + "');", true);
+                   return;
+                }
+                if (ddlNacionalidad.SelectedValue == "0") {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Nacionalidad] es requerido', 'Fail', true); focusControl('" + this.ddlNacionalidad.ClientID + "');", true);
+                   return;
+                }
+                if (ddlOcupacion.SelectedValue == "0") {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Ocupación] es requerido', 'Fail', true); focusControl('" + this.ddlOcupacion.ClientID + "');", true);
+                   return;
+                }
+                if (ddlEscolaridad.SelectedValue == "0"){
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Escolaridad] es requerido', 'Fail', true); focusControl('" + this.ddlEscolaridad.ClientID + "');", true);
+                   return;
+                }
+                if (ddlEstadoCivil.SelectedValue == "0") {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Estado Civil] es requerido', 'Fail', true); focusControl('" + this.ddlEstadoCivil.ClientID + "');", true);
+                   return;
+                }
+                if (String.IsNullOrEmpty(txtTelefonoPrincipal.Text)) {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Teléfono Principal] es requerido', 'Fail', true); focusControl('" + this.txtTelefonoPrincipal.ClientID + "');", true);
+                   return;
+                }
+                if (ddlPais.SelectedValue == "0") {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [País] es requerido', 'Fail', true); focusControl('" + this.ddlPais.ClientID + "');", true);
+                   return;
+                }
+                if (ddlEstado.SelectedValue == "0") {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Estado] es requerido', 'Fail', true); focusControl('" + this.ddlEstado.ClientID + "');", true);
+                   return;
+                }
+                if (ddlCiudad.SelectedValue == "0") {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Ciudad] es requerido', 'Fail', true); focusControl('" + this.ddlCiudad.ClientID + "');", true);
+                   return;
+                }
+                if (ddlColonia.SelectedValue == "0") {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Colonia] es requerido', 'Fail', true); focusControl('" + this.ddlColonia.ClientID + "');", true);
+                   return;
+                }
+                if (String.IsNullOrEmpty(txtNombreCalle.Text)) {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Nombre Calle] es requerido', 'Fail', true); focusControl('" + this.txtNombreCalle.ClientID + "');", true);
+                   return;
+                }
+               if (this.ddlFormaEnterarse.SelectedValue == "0"){
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Forma de Enterarse] es requerido', 'Fail', true); focusControl('" + this.ddlFormaEnterarse.ClientID + "');", true);
+                   return;
+                }
+                if (ddlPaisOrigen.SelectedValue == "0") {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [País de Origen] es requerido', 'Fail', true); focusControl('" + this.ddlPaisOrigen.ClientID + "');", true);
+                   return;
+                }
+                if (ddlEstadoOrigen.SelectedValue == "0") {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Estado de Origen] es requerido', 'Fail', true); focusControl('" + this.ddlEstadoOrigen.ClientID + "');", true);
+                   return;
+                }
+                if (ddlCiudadOrigen.SelectedValue == "0") {
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Ciudad de origen] es requerido', 'Fail', true); focusControl('" + this.ddlCiudadOrigen.ClientID + "');", true);
+                   return;
+                }
 
                 //Asignación de parametros 
                 //Info general

@@ -288,3 +288,43 @@
 {
 	width: 20px;
 }
+
+/* Estilos para los comentarios de la solicitud */
+.ComentarioSolicitudTable
+{
+	width: 100%;
+}
+
+.ComentarioSolicitudTable .Fecha
+{
+	color: #666;
+	font-size: 13px;
+	font-weight: normal;
+	text-align: right;
+}
+
+.ComentarioSolicitudTable .Nombre
+{
+	color: #27245D;
+	font-size: 13px;
+	font-weight: normal;
+	text-align: left;
+}
+
+.ComentarioSolicitudTable .Numero
+{
+	background-color: #c0c0c0;
+	color: #fff;
+	font-size: 30px;
+	font-weight: normal;
+	width: 75px;
+}
+
+.ComentarioSolicitudTable .Texto
+{
+	color: #999;
+	font-size: 13px;
+	font-weight: normal;
+	text-align: left;
+	vertical-align: top;
+}

@@ -311,25 +311,25 @@
                 <asp:Label ID="ComentarioTituloLabel" runat="server" Text=""></asp:Label></div>
             <asp:Repeater ID="ComentarioRepeater" runat="server">
                 <HeaderTemplate>
-                    <table class="ComentarioSolicitudTable">
+                    <table border="1" class="ComentarioSolicitudTable">
                 </HeaderTemplate>
                 <ItemTemplate>
                     <tr>
-                        <td>
+                        <td class="Numero">
                             <%# DataBinder.Eval(Container.DataItem, "Numero") %>
                         </td>
                         <td>
-                            <table>
+                            <table class="ComentarioSolicitudTable">
                                 <tr>
-                                    <td>
+                                    <td class="Nombre">
                                         <%# DataBinder.Eval(Container.DataItem, "NombreUsuario") %>
                                     </td>
-                                    <td>
+                                    <td class="Fecha">
                                         <%# DataBinder.Eval(Container.DataItem, "Fecha") %>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">
+                                    <td class="Texto" colspan="2">
                                         <%# DataBinder.Eval(Container.DataItem, "Comentario") %>
                                     </td>
                                 </tr>

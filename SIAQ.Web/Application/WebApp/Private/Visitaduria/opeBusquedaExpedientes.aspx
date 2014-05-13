@@ -30,7 +30,7 @@
                             <td class="Espacio">
                             </td>
                             <td class="Campo">
-                                <asp:TextBox ID="txtNumeroExpediente" runat="server" CssClass="Textbox_General" Width="177px"></asp:TextBox>
+                                <asp:TextBox ID="txtNumeroExpediente" runat="server" CssClass="Textbox_General" Width="211px"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -40,7 +40,7 @@
                             <td class="Espacio">
                             </td>
                             <td class="Campo">
-                                <asp:TextBox ID="txtQuejoso" runat="server" CssClass="Textbox_General" Width="177px"></asp:TextBox>
+                                <asp:TextBox ID="txtQuejoso" runat="server" CssClass="Textbox_General" Width="211px"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -50,8 +50,7 @@
                             <td class="Espacio">
                             </td>
                             <td class="Campo">
-                                <asp:DropDownList ID="ddlEstatus" runat="server" CssClass="DropDownList_General"
-                                    Width="183px">
+                                <asp:DropDownList ID="ddlEstatus" runat="server" CssClass="DropDownList_General" Width="216px">
                                 </asp:DropDownList>
                             </td>
                         </tr>
@@ -63,7 +62,7 @@
                             </td>
                             <td class="Campo">
                                 <asp:DropDownList ID="ddlVisitador" runat="server" CssClass="DropDownList_General"
-                                    Width="183px">
+                                    Width="216px">
                                 </asp:DropDownList>
                             </td>
                         </tr>
@@ -109,7 +108,7 @@
                         <HeaderStyle CssClass="Grid_Header" />
                         <RowStyle CssClass="Grid_Row" />
                         <EmptyDataTemplate>
-                            <table border="1px" cellpadding="0px" cellspacing="0px">
+                            <table border="1px" cellpadding="0px" cellspacing="0px" Width="100%">
                                 <tr class="Grid_Header">
                                     <td style="width: 100px;">
                                         Expediente
@@ -120,7 +119,7 @@
                                     <td style="width: 100px;">
                                         Fecha Visitadurías
                                     </td>
-                                    <td style="width: 100px;">
+                                    <td style="width: 150px;">
                                         Visitador
                                     </td>
                                     <td style="width: 100px;">

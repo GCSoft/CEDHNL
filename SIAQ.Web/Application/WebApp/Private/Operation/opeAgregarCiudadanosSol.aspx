@@ -156,11 +156,12 @@
     <tr><td class="tdCeldaMiddleSpace"></td></tr>
     <tr>
         <td>
-     <asp:Panel id="pnlGrid" runat="server" Width="100%">
-               <asp:GridView id="gvCiudadano" runat="server" AllowPaging="false" AllowSorting="true" AutoGenerateColumns="False"
+            <asp:Panel id="pnlGrid" runat="server" Width="100%">
+               <asp:GridView id="gvCiudadano" runat="server" AllowPaging="false" AllowSorting="True" AutoGenerateColumns="False"
 						DataKeyNames="CiudadanoId"
 						OnRowDataBound="gvCiudadano_RowDataBound"
-						OnRowCommand="gvCiudadano_RowCommand">
+						OnRowCommand="gvCiudadano_RowCommand"
+                  OnSorting="gvCiudadano_Sorting">
 						<alternatingrowstyle cssclass="Grid_Row_Alternating" />
 						<headerstyle cssclass="Grid_Header" />
 						<rowstyle cssclass="Grid_Row" />
@@ -169,9 +170,9 @@
 								<tr class="Grid_Header">
 									<td style="width:150px; text-align:center;">Nombre</td>
 									<td style="width:70px; text-align:center;">Sexo</td>
-                                    <td style="width:100px; text-align:center;">Fecha Nacimiento</td>
-                                    <td style="width:200px; text-align:center;">Domicilio</td>
-                                    <td style="width:70px; text-align:center;" ></td>
+                           <td style="width:100px; text-align:center;">Fecha Nacimiento</td>
+                           <td style="width:200px; text-align:center;">Domicilio</td>
+                           <td style="width:70px; text-align:center;" ></td>
 								</tr>
 								<tr class="Grid_Row">
 									<td colspan="9"  style="text-align:center;">No se encontraron ciudadanos registradas en el sistema</td>
@@ -179,14 +180,14 @@
 							</table>
 						</EmptyDataTemplate>
 						<Columns>
-							<asp:BoundField HeaderText="Nombre"         ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="170px" DataField="NombreCompleto"></asp:BoundField>
-							<asp:BoundField HeaderText="Sexo"  ItemStyle-HorizontalAlign="Left"		ItemStyle-Width="50px" DataField="SexoNombre"></asp:BoundField>
-                            <asp:BoundField HeaderText="Fecha Nacimiento"  ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="65px" DataField="FechaNacimiento"></asp:BoundField>
-							<asp:BoundField HeaderText="Domicilio"  ItemStyle-HorizontalAlign="Left"		ItemStyle-Width="280px" DataField="DireccionCompleta"></asp:BoundField>
-                            <asp:TemplateField HeaderText="Editar">
-                                <ItemTemplate>
-                                    <asp:LinkButton CommandArgument='<%#Eval("CiudadanoId")%>' CommandName="Agregar" ID="AgregarLink" runat="server" Text='Agregar' Width="80px"></asp:LinkButton>
-                                </ItemTemplate>
+							<asp:BoundField HeaderText="Nombre"             ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="170px" DataField="NombreCompleto"></asp:BoundField>
+							<asp:BoundField HeaderText="Sexo"               ItemStyle-HorizontalAlign="Left"		ItemStyle-Width="50px" DataField="SexoNombre"></asp:BoundField>
+                     <asp:BoundField HeaderText="Fecha Nacimiento"   ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="65px" DataField="FechaNacimiento"></asp:BoundField>
+							<asp:BoundField HeaderText="Domicilio"          ItemStyle-HorizontalAlign="Left"		ItemStyle-Width="280px" DataField="DireccionCompleta"></asp:BoundField>
+                     <asp:TemplateField HeaderText="Editar">
+                        <ItemTemplate>
+                           <asp:LinkButton CommandArgument='<%#Eval("CiudadanoId")%>' CommandName="Agregar" ID="AgregarLink" runat="server" Text='Agregar' Width="80px"></asp:LinkButton>
+                        </ItemTemplate>
 							</asp:TemplateField>
 						</Columns>
 					</asp:GridView>
@@ -201,14 +202,16 @@
                <table border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tr>
                      <td style="height:24px; text-align:left; width:130px;">
-                        <asp:Button ID="btnRegresar" runat="server" Text="Regresar" 
-                             CssClass="Button_General" onclick="btnRegresar_Click" Width="125px" />
+                        <asp:Button ID="btnNuevoCiudadano" runat="server" Text="Nuevo Ciudadano" CssClass="Button_General" onclick="btnNuevoCiudadano_Click" Width="125px" />&nbsp;&nbsp;
+                        <asp:Button ID="btnRegresar" runat="server" Text="Regresar" CssClass="Button_General" onclick="btnRegresar_Click" Width="125px" />
                      </td>
                   </tr>
                </table>
             </asp:Panel>
          </td>
       </tr>
+      <tr class="trFilaFooter"><td></td></tr>
     </table>
     <asp:HiddenField ID="SolicitudIDHidden" runat="server" Value="" />
+    <asp:HiddenField ID="hddSort" runat="server" value="NombreCompleto" />
 </asp:Content>

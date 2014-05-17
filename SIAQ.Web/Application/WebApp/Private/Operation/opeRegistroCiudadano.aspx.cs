@@ -15,21 +15,32 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
     public partial class opeRegistroCiudadano : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
+
+         protected void Page_Load(object sender, EventArgs e){
+            
             if (Page.IsPostBack) { return; }
 
-            string ciudadanoId = GetRawQueryParameter("s");
-            if (String.IsNullOrEmpty(ciudadanoId))
-            {
-                hdnCiudadanoId.Value = String.Empty;
-            }
-            else
-            {
-                hdnCiudadanoId.Value = ciudadanoId;
+            String ciudadanoId = null;
+
+            // Valores por default
+            this.hdnCiudadanoId.Value = String.Empty;
+            this.hddSolicitudId.Value = "";
+
+            // Determinar de donde viene la página
+            if(Request.QueryString["s"] != null){
+
+               ciudadanoId = Request.QueryString["s"].ToString();
+               hdnCiudadanoId.Value = ciudadanoId;
             }
 
+            if (Request.QueryString["acs"] != null){
+               
+               // La página viene de de la pantalla de agregar un ciudadano a una solicitud (opeAgregarCiudadanosSol)
+               this.hddSolicitudId.Value = Request.QueryString["acs"].ToString();
+            }
+            
 
+            // Rutina de la página
             ComboEscolaridad();
             ComboEstadoCivil();
             ComboSexo();
@@ -39,10 +50,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             ComboPaises();
             ComboPaisesOrigen();
 
-            if (!String.IsNullOrEmpty(ciudadanoId))
-            {
-                ObtenerDetalleCiudadano(Convert.ToInt32(ciudadanoId));
-            }
+            if (!String.IsNullOrEmpty(ciudadanoId)) { ObtenerDetalleCiudadano(Convert.ToInt32(ciudadanoId)); }
 
             // Foco
             ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtNombre.ClientID + "');", true);
@@ -55,28 +63,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         #endregion
 
-        #region Propiedades
-        #endregion
-
         #region Eventos
 
         #region "Botones"
 
-        protected void btnGuardar_Click(object sender, EventArgs e){
+         protected void btnGuardar_Click(object sender, EventArgs e){
             try
             {
 
-                if (String.IsNullOrEmpty(hdnCiudadanoId.Value))
-                {
-                    AgregarCiudadano();
-                }
-                else
-                {
-                    ModificarCiudadano(Convert.ToInt32(hdnCiudadanoId.Value));
-                }
+               // Transacción
+               if (String.IsNullOrEmpty(hdnCiudadanoId.Value)){
+                  AgregarCiudadano();
+               }else{
+                  ModificarCiudadano(Convert.ToInt32(hdnCiudadanoId.Value));
+               }
 
-            }
-            catch (Exception ex){
+            }catch (Exception ex){
                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
             }
         }
@@ -581,8 +583,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        private void AgregarCiudadano()
-        {
+        private void AgregarCiudadano(){
             BPCiudadano oBPCiudadano = new BPCiudadano();
             ENTResponse oENTResponse = new ENTResponse();
             ENTCiudadano oENTCiudadano = new ENTCiudadano();
@@ -673,12 +674,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 oENTCiudadano.TelefonoPrincipal = txtTelefonoPrincipal.Text;
                 oENTCiudadano.TelefonoOtro = txtOtroTelefono.Text;
                 oENTCiudadano.CorreoElectronico = txtCorreoElectronico.Text;
-                if (String.IsNullOrEmpty(txtDependientesEconomicos.Text))
-                {
+
+                if (String.IsNullOrEmpty(txtDependientesEconomicos.Text)){
                     oENTCiudadano.DependientesEconomicos = 0;
-                }
-                else
-                {
+                }else{
                     oENTCiudadano.DependientesEconomicos = Convert.ToByte(txtDependientesEconomicos.Text);
                 }
 
@@ -691,12 +690,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 oENTCiudadano.Calle = txtNombreCalle.Text;
                 oENTCiudadano.NumeroExterior = txtNumExterior.Text;
                 oENTCiudadano.NumeroInterior = txtNumInterior.Text;
-                if (String.IsNullOrEmpty(txtAniosResidiendo.Text))
-                {
+
+                if (String.IsNullOrEmpty(txtAniosResidiendo.Text)){
                     oENTCiudadano.AniosResidiendoNL = 0;
-                }
-                else
-                {
+                }else{
                     oENTCiudadano.AniosResidiendoNL = Convert.ToByte(txtAniosResidiendo.Text);
                 }
 
@@ -712,16 +709,18 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
                 if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
 
-                ScriptManager.RegisterStartupScript(this.Page
-                    , this.GetType()
-                    , Convert.ToString(Guid.NewGuid())
-                    , "tinyboxMessage('Ciudadano agregado con éxito','Success',true);"
-                    , true);
+                // Si la pantalla fue invocada desde la pantalla de agregar ciudadanos a la solicitud (opeAgregarCiudadanosSol) regresar pasándo el CiudadanoId generado
+                if (this.hddSolicitudId.Value != ""){
 
-                Limpiar();
-            }
-            catch (Exception ex)
-            {
+                   Response.Redirect("~/Application/WebApp/Private/Operation/opeAgregarCiudadanosSol.aspx?s=" + this.hddSolicitudId.Value + "&c=" + oENTResponse.dsResponse.Tables[1].Rows[0]["CiudadanoId"].ToString(), false);
+                }else{
+
+                   Limpiar();
+                   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Ciudadano agregado con éxito','Success',true);", true);
+                }
+
+                
+            }catch (Exception ex){
                 throw (ex);
             }
         }

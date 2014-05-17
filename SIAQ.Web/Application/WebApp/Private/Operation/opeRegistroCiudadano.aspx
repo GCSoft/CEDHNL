@@ -466,12 +466,10 @@
                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
                         <tr>
                             <td style="height: 24px; text-align: left; width: 130px;">
-                                <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="Button_General"
-                                    Width="125px" onclick="btnGuardar_Click" />
+                                <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="Button_General" Width="125px" onclick="btnGuardar_Click" />
                             </td>
                             <td style="height: 24px; text-align: left; width: 130px;">
-                                <asp:Button ID="btnRegresar" runat="server" Text="Regresar" CssClass="Button_General"
-                                    Width="125px" onclick="btnRegresar_Click" />
+                                <asp:Button ID="btnRegresar" runat="server" Text="Regresar" CssClass="Button_General" Width="125px" onclick="btnRegresar_Click" />
                             </td>
                             <td style="height: 24px; width: 530px;">
                             </td>
@@ -496,4 +494,5 @@
         </tr>
     </table>
     <asp:HiddenField ID="hdnCiudadanoId" runat="server" />
+    <asp:HiddenField ID="hddSolicitudId" runat="server" />
 </asp:Content>

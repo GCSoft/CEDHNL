@@ -12,6 +12,7 @@ using SIAQ.BusinessProcess.Object;
 using SIAQ.BusinessProcess.Page;
 using SIAQ.Entity.Object;
 using System.Configuration;
+using System.Data;
 
 namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
@@ -25,38 +26,50 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         string AllDefault = "-- Todos --";
         public string _SolicitudId;
 
+       
+       // Funciones del programador
+
+        void AgregaCiudadanoASolicitud(String CiudadanoId){
+           BPCiudadano BPCiudadano = new BPCiudadano();
+
+           try
+           {
+
+              BPCiudadano.ENTCiudadano.CiudadanoId = int.Parse(CiudadanoId);
+              BPCiudadano.ENTCiudadano.SolicitudId = int.Parse(SolicitudIDHidden.Value);
+              BPCiudadano.ENTCiudadano.TipoCiudadanoId = 1; // estos valores los debe de traer un checkbox, se han declarado solo para pruebas
+
+              BPCiudadano.AgregarCiudadanoSolicitud();
+
+              SelectCiudadanosAgregados(int.Parse(SolicitudIDHidden.Value));
+
+           }catch (Exception ex){
+              throw(ex);
+           }
+        }
+
+
+       // Eventos de la página
+
         protected void gvCiudadano_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             gvCiudadanoGridRowCommand(e);
         }
 
-        private void gvCiudadanoGridRowCommand(GridViewCommandEventArgs e)
-        {
-
+        private void gvCiudadanoGridRowCommand(GridViewCommandEventArgs e){
             string CiudadanoId = string.Empty;
-            int TipoCiudadanoId = 1; //estos valores los debe de traer un checkbox, se han declarado solo para pruebas
-
-            int SolicitudId = int.Parse(SolicitudIDHidden.Value);
+            
+            // Ciudadano seleccionado
             CiudadanoId = e.CommandArgument.ToString();
-
-            switch (e.CommandName.ToString())
-            {
+            
+            switch (e.CommandName.ToString()){
                 case "Agregar":
-
-                    BPCiudadano BPCiudadano = new BPCiudadano();
-
-                    BPCiudadano.ENTCiudadano.CiudadanoId = int.Parse(CiudadanoId);
-                    BPCiudadano.ENTCiudadano.SolicitudId = SolicitudId;
-                    BPCiudadano.ENTCiudadano.TipoCiudadanoId = TipoCiudadanoId;
-
-                    BPCiudadano.AgregarCiudadanoSolicitud();
-
-                    SelectCiudadanosAgregados(SolicitudId);
-                    break;
+                  AgregaCiudadanoASolicitud(CiudadanoId);
+                  break;
 
             }
-        }
 
+        }
 
         protected void gvCiudadanoAgregados_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -89,7 +102,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-
         protected void QuickSearchButton_Click(object sender, EventArgs e)
         {
             BuscarCiudadano("", "" , "" , "" , 0 , 0 , 0, 0, txtNombre.Text.Trim());
@@ -110,39 +122,41 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             VerBusquedaAvanzada();
         }
 
+        protected void Page_Load(object sender, EventArgs e){
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
+           if (Page.IsPostBack) { return; }
 
-
-            if (!Page.IsPostBack)
+            // Lógica de la página
+            SelectPais();
+            SelectEstado();
+            SelectCiudad();
+            SelectColonia();
+    
+            gvCiudadano.DataSource = null;
+            gvCiudadano.DataBind();
+                
+            gvCiudadanosAgregados.DataSource = null;
+            gvCiudadanosAgregados.DataBind();
+                
+            try
             {
-                SelectPais();
-                SelectEstado();
-                SelectCiudad();
-                SelectColonia();
+               
+               // Tomar la solicitud
+               SolicitudIDHidden.Value = Request.QueryString["s"].ToString();
+               _SolicitudId = SolicitudIDHidden.Value;
 
-                
+               // Consultar ciudadanos agregados
+               SelectCiudadanosAgregados(int.Parse(SolicitudIDHidden.Value));
 
-                gvCiudadano.DataSource = null;
-                gvCiudadano.DataBind();
-                
-                gvCiudadanosAgregados.DataSource = null;
-                gvCiudadanosAgregados.DataBind();
-                
-                try
-                {
-                    SolicitudIDHidden.Value = Request.QueryString["s"].ToString();
-                    _SolicitudId = SolicitudIDHidden.Value;
-                    SelectCiudadanosAgregados(int.Parse(SolicitudIDHidden.Value));
-                    SolicitudLabel.Text = SolicitudIDHidden.Value;
-                    SolicitudLabelSearch.Text = SolicitudIDHidden.Value;
-                }
-                catch (Exception Exception)
-                {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + Exception.Message + "', 'Fail', true);", true);
-                }
+               // Tomar el ciudadano (en este caso viene de Registro de ciudadano)
+               if (this.Request.QueryString["c"] != null){
+                  AgregaCiudadanoASolicitud(this.Request.QueryString["c"].ToString());
+               }
+
+            }catch (Exception Exception){
+               ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + Exception.Message + "', 'Fail', true);", true);
             }
+            
         }
 
         protected void BuscarCiudadano(string Nombre, string Paterno, string Materno, string Calle, int PaisId, int EstadoId, int CiudadId, int ColoniaId, string CampoBusqueda)
@@ -178,27 +192,33 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        protected void SelectCiudadanosAgregados(int SolicitudId)
-        {
+        protected void SelectCiudadanosAgregados(int SolicitudId){
             BPCiudadano BPCiudadano = new BPCiudadano();
 
             BPCiudadano.ENTCiudadano.SolicitudId = SolicitudId;
             BPCiudadano.SelectCiudadanosAgregados();
 
-            if (BPCiudadano.ErrorId == 0)
-            {
-                if (BPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows.Count > 0)
-                {
-                    gvCiudadanosAgregados.DataSource = BPCiudadano.ENTCiudadano.ResultData;
-                    gvCiudadanosAgregados.DataBind();
-                }
-                else {
-
-                    gvCiudadanosAgregados.DataSource = null;
-                    gvCiudadanosAgregados.DataBind();
-                
-                }
+            // Validaciones
+            if (BPCiudadano.ErrorId != 0){
+               return;
             }
+
+            // Listado de ciudadanos
+            if (BPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows.Count > 0){
+
+               gvCiudadanosAgregados.DataSource = BPCiudadano.ENTCiudadano.ResultData;
+               gvCiudadanosAgregados.DataBind();
+            }else{
+
+               gvCiudadanosAgregados.DataSource = null;
+               gvCiudadanosAgregados.DataBind();
+
+            }
+
+            // Número de solicitud
+            SolicitudLabel.Text = BPCiudadano.ENTCiudadano.ResultData.Tables[1].Rows[0]["Numero"].ToString();
+            SolicitudLabelSearch.Text = BPCiudadano.ENTCiudadano.ResultData.Tables[1].Rows[0]["Numero"].ToString();
+
         }
 
         protected void SelectColonia()
@@ -411,15 +431,47 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             pnlBusquedaSimple.Visible = false;
         }
 
-        protected void gvCiudadano_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
+        protected void gvCiudadano_RowDataBound(object sender, GridViewRowEventArgs e){
+			
+			   try{
 
+               // Validación de que sea fila
+               if (e.Row.RowType != DataControlRowType.DataRow) { return; }
 
+				   // Puntero y Sombra en fila Over
+				   e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over';");
+
+				   // Puntero y Sombra en fila Out
+				   e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "';");
+				
+			   }catch (Exception ex){
+				   throw (ex);
+			   }
         }
 
-        protected void gvCiudadano_Sorting(object sender, GridViewSortEventArgs e)
-        {
+        protected void gvCiudadano_Sorting(object sender, GridViewSortEventArgs e){
+            DataTable tblCiudadano = null;
+			   DataView viewCiudadano = null;
+			
+			   try{
 
+				   // Obtener DataTable y DataView del GridView
+               tblCiudadano = utilFunction.ParseGridViewToDataTable(this.gvCiudadano, true);
+				   viewCiudadano = new DataView(tblCiudadano);
+
+				   // Determinar ordenamiento
+				   this.hddSort.Value = (this.hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
+
+				   // Ordenar vista
+				   viewCiudadano.Sort = this.hddSort.Value;
+
+				   // Vaciar datos
+               this.gvCiudadano.DataSource = viewCiudadano;
+               this.gvCiudadano.DataBind();
+				
+			   }catch (Exception ex){
+               ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+			   }
         }
 
         protected void btnRegresar_Click(object sender, EventArgs e)
@@ -427,5 +479,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             string sSolicitudId = SolicitudIDHidden.Value;
             Response.Redirect("~/Application/WebApp/Private/Operation/opeDetalleSolicitud.aspx?s=" + sSolicitudId);
         }
+
+        protected void btnNuevoCiudadano_Click(object sender, EventArgs e){
+           string sSolicitudId = SolicitudIDHidden.Value;
+           Response.Redirect("~/Application/WebApp/Private/Operation/opeRegistroCiudadano.aspx?acs=" + sSolicitudId);
+        }
+
     }
 }

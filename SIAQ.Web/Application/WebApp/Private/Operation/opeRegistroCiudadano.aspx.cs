@@ -83,10 +83,18 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        protected void btnRegresar_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Application/WebApp/Private/Operation/opeBusquedaCiudadano.aspx");
-        }
+         protected void btnRegresar_Click(object sender, EventArgs e){
+
+            // Si la pantalla fue invocada desde la pantalla de agregar ciudadanos a la solicitud (opeAgregarCiudadanosSol) regresar pasándo el CiudadanoId generado
+            if (this.hddSolicitudId.Value != ""){
+
+               Response.Redirect("~/Application/WebApp/Private/Operation/opeAgregarCiudadanosSol.aspx?s=" + this.hddSolicitudId.Value, false);
+            }else{
+
+               Response.Redirect("~/Application/WebApp/Private/Operation/opeBusquedaCiudadano.aspx");
+            }
+            
+         }
 
         #endregion
 

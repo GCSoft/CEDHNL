@@ -516,13 +516,18 @@
                         </tr>
                     </table>
                 </asp:Panel>
+               
+            </td>
+        </tr>
+        <tr>
+            <td style="left: 0px; height: 100%;	position:fixed; top: 0px !important; width: 100%; z-index:900">
                 <asp:Panel ID="pnlAction" runat="server" CssClass="ActionBlock" Visible="false">
                     <asp:Panel ID="pnlActionContent" runat="server" CssClass="ActionContent" Style="top: 200px;"
                         Height="400px" Width="800px">
                         <asp:Panel ID="pnlActionHeader" runat="server" CssClass="ActionHeader">
-                            <table border="0" cellpadding="0" cellspacing="0" style="height: 100%; width: 100%">
+                            <table border="0" cellpadding="0" cellspacing="0" style="height: 100%; width: 100%;">
                                 <tr>
-                                    <td style="width: 10px">
+                                    <td style="width: 10px;">
                                     </td>
                                     <td style="text-align: left;">
                                         <asp:Label ID="lblActionTitle" runat="server" CssClass="ActionHeaderTitle" Text="Asunto de la solicitud"></asp:Label>
@@ -531,7 +536,7 @@
                                         <asp:ImageButton ID="imgCloseWindow" runat="server" ImageUrl="~/Include/Image/Buttons/CloseWindow.png"
                                             ToolTip="Cerrar Ventana" OnClick="imgCloseWindow_Click"></asp:ImageButton>
                                     </td>
-                                    <td style="width: 10px">
+                                    <td style="width: 10px;">
                                     </td>
                                 </tr>
                             </table>
@@ -568,9 +573,7 @@
                             </div>
                         </asp:Panel>
                     </asp:Panel>
-                    <ajaxToolkit:DragPanelExtender ID="dragPanelAction" runat="server" TargetControlID="pnlAction"
-                        DragHandleID="pnlActionHeader">
-                    </ajaxToolkit:DragPanelExtender>
+                    <%--DDD--%>
                 </asp:Panel>
             </td>
         </tr>

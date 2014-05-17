@@ -1,8 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master"
-    AutoEventWireup="true" CodeBehind="opeDetalleExpedienteTitular.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeDetalleExpedienteTitular" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeDetalleExpedienteTitular.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeDetalleExpedienteTitular" %>
 
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
     <script type="text/javascript">
 
@@ -449,9 +449,7 @@
                                             </div>
                                         </asp:Panel>
                                     </asp:Panel>
-                                    <ajaxToolkit:DragPanelExtender ID="dragPanelAction" runat="server" TargetControlID="pnlAction"
-                                        DragHandleID="pnlActionHeader">
-                                    </ajaxToolkit:DragPanelExtender>
+                                    
                                 </asp:Panel>
                             </td>
                         </tr>

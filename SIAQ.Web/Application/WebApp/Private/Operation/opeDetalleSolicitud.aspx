@@ -1,8 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master"
-    AutoEventWireup="true" CodeBehind="opeDetalleSolicitud.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeDetalleSolicitud" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeDetalleSolicitud.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeDetalleSolicitud" %>
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
@@ -304,8 +303,7 @@
         <div class="SolicitudComentarioDiv">
             <div style="text-align: left;">
                 Comentarios &nbsp;&nbsp;
-                <asp:LinkButton ID="lnkAgregarComentario" runat="server" CssClass="LinkButton_Regular"
-                    Text="Agregar comentario" OnClick="lnkAgregarComentario_Click"></asp:LinkButton>
+                <asp:LinkButton ID="lnkAgregarComentario" runat="server" CssClass="LinkButton_Regular" Text="Agregar comentario" OnClick="lnkAgregarComentario_Click"></asp:LinkButton>
             </div>
             <div class="TituloDiv">
                 <asp:Label ID="ComentarioTituloLabel" runat="server" Text=""></asp:Label></div>
@@ -362,8 +360,7 @@
         </table>
     </div>
     <asp:Panel ID="pnlAction" runat="server" CssClass="ActionBlock" Visible="false">
-        <asp:Panel ID="pnlActionContent" runat="server" CssClass="ActionContent" Style="top: 200px;"
-            Height="400px" Width="800px">
+        <asp:Panel ID="pnlActionContent" runat="server" CssClass="ActionContent" Style="top:180px;" Height="400px" Width="800px">
             <asp:Panel ID="pnlActionHeader" runat="server" CssClass="ActionHeader">
                 <table border="0" cellpadding="0" cellspacing="0" style="height: 100%; width: 100%">
                     <tr>
@@ -413,9 +410,7 @@
                 </div>
             </asp:Panel>
         </asp:Panel>
-        <ajaxToolkit:DragPanelExtender ID="dragPanelAction" runat="server" TargetControlID="pnlAction"
-            DragHandleID="pnlActionHeader">
-        </ajaxToolkit:DragPanelExtender>
+        <%--<ajaxToolkit:DragPanelExtender ID="dragPanelAction" runat="server" TargetControlID="pnlAction" DragHandleID="pnlActionHeader"></ajaxToolkit:DragPanelExtender>--%>
     </asp:Panel>
     <asp:HiddenField ID="SolicitudIdHidden" runat="server" Value="0" />
     <asp:HiddenField ID="hddSort" runat="server" Value="NumeroSol" />

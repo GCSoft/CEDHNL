@@ -1,4 +1,14 @@
-﻿using System;
+﻿/*---------------------------------------------------------------------------------------------------------------------------------
+' Nombre:	opeAgregarAutoridaSenalada
+' Autor:		Ruben.Cobos
+' Fecha:		27-Octubre-2013
+'
+' Modificación:
+'           Se reconstruyó la pantalla reutilizando los métodos existentes
+'----------------------------------------------------------------------------------------------------------------------------------*/
+
+// Referencias
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,31 +18,156 @@ using GCSoft.Utilities.Common;
 using System.Data;
 using System.Text.RegularExpressions;
 
+// Referencias manuales
+using GCSoft.Utilities.Common;
+using GCSoft.Utilities.Security;
 using SIAQ.Entity.Object;
 using SIAQ.BusinessProcess.Object;
 
 namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
-    public partial class opeAgregarAutoridaSenalada : System.Web.UI.Page
-    {
+   public partial class opeAgregarAutoridaSenalada : System.Web.UI.Page
+   {
 
-        #region Atributos
+      // Utilerías
+      Function utilFunction = new Function();
+      Encryption utilEncryption = new Encryption();
 
-        public string _SolicitudId;
-        Function utilFunction = new Function();
+      
+      // Rutinas del programador
 
-        #endregion
+      private void ComboAutoridadPrimerNivel(){
+         BPAutoridad oBPAutoridad = new BPAutoridad();
 
-        #region Propiedades
+         oBPAutoridad.AutoridadEntity.AutoridadIdPadrePrimerNivel = 0;
+         oBPAutoridad.AutoridadEntity.AutoridadIdPadreSegundoNivel = 0;
+         oBPAutoridad.SelectNivelesAutoridad();
 
-        #endregion
+         if (oBPAutoridad.ErrorId == 0){
+            if (oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows.Count > 0){
+               ddlPrimerNivel.DataSource = oBPAutoridad.AutoridadEntity.dsResponse.Tables[0];
+               ddlPrimerNivel.DataTextField = "Nombre";
+               ddlPrimerNivel.DataValueField = "AutoridadId";
+               ddlPrimerNivel.DataBind();
+            }
+         }
+      }
+
+      private void ComboAutoridadSegundoNivel(){
+         BPAutoridad oBPAutoridad = new BPAutoridad();
+
+         oBPAutoridad.AutoridadEntity.AutoridadIdPadrePrimerNivel = Convert.ToInt32(ddlPrimerNivel.SelectedValue);
+         oBPAutoridad.AutoridadEntity.AutoridadIdPadreSegundoNivel = 0;
+         oBPAutoridad.SelectNivelesAutoridad();
+
+         if (oBPAutoridad.ErrorId == 0){
+            if (oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows.Count > 0){
+               ddlSegundoNivel.DataSource = oBPAutoridad.AutoridadEntity.dsResponse.Tables[1];
+               ddlSegundoNivel.DataTextField = "Nombre";
+               ddlSegundoNivel.DataValueField = "AutoridadId";
+               ddlSegundoNivel.DataBind();
+            }
+         }
+      }
+
+      private void ComboAutoridadTercerNivel(){
+         BPAutoridad oBPAutoridad = new BPAutoridad();
+
+         oBPAutoridad.AutoridadEntity.AutoridadIdPadrePrimerNivel = Convert.ToInt32(ddlPrimerNivel.SelectedValue);
+         oBPAutoridad.AutoridadEntity.AutoridadIdPadreSegundoNivel = Convert.ToInt32(ddlSegundoNivel.SelectedValue);
+         oBPAutoridad.SelectNivelesAutoridad();
+
+         if (oBPAutoridad.ErrorId == 0){
+            if (oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows.Count > 0){
+               ddlTercerNivel.DataSource = oBPAutoridad.AutoridadEntity.dsResponse.Tables[2];
+               ddlTercerNivel.DataTextField = "Nombre";
+               ddlTercerNivel.DataValueField = "AutoridadId";
+               ddlTercerNivel.DataBind();
+            }
+         }
+      }
+
+      private void LlenarGridAutoridades(int SolicitudId){
+         BPSolicitud oBPSolicitud = new BPSolicitud();
+
+         oBPSolicitud.SolicitudEntity.SolicitudId = SolicitudId;
+         oBPSolicitud.SelectSolicitudAutoridad();
+
+         // Validaciones
+         if (oBPSolicitud.ErrorId != 0){
+            gvAutoridades.DataSource = null;
+            gvAutoridades.DataBind();
+            return;
+         }
+
+         // Listado de autoridades
+         if (oBPSolicitud.SolicitudEntity.ResultData.Tables[0].Rows.Count > 0)
+         {
+
+            gvAutoridades.DataSource = oBPSolicitud.SolicitudEntity.ResultData;
+            gvAutoridades.DataBind();
+         }else{
+
+            gvAutoridades.DataSource = null;
+            gvAutoridades.DataBind();
+         }
+
+         // Número de solicitud
+         SolicitudLabel.Text = oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["Numero"].ToString();
+
+      }
+
+
+      
+      // Eventos de la página
+
+      protected void Page_Load(object sender, EventArgs e){
+
+         if (Page.IsPostBack) { return; }
+
+         // Lógica de la página
+         String sKey = "";
+
+         try
+         {
+
+            // Validación
+            if (this.Request.QueryString["s"] == null){
+               sKey = utilEncryption.EncryptString("[V02] No tiene permisos para acceder a esta página", true);
+               this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx?key=" + sKey, true);
+            }
+
+            // Obtener SolicitudId
+            SolicitudIdHidden.Value = Request.QueryString["s"].ToString();
+
+            // Llenado de controles
+            ComboAutoridadPrimerNivel();
+            ComboAutoridadSegundoNivel();
+            ComboAutoridadTercerNivel();
+
+            LlenarGridAutoridades(Convert.ToInt32(SolicitudIdHidden.Value));
+
+         }catch (Exception ex){
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+         }
+      }
+
+      protected void AgregarAutoridadButton_Click(object sender, EventArgs e){
+         //Abrir popup
+         ddlPrimerNivel.Enabled = true;
+         ddlSegundoNivel.Enabled = true;
+         ddlTercerNivel.Enabled = true;
+         hdnAutoridadId.Value = String.Empty;
+         btnAgregar.Text = "Agregar autoridad";
+         pnlAction.Visible = true;
+      }
+        
+
+        
 
         #region Eventos
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            PageLoad();
-        }
+       
 
         #region "Combobox"
 
@@ -384,16 +519,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         #region "LinkButton"
 
-        protected void AgregarAutoridadButton_Click(object sender, EventArgs e)
-        {
-            //Abrir popup
-            ddlPrimerNivel.Enabled = true;
-            ddlSegundoNivel.Enabled = true;
-            ddlTercerNivel.Enabled = true;
-            hdnAutoridadId.Value = String.Empty;
-            btnAgregar.Text = "Agregar autoridad";
-            pnlAction.Visible = true;
-        }
+        
 
         protected void lnkAgregarVoces_Click(object sender, EventArgs e)
         {
@@ -409,118 +535,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         #region Funciones
 
-        private void PageLoad()
-        {
-
-            if (!this.Page.IsPostBack)
-            {
-                try
-                {
-                    _SolicitudId = Request.QueryString["s"].ToString();
-                    SolicitudLabel.Text = _SolicitudId;
-                    SolicitudIdHidden.Value = _SolicitudId;
-
-                    ComboAutoridadPrimerNivel();
-                    ComboAutoridadSegundoNivel();
-                    ComboAutoridadTercerNivel();
-
-                    LlenarGridAutoridades(Convert.ToInt32(SolicitudIdHidden.Value));
-                }
-                catch (Exception Exception)
-                {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + Exception.Message + "', 'Fail', true);", true);
-                }
-            }
-        }
+       
 
         #region "Autoridades"
 
-        private void ComboAutoridadPrimerNivel()
-        {
-            BPAutoridad oBPAutoridad = new BPAutoridad();
+        
 
-            oBPAutoridad.AutoridadEntity.AutoridadIdPadrePrimerNivel = 0;
-            oBPAutoridad.AutoridadEntity.AutoridadIdPadreSegundoNivel = 0;
-            oBPAutoridad.SelectNivelesAutoridad();
-
-            if (oBPAutoridad.ErrorId == 0)
-            {
-                if (oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows.Count > 0)
-                {
-                    ddlPrimerNivel.DataSource = oBPAutoridad.AutoridadEntity.dsResponse.Tables[0];
-                    ddlPrimerNivel.DataTextField = "Nombre";
-                    ddlPrimerNivel.DataValueField = "AutoridadId";
-                    ddlPrimerNivel.DataBind();
-                }
-            }
-        }
-
-        private void ComboAutoridadSegundoNivel()
-        {
-            BPAutoridad oBPAutoridad = new BPAutoridad();
-
-            oBPAutoridad.AutoridadEntity.AutoridadIdPadrePrimerNivel = Convert.ToInt32(ddlPrimerNivel.SelectedValue);
-            oBPAutoridad.AutoridadEntity.AutoridadIdPadreSegundoNivel = 0;
-            oBPAutoridad.SelectNivelesAutoridad();
-
-            if (oBPAutoridad.ErrorId == 0)
-            {
-                if (oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows.Count > 0)
-                {
-                    ddlSegundoNivel.DataSource = oBPAutoridad.AutoridadEntity.dsResponse.Tables[1];
-                    ddlSegundoNivel.DataTextField = "Nombre";
-                    ddlSegundoNivel.DataValueField = "AutoridadId";
-                    ddlSegundoNivel.DataBind();
-                }
-            }
-        }
-
-        private void ComboAutoridadTercerNivel()
-        {
-            BPAutoridad oBPAutoridad = new BPAutoridad();
-
-            oBPAutoridad.AutoridadEntity.AutoridadIdPadrePrimerNivel = Convert.ToInt32(ddlPrimerNivel.SelectedValue);
-            oBPAutoridad.AutoridadEntity.AutoridadIdPadreSegundoNivel = Convert.ToInt32(ddlSegundoNivel.SelectedValue);
-            oBPAutoridad.SelectNivelesAutoridad();
-
-            if (oBPAutoridad.ErrorId == 0)
-            {
-                if (oBPAutoridad.AutoridadEntity.dsResponse.Tables[0].Rows.Count > 0)
-                {
-                    ddlTercerNivel.DataSource = oBPAutoridad.AutoridadEntity.dsResponse.Tables[2];
-                    ddlTercerNivel.DataTextField = "Nombre";
-                    ddlTercerNivel.DataValueField = "AutoridadId";
-                    ddlTercerNivel.DataBind();
-                }
-            }
-        }
-
-        private void LlenarGridAutoridades(int SolicitudId)
-        {
-            BPSolicitud oBPSolicitud = new BPSolicitud();
-
-            oBPSolicitud.SolicitudEntity.SolicitudId = SolicitudId;
-            oBPSolicitud.SelectSolicitudAutoridad();
-
-            if (oBPSolicitud.ErrorId == 0)
-            {
-                if (oBPSolicitud.SolicitudEntity.ResultData.Tables[0].Rows.Count > 0)
-                {
-                    gvAutoridades.DataSource = oBPSolicitud.SolicitudEntity.ResultData;
-                    gvAutoridades.DataBind();
-                }
-                else
-                {
-                    gvAutoridades.DataSource = null;
-                    gvAutoridades.DataBind();
-                }
-            }
-            else
-            {
-                gvAutoridades.DataSource = null;
-                gvAutoridades.DataBind();
-            }
-        }
+      
 
         private void BorrarAutoridad(int autoridadId, int solicitudId)
         {

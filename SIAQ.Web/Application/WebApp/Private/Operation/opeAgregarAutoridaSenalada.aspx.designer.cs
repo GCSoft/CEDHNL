@@ -283,15 +283,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.Button btnRegresarPop;
         
         /// <summary>
-        /// dragPanelAction control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.DragPanelExtender dragPanelAction;
-        
-        /// <summary>
         /// pnlVocesPop control.
         /// </summary>
         /// <remarks>
@@ -389,15 +380,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnRegresarPopVoz;
-        
-        /// <summary>
-        /// DragPanelExtender1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.DragPanelExtender DragPanelExtender1;
         
         /// <summary>
         /// SolicitudIdHidden control.

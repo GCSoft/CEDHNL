@@ -22,22 +22,31 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.Label SolicitudLabel;
         
         /// <summary>
-        /// ddlCalificacion control.
+        /// CalificacionList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCalificacion;
+        protected global::System.Web.UI.WebControls.DropDownList CalificacionList;
         
         /// <summary>
-        /// ddlCierre control.
+        /// CeldaCierre control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCierre;
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow CeldaCierre;
+        
+        /// <summary>
+        /// CierreList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList CierreList;
         
         /// <summary>
         /// CeldaCanalizado control.
@@ -49,31 +58,49 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.HtmlControls.HtmlTableRow CeldaCanalizado;
         
         /// <summary>
-        /// ddlCanalizado control.
+        /// CanalizadoList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCanalizado;
+        protected global::System.Web.UI.WebControls.DropDownList CanalizadoList;
         
         /// <summary>
-        /// CeldaFundamento control.
+        /// AgregarButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableRow CeldaFundamento;
+        protected global::System.Web.UI.WebControls.Button AgregarButton;
         
         /// <summary>
-        /// TextBoxFundamento control.
+        /// CeldaGrid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxFundamento;
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow CeldaGrid;
+        
+        /// <summary>
+        /// CanalizacionGrid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView CanalizacionGrid;
+        
+        /// <summary>
+        /// FundamentoBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox FundamentoBox;
         
         /// <summary>
         /// Button1 control.

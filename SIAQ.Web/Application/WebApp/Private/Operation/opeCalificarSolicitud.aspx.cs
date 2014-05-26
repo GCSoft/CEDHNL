@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -7,190 +9,242 @@ using System.Web.UI.WebControls;
 
 using SIAQ.BusinessProcess.Object;
 using SIAQ.BusinessProcess.Page;
-using System.Configuration;
 using SIAQ.Entity.Object;
+
+using GCSoft.Utilities.Common;
 
 namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
     public partial class opeCalificarSolicitud : System.Web.UI.Page
     {
         string AllDefault = "-- Seleccione --";
+        Function utilFunction = new Function();
 
         public string _SolicitudId;
 
         #region "Events"
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            PageLoad();
-        }
-        protected void GuardarCalificacionSol_Click(object sender, EventArgs e)
-        {
-            GuardarCalificacionSol();
-        }
-        protected void btnCancelar_Click(object sender, EventArgs e)
-        {
-            string sSolicitudId = SolicitudIdHidden.Value;
-            Response.Redirect("~/Application/WebApp/Private/Operation/opeDetalleSolicitud.aspx?s=" + sSolicitudId);
-        }
+            protected void AgregarButton_Click(object sender, EventArgs e)
+            {
+                AgregarCanalizacion(int.Parse(CanalizadoList.SelectedValue), CanalizadoList.SelectedItem.Text);
+            }
+
+            protected void btnCancelar_Click(object sender, EventArgs e)
+            {
+                string sSolicitudId = SolicitudIdHidden.Value;
+                Response.Redirect("~/Application/WebApp/Private/Operation/opeDetalleSolicitud.aspx?s=" + sSolicitudId);
+            }
+
+            protected void CalificacionList_SelectedIndexChanged(Object sender, EventArgs e)
+            {
+                CalificacionListSelectedIndexChanged();
+            }
+
+            protected void CierreList_SelectedIndexChanged(Object sender, EventArgs e)
+            {
+                CierreListSelectedIndexChanged();
+            }
+
+            protected void GuardarCalificacionSol_Click(object sender, EventArgs e)
+            {
+                GuardarCalificacionSol();
+            }
+
+            protected void Page_Load(object sender, EventArgs e)
+            {
+                PageLoad();
+            }
         #endregion
 
         #region "Methods"
-        private void PageLoad()
-        {
-
-            int SolicitudId = 0;
-
-            if (!this.Page.IsPostBack)
+            private void AgregarCanalizacion(int CanalizacionId, string NombreCanalizacion)
             {
-                SelectCalificacion();
-                SelectOrientacion();
-                SelectCanalizacion();
+                DataRow Row = null;
+                DataTable CanalizacionTable = null;
 
-                try
+                if (ValidarCanalizacion(CanalizacionId))
                 {
-                    SolicitudId = int.Parse(Request.QueryString["s"].ToString());
+                    CanalizacionTable = utilFunction.ParseGridViewToDataTable(this.CanalizacionGrid, false);
 
-                    _SolicitudId = SolicitudId.ToString();
-                    SolicitudLabel.Text = _SolicitudId;
-                    SolicitudIdHidden.Value = _SolicitudId;
+                    Row = CanalizacionTable.NewRow();
 
-                }
-                catch (Exception Exception)
-                {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + Exception.Message + "', 'Fail', true);", true);
+                    Row["TipoOrientacionId"] = CanalizacionId;
+                    Row["Nombre"] = NombreCanalizacion;
+
+                    CanalizacionTable.Rows.Add(Row);
+
+                    CanalizacionGrid.DataSource = CanalizacionTable;
+                    CanalizacionGrid.DataBind();
+
+                    CeldaGrid.Visible = true;
                 }
             }
-        }
-        /*
-        * solo cuando se seleccione la opción de Orientación
-        * se van a mostrar los campos Cierre de orientación y Canalizado
-        */
-        public void Orientacion_OnSelectedIndexChanged(Object sender, EventArgs e)
-        {
 
-            if (int.Parse(ddlCierre.SelectedValue) != 0)
+            private void GuardarCalificacionSol()
             {
+                ENTSession SessionEntity = new ENTSession();
 
-                CeldaCanalizado.Visible = true;
-                CeldaFundamento.Visible = true;
+                SessionEntity = (ENTSession)Session["oENTSession"];
+
+                if (this.CalificacionList.SelectedValue == "0")
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo de Calificacion es obligatorio ', 'Fail', true); focusControl('" + this.CalificacionList.ClientID + "');", true);
+                    return;
+                }
+
+                if (this.CierreList.SelectedValue != "0")
+                {
+
+                    if (this.CanalizadoList.SelectedValue == "0")
+                    {
+                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo de Canalizado es obligatorio ', 'Fail', true); focusControl('" + this.CanalizadoList.ClientID + "');", true);
+                        return;
+                    }
+
+                    if (this.FundamentoBox.Text == "")
+                    {
+                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo de Canalizado es obligatorio ', 'Fail', true); focusControl('" + this.CanalizadoList.ClientID + "');", true);
+                        return;
+                    }
+                }
+
+                GuardarCalificacionSol(SessionEntity.idUsuario, int.Parse(SolicitudIdHidden.Value), FundamentoBox.Text, int.Parse(CanalizadoList.SelectedValue), int.Parse(CalificacionList.SelectedValue), int.Parse(CierreList.SelectedValue));
             }
 
-            else
+            private void GuardarCalificacionSol(int IdUsuarioInsert, int SolicitudId, string Fundamento, int CanalizacionId, int CalificacionId, int CierreOrientacionId)
             {
 
+                BPSolicitud BPSolicitud = new BPSolicitud();
+
+                BPSolicitud.SolicitudEntity.idUsuarioInsert = IdUsuarioInsert;
+                BPSolicitud.SolicitudEntity.SolicitudId = SolicitudId;
+                BPSolicitud.SolicitudEntity.Fundamento = Fundamento;
+                BPSolicitud.SolicitudEntity.CanalizacionId = CanalizacionId;
+                BPSolicitud.SolicitudEntity.CalificacionId = CalificacionId;
+                BPSolicitud.SolicitudEntity.CierreOrientacionId = CierreOrientacionId;
+
+                BPSolicitud.GuardarCalificacionSol();
+                if (BPSolicitud.ErrorId == 0)
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('La Calificacion se ha dado de alta correctamente ', 'Success', true);", true);
+                    LimpiarCampos();
+                    Button1.Enabled = false;
+                }
+                else
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + BPSolicitud.ErrorDescription + "', 'Error', true);", true);
+            }
+
+            private void LimpiarCampos()
+            {
+                CalificacionList.SelectedIndex = 0;
+                CierreList.SelectedIndex = 0;
                 CeldaCanalizado.Visible = false;
-                CeldaFundamento.Visible = false;
+
+                CalificacionList.Focus();
             }
 
-        }
-
-        protected void SelectCalificacion()
-        {
-
-            BPCalificacion BPCalificacion = new BPCalificacion();
-
-            ddlCalificacion.DataValueField = "CalificacionId";
-            ddlCalificacion.DataTextField = "Nombre";
-
-            ddlCalificacion.DataSource = BPCalificacion.SelectCalificacion();
-            ddlCalificacion.DataBind();
-            ddlCalificacion.Items.Insert(0, new ListItem(AllDefault, "0"));
-
-
-        }
-        protected void SelectOrientacion()
-        {
-
-            BPTipoOrientacion BPTipoOrientacion = new BPTipoOrientacion();
-
-            ddlCierre.DataValueField = "TipoOrientacionId";
-            ddlCierre.DataTextField = "Nombre";
-
-            ddlCierre.DataSource = BPTipoOrientacion.SelectTipoOrientacion();
-            ddlCierre.DataBind();
-            ddlCierre.Items.Insert(0, new ListItem(AllDefault, "0"));
-        }
-
-        protected void SelectCanalizacion()
-        {
-
-            BPCanalizacion BPCanalizacion = new BPCanalizacion();
-
-            ddlCanalizado.DataValueField = "CanalizacionId";
-            ddlCanalizado.DataTextField = "Nombre";
-
-            ddlCanalizado.DataSource = BPCanalizacion.SelectCanalizacion();
-            ddlCanalizado.DataBind();
-            ddlCanalizado.Items.Insert(0, new ListItem(AllDefault, "0"));
-        }
-
-        protected void GuardarCalificacionSol()
-        {
-
-            ENTSession SessionEntity = new ENTSession();
-
-            SessionEntity = (ENTSession)Session["oENTSession"];
-
-            if (this.ddlCalificacion.SelectedValue == "0")
+            private void CalificacionListSelectedIndexChanged()
             {
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo de Calificacion es obligatorio ', 'Fail', true); focusControl('" + this.ddlCalificacion.ClientID + "');", true);
-                return;
-            }
-
-            if (this.ddlCierre.SelectedValue != "0")
-            {
-
-                if (this.ddlCanalizado.SelectedValue == "0")
+                // ToDo: solo se debe mostrar esta información cuando la calificación es una orientación
+                if (int.Parse(CalificacionList.SelectedValue) == 3)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo de Canalizado es obligatorio ', 'Fail', true); focusControl('" + this.ddlCanalizado.ClientID + "');", true);
-                    return;
+                    CeldaCierre.Visible = true;
                 }
-
-                if (this.TextBoxFundamento.Text == "")
+                else
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo de Canalizado es obligatorio ', 'Fail', true); focusControl('" + this.ddlCanalizado.ClientID + "');", true);
-                    return;
+                    CeldaCierre.Visible = false;
+                    CeldaCanalizado.Visible = false;
                 }
             }
 
-            GuardarCalificacionSol(SessionEntity.idUsuario, int.Parse(SolicitudIdHidden.Value), TextBoxFundamento.Text, int.Parse(ddlCanalizado.SelectedValue), int.Parse(ddlCalificacion.SelectedValue), int.Parse(ddlCierre.SelectedValue));
-        }
-
-        protected void GuardarCalificacionSol(int IdUsuarioInsert, int SolicitudId, string Fundamento, int CanalizacionId, int CalificacionId, int CierreOrientacionId)
-        {
-
-            BPSolicitud BPSolicitud = new BPSolicitud();
-
-            BPSolicitud.SolicitudEntity.idUsuarioInsert = IdUsuarioInsert;
-            BPSolicitud.SolicitudEntity.SolicitudId = SolicitudId;
-            BPSolicitud.SolicitudEntity.Fundamento = Fundamento;
-            BPSolicitud.SolicitudEntity.CanalizacionId = CanalizacionId;
-            BPSolicitud.SolicitudEntity.CalificacionId = CalificacionId;
-            BPSolicitud.SolicitudEntity.CierreOrientacionId = CierreOrientacionId;
-
-            BPSolicitud.GuardarCalificacionSol();
-            if (BPSolicitud.ErrorId == 0)
+            private void CierreListSelectedIndexChanged()
             {
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('La Calificacion se ha dado de alta correctamente ', 'Success', true);", true);
-                LimpiarCampos();
-                Button1.Enabled = false;
+                // ToDo: solo se debe mostrar esta información cuando la calificación es una orientación
+                if (int.Parse(CalificacionList.SelectedValue) == 3)
+                    CeldaCanalizado.Visible = true;
+                else
+                    CeldaCanalizado.Visible = false;
             }
-            else
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + BPSolicitud.ErrorDescription + "', 'Error', true);", true);
 
-        }
+            private void PageLoad()
+            {
+                int SolicitudId = 0;
 
-        protected void LimpiarCampos()
-        {
-            ddlCalificacion.SelectedIndex = 0;
-            ddlCierre.SelectedIndex = 0;
-            CeldaCanalizado.Visible = false;
-            CeldaFundamento.Visible = false;
+                if (!this.Page.IsPostBack)
+                {
+                    SelectCalificacion();
+                    SelectOrientacion();
+                    SelectCanalizacion();
 
-            ddlCalificacion.Focus();
-        }
+                    try
+                    {
+                        SolicitudId = int.Parse(Request.QueryString["s"].ToString());
 
+                        _SolicitudId = SolicitudId.ToString();
+                        SolicitudLabel.Text = _SolicitudId;
+                        SolicitudIdHidden.Value = _SolicitudId;
+                    }
+                    catch (Exception Exception)
+                    {
+                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + Exception.Message + "', 'Fail', true);", true);
+                    }
+                }
+            }
+
+            private void SelectCalificacion()
+            {
+                BPCalificacion BPCalificacion = new BPCalificacion();
+
+                CalificacionList.DataValueField = "CalificacionId";
+                CalificacionList.DataTextField = "Nombre";
+
+                CalificacionList.DataSource = BPCalificacion.SelectCalificacion();
+                CalificacionList.DataBind();
+                CalificacionList.Items.Insert(0, new ListItem(AllDefault, "0"));
+            }
+
+            private void SelectCanalizacion()
+            {
+                BPCanalizacion BPCanalizacion = new BPCanalizacion();
+
+                CanalizadoList.DataValueField = "CanalizacionId";
+                CanalizadoList.DataTextField = "Nombre";
+
+                CanalizadoList.DataSource = BPCanalizacion.SelectCanalizacion();
+                CanalizadoList.DataBind();
+                CanalizadoList.Items.Insert(0, new ListItem(AllDefault, "0"));
+            }
+
+            private void SelectOrientacion()
+            {
+                BPTipoOrientacion BPTipoOrientacion = new BPTipoOrientacion();
+
+                CierreList.DataValueField = "TipoOrientacionId";
+                CierreList.DataTextField = "Nombre";
+
+                CierreList.DataSource = BPTipoOrientacion.SelectTipoOrientacion();
+                CierreList.DataBind();
+                CierreList.Items.Insert(0, new ListItem(AllDefault, "0"));
+            }
+
+            private bool ValidarCanalizacion(int CanalizacionId)
+            {
+                if (CanalizacionId == 0)
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Debe seleccionar una opción de canalización', 'Error', true);", true);
+                    return false;
+                }
+
+                foreach (GridViewRow Row in CanalizacionGrid.Rows)
+                {
+                    if (CanalizacionId.ToString() == CanalizacionGrid.DataKeys[Row.DataItemIndex]["TipoOrientacionId"].ToString())
+                    {
+                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Esta opción de canalización ya ha sido seleccionada', 'Error', true);", true);
+                        return false;
+                    }
+                }
+
+                return true;
+            }
         #endregion
-
     }
 }

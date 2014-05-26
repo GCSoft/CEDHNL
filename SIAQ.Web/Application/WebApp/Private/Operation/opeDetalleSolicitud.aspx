@@ -37,7 +37,7 @@
             Calificar solicitud
         </asp:Panel>
         <asp:Panel CssClass="IconoPanel" ID="AutoridadPanel" runat="server" Visible="true">
-            <asp:ImageButton ID="AutoridadButton" ImageUrl="/Include/Image/Icon/GeneralIcon.png" runat="server" OnClick="AutoridadButton_Click"></asp:ImageButton><br />
+            <asp:ImageButton ID="AutoridadButton" ImageUrl="/Include/Image/Icon/AutoridadIcon.png" runat="server" OnClick="AutoridadButton_Click"></asp:ImageButton><br />
             Agegar autoridades señaladas y voces
         </asp:Panel>
         <asp:Panel CssClass="IconoPanel" ID="DiligenciasPanel" runat="server" Visible="true">
@@ -53,7 +53,7 @@
             Agregar documentos
         </asp:Panel>
         <asp:Panel CssClass="IconoPanel" ID="ImprimirPanel" runat="server" Visible="true">
-            <asp:ImageButton ID="ImprimirButton" ImageUrl="/Include/Image/Icon/DocumentoIcon.png" runat="server" onclick="ImprimirButton_Click"></asp:ImageButton><br />
+            <asp:ImageButton ID="ImprimirButton" ImageUrl="/Include/Image/Icon/ImprimirIcon.png" runat="server" onclick="ImprimirButton_Click"></asp:ImageButton><br />
             Imprimir
         </asp:Panel>
         <asp:Panel CssClass="IconoPanel" ID="EnviarPanel" runat="server" Visible="true">
@@ -255,7 +255,7 @@
                                 </table>
                             </EmptyDataTemplate>
                             <Columns>
-                                <asp:BoundField DataField="NombreCiudadano" HeaderText="Nombre"></asp:BoundField>
+                                <asp:BoundField DataField="NombreCiudadano" HeaderText="Nombre" ItemStyle-HorizontalAlign="Left"></asp:BoundField>
                                 <asp:BoundField DataField="NombreSexo" HeaderText="Sexo"></asp:BoundField>
                                 <asp:BoundField DataField="FechaNacimiento" HeaderText="Fecha nacimiento"></asp:BoundField>
                                 <asp:BoundField DataField="Domicilio" HeaderText="Funcionario"></asp:BoundField>
@@ -263,6 +263,7 @@
                                 <asp:BoundField DataField="NombreTipoCiudadano" HeaderText="Quejosos"></asp:BoundField>
                                 <asp:TemplateField HeaderText="Borrar">
                                     <ItemTemplate>
+                                        <asp:ImageButton ID="EliminarButton" CommandArgument='<%#Eval("CiudadanoId")%>' CommandName="Eliminar" ImageUrl="~/Include/Image/Buttons/Delete.png" OnClientClick="return confirm('¿En realidad desea eliminar el ciudadano?');" runat="server" />
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
@@ -302,7 +303,7 @@
         <!-- Repeater para los comentarios -->
         <div class="SolicitudComentarioDiv">
             <div style="text-align: left;">
-                Comentarios &nbsp;&nbsp;
+                Asuntos &nbsp;&nbsp;
                 <asp:LinkButton ID="lnkAgregarComentario" runat="server" CssClass="LinkButton_Regular" Text="Agregar comentario" OnClick="lnkAgregarComentario_Click"></asp:LinkButton>
             </div>
             <div class="TituloDiv">

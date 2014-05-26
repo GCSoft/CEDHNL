@@ -99,10 +99,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
             protected void gvCiudadano_RowDataBound(object sender, GridViewRowEventArgs e)
             {
-                //ImageButton imgEdit = null;
+                ImageButton EliminarButton = null;
                 //String sNumeroSolicitud = "";
-                //String sImagesAttributes = "";
-                //String sToolTip = "";
+                String sImagesAttributes = "";
+                String sToolTip = "";
 
                 try
                 {
@@ -110,25 +110,25 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     if (e.Row.RowType != DataControlRowType.DataRow) { return; }
 
                     //Obtener imagenes
-                    //imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
+                    EliminarButton = (ImageButton)e.Row.FindControl("EliminarButton");
 
                     //DataKeys
                     //sNumeroSolicitud = gvApps.DataKeys[e.Row.RowIndex]["Recomendacion"].ToString();
 
                     //Tooltip Edición
-                    //sToolTip = "Editar recomendación [" + sNumeroSolicitud + "]";
-                    //imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
-                    //imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
-                    //imgEdit.Attributes.Add("style", "curosr:hand;");
+                    sToolTip = "Eliminar ciudadano";
+                    EliminarButton.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
+                    EliminarButton.Attributes.Add("onmouseout", "tooltip.hide();");
+                    EliminarButton.Attributes.Add("style", "curosr:hand;");
 
                     //Atributos Over
-                    //sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png';";
+                    sImagesAttributes = "document.getElementById('" + EliminarButton.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png';";
 
                     //Puntero y Sombra en fila Over
                     e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; ");
 
                     //Atributos Out
-                    //sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png';";
+                    sImagesAttributes = "document.getElementById('" + EliminarButton.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png';";
 
                     //Puntero y Sombra en fila Out
                     e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "';");

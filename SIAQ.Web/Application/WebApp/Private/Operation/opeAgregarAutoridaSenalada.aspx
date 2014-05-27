@@ -65,19 +65,29 @@
                         <EmptyDataTemplate>
                             <table border="1px" cellpadding="0px" cellspacing="0px" width="100%">
                                 <tr class="Grid_Header">
+                                    <td style="width:25px;" ></td>
                                     <td style="width:140px;">Nombre</td>
                                     <td style="width:140px;">Puesto</td>
                                     <td style="width:140px;">Autoridad N1</td>
                                     <td style="width:140px;">Autoridad N2</td>
                                     <td style="width:140px;">Autoridad N3</td>
                                     <td>Comentarios</td>
+                                    <td style="width:25px;" ></td>
                                 </tr>
                                 <tr class="Grid_Row">
-                                    <td colspan="6">No se encontraron Autoridades añadidas a la solicitud</td>
+                                    <td colspan="8">No se encontraron Autoridades añadidas a la solicitud</td>
                                 </tr>
                             </table>
                         </EmptyDataTemplate>
                         <Columns>
+                            <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle" ItemStyle-Width="25px">
+                                <HeaderTemplate>
+                                    <asp:ImageButton ID="imgSwapAll" runat="server" CommandName="SwapGridHeader" CommandArgument="-1" ImageUrl="~/Include/Image/Buttons/Collapse_Header.png" OnClick="imgSwapAll_Click" onmouseover="tooltip.show('Contraer todos los elementos', 'Der');" onmouseout="tooltip.hide();" />
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <asp:ImageButton ID="imgSwapGrid" CommandName="SwapGrid" CommandArgument="<%#Container.DataItemIndex%>" runat="server" ImageUrl="~/Include/Image/Buttons/Collapse.png" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:BoundField HeaderText="Nombre de Autoridad"    ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="140px" DataField="Nombre"      SortExpression="Nombre"></asp:BoundField>
                             <asp:BoundField HeaderText="Puesto"                 ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="140px" DataField="Puesto"      SortExpression="Puesto"></asp:BoundField>
                             <asp:BoundField HeaderText="Nivel 1 Autoridad"      ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="140px" DataField="Nivel1"      SortExpression="Nivel1"></asp:BoundField>
@@ -86,12 +96,12 @@
                             <asp:BoundField HeaderText="Comentarios"            ItemStyle-HorizontalAlign="Left"                            DataField="Comentarios" SortExpression="Comentarios"></asp:BoundField>
                             <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
                                 <ItemTemplate>
-                                    <asp:ImageButton ID="SelectButton" runat="server" CommandArgument='<%#Eval("AutoridadId")%>' CommandName="Seleccionar" ImageUrl="~/Include/Image/Buttons/AgregarVisita.png" />
+                                    <asp:ImageButton ID="EditButton" runat="server" CommandArgument='<%#Eval("AutoridadId")%>' CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
                                 <ItemTemplate>
-                                    <asp:ImageButton ID="EditButton" runat="server" CommandArgument='<%#Eval("AutoridadId")%>' CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" />
+                                    <asp:ImageButton ID="SelectButton" runat="server" CommandArgument='<%#Eval("AutoridadId")%>' CommandName="Seleccionar" ImageUrl="~/Include/Image/Buttons/AgregarVisita.png" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
@@ -99,6 +109,40 @@
                                     <asp:ImageButton ID="DeleteButton" runat="server" CommandArgument='<%#Eval("AutoridadId")%>' CommandName="Borrar" ImageUrl="~/Include/Image/Buttons/Delete.png" OnClientClick="return confirm('¿Seguro que desea eliminar esta autoridad?, Se eliminarán también sus respectivas voces señaladas.');" />
                                 </ItemTemplate>
                             </asp:TemplateField>
+                            <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle" ItemStyle-Width="25px">
+								<ItemTemplate>
+									<asp:Panel ID="pnlGridDetail" runat="server">
+										<tr>
+											<td align="center" colspan="100%" style="border:1px solid #C1C1C1">
+                                                <asp:GridView id="gvVocesDetalle" runat="server" AllowPaging="false" AllowSorting="false" AutoGenerateColumns="False" Width="800px"
+                                                    DataKeyNames="VozId">
+                                                    <alternatingrowstyle cssclass="Grid_Row_Alternating" />
+                                                    <headerstyle cssclass="Grid_Header_Action_Alternative" />
+                                                    <rowstyle cssclass="Grid_Row" />
+                                                    <EmptyDataTemplate>
+                                                        <table border="1px" cellpadding="0px" cellspacing="0px">
+															<tr class="Grid_Header_Action_Alternative">
+																<td style="text-align:center; width:266px;">Voz1</td>
+																<td style="text-align:center; width:266px;">Voz2</td>
+																<td style="text-align:center; width:268px;">Voz3</td>
+															</tr>
+															<tr class="Grid_Row">
+																<td colspan="3" style="text-align:center;">No se han agregado voces a la autoridad</td>
+															</tr>
+														</table>
+                                                    </EmptyDataTemplate>
+                                                    <Columns>
+                                                        <asp:BoundField HeaderText="Voz1" 	ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="266px"	DataField="Voz1"></asp:BoundField>
+                                                        <asp:BoundField HeaderText="Voz2" 	ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="266px"	DataField="Voz2"></asp:BoundField>
+                                                        <asp:BoundField HeaderText="Voz3"   ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="268px"	DataField="Voz3"></asp:BoundField>
+                                                    </Columns>
+                                                </asp:GridView>
+												<br />
+											</td>
+										</tr>
+									</asp:Panel>
+								</ItemTemplate>
+							</asp:TemplateField>
                         </Columns>
                     </asp:GridView>
                 </asp:Panel>

@@ -366,6 +366,29 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         }
 
+        private void LlenarGridVoces_Detalle(ref GridView grdDetalle, Int32 SolicitudId, Int32 AutoridadId){
+            BPSolicitud oBPSolicitud = new BPSolicitud();
+
+            // Estado inicial del grid
+            grdDetalle.DataSource = null;
+            grdDetalle.DataBind();
+
+            // Transacción
+            oBPSolicitud.AutoridadEntity.SolicitudId = SolicitudId;
+            oBPSolicitud.AutoridadEntity.AutoridadId = AutoridadId;
+            oBPSolicitud.SelectSolicitudAutoridadVoces();
+
+            // Validaciones
+            if (oBPSolicitud.ErrorId != 0) { return; }
+
+            // Listado de voces
+            if (oBPSolicitud.AutoridadEntity.dsResponse.Tables[0].Rows.Count > 0){
+                grdDetalle.DataSource = oBPSolicitud.AutoridadEntity.dsResponse;
+                grdDetalle.DataBind();
+            }
+
+        }
+
         private void LlenarGridVoces_Temporal(int SolicitudId, int AutoridadId){
             BPSolicitud oBPSolicitud = new BPSolicitud();
 
@@ -493,6 +516,132 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
+        private void swapGrid(int iRow){
+            Panel oPanelDetail = new Panel();
+            ImageButton oImageSwapGrid = new ImageButton();
+
+            ImageButton imgEdit = null;
+            ImageButton imgBorrar = null;
+            ImageButton imgSeleccionar = null;
+
+            String sImagesAttributes = null;
+
+            try
+            {
+
+                // Acceso al Panel y a la Imagen
+                oPanelDetail = (Panel)this.gvAutoridades.Rows[iRow].FindControl("pnlGridDetail");
+                oImageSwapGrid = (ImageButton)this.gvAutoridades.Rows[iRow].FindControl("imgSwapGrid");
+                imgEdit = (ImageButton)this.gvAutoridades.Rows[iRow].FindControl("EditButton");
+                imgBorrar = (ImageButton)this.gvAutoridades.Rows[iRow].FindControl("DeleteButton");
+                imgSeleccionar = (ImageButton)this.gvAutoridades.Rows[iRow].FindControl("SelectButton");
+
+                // Validaciones
+                if (oPanelDetail == null) { return; }
+                if (oImageSwapGrid == null) { return; }
+
+                // Atributos Over
+                sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png'; ";
+                sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgBorrar.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png'; ";
+                sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSeleccionar.ClientID + "').src='../../../../Include/Image/Buttons/AgregarVisita_Over.png'; ";
+                sImagesAttributes = sImagesAttributes + "document.getElementById('" + oImageSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/" + (oPanelDetail.Visible ? "Expand_Over" : "Collapse_Over") + ".png'; ";
+                
+
+                //Puntero y Sombra en fila Over
+                this.gvAutoridades.Rows[iRow].Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
+
+                // Atributos Out
+                sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png'; ";
+                sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgBorrar.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png'; ";
+                sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSeleccionar.ClientID + "').src='../../../../Include/Image/Buttons/AgregarVisita.png'; ";
+                sImagesAttributes = sImagesAttributes + "document.getElementById('" + oImageSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/" + (oPanelDetail.Visible ? "Expand" : "Collapse") + ".png'; ";
+
+                //Puntero y Sombra en fila Out
+                this.gvAutoridades.Rows[iRow].Attributes.Add("onmouseout", "this.className='" + ((iRow % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
+                                
+                // Cambiar estados
+                if (oPanelDetail.Visible){
+
+                    oPanelDetail.Visible = false;
+                    oImageSwapGrid.ImageUrl = "~/Include/Image/Buttons/Expand.png";
+                    oImageSwapGrid.Attributes.Add("onmouseover", "tooltip.show('Mostrar el detalle', 'Der');");
+                    oImageSwapGrid.Attributes.Add("onmouseout", "tooltip.hide();");
+                }else{
+
+                    oPanelDetail.Visible = true;
+                    oImageSwapGrid.ImageUrl = "~/Include/Image/Buttons/Collapse.png";
+                    oImageSwapGrid.Attributes.Add("onmouseover", "tooltip.show('Ocultar el detalle', 'Der');");
+                    oImageSwapGrid.Attributes.Add("onmouseout", "tooltip.hide();");
+                }
+
+            }catch (Exception ex){
+                throw (ex);
+            }
+        }
+
+        private void swapGridByHeader(Int32 iRow, Boolean isVisible){
+            ImageButton oImageSwapGrid = null;
+            Panel oPanelDetail = null;
+
+            ImageButton imgEdit = null;
+            ImageButton imgBorrar = null;
+            ImageButton imgSeleccionar = null;
+
+            String sImagesAttributes = null;
+
+            try
+            {
+
+                // Acceso al Panel y a la Imagen
+                oPanelDetail = (Panel)this.gvAutoridades.Rows[iRow].FindControl("pnlGridDetail");
+                oImageSwapGrid = (ImageButton)this.gvAutoridades.Rows[iRow].FindControl("imgSwapGrid");
+                imgEdit = (ImageButton)this.gvAutoridades.Rows[iRow].FindControl("EditButton");
+                imgBorrar = (ImageButton)this.gvAutoridades.Rows[iRow].FindControl("DeleteButton");
+                imgSeleccionar = (ImageButton)this.gvAutoridades.Rows[iRow].FindControl("SelectButton");
+
+                // Validaciones
+                if (oPanelDetail == null) { return; }
+                if (oImageSwapGrid == null) { return; }
+
+                // Atributos Over
+                sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png'; ";
+                sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgBorrar.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png'; ";
+                sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSeleccionar.ClientID + "').src='../../../../Include/Image/Buttons/AgregarVisita_Over.png'; ";
+                sImagesAttributes = sImagesAttributes + "document.getElementById('" + oImageSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/" + (isVisible ? "Expand_Over" : "Collapse_Over") + ".png'; ";
+
+
+                //Puntero y Sombra en fila Over
+                this.gvAutoridades.Rows[iRow].Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
+
+                // Atributos Out
+                sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png'; ";
+                sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgBorrar.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png'; ";
+                sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSeleccionar.ClientID + "').src='../../../../Include/Image/Buttons/AgregarVisita.png'; ";
+                sImagesAttributes = sImagesAttributes + "document.getElementById('" + oImageSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/" + (isVisible ? "Expand" : "Collapse") + ".png'; ";
+
+                //Puntero y Sombra en fila Out
+                this.gvAutoridades.Rows[iRow].Attributes.Add("onmouseout", "this.className='" + ((iRow % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
+
+                // Cambiar estados
+                if (isVisible){
+
+                    oPanelDetail.Visible = false;
+                    oImageSwapGrid.ImageUrl = "~/Include/Image/Buttons/Expand.png";
+                    oImageSwapGrid.Attributes.Add("onmouseover", "tooltip.show('Mostrar el detalle', 'Der');");
+                    oImageSwapGrid.Attributes.Add("onmouseout", "tooltip.hide();");
+                }else{
+
+                    oPanelDetail.Visible = true;
+                    oImageSwapGrid.ImageUrl = "~/Include/Image/Buttons/Collapse.png";
+                    oImageSwapGrid.Attributes.Add("onmouseover", "tooltip.show('Ocultar el detalle', 'Der');");
+                    oImageSwapGrid.Attributes.Add("onmouseout", "tooltip.hide();");
+                }
+
+            }catch (Exception ex){
+                throw (ex);
+            }
+        }
+
 
       
         // Eventos de la página
@@ -564,15 +713,21 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     case "Seleccionar": // Agregar Voces
                         ClearVocesPanel(Convert.ToInt32(e.CommandArgument.ToString()));
                         MostrarDetalleAutoridad(Convert.ToInt32(SolicitudIdHidden.Value), Convert.ToInt32(e.CommandArgument.ToString()));
+                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tooltip.hide();", true);
                         break;
 
                     case "Editar": // Editar Autoridad
                         ClearActionPanel(false, Convert.ToInt32(e.CommandArgument.ToString()));
                         MostrarDetalleAutoridadPopUp(Convert.ToInt32(SolicitudIdHidden.Value), Convert.ToInt32(e.CommandArgument.ToString()));
+                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tooltip.hide();", true);
                         break;
 
                     case "Borrar": // Eliminar Autoridad con voces
                         BorrarAutoridad(Convert.ToInt32(SolicitudIdHidden.Value), Convert.ToInt32(e.CommandArgument.ToString()));
+                        break;
+
+                    case "SwapGrid": // Expande/Contrae una fila del grid (Aquí el Command Argument contiene el índice de la fila)
+                        swapGrid(Convert.ToInt32(e.CommandArgument.ToString()));
                         break;
                 }
 
@@ -586,9 +741,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             ImageButton imgBorrar = null;
             ImageButton imgSeleccionar = null;
 
+            String AutoridadId = "";
             String sAutoridad = "";
             String sImagesAttributes = "";
             String sToolTip = "";
+
+            Panel oPanelDetail = null;
+            GridView grdVocesAgregadas = null;
+            ImageButton imgSwapGrid = null;
 
             try
             {
@@ -599,8 +759,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 imgEdit = (ImageButton)e.Row.FindControl("EditButton");
                 imgBorrar = (ImageButton)e.Row.FindControl("DeleteButton");
                 imgSeleccionar = (ImageButton)e.Row.FindControl("SelectButton");
+                imgSwapGrid = (ImageButton)e.Row.FindControl("imgSwapGrid");
 
                 // DataKeys
+                AutoridadId = gvAutoridades.DataKeys[e.Row.RowIndex]["AutoridadId"].ToString();
                 sAutoridad = gvAutoridades.DataKeys[e.Row.RowIndex]["Nombre"].ToString();
 
                 // Tooltip Agregar Voz
@@ -624,7 +786,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 // Atributos Over
                 sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png'; ";
                 sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgBorrar.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png'; ";
-                sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSeleccionar.ClientID + "').src='../../../../Include/Image/Buttons/AgregarVisita_Over.png';";
+                sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSeleccionar.ClientID + "').src='../../../../Include/Image/Buttons/AgregarVisita_Over.png'; ";
+                sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/Collapse_Over.png'; ";
 
                 //Puntero y Sombra en fila Over
                 e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
@@ -632,10 +795,26 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 // Atributos Out
                 sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png'; ";
                 sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgBorrar.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png'; ";
-                sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSeleccionar.ClientID + "').src='../../../../Include/Image/Buttons/AgregarVisita.png';";
+                sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSeleccionar.ClientID + "').src='../../../../Include/Image/Buttons/AgregarVisita.png'; ";
+                sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/Collapse.png'; ";
 
                 //Puntero y Sombra en fila Out
                 e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
+
+                // Tooltip Swap (por default está expandida)
+                sToolTip = "Ocultar el detalle";
+                imgSwapGrid.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Der');");
+                imgSwapGrid.Attributes.Add("onmouseout", "tooltip.hide();");
+                imgSwapGrid.Attributes.Add("style", "cursor:hand;");
+
+                // Voces Agregadas
+                grdVocesAgregadas = new GridView();
+                grdVocesAgregadas = (GridView)e.Row.FindControl("gvVocesDetalle");
+                LlenarGridVoces_Detalle(ref grdVocesAgregadas, Int32.Parse(this.SolicitudIdHidden.Value), Int32.Parse(AutoridadId));
+
+                // Panel visible
+                oPanelDetail = (Panel)e.Row.FindControl("pnlGridDetail");
+                oPanelDetail.Visible = true;
 
             }catch (Exception ex){
                 throw (ex);
@@ -661,6 +840,41 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 //Vaciar datos
                 this.gvAutoridades.DataSource = ViewAutoridad;
                 this.gvAutoridades.DataBind();
+
+            }catch (Exception ex){
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+            }
+        }
+
+        protected void imgSwapAll_Click(object sender, ImageClickEventArgs e){
+            ImageButton imgHeaderSwapGrid = null;
+            Boolean isVisible;
+
+            try
+            {
+
+                // Acceso a la imagen
+                imgHeaderSwapGrid = (ImageButton)sender;
+
+                if (imgHeaderSwapGrid.ImageUrl == "~/Include/Image/Buttons/Expand_Header.png"){
+
+                    // Expander todo
+                    isVisible = false;
+                    imgHeaderSwapGrid.ImageUrl = "~/Include/Image/Buttons/Collapse_Header.png";
+                    imgHeaderSwapGrid.Attributes.Add("onmouseover", "tooltip.show('Contraer todos los elementos', 'Der');");
+                    imgHeaderSwapGrid.Attributes.Add("onmouseout", "tooltip.hide();");
+                }else{
+
+                    // Contraer todo
+                    isVisible = true;
+                    imgHeaderSwapGrid.ImageUrl = "~/Include/Image/Buttons/Expand_Header.png";
+                    imgHeaderSwapGrid.Attributes.Add("onmouseover", "tooltip.show('Expandir todos los elementos', 'Der');");
+                    imgHeaderSwapGrid.Attributes.Add("onmouseout", "tooltip.hide();");
+                }
+
+                foreach (GridViewRow rowVozDetalle in this.gvAutoridades.Rows){
+                    swapGridByHeader(rowVozDetalle.DataItemIndex, isVisible);
+                }
 
             }catch (Exception ex){
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);

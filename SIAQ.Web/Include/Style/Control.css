@@ -442,6 +442,29 @@
 	padding:2px;
 }
 
+/*GRIDVIEW HEADER ACTION ALTERNATIVO*/
+.Grid_Header_Action_Alternative {
+	background-color: #4B4878;
+	border: 1px solid #C1C1C1;
+	color: #FFFFFF;
+	font:11px Tahoma;
+	font-weight:normal;
+	height:15px;
+}
+
+.Grid_Header_Action_Alternative a {
+	color: #FFFFFF;
+	background: none;
+} 
+
+.Grid_Header_Action_Alternative th {
+	border: solid 1px #C1C1C1;
+	color: #FFFFFF;
+	font:11px Tahoma;
+	font-weight:normal;
+	padding:2px;
+} 
+
 /* GRIDVIEW OPCIONES DINÁMICAS */
 .GridDinamico
 {

@@ -118,6 +118,10 @@
     <Content Include="Application\WebApp\Private\Operation\opeSolicitudFuncionario.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeSolicitudPaginaImpresion.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeSolicitudSecretaria.aspx" />
+    <Content Include="Application\WebApp\Private\Reportes\rptEstatusExpediente.aspx" />
+    <Content Include="Application\WebApp\Private\Reportes\rptEstatusQuejas.aspx" />
+    <Content Include="Application\WebApp\Private\Reportes\rptEstatusSolicitud.aspx" />
+    <Content Include="Application\WebApp\Private\Reportes\rptTema.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\lstRecSectretarias.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\opeAsignarDefensorDirector.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\opeBusquedaRecomendacion.aspx" />
@@ -653,25 +657,57 @@
       <DependentUpon>opeSolicitudSecretaria.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Reportes\DataSet\dsReportes.Designer.cs" />
+    <Compile Include="Application\WebApp\Private\Reportes\rptEstatusExpediente.aspx.cs">
+      <DependentUpon>rptEstatusExpediente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Reportes\rptEstatusExpediente.aspx.designer.cs">
+      <DependentUpon>rptEstatusExpediente.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Application\WebApp\Private\Reportes\rptEstatusExpediente.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptEstatusExpediente.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Reportes\rptEstatusQuejas.aspx.cs">
+      <DependentUpon>rptEstatusQuejas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Reportes\rptEstatusQuejas.aspx.designer.cs">
+      <DependentUpon>rptEstatusQuejas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Reportes\rptEstatusQuejas.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptEstatusQuejas.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Reportes\rptEstatusSolicitud.aspx.cs">
+      <DependentUpon>rptEstatusSolicitud.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Reportes\rptEstatusSolicitud.aspx.designer.cs">
+      <DependentUpon>rptEstatusSolicitud.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Reportes\rptEstatusSolicitud.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptEstatusSolicitud.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Reportes\rptTema.aspx.cs">
+      <DependentUpon>rptTema.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Reportes\rptTema.aspx.designer.cs">
+      <DependentUpon>rptTema.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Reportes\rptTema.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptTema.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\Seguimiento\lstRecSectretarias.aspx.cs">
       <DependentUpon>lstRecSectretarias.aspx</DependentUpon>

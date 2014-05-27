@@ -13,6 +13,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
     public partial class opeAgregarAutoridaSenalada {
         
         /// <summary>
+        /// pnlFormulario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlFormulario;
+        
+        /// <summary>
         /// SolicitudLabel control.
         /// </summary>
         /// <remarks>
@@ -20,6 +29,33 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label SolicitudLabel;
+        
+        /// <summary>
+        /// pnlBotones control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlBotones;
+        
+        /// <summary>
+        /// btnAgregarAutoridad control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAgregarAutoridad;
+        
+        /// <summary>
+        /// btnRegresar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRegresar;
         
         /// <summary>
         /// pnlGrid control.
@@ -38,123 +74,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvAutoridades;
-        
-        /// <summary>
-        /// AgregarAutoridadButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton AgregarAutoridadButton;
-        
-        /// <summary>
-        /// DetallePanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel DetallePanel;
-        
-        /// <summary>
-        /// NombreLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label NombreLabel;
-        
-        /// <summary>
-        /// PuestoLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label PuestoLabel;
-        
-        /// <summary>
-        /// Nivel1Label control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Nivel1Label;
-        
-        /// <summary>
-        /// Nivel2Label control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Nivel2Label;
-        
-        /// <summary>
-        /// Nivel3Label control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Nivel3Label;
-        
-        /// <summary>
-        /// ObservacionesBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ObservacionesBox;
-        
-        /// <summary>
-        /// VocesPanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel VocesPanel;
-        
-        /// <summary>
-        /// VocesGridPanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel VocesGridPanel;
-        
-        /// <summary>
-        /// gvVoces control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvVoces;
-        
-        /// <summary>
-        /// lnkAgregarVoces control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkAgregarVoces;
-        
-        /// <summary>
-        /// btnTerminar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnTerminar;
         
         /// <summary>
         /// pnlAction control.
@@ -193,13 +112,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.Label lblActionTitle;
         
         /// <summary>
-        /// imgCloseWindow control.
+        /// imgActionCloseWindow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imgCloseWindow;
+        protected global::System.Web.UI.WebControls.ImageButton imgActionCloseWindow;
         
         /// <summary>
         /// pnlActionBody control.
@@ -211,184 +130,283 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.Panel pnlActionBody;
         
         /// <summary>
-        /// ddlPrimerNivel control.
+        /// ddlActionPrimerNivel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPrimerNivel;
+        protected global::System.Web.UI.WebControls.DropDownList ddlActionPrimerNivel;
         
         /// <summary>
-        /// ddlSegundoNivel control.
+        /// ddlActionSegundoNivel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSegundoNivel;
+        protected global::System.Web.UI.WebControls.DropDownList ddlActionSegundoNivel;
         
         /// <summary>
-        /// ddlTercerNivel control.
+        /// ddlActionTercerNivel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTercerNivel;
+        protected global::System.Web.UI.WebControls.DropDownList ddlActionTercerNivel;
         
         /// <summary>
-        /// tbNombreFuncionario control.
+        /// tbActionNombreFuncionario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbNombreFuncionario;
+        protected global::System.Web.UI.WebControls.TextBox tbActionNombreFuncionario;
         
         /// <summary>
-        /// tbPuestoActual control.
+        /// tbActionPuestoActual control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbPuestoActual;
+        protected global::System.Web.UI.WebControls.TextBox tbActionPuestoActual;
         
         /// <summary>
-        /// tbComentarios control.
+        /// tbActionComentarios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbComentarios;
+        protected global::System.Web.UI.WebControls.TextBox tbActionComentarios;
         
         /// <summary>
-        /// btnAgregar control.
+        /// btnActionAgregarAutoridad control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAgregar;
+        protected global::System.Web.UI.WebControls.Button btnActionAgregarAutoridad;
         
         /// <summary>
-        /// btnRegresarPop control.
+        /// btnActionRegresarPop control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRegresarPop;
+        protected global::System.Web.UI.WebControls.Button btnActionRegresarPop;
         
         /// <summary>
-        /// pnlVocesPop control.
+        /// lblActionMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlVocesPop;
+        protected global::System.Web.UI.WebControls.Label lblActionMessage;
         
         /// <summary>
-        /// Panel2 control.
+        /// dragPanelAction control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel2;
+        protected global::AjaxControlToolkit.DragPanelExtender dragPanelAction;
         
         /// <summary>
-        /// pnlActionTitleVoces control.
+        /// pnlVoces control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlActionTitleVoces;
+        protected global::System.Web.UI.WebControls.Panel pnlVoces;
         
         /// <summary>
-        /// Label1 control.
+        /// pnlVocesContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Panel pnlVocesContent;
         
         /// <summary>
-        /// ImageButton1 control.
+        /// pnlVocesHeader control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton1;
+        protected global::System.Web.UI.WebControls.Panel pnlVocesHeader;
         
         /// <summary>
-        /// pnlActionBodyVoces control.
+        /// lblVocesTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlActionBodyVoces;
+        protected global::System.Web.UI.WebControls.Label lblVocesTitle;
         
         /// <summary>
-        /// ddlVocesNivel1 control.
+        /// imgVocesCloseWindow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlVocesNivel1;
+        protected global::System.Web.UI.WebControls.ImageButton imgVocesCloseWindow;
         
         /// <summary>
-        /// ddlVocesNivel2 control.
+        /// pnlVocesBody control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlVocesNivel2;
+        protected global::System.Web.UI.WebControls.Panel pnlVocesBody;
         
         /// <summary>
-        /// ddlVocesNivel3 control.
+        /// lblVocesNombre control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlVocesNivel3;
+        protected global::System.Web.UI.WebControls.Label lblVocesNombre;
         
         /// <summary>
-        /// btnAgregarVoz control.
+        /// lblVocesPuesto control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAgregarVoz;
+        protected global::System.Web.UI.WebControls.Label lblVocesPuesto;
         
         /// <summary>
-        /// btnRegresarPopVoz control.
+        /// lblVocesNivel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRegresarPopVoz;
+        protected global::System.Web.UI.WebControls.Label lblVocesNivel1;
         
         /// <summary>
-        /// SolicitudIdHidden control.
+        /// lblVocesNivel2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField SolicitudIdHidden;
+        protected global::System.Web.UI.WebControls.Label lblVocesNivel2;
+        
+        /// <summary>
+        /// lblVocesNivel3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblVocesNivel3;
+        
+        /// <summary>
+        /// lblVocesObservaciones control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblVocesObservaciones;
+        
+        /// <summary>
+        /// pnlVocesTemporal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlVocesTemporal;
+        
+        /// <summary>
+        /// ddlVocesTemporal_Nivel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlVocesTemporal_Nivel1;
+        
+        /// <summary>
+        /// ddlVocesTemporal_Nivel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlVocesTemporal_Nivel2;
+        
+        /// <summary>
+        /// ddlVocesTemporal_Nivel3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlVocesTemporal_Nivel3;
+        
+        /// <summary>
+        /// btnVocesTemporal_Nuevo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnVocesTemporal_Nuevo;
+        
+        /// <summary>
+        /// gvVocesTemporal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvVocesTemporal;
+        
+        /// <summary>
+        /// btnVocesRegresar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnVocesRegresar;
+        
+        /// <summary>
+        /// lblVocesMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblVocesMessage;
+        
+        /// <summary>
+        /// dragPanelVoces control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.DragPanelExtender dragPanelVoces;
         
         /// <summary>
         /// hdnAutoridadId control.
@@ -407,5 +425,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hddSort;
+        
+        /// <summary>
+        /// SolicitudIdHidden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField SolicitudIdHidden;
     }
 }

@@ -33,6 +33,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="Application\WebApp\Private\Reportes\DataSet\dsReportes.xsc">
+      <DependentUpon>dsReportes.xsd</DependentUpon>
+    </None>
+    <None Include="Application\WebApp\Private\Reportes\DataSet\dsReportes.xsd" />
+    <None Include="Application\WebApp\Private\Reportes\DataSet\dsReportes.xss">
+      <DependentUpon>dsReportes.xsd</DependentUpon>
+    </None>
     <None Include="ckeditor\CHANGES.md" />
     <None Include="ckeditor\LICENSE.md" />
     <None Include="ckeditor\plugins\scayt\LICENSE.md" />
@@ -51,6 +58,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\CKEditor.NET.dll</HintPath>
     </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -642,6 +652,27 @@
     <Compile Include="Application\WebApp\Private\Operation\opeSolicitudSecretaria.aspx.designer.cs">
       <DependentUpon>opeSolicitudSecretaria.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Application\WebApp\Private\Reportes\DataSet\dsReportes.Designer.cs" />
+    <Compile Include="Application\WebApp\Private\Reportes\rptEstatusExpediente.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptEstatusExpediente.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Reportes\rptEstatusQuejas.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptEstatusQuejas.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Reportes\rptEstatusSolicitud.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptEstatusSolicitud.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Reportes\rptTema.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptTema.rpt</DependentUpon>
+    </Compile>
     <Compile Include="Application\WebApp\Private\Seguimiento\lstRecSectretarias.aspx.cs">
       <DependentUpon>lstRecSectretarias.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1124,7 +1155,27 @@
       <Name>SIAQ.Entity</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Application\WebApp\Private\Reportes\rptEstatusExpediente.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptEstatusExpediente.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\WebApp\Private\Reportes\rptEstatusQuejas.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptEstatusQuejas.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\WebApp\Private\Reportes\rptEstatusSolicitud.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptEstatusSolicitud.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\WebApp\Private\Reportes\rptTema.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTema.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsReportes" targetNamespace="http://tempuri.org/dsReportes.xsd" xmlns:mstns="http://tempuri.org/dsReportes.xsd" xmlns="http://tempuri.org/dsReportes.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsReportes" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsReportes" msprop:Generator_UserDSName="dsReportes">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="tblTema" msprop:Generator_TableClassName="tblTemaDataTable" msprop:Generator_TableVarName="tabletblTema" msprop:Generator_RowChangedName="tblTemaRowChanged" msprop:Generator_TablePropName="tblTema" msprop:Generator_RowDeletingName="tblTemaRowDeleting" msprop:Generator_RowChangingName="tblTemaRowChanging" msprop:Generator_RowEvHandlerName="tblTemaRowChangeEventHandler" msprop:Generator_RowDeletedName="tblTemaRowDeleted" msprop:Generator_RowClassName="tblTemaRow" msprop:Generator_UserTableName="tblTema" msprop:Generator_RowEvArgName="tblTemaRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="idTema" msprop:Generator_ColumnVarNameInTable="columnidTema" msprop:Generator_ColumnPropNameInRow="idTema" msprop:Generator_ColumnPropNameInTable="idTemaColumn" msprop:Generator_UserColumnName="idTema" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblEstatusQueja" msprop:Generator_TableClassName="tblEstatusQuejaDataTable" msprop:Generator_TableVarName="tabletblEstatusQueja" msprop:Generator_RowChangedName="tblEstatusQuejaRowChanged" msprop:Generator_TablePropName="tblEstatusQueja" msprop:Generator_RowDeletingName="tblEstatusQuejaRowDeleting" msprop:Generator_RowChangingName="tblEstatusQuejaRowChanging" msprop:Generator_RowEvHandlerName="tblEstatusQuejaRowChangeEventHandler" msprop:Generator_RowDeletedName="tblEstatusQuejaRowDeleted" msprop:Generator_RowClassName="tblEstatusQuejaRow" msprop:Generator_UserTableName="tblEstatusQueja" msprop:Generator_RowEvArgName="tblEstatusQuejaRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="idEstatusQueja" msprop:Generator_ColumnVarNameInTable="columnidEstatusQueja" msprop:Generator_ColumnPropNameInRow="idEstatusQueja" msprop:Generator_ColumnPropNameInTable="idEstatusQuejaColumn" msprop:Generator_UserColumnName="idEstatusQueja" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblEstatusSolicitud" msprop:Generator_TableClassName="tblEstatusSolicitudDataTable" msprop:Generator_TableVarName="tabletblEstatusSolicitud" msprop:Generator_RowChangedName="tblEstatusSolicitudRowChanged" msprop:Generator_TablePropName="tblEstatusSolicitud" msprop:Generator_RowDeletingName="tblEstatusSolicitudRowDeleting" msprop:Generator_RowChangingName="tblEstatusSolicitudRowChanging" msprop:Generator_RowEvHandlerName="tblEstatusSolicitudRowChangeEventHandler" msprop:Generator_RowDeletedName="tblEstatusSolicitudRowDeleted" msprop:Generator_RowClassName="tblEstatusSolicitudRow" msprop:Generator_UserTableName="tblEstatusSolicitud" msprop:Generator_RowEvArgName="tblEstatusSolicitudRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="idEstatusSolicitud" msprop:Generator_ColumnVarNameInTable="columnidEstatusSolicitud" msprop:Generator_ColumnPropNameInRow="idEstatusSolicitud" msprop:Generator_ColumnPropNameInTable="idEstatusSolicitudColumn" msprop:Generator_UserColumnName="idEstatusSolicitud" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblEstatusExpediente" msprop:Generator_TableClassName="tblEstatusExpedienteDataTable" msprop:Generator_TableVarName="tabletblEstatusExpediente" msprop:Generator_RowChangedName="tblEstatusExpedienteRowChanged" msprop:Generator_TablePropName="tblEstatusExpediente" msprop:Generator_RowDeletingName="tblEstatusExpedienteRowDeleting" msprop:Generator_RowChangingName="tblEstatusExpedienteRowChanging" msprop:Generator_RowEvHandlerName="tblEstatusExpedienteRowChangeEventHandler" msprop:Generator_RowDeletedName="tblEstatusExpedienteRowDeleted" msprop:Generator_RowClassName="tblEstatusExpedienteRow" msprop:Generator_UserTableName="tblEstatusExpediente" msprop:Generator_RowEvArgName="tblEstatusExpedienteRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="idEstatusExpediente" msprop:Generator_ColumnVarNameInTable="columnidEstatusExpediente" msprop:Generator_ColumnPropNameInRow="idEstatusExpediente" msprop:Generator_ColumnPropNameInTable="idEstatusExpedienteColumn" msprop:Generator_UserColumnName="idEstatusExpediente" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

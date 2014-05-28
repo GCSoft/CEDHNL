@@ -1,8 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master"
-    AutoEventWireup="true" CodeBehind="opeDetalleExpedienteVisitador.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeDetalleExpedienteVisitador" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeDetalleExpedienteVisitador.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeDetalleExpedienteVisitador" %>
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
     <script type="text/javascript">
 
@@ -15,6 +14,7 @@
 
     </script>
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
     <table class="GeneralTable">
         <tr>
@@ -541,6 +541,7 @@
                                 </tr>
                             </table>
                         </asp:Panel>
+
                         <asp:Panel ID="pnlActionBody" runat="server" CssClass="ActionBody">
                             <div style="margin: 0 auto; width: 98%;">
                                 <table border="0" cellpadding="0" cellspacing="0" style="height: 100%; text-align: left;"
@@ -573,7 +574,6 @@
                             </div>
                         </asp:Panel>
                     </asp:Panel>
-                    <%--DDD--%>
                 </asp:Panel>
             </td>
         </tr>
@@ -582,6 +582,7 @@
             </td>
         </tr>
     </table>
+
     <asp:HiddenField ID="hddSort" runat="server" Value="NumeroSol" />
     <asp:HiddenField ID="hdnExpedienteId" runat="server" />
     <asp:HiddenField ID="hdnComentarioId" runat="server" />

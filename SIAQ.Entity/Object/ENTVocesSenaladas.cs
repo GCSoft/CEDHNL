@@ -20,6 +20,8 @@ namespace SIAQ.Entity.Object
         private int _SolicitudId;
         private DataSet _dsResponse;
 
+        private String _sComentarios;     // Almacena los comentarios al asociar voces a una autoridad
+
         #endregion
 
         #region Propiedades
@@ -58,6 +60,18 @@ namespace SIAQ.Entity.Object
         {
             get { return _dsResponse; }
             set { _dsResponse = value; }
+        }
+
+        ///<remarks>
+        ///   <name>ENTVocesSenaladas.Comentarios</name>
+        ///   <create>28-Mayo-2014</create>
+        ///   <author>Ruben.Cobos</author>
+        ///</remarks>
+        ///<summary>Obtiene/Asigna los comentarios al asociar voces a una autoridad</summary>
+        public String Comentarios
+        {
+            get { return _sComentarios; }
+            set { _sComentarios = value; }
         }
 
         #endregion

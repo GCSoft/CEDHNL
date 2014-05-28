@@ -491,6 +491,7 @@
     <Content Include="Include\Image\Web\Registro.jpg" />
     <Content Include="Include\Image\Web\SalirOff.png" />
     <Content Include="Include\Image\Web\SalirOn.png" />
+    <Content Include="Include\Image\Web\SetUp.png" />
     <Content Include="Include\Image\Web\word.png" />
     <Content Include="Include\Javascript\ToolTip\ImageError.png" />
     <Content Include="Include\Javascript\ToolTip\ImageWarning.png" />
@@ -528,7 +529,6 @@
     <Content Include="Include\Image\Buttons\Graph.png" />
     <Content Include="Include\Image\Wait\Background.png" />
     <Content Include="Include\Image\Wait\Loading.gif" />
-    <Content Include="Include\Image\Web\GCSoft.png" />
     <Content Include="Include\Javascript\GCSoft\GCSoft.js" />
     <Content Include="Include\Javascript\JQuery\jquery-1.9.1.js" />
     <Content Include="Include\Javascript\JQuery\V1.10.3\jquery-ui.js" />

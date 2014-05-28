@@ -113,7 +113,7 @@ namespace SIAQ.BusinessProcess.Object
                                     "</tr>" +
                                     "<tr>" +
                                        "<td style='font-family:Arial; font-size:9px; text-align:center;'>" +
-                                          "<br><br>Powered By GCSoft" +
+                                          "<br><br>Powered By SetUp" +
                                        "</td>" +
                                     "</tr>" +
                                  "</table>" +
@@ -387,7 +387,7 @@ namespace SIAQ.BusinessProcess.Object
                                     "</tr>" +
                                     "<tr>" +
                                        "<td style='font-family:Arial; font-size:9px; text-align:center;'>" +
-                                          "<br><br>Powered By GCSoft" +
+                                          "<br><br>Powered By SetUp" +
                                        "</td>" +
                                     "</tr>" +
                                  "</table>" +

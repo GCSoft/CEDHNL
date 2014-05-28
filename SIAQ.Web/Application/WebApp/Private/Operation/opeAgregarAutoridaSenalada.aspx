@@ -122,19 +122,21 @@
                                                     <EmptyDataTemplate>
                                                         <table border="1px" cellpadding="0px" cellspacing="0px">
 															<tr class="Grid_Header_Action_Alternative">
-																<td style="text-align:center; width:266px;">Voz1</td>
-																<td style="text-align:center; width:266px;">Voz2</td>
-																<td style="text-align:center; width:268px;">Voz3</td>
+																<td style="text-align:center; width:180px;">Voz1</td>
+																<td style="text-align:center; width:180px;">Voz2</td>
+																<td style="text-align:center; width:180px;">Voz3</td>
+																<td style="text-align:center; width:260px;">Comentarios</td>
 															</tr>
 															<tr class="Grid_Row">
-																<td colspan="3" style="text-align:center;">No se han agregado voces a la autoridad</td>
+																<td colspan="4" style="text-align:center;">No se han agregado voces a la autoridad</td>
 															</tr>
 														</table>
                                                     </EmptyDataTemplate>
                                                     <Columns>
-                                                        <asp:BoundField HeaderText="Voz1" 	ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="266px"	DataField="Voz1"></asp:BoundField>
-                                                        <asp:BoundField HeaderText="Voz2" 	ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="266px"	DataField="Voz2"></asp:BoundField>
-                                                        <asp:BoundField HeaderText="Voz3"   ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="268px"	DataField="Voz3"></asp:BoundField>
+                                                        <asp:BoundField HeaderText="Voz1" 			ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="180px"	DataField="Voz1"></asp:BoundField>
+                                                        <asp:BoundField HeaderText="Voz2" 			ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="180px"	DataField="Voz2"></asp:BoundField>
+                                                        <asp:BoundField HeaderText="Voz3"			ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="180px"	DataField="Voz3"></asp:BoundField>
+														<asp:BoundField HeaderText="Comentarios"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="260px"	DataField="Comentarios"></asp:BoundField>
                                                     </Columns>
                                                 </asp:GridView>
 												<br />
@@ -203,7 +205,7 @@
                                     <tr class="trFilaItem">
                                         <td class="tdActionCeldaLeyendaItem" style="vertical-align:top">&nbsp;Comentarios</td>
                                         <td></td>
-                                        <td class="tdCeldaItem"><asp:TextBox ID="tbActionComentarios" runat="server" CssClass="Textbox_General" Width="310px" Height="70px" MaxLength="50" TextMode="MultiLine"></asp:TextBox></td>
+                                        <td class="tdCeldaItem"><asp:TextBox ID="tbActionComentarios" runat="server" CssClass="Textarea_General" Width="310px" Height="70px" TextMode="MultiLine"></asp:TextBox></td>
                                     </tr>
                                     <tr style="height:5px;"><td colspan="3"></td></tr>
                                     <tr>
@@ -228,7 +230,7 @@
         <tr>
             <td>
                 <asp:Panel id="pnlVoces" runat="server" CssClass="ActionBlock" Visible="false" >
-                    <asp:Panel ID="pnlVocesContent" runat="server" CssClass="ActionContent" Style="top: 200px;" Height="500px" Width="560px">
+                    <asp:Panel ID="pnlVocesContent" runat="server" CssClass="ActionContent" Style="top:150px;" Height="600px" Width="800px">
                         <asp:Panel ID="pnlVocesHeader" runat="server" CssClass="ActionHeader">
                             <table border="0" cellpadding="0" cellspacing="0" style="height:100%; width:100%">
                                 <tr>
@@ -291,38 +293,41 @@
                                                 <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                                     <tr>
                                                         <td colspan="2">
-                                                            <div id="tblHeader_Voces" style="border:0px solid #000000; clear:both; position:relative; width:550px;">
-                                                                <table cellspacing="0" rules="all" border="1" style="border-collapse:collapse; width:550px;">
+                                                            <div id="tblHeader_Voces" style="border:0px solid #000000; clear:both; position:relative; width:790px;">
+                                                                <table cellspacing="0" rules="all" border="1" style="border-collapse:collapse; width:790px;">
                                                                     <tr class="Grid_Header_Action">
                                                                         <th scope="col" style="width:150px;">Primer nivel</th>
                                                                         <th scope="col" style="width:150px;">Segundo nivel</th>
                                                                         <th scope="col" style="width:150px;">Tercer nivel</th>
+																		<th scope="col" style="width:250px;">Comentarios</th>
                                                                         <th scope="col"></th>
                                                                     </tr>
                                                                     <tr class="Grid_Header_Action">
-                                                                        <th scope="col"><asp:DropDownList id="ddlVocesTemporal_Nivel1"  runat="server" AutoPostBack="True"  CssClass="DropDownList_General" Width="140px" OnSelectedIndexChanged="ddlVocesNivel1_SelectedIndexChanged"></asp:DropDownList></th>
-                                                                        <th scope="col"><asp:DropDownList id="ddlVocesTemporal_Nivel2"  runat="server" AutoPostBack="True"  CssClass="DropDownList_General" Width="140px" OnSelectedIndexChanged="ddlVocesNivel2_SelectedIndexChanged"></asp:DropDownList></th>
-                                                                        <th scope="col"><asp:DropDownList id="ddlVocesTemporal_Nivel3"  runat="server"                      CssClass="DropDownList_General" Width="140px"></asp:DropDownList></th>
-                                                                        <th scope="col"><asp:Button ID="btnVocesTemporal_Nuevo"         runat="server"                      CssClass="Button_General"  Text="Agregar" width="90px" onclick="btnVocesTemporal_Nuevo_Click" /></th>
+                                                                        <th scope="col" style="vertical-align:top;"><asp:DropDownList id="ddlVocesTemporal_Nivel1"	runat="server" AutoPostBack="True"  CssClass="DropDownList_General" Width="140px" OnSelectedIndexChanged="ddlVocesNivel1_SelectedIndexChanged"></asp:DropDownList></th>
+                                                                        <th scope="col" style="vertical-align:top;"><asp:DropDownList id="ddlVocesTemporal_Nivel2"	runat="server" AutoPostBack="True"  CssClass="DropDownList_General" Width="140px" OnSelectedIndexChanged="ddlVocesNivel2_SelectedIndexChanged"></asp:DropDownList></th>
+                                                                        <th scope="col" style="vertical-align:top;"><asp:DropDownList id="ddlVocesTemporal_Nivel3"	runat="server"                      CssClass="DropDownList_General" Width="140px"></asp:DropDownList></th>
+																		<th scope="col" style="vertical-align:top;"><asp:TextBox id="txtVocesTemporal_Comentarios"	runat="server"                      CssClass="Textarea_General"		Width="240px" Height="40px" TextMode="MultiLine" MaxLength="500"></asp:TextBox></th>
+                                                                        <th scope="col" style="vertical-align:top;"><asp:Button ID="btnVocesTemporal_Nuevo"			runat="server"                      CssClass="Button_General"  Text="Agregar" width="90px" onclick="btnVocesTemporal_Nuevo_Click" /></th>
                                                                     </tr>
                                                                 </table>
                                                             </div>
                                                             <div id="tblBody_VocesTemporal" style="border:0px solid #000000; clear:both; position:relative; top:-1px; width:100%;">
-                                                                <asp:GridView id="gvVocesTemporal" runat="server" border="0" AllowPaging="false" AllowSorting="false" AutoGenerateColumns="False" ShowHeader="false" Width="550px"
+                                                                <asp:GridView id="gvVocesTemporal" runat="server" border="0" AllowPaging="false" AllowSorting="false" AutoGenerateColumns="False" ShowHeader="false" Width="790px"
                                                                     DataKeyNames="VozId"
                                                                     OnRowCommand="gvVocesTemporal_RowCommand"
                                                                     OnRowDataBound="gvVocesTemporal_RowDataBound">
                                                                     <alternatingrowstyle cssclass="Grid_Row_Alternating" />
                                                                     <rowstyle cssclass="Grid_Row" />
                                                                     <EmptyDataTemplate>
-                                                                        <div class="Grid_Row" style="border:1px solid #C1C1C1; clear:both; left:-1px; position:relative; text-align:center; top:-2px; width:548px;">
+                                                                        <div class="Grid_Row" style="border:1px solid #C1C1C1; clear:both; left:-1px; position:relative; text-align:center; top:-2px; width:788px;">
                                                                             Agregue voces señaladas
                                                                         </div>
                                                                     </EmptyDataTemplate>
                                                                     <Columns>
-                                                                        <asp:BoundField		ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="146px"	DataField="Voz1"></asp:BoundField>
-                                                                        <asp:BoundField		ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="146px"	DataField="Voz2"></asp:BoundField>
-                                                                        <asp:BoundField		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="147px"	DataField="Voz3"></asp:BoundField>
+                                                                        <asp:BoundField		ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="143px"	DataField="Voz1"></asp:BoundField>
+                                                                        <asp:BoundField		ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="143px"	DataField="Voz2"></asp:BoundField>
+                                                                        <asp:BoundField		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="142px"	DataField="Voz3"></asp:BoundField>
+																		<asp:BoundField		ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="246px"	DataField="Comentarios"></asp:BoundField>
                                                                         <asp:TemplateField	ItemStyle-HorizontalAlign ="Center">
                                                                             <ItemTemplate>
                                                                                 <asp:ImageButton ID="imgEliminar" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Eliminar" ImageUrl="~/Include/Image/Buttons/Delete.png" ToolTip="Eliminar VocesTemporal" runat="server" />

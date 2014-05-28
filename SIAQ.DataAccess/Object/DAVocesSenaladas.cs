@@ -159,6 +159,10 @@ namespace SIAQ.DataAccess.Object
             Parameter.Value = oENTVocesSenaladas.VozId;
             Command.Parameters.Add(Parameter);
 
+			Parameter = new SqlParameter("Comentarios", SqlDbType.VarChar);
+			Parameter.Value = oENTVocesSenaladas.Comentarios;
+			Command.Parameters.Add(Parameter);
+
             oENTResponse.dsResponse = new DataSet();
             DataAdapter = new SqlDataAdapter(Command);
 

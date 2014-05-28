@@ -100,6 +100,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 oENTVocesSenaladas.SolicitudId = SolicitudId;
                 oENTVocesSenaladas.AutoridadId = AutoridadId;
                 oENTVocesSenaladas.VozId = VozId;
+				oENTVocesSenaladas.Comentarios = this.txtVocesTemporal_Comentarios.Text.Trim();
 
                 //Transacción 
                 oENTResponse = oBPVocesSenaladas.InsertSolicitudAutoridadVoces(oENTVocesSenaladas);
@@ -216,6 +217,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 lblVocesNivel1.Text = String.Empty;
                 lblVocesNivel2.Text = String.Empty;
                 lblVocesNivel3.Text = String.Empty;
+				this.txtVocesTemporal_Comentarios.Text = "";
 
                 // Estado incial de controles
                 this.pnlVoces.Visible = false;
@@ -996,6 +998,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 ddlVocesTemporal_Nivel1.SelectedIndex = 0;
                 ComboVocesTemporalSegundoNivel();
                 ComboVocesTemporalTercerNivel();
+
+				// Comentarios
+				this.txtVocesTemporal_Comentarios.Text = "";
 
                 // Mensajes de error previos
                 this.lblVocesMessage.Text = "";

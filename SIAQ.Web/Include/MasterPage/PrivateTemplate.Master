@@ -50,7 +50,7 @@
 							<td style="background-image:url('../../../../Include/Image/Web/BannerFill.png'); background-repeat:repeat-x;">&nbsp;</td>
 						</tr>
 					</table>
-               <div class="GCSoft"><img id="imgCompany" alt="GCSoft" runat="server" src="~/Include/Image/Web/GCSoft.png" /></div>
+               <div class="GCSoft"><img id="imgCompany" alt="SetUp" runat="server" src="~/Include/Image/Web/SetUp.png" /></div>
                <div class="UserName">
 						<table border="0" cellpadding="0" cellspacing="0" style="width:100%">
 							<tr>

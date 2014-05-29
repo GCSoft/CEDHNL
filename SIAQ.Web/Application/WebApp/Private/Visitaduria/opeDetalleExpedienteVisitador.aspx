@@ -520,7 +520,7 @@
             </td>
         </tr>
         <tr>
-            <td style="left: 0px; height: 100%;	position:fixed; top: 0px !important; width: 100%; z-index:900">
+            <td style="left: 0px; height: 100%; top: 0px !important; width: 100%; z-index:900">
                 <asp:Panel ID="pnlAction" runat="server" CssClass="ActionBlock" Visible="false">
                     <asp:Panel ID="pnlActionContent" runat="server" CssClass="ActionContent" Style="top: 200px;"
                         Height="400px" Width="800px">

@@ -10,7 +10,7 @@
 namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
     
     
-    public partial class opeBusquedaRecomendacion {
+    public partial class segBusquedaExpediente {
         
         /// <summary>
         /// pnlFormulario control.

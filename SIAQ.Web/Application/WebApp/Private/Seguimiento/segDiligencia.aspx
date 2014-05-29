@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeDiligenciaRecomendacion.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeDiligenciaRecomendacion" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="segDiligencia.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Seguimiento.segDiligencia" %>
 
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 <%@ Register Src="~/Include/WebUserControls/wucCalendar.ascx" TagName="caldenar"
@@ -7,12 +7,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
     <script type="text/javascript">
 
-        // Funciones del programador
-        function NumbersValidator(e) {
+    	// Funciones del programador
+    	function NumbersValidator(e) {
 
-            var tecla = document.all ? tecla = e.keyCode : tecla = e.which;
-            return (tecla > 47 && tecla < 58);
-        }
+    		var tecla = document.all ? tecla = e.keyCode : tecla = e.which;
+    		return (tecla > 47 && tecla < 58);
+    	}
 
     </script>
 </asp:Content>

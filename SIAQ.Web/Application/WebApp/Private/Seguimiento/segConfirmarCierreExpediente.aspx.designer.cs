@@ -10,7 +10,7 @@
 namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
     
     
-    public partial class opeConfirmarCierreExpediente {
+    public partial class segConfirmarCierreExpediente {
         
         /// <summary>
         /// Label2 control.

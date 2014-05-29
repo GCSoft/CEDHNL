@@ -1,15 +1,13 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master"
-    AutoEventWireup="true" CodeBehind="opeAsignarDefensorDirector.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Seguimiento.opeAsignarDefensorDirector" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="segAsignarDefensor.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Seguimiento.segAsignarDefensor" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
     <script type="text/javascript">
 
-        // Funciones del programador
-        function NumbersValidator(e) {
+    	// Funciones del programador
+    	function NumbersValidator(e) {
 
-            var tecla = document.all ? tecla = e.keyCode : tecla = e.which;
-            return (tecla > 47 && tecla < 58);
-        }
+    		var tecla = document.all ? tecla = e.keyCode : tecla = e.which;
+    		return (tecla > 47 && tecla < 58);
+    	}
 
     </script>
 </asp:Content>

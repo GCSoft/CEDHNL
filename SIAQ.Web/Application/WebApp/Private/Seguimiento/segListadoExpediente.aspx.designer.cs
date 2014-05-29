@@ -10,7 +10,16 @@
 namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
     
     
-    public partial class lstRecSectretarias {
+    public partial class segListadoExpediente {
+        
+        /// <summary>
+        /// pnlFormulario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlFormulario;
         
         /// <summary>
         /// pnlGrid control.
@@ -22,12 +31,21 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         protected global::System.Web.UI.WebControls.Panel pnlGrid;
         
         /// <summary>
-        /// gvApps control.
+        /// gvExpedientes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvApps;
+        protected global::System.Web.UI.WebControls.GridView gvExpedientes;
+        
+        /// <summary>
+        /// hddSort control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hddSort;
     }
 }

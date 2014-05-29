@@ -119,7 +119,6 @@
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsNacionalidad.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeAsignarFuncionario.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeDiligenciaExpediente.aspx" />
-    <Content Include="Application\WebApp\Private\Operation\opeDiligenciaRecomendacion.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeDiligencias.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeDiligenciaSolicitud.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeSolicitudFuncionario.aspx" />
@@ -129,15 +128,14 @@
     <Content Include="Application\WebApp\Private\Reportes\rptEstatusQuejas.aspx" />
     <Content Include="Application\WebApp\Private\Reportes\rptEstatusSolicitud.aspx" />
     <Content Include="Application\WebApp\Private\Reportes\rptTema.aspx" />
-    <Content Include="Application\WebApp\Private\Seguimiento\lstRecSectretarias.aspx" />
-    <Content Include="Application\WebApp\Private\Seguimiento\opeAsignarDefensorDirector.aspx" />
-    <Content Include="Application\WebApp\Private\Seguimiento\opeBusquedaRecomendacion.aspx" />
-    <Content Include="Application\WebApp\Private\Seguimiento\opeConfirmarCierreExpediente.aspx" />
-    <Content Include="Application\WebApp\Private\Seguimiento\opeDetalleRecomendacionDefensor.aspx" />
-    <Content Include="Application\WebApp\Private\Seguimiento\opeDetalleRecomendacionDirector.aspx" />
-    <Content Include="Application\WebApp\Private\Seguimiento\opeDetalleRecomendacionSecretaria.aspx" />
-    <Content Include="Application\WebApp\Private\Seguimiento\opeLstRecDefensor.aspx" />
-    <Content Include="Application\WebApp\Private\Seguimiento\opeLstRecDirector.aspx" />
+    <Content Include="Application\WebApp\Private\Seguimiento\segAsignarDefensor.aspx" />
+    <Content Include="Application\WebApp\Private\Seguimiento\segBusquedaExpediente.aspx" />
+    <Content Include="Application\WebApp\Private\Seguimiento\segConfirmarCierreExpediente.aspx" />
+    <Content Include="Application\WebApp\Private\Seguimiento\segDetalleExpediente.aspx" />
+    <Content Include="Application\WebApp\Private\Seguimiento\segDiligencia.aspx" />
+    <Content Include="Application\WebApp\Private\Seguimiento\segEnviarConclusionExpediente.aspx" />
+    <Content Include="Application\WebApp\Private\Seguimiento\segListadoExpediente.aspx" />
+    <Content Include="Application\WebApp\Private\Seguimiento\segSeguimientoRecomendacion.aspx" />
     <Content Include="Application\WebApp\Private\SysApp\Seguimiento\lstRecSectretarias.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeAcuerdoCalifDefinitiva.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeAgregarAutoridaSenalada.aspx" />
@@ -670,13 +668,6 @@
     <Compile Include="Application\WebApp\Private\Operation\opeDiligenciaExpediente.aspx.designer.cs">
       <DependentUpon>opeDiligenciaExpediente.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeDiligenciaRecomendacion.aspx.cs">
-      <DependentUpon>opeDiligenciaRecomendacion.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeDiligenciaRecomendacion.aspx.designer.cs">
-      <DependentUpon>opeDiligenciaRecomendacion.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeDiligencias.aspx.cs">
       <DependentUpon>opeDiligencias.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -765,68 +756,61 @@
       <DependentUpon>rptTema.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\lstRecSectretarias.aspx.cs">
-      <DependentUpon>lstRecSectretarias.aspx</DependentUpon>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segAsignarDefensor.aspx.cs">
+      <DependentUpon>segAsignarDefensor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\lstRecSectretarias.aspx.designer.cs">
-      <DependentUpon>lstRecSectretarias.aspx</DependentUpon>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segAsignarDefensor.aspx.designer.cs">
+      <DependentUpon>segAsignarDefensor.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\opeAsignarDefensorDirector.aspx.cs">
-      <DependentUpon>opeAsignarDefensorDirector.aspx</DependentUpon>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segBusquedaExpediente.aspx.cs">
+      <DependentUpon>segBusquedaExpediente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\opeAsignarDefensorDirector.aspx.designer.cs">
-      <DependentUpon>opeAsignarDefensorDirector.aspx</DependentUpon>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segBusquedaExpediente.aspx.designer.cs">
+      <DependentUpon>segBusquedaExpediente.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\opeBusquedaRecomendacion.aspx.cs">
-      <DependentUpon>opeBusquedaRecomendacion.aspx</DependentUpon>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segConfirmarCierreExpediente.aspx.cs">
+      <DependentUpon>segConfirmarCierreExpediente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\opeBusquedaRecomendacion.aspx.designer.cs">
-      <DependentUpon>opeBusquedaRecomendacion.aspx</DependentUpon>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segConfirmarCierreExpediente.aspx.designer.cs">
+      <DependentUpon>segConfirmarCierreExpediente.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\opeConfirmarCierreExpediente.aspx.cs">
-      <DependentUpon>opeConfirmarCierreExpediente.aspx</DependentUpon>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segDetalleExpediente.aspx.cs">
+      <DependentUpon>segDetalleExpediente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\opeConfirmarCierreExpediente.aspx.designer.cs">
-      <DependentUpon>opeConfirmarCierreExpediente.aspx</DependentUpon>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segDetalleExpediente.aspx.designer.cs">
+      <DependentUpon>segDetalleExpediente.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\opeDetalleRecomendacionDefensor.aspx.cs">
-      <DependentUpon>opeDetalleRecomendacionDefensor.aspx</DependentUpon>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segDiligencia.aspx.cs">
+      <DependentUpon>segDiligencia.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\opeDetalleRecomendacionDefensor.aspx.designer.cs">
-      <DependentUpon>opeDetalleRecomendacionDefensor.aspx</DependentUpon>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segDiligencia.aspx.designer.cs">
+      <DependentUpon>segDiligencia.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\opeDetalleRecomendacionDirector.aspx.cs">
-      <DependentUpon>opeDetalleRecomendacionDirector.aspx</DependentUpon>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segEnviarConclusionExpediente.aspx.cs">
+      <DependentUpon>segEnviarConclusionExpediente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\opeDetalleRecomendacionDirector.aspx.designer.cs">
-      <DependentUpon>opeDetalleRecomendacionDirector.aspx</DependentUpon>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segEnviarConclusionExpediente.aspx.designer.cs">
+      <DependentUpon>segEnviarConclusionExpediente.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\opeDetalleRecomendacionSecretaria.aspx.cs">
-      <DependentUpon>opeDetalleRecomendacionSecretaria.aspx</DependentUpon>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segListadoExpediente.aspx.cs">
+      <DependentUpon>segListadoExpediente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\opeDetalleRecomendacionSecretaria.aspx.designer.cs">
-      <DependentUpon>opeDetalleRecomendacionSecretaria.aspx</DependentUpon>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segListadoExpediente.aspx.designer.cs">
+      <DependentUpon>segListadoExpediente.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\opeLstRecDefensor.aspx.cs">
-      <DependentUpon>opeLstRecDefensor.aspx</DependentUpon>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segSeguimientoRecomendacion.aspx.cs">
+      <DependentUpon>segSeguimientoRecomendacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\opeLstRecDefensor.aspx.designer.cs">
-      <DependentUpon>opeLstRecDefensor.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\opeLstRecDirector.aspx.cs">
-      <DependentUpon>opeLstRecDirector.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\opeLstRecDirector.aspx.designer.cs">
-      <DependentUpon>opeLstRecDirector.aspx</DependentUpon>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segSeguimientoRecomendacion.aspx.designer.cs">
+      <DependentUpon>segSeguimientoRecomendacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\SysApp\Seguimiento\lstRecSectretarias.aspx.cs">
       <DependentUpon>lstRecSectretarias.aspx</DependentUpon>

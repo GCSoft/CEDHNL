@@ -29,35 +29,75 @@ namespace SIAQ.Web.Application.WebApp.Private.Home
 	{
       
 
-      // Eventos de la página
+		// Eventos de la página
 
-      protected void Page_Load(object sender, EventArgs e){
-          ENTSession oENTSession = new ENTSession();
+		protected void Page_Load(object sender, EventArgs e){
+			ENTSession oENTSession = new ENTSession();
 
-          oENTSession = (ENTSession)Session["oENTSession"];
+			oENTSession = (ENTSession)Session["oENTSession"];
 
-          switch (oENTSession.idRol)
-          {
-              case 3:
-                  this.Response.Redirect("../Operation/opeInicio.aspx", false);
-                  break;
+			switch (oENTSession.idRol){
+				case 1: // System Administrator
+					break;
 
-              case 4:
-                  this.Response.Redirect("../Operation/opeSolicitudSecretaria.aspx", false);
-                  break;
+				case 2: // Administrador
+					break;
 
-              case 5:
-                  this.Response.Redirect("../Operation/opeSolicitudFuncionario.aspx", false);
-                  break;
+				case 3: // Recepción
+					this.Response.Redirect("../Operation/opeInicio.aspx", false);
+					break;
 
-              case 6:
-                  this.Response.Redirect("../Operation/opeBusquedaSolicitud.aspx", false);
-                  break;
+				case 4: // Queja - Secretaria
+					this.Response.Redirect("../Operation/opeSolicitudSecretaria.aspx", false);
+					break;
 
-              default:
-                  break;
-          }
-      }
+				case 5: // Queja - Funcionario
+					this.Response.Redirect("../Operation/opeSolicitudFuncionario.aspx", false);
+					break;
+
+				case 6: // Queja - Director
+					this.Response.Redirect("../Operation/opeBusquedaSolicitud.aspx", false);
+					break;
+
+				case 7: // Visitaduría - Secretaria
+					break;
+
+				case 8: // Visitaduría - Visitador
+					break;
+
+				case 9: // Visitaduría - Director
+					break;
+
+				case 10: // Seguimiento - Secretaria
+					this.Response.Redirect("../Seguimiento/segListadoExpediente.aspx", false);
+					break;
+
+				case 11: // Seguimiento - Defensor
+					this.Response.Redirect("../Seguimiento/segListadoExpediente.aspx", false);
+					break;
+
+				case 12: // Seguimiento - Director
+					this.Response.Redirect("../Seguimiento/segListadoExpediente.aspx", false);
+					break;
+
+				case 13: // Atención a Víctimas - Secretaria
+					break;
+
+				case 14: // Atención a Víctimas - Doctor
+					break;
+
+				case 15: // Atención a Víctimas - Director
+					break;
+
+				case 16: // Archivo
+					break;
+
+				default:
+					break;
+			}
+
+		}
+
 
 	}
 }

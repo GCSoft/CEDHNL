@@ -103,10 +103,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Application\WebApp\Private\Catalog\catCiudad.aspx" />
     <Content Include="Application\WebApp\Private\Catalog\catColonia.aspx" />
+    <Content Include="Application\WebApp\Private\Catalog\catEstado.aspx" />
     <Content Include="Application\WebApp\Private\Catalog\catFuncionario.aspx" />
+    <Content Include="Application\WebApp\Private\Catalog\catLugarDiligencia.aspx" />
+    <Content Include="Application\WebApp\Private\Catalog\catLugarHechos.aspx" />
+    <Content Include="Application\WebApp\Private\Catalog\catMedioComunicacion.aspx" />
+    <Content Include="Application\WebApp\Private\Catalog\catMotivo.aspx" />
     <Content Include="Application\WebApp\Private\Catalog\catNacionalidad.aspx" />
     <Content Include="Application\WebApp\Private\Catalog\catOcupacion.aspx" />
+    <Content Include="Application\WebApp\Private\Catalog\catPais.aspx" />
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlscatOcupacion.aspx" />
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsColonia.aspx" />
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsNacionalidad.aspx" />
@@ -551,6 +558,13 @@
     <Content Include="Include\WebUserControls\wucMenu.ascx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\WebApp\Private\Catalog\catCiudad.aspx.cs">
+      <DependentUpon>catCiudad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catCiudad.aspx.designer.cs">
+      <DependentUpon>catCiudad.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Application\WebApp\Private\Catalog\catColonia.aspx.cs">
       <DependentUpon>catColonia.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -558,12 +572,47 @@
     <Compile Include="Application\WebApp\Private\Catalog\catColonia.aspx.designer.cs">
       <DependentUpon>catColonia.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catEstado.aspx.cs">
+      <DependentUpon>catEstado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catEstado.aspx.designer.cs">
+      <DependentUpon>catEstado.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Application\WebApp\Private\Catalog\catFuncionario.aspx.cs">
       <DependentUpon>catFuncionario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\Catalog\catFuncionario.aspx.designer.cs">
       <DependentUpon>catFuncionario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catLugarDiligencia.aspx.cs">
+      <DependentUpon>catLugarDiligencia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catLugarDiligencia.aspx.designer.cs">
+      <DependentUpon>catLugarDiligencia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catLugarHechos.aspx.cs">
+      <DependentUpon>catLugarHechos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catLugarHechos.aspx.designer.cs">
+      <DependentUpon>catLugarHechos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catMedioComunicacion.aspx.cs">
+      <DependentUpon>catMedioComunicacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catMedioComunicacion.aspx.designer.cs">
+      <DependentUpon>catMedioComunicacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catMotivo.aspx.cs">
+      <DependentUpon>catMotivo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catMotivo.aspx.designer.cs">
+      <DependentUpon>catMotivo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Catalog\catNacionalidad.aspx.cs">
       <DependentUpon>catNacionalidad.aspx</DependentUpon>
@@ -578,6 +627,13 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Catalog\catOcupacion.aspx.designer.cs">
       <DependentUpon>catOcupacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catPais.aspx.cs">
+      <DependentUpon>catPais.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catPais.aspx.designer.cs">
+      <DependentUpon>catPais.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Catalog\ExcelMaker\xlscatOcupacion.aspx.cs">
       <DependentUpon>xlscatOcupacion.aspx</DependentUpon>

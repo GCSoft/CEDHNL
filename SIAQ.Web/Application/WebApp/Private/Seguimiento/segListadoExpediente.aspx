@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="segListadoExpediente.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Seguimiento.segListadoExpediente" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
@@ -35,29 +36,29 @@
 						<EmptyDataTemplate>
 							<table border="1px" cellpadding="0px" cellspacing="0px">
 								<tr class="Grid_Header">
-									<td style="width:150px;">Nombre del País</td>
-									<td>Descripción</td>
-									<td style="width:100px;">Estatus</td>
-									<td style="width:25px;" ></td>
-									<td style="width:25px;" ></td>
+									<td style="width:150px;">Recomendación</td>
+									<td>Asunto</td>
+									<td style="width:100px;">Fecha</td>
+									<td style="width:120px;">Estatus</td>
+									<td style="width:120px;">Quejosos</td>
+									<td style="width:140px;">Autoridades</td>
+									<td style="width:25px;"></td>
 								</tr>
 								<tr class="Grid_Row">
-									<td colspan="5">No se encontraron Expedientes disponibles</td>
+									<td colspan="7">No se encontraron Expedientes disponibles</td>
 								</tr>
 							</table>
 						</EmptyDataTemplate>
 						<Columns>
-							<asp:BoundField HeaderText="Nombre del País"	ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="150px" DataField="Nombre"		SortExpression="Nombre"></asp:BoundField>
-							<asp:BoundField HeaderText="Descripción"		ItemStyle-HorizontalAlign="Left"							DataField="Descripcion"	SortExpression="Descripcion"></asp:BoundField>
-							<asp:BoundField HeaderText="Estatus"			ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100px" DataField="Estatus"		SortExpression="Estatus"></asp:BoundField>
+							<asp:BoundField HeaderText="Recomendación"	ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="150px" DataField="Recomendacion"		SortExpression="Recomendacion"></asp:BoundField>
+							<asp:BoundField HeaderText="Asunto"			ItemStyle-HorizontalAlign="Left"							DataField="Asunto"				SortExpression="Asunto"></asp:BoundField>
+							<asp:BoundField HeaderText="Fecha"			ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100px" DataField="FechaSeguimientos"	SortExpression="FechaSeguimientos"></asp:BoundField>
+							<asp:BoundField HeaderText="Estatus"		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="150px"	DataField="Estatus"				SortExpression="Estatus"></asp:BoundField>
+							<asp:BoundField HeaderText="Quejosos"		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="150px"	DataField="Quejosos"			SortExpression="Quejosos"></asp:BoundField>
+							<asp:BoundField HeaderText="Autoridades"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="150px"	DataField="Autoridades"			SortExpression="Autoridades"></asp:BoundField>
 							<asp:TemplateField ItemStyle-HorizontalAlign ="Center" ItemStyle-Width="20px">
 								<ItemTemplate>
 									<asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
-								</ItemTemplate>
-							</asp:TemplateField>
-							<asp:TemplateField ItemStyle-HorizontalAlign ="Center" ItemStyle-Width="20px">
-								<ItemTemplate>
-									<asp:ImageButton ID="imgAction" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Action" ImageUrl="~/Include/Image/Buttons/Delete.png" runat="server" />
 								</ItemTemplate>
 							</asp:TemplateField>
 						</Columns>
@@ -66,6 +67,6 @@
             </td>
         </tr>
         <tr class="trFilaFooter"><td></td></tr>
-        <asp:HiddenField ID="hddSort" runat="server" Value="Nombre" />
+        <asp:HiddenField ID="hddSort" runat="server" Value="Recomendacion" />
     </table>
 </asp:Content>

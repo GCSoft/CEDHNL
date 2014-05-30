@@ -462,12 +462,14 @@
     <Content Include="Include\Image\Buttons\Search.png" />
     <Content Include="Include\Image\Buttons\SelectItem.png" />
     <Content Include="Include\Image\Buttons\SelectItem_Null.png" />
+    <Content Include="Include\Image\Icon\AcuerdoIcon.png" />
     <Content Include="Include\Image\Icon\AsignarIcon.png" />
     <Content Include="Include\Image\Icon\AutoridadIcon.png" />
     <Content Include="Include\Image\Icon\AutorizarIcon.png" />
     <Content Include="Include\Image\Icon\BuscarSolicitud.png" />
     <Content Include="Include\Image\Icon\CalificarIcon.png" />
     <Content Include="Include\Image\Icon\CiudadanoIcon.png" />
+    <Content Include="Include\Image\Icon\ComparecenciaIcon.png" />
     <Content Include="Include\Image\Icon\DiligenciaIcon.png" />
     <Content Include="Include\Image\Icon\DocumentoIcon.png" />
     <Content Include="Include\Image\Icon\EnviarIcon.png" />
@@ -478,8 +480,11 @@
     <Content Include="Include\Image\Icon\IndicadorIcon.png" />
     <Content Include="Include\Image\Icon\PdfIcon.png" />
     <Content Include="Include\Image\Icon\PowerPointIcon.png" />
+    <Content Include="Include\Image\Icon\RecomendacionIcon.png" />
     <Content Include="Include\Image\Icon\RegistrarSolicitud.png" />
     <Content Include="Include\Image\Icon\RegistrarVisita.png" />
+    <Content Include="Include\Image\Icon\ResoluciónIcon.png" />
+    <Content Include="Include\Image\Icon\SeguimientoIcon.png" />
     <Content Include="Include\Image\Icon\WordIcon.png" />
     <Content Include="Include\Image\Vectores\Banner.png" />
     <Content Include="Include\Image\Vectores\BarraTituloDePagina.png" />

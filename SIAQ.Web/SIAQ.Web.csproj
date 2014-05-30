@@ -121,6 +121,7 @@
     <Content Include="Application\WebApp\Private\Operation\opeDiligenciaExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeDiligencias.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeDiligenciaSolicitud.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeListadoSolicitudAprobacion.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeSolicitudFuncionario.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeSolicitudPaginaImpresion.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeSolicitudSecretaria.aspx" />
@@ -135,6 +136,7 @@
     <Content Include="Application\WebApp\Private\Seguimiento\segDiligencia.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segEnviarConclusionExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segListadoExpediente.aspx" />
+    <Content Include="Application\WebApp\Private\Seguimiento\segListadoExpedienteAprobacion.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segSeguimientoRecomendacion.aspx" />
     <Content Include="Application\WebApp\Private\SysApp\Seguimiento\lstRecSectretarias.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeAcuerdoCalifDefinitiva.aspx" />
@@ -178,6 +180,7 @@
     <Content Include="Application\WebApp\Private\SysCat\scatRol.aspx" />
     <Content Include="Application\WebApp\Private\SysCat\scatSubMenu.aspx" />
     <Content Include="Application\WebApp\Private\SysCat\scatUsuario.aspx" />
+    <Content Include="Application\WebApp\Private\Visitaduria\visListadoExpedienteAprobacion.aspx" />
     <Content Include="ckeditor\adapters\jquery.js" />
     <Content Include="ckeditor\build-config.js" />
     <Content Include="ckeditor\ckeditor.js" />
@@ -682,6 +685,13 @@
     <Compile Include="Application\WebApp\Private\Operation\opeDiligenciaSolicitud.aspx.designer.cs">
       <DependentUpon>opeDiligenciaSolicitud.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeListadoSolicitudAprobacion.aspx.cs">
+      <DependentUpon>opeListadoSolicitudAprobacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeListadoSolicitudAprobacion.aspx.designer.cs">
+      <DependentUpon>opeListadoSolicitudAprobacion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeSolicitudFuncionario.aspx.cs">
       <DependentUpon>opeSolicitudFuncionario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -804,6 +814,13 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Seguimiento\segListadoExpediente.aspx.designer.cs">
       <DependentUpon>segListadoExpediente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segListadoExpedienteAprobacion.aspx.cs">
+      <DependentUpon>segListadoExpedienteAprobacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segListadoExpedienteAprobacion.aspx.designer.cs">
+      <DependentUpon>segListadoExpedienteAprobacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Seguimiento\segSeguimientoRecomendacion.aspx.cs">
       <DependentUpon>segSeguimientoRecomendacion.aspx</DependentUpon>
@@ -1105,6 +1122,13 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\SysCat\scatUsuario.aspx.designer.cs">
       <DependentUpon>scatUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Visitaduria\visListadoExpedienteAprobacion.aspx.cs">
+      <DependentUpon>visListadoExpedienteAprobacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Visitaduria\visListadoExpedienteAprobacion.aspx.designer.cs">
+      <DependentUpon>visListadoExpedienteAprobacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Include\Handler\ObtenerRepositorio.cs" />
     <Compile Include="Include\WebUserControls\wucBusquedaCiudadano.ascx.cs">

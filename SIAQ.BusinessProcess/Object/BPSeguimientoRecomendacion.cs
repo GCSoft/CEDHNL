@@ -47,40 +47,14 @@ namespace SIAQ.BusinessProcess.Object
             _SeguimientoRecomendacionEntity = new ENTSeguimientoRecomendacion();
         }
 
-        public void SelectRecomendacionDirector()
+		public void SelectRecomendaciones()
         {
             string ConnectionString = String.Empty;
             DASeguimientoRecomendacion DASeguimientoRecomendacion = new DASeguimientoRecomendacion();
 
             ConnectionString = sConnectionApplication;
 
-            _SeguimientoRecomendacionEntity.ResultData = DASeguimientoRecomendacion.SelectListadoRecomendacionDirector(_SeguimientoRecomendacionEntity, ConnectionString);
-            _ErrorId = DASeguimientoRecomendacion.ErrorId;
-            _ErrorString = DASeguimientoRecomendacion.ErrorDescription;
-
-        }
-
-        public void SelectRecomendacionDefensor()
-        {
-            string ConnectionString = String.Empty;
-            DASeguimientoRecomendacion DASeguimientoRecomendacion = new DASeguimientoRecomendacion();
-
-            ConnectionString = sConnectionApplication;
-
-            _SeguimientoRecomendacionEntity.ResultData = DASeguimientoRecomendacion.SelectListadoRecomendacionDefensor(_SeguimientoRecomendacionEntity, ConnectionString);
-            _ErrorId = DASeguimientoRecomendacion.ErrorId;
-            _ErrorString = DASeguimientoRecomendacion.ErrorDescription; 
-
-        }
-
-        public void SelectRecomendacionSecretaria()
-        {
-            string ConnectionString = String.Empty;
-            DASeguimientoRecomendacion DASeguimientoRecomendacion = new DASeguimientoRecomendacion();
-
-            ConnectionString = sConnectionApplication;
-
-            _SeguimientoRecomendacionEntity.ResultData = DASeguimientoRecomendacion.SelectListadoRecomendacionSecretaria(ConnectionString);
+			_SeguimientoRecomendacionEntity.ResultData = DASeguimientoRecomendacion.SelectRecomendaciones(_SeguimientoRecomendacionEntity, ConnectionString);
             _ErrorId = DASeguimientoRecomendacion.ErrorId;
             _ErrorString = DASeguimientoRecomendacion.ErrorDescription;
 

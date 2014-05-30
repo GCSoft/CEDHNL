@@ -35,22 +35,25 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		// Rutinas del programador
 
 		private void SelectRecomendaciones(){
+
 			//BPSeguimientoRecomendacion BPSeguimientoRecomendacion = new BPSeguimientoRecomendacion();
 
-			//BPSeguimientoRecomendacion.SelectRecomendacionSecretaria();
+			//// Estado inicial del grid
+			//this.gvRecomendaciones.DataSource = null;
+			//this.gvRecomendaciones.DataBind();
 
-			//if (BPSeguimientoRecomendacion.ErrorId == 0)
-			//{
-			//    if (BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows.Count > 0)
-			//    {
-			//        gvApps.DataSource = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData;
-			//        gvApps.DataBind();
-			//    }
-			//}
-			//else
-			//{
-			//    gvApps.DataSource = null;
-			//    gvApps.DataBind();
+			//// Transacción
+			//BPSeguimientoRecomendacion.SolicitudEntity.SolicitudId = SolicitudId;
+			//BPSeguimientoRecomendacion.SelectRecomendaciones();
+
+			//// Validaciones
+			//if (BPSeguimientoRecomendacion.ErrorId != 0) { throw(new Exception(BPSeguimientoRecomendacion.ErrorString) ) }
+
+			//// Listado de recomendaciones
+			//if (BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows.Count > 0){
+
+			//    this.gvRecomendaciones.DataSource = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData;
+			//    this.gvRecomendaciones.DataBind();
 			//}
 
 		}
@@ -72,5 +75,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
             }
 		}
+	
 	}
 }

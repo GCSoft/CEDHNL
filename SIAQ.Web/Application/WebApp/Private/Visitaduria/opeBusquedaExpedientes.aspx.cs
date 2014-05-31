@@ -185,11 +185,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
                     if (rolId == 9)
                     {
-                        Response.Redirect("~/Application/WebApp/Private/Visitaduria/opeDetalleExpedienteTitular.aspx?expId=" + ExpedienteId);
+                        Response.Redirect("~/Application/WebApp/Private/Visitaduria/visDetalleExpediente.aspx?expId=" + ExpedienteId);
                     }
                     else
                     {
-                        Response.Redirect("~/Application/WebApp/Private/Visitaduria/opeDetalleExpedienteVisitador.aspx?expId=" + ExpedienteId);
+                        Response.Redirect("~/Application/WebApp/Private/Visitaduria/visDetalleExpediente.aspx?expId=" + ExpedienteId);
                     }
 
                     break;

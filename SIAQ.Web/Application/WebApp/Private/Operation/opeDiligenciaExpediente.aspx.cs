@@ -181,7 +181,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 ExpedienteId = hdnExpedienteId.Value;
             }
 
-            Response.Redirect("~/Application/WebApp/Private/Visitaduria/opeDetalleExpedienteVisitador.aspx?expId=" + ExpedienteId);
+            Response.Redirect("~/Application/WebApp/Private/Visitaduria/visDetalleExpediente.aspx?expId=" + ExpedienteId);
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)

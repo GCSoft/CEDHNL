@@ -485,7 +485,7 @@
     <Content Include="Include\Image\Icon\RecomendacionIcon.png" />
     <Content Include="Include\Image\Icon\RegistrarSolicitud.png" />
     <Content Include="Include\Image\Icon\RegistrarVisita.png" />
-    <Content Include="Include\Image\Icon\ResoluciónIcon.png" />
+    <Content Include="Include\Image\Icon\ResolucionIcon.png" />
     <Content Include="Include\Image\Icon\SeguimientoIcon.png" />
     <Content Include="Include\Image\Icon\WordIcon.png" />
     <Content Include="Include\Image\Vectores\Banner.png" />

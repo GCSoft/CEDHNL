@@ -82,10 +82,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             switch (Convert.ToInt32(sRolId))
             {
                 case 7:// Secretaria 
-                    Response.Redirect("~/Application/WebApp/Private/Visitaduria/opeDetalleExpedienteVisitador.aspx?expId=" + expedienteId);
+                    Response.Redirect("~/Application/WebApp/Private/Visitaduria/visDetalleExpediente.aspx?expId=" + expedienteId);
                     break;
                 case 9://Director
-                    Response.Redirect("~/Application/WebApp/Private/Visitaduria/opeDetalleExpedienteTitular.aspx?expId=" + expedienteId);
+                    Response.Redirect("~/Application/WebApp/Private/Visitaduria/visDetalleExpediente.aspx?expId=" + expedienteId);
                     break;
             }
 

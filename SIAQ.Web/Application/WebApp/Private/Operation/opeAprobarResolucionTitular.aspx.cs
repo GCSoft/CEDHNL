@@ -135,7 +135,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         protected void cmdRegresar_Click(object sender, EventArgs e)
         {
             string sExpedienteId = GetRawQueryParameter("expId");
-            Response.Redirect("~/Application/WebApp/Private/Visitaduria/opeDetalleExpedienteTitular.aspx?expId=" + sExpedienteId);
+            Response.Redirect("~/Application/WebApp/Private/Visitaduria/visDetalleExpediente.aspx?expId=" + sExpedienteId);
         }
 
         #endregion

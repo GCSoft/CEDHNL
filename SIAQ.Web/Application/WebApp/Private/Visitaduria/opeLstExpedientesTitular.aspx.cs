@@ -90,7 +90,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             switch (e.CommandName.ToString())
             {
                 case "Editar":
-                    Response.Redirect("~/Application/WebApp/Private/Visitaduria/opeDetalleExpedienteTitular.aspx?expId=" + ExpedienteId);
+                    Response.Redirect("~/Application/WebApp/Private/Visitaduria/visDetalleExpediente.aspx?expId=" + ExpedienteId);
                     break;
             }
         }

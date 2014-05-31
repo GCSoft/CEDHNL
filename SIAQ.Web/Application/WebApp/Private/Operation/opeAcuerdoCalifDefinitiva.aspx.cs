@@ -66,7 +66,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             string expedienteId = hdnExpedienteId.Value;
             if (String.IsNullOrEmpty(expedienteId)) { expedienteId = GetRawQueryParameter("expId"); }
 
-            Response.Redirect("~/Application/WebApp/Private/Visitaduria/opeDetalleExpedienteVisitador.aspx?expId=" + expedienteId);
+            Response.Redirect("~/Application/WebApp/Private/Visitaduria/visDetalleExpediente.aspx?expId=" + expedienteId);
         }
 
         #endregion

@@ -154,8 +154,6 @@
     <Content Include="Application\WebApp\Private\Operation\opeCalificarSolicitud.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeCiudadano.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeDetalleCiudadano.aspx" />
-    <Content Include="Application\WebApp\Private\Visitaduria\opeDetalleExpedienteTitular.aspx" />
-    <Content Include="Application\WebApp\Private\Visitaduria\opeDetalleExpedienteVisitador.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeDetalleSolicitud.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeEnviarSolicitud.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeInicio.aspx" />
@@ -180,6 +178,7 @@
     <Content Include="Application\WebApp\Private\SysCat\scatRol.aspx" />
     <Content Include="Application\WebApp\Private\SysCat\scatSubMenu.aspx" />
     <Content Include="Application\WebApp\Private\SysCat\scatUsuario.aspx" />
+    <Content Include="Application\WebApp\Private\Visitaduria\visDetalleExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\visListadoExpedienteAprobacion.aspx" />
     <Content Include="ckeditor\adapters\jquery.js" />
     <Content Include="ckeditor\build-config.js" />
@@ -949,20 +948,6 @@
     <Compile Include="Application\WebApp\Private\Operation\opeDetalleCiudadano.aspx.designer.cs">
       <DependentUpon>opeDetalleCiudadano.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Visitaduria\opeDetalleExpedienteTitular.aspx.cs">
-      <DependentUpon>opeDetalleExpedienteTitular.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Visitaduria\opeDetalleExpedienteTitular.aspx.designer.cs">
-      <DependentUpon>opeDetalleExpedienteTitular.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Visitaduria\opeDetalleExpedienteVisitador.aspx.cs">
-      <DependentUpon>opeDetalleExpedienteVisitador.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Visitaduria\opeDetalleExpedienteVisitador.aspx.designer.cs">
-      <DependentUpon>opeDetalleExpedienteVisitador.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeDetalleSolicitud.aspx.cs">
       <DependentUpon>opeDetalleSolicitud.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1130,6 +1115,13 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\SysCat\scatUsuario.aspx.designer.cs">
       <DependentUpon>scatUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Visitaduria\visDetalleExpediente.aspx.cs">
+      <DependentUpon>visDetalleExpediente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Visitaduria\visDetalleExpediente.aspx.designer.cs">
+      <DependentUpon>visDetalleExpediente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Visitaduria\visListadoExpedienteAprobacion.aspx.cs">
       <DependentUpon>visListadoExpedienteAprobacion.aspx</DependentUpon>

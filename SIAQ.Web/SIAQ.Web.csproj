@@ -468,8 +468,10 @@
     <Content Include="Include\Image\Icon\AutorizarIcon.png" />
     <Content Include="Include\Image\Icon\BuscarSolicitud.png" />
     <Content Include="Include\Image\Icon\CalificarIcon.png" />
+    <Content Include="Include\Image\Icon\CerrarExpedienteIcon.png" />
     <Content Include="Include\Image\Icon\CiudadanoIcon.png" />
     <Content Include="Include\Image\Icon\ComparecenciaIcon.png" />
+    <Content Include="Include\Image\Icon\ConfirmacionCierreIcon.png" />
     <Content Include="Include\Image\Icon\DiligenciaIcon.png" />
     <Content Include="Include\Image\Icon\DocumentoIcon.png" />
     <Content Include="Include\Image\Icon\EnviarIcon.png" />
@@ -478,6 +480,7 @@
     <Content Include="Include\Image\Icon\GeneralIcon.png" />
     <Content Include="Include\Image\Icon\ImprimirIcon.png" />
     <Content Include="Include\Image\Icon\IndicadorIcon.png" />
+    <Content Include="Include\Image\Icon\NotificacionIcon.png" />
     <Content Include="Include\Image\Icon\PdfIcon.png" />
     <Content Include="Include\Image\Icon\PowerPointIcon.png" />
     <Content Include="Include\Image\Icon\RecomendacionIcon.png" />

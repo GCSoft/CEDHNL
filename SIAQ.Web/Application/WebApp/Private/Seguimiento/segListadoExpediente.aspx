@@ -9,53 +9,41 @@
                 Listado de Expedientes
             </td>
         </tr>
-        <tr><td class="tdCeldaMiddleSpace_Title"></td></tr>
-        <tr>
-            <td>
-                <asp:Panel id="pnlFormulario" runat="server" Visible="true" Width="100%">
-                    <table border="0" cellpadding="0" cellspacing="0" style="text-align:left; font-size:11px" width="100%">
-                        <tr>
-                            <td colspan="3">s disponibles</td>
-                        </tr>
-					</table>
-                </asp:Panel>
-            </td>
-        </tr>
         <tr><td class="tdCeldaMiddleSpace"></td></tr>
         <tr>
             <td>
                 <asp:Panel id="pnlGrid" runat="server" Width="100%">
-                    <asp:GridView id="gvRecomendaciones" runat="server" AllowPaging="false" AllowSorting="true"  AutoGenerateColumns="False" Width="100%"
-						DataKeyNames="RecomendacionesId, tiActivo, Nombre" 
-						onrowcommand="gvRecomendaciones_RowCommand" 
-						onrowdatabound="gvRecomendaciones_RowDataBound"
-						onsorting="gvRecomendaciones_Sorting">
+                    <asp:GridView id="gvExpediente" runat="server" AllowPaging="false" AllowSorting="true"  AutoGenerateColumns="False" Width="100%"
+						DataKeyNames="ExpedienteId,Numero" 
+						onrowcommand="gvExpediente_RowCommand" 
+						onrowdatabound="gvExpediente_RowDataBound"
+						onsorting="gvExpediente_Sorting">
 						<alternatingrowstyle cssclass="Grid_Row_Alternating" />
 						<headerstyle cssclass="Grid_Header" />
 						<rowstyle cssclass="Grid_Row" />
 						<EmptyDataTemplate>
-							<table border="1px" cellpadding="0px" cellspacing="0px">
+							<table border="1px" cellpadding="0px" cellspacing="0px" width="100%">
 								<tr class="Grid_Header">
-									<td style="width:150px;">Recomendación</td>
-									<td>Asunto</td>
-									<td style="width:100px;">Fecha</td>
-									<td style="width:120px;">Estatus</td>
-									<td style="width:120px;">Quejosos</td>
-									<td style="width:140px;">Autoridades</td>
+									<td style="width:100px;">Numero</td>
+									<td>Observaciones</td>
+									<td style="width:70px;">Fecha</td>
+									<td style="width:250px;">Estatus</td>
+									<td style="width:120px;">TipoSolicitud</td>
+									<td style="width:120px;">LugarHechos</td>
 									<td style="width:25px;"></td>
 								</tr>
 								<tr class="Grid_Row">
-									<td colspan="7">No se encontraron Recomendaciones disponibles</td>
+									<td colspan="7">No se encontraron Expedientes en proceso de seguimiento</td>
 								</tr>
 							</table>
 						</EmptyDataTemplate>
 						<Columns>
-							<asp:BoundField HeaderText="Recomendación"	ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="150px" DataField="Recomendacion"		SortExpression="Recomendacion"></asp:BoundField>
-							<asp:BoundField HeaderText="Asunto"			ItemStyle-HorizontalAlign="Left"							DataField="Asunto"				SortExpression="Asunto"></asp:BoundField>
-							<asp:BoundField HeaderText="Fecha"			ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100px" DataField="FechaSeguimientos"	SortExpression="FechaSeguimientos"></asp:BoundField>
-							<asp:BoundField HeaderText="Estatus"		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="150px"	DataField="Estatus"				SortExpression="Estatus"></asp:BoundField>
-							<asp:BoundField HeaderText="Quejosos"		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="150px"	DataField="Quejosos"			SortExpression="Quejosos"></asp:BoundField>
-							<asp:BoundField HeaderText="Autoridades"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="150px"	DataField="Autoridades"			SortExpression="Autoridades"></asp:BoundField>
+							<asp:BoundField HeaderText="Numero"			ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="100px" DataField="Numero"			SortExpression="Numero"></asp:BoundField>
+							<asp:BoundField HeaderText="Observaciones"	ItemStyle-HorizontalAlign="Left"							DataField="Observaciones"	SortExpression="Observaciones"></asp:BoundField>
+							<asp:BoundField HeaderText="Fecha"			ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="70px"	DataField="Fecha"			SortExpression="Fecha"></asp:BoundField>
+							<asp:BoundField HeaderText="Estatus"		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="250px"	DataField="Estatus"			SortExpression="Estatus"></asp:BoundField>
+							<asp:BoundField HeaderText="TipoSolicitud"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="120px"	DataField="TipoSolicitud"	SortExpression="TipoSolicitud"></asp:BoundField>
+							<asp:BoundField HeaderText="LugarHechos"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="120px"	DataField="LugarHechos"		SortExpression="LugarHechos"></asp:BoundField>
 							<asp:TemplateField ItemStyle-HorizontalAlign ="Center" ItemStyle-Width="20px">
 								<ItemTemplate>
 									<asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
@@ -67,6 +55,6 @@
             </td>
         </tr>
         <tr class="trFilaFooter"><td></td></tr>
-        <asp:HiddenField ID="hddSort" runat="server" Value="Recomendacion" />
+        <asp:HiddenField ID="hddSort" runat="server" Value="Numero" />
     </table>
 </asp:Content>

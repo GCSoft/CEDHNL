@@ -13,15 +13,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
     public partial class segListadoExpediente {
         
         /// <summary>
-        /// pnlFormulario control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlFormulario;
-        
-        /// <summary>
         /// pnlGrid control.
         /// </summary>
         /// <remarks>
@@ -31,13 +22,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         protected global::System.Web.UI.WebControls.Panel pnlGrid;
         
         /// <summary>
-        /// gvRecomendaciones control.
+        /// gvExpediente control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvRecomendaciones;
+        protected global::System.Web.UI.WebControls.GridView gvExpediente;
         
         /// <summary>
         /// hddSort control.

@@ -13,76 +13,81 @@ namespace SIAQ.DataAccess.Object
 
         #region Atributos
 
-        protected int _ErrorId;
-        protected string _ErrorDescription;
-        Database dbs;
+			protected int _ErrorId;
+			protected string _ErrorDescription;
+			Database dbs;
 
         #endregion
 
         #region Propiedades
 
-        public int ErrorId
-        {
-            get { return _ErrorId; }
-            set { _ErrorId = value; }
-        }
+			public int ErrorId
+			{
+				get { return _ErrorId; }
+				set { _ErrorId = value; }
+			}
 
-        public string ErrorDescription
-        {
-            get { return _ErrorDescription; }
-            set { _ErrorDescription = value; }
-        }
+			public string ErrorDescription
+			{
+				get { return _ErrorDescription; }
+				set { _ErrorDescription = value; }
+			}
 
         #endregion
 
         #region Funciones
 
-        public DASeguimientoRecomendacion()
-        {
-            dbs = DatabaseFactory.CreateDatabase("Conn");
-        }
+			public DASeguimientoRecomendacion()
+			{
+				dbs = DatabaseFactory.CreateDatabase("Conn");
+			}
 
-        /// <remarks>
-        /// <name>DASeguimientoRecomendacion.SelectListadoRecomendacionDirector</name>
-        /// <create>05/mar/2014</create>
-        /// <author>Generador</author>
-        /// </remarks>
-        /// <summary>
-        /// Metodo para obtener las recomendaciones asignadas a un director especifico
-        /// </summary>
-		public DataSet SelectRecomendaciones(ENTSeguimientoRecomendacion entFuncionarioId, string ConnectionString)
-        {
-            DataSet ds = new DataSet();
-            SqlConnection Connection = new SqlConnection(ConnectionString);
-            SqlCommand Command;
-            SqlDataAdapter DataAdapter;
+			/// <remarks>
+			/// <name>DASeguimientoRecomendacion.SelectListadoRecomendacionDirector</name>
+			/// <create>05/mar/2014</create>
+			/// <author>Generador</author>
+			/// </remarks>
+			/// <summary>
+			/// Metodo para obtener las recomendaciones asignadas a un director especifico
+			/// </summary>
+			public DataSet SelectRecomendacionesSeguimientos(ENTSeguimientoRecomendacion entRecomendacion, string ConnectionString){
+				DataSet ds = new DataSet();
+				SqlConnection Connection = new SqlConnection(ConnectionString);
+				SqlCommand Command;
+				SqlDataAdapter DataAdapter;
+				SqlParameter Parameter;
 
-            try
-            {
-				Command = new SqlCommand("uspRecomendaciones_Sel", Connection);
-                Command.CommandType = CommandType.StoredProcedure;
+				try
+				{
+					Command = new SqlCommand("uspExpediente_Sel_Seguimientos", Connection);
+					Command.CommandType = CommandType.StoredProcedure;
 
-                DataAdapter = new SqlDataAdapter(Command);
+					Parameter = new SqlParameter("Aprobar", SqlDbType.TinyInt);
+					Parameter.Value = entRecomendacion.Aprobar;
+					Command.Parameters.Add(Parameter);
 
-                Connection.Open();
-                DataAdapter.Fill(ds);
-                Connection.Close();
+					Parameter = new SqlParameter("UsuarioId", SqlDbType.Int);
+					Parameter.Value = entRecomendacion.UsuarioId;
+					Command.Parameters.Add(Parameter);
 
-                return ds;
-            }
-            catch (SqlException ex)
-            {
-                _ErrorId = ex.Number;
-                _ErrorDescription = ex.Message;
+					DataAdapter = new SqlDataAdapter(Command);
 
-                if (Connection.State == ConnectionState.Open)
-                {
-                    Connection.Close();
-                }
+					Connection.Open();
+					DataAdapter.Fill(ds);
+					Connection.Close();
 
-                return ds;
-            }
-        }
+					return ds;
+
+				}catch (SqlException ex){
+
+					_ErrorId = ex.Number;
+					_ErrorDescription = ex.Message;
+
+					if (Connection.State == ConnectionState.Open) { Connection.Close(); }
+
+					return ds;
+				}
+			}
 
         #endregion
 

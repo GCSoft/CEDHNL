@@ -12,53 +12,51 @@ namespace SIAQ.BusinessProcess.Object
 
         #region Atributos
 
-        protected ENTSeguimientoRecomendacion _SeguimientoRecomendacionEntity;
-        private int _ErrorId;
-        private string _ErrorString;
+			protected ENTSeguimientoRecomendacion _SeguimientoRecomendacionEntity;
+			private int _ErrorId;
+			private string _ErrorString;
 
         #endregion
 
         #region Propiedades
 
-        public ENTSeguimientoRecomendacion SeguimientoRecomendacionEntity
-        {
-            get { return _SeguimientoRecomendacionEntity; }
-            set { _SeguimientoRecomendacionEntity = value; }
-        }
+			public ENTSeguimientoRecomendacion SeguimientoRecomendacionEntity
+			{
+				get { return _SeguimientoRecomendacionEntity; }
+				set { _SeguimientoRecomendacionEntity = value; }
+			}
 
-        public int ErrorId
-        {
-            get { return _ErrorId; }
-            set { _ErrorId = value; }
-        }
+			public int ErrorId
+			{
+				get { return _ErrorId; }
+				set { _ErrorId = value; }
+			}
 
-        public string ErrorString
-        {
-            get { return _ErrorString; }
-            set { _ErrorString = value; }
-        }
+			public string ErrorString
+			{
+				get { return _ErrorString; }
+				set { _ErrorString = value; }
+			}
 
         #endregion
 
         #region Funciones
 
-        public BPSeguimientoRecomendacion()
-        {
-            _SeguimientoRecomendacionEntity = new ENTSeguimientoRecomendacion();
-        }
+			public BPSeguimientoRecomendacion(){
+				_SeguimientoRecomendacionEntity = new ENTSeguimientoRecomendacion();
+			}
 
-		public void SelectRecomendaciones()
-        {
-            string ConnectionString = String.Empty;
-            DASeguimientoRecomendacion DASeguimientoRecomendacion = new DASeguimientoRecomendacion();
+			public void SelectRecomendacionesSeguimientos(){
+				string ConnectionString = String.Empty;
+				DASeguimientoRecomendacion DASeguimientoRecomendacion = new DASeguimientoRecomendacion();
 
-            ConnectionString = sConnectionApplication;
+				ConnectionString = sConnectionApplication;
 
-			_SeguimientoRecomendacionEntity.ResultData = DASeguimientoRecomendacion.SelectRecomendaciones(_SeguimientoRecomendacionEntity, ConnectionString);
-            _ErrorId = DASeguimientoRecomendacion.ErrorId;
-            _ErrorString = DASeguimientoRecomendacion.ErrorDescription;
+				_SeguimientoRecomendacionEntity.ResultData = DASeguimientoRecomendacion.SelectRecomendacionesSeguimientos(_SeguimientoRecomendacionEntity, ConnectionString);
+				_ErrorId = DASeguimientoRecomendacion.ErrorId;
+				_ErrorString = DASeguimientoRecomendacion.ErrorDescription;
 
-        }
+			}
 
         #endregion
 

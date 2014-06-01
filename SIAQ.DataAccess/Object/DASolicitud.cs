@@ -789,5 +789,58 @@ namespace SIAQ.DataAccess.Object
 
             return ds;
         }
-    }
+
+		/// <summary>
+		///     Selecciona las quejas y sus estatus para reporte de quejas por estatus.
+		/// </summary>
+		/// <param name="ENTSolicitudComentario">Entidad del comentario de la solicitud.</param>
+		/// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
+		/// <returns>Resultado de la búsqueda.</returns>
+		public DataSet SelectRptQuejas(ENTSolicitud ent, string ConnectionString)
+		{
+			DataSet ResultData = new DataSet();
+			SqlConnection Connection = new SqlConnection(ConnectionString);
+			SqlCommand Command;
+			SqlParameter Parameter;
+			SqlDataAdapter DataAdapter;
+
+			try
+			{
+				Command = new SqlCommand("usprptQuejasEstatus", Connection);
+				Command.CommandType = CommandType.StoredProcedure;
+
+				Parameter = new SqlParameter("FechaInicial", SqlDbType.DateTime);
+				Parameter.Value = ent.FechaDesde;
+				Command.Parameters.Add(Parameter);
+
+				Parameter = new SqlParameter("FechaFinal", SqlDbType.DateTime);
+				Parameter.Value = ent.FechaHasta;
+				Command.Parameters.Add(Parameter);
+
+				Parameter = new SqlParameter("Estatus", SqlDbType.Int);
+				Parameter.Value = ent.EstatusId;
+				Command.Parameters.Add(Parameter);
+
+				DataAdapter = new SqlDataAdapter(Command);
+
+				Connection.Open();
+				DataAdapter.Fill(ResultData);
+				Connection.Close();
+
+				return ResultData;
+
+			}
+			catch (SqlException Exception)
+			{
+				_ErrorId = Exception.Number;
+				_ErrorDescription = Exception.Message;
+
+				if (Connection.State == ConnectionState.Open)
+					Connection.Close();
+
+				return ResultData;
+			}
+		}
+
+	}
 }

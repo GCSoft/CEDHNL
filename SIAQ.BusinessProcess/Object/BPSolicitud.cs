@@ -379,5 +379,28 @@ namespace SIAQ.BusinessProcess.Object
             _ErrorId = oDASolicitud.ErrorId;
             _ErrorDescription = oDASolicitud.ErrorDescription;
         }
+
+
+		/// <summary>
+		///     Busca los comentarios realizados para una solicitud.
+		/// </summary>
+		public void SelectRptQuejas(ref DataSet ds, ENTSolicitud ent)
+		{
+			ENTResponse oENTResponse = new ENTResponse();
+			string ConnectionString = string.Empty;
+			DASolicitud DASolicitud = new DASolicitud();
+
+			ConnectionString = sConnectionApplication;
+
+			_SolicitudEntity.ResultData = DASolicitud.SelectRptQuejas(ent, ConnectionString);
+
+			_ErrorId = DASolicitud.ErrorId;
+			_ErrorDescription = DASolicitud.ErrorDescription;
+
+			oENTResponse.dsResponse = _SolicitudEntity.ResultData;
+			ds = oENTResponse.dsResponse;
+
+		}
+
     }
 }

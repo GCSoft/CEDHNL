@@ -195,5 +195,38 @@ namespace SIAQ.DataAccess.Object
                 return ds;
             }
         }
+
+		///<remarks>
+		///   <name>DAcatEstatus.searchcatEstatus</name>
+		///   <create>27/ene/2014</create>
+		///   <author>Generador</author>
+		///</remarks>
+		///<summary>Metodo para obtener las catEstatus del sistema</summary>
+		public ENTResponse searchcatEstatusTipoEstatus(ENTEstatus entEstatus)
+		{
+			ENTResponse oENTResponse = new ENTResponse();
+			DataSet ds = new DataSet();
+			// Transacción
+			try
+			{
+				ds = dbs.ExecuteDataSet("uspcatEstatusSelTipoEstatuscbo", entEstatus.TipoEstatusId);
+				oENTResponse.dsResponse = ds;
+			}
+			catch (SqlException sqlEx)
+			{
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+			}
+			catch (Exception ex)
+			{
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
+			finally
+			{
+			}
+			// Resultado
+			return oENTResponse;
+
+		}
+
     }
 }

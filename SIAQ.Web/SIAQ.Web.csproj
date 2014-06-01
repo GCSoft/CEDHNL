@@ -61,6 +61,7 @@
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -128,6 +129,7 @@
     <Content Include="Application\WebApp\Private\Reportes\rptEstatusExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Reportes\rptEstatusQuejas.aspx" />
     <Content Include="Application\WebApp\Private\Reportes\rptEstatusSolicitud.aspx" />
+    <Content Include="Application\WebApp\Private\Reportes\rptPresentaReporte.aspx" />
     <Content Include="Application\WebApp\Private\Reportes\rptTema.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segAsignarDefensor.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segBusquedaExpediente.aspx" />
@@ -759,6 +761,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>rptEstatusSolicitud.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Reportes\rptPresentaReporte.aspx.cs">
+      <DependentUpon>rptPresentaReporte.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Reportes\rptPresentaReporte.aspx.designer.cs">
+      <DependentUpon>rptPresentaReporte.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Reportes\rptTema.aspx.cs">
       <DependentUpon>rptTema.aspx</DependentUpon>

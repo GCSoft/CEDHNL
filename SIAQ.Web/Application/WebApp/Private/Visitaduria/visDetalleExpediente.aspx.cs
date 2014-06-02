@@ -14,7 +14,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
         #region "Event"
             protected void AcuerdoButton_Click(object sender, ImageClickEventArgs e)
             {
-
+                Response.Redirect("/Application/WebApp/Private/Operation/opeAcuerdoCalifDefinitiva.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
             }
 
             protected void AgregarComentarioButton_Click(object sender, EventArgs e)
@@ -29,7 +29,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
             protected void AsignarButton_Click(object sender, ImageClickEventArgs e)
             {
-                Response.Redirect("/Application/WebApp/Private/Operation/opeAsignarVisitador.aspx?s=" + ExpedienteIdHidden.Value.ToString());
+                Response.Redirect("/Application/WebApp/Private/Operation/opeAsignarVisitador.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
             }
 
             protected void CiudadanosGrid_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -60,7 +60,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
             protected void DiligenciasButton_Click(object sender, ImageClickEventArgs e)
             {
-
+                Response.Redirect("/Application/WebApp/Private/Operation/opeDiligenciaExpediente.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
             }
 
             protected void DocumentoButton_Click(object sender, ImageClickEventArgs e)

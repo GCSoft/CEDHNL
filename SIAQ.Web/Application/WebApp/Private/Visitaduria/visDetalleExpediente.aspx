@@ -9,7 +9,7 @@
 
             ExpedienteId = document.getElementById("<%= ExpedienteIdHidden.ClientID %>");
 
-            window.open("~/Application/WebApp/Private/Visitaduria/visImprmirExpediente.aspx?E=" + ExpedienteId.Value, "ImprimirExpediente", "");
+            window.open("visImprmirExpediente.aspx?E=" + ExpedienteId.Value, "ImprimirExpediente", "");
         }
     </script>
 </asp:Content>

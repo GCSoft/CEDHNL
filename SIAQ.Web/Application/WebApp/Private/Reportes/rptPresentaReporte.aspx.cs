@@ -24,15 +24,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes
             PresentaReporte(TipoReporte, FechaInicial, FechaFinal, EstatusId);
         }
 
-        #region Rutinas de la página
-
-        protected void cmdCerrar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        #endregion
-
         #region Rutinas del programador
 
         public void PresentaReporte(string TipoReporte, DateTime FechaInicial, DateTime FechaFinal, int EstatusId)

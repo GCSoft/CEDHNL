@@ -3,7 +3,15 @@
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 
 <asp:Content ID="HeaderContent" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
+    <script language="javascript" type="text/javascript">
+        function ImprimirExpediente() {
+            var ExpedienteId = 0;
 
+            ExpedienteId = document.getElementById("<%= ExpedienteIdHidden.ClientID %>");
+
+            window.open("~/Application/WebApp/Private/Visitaduria/visImprmirExpediente.aspx?E=" + ExpedienteId.Value, "ImprimirExpediente", "");
+        }
+    </script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
@@ -31,11 +39,11 @@
             <asp:ImageButton ID="AsignarButton" ImageUrl="/Include/Image/Icon/AsignarIcon.png" runat="server" OnClick="AsignarButton_Click"></asp:ImageButton><br />
             Asignar visitador
         </asp:Panel>
-        <asp:Panel CssClass="IconoPanel" ID="CiudadanoPanel" runat="server" Visible="true">
+        <asp:Panel CssClass="IconoPanel" ID="AcuerdoPanel" runat="server" Visible="true">
             <asp:ImageButton ID="AcuerdoButton" ImageUrl="/Include/Image/Icon/AcuerdoIcon.png" runat="server" OnClick="AcuerdoButton_Click"></asp:ImageButton><br />
             Acuerdo de calificación definitiva
         </asp:Panel>
-        <asp:Panel CssClass="IconoPanel" ID="CalificarPanel" runat="server" Visible="true">
+        <asp:Panel CssClass="IconoPanel" ID="DiligenciaPanel" runat="server" Visible="true">
             <asp:ImageButton ID="DiligenciasButton" ImageUrl="/Include/Image/Icon/DiligenciaIcon.png" runat="server" OnClick="DiligenciasButton_Click"></asp:ImageButton><br />
             Diligencias
         </asp:Panel>
@@ -43,24 +51,24 @@
             <asp:ImageButton ID="DocumentoButton" ImageUrl="/Include/Image/Icon/DocumentoIcon.png" runat="server" OnClick="DocumentoButton_Click"></asp:ImageButton><br />
             Agregar documentos
         </asp:Panel>
-        <asp:Panel CssClass="IconoPanel" ID="AutoridadPanel" runat="server" Visible="true">
+        <asp:Panel CssClass="IconoPanel" ID="SeguimientoPanel" runat="server" Visible="true">
             <asp:ImageButton ID="SeguimientoButton" ImageUrl="/Include/Image/Icon/SeguimientoIcon.png" runat="server" OnClick="SeguimientoButton_Click"></asp:ImageButton><br />
             Seguimiento
         </asp:Panel>
-        <asp:Panel CssClass="IconoPanel" ID="DiligenciasPanel" runat="server" Visible="true">
-            <asp:ImageButton ID="ComparecenciaPanel" ImageUrl="/Include/Image/Icon/ComparecenciaIcon.png" runat="server" OnClick="ComparecenciaPanel_Click"></asp:ImageButton><br />
+        <asp:Panel CssClass="IconoPanel" ID="ComparecenciaPanel" runat="server" Visible="true">
+            <asp:ImageButton ID="ComparecenciaButton" ImageUrl="/Include/Image/Icon/ComparecenciaIcon.png" runat="server" OnClick="ComparecenciaPanel_Click"></asp:ImageButton><br />
             Comparecencia
         </asp:Panel>
-        <asp:Panel CssClass="IconoPanel" ID="IndicadorPanel" runat="server" Visible="true">
+        <asp:Panel CssClass="IconoPanel" ID="ResolucionPanel" runat="server" Visible="true">
             <asp:ImageButton ID="ResolucionButton" ImageUrl="/Include/Image/Icon/ResolucionIcon.png" runat="server" OnClick="ResolucionButton_Click"></asp:ImageButton><br />
             Resolución
         </asp:Panel>
-        <asp:Panel CssClass="IconoPanel" ID="Panel1" runat="server" Visible="true">
+        <asp:Panel CssClass="IconoPanel" ID="RecomendacionPanel" runat="server" Visible="true">
             <asp:ImageButton ID="RecomendacionButton" ImageUrl="/Include/Image/Icon/RecomendacionIcon.png" runat="server" OnClick="RecomendacionButton_Click"></asp:ImageButton><br />
             Recomendaciones
         </asp:Panel>
         <asp:Panel CssClass="IconoPanel" ID="ImprimirPanel" runat="server" Visible="true">
-            <asp:ImageButton ID="ImprimirButton" ImageUrl="/Include/Image/Icon/ImprimirIcon.png" runat="server" onclick="ImprimirButton_Click"></asp:ImageButton><br />
+            <asp:ImageButton ID="ImprimirButton" ImageUrl="/Include/Image/Icon/ImprimirIcon.png" OnClientClick="ImprimirExpediente();" runat="server"></asp:ImageButton><br />
             Imprimir
         </asp:Panel>
         <asp:Panel CssClass="IconoPanel" ID="EnviarPanel" runat="server" Visible="true">
@@ -419,7 +427,7 @@
                 </div>
             </asp:Panel>
         </asp:Panel>
-
-        <asp:HiddenField ID="ExpedienteIdHidden" runat="server" Value="0" />
     </asp:Panel>
+
+    <asp:HiddenField ID="ExpedienteIdHidden" runat="server" Value="0" />
 </asp:Content>

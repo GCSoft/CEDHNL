@@ -58,13 +58,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         protected global::System.Web.UI.WebControls.ImageButton AsignarButton;
         
         /// <summary>
-        /// CiudadanoPanel control.
+        /// AcuerdoPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel CiudadanoPanel;
+        protected global::System.Web.UI.WebControls.Panel AcuerdoPanel;
         
         /// <summary>
         /// AcuerdoButton control.
@@ -76,13 +76,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         protected global::System.Web.UI.WebControls.ImageButton AcuerdoButton;
         
         /// <summary>
-        /// CalificarPanel control.
+        /// DiligenciaPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel CalificarPanel;
+        protected global::System.Web.UI.WebControls.Panel DiligenciaPanel;
         
         /// <summary>
         /// DiligenciasButton control.
@@ -112,13 +112,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         protected global::System.Web.UI.WebControls.ImageButton DocumentoButton;
         
         /// <summary>
-        /// AutoridadPanel control.
+        /// SeguimientoPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel AutoridadPanel;
+        protected global::System.Web.UI.WebControls.Panel SeguimientoPanel;
         
         /// <summary>
         /// SeguimientoButton control.
@@ -130,31 +130,31 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         protected global::System.Web.UI.WebControls.ImageButton SeguimientoButton;
         
         /// <summary>
-        /// DiligenciasPanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel DiligenciasPanel;
-        
-        /// <summary>
         /// ComparecenciaPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ComparecenciaPanel;
+        protected global::System.Web.UI.WebControls.Panel ComparecenciaPanel;
         
         /// <summary>
-        /// IndicadorPanel control.
+        /// ComparecenciaButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel IndicadorPanel;
+        protected global::System.Web.UI.WebControls.ImageButton ComparecenciaButton;
+        
+        /// <summary>
+        /// ResolucionPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel ResolucionPanel;
         
         /// <summary>
         /// ResolucionButton control.
@@ -166,13 +166,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         protected global::System.Web.UI.WebControls.ImageButton ResolucionButton;
         
         /// <summary>
-        /// Panel1 control.
+        /// RecomendacionPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1;
+        protected global::System.Web.UI.WebControls.Panel RecomendacionPanel;
         
         /// <summary>
         /// RecomendacionButton control.

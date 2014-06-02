@@ -181,6 +181,7 @@
     <Content Include="Application\WebApp\Private\SysCat\scatSubMenu.aspx" />
     <Content Include="Application\WebApp\Private\SysCat\scatUsuario.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\visDetalleExpediente.aspx" />
+    <Content Include="Application\WebApp\Private\Visitaduria\visImprmirExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\visListadoExpedienteAprobacion.aspx" />
     <Content Include="ckeditor\adapters\jquery.js" />
     <Content Include="ckeditor\build-config.js" />
@@ -1131,6 +1132,13 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Visitaduria\visDetalleExpediente.aspx.designer.cs">
       <DependentUpon>visDetalleExpediente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Visitaduria\visImprmirExpediente.aspx.cs">
+      <DependentUpon>visImprmirExpediente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Visitaduria\visImprmirExpediente.aspx.designer.cs">
+      <DependentUpon>visImprmirExpediente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Visitaduria\visListadoExpedienteAprobacion.aspx.cs">
       <DependentUpon>visListadoExpedienteAprobacion.aspx</DependentUpon>

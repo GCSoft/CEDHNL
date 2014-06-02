@@ -19,6 +19,9 @@ namespace SIAQ.Entity.Object
 			// Atributos para consulta de expedientes
 			private Int32 _UsuarioId;	// Identificador único del usuario que realiza la transacción
 			private Int16 _Aprobar;		// Determina si se listarán los expedientes con Estatus 8 (Pendiente de aprobar Recomendación) cuando se establece en 1 ó se listaran los estatus 9 (Por asignar a defensor de Seguimientos) cuando se establece en 0
+			private String	_Numero;				// Número de expediente a filtrar
+			private String	_Quejoso;				// Nombre del quejoso que levanta la denuncia
+			private Int32	_MedioComunicacionId;	// Identificador único de la forma de contacto. 0 para todas
 
         #endregion
 
@@ -107,6 +110,18 @@ namespace SIAQ.Entity.Object
 			}
 
 			///<remarks>
+			///   <name>ENTSeguimientoRecomendacion.MedioComunicacionId</name>
+			///   <create>31-Mayo-2014</create>
+			///   <author>Ruben.Cobos</author>
+			///</remarks>
+			///<summary>Obtiene/Asigna el identificador único de la forma de contacto. 0 para todas</summary>
+			public Int32 MedioComunicacionId
+			{
+				get { return _MedioComunicacionId; }
+				set { _MedioComunicacionId = value; }
+			}
+
+			///<remarks>
 			///   <name>ENTSeguimientoRecomendacion.Aprobar</name>
 			///   <create>31-Mayo-2014</create>
 			///   <author>Ruben.Cobos</author>
@@ -116,6 +131,30 @@ namespace SIAQ.Entity.Object
 			{
 				get { return _Aprobar; }
 				set { _Aprobar = value; }
+			}
+
+			///<remarks>
+			///   <name>ENTSeguimientoRecomendacion.Numero</name>
+			///   <create>02-Junio-2014</create>
+			///   <author>Ruben.Cobos</author>
+			///</remarks>
+			///<summary>Obtiene/Asigna el número de expediente a filtrar</summary>
+			public String Numero
+			{
+				get { return _Numero; }
+				set { _Numero = value; }
+			}
+
+			///<remarks>
+			///   <name>ENTSeguimientoRecomendacion.Quejoso</name>
+			///   <create>02-Junio-2014</create>
+			///   <author>Ruben.Cobos</author>
+			///</remarks>
+			///<summary>Obtiene/Asigna el nombre del quejoso que levanta la denuncia</summary>
+			public String Quejoso
+			{
+				get { return _Quejoso; }
+				set { _Quejoso = value; }
 			}
 
         #endregion

@@ -11,45 +11,51 @@ namespace SIAQ.DataAccess.Object
 {
     public class DAMedioComunicacion : DABase
     {
+
+		// variabless
         protected int _ErrorId;
         protected string _ErrorDescription;
         Database dbs;
-        public DAMedioComunicacion()
-        {
+
+		
+		// Constructor
+
+        public DAMedioComunicacion(){
             dbs = DatabaseFactory.CreateDatabase("Conn");
         }
+
+		
+		// Métodos
+
         ///<remarks>
         ///   <name>DAcatMedioComunicacion.searchcatMedioComunicacion</name>
         ///   <create>27/ene/2014</create>
         ///   <author>Generador</author>
         ///</remarks>
         ///<summary>Metodo para obtener las catMedioComunicacion del sistema</summary>
-        public ENTResponse searchcatMedioComunicacion(ENTMedioComunicacion entMedioComunicacion)
-        {
+        public ENTResponse searchcatMedioComunicacion(ENTMedioComunicacion entMedioComunicacion){
             ENTResponse oENTResponse = new ENTResponse();
             DataSet ds = new DataSet();
-            // Transacción
+            
             try
             {
+
+				// Transacción
                 ds = dbs.ExecuteDataSet("spcatMedioComunicacion_Sel");
                 oENTResponse.dsResponse = ds;
-            }
-            catch (SqlException sqlEx)
-            {
+
+            }catch (SqlException sqlEx){
                 oENTResponse.ExceptionRaised(sqlEx.Message);
-            }
-            catch (Exception ex)
-            {
+            }catch (Exception ex){
                 oENTResponse.ExceptionRaised(ex.Message);
             }
-            finally
-            {
-            }
+            
             // Resultado
             return oENTResponse;
 
         }
-        ///<remarks>
+        
+		///<remarks>
         ///   <name>DAcatMedioComunicacion.insertcatMedioComunicacion</name>
         ///   <create>27/ene/2014</create>
         ///   <author>Generador</author>
@@ -80,7 +86,8 @@ namespace SIAQ.DataAccess.Object
             return oENTResponse;
 
         }
-        ///<remarks>
+        
+		///<remarks>
         ///   <name>DAcatMedioComunicacion.updatecatMedioComunicacion</name>
         ///   <create>27/ene/2014</create>
         ///   <author>Generador</author>
@@ -111,7 +118,8 @@ namespace SIAQ.DataAccess.Object
             return oENTResponse;
 
         }
-        ///<remarks>
+        
+		///<remarks>
         ///   <name>DAcatMedioComunicacion.deletecatMedioComunicacion</name>
         ///   <create>27/ene/2014</create>
         ///   <author>Generador</author>
@@ -185,5 +193,6 @@ namespace SIAQ.DataAccess.Object
                 return ResultData;
             }
         }
+
     }
 }

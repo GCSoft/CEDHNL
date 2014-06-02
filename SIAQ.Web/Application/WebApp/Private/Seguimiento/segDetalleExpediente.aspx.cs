@@ -11,7 +11,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-
+			// Solo el defensor al que se le asignó el expediente es quien le puede mover
 		}
 	}
 }

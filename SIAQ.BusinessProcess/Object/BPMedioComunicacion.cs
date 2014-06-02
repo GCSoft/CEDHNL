@@ -9,26 +9,37 @@ namespace SIAQ.BusinessProcess.Object
     public class BPMedioComunicacion : BPBase
     {
 
+		// Definiciones
         protected ENTMedioComunicacion _MedioComunicacionEntity;
+
+		
+		// Constructor
 
         public BPMedioComunicacion()
         {
             _MedioComunicacionEntity = new ENTMedioComunicacion();
         }
+
+		
+		// Propiedades
+
         public ENTMedioComunicacion MedioComunicacionEntity
         {
             get { return _MedioComunicacionEntity; }
             set { _MedioComunicacionEntity = value;}
         }
 
-        public DataSet SelectMedioComunicacion()
-        {
+        
+		// Métodos
+		
+		public DataSet SelectMedioComunicacion(){
             string ConnectionString = string.Empty;
             DAMedioComunicacion DAMedioComunicacion = new DAMedioComunicacion();
             ConnectionString = sConnectionApplication;
             _MedioComunicacionEntity.ResultData = DAMedioComunicacion.SelectMedioComunicacion(_MedioComunicacionEntity, ConnectionString);
             return _MedioComunicacionEntity.ResultData;
         }
+
         ///<remarks>
         ///   <name>BPcatMedioComunicacion.searchcatMedioComunicacion</name>
         ///   <create>27/ene/2014</create>
@@ -58,7 +69,8 @@ namespace SIAQ.BusinessProcess.Object
             return oENTResponse;
 
         }
-        ///<remarks>
+        
+		///<remarks>
         ///   <name>BPcatMedioComunicacioninsertcatMedioComunicacion</name>
         ///   <create>27/ene/2014</create>
         ///   <author>Generador</author>
@@ -87,7 +99,8 @@ namespace SIAQ.BusinessProcess.Object
             return oENTResponse;
 
         }
-        ///<remarks>
+        
+		///<remarks>
         ///   <name>BPcatMedioComunicacionupdatecatMedioComunicacion</name>
         ///   <create>27/ene/2014</create>
         ///   <author>Generador</author>
@@ -116,7 +129,8 @@ namespace SIAQ.BusinessProcess.Object
             return oENTResponse;
 
         }
-        ///<remarks>
+        
+		///<remarks>
         ///   <name>BPcatMedioComunicaciondeletecatMedioComunicacion</name>
         ///   <create>27/ene/2014</create>
         ///   <author>Generador</author>
@@ -145,5 +159,6 @@ namespace SIAQ.BusinessProcess.Object
             return oENTResponse;
 
         }
-    }
+    
+	}
 }

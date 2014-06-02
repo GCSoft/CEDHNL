@@ -65,5 +65,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::CrystalDecisions.Web.CrystalReportViewer crViewer;
+        
+        /// <summary>
+        /// imgCompany control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage imgCompany;
     }
 }

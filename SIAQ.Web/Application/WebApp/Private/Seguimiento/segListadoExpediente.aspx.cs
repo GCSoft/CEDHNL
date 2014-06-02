@@ -1,7 +1,7 @@
 ﻿/*---------------------------------------------------------------------------------------------------------------------------------
-' Nombre:	opeAgregarAutoridaSenalada
-' Autor:		Ruben.Cobos
-' Fecha:		27-Octubre-2013
+' Nombre:	segListadoExpediente
+' Autor:	Ruben.Cobos
+' Fecha:	27-Mayo-2014
 '
 ' Modificación:
 '           Se reconstruyó la pantalla reutilizando los métodos existentes

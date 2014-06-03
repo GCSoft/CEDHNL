@@ -49,7 +49,7 @@ namespace SIAQ.DataAccess.Object
             // Transacción
             try
             {
-                dbs.ExecuteDataSet("catLugarHechosDel");
+                ds = dbs.ExecuteDataSet("catLugarHechosDel");
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)
@@ -81,7 +81,7 @@ namespace SIAQ.DataAccess.Object
             // Transacción
             try
             {
-                ds = dbs.ExecuteDataSet("catLugarHechosIns");
+                ds = dbs.ExecuteDataSet("uspcatLugarHechos_Ins", entLugarHechos.Descripcion, entLugarHechos.Nombre);
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)
@@ -143,20 +143,61 @@ namespace SIAQ.DataAccess.Object
             }
         }
 
+        
+        public ENTResponse SelectcatLugarHechos(ENTLugarHechos LugarEntity, string ConnectionString)
+        {
+            
+            SqlConnection sqlCnn = new SqlConnection(ConnectionString);
+            SqlCommand sqlCom;
+            SqlParameter sqlPar;
+            SqlDataAdapter sqlAdapter;
+
+            ENTResponse oENTResponse = new ENTResponse();
+
+            sqlCom = new SqlCommand("uspcatLugarHechos_Sel", sqlCnn);
+            sqlCom.CommandType = CommandType.StoredProcedure;
+
+            sqlPar = new SqlParameter("LugarHechosId", SqlDbType.Int);
+            sqlPar.Value = LugarEntity.LugarHechosId;
+            sqlCom.Parameters.Add(sqlPar);
+
+            sqlPar = new SqlParameter("Nombre", SqlDbType.VarChar);
+            sqlPar.Value = LugarEntity.Nombre;
+            sqlCom.Parameters.Add(sqlPar);
+
+            oENTResponse.dsResponse = new DataSet();
+            sqlAdapter = new SqlDataAdapter(sqlCom);
+
+            try
+            {
+                sqlCnn.Open();
+                sqlAdapter.Fill(oENTResponse.dsResponse);
+                sqlCnn.Close();
+
+            }
+            catch (SqlException sqlException) { oENTResponse.ExceptionRaised(sqlException.Message); }
+            catch (Exception ex) { oENTResponse.ExceptionRaised(ex.Message); }
+            finally {
+                if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+            }
+
+            return oENTResponse;
+        }
+
         ///<remarks>
         ///   <name>DAcatLugarHechos.updatecatLugarHechos</name>
         ///   <create>27/ene/2014</create>
         ///   <author>Generador</author>
         ///</remarks>
         ///<summary>Metodo que actualiza catLugarHechos del sistema</summary>
-        public ENTResponse updatecatLugarHechos(ENTLugarHechos entLugarHechos)
+        public ENTResponse updatecatLugarHechos(ENTLugarHechos oENTLugarHechos)
         {
             ENTResponse oENTResponse = new ENTResponse();
             DataSet ds = new DataSet();
             // Transacción
             try
             {
-                dbs.ExecuteDataSet("catLugarHechosUpd");
+                ds = dbs.ExecuteDataSet("uspcatLugarHechos_Upd", oENTLugarHechos.LugarHechosId, oENTLugarHechos.Descripcion, oENTLugarHechos.Nombre);
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)

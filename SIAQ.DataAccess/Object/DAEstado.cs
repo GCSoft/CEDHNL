@@ -53,7 +53,7 @@ namespace SIAQ.DataAccess.Object
 
         }
 
-      ///<remarks>
+        ///<remarks>
       ///   <name>DAEstado.SelectEstado</name>
       ///   <create>17-Marzo-2014</create>
       ///   <author>Ruben.Cobos</author>
@@ -63,7 +63,7 @@ namespace SIAQ.DataAccess.Object
       ///<param name="sConnection">Cadena de conexión a la base de datos</param>
       ///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
       ///<returns>Una entidad de respuesta</returns>
-      public ENTResponse SelectEstado(ENTEstado oENTEstado, String sConnection, Int32 iAlternateDBTimeout){
+        public ENTResponse SelectEstado(ENTEstado oENTEstado, String sConnection, Int32 iAlternateDBTimeout){
          SqlConnection sqlCnn = new SqlConnection(sConnection);
          SqlCommand sqlCom;
          SqlParameter sqlPar;
@@ -124,14 +124,14 @@ namespace SIAQ.DataAccess.Object
         ///   <author>Generador</author>
         ///</remarks>
         ///<summary>Metodo para insertar catEstado del sistema</summary>
-        public ENTResponse insertcatEstado(ENTEstado entEstado)
+        public ENTResponse insertcatEstado(ENTEstado oENTEstado)
         {
             ENTResponse oENTResponse = new ENTResponse();
             DataSet ds = new DataSet();
             // Transacción
             try
             {
-                ds = dbs.ExecuteDataSet("catEstadoIns");
+                ds = dbs.ExecuteDataSet("uspcatEstado_Ins", oENTEstado.Descripcion, oENTEstado.PaisId, oENTEstado.Nombre, oENTEstado.Activo);
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)
@@ -156,14 +156,46 @@ namespace SIAQ.DataAccess.Object
         ///   <author>Generador</author>
         ///</remarks>
         ///<summary>Metodo que actualiza catEstado del sistema</summary>
-        public ENTResponse updatecatEstado(ENTEstado entEstado)
+        public ENTResponse updatecatEstado(ENTEstado oENTEstado)
         {
             ENTResponse oENTResponse = new ENTResponse();
             DataSet ds = new DataSet();
             // Transacción
             try
             {
-                dbs.ExecuteDataSet("catEstadoUpd");
+                ds = dbs.ExecuteDataSet("uspcatEstado_Upd", oENTEstado.EstadoId, oENTEstado.PaisId, oENTEstado.Descripcion, oENTEstado.Nombre, oENTEstado.Activo);
+                oENTResponse.dsResponse = ds;
+            }
+            catch (SqlException sqlEx)
+            {
+                oENTResponse.ExceptionRaised(sqlEx.Message);
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+            finally
+            {
+            }
+            // Resultado
+            return oENTResponse;
+
+        }
+
+        ///<remarks>
+        ///   <name>DAcatEstado.updatecatEstado_Estatus</name>
+        ///   <create>30/Mayo/2014</create>
+        ///   <author>Daniel.Chavez</author>
+        ///</remarks>
+        ///<summary>Metodo que actualiza catEstado del sistema</summary>
+        public ENTResponse updatecatEstado_Estatus(ENTEstado oENTEstado)
+        {
+            ENTResponse oENTResponse = new ENTResponse();
+            DataSet ds = new DataSet();
+            // Transacción
+            try
+            {
+                ds = dbs.ExecuteDataSet("uspcatEstado_Upd_Estatus", oENTEstado.EstadoId, oENTEstado.Activo);
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)
@@ -195,7 +227,7 @@ namespace SIAQ.DataAccess.Object
             // Transacción
             try
             {
-                dbs.ExecuteDataSet("catEstadoDel");
+                ds = dbs.ExecuteDataSet("catEstadoDel");
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)

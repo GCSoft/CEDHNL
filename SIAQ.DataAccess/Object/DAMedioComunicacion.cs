@@ -11,64 +11,58 @@ namespace SIAQ.DataAccess.Object
 {
     public class DAMedioComunicacion : DABase
     {
-
-		// variabless
         protected int _ErrorId;
         protected string _ErrorDescription;
         Database dbs;
-
-		
-		// Constructor
-
-        public DAMedioComunicacion(){
+        public DAMedioComunicacion()
+        {
             dbs = DatabaseFactory.CreateDatabase("Conn");
         }
-
-		
-		// Métodos
-
         ///<remarks>
         ///   <name>DAcatMedioComunicacion.searchcatMedioComunicacion</name>
         ///   <create>27/ene/2014</create>
         ///   <author>Generador</author>
         ///</remarks>
         ///<summary>Metodo para obtener las catMedioComunicacion del sistema</summary>
-        public ENTResponse searchcatMedioComunicacion(ENTMedioComunicacion entMedioComunicacion){
+        public ENTResponse searchcatMedioComunicacion(ENTMedioComunicacion entMedioComunicacion)
+        {
             ENTResponse oENTResponse = new ENTResponse();
             DataSet ds = new DataSet();
-            
+            // Transacción
             try
             {
-
-				// Transacción
                 ds = dbs.ExecuteDataSet("spcatMedioComunicacion_Sel");
                 oENTResponse.dsResponse = ds;
-
-            }catch (SqlException sqlEx){
+            }
+            catch (SqlException sqlEx)
+            {
                 oENTResponse.ExceptionRaised(sqlEx.Message);
-            }catch (Exception ex){
+            }
+            catch (Exception ex)
+            {
                 oENTResponse.ExceptionRaised(ex.Message);
             }
-            
+            finally
+            {
+            }
             // Resultado
             return oENTResponse;
 
         }
-        
-		///<remarks>
+        ///<remarks>
         ///   <name>DAcatMedioComunicacion.insertcatMedioComunicacion</name>
         ///   <create>27/ene/2014</create>
         ///   <author>Generador</author>
         ///</remarks>
         ///<summary>Metodo para insertar catMedioComunicacion del sistema</summary>
-        public ENTResponse insertcatMedioComunicacion(ENTMedioComunicacion entMedioComunicacion)
+        public ENTResponse insertcatMedioComunicacion(ENTMedioComunicacion oENTMedioComunicacion)
         {
             ENTResponse oENTResponse = new ENTResponse();
             DataSet ds = new DataSet();
             // Transacción
             try
             {
-                ds = dbs.ExecuteDataSet("catMedioComunicacionIns");
+                ds = dbs.ExecuteDataSet("uspcatMedioComunicacion_Ins", oENTMedioComunicacion.Descripcion, oENTMedioComunicacion.Nombre);
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)
@@ -86,21 +80,20 @@ namespace SIAQ.DataAccess.Object
             return oENTResponse;
 
         }
-        
-		///<remarks>
+        ///<remarks>
         ///   <name>DAcatMedioComunicacion.updatecatMedioComunicacion</name>
         ///   <create>27/ene/2014</create>
         ///   <author>Generador</author>
         ///</remarks>
         ///<summary>Metodo que actualiza catMedioComunicacion del sistema</summary>
-        public ENTResponse updatecatMedioComunicacion(ENTMedioComunicacion entMedioComunicacion)
+        public ENTResponse updatecatMedioComunicacion(ENTMedioComunicacion oENTMedioComunicacion)
         {
             ENTResponse oENTResponse = new ENTResponse();
             DataSet ds = new DataSet();
             // Transacción
             try
             {
-                dbs.ExecuteDataSet("catMedioComunicacionUpd");
+                ds = dbs.ExecuteDataSet("uspcatMedioComunicacion_Upd", oENTMedioComunicacion.MedioComunicacionId, oENTMedioComunicacion.Descripcion, oENTMedioComunicacion.Nombre);
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)
@@ -118,8 +111,7 @@ namespace SIAQ.DataAccess.Object
             return oENTResponse;
 
         }
-        
-		///<remarks>
+        ///<remarks>
         ///   <name>DAcatMedioComunicacion.deletecatMedioComunicacion</name>
         ///   <create>27/ene/2014</create>
         ///   <author>Generador</author>
@@ -194,5 +186,37 @@ namespace SIAQ.DataAccess.Object
             }
         }
 
+
+        ///<remarks>
+        ///   <name>DAcatMedioComunicacion.selecthcatMedioComunicacion</name>
+        ///   <create>27/ene/2014</create>
+        ///   <author>Generador</author>
+        ///</remarks>
+        ///<summary>Metodo para obtener las catMedioComunicacion del sistema</summary>
+        public ENTResponse selectcatMedioComunicacion(ENTMedioComunicacion oENTMedioComunicacion)
+        {
+            ENTResponse oENTResponse = new ENTResponse();
+            DataSet ds = new DataSet();
+            // Transacción
+            try
+            {
+                ds = dbs.ExecuteDataSet("uspcatMedioComunicacion_Sel", oENTMedioComunicacion.MedioComunicacionId, oENTMedioComunicacion.Nombre);
+                oENTResponse.dsResponse = ds;
+            }
+            catch (SqlException sqlEx)
+            {
+                oENTResponse.ExceptionRaised(sqlEx.Message);
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+            finally
+            {
+            }
+            // Resultado
+            return oENTResponse;
+
+        }
     }
 }

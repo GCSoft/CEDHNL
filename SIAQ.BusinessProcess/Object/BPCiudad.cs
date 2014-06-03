@@ -101,7 +101,7 @@ namespace SIAQ.BusinessProcess.Object
             {
                 // Consulta a base de datos
                 DACiudad datacatCiudad = new DACiudad();
-                oENTResponse = datacatCiudad.searchcatCiudad(entCiudad);
+                oENTResponse = datacatCiudad.insertcatCiudad(entCiudad);
                 // Validación de error en consulta
                 if (oENTResponse.GeneratesException) { return oENTResponse; }
                 // Validación de mensajes de la BD
@@ -131,7 +131,37 @@ namespace SIAQ.BusinessProcess.Object
             {
                 // Consulta a base de datos
                 DACiudad datacatCiudad = new DACiudad();
-                oENTResponse = datacatCiudad.searchcatCiudad(entCiudad);
+                oENTResponse = datacatCiudad.updatecatCiudad(entCiudad);
+                // Validación de error en consulta
+                if (oENTResponse.GeneratesException) { return oENTResponse; }
+                // Validación de mensajes de la BD
+                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+                if (oENTResponse.sMessage != "") { return oENTResponse; }
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+            // Resultado
+            return oENTResponse;
+
+        }
+        
+        ///<remarks>
+        ///   <name>BPcatCiudad.updatecatCiudad_Estatus</name>
+        ///   <create>31/Mayo/2014</create>
+        ///   <author>Daniel.Chavez</author>
+        ///</remarks>
+        ///<summary>Metodo que actualiza catCiudad del sistema</summary>
+        public ENTResponse updatecatCiudad_Estatus(ENTCiudad entCiudad)
+        {
+
+            ENTResponse oENTResponse = new ENTResponse();
+            try
+            {
+                // Consulta a base de datos
+                DACiudad datacatCiudad = new DACiudad();
+                oENTResponse = datacatCiudad.updatecatCiudad_Estatus(entCiudad);
                 // Validación de error en consulta
                 if (oENTResponse.GeneratesException) { return oENTResponse; }
                 // Validación de mensajes de la BD

@@ -124,14 +124,14 @@ namespace SIAQ.DataAccess.Object
         ///   <author>Generador</author>
         ///</remarks>
         ///<summary>Metodo para insertar catCiudad del sistema</summary>
-        public ENTResponse insertcatCiudad(ENTCiudad entCiudad)
+      public ENTResponse insertcatCiudad(ENTCiudad oENTCiudad)
         {
             ENTResponse oENTResponse = new ENTResponse();
             DataSet ds = new DataSet();
             // Transacción
             try
             {
-                ds = dbs.ExecuteDataSet("catCiudadIns");
+                ds = dbs.ExecuteDataSet("uspcatCiudad_Ins", oENTCiudad.Descripcion, oENTCiudad.EstadoId, oENTCiudad.Nombre, oENTCiudad.Activo);
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)
@@ -156,14 +156,46 @@ namespace SIAQ.DataAccess.Object
         ///   <author>Generador</author>
         ///</remarks>
         ///<summary>Metodo que actualiza catCiudad del sistema</summary>
-        public ENTResponse updatecatCiudad(ENTCiudad entCiudad)
+        public ENTResponse updatecatCiudad(ENTCiudad oENTCiudad)
         {
             ENTResponse oENTResponse = new ENTResponse();
             DataSet ds = new DataSet();
             // Transacción
             try
             {
-                dbs.ExecuteDataSet("catCiudadUpd");
+                ds = dbs.ExecuteDataSet("uspcatCiudad_Upd", oENTCiudad.EstadoId, oENTCiudad.CiudadId, oENTCiudad.Descripcion, oENTCiudad.Nombre, oENTCiudad.Activo);
+                oENTResponse.dsResponse = ds;
+            }
+            catch (SqlException sqlEx)
+            {
+                oENTResponse.ExceptionRaised(sqlEx.Message);
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+            finally
+            {
+            }
+            // Resultado
+            return oENTResponse;
+
+        }
+
+        ///<remarks>
+        ///   <name>DAcatCiudad.updatecatCiudad_Estatus</name>
+        ///   <create>31/Mayo/2014</create>
+        ///   <author>Daniel.Chavez</author>
+        ///</remarks>
+        ///<summary>Metodo que actualiza catCiudad del sistema</summary>
+        public ENTResponse updatecatCiudad_Estatus(ENTCiudad oENTCiudad)
+        {
+            ENTResponse oENTResponse = new ENTResponse();
+            DataSet ds = new DataSet();
+            // Transacción
+            try
+            {
+                ds = dbs.ExecuteDataSet("uspcatCiudad_Upd_Estatus", oENTCiudad.CiudadId, oENTCiudad.Activo);
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)

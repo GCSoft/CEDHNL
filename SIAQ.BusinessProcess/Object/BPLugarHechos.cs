@@ -60,6 +60,133 @@ namespace SIAQ.BusinessProcess.Object
                 _ErrorId = LugarAccess.ErrorId;
                 _ErrorDescription = LugarAccess.ErrorDescription;
             }
+
+        ///<remarks>
+        ///   <name>BPLugarHechos.SelectcatLugarHechos</name>
+        ///   <create>31-Mayo-2014</create>
+        ///   <author>Daniel.Chavez</author>
+        ///</remarks>
+        ///<summary>Consulta el catálogo de LugarHechos</summary>
+        ///<param name="oENTPais">Entidad de BPLugarHechos con los filtros necesarios para la consulta</param>
+        ///<returns>Una entidad de respuesta</returns>
+        public ENTResponse SelectcatLugarHechos(ENTLugarHechos oENTLugarHechos)
+        {
+            DALugarHechos oDALugarHechos = new DALugarHechos();
+            ENTResponse oENTResponse = new ENTResponse();
+
+            try
+            {
+
+                // Transacción en base de datos
+                oENTResponse = oDALugarHechos.SelectcatLugarHechos(oENTLugarHechos, this.sConnectionApplication);
+
+                // Validación de error en consulta
+                if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+                // Validación de mensajes de la BD
+                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+                if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+
+            // Resultado
+            return oENTResponse;
+        }
+
+        ///<remarks>
+        ///   <name>BPLugarHechos.insertLugarHechos</name>
+        ///   <create>27/ene/2014</create>
+        ///   <author>Generador</author>
+        ///</remarks>
+        ///<summary>Metodo para insertar LugarDiligencia del sistema</summary>
+        public ENTResponse insertLugarHechos(ENTLugarHechos oENTLugarHechos)
+        {
+
+            ENTResponse oENTResponse = new ENTResponse();
+            try
+            {
+                // Consulta a base de datos
+                DALugarHechos oDALugarHechos = new DALugarHechos();
+                oENTResponse = oDALugarHechos.insertcatLugarHechos(oENTLugarHechos);
+                // Validación de error en consulta
+                if (oENTResponse.GeneratesException) { return oENTResponse; }
+                // Validación de mensajes de la BD
+                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+                if (oENTResponse.sMessage != "") { return oENTResponse; }
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+            // Resultado
+            return oENTResponse;
+
+        }
+
+        ///<remarks>
+        ///   <name>BPLugarHechos.updateLugarHechos</name>
+        ///   <create>27/ene/2014</create>
+        ///   <author>Generador</author>
+        ///</remarks>
+        ///<summary>Metodo que actualiza LugarHechos del sistema</summary>
+        public ENTResponse updateLugarHechos(ENTLugarHechos oENTLugarHechos)
+        {
+
+            ENTResponse oENTResponse = new ENTResponse();
+            try
+            {
+                // Consulta a base de datos
+                DALugarHechos oDALugarHechos = new DALugarHechos();
+                oENTResponse = oDALugarHechos.updatecatLugarHechos(oENTLugarHechos);
+                // Validación de error en consulta
+                if (oENTResponse.GeneratesException) { return oENTResponse; }
+                // Validación de mensajes de la BD
+                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+                if (oENTResponse.sMessage != "") { return oENTResponse; }
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+            // Resultado
+            return oENTResponse;
+
+        }
+
+        ///<remarks>
+        ///   <name>BPLugarHechos.deleteLugarHechos</name>
+        ///   <create>27/ene/2014</create>
+        ///   <author>Generador</author>
+        ///</remarks>
+        ///<summary>Metodo para eliminar de LugarDiligencia del sistema</summary>
+        public ENTResponse deleteLugarHechos(ENTLugarHechos oENTLugarHechos)
+        {
+
+            ENTResponse oENTResponse = new ENTResponse();
+            try
+            {
+                // Consulta a base de datos
+                DALugarHechos oDALugarHechos = new DALugarHechos();
+                //oENTResponse = oDALugarHechos.SelectLugarHechos(oENTLugarHechos);
+                // Validación de error en consulta
+                if (oENTResponse.GeneratesException) { return oENTResponse; }
+                // Validación de mensajes de la BD
+                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+                if (oENTResponse.sMessage != "") { return oENTResponse; }
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+            // Resultado
+            return oENTResponse;
+
+        }
+
         #endregion
     }
 }

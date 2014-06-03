@@ -53,7 +53,7 @@ namespace SIAQ.BusinessProcess.Object
 
         }
 
-      ///<remarks>
+        ///<remarks>
       ///   <name>BPEstado.SelectEstado</name>
       ///   <create>17-Marzo-2014</create>
       ///   <author>Ruben.Cobos</author>
@@ -61,7 +61,7 @@ namespace SIAQ.BusinessProcess.Object
       ///<summary>Consulta el catálogo de Estados</summary>
       ///<param name="oENTEstado">Entidad de Estado con los filtros necesarios para la consulta</param>
       ///<returns>Una entidad de respuesta</returns>
-      public ENTResponse SelectEstado(ENTEstado oENTEstado){
+        public ENTResponse SelectEstado(ENTEstado oENTEstado){
          DAEstado oDAEstado = new DAEstado();
          ENTResponse oENTResponse = new ENTResponse();
 
@@ -99,7 +99,7 @@ namespace SIAQ.BusinessProcess.Object
             {
                 // Consulta a base de datos
                 DAEstado datacatEstado = new DAEstado();
-                oENTResponse = datacatEstado.searchcatEstado(entEstado);
+                oENTResponse = datacatEstado.insertcatEstado(entEstado);
                 // Validación de error en consulta
                 if (oENTResponse.GeneratesException) { return oENTResponse; }
                 // Validación de mensajes de la BD
@@ -129,7 +129,37 @@ namespace SIAQ.BusinessProcess.Object
             {
                 // Consulta a base de datos
                 DAEstado datacatEstado = new DAEstado();
-                oENTResponse = datacatEstado.searchcatEstado(entEstado);
+                oENTResponse = datacatEstado.updatecatEstado(entEstado);
+                // Validación de error en consulta
+                if (oENTResponse.GeneratesException) { return oENTResponse; }
+                // Validación de mensajes de la BD
+                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+                if (oENTResponse.sMessage != "") { return oENTResponse; }
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+            // Resultado
+            return oENTResponse;
+
+        }
+
+        ///<remarks>
+        ///   <name>BPcatEstado.updatecatEstado_Estatus</name>
+        ///   <create>30/Mayo/2014</create>
+        ///   <author>Daniel.Chavez</author>
+        ///</remarks>
+        ///<summary>Metodo que actualiza el estatus de catEstado del sistema</summary>
+        public ENTResponse updatecatEstado_Estatus(ENTEstado entEstado)
+        {
+
+            ENTResponse oENTResponse = new ENTResponse();
+            try
+            {
+                // Consulta a base de datos
+                DAEstado datacatEstado = new DAEstado();
+                oENTResponse = datacatEstado.updatecatEstado_Estatus(entEstado);
                 // Validación de error en consulta
                 if (oENTResponse.GeneratesException) { return oENTResponse; }
                 // Validación de mensajes de la BD

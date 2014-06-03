@@ -55,7 +55,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
             protected void ComparecenciaPanel_Click(object sender, ImageClickEventArgs e)
             {
-
+                Response.Redirect("/Application/WebApp/Private/Visitaduria/visComparecencia.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
             }
 
             protected void DiligenciasButton_Click(object sender, ImageClickEventArgs e)
@@ -65,7 +65,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
             protected void DocumentoButton_Click(object sender, ImageClickEventArgs e)
             {
-
+                Response.Redirect("/Application/WebApp/Private/Visitaduria/visAgregarDocumento.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
             }
 
             protected void DocumentList_ItemDataBound(Object sender, DataListItemEventArgs e)
@@ -75,12 +75,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
             protected void EnviarButton_Click(object sender, ImageClickEventArgs e)
             {
-
-            }
-
-            protected void ImprimirButton_Click(object sender, ImageClickEventArgs e)
-            {
-
+                Response.Redirect("/Application/WebApp/Private/Visitaduria/visEnviarExpediente.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
             }
 
             protected void InformacionGeneralButton_Click(object sender, ImageClickEventArgs e)
@@ -95,17 +90,17 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
             protected void RecomendacionButton_Click(object sender, ImageClickEventArgs e)
             {
-
+                Response.Redirect("/Application/WebApp/Private/Visitaduria/visRecomendacionExpediente.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
             }
 
             protected void ResolucionButton_Click(object sender, ImageClickEventArgs e)
             {
-
+                Response.Redirect("/Application/WebApp/Private/Visitaduria/visResolucionExpediente.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
             }
 
             protected void SeguimientoButton_Click(object sender, ImageClickEventArgs e)
             {
-
+                Response.Redirect("/Application/WebApp/Private/Visitaduria/visSeguimientoExpediente.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
             }
         #endregion
 

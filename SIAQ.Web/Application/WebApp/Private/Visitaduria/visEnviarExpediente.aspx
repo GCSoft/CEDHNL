@@ -156,19 +156,9 @@
                     <asp:Label ID="DireccionHechos" runat="server"></asp:Label>
                 </td>
             </tr>
-        </table>
-
-        <table border="0" cellpadding="0" cellspacing="0" width="100%">
             <tr>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td class="tdCeldaMiddleSpace">
-                </td>
-            </tr>
-            <tr>
-                <td style="text-align: left;">
+                <td colspan="7" style="text-align: left;">
+                    <asp:Button CssClass="Button_General" ID="EnviarButton" runat="server" Text="Enviar expediente" Width="125px" />&nbsp;&nbsp;&nbsp;
                     <input class="Button_General" id="RegresarButton" onclick="document.location.href='visDetalleExpediente.aspx';" style="width: 125px;" type="button" value="Regresar" />
                 </td>
             </tr>

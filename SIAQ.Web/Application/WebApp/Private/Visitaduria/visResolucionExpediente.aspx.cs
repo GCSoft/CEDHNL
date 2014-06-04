@@ -9,9 +9,25 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 {
     public partial class visResolucionExpediente : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
+        #region "Events"
+            protected void GuardarButton_Click(object sender, EventArgs e)
+            {
 
-        }
+            }
+
+            protected void Page_Load(object sender, EventArgs e)
+            {
+                PageLoad();
+            }
+        #endregion
+
+        #region "Methods"
+
+            private void PageLoad()
+            {
+                if (Page.IsPostBack)
+                    return;
+            }
+        #endregion
     }
 }

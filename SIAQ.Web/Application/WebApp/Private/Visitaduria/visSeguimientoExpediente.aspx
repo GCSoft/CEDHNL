@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="visSeguimientoExpediente.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Visitaduria.visSeguimientoExpediente" %>
 
+<%@ Register Src="~/Include/WebUserControls/wucCalendar.ascx" TagName="caldenar" TagPrefix="cln" %>
+
 <asp:Content ID="HeaderContent" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
     
 </asp:Content>
@@ -9,12 +11,12 @@
         <table class="GeneralTable">
             <tr>
                 <td class="tdCeldaTituloEncabezado" style="background-image: url('../../../../Include/Image/Web/BarraTitulo.png');">
-                    Agregar documentos al expediente
+                    Seguimiento de expediente
                 </td>
             </tr>
             <tr>
                 <td class="SubTitulo">
-                    <asp:Label ID="Label2" runat="server" Text="Agregue aquellos documentos que sirvan para complementar la información del expediente."></asp:Label>
+                    <asp:Label ID="Label2" runat="server" Text="En esta sección puede registrar el seguimiento del expediente."></asp:Label>
                 </td>
             </tr>
         </table>
@@ -156,22 +158,106 @@
                     <asp:Label ID="DireccionHechos" runat="server"></asp:Label>
                 </td>
             </tr>
-        </table>
-
-        <table border="0" cellpadding="0" cellspacing="0" width="100%">
             <tr>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td class="tdCeldaMiddleSpace">
-                </td>
-            </tr>
-            <tr>
-                <td style="text-align: left;">
+                <td colspan="7" style="text-align: left;">
+                    <asp:Button CssClass="Button_General" ID="AgregarButton" OnClick="AgregarButton_Click" runat="server" Text="Agregar seguimiento" Width="130px" />&nbsp;&nbsp;&nbsp;
                     <input class="Button_General" id="RegresarButton" onclick="document.location.href='visDetalleExpediente.aspx';" style="width: 125px;" type="button" value="Regresar" />
                 </td>
             </tr>
         </table>
+
+        <br /><br />
+        <div>
+            <asp:GridView AutoGenerateColumns="False" ID="SeguimientoGrid" PageSize="10" runat="server" Style="text-align: center" Width="100%">
+                <RowStyle CssClass="Grid_Row" />
+                <EditRowStyle Wrap="True" />
+                <HeaderStyle CssClass="Grid_Header" ForeColor="#E3EBF5" />
+                <AlternatingRowStyle CssClass="Grid_Row_Alternating" />
+                <EmptyDataTemplate>
+                    <table border="1px" width="100%" cellpadding="0px" cellspacing="0px">
+                        <tr class="Grid_Header">
+                            <td style="width: 75px;">Fecha</td>
+                            <td style="width: 200px;">Visitador</td>
+                            <td style="width: 150px;">Tipo</td>
+                            <td>Detalle</td>
+                            <td style="width: 50px;"></td>
+                            <td style="width: 50px;"></td>
+                        </tr>
+                        <tr class="Grid_Row">
+                            <td colspan="6">No se encontraron seguimientos relacionados al expediente</td>
+                        </tr>
+                    </table>
+                </EmptyDataTemplate>
+                <Columns>
+                    <asp:BoundField DataField="Fecha" HeaderText="Fecha" ItemStyle-HorizontalAlign="Left"></asp:BoundField>
+                    <asp:BoundField DataField="NombreVisitador" HeaderText="Visitador"></asp:BoundField>
+                    <asp:BoundField DataField="TipoSeguimiento" HeaderText="Tipo"></asp:BoundField>
+                    <asp:BoundField DataField="Descripcion" HeaderText="Descripcion"></asp:BoundField>
+                    <asp:TemplateField HeaderText="Editar">
+                        <ItemTemplate>
+                            <asp:ImageButton ID="EditarButton" CommandArgument='<%#Eval("SeguimientoId")%>' CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
+                        </ItemTemplate>
+                        <ItemStyle HorizontalAlign="Center" />
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Borrar">
+                        <ItemTemplate>
+                            <asp:ImageButton ID="EliminarButton" CommandArgument='<%#Eval("RepositorioId")%>' CommandName="Eliminar" ImageUrl="~/Include/Image/Buttons/Delete.png" OnClientClick="return confirm('¿En realidad desea eliminar el documento?');" runat="server" />
+                        </ItemTemplate>
+                        <ItemStyle HorizontalAlign="Center" />
+                    </asp:TemplateField>
+                </Columns>
+            </asp:GridView>
+        </div>
     </div>
+
+    <!-- Panel oculto -->
+    <asp:Panel ID="pnlAction" runat="server" CssClass="ActionBlock" Visible="false">
+        <asp:Panel ID="pnlActionContent" runat="server" CssClass="ActionContent" Style="top:180px;" Height="400px" Width="800px">
+            <asp:Panel ID="pnlActionHeader" runat="server" CssClass="ActionHeader">
+                <table border="0" cellpadding="0" cellspacing="0" style="height: 100%; width: 100%">
+                    <tr>
+                        <td style="width: 10px">
+                        </td>
+                        <td style="text-align: left;">
+                            <asp:Label ID="lblActionTitle" runat="server" CssClass="ActionHeaderTitle" Text="Agregar seguimiento al expediente"></asp:Label>
+                        </td>
+                        <td style="vertical-align: middle; width: 14px;">
+                            <asp:ImageButton ID="imgCloseWindow" runat="server" ImageUrl="~/Include/Image/Buttons/CloseWindow.png" ToolTip="Cerrar Ventana" onclick="imgCloseWindow_Click"></asp:ImageButton>
+                        </td>
+                        <td style="width: 10px">
+                        </td>
+                    </tr>
+                </table>
+            </asp:Panel>
+
+            <asp:Panel ID="pnlActionBody" runat="server" CssClass="ActionBody">
+                <table class="GeneralTable">
+                    <tr>
+                        <td class="Nombre">Fecha</td>
+                        <td class="Espacio"></td>
+                        <td class="Campo"><cln:caldenar ID="FechaBox" runat="server" /></td>
+                        <td class="Espacio"></td>
+                    </tr>
+                    <tr>
+                        <td class="Nombre">Tipo de seguimiento</td>
+                        <td class="Espacio"></td>
+                        <td class="Campo"><asp:DropDownList ID="TipoSeguimientoList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
+                        <td class="Espacio"></td>
+                    </tr>
+                    <tr>
+                        <td class="Nombre">Detalle</td>
+                        <td class="Espacio"></td>
+                        <td class="Campo"><asp:TextBox ID="DescripcionBox" runat="server" CssClass="Textbox_General" TextMode="MultiLine" Height="100px" width="360px" ></asp:TextBox></td>
+                        <td class="Espacio"></td>
+                    </tr>
+                    <tr>
+                        <td class="Botones" colspan="5">
+                            <br />
+                            <asp:Button ID="GuardarButton" runat="server" Text="Agregar" CssClass="Button_General" width="125px" onclick="GuardarButton_Click"/>
+                        </td>
+                    </tr>
+                </table>
+            </asp:Panel>
+        </asp:Panel>
+    </asp:Panel>
 </asp:Content>

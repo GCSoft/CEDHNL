@@ -14,7 +14,7 @@
             </tr>
             <tr>
                 <td class="SubTitulo">
-                    <asp:Label ID="Label2" runat="server" Text="."></asp:Label>
+                    <asp:Label ID="Label2" runat="server" Text="En esta sección puede dar resolución al expediente."></asp:Label>
                 </td>
             </tr>
         </table>
@@ -158,20 +158,35 @@
             </tr>
         </table>
 
-        <table border="0" cellpadding="0" cellspacing="0" width="100%">
-            <tr>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td class="tdCeldaMiddleSpace">
-                </td>
-            </tr>
-            <tr>
-                <td style="text-align: left;">
-                    <input class="Button_General" id="RegresarButton" onclick="document.location.href='visDetalleExpediente.aspx';" style="width: 125px;" type="button" value="Regresar" />
-                </td>
-            </tr>
-        </table>
+        <br /><br />
+        <div>
+            <table class="GeneralTable">
+                <tr>
+                    <td class="Nombre">Fecha</td>
+                    <td class="Espacio"></td>
+                    <td class="Campo"><asp:Label ID="FechaLabel" runat="server" Text=""></asp:Label></td>
+                    <td class="Espacio"></td>
+                </tr>
+                <tr>
+                    <td class="Nombre">Tipo de resolución</td>
+                    <td class="Espacio"></td>
+                    <td class="Campo"><asp:DropDownList ID="TipoResoluciónList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
+                    <td class="Espacio"></td>
+                </tr>
+                <tr>
+                    <td class="Nombre">Detalle</td>
+                    <td class="Espacio"></td>
+                    <td class="Campo"><asp:TextBox ID="DetalleBox" runat="server" CssClass="Textbox_General" TextMode="MultiLine" Height="100px" width="360px" ></asp:TextBox></td>
+                    <td class="Espacio"></td>
+                </tr>
+                <tr>
+                    <td class="Botones" colspan="5">
+                        <br />
+                        <asp:Button ID="GuardarButton" runat="server" Text="Guardar" CssClass="Button_General" width="125px" onclick="GuardarButton_Click"/>&nbsp;&nbsp;&nbsp;
+                        <input class="Button_General" id="RegresarButton" onclick="document.location.href='visDetalleExpediente.aspx';" style="width: 125px;" type="button" value="Regresar" />
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
 </asp:Content>

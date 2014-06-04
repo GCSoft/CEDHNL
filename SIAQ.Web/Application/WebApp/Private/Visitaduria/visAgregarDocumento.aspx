@@ -169,7 +169,7 @@
             </tr>
             <tr>
                 <td style="text-align: left;">
-                    <asp:Button CssClass="Button_General" ID="AgregarButton" OnClick="AgregarButton_Click" runat="server" Text="Agregar documento" />&nbsp;&nbsp;&nbsp;
+                    <asp:Button CssClass="Button_General" ID="AgregarButton" OnClick="AgregarButton_Click" runat="server" Text="Agregar documento" Width="125px" />&nbsp;&nbsp;&nbsp;
                     <input class="Button_General" id="RegresarButton" onclick="document.location.href='visDetalleExpediente.aspx';" style="width: 125px;" type="button" value="Regresar" />
                 </td>
             </tr>
@@ -186,7 +186,7 @@
                     <table border="1px" width="100%" cellpadding="0px" cellspacing="0px">
                         <tr class="Grid_Header">
                             <td>Nombre</td>
-                            <td style="width: 1;">Tipo</td>
+                            <td style="width: 150px;">Tipo</td>
                             <td style="width: 50px;"></td>
                         </tr>
                         <tr class="Grid_Row">
@@ -217,7 +217,7 @@
                         <td style="width: 10px">
                         </td>
                         <td style="text-align: left;">
-                            <asp:Label ID="lblActionTitle" runat="server" CssClass="ActionHeaderTitle" Text="Asunto de la solicitud"></asp:Label>
+                            <asp:Label ID="lblActionTitle" runat="server" CssClass="ActionHeaderTitle" Text="Agregar documento al expediente"></asp:Label>
                         </td>
                         <td style="vertical-align: middle; width: 14px;">
                             <asp:ImageButton ID="imgCloseWindow" runat="server" ImageUrl="~/Include/Image/Buttons/CloseWindow.png" ToolTip="Cerrar Ventana" onclick="imgCloseWindow_Click"></asp:ImageButton>

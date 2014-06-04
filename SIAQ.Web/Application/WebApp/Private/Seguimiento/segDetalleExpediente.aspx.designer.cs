@@ -13,21 +13,147 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
     public partial class segDetalleExpediente {
         
         /// <summary>
-        /// pnlFormulario control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlFormulario;
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// hddSort control.
+        /// InformacionPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hddSort;
+        protected global::System.Web.UI.WebControls.Panel InformacionPanel;
+        
+        /// <summary>
+        /// InformacionGeneralButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton InformacionGeneralButton;
+        
+        /// <summary>
+        /// AsignarPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel AsignarPanel;
+        
+        /// <summary>
+        /// AsignarButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton AsignarButton;
+        
+        /// <summary>
+        /// SeguimientoPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel SeguimientoPanel;
+        
+        /// <summary>
+        /// SeguimientoButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton SeguimientoButton;
+        
+        /// <summary>
+        /// NotificacionesPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel NotificacionesPanel;
+        
+        /// <summary>
+        /// NotificacionesButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton NotificacionesButton;
+        
+        /// <summary>
+        /// DiligenciaPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel DiligenciaPanel;
+        
+        /// <summary>
+        /// DiligenciasButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton DiligenciasButton;
+        
+        /// <summary>
+        /// CerrarExpedientePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel CerrarExpedientePanel;
+        
+        /// <summary>
+        /// CerrarExpedienteButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton CerrarExpedienteButton;
+        
+        /// <summary>
+        /// ConfirmarCierreExpedientePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel ConfirmarCierreExpedientePanel;
+        
+        /// <summary>
+        /// ConfirmarCierreExpedienteButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ConfirmarCierreExpedienteButton;
+        
+        /// <summary>
+        /// ExpedienteIdHidden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField ExpedienteIdHidden;
     }
 }

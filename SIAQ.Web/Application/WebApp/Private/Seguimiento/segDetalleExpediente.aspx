@@ -60,5 +60,23 @@
         </asp:Panel>
     </div>
 
+	<div id="InformacionDiv">
+        
+        <!-- Botones Pie de Página -->
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr><td class="tdCeldaMiddleSpace"></td></tr>
+            <tr>
+                <td style="text-align: left;">
+					<asp:Button ID="btnRegresar" runat="server" Text="Regresar" CssClass="Button_General" width="125px" onclick="btnRegresar_Click" />
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+	<asp:HiddenField ID="EstatusIdHidden" runat="server" Value="0"  />
 	<asp:HiddenField ID="ExpedienteIdHidden" runat="server" Value="0"  />
+	<asp:HiddenField ID="FuncionarioIdHidden" runat="server" Value="0"  />
+	<asp:HiddenField ID="Sender" runat="server" Value=""  />
+
 </asp:Content>

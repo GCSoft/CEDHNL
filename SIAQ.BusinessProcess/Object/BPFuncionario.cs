@@ -174,15 +174,15 @@ namespace SIAQ.BusinessProcess.Object
 
 			try{
 
-            // Transacción en base de datos
-            oENTResponse = oDAFuncionario.SelectFuncionario(oENTFuncionario, this.sConnectionApplication, 0);
+				// Transacción en base de datos
+				oENTResponse = oDAFuncionario.SelectFuncionario(oENTFuncionario, this.sConnectionApplication, 0);
 
-            // Validación de error en consulta
-            if (oENTResponse.GeneratesException) { return oENTResponse; }
+				// Validación de error en consulta
+				if (oENTResponse.GeneratesException) { return oENTResponse; }
 
-            // Validación de mensajes de la BD
-            oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-            if (oENTResponse.sMessage != "") { return oENTResponse; }
+				// Validación de mensajes de la BD
+				oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+				if (oENTResponse.sMessage != "") { return oENTResponse; }
 
 			}catch (Exception ex){
 				oENTResponse.ExceptionRaised(ex.Message);

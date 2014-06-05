@@ -17,8 +17,9 @@ namespace SIAQ.Entity.Object
 			private DataSet _ResultData;
 			
 			// Atributos para consulta de expedientes
-			private Int32 _UsuarioId;	// Identificador único del usuario que realiza la transacción
-			private Int16 _Aprobar;		// Determina si se listarán los expedientes con Estatus 8 (Pendiente de aprobar Recomendación) cuando se establece en 1 ó se listaran los estatus 9 (Por asignar a defensor de Seguimientos) cuando se establece en 0
+			private Int32	_ExpedienteId;			// Identificador único del usuario que realiza la transacción
+			private Int32	_UsuarioId;				// Identificador único del usuario que realiza la transacción
+			private Int16	_Aprobar;				// Determina si se listarán los expedientes con Estatus 8 (Pendiente de aprobar Recomendación) cuando se establece en 1 ó se listaran los estatus 9 (Por asignar a defensor de Seguimientos) cuando se establece en 0
 			private String	_Numero;				// Número de expediente a filtrar
 			private String	_Quejoso;				// Nombre del quejoso que levanta la denuncia
 			private Int32	_MedioComunicacionId;	// Identificador único de la forma de contacto. 0 para todas
@@ -97,6 +98,21 @@ namespace SIAQ.Entity.Object
 				set { _ResultData = value; }
 			}
 
+
+			// Propiedades para consulta de expedientes
+
+			///<remarks>
+			///   <name>ENTSeguimientoRecomendacion.ExpedienteId</name>
+			///   <create>04-Junio-2014</create>
+			///   <author>Ruben.Cobos</author>
+			///</remarks>
+			///<summary>Obtiene/Asigna el identificador único del expediente a consultar</summary>
+			public Int32 ExpedienteId
+			{
+				get { return _ExpedienteId; }
+				set { _ExpedienteId = value; }
+			}
+
 			///<remarks>
 			///   <name>ENTSeguimientoRecomendacion.UsuarioId</name>
 			///   <create>31-Mayo-2014</create>
@@ -161,16 +177,20 @@ namespace SIAQ.Entity.Object
 
         #region Funciones
 
-			public ENTSeguimientoRecomendacion()
-			{
+			public ENTSeguimientoRecomendacion(){
 				_RecomendacionId = 0;
 				_FuncionarioId = 0;
 				_EsVigente = 0;
 				_Fecha = DateTime.Now;
 				_ResultData = new DataSet();
 
+				// Atributos para consulta de expedientes
+				_ExpedienteId = 0;
 				_UsuarioId = 0;
 				_Aprobar = 0;
+				_Numero = "";
+				_Quejoso = "";
+				_MedioComunicacionId = 0;
 			}
 
         #endregion

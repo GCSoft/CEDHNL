@@ -48,13 +48,31 @@ namespace SIAQ.BusinessProcess.Object
 
 
 			///<remarks>
+			///   <name>BPSeguimientoRecomendacion.SelectExpediente_DetalleSeguimientos</name>
+			///   <create>04-Jun-2014</create>
+			///   <author>Ruben.Cobos</author>
+			///</remarks>
+			///<summary>Obtiene la información de un expediente en estatus de Seguimiento</summary>
+			///<param name="entRecomendacion">Entidad de Seguimiento con los parámetros necesarios para consultar el expediente</param>
+			public void SelectExpediente_DetalleSeguimientos(){
+				string ConnectionString = String.Empty;
+				DASeguimientoRecomendacion DASeguimientoRecomendacion = new DASeguimientoRecomendacion();
+
+				ConnectionString = sConnectionApplication;
+
+				_SeguimientoRecomendacionEntity.ResultData = DASeguimientoRecomendacion.SelectExpediente_DetalleSeguimientos(_SeguimientoRecomendacionEntity, ConnectionString);
+				_ErrorId = DASeguimientoRecomendacion.ErrorId;
+				_ErrorString = DASeguimientoRecomendacion.ErrorDescription;
+
+			}
+
+			///<remarks>
 			///   <name>BPSeguimientoRecomendacion.SelectRecomendacionesSeguimientos</name>
 			///   <create>30-May-2014</create>
 			///   <author>Ruben.Cobos</author>
 			///</remarks>
 			///<summary>Obtiene un listado de Expedientes en fase de seguimientos con base a los parámetros proporcionados integrando la seguridad del usuario</summary>
 			///<param name="entRecomendacion">Entidad de Seguimiento con los parámetros necesarios para consultar la información</param>
-			///<returns>Una entidad de respuesta</returns>
 			public void SelectRecomendacionesSeguimientos(){
 				string ConnectionString = String.Empty;
 				DASeguimientoRecomendacion DASeguimientoRecomendacion = new DASeguimientoRecomendacion();
@@ -74,7 +92,6 @@ namespace SIAQ.BusinessProcess.Object
 			///</remarks>
 			///<summary>Obtiene un listado de Expedientes en fase de seguimientos con base a los parámetros proporcionados utilizada en el filtro de búsqueda</summary>
 			///<param name="entRecomendacion">Entidad de Seguimiento con los parámetros necesarios para consultar la información</param>
-			///<returns>Una entidad de respuesta</returns>
 			public void SelectRecomendacionesSeguimientos_Filtro(){
 				string ConnectionString = String.Empty;
 				DASeguimientoRecomendacion DASeguimientoRecomendacion = new DASeguimientoRecomendacion();

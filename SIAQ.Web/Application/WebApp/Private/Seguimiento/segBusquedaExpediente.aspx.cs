@@ -167,7 +167,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				// Acción
 				switch (strCommand){
 					case "Editar":
-						this.Response.Redirect("segDetalleExpediente.aspx?key=" + ExpedienteId, false);
+						this.Response.Redirect("segDetalleExpediente.aspx?key=" + ExpedienteId + "|2", false);
 						break;
 				}
 

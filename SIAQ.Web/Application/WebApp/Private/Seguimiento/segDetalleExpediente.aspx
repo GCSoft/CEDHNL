@@ -1,16 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="segDetalleExpediente.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Seguimiento.segDetalleExpediente" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
-	<script language="javascript" type="text/javascript">
-		
-		function ImprimirExpediente() {
-			var ExpedienteId = 0;
-
-			ExpedienteId = document.getElementById("<%= ExpedienteIdHidden.ClientID %>");
-
-			window.open("visImprmirExpediente.aspx?E=" + ExpedienteId.Value, "ImprimirExpediente", "");
-		}
-
-    </script>
+	
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
 	
@@ -61,7 +51,178 @@
     </div>
 
 	<div id="InformacionDiv">
+		
+		<!-- Carátula -->
+		<table class="SolicitudTable">
+			<tr>
+				<td class="Especial">Expediente número</td>
+                <td class="Espacio"></td>
+                <td class="Campo"><asp:Label CssClass="NumeroSolicitudLabel" ID="ExpedienteNumeroLabel" runat="server" Text="0"></asp:Label></td>
+                <td colspan="4"></td>
+            </tr>
+            <tr>
+                <td class="Nombre">Calificación</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta"><asp:Label ID="CalificacionLabel" runat="server" Text=""></asp:Label></td>
+                <td class="Espacio"></td>
+                <td class="Nombre">Fecha de recepción</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta"><asp:Label ID="FechaRecepcionLabel" runat="server" Text=""></asp:Label></td>
+            </tr>
+            <tr>
+                <td class="Nombre">Estatus</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta"><asp:Label ID="EstatusLabel" runat="server"></asp:Label></td>
+                <td class="Espacio"></td>
+                <td class="Nombre">Fecha de asignación</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta"><asp:Label ID="FechaAsignacionLabel" runat="server" Text=""></asp:Label></td>
+            </tr>
+            <tr>
+                <td class="Nombre">Tipo de solicitud</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta"><asp:Label ID="TipoSolicitudLabel" runat="server"></asp:Label></td>
+                <td class="Espacio"></td>
+                <td class="Nombre">Fecha de inicio gestión</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta"><asp:Label ID="FechaInicioLabel" runat="server" Text=""></asp:Label></td>
+            </tr>
+			<tr>
+                <td class="Nombre">Defensor</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta"><asp:Label ID="DefensorLabel" runat="server"></asp:Label></td>
+                <td class="Espacio"></td>
+                <td class="Nombre">Última modificación</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta"><asp:Label ID="FechaUltimaLabel" runat="server" Text=""></asp:Label></td>
+            </tr>
+            <tr>
+                <td class="Nombre">Observaciones</td>
+                <td class="Espacio"></td>
+                <td class="Observaciones" colspan="5"><asp:Label ID="ObservacionesLabel" runat="server" Text=""></asp:Label></td>
+            </tr>
+            <tr>
+                <td class="Nombre">Lugar de los hechos</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta" colspan="5"><asp:Label ID="LugarHechosLabel" runat="server"></asp:Label></td>
+            </tr>
+            <tr>
+                <td class="Nombre">Dirección de los hechos</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta" colspan="5"><asp:Label ID="DireccionHechosLabel" runat="server"></asp:Label></td>
+            </tr>
+        </table>
         
+		<!-- Grid -->
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr><td class="tdCeldaMiddleSpace"></td></tr>
+            <tr>
+                <td style="text-align: left;">
+                    Recomendaciones
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <asp:GridView id="gvRecomendacion" runat="server" AllowPaging="false" AllowSorting="true"  AutoGenerateColumns="False" Width="100%"
+						DataKeyNames="RecomendacionId,iRow" 
+						onrowcommand="gvRecomendacion_RowCommand" 
+						onrowdatabound="gvRecomendacion_RowDataBound"
+						onsorting="gvRecomendacion_Sorting">
+						<alternatingrowstyle cssclass="Grid_Row_Alternating" />
+						<headerstyle cssclass="Grid_Header" />
+						<rowstyle cssclass="Grid_Row" />
+						<EmptyDataTemplate>
+							<table border="1px" cellpadding="0px" cellspacing="0px" width="100%">
+								<tr class="Grid_Header">
+									<td style="width:75px;">Número</td>
+									<td style="width:200px;">Nombre de la Autoridad</td>
+									<td style="width:200px;">Puesto de la Autoridad</td>
+									<td style="width:70px;">Fecha</td>
+									<td>Comentarios</td>
+									<td style="width:25px;"></td>
+								</tr>
+								<tr class="Grid_Row">
+									<td colspan="6">No se encontraron recomendaciones asociadas al expediente</td>
+								</tr>
+							</table>
+						</EmptyDataTemplate>
+						<Columns>
+							<asp:BoundField HeaderText="Número"					ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="75px"	DataField="iRow"				SortExpression="iRow"></asp:BoundField>
+							<asp:BoundField HeaderText="Nombre de la Autoridad"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="AutoridadNombre"		SortExpression="AutoridadNombre"></asp:BoundField>
+							<asp:BoundField HeaderText="Puesto de la Autoridad"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="PuestoNombre"		SortExpression="PuestoNombre"></asp:BoundField>
+							<asp:BoundField HeaderText="Fecha"					ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="70px"	DataField="FechaRecomendacion"	SortExpression="FechaRecomendacion"></asp:BoundField>
+							<asp:BoundField HeaderText="Comentarios"			ItemStyle-HorizontalAlign="Left"							DataField="Comentarios"			SortExpression="Comentarios"></asp:BoundField>
+							<asp:TemplateField ItemStyle-HorizontalAlign ="Center" ItemStyle-Width="20px">
+								<ItemTemplate>
+									<asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
+								</ItemTemplate>
+							</asp:TemplateField>
+						</Columns>
+					</asp:GridView>
+                </td>
+            </tr>
+            <tr><td class="tdCeldaMiddleSpace"></td></tr>
+            <tr><td class="tdCeldaMiddleSpace"></td></tr>
+        </table>
+        <br />
+
+		<!-- Documentos -->
+        <div style="text-align: left;">Documentos anexos</div>
+        <div class="DocumentoListDiv">
+            <asp:DataList ID="dlstDocumentoList" runat="server" CellPadding="5" CellSpacing="5" HorizontalAlign="Left" RepeatDirection="Horizontal" RepeatLayout="Table" OnItemDataBound="dlstDocumentoList_ItemDataBound" >
+                <ItemTemplate>
+                    <div class="Item">
+                        <asp:Image ID="DocumentoImage" runat="server" />
+                        <br />
+                        <asp:Label CssClass="Texto" ID="DocumentoLabel" runat="server" Text="Nombre del documento"></asp:Label>
+                    </div>
+                </ItemTemplate>
+            </asp:DataList>
+            <asp:Label CssClass="Texto" ID="SinDocumentoLabel" runat="server" Text=""></asp:Label>
+        </div>
+
+		<!-- Comentarios -->
+        <div class="SolicitudComentarioDiv">
+            <div style="text-align: left;">
+                Asuntos &nbsp;&nbsp;
+                <asp:LinkButton ID="lnkAgregarComentario" runat="server" CssClass="LinkButton_Regular" Text="Agregar comentario" OnClick="lnkAgregarComentario_Click"></asp:LinkButton>
+            </div>
+            <div class="TituloDiv"><asp:Label ID="ComentarioTituloLabel" runat="server" Text=""></asp:Label></div>
+            <asp:Repeater ID="repComentarios" runat="server">
+                <HeaderTemplate>
+                    <table border="1" class="ComentarioSolicitudTable">
+                </HeaderTemplate>
+                <ItemTemplate>
+                    <tr>
+                        <td class="Numero">
+							<%# DataBinder.Eval(Container.DataItem, "iRow") %>
+						</td>
+                        <td>
+							<table class="ComentarioSolicitudTable">
+								<tr>
+									<td class="Nombre">
+										<%# DataBinder.Eval(Container.DataItem, "UsuarioNombre")%>
+									</td>
+                                    <td class="Fecha">
+										<%# DataBinder.Eval(Container.DataItem, "Fecha")%>
+									</td>
+                                </tr>
+                                <tr>
+                                    <td class="Texto" colspan="2">
+										<%# DataBinder.Eval(Container.DataItem, "Comentario")%>
+									</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </ItemTemplate>
+                <FooterTemplate>
+                    </table>
+                </FooterTemplate>
+            </asp:Repeater>
+            <asp:Label CssClass="Texto" ID="SinComentariosLabel" runat="server" Text=""></asp:Label>
+        </div>
+
         <!-- Botones Pie de Página -->
         <table border="0" cellpadding="0" cellspacing="0" width="100%">
             <tr><td class="tdCeldaMiddleSpace"></td></tr>
@@ -78,5 +239,6 @@
 	<asp:HiddenField ID="ExpedienteIdHidden" runat="server" Value="0"  />
 	<asp:HiddenField ID="FuncionarioIdHidden" runat="server" Value="0"  />
 	<asp:HiddenField ID="Sender" runat="server" Value=""  />
+	<asp:HiddenField ID="hddSort" runat="server" Value="iRow" />
 
 </asp:Content>

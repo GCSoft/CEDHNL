@@ -50,7 +50,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 DocumentoProcess.DocumentoEntity.SolicitudId = SolicitudId;
                 DocumentoProcess.DocumentoEntity.ExpedienteId = ExpedienteId;
 
-                DocumentoProcess.DeleteDocumentoSE();
+                DocumentoProcess.DeleteRepositorioSE();
 
                 if (DocumentoProcess.ErrorId == 0)
                 {
@@ -124,7 +124,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 DocumentoProcess.DocumentoEntity.Descripcion = Descripcion;
                 DocumentoProcess.DocumentoEntity.FileUpload = DocumentoFile;
 
-                DocumentoProcess.SaveDocumentoSE();
+                DocumentoProcess.SaveRepositorioSE();
 
                 if (DocumentoProcess.ErrorId == 0)
                 {
@@ -143,7 +143,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
                 DocumentoProcess.DocumentoEntity.SolicitudId = SolicitudId;
 
-                DocumentoProcess.SelectDocumentoSE();
+                DocumentoProcess.SelectRepositorioSE();
 
                 if (DocumentoProcess.ErrorId == 0)
                 {

@@ -45,7 +45,7 @@ namespace SIAQ.DataAccess.Object
             /// </summary>
             /// <param name="DocumentoEntity"></param>
             /// <param name="ConnectionString"></param>
-            public void DeleteDocumentoSE(ENTDocumento DocumentoEntity, string ConnectionString)
+            public void DeleteRepositorioSE(ENTDocumento DocumentoEntity, string ConnectionString)
             {
                 DataSet ResultData = new DataSet();
                 SqlCommand Command;
@@ -54,7 +54,7 @@ namespace SIAQ.DataAccess.Object
 
                 try
                 {
-                    Command = new SqlCommand("DeleteDocumentoSE", Connection);
+                    Command = new SqlCommand("DeleteRepositorioSE", Connection);
                     Command.CommandType = CommandType.StoredProcedure;
 
                     Parameter = new SqlParameter("RepositorioId", SqlDbType.VarChar);
@@ -63,10 +63,6 @@ namespace SIAQ.DataAccess.Object
 
                     Parameter = new SqlParameter("SolicitudId", SqlDbType.Int);
                     Parameter.Value = DocumentoEntity.SolicitudId;
-                    Command.Parameters.Add(Parameter);
-
-                    Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
-                    Parameter.Value = DocumentoEntity.ExpedienteId;
                     Command.Parameters.Add(Parameter);
 
                     Connection.Open();
@@ -88,7 +84,7 @@ namespace SIAQ.DataAccess.Object
             /// </summary>
             /// <param name="ENTDocumento">Entidad de documento.</param>
             /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
-            public void InsertDocumentoSE(ENTDocumento DocumentoEntity, string ConnectionString)
+            public void InsertRepositorioSE(ENTDocumento DocumentoEntity, string ConnectionString)
             {
                 DataSet ResultData = new DataSet();
                 SqlCommand Command;
@@ -97,19 +93,15 @@ namespace SIAQ.DataAccess.Object
 
                 try
                 {
-                    Command = new SqlCommand("InsertDocumentoSE", Connection);
+                    Command = new SqlCommand("InsertRepositorioSE", Connection);
                     Command.CommandType = CommandType.StoredProcedure;
 
                     Parameter = new SqlParameter("RepositorioId", SqlDbType.VarChar);
                     Parameter.Value = DocumentoEntity.RepositorioId;
                     Command.Parameters.Add(Parameter);
 
-                    Parameter = new SqlParameter("SolicitudId", SqlDbType.Int);
-                    Parameter.Value = DocumentoEntity.SolicitudId;
-                    Command.Parameters.Add(Parameter);
-
-                    Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
-                    Parameter.Value = DocumentoEntity.ExpedienteId;
+                    Parameter = new SqlParameter("ModuloId", SqlDbType.VarChar);
+                    Parameter.Value = DocumentoEntity.ModuloId;
                     Command.Parameters.Add(Parameter);
 
                     Parameter = new SqlParameter("TipoDocumentoId", SqlDbType.VarChar);
@@ -118,6 +110,10 @@ namespace SIAQ.DataAccess.Object
 
                     Parameter = new SqlParameter("FormatoDocumentoId", SqlDbType.VarChar);
                     Parameter.Value = DocumentoEntity.FormatoDocumentoId;
+                    Command.Parameters.Add(Parameter);
+
+                    Parameter = new SqlParameter("SolicitudId", SqlDbType.Int);
+                    Parameter.Value = DocumentoEntity.SolicitudId;
                     Command.Parameters.Add(Parameter);
 
                     Parameter = new SqlParameter("idUsuarioInsert", SqlDbType.Int);
@@ -156,7 +152,7 @@ namespace SIAQ.DataAccess.Object
             /// <param name="ENTDocumento">Entidad de documento.</param>
             /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
             /// <returns>Resultado de la búsqueda.</returns>
-            public DataSet SelectDocumentoSE(ENTDocumento DocumentoEntity, string ConnectionString)
+            public DataSet SelectRepositorioSE(ENTDocumento DocumentoEntity, string ConnectionString)
             {
                 DataSet ResultData = new DataSet();
                 SqlConnection Connection = new SqlConnection(ConnectionString);
@@ -166,7 +162,7 @@ namespace SIAQ.DataAccess.Object
 
                 try
                 {
-                    Command = new SqlCommand("SelectDocumentoSE", Connection);
+                    Command = new SqlCommand("SelectRepositorioSE", Connection);
                     Command.CommandType = CommandType.StoredProcedure;
 
                     Parameter = new SqlParameter("RepositorioId", SqlDbType.VarChar);
@@ -175,22 +171,6 @@ namespace SIAQ.DataAccess.Object
 
                     Parameter = new SqlParameter("SolicitudId", SqlDbType.Int);
                     Parameter.Value = DocumentoEntity.SolicitudId;
-                    Command.Parameters.Add(Parameter);
-
-                    Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
-                    Parameter.Value = DocumentoEntity.ExpedienteId;
-                    Command.Parameters.Add(Parameter);
-
-                    Parameter = new SqlParameter("TipoDocumentoId", SqlDbType.VarChar);
-                    Parameter.Value = DocumentoEntity.TipoDocumentoId;
-                    Command.Parameters.Add(Parameter);
-
-                    Parameter = new SqlParameter("idUsuarioInsert", SqlDbType.Int);
-                    Parameter.Value = DocumentoEntity.idUsuarioInsert;
-                    Command.Parameters.Add(Parameter);
-
-                    Parameter = new SqlParameter("Nombre", SqlDbType.VarChar);
-                    Parameter.Value = DocumentoEntity.Nombre;
                     Command.Parameters.Add(Parameter);
 
                     DataAdapter = new SqlDataAdapter(Command);

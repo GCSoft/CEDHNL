@@ -10,6 +10,7 @@ namespace SIAQ.Entity.Object
     public class ENTDocumento : ENTBase
     {
         private string _RepositorioId;
+        private string _ModuloId;
         private int _SolicitudId;
         private int _ExpedienteId;
         private int _RecomendacionId;
@@ -47,6 +48,15 @@ namespace SIAQ.Entity.Object
         {
             get { return _RepositorioId; }
             set { _RepositorioId = value; }
+        }
+
+        /// <summary>
+        ///     Módulo desde el que se guardó el documento.
+        /// </summary>
+        public string ModuloId
+        {
+            get { return _ModuloId; }
+            set { _ModuloId = value; }
         }
 
         /// <summary>

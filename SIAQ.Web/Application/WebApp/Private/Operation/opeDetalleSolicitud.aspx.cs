@@ -365,7 +365,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                         SelectSolicitud(SolicitudId);
                         SelectCiudadano(SolicitudId);
                         //SelectAutoridades(SolicitudId);
-                        SelectDocumento(SolicitudId);
+                        SelectRepositorio(SolicitudId);
                         SelectComentario(SolicitudId);
 
                         SolicitudIdHidden.Value = SolicitudId.ToString();
@@ -418,13 +418,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(SolicitudProcess.ErrorDescription) + "', 'Fail', true);", true);
             }
 
-            private void SelectDocumento(int SolicitudId)
+            private void SelectRepositorio(int SolicitudId)
             {
                 BPDocumento DocumentoProcess = new BPDocumento();
 
                 DocumentoProcess.DocumentoEntity.SolicitudId = SolicitudId;
 
-                DocumentoProcess.SelectDocumentoSE();
+                DocumentoProcess.SelectRepositorioSE();
 
                 if (DocumentoProcess.ErrorId == 0)
                 {

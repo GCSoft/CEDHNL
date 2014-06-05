@@ -100,7 +100,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 DocumentoProcess.DocumentoEntity.Descripcion = Descripcion;
                 DocumentoProcess.DocumentoEntity.FileUpload = DocumentoFile;
 
-                DocumentoProcess.SaveDocumentoSE();
+                DocumentoProcess.SaveRepositorioSE();
 
                 if (DocumentoProcess.ErrorId == 0)
                 {
@@ -119,7 +119,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
                 DocumentoProcess.DocumentoEntity.ExpedienteId = ExpedienteId;
 
-                DocumentoProcess.SelectDocumentoSE();
+                DocumentoProcess.SelectRepositorioSE();
 
                 if (DocumentoProcess.ErrorId == 0)
                 {

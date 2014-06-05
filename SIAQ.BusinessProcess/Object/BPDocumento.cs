@@ -54,11 +54,11 @@ namespace SIAQ.BusinessProcess.Object
         }
 
         #region "Methods"
-            public void DeleteDocumentoSE()
+        public void DeleteRepositorioSE()
             {
                 DADocumento DocumentoAccess = new DADocumento();
 
-                DocumentoAccess.DeleteDocumentoSE(_DocumentoEntity, sConnectionRepositorio);
+                DocumentoAccess.DeleteRepositorioSE(_DocumentoEntity, sConnectionRepositorio);
 
                 _ErrorId = DocumentoAccess.ErrorId;
                 _ErrorDescription = DocumentoAccess.ErrorDescription;
@@ -157,25 +157,25 @@ namespace SIAQ.BusinessProcess.Object
                 return ConfigurationManager.AppSettings["Application.Url.Icon"].ToString() + IconoPath;
             }
 
-            public void SaveDocumentoSE()
+            public void SaveRepositorioSE()
             {
                 DADocumento DocumentoAccess = new DADocumento();
 
                 UploadDocumento();
 
                 if(_ErrorId == 0)
-                    DocumentoAccess.InsertDocumentoSE(_DocumentoEntity, sConnectionRepositorio);
+                    DocumentoAccess.InsertRepositorioSE(_DocumentoEntity, sConnectionRepositorio);
 
                 _ErrorId = DocumentoAccess.ErrorId;
                 _ErrorDescription = DocumentoAccess.ErrorDescription;
             }
 
-            public void SelectDocumentoSE()
+            public void SelectRepositorioSE()
             {
                 string ConnectionString = string.Empty;
                 DADocumento DocumentoAccess = new DADocumento();
 
-                _DocumentoEntity.ResultData = DocumentoAccess.SelectDocumentoSE(_DocumentoEntity, sConnectionRepositorio);
+                _DocumentoEntity.ResultData = DocumentoAccess.SelectRepositorioSE(_DocumentoEntity, sConnectionRepositorio);
 
                 _ErrorId = DocumentoAccess.ErrorId;
                 _ErrorDescription = DocumentoAccess.ErrorDescription;

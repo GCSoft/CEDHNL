@@ -157,6 +157,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         protected global::System.Web.UI.WebControls.GridView DocumentoGrid;
         
         /// <summary>
+        /// ExpedienteIdHidden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField ExpedienteIdHidden;
+        
+        /// <summary>
         /// pnlAction control.
         /// </summary>
         /// <remarks>

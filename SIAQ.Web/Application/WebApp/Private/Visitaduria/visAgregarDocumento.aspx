@@ -156,19 +156,8 @@
                     <asp:Label ID="DireccionHechos" runat="server"></asp:Label>
                 </td>
             </tr>
-        </table>
-
-        <table border="0" cellpadding="0" cellspacing="0" width="100%">
             <tr>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td class="tdCeldaMiddleSpace">
-                </td>
-            </tr>
-            <tr>
-                <td style="text-align: left;">
+                <td colspan="7" style="text-align: left;">
                     <asp:Button CssClass="Button_General" ID="AgregarButton" OnClick="AgregarButton_Click" runat="server" Text="Agregar documento" Width="125px" />&nbsp;&nbsp;&nbsp;
                     <input class="Button_General" id="RegresarButton" onclick="document.location.href='visDetalleExpediente.aspx';" style="width: 125px;" type="button" value="Regresar" />
                 </td>
@@ -195,7 +184,7 @@
                     </table>
                 </EmptyDataTemplate>
                 <Columns>
-                    <asp:BoundField DataField="Nombre" HeaderText="Nombre" ItemStyle-HorizontalAlign="Left"></asp:BoundField>
+                    <asp:BoundField DataField="NombreDocumento" HeaderText="Nombre" ItemStyle-HorizontalAlign="Left"></asp:BoundField>
                     <asp:BoundField DataField="Descripcion" HeaderText="Descripción"></asp:BoundField>
                     <asp:TemplateField HeaderText="Borrar">
                         <ItemTemplate>
@@ -206,6 +195,8 @@
                 </Columns>
             </asp:GridView>
         </div>
+
+        <asp:HiddenField ID="ExpedienteIdHidden" runat="server" Value="0" />
     </div>
 
     <!-- Panel para agregar documentos -->

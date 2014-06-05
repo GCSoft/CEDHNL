@@ -65,7 +65,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
             protected void DocumentoButton_Click(object sender, ImageClickEventArgs e)
             {
-                Response.Redirect("/Application/WebApp/Private/Visitaduria/visAgregarDocumento.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
+                Response.Redirect("/Application/WebApp/Private/Visitaduria/visAgregarDocumento.aspx?E=" + ExpedienteIdHidden.Value.ToString());
             }
 
             protected void DocumentList_ItemDataBound(Object sender, DataListItemEventArgs e)

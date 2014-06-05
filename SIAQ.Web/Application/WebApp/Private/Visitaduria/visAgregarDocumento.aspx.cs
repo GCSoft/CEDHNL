@@ -13,6 +13,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 {
     public partial class visAgregarDocumento : System.Web.UI.Page
     {
+        Function utilFunction = new Function();
+
         #region "Events"
             protected void AgregarButton_Click(object sender, EventArgs e)
             {
@@ -21,7 +23,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
             protected void GuardarButton_Click(object sender, EventArgs e)
             {
-
+                SaveDocumento();
             }
 
             protected void imgCloseWindow_Click(object sender, ImageClickEventArgs e)
@@ -48,13 +50,84 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
             private void PageLoad()
             {
+                string ExpedienteId = string.Empty;
+
                 if (Page.IsPostBack)
                     return;
+
+                try
+                {
+                    ExpedienteId = Request.QueryString["E"].ToString();
+                }
+                catch
+                {
+                    // ToDo: Mostrar error
+                    return;
+                }
 
                 SelectTipoDocumento();
 
                 DocumentoGrid.DataSource = null;
                 DocumentoGrid.DataBind();
+
+                ExpedienteIdHidden.Value = ExpedienteId;
+            }
+
+            private void ResetForm()
+            {
+                TipoDocumentoList.SelectedIndex = 0;
+                NombreBox.Text = "";
+                DescripcionBox.Text = "";
+            }
+
+            private void SaveDocumento()
+            {
+                ENTSession SessionEntity = new ENTSession();
+
+                SessionEntity = (ENTSession)Session["oENTSession"];
+
+                SaveDocumento(int.Parse(ExpedienteIdHidden.Value), SessionEntity.idUsuario, NombreBox.Text.Trim(), DescripcionBox.Text.Trim(), DocumentoFile);
+            }
+
+            private void SaveDocumento(int ExpedienteId, int idUsuarioInsert, string Nombre, string Descripcion, FileUpload DocumentoFile)
+            {
+                BPDocumento DocumentoProcess = new BPDocumento();
+
+                DocumentoProcess.DocumentoEntity.ExpedienteId = ExpedienteId;
+                DocumentoProcess.DocumentoEntity.idUsuarioInsert = idUsuarioInsert;
+                DocumentoProcess.DocumentoEntity.TipoDocumentoId = TipoDocumentoList.SelectedValue;
+                DocumentoProcess.DocumentoEntity.Nombre = Nombre;
+                DocumentoProcess.DocumentoEntity.Descripcion = Descripcion;
+                DocumentoProcess.DocumentoEntity.FileUpload = DocumentoFile;
+
+                DocumentoProcess.SaveDocumentoSE();
+
+                if (DocumentoProcess.ErrorId == 0)
+                {
+                    ResetForm();
+                    SelectDocumento(int.Parse(ExpedienteIdHidden.Value));
+
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('La información fue guardada con éxito!', 'Success', true);", true);
+                }
+                else
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(DocumentoProcess.ErrorDescription) + "', 'Error', true);", true);
+            }
+
+            private void SelectDocumento(int ExpedienteId)
+            {
+                BPDocumento DocumentoProcess = new BPDocumento();
+
+                DocumentoProcess.DocumentoEntity.ExpedienteId = ExpedienteId;
+
+                DocumentoProcess.SelectDocumentoSE();
+
+                if (DocumentoProcess.ErrorId == 0)
+                {
+                    DocumentoGrid.DataSource = DocumentoProcess.DocumentoEntity.ResultData;
+                    DocumentoGrid.DataBind();
+                }
+                else
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + DocumentoProcess.ErrorDescription + "', 'Error', true);", true);
             }
 
             private void SelectTipoDocumento()

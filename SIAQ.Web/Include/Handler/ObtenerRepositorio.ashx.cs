@@ -28,8 +28,6 @@ namespace SIAQ.Web.Include.Handler
 
                 RepositoryEntity = SelectRepository(RepositorioId, int.Parse(SolicitudId));
 
-                context.Response.AddHeader("content-disposition", string.Format("attachment;filename={0}", RepositoryEntity.Nombre.Trim()));
-                context.Response.ContentType = "application/octet-stream";
                 context.Response.BinaryWrite(RepositoryEntity.Documento);
             }
 

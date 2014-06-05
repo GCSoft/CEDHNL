@@ -1,4 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="segDetalleExpediente.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Seguimiento.segDetalleExpediente" %>
+<%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
 	
 </asp:Content>
@@ -234,6 +236,44 @@
         </table>
 
     </div>
+
+	<asp:Panel ID="pnlAction" runat="server" CssClass="ActionBlock" Visible="false">
+        <asp:Panel ID="pnlActionContent" runat="server" CssClass="ActionContent" Style="top:180px;" Height="400px" Width="800px">
+            <asp:Panel ID="pnlActionHeader" runat="server" CssClass="ActionHeader">
+                <table border="0" cellpadding="0" cellspacing="0" style="height:100%; width:100%">
+                    <tr>
+                        <td style="width: 10px"></td>
+                        <td style="text-align: left;"><asp:Label ID="lblActionTitle" runat="server" CssClass="ActionHeaderTitle" Text="Comentario"></asp:Label></td>
+                        <td style="vertical-align: middle; width: 14px;"><asp:ImageButton ID="CloseWindowButton" runat="server" ImageUrl="~/Include/Image/Buttons/CloseWindow.png" ToolTip="Cerrar Ventana" onclick="CloseWindowButton_Click"></asp:ImageButton></td>
+                        <td style="width: 10px"></td>
+                    </tr>
+                </table>
+            </asp:Panel>
+            <asp:Panel ID="pnlActionBody" runat="server" CssClass="ActionBody">
+                <div style="margin:0 auto; width:98%;">
+                    <table border="0" cellpadding="0" cellspacing="0" style="height: 100%; text-align: left;" width="100%">
+                        <tr style="height: 20px;"><td></td></tr>
+                        <tr>
+							<td class="tdActionCeldaLeyendaItem">
+								<CKEditor:CKEditorControl ID="ckeComentario" BasePath="/ckeditor/" runat="server"></CKEditor:CKEditorControl>
+							</td>
+						</tr>
+                        <tr style="height:5px;"><td></td></tr>
+                        <tr>
+							<td style="text-align:right;">
+								<asp:Button ID="AgregarComentarioButton" runat="server" Text="Agregar comentario" CssClass="Button_General" Width="200px" onclick="AgregarComentarioButton_Click" />
+							</td>
+						</tr>
+                        <tr>
+							<td>
+								<asp:Label ID="lblActionMessage" runat="server" CssClass="ActionContentMessage"></asp:Label>
+							</td>
+						</tr>
+                    </table>
+                </div>
+            </asp:Panel>
+        </asp:Panel>
+    </asp:Panel>
 
 	<asp:HiddenField ID="EstatusIdHidden" runat="server" Value="0"  />
 	<asp:HiddenField ID="ExpedienteIdHidden" runat="server" Value="0"  />

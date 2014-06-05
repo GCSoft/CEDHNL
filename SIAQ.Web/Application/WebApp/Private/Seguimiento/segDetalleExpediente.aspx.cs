@@ -266,11 +266,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				DocumentoLabel = (Label)e.Item.FindControl("DocumentoLabel");
 				DataRow = (DataRowView)e.Item.DataItem;
 
-				// Configurar iconos
-				//  .ImageUrl = ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.cs?R=SE&id=" + DataRow["RepositorioId"].ToString();
-				DocumentoImage.Attributes.Add("onclick", "alert('Muestra el repositorio " + DataRow["RepositorioId"].ToString() + "');");
-				DocumentoImage.ImageUrl = BPDocumento.GetIconoDocumento(DataRow["TipoDocumentoId"].ToString());
+				// Configurar imagen
 				DocumentoLabel.Text = DataRow["NombreDocumento"].ToString();
+				DocumentoImage.ImageUrl = BPDocumento.GetIconoDocumento(DataRow["FormatoDocumentoId"].ToString());
+				//  .ImageUrl = ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.cs?R=SE&id=" + DataRow["RepositorioId"].ToString();
+				DocumentoImage.Attributes.Add("onmouseover", "this.style.cursor='pointer'");
+				DocumentoImage.Attributes.Add("onmouseout", "this.style.cursor='auto'");
+				DocumentoImage.Attributes.Add("onclick", "alert('Muestra el repositorio " + DataRow["RepositorioId"].ToString() + "');");
 
 			}catch (Exception ex){
 				throw (ex);
@@ -333,7 +335,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				sToolTip = "Seguimiento de Recomendacion [" + sNumero + "]";
 				imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
 				imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
-				imgEdit.Attributes.Add("style", "curosr:hand;");
+				imgEdit.Attributes.Add("style", "cursor:hand;");
 
 				// Atributos Over
 				sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png'; ";
@@ -374,7 +376,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		}
 
 		protected void lnkAgregarComentario_Click(object sender, EventArgs e){
-
+			this.pnlAction.Visible = true;
+			this.ckeComentario.Text = "";
+			this.ckeComentario.Focus();
 		}
 
 
@@ -406,6 +410,17 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
 		protected void SeguimientoButton_Click(object sender, ImageClickEventArgs e){
 			//Response.Redirect("/Application/WebApp/Private/Visitaduria/visDetalleExpediente.aspx?s=" + this.ExpedienteIdHidden.Value.ToString());
+		}
+
+		
+		// Eventos del panel Action (Agregar comentarios)
+
+		protected void AgregarComentarioButton_Click(object sender, EventArgs e){
+
+		}
+		
+		protected void CloseWindowButton_Click(object sender, ImageClickEventArgs e){
+			this.pnlAction.Visible = false;
 		}
 
 	}

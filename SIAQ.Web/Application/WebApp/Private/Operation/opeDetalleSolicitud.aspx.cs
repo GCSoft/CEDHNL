@@ -54,20 +54,21 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
             protected void DocumentList_ItemDataBound(Object sender, DataListItemEventArgs e)
             {
-                Label DocumentoLabel;
+                HyperLink DocumentoLink;
                 Image DocumentoImage;
                 DataRowView DataRow;
 
                 if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
                 {
                     DocumentoImage = (Image)e.Item.FindControl("DocumentoImage");
-                    DocumentoLabel = (Label)e.Item.FindControl("DocumentoLabel");
+                    DocumentoLink = (HyperLink)e.Item.FindControl("DocumentoLink");
 
                     DataRow = (DataRowView)e.Item.DataItem;
 
                     //DocumentoImage.ImageUrl = ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.cs?R=SE&id=" + DataRow["RepositrioId"].ToString();
-                    DocumentoImage.ImageUrl = BPDocumento.GetIconoDocumento(DataRow["TipoDocumentoId"].ToString());
-                    DocumentoLabel.Text = DataRow["NombreDocumento"].ToString();
+                    DocumentoImage.ImageUrl = BPDocumento.GetIconoDocumento(DataRow["FormatoDocumentoId"].ToString());
+                    DocumentoLink.NavigateUrl = ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.ashx?R=" + DataRow["RepositorioId"].ToString() + "&S=" + DataRow["SolicitudId"].ToString();
+                    DocumentoLink.Text = DataRow["NombreDocumento"].ToString();
                 }
             }
 

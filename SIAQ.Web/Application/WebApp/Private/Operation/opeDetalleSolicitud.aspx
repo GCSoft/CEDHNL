@@ -293,10 +293,11 @@
                     <div class="Item">
                         <asp:Image ID="DocumentoImage" runat="server" />
                         <br />
-                        <asp:Label CssClass="Texto" ID="DocumentoLabel" runat="server" Text="Nombre del documento"></asp:Label>
+                        <asp:HyperLink ID="DocumentoLink" runat="server" Target="_blank" Text="Nombre del documento"></asp:HyperLink>
                     </div>
                 </ItemTemplate>
             </asp:DataList>
+
             <asp:Label CssClass="Texto" ID="SinDocumentoLabel" runat="server" Text=""></asp:Label>
         </div>
         <!-- Fin datalist -->

@@ -181,6 +181,17 @@ namespace SIAQ.BusinessProcess.Object
                 _ErrorDescription = DocumentoAccess.ErrorDescription;
             }
 
+            public void SelectRepositorioSEConDocumento()
+            {
+                string ConnectionString = string.Empty;
+                DADocumento DocumentoAccess = new DADocumento();
+
+                _DocumentoEntity.ResultData = DocumentoAccess.SelectRepositorioSEConDocumento(_DocumentoEntity, sConnectionRepositorio);
+
+                _ErrorId = DocumentoAccess.ErrorId;
+                _ErrorDescription = DocumentoAccess.ErrorDescription;
+            }
+
             private void UploadDocumento()
             {
                 int DocumentoLen = 0;

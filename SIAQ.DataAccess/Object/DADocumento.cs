@@ -192,6 +192,53 @@ namespace SIAQ.DataAccess.Object
                     return ResultData;
                 }
             }
+
+            /// <summary>
+            ///     Busca un registro y trae su información junto con el archivo físico.
+            /// </summary>
+            /// <param name="ENTDocumento">Entidad de documento.</param>
+            /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
+            /// <returns>Resultado de la búsqueda.</returns>
+            public DataSet SelectRepositorioSEConDocumento(ENTDocumento DocumentoEntity, string ConnectionString)
+            {
+                DataSet ResultData = new DataSet();
+                SqlConnection Connection = new SqlConnection(ConnectionString);
+                SqlCommand Command;
+                SqlParameter Parameter;
+                SqlDataAdapter DataAdapter;
+
+                try
+                {
+                    Command = new SqlCommand("SelectRepositorioSEConDocumento", Connection);
+                    Command.CommandType = CommandType.StoredProcedure;
+
+                    Parameter = new SqlParameter("RepositorioId", SqlDbType.VarChar);
+                    Parameter.Value = DocumentoEntity.RepositorioId;
+                    Command.Parameters.Add(Parameter);
+
+                    Parameter = new SqlParameter("SolicitudId", SqlDbType.Int);
+                    Parameter.Value = DocumentoEntity.SolicitudId;
+                    Command.Parameters.Add(Parameter);
+
+                    DataAdapter = new SqlDataAdapter(Command);
+
+                    Connection.Open();
+                    DataAdapter.Fill(ResultData);
+                    Connection.Close();
+
+                    return ResultData;
+                }
+                catch (SqlException Exception)
+                {
+                    _ErrorId = Exception.Number;
+                    _ErrorDescription = Exception.Message;
+
+                    if (Connection.State == ConnectionState.Open)
+                        Connection.Close();
+
+                    return ResultData;
+                }
+            }
         #endregion
     }
 }

@@ -51,6 +51,7 @@
     <None Include="ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
     <None Include="ckeditor\samples\sample_posteddata.php" />
     <None Include="ckeditor\skins\moono\readme.md" />
+    <Content Include="Include\Handler\ObtenerRepositorio.ashx" />
     <None Include="Include\Image\Vectores\vssver2.scc" />
   </ItemGroup>
   <ItemGroup>
@@ -1195,7 +1196,9 @@
     <Compile Include="Application\WebApp\Private\Visitaduria\visSeguimientoExpediente.aspx.designer.cs">
       <DependentUpon>visSeguimientoExpediente.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Include\Handler\ObtenerRepositorio.cs" />
+    <Compile Include="Include\Handler\ObtenerRepositorio.ashx.cs">
+      <DependentUpon>ObtenerRepositorio.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Include\WebUserControls\wucBusquedaCiudadano.ascx.cs">
       <DependentUpon>wucBusquedaCiudadano.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

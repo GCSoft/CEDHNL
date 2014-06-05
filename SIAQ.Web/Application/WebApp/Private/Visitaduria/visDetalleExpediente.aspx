@@ -371,7 +371,7 @@
             </tr>
             <tr>
                 <td style="text-align: left;">
-                    <input class="Button_General" id="RegresarButton" onclick="document.location.href='opeBusquedaSolicitud.aspx';" style="width: 125px;" type="button" value="Regresar" />
+                    <input class="Button_General" id="RegresarButton" onclick="document.location.href='opeBusquedaExpedientes.aspx';" style="width: 125px;" type="button" value="Regresar" />
                 </td>
             </tr>
         </table>

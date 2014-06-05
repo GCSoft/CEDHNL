@@ -23,6 +23,7 @@ namespace SIAQ.Entity.Object
 			private String	_Numero;				// Número de expediente a filtrar
 			private String	_Quejoso;				// Nombre del quejoso que levanta la denuncia
 			private Int32	_MedioComunicacionId;	// Identificador único de la forma de contacto. 0 para todas
+			private String  _Comentario;			// Comentario en el seguimiento
 
         #endregion
 
@@ -173,6 +174,18 @@ namespace SIAQ.Entity.Object
 				set { _Quejoso = value; }
 			}
 
+			///<remarks>
+			///   <name>ENTSeguimientoRecomendacion.Comentario</name>
+			///   <create>05-Junio-2014</create>
+			///   <author>Ruben.Cobos</author>
+			///</remarks>
+			///<summary>Obtiene/Asigna el comentario en el seguimiento</summary>
+			public String Comentario
+			{
+				get { return _Comentario; }
+				set { _Comentario = value; }
+			}
+
         #endregion
 
         #region Funciones
@@ -191,6 +204,7 @@ namespace SIAQ.Entity.Object
 				_Numero = "";
 				_Quejoso = "";
 				_MedioComunicacionId = 0;
+				_Comentario = "";
 			}
 
         #endregion

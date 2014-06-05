@@ -31,6 +31,28 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
 		// Rutinas del programador
 
+		void InsertComentarioSeguimiento() {
+			ENTSession SessionEntity = new ENTSession();
+			BPSeguimientoRecomendacion BPSeguimientoRecomendacion = new BPSeguimientoRecomendacion();
+
+			// Validaciones
+			if (this.ckeComentario.Text.Trim() == "") { throw( new Exception("Es necesario ingresar un comentario")); }
+
+			// Obtener sesión
+			SessionEntity = (ENTSession)Session["oENTSession"];
+
+			// Parámetros
+			BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ExpedienteId = Int32.Parse(this.ExpedienteIdHidden.Value.Trim());
+			BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.UsuarioId = SessionEntity.idUsuario;
+			BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.Comentario = this.ckeComentario.Text.Trim();
+
+			// Transacción
+			BPSeguimientoRecomendacion.InsertComentarioSeguimiento();
+
+			// Errores
+			if (BPSeguimientoRecomendacion.ErrorId != 0) { throw (new Exception(BPSeguimientoRecomendacion.ErrorString)); }
+
+		}
 
 		void SelectedExpediente() {
 			BPSeguimientoRecomendacion BPSeguimientoRecomendacion = new BPSeguimientoRecomendacion();
@@ -212,7 +234,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				this.ExpedienteIdHidden.Value = this.Request.QueryString["key"].ToString().Split(new Char[] { '|' })[0];
 
 				// Obtener Sender
-				switch (this.Request.QueryString["key"].ToString().ToString().Split(new Char[] { '|' })[1]) {
+				this.SenderId.Value = this.Request.QueryString["key"].ToString().ToString().Split(new Char[] { '|' })[1];
+
+				switch (this.SenderId.Value)
+				{
 					case "1": // Invocado desde [Listado de Expedientes]
 						this.Sender.Value = "segListadoExpediente.aspx";
 						break;
@@ -376,16 +401,17 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		}
 
 		protected void lnkAgregarComentario_Click(object sender, EventArgs e){
-			this.pnlAction.Visible = true;
+			this.lblActionMessage.Text = "";
 			this.ckeComentario.Text = "";
 			this.ckeComentario.Focus();
+			this.pnlAction.Visible = true;
 		}
 
 
 		// Opciones de Menu
 
 		protected void AsignarButton_Click(object sender, ImageClickEventArgs e){
-			//Response.Redirect("/Application/WebApp/Private/Visitaduria/visDetalleExpediente.aspx?s=" + this.ExpedienteIdHidden.Value.ToString());
+			Response.Redirect("segAsignarDefensor.aspx?key=key=1005|1" + this.ExpedienteIdHidden.Value.ToString());
 		}
 
 		protected void CerrarExpedienteButton_Click(object sender, ImageClickEventArgs e){
@@ -401,7 +427,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		}
 
 		protected void InformacionGeneralButton_Click(object sender, ImageClickEventArgs e){
-			//Response.Redirect("/Application/WebApp/Private/Visitaduria/visDetalleExpediente.aspx?s=" + this.ExpedienteIdHidden.Value.ToString());
+			try {
+
+				// Actualizar el expediente
+				SelectedExpediente();
+
+			}catch (Exception ex) {
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+			}
 		}
 
 		protected void NotificacionesButton_Click(object sender, ImageClickEventArgs e){
@@ -416,7 +449,21 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		// Eventos del panel Action (Agregar comentarios)
 
 		protected void AgregarComentarioButton_Click(object sender, EventArgs e){
+			try {
 
+				// Agregar el comentario
+				InsertComentarioSeguimiento();
+
+				// Actualizar el expediente
+				SelectedExpediente();
+
+				// Ocultar el panel
+				this.pnlAction.Visible = false;
+
+			}catch (Exception ex) {
+				this.lblActionMessage.Text = ex.Message;
+				this.ckeComentario.Focus();
+			}
 		}
 		
 		protected void CloseWindowButton_Click(object sender, ImageClickEventArgs e){

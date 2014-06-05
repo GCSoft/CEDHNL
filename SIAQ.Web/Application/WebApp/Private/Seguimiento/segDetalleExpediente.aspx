@@ -279,6 +279,7 @@
 	<asp:HiddenField ID="ExpedienteIdHidden" runat="server" Value="0"  />
 	<asp:HiddenField ID="FuncionarioIdHidden" runat="server" Value="0"  />
 	<asp:HiddenField ID="Sender" runat="server" Value=""  />
+	<asp:HiddenField ID="SenderId" runat="server" Value="0"  />
 	<asp:HiddenField ID="hddSort" runat="server" Value="iRow" />
 
 </asp:Content>

@@ -170,6 +170,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         protected void gvApps_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            int rolId = 0;
             string ExpedienteId = String.Empty;
             ENTSession oENTSession;
 
@@ -177,7 +178,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
             ExpedienteId = e.CommandArgument.ToString();
 
-            int rolId = oENTSession.idRol;
+            rolId = oENTSession.idRol;
 
             switch (e.CommandName.ToString())
             {

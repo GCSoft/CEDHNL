@@ -302,11 +302,11 @@
         </div>
         <!-- Fin datalist -->
         <!-- Repeater para los comentarios -->
-        <div class="SolicitudComentarioDiv">
             <div style="text-align: left;">
                 Asuntos &nbsp;&nbsp;
                 <asp:LinkButton ID="lnkAgregarComentario" runat="server" CssClass="LinkButton_Regular" Text="Agregar comentario" OnClick="lnkAgregarComentario_Click"></asp:LinkButton>
             </div>
+        <div class="SolicitudComentarioDiv">
             <div class="TituloDiv">
                 <asp:Label ID="ComentarioTituloLabel" runat="server" Text=""></asp:Label></div>
             <asp:Repeater ID="ComentarioRepeater" runat="server">

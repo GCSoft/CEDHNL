@@ -189,16 +189,33 @@
 
 .DocumentoListDiv .Item
 {
-	border: 1px solid;
+	border: 0px;
 	height: 55px;
 	padding: 5px;
-	width: 50px;
+	width: 65px;
 }
 
 .DocumentoListDiv .Texto
 {
 	font-size: 11px;
 	text-align: left;
+}
+
+.DocumentoListDiv a
+{
+	color: #27245D;
+	font-size: 12px;
+	text-decoration: none;
+}
+
+.DocumentoListDiv a:hover
+{
+	text-decoration: underline;
+}
+
+.DocumentoListDiv img
+{
+	padding: 5px;
 }
 
 .IconoPanel

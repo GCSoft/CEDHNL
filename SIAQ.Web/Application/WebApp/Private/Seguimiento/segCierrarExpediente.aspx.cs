@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 {
-	public partial class segEnviarConclusionExpediente : System.Web.UI.Page
+	public partial class segCierrarExpediente : System.Web.UI.Page
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{

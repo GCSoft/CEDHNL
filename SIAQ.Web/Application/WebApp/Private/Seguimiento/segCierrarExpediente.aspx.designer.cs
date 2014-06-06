@@ -11,7 +11,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 {
 
 
-	public partial class segEnviarConclusionExpediente
+	public partial class segCierrarExpediente
 	{
 	}
 }

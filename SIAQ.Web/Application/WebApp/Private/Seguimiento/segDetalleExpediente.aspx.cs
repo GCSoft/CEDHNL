@@ -415,7 +415,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		}
 
 		protected void CerrarExpedienteButton_Click(object sender, ImageClickEventArgs e){
-			//Response.Redirect("/Application/WebApp/Private/Visitaduria/visDetalleExpediente.aspx?s=" + this.ExpedienteIdHidden.Value.ToString());
+			Response.Redirect("segAsignarDefensor.aspx?key=" + this.ExpedienteIdHidden.Value.ToString() + "|" + this.SenderId.Value.ToString());
 		}
 
 		protected void ConfirmarCierreExpedienteButton_Click(object sender, ImageClickEventArgs e){

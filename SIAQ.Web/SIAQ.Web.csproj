@@ -51,6 +51,7 @@
     <None Include="ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
     <None Include="ckeditor\samples\sample_posteddata.php" />
     <None Include="ckeditor\skins\moono\readme.md" />
+    <Content Include="Application\WebApp\Private\Seguimiento\segCierrarExpediente.aspx" />
     <Content Include="Include\Handler\ObtenerRepositorio.ashx" />
     <None Include="Include\Image\Vectores\vssver2.scc" />
   </ItemGroup>
@@ -137,7 +138,6 @@
     <Content Include="Application\WebApp\Private\Seguimiento\segConfirmarCierreExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segDetalleExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segDiligencia.aspx" />
-    <Content Include="Application\WebApp\Private\Seguimiento\segEnviarConclusionExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segListadoExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segListadoExpedienteAprobacion.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segSeguimientoRecomendacion.aspx" />
@@ -804,6 +804,13 @@
     <Compile Include="Application\WebApp\Private\Seguimiento\segBusquedaExpediente.aspx.designer.cs">
       <DependentUpon>segBusquedaExpediente.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segCierrarExpediente.aspx.cs">
+      <DependentUpon>segCierrarExpediente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segCierrarExpediente.aspx.designer.cs">
+      <DependentUpon>segCierrarExpediente.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Application\WebApp\Private\Seguimiento\segConfirmarCierreExpediente.aspx.cs">
       <DependentUpon>segConfirmarCierreExpediente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -824,13 +831,6 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Seguimiento\segDiligencia.aspx.designer.cs">
       <DependentUpon>segDiligencia.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\segEnviarConclusionExpediente.aspx.cs">
-      <DependentUpon>segEnviarConclusionExpediente.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\segEnviarConclusionExpediente.aspx.designer.cs">
-      <DependentUpon>segEnviarConclusionExpediente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Seguimiento\segListadoExpediente.aspx.cs">
       <DependentUpon>segListadoExpediente.aspx</DependentUpon>

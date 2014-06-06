@@ -1,5 +1,5 @@
 ﻿/*---------------------------------------------------------------------------------------------------------------------------------
-' Nombre:	segBusquedaExpediente
+' Nombre:	segDetalleExpediente
 ' Autor:	Ruben.Cobos
 ' Fecha:	02-Junio-2014
 '----------------------------------------------------------------------------------------------------------------------------------*/
@@ -293,11 +293,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
 				// Configurar imagen
 				DocumentoLabel.Text = DataRow["NombreDocumento"].ToString();
+
 				DocumentoImage.ImageUrl = BPDocumento.GetIconoDocumento(DataRow["FormatoDocumentoId"].ToString());
-				//  .ImageUrl = ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.cs?R=SE&id=" + DataRow["RepositorioId"].ToString();
 				DocumentoImage.Attributes.Add("onmouseover", "this.style.cursor='pointer'");
 				DocumentoImage.Attributes.Add("onmouseout", "this.style.cursor='auto'");
-				DocumentoImage.Attributes.Add("onclick", "alert('Muestra el repositorio " + DataRow["RepositorioId"].ToString() + "');");
+				DocumentoImage.Attributes.Add("onclick", "window.open('" + System.Configuration.ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.ashx?R=" + DataRow["RepositorioId"].ToString() + "&S=0" + "');");
 
 			}catch (Exception ex){
 				throw (ex);
@@ -411,7 +411,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		// Opciones de Menu
 
 		protected void AsignarButton_Click(object sender, ImageClickEventArgs e){
-			Response.Redirect("segAsignarDefensor.aspx?key=key=1005|1" + this.ExpedienteIdHidden.Value.ToString());
+			Response.Redirect("segAsignarDefensor.aspx?key=" + this.ExpedienteIdHidden.Value.ToString() + "|" + this.SenderId.Value.ToString());
 		}
 
 		protected void CerrarExpedienteButton_Click(object sender, ImageClickEventArgs e){

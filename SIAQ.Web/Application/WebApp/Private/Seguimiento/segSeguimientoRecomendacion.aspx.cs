@@ -80,9 +80,16 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			this.LugarHechosLabel.Text = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows[0]["LugarHechosNombre"].ToString();
 			this.DireccionHechosLabel.Text = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows[0]["DireccionHechos"].ToString();
 
+			// Combo Recomendaciones
+			this.ddlRecomendacion.DataTextField = "Numero";
+			this.ddlRecomendacion.DataValueField = "RecomendacionId";
+			this.ddlRecomendacion.DataSource = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[1];
+			this.ddlRecomendacion.DataBind();
+			this.ddlRecomendacion.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+
 			// Grid
-			this.gvRecomendacion.DataSource = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[1];
-			this.gvRecomendacion.DataBind();
+			this.gvSegRecomendacion.DataSource = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[4];
+			this.gvSegRecomendacion.DataBind();
 
 		}
 
@@ -144,13 +151,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				SelectedExpediente();
 				SelectedTipoSeguimiento();
 
-				// Seleccionar la recomendación
+				// Seleccionar la recomendación y Foco
 				if (this.Request.QueryString["key"].ToString().ToString().Split(new Char[] { '|' })[2].ToString() != "0") {
+
 					this.ddlRecomendacion.SelectedValue = this.Request.QueryString["key"].ToString().ToString().Split(new Char[] { '|' })[2].ToString();
+					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlTipoSeguimiento.ClientID + "');", true);
+				}else{
+
+					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlRecomendacion.ClientID + "');", true);
 				}
-				
-				// Foco
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlRecomendacion.ClientID + "');", true);
 
             }catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
@@ -176,7 +185,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			Response.Redirect("segDetalleExpediente.aspx?key=" + this.ExpedienteIdHidden.Value + "|" + this.SenderId.Value, false);
 		}
 
-		protected void gvRecomendacion_RowDataBound(object sender, GridViewRowEventArgs e){
+		protected void gvSegRecomendacion_RowDataBound(object sender, GridViewRowEventArgs e){
 			try
 			{
 				
@@ -194,14 +203,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			}
 		}
 
-		protected void gvRecomendacion_Sorting(object sender, GridViewSortEventArgs e){
+		protected void gvSegRecomendacion_Sorting(object sender, GridViewSortEventArgs e){
 			DataTable TableAutoridad = null;
 			DataView ViewAutoridad = null;
 
 			try
 			{
 				//Obtener DataTable y View del GridView
-				TableAutoridad = utilFunction.ParseGridViewToDataTable(gvRecomendacion, false);
+				TableAutoridad = utilFunction.ParseGridViewToDataTable(gvSegRecomendacion, false);
 				ViewAutoridad = new DataView(TableAutoridad);
 
 				//Determinar ordenamiento
@@ -211,8 +220,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				ViewAutoridad.Sort = hddSort.Value;
 
 				//Vaciar datos
-				this.gvRecomendacion.DataSource = ViewAutoridad;
-				this.gvRecomendacion.DataBind();
+				this.gvSegRecomendacion.DataSource = ViewAutoridad;
+				this.gvSegRecomendacion.DataBind();
 
 			}catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);

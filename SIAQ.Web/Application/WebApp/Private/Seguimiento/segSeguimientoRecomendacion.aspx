@@ -119,15 +119,15 @@
             <tr><td class="tdCeldaMiddleSpace"></td></tr>
             <tr>
                 <td style="text-align: left;">
-                    Recomendaciones
+                    Seguimiento a recomendaciones
                 </td>
             </tr>
             <tr>
                 <td>
-                    <asp:GridView id="gvRecomendacion" runat="server" AllowPaging="false" AllowSorting="true"  AutoGenerateColumns="False" Width="100%"
+                    <asp:GridView id="gvSegRecomendacion" runat="server" AllowPaging="false" AllowSorting="true"  AutoGenerateColumns="False" Width="100%"
 						DataKeyNames="RecomendacionId,Numero" 
-						onrowdatabound="gvRecomendacion_RowDataBound"
-						onsorting="gvRecomendacion_Sorting">
+						onrowdatabound="gvSegRecomendacion_RowDataBound"
+						onsorting="gvSegRecomendacion_Sorting">
 						<alternatingrowstyle cssclass="Grid_Row_Alternating" />
 						<headerstyle cssclass="Grid_Header" />
 						<rowstyle cssclass="Grid_Row" />
@@ -136,21 +136,21 @@
 								<tr class="Grid_Header">
 									<td style="width:75px;">Número</td>
 									<td style="width:200px;">Nombre de la Autoridad</td>
-									<td style="width:200px;">Puesto de la Autoridad</td>
 									<td style="width:70px;">Fecha</td>
-									<td>Comentarios</td>
+									<td style="width:200px;">Tipo de Seguimiento</td>
+									<td>Seguimiento</td>
 								</tr>
 								<tr class="Grid_Row">
-									<td colspan="5">No se encontraron recomendaciones asociadas al expediente</td>
+									<td colspan="5">No se encontraron seguimientos asociados a las recomendaciones del expediente</td>
 								</tr>
 							</table>
 						</EmptyDataTemplate>
 						<Columns>
-							<asp:BoundField HeaderText="Número"					ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="75px"	DataField="Numero"				SortExpression="Numero"></asp:BoundField>
-							<asp:BoundField HeaderText="Nombre de la Autoridad"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="AutoridadNombre"		SortExpression="AutoridadNombre"></asp:BoundField>
-							<asp:BoundField HeaderText="Puesto de la Autoridad"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="PuestoNombre"		SortExpression="PuestoNombre"></asp:BoundField>
-							<asp:BoundField HeaderText="Fecha"					ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="70px"	DataField="FechaRecomendacion"	SortExpression="FechaRecomendacion"></asp:BoundField>
-							<asp:BoundField HeaderText="Comentarios"			ItemStyle-HorizontalAlign="Left"							DataField="Comentarios"			SortExpression="Comentarios"></asp:BoundField>
+							<asp:BoundField HeaderText="Número"					ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="75px"	DataField="Numero"					SortExpression="Numero"></asp:BoundField>
+							<asp:BoundField HeaderText="Nombre de la Autoridad"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="AutoridadNombre"			SortExpression="AutoridadNombre"></asp:BoundField>
+							<asp:BoundField HeaderText="Fecha"					ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="70px"	DataField="FechaRecomendacion"		SortExpression="FechaRecomendacion"></asp:BoundField>
+							<asp:BoundField HeaderText="Tipo de Seguimiento"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="TipoSeguimientoNombre"	SortExpression="TipoSeguimientoNombre"></asp:BoundField>
+							<asp:BoundField HeaderText="Seguimiento"			ItemStyle-HorizontalAlign="Left"							DataField="Seguimiento"				SortExpression="Seguimiento"></asp:BoundField>
 						</Columns>
 					</asp:GridView>
                 </td>

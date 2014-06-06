@@ -358,7 +358,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 						}
 
 						// Si no es Defensor no podrá editar
-						if (SessionEntity.idRol != 11) {
+						if (SessionEntity.idRol != 1 && SessionEntity.idRol != 2 && SessionEntity.idRol != 11) {
 							ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('No cuenta con permisos para realizar ésta opción', 'Warning', false);", true);
 							return;
 						}

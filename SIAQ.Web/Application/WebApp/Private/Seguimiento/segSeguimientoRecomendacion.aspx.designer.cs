@@ -175,13 +175,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         protected global::System.Web.UI.WebControls.Button btnRegresar;
         
         /// <summary>
-        /// gvRecomendacion control.
+        /// gvSegRecomendacion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvRecomendacion;
+        protected global::System.Web.UI.WebControls.GridView gvSegRecomendacion;
         
         /// <summary>
         /// ExpedienteIdHidden control.

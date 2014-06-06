@@ -810,11 +810,13 @@ namespace SIAQ.DataAccess.Object
 				Command.CommandType = CommandType.StoredProcedure;
 
 				Parameter = new SqlParameter("FechaInicial", SqlDbType.DateTime);
-				Parameter.Value = ent.FechaDesde;
+				//Parameter.Value = ent.FechaDesde;
+				Parameter.Value = "2013-01-01";
 				Command.Parameters.Add(Parameter);
 
 				Parameter = new SqlParameter("FechaFinal", SqlDbType.DateTime);
-				Parameter.Value = ent.FechaHasta;
+				//Parameter.Value = ent.FechaHasta;
+				Parameter.Value = "2015-01-01";
 				Command.Parameters.Add(Parameter);
 
 				Parameter = new SqlParameter("Estatus", SqlDbType.Int);

@@ -210,6 +210,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 					this.ConfirmarCierreExpedientePanel.Visible = false;
 				}
 
+				// Si es System Administrator y el expediente no está en estatus de confirmación de cierre ocultar dicha opción
+				if (idRol == 1 && Int32.Parse(this.EstatusIdHidden.Value) != 8) {
+					this.ConfirmarCierreExpedientePanel.Visible = false;
+				}
+
+				// Si es Administrador y el expediente no está en estatus de confirmación de cierre ocultar dicha opción
+				if (idRol == 2 && Int32.Parse(this.EstatusIdHidden.Value) != 8) {
+					this.ConfirmarCierreExpedientePanel.Visible = false;
+				}
 
 				// Si el expediente está en estatus de confirmación de cierre no se podrá operar
 				if ( Int32.Parse(this.EstatusIdHidden.Value) == 8 ){
@@ -354,7 +363,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 							return;
 						}
 
-						this.Response.Redirect("segSeguimientoRecomendacion.aspx.aspx?key=" + RecomendacionId, false);
+						this.Response.Redirect("segSeguimientoRecomendacion.aspx?key=" + this.ExpedienteIdHidden.Value.ToString() + "|" + this.SenderId.Value.ToString() + "|" + RecomendacionId, false);
 						break;
 				}
 
@@ -380,7 +389,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
 
 				// DataKeys
-				sNumero = gvRecomendacion.DataKeys[e.Row.RowIndex]["iRow"].ToString();
+				sNumero = gvRecomendacion.DataKeys[e.Row.RowIndex]["Numero"].ToString();
 
 				// Tooltip Editar Recomendacion
 				sToolTip = "Seguimiento de Recomendacion [" + sNumero + "]";
@@ -468,7 +477,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		}
 
 		protected void SeguimientoButton_Click(object sender, ImageClickEventArgs e){
-			//Response.Redirect("/Application/WebApp/Private/Visitaduria/visDetalleExpediente.aspx?s=" + this.ExpedienteIdHidden.Value.ToString());
+			Response.Redirect("segSeguimientoRecomendacion.aspx?key=" + this.ExpedienteIdHidden.Value.ToString() + "|" + this.SenderId.Value.ToString() + "|0");
 		}
 
 		

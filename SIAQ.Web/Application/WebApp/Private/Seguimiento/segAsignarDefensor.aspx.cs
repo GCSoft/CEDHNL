@@ -119,7 +119,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				this.ddlFuncionario.DataBind();
 
 				// Agregar Item de selección
-				this.ddlFuncionario.Items.Insert(0, new ListItem("[Selccione]", "0"));
+				this.ddlFuncionario.Items.Insert(0, new ListItem("[Seleccione]", "0"));
 
 			}catch (Exception ex){
 				throw (ex);

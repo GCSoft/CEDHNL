@@ -126,7 +126,7 @@
             <tr>
                 <td>
                     <asp:GridView id="gvRecomendacion" runat="server" AllowPaging="false" AllowSorting="true"  AutoGenerateColumns="False" Width="100%"
-						DataKeyNames="RecomendacionId,iRow" 
+						DataKeyNames="RecomendacionId,Numero" 
 						onrowcommand="gvRecomendacion_RowCommand" 
 						onrowdatabound="gvRecomendacion_RowDataBound"
 						onsorting="gvRecomendacion_Sorting">
@@ -149,7 +149,7 @@
 							</table>
 						</EmptyDataTemplate>
 						<Columns>
-							<asp:BoundField HeaderText="Número"					ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="75px"	DataField="iRow"				SortExpression="iRow"></asp:BoundField>
+							<asp:BoundField HeaderText="Número"					ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="75px"	DataField="Numero"				SortExpression="Numero"></asp:BoundField>
 							<asp:BoundField HeaderText="Nombre de la Autoridad"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="AutoridadNombre"		SortExpression="AutoridadNombre"></asp:BoundField>
 							<asp:BoundField HeaderText="Puesto de la Autoridad"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="PuestoNombre"		SortExpression="PuestoNombre"></asp:BoundField>
 							<asp:BoundField HeaderText="Fecha"					ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="70px"	DataField="FechaRecomendacion"	SortExpression="FechaRecomendacion"></asp:BoundField>
@@ -280,6 +280,6 @@
 	<asp:HiddenField ID="FuncionarioIdHidden" runat="server" Value="0"  />
 	<asp:HiddenField ID="Sender" runat="server" Value=""  />
 	<asp:HiddenField ID="SenderId" runat="server" Value="0"  />
-	<asp:HiddenField ID="hddSort" runat="server" Value="iRow" />
+	<asp:HiddenField ID="hddSort" runat="server" Value="Numero" />
 
 </asp:Content>

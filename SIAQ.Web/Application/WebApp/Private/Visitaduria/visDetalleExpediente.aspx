@@ -86,7 +86,7 @@
                 <td class="Espacio">
                 </td>
                 <td class="Campo">
-                    <asp:Label CssClass="NumeroSolicitudLabel" ID="SolicitudLabel" runat="server" Text="0"></asp:Label>
+                    <asp:Label CssClass="NumeroSolicitudLabel" ID="ExpedienteIdLabel" runat="server" Text="0"></asp:Label>
                 </td>
                 <td colspan="4">
                 </td>
@@ -430,4 +430,5 @@
     </asp:Panel>
 
     <asp:HiddenField ID="ExpedienteIdHidden" runat="server" Value="0" />
+    <asp:HiddenField ID="SolicitudIdHidden" runat="server" Value="0" />
 </asp:Content>

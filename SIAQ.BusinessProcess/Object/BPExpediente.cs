@@ -339,6 +339,7 @@ namespace SIAQ.BusinessProcess.Object
                 ConnectionString = sConnectionApplication;
 
                 oENTExpediente.ResultData = DAExpediente.SelectDetalleExpediente(oENTExpediente, ConnectionString);
+
                 _ErrorId = DAExpediente.ErrorId;
                 _ErrorDescription = DAExpediente.ErrorDescription;
             }
@@ -379,7 +380,7 @@ namespace SIAQ.BusinessProcess.Object
             /// <summary>
             ///     Busca los comentarios realizados para una solicitud.
             /// </summary>
-            public void SelectSolicitudComentario()
+            public void SelectExpedienteComentario()
             {
                 string ConnectionString = string.Empty;
                 DAExpediente DAExpediente = new DAExpediente();

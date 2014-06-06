@@ -533,7 +533,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
                 ExpedienteProcess.ExpedienteEntity.ExpedienteId = ExpedienteId;
 
-                ExpedienteProcess.SelectSolicitudComentario();
+                ExpedienteProcess.SelectExpedienteComentario();
 
                 if (ExpedienteProcess.ErrorId == 0)
                 {

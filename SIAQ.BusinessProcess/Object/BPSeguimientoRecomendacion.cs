@@ -47,6 +47,24 @@ namespace SIAQ.BusinessProcess.Object
 			}
 
 			///<remarks>
+			///   <name>BPSeguimientoRecomendacion.ActualizaEstatusExpedienteSeguimiento</name>
+			///   <create>06-Jun-2014</create>
+			///   <author>Ruben.Cobos</author>
+			///</remarks>
+			///<summary>Cambia el estatus de un expediente</summary>
+			public void ActualizaEstatusExpedienteSeguimiento(){
+				string ConnectionString = String.Empty;
+				DASeguimientoRecomendacion DASeguimientoRecomendacion = new DASeguimientoRecomendacion();
+
+				ConnectionString = sConnectionApplication;
+
+				_SeguimientoRecomendacionEntity.ResultData = DASeguimientoRecomendacion.ActualizaEstatusExpedienteSeguimiento(_SeguimientoRecomendacionEntity, ConnectionString);
+				_ErrorId = DASeguimientoRecomendacion.ErrorId;
+				_ErrorString = DASeguimientoRecomendacion.ErrorDescription;
+
+			}
+
+			///<remarks>
 			///   <name>BPSeguimientoRecomendacion.InsertComentarioSeguimiento</name>
 			///   <create>05-Jun-2014</create>
 			///   <author>Ruben.Cobos</author>

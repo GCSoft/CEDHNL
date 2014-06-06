@@ -41,6 +41,54 @@ namespace SIAQ.DataAccess.Object
 			{
 				dbs = DatabaseFactory.CreateDatabase("Conn");
 			}
+			
+			///<remarks>
+			///   <name>DASeguimientoRecomendacion.ActualizaEstatusExpedienteSeguimiento</name>
+			///   <create>06-Jun-2014</create>
+			///   <author>Ruben.Cobos</author>
+			///</remarks>
+			///<summary>Cambia el estatus de un expediente</summary>
+			///<param name="entRecomendacion">Entidad de Seguimiento con los parámetros necesarios para consultar el expediente</param>
+			///<param name="ConnectionString">Cadena de conexión a la base de datos</param>
+			///<returns>Una DataSet con información de la transacción</returns>
+			public DataSet ActualizaEstatusExpedienteSeguimiento(ENTSeguimientoRecomendacion entRecomendacion, string ConnectionString){
+				DataSet ds = new DataSet();
+				SqlConnection Connection = new SqlConnection(ConnectionString);
+				SqlCommand Command;
+				SqlDataAdapter DataAdapter;
+				SqlParameter Parameter;
+
+				try
+				{
+					Command = new SqlCommand("uspExpediente_Upd_Seguimiento", Connection);
+					Command.CommandType = CommandType.StoredProcedure;
+
+					Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
+					Parameter.Value = entRecomendacion.ExpedienteId;
+					Command.Parameters.Add(Parameter);
+
+					Parameter = new SqlParameter("EstatusId", SqlDbType.Int);
+					Parameter.Value = entRecomendacion.EstatusId;
+					Command.Parameters.Add(Parameter);
+
+					DataAdapter = new SqlDataAdapter(Command);
+
+					Connection.Open();
+					DataAdapter.Fill(ds);
+					Connection.Close();
+
+					return ds;
+
+				}catch (SqlException ex){
+
+					_ErrorId = ex.Number;
+					_ErrorDescription = ex.Message;
+
+					if (Connection.State == ConnectionState.Open) { Connection.Close(); }
+
+					return ds;
+				}
+			}
 
 			///<remarks>
 			///   <name>DASeguimientoRecomendacion.InsertComentarioSeguimiento</name>

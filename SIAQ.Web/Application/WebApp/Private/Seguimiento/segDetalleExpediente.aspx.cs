@@ -209,7 +209,16 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				if (idRol == 12 && Int32.Parse(this.EstatusIdHidden.Value) != 8) {
 					this.ConfirmarCierreExpedientePanel.Visible = false;
 				}
-	
+
+
+				// Si el expediente está en estatus de confirmación de cierre no se podrá operar
+				if ( Int32.Parse(this.EstatusIdHidden.Value) == 8 ){
+					this.AsignarPanel.Visible = false;
+					this.SeguimientoPanel.Visible = false;
+					this.NotificacionesPanel.Visible = false;
+					this.DiligenciaPanel.Visible = false;
+					this.CerrarExpedientePanel.Visible = false;
+				}
 
             }catch (Exception ex){
 				throw(ex);
@@ -305,6 +314,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		}
 
 		protected void gvRecomendacion_RowCommand(object sender, GridViewCommandEventArgs e){
+			ENTSession SessionEntity = new ENTSession();
 			String RecomendacionId;
 
 			String strCommand = "";
@@ -328,6 +338,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				// Acción
 				switch (strCommand){
 					case "Editar":
+
+						// Obtener sesión
+						SessionEntity = (ENTSession)Session["oENTSession"];
+
+						// Si el expediente está en estatus de espera e confirmación de cierre no se podrá editar
+						if (Int32.Parse(this.EstatusIdHidden.Value) == 8) {
+							ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('No es posible editar éste expediente debido a que está a la espera de confirmación de cierre', 'Warning', false);", true);
+							return;
+						}
+
+						// Si no es Defensor no podrá editar
+						if (SessionEntity.idRol != 11) {
+							ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('No cuenta con permisos para realizar ésta opción', 'Warning', false);", true);
+							return;
+						}
+
 						this.Response.Redirect("segSeguimientoRecomendacion.aspx.aspx?key=" + RecomendacionId, false);
 						break;
 				}
@@ -415,11 +441,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		}
 
 		protected void CerrarExpedienteButton_Click(object sender, ImageClickEventArgs e){
-			Response.Redirect("segAsignarDefensor.aspx?key=" + this.ExpedienteIdHidden.Value.ToString() + "|" + this.SenderId.Value.ToString());
+			Response.Redirect("segCierrarExpediente.aspx?key=" + this.ExpedienteIdHidden.Value.ToString() + "|" + this.SenderId.Value.ToString());
 		}
 
 		protected void ConfirmarCierreExpedienteButton_Click(object sender, ImageClickEventArgs e){
-			//Response.Redirect("/Application/WebApp/Private/Visitaduria/visDetalleExpediente.aspx?s=" + this.ExpedienteIdHidden.Value.ToString());
+			Response.Redirect("segConfirmarCierreExpediente.aspx?key=" + this.ExpedienteIdHidden.Value.ToString() + "|" + this.SenderId.Value.ToString());
 		}
 
 		protected void DiligenciasButton_Click(object sender, ImageClickEventArgs e){

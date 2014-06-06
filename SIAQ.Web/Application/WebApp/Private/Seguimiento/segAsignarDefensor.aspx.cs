@@ -156,7 +156,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
             }
 		}
 
-		protected void bnGuardar_Click(object sender, EventArgs e){
+		protected void btnGuardar_Click(object sender, EventArgs e){
 			try
             {
 

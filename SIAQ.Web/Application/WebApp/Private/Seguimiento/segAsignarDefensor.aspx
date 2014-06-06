@@ -139,7 +139,7 @@
             <tr><td class="tdCeldaMiddleSpace"></td></tr>
             <tr>
                 <td style="text-align: left;">
-					<asp:Button ID="bnGuardar" runat="server" Text="Guardar" CssClass="Button_General" width="125px" onclick="bnGuardar_Click" /> &nbsp;&nbsp;
+					<asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="Button_General" width="125px" onclick="btnGuardar_Click" /> &nbsp;&nbsp;
 					<asp:Button ID="btnRegresar" runat="server" Text="Regresar" CssClass="Button_General" width="125px" onclick="btnRegresar_Click" />
                 </td>
             </tr>

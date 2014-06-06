@@ -80,6 +80,7 @@
     <Compile Include="Object\BPTipoDocumento.cs" />
     <Compile Include="Object\BPTipoEstatus.cs" />
     <Compile Include="Object\BPTipoOrientacion.cs" />
+    <Compile Include="Object\BPTipoSeguimiento.cs" />
     <Compile Include="Object\BPTipoSolicitud.cs" />
     <Compile Include="Object\BPTipoVivienda.cs" />
     <Compile Include="Object\BPTitulo.cs" />

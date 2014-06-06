@@ -1,7 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="visEnviarExpediente.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Visitaduria.visEnviarExpediente" %>
 
 <asp:Content ID="HeaderContent" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
-    
+    <script language="javascript" type="text/javascript">
+        function GoBack() {
+            var ExpedienteId = "";
+
+            ExpedienteId = document.getElementById("<%=ExpedienteIdHidden.ClientID%>").value;
+
+            document.location.href = "visDetalleExpediente.aspx?expId=" + ExpedienteId;
+        }
+    </script>
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
@@ -29,7 +37,7 @@
                 <td class="Espacio">
                 </td>
                 <td class="Campo">
-                    <asp:Label CssClass="NumeroSolicitudLabel" ID="SolicitudLabel" runat="server" Text="0"></asp:Label>
+                    <asp:Label CssClass="NumeroSolicitudLabel" ID="ExpedienteIdLabel" runat="server" Text="0"></asp:Label>
                 </td>
                 <td colspan="4">
                 </td>
@@ -159,9 +167,11 @@
             <tr>
                 <td colspan="7" style="text-align: left;">
                     <asp:Button CssClass="Button_General" ID="EnviarButton" runat="server" Text="Enviar expediente" Width="125px" />&nbsp;&nbsp;&nbsp;
-                    <input class="Button_General" id="RegresarButton" onclick="document.location.href='visDetalleExpediente.aspx';" style="width: 125px;" type="button" value="Regresar" />
+                    <input class="Button_General" id="RegresarButton" onclick="GoBack();" style="width: 125px;" type="button" value="Regresar" />
                 </td>
             </tr>
         </table>
     </div>
+
+    <asp:HiddenField ID="ExpedienteIdHidden" runat="server" Value="0" />
 </asp:Content>

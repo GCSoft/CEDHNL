@@ -22,13 +22,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// SolicitudLabel control.
+        /// ExpedienteIdLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label SolicitudLabel;
+        protected global::System.Web.UI.WebControls.Label ExpedienteIdLabel;
         
         /// <summary>
         /// CalificacionLlabel control.
@@ -245,5 +245,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button GuardarButton;
+        
+        /// <summary>
+        /// ExpedienteIdHidden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField ExpedienteIdHidden;
     }
 }

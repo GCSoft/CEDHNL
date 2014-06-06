@@ -19,12 +19,12 @@
         <table class="GeneralTable">
             <tr>
                 <td class="tdCeldaTituloEncabezado" style="background-image: url('../../../../Include/Image/Web/BarraTitulo.png');">
-                    Detalle de Solictud
+                    Detalle del expediente
                 </td>
             </tr>
             <tr>
                 <td class="SubTitulo">
-                    <asp:Label ID="Label2" runat="server" Text="Seleccione las opciones disponibles para capturar la información de la solicitud."></asp:Label>
+                    <asp:Label ID="Label2" runat="server" Text="Seleccione las opciones disponibles para capturar la información del expediente."></asp:Label>
                 </td>
             </tr>
         </table>
@@ -317,11 +317,12 @@
         <!-- Fin datalist -->
 
         <!-- Repeater para los comentarios -->
+        <div style="text-align: left;">
+            Asuntos &nbsp;&nbsp;
+            <asp:LinkButton ID="AgregarComentarioLink" runat="server" CssClass="LinkButton_Regular" Text="Agregar comentario" OnClick="AgregarComentarioLink_Click"></asp:LinkButton>
+        </div>
+
         <div class="SolicitudComentarioDiv">
-            <div style="text-align: left;">
-                Asuntos &nbsp;&nbsp;
-                <asp:LinkButton ID="AgregarComentarioLink" runat="server" CssClass="LinkButton_Regular" Text="Agregar comentario" OnClick="AgregarComentarioLink_Click"></asp:LinkButton>
-            </div>
             <div class="TituloDiv">
                 <asp:Label ID="ComentarioTituloLabel" runat="server" Text=""></asp:Label></div>
             <asp:Repeater ID="ComentarioRepeater" runat="server">

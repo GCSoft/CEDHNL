@@ -251,6 +251,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 
         }
 
+        // Eventos de la pagina
 		protected void Page_Load(object sender, EventArgs e)
 		{
             // Validación. Solo la primera vez que se ejecuta la página

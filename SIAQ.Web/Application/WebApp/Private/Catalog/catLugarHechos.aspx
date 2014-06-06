@@ -13,18 +13,27 @@
 		</tr>
       <tr><td class="tdCeldaMiddleSpace_Title"></td></tr>
       <tr>
-         <td>
-            <asp:Panel id="pnlFormulario" runat="server" Visible="true" Width="100%">
-					<table border="0" cellpadding="0" cellspacing="0" width="100%">
-						<tr class="trFilaItem">
-							<td class="tdCeldaLeyendaItem">&nbsp;Nombre</td>
-							<td style="width:5px;"></td>
-							<td class="tdCeldaItem"><asp:TextBox ID="txtNombre" runat="server" CssClass="Textbox_General" width="210px" ></asp:TextBox></td>
-						</tr>
-                        <tr style="height:3px;"><td colspan="3"></td></tr>
-					</table>
-            </asp:Panel>
-         </td>
+        <td>
+	        <asp:Panel id="pnlFormulario" runat="server" Visible="true" Width="100%">
+		        <table border="0" cellpadding="0" cellspacing="0" style="text-align:left; font-size:11px" width="100%">
+                    <tr>
+                        <td colspan="3">Proporcione los filtros deseados para buscar el lugar de los hechos</td>
+                    </tr>
+                    <tr><td class="style2"></td></tr>
+                    <tr>
+                        <td colspan="3">
+					        <table border="0" style="width: 460px">
+						        <tr>
+							        <td class="Etiqueta">Nombre</td>
+							        <td class="Espacio"></td>
+							        <td class="Campo"><asp:TextBox ID="txtNombre" runat="server" CssClass="Textbox_General" width="211px" ></asp:TextBox></td>
+						        </tr>
+						    </table>
+                        </td>
+                    </tr>
+		        </table>
+	        </asp:Panel>
+        </td>
       </tr>
       <tr><td class="tdCeldaMiddleSpace"></td></tr>
       <tr>
@@ -46,17 +55,18 @@
          <td>
             <asp:Panel id="pnlGrid" runat="server" Width="100%">
                <asp:GridView id="gvLugarHechos" runat="server" AllowPaging="false" 
-                    AllowSorting="true" AutoGenerateColumns="False" Width="790px"
+                    AllowSorting="true" AutoGenerateColumns="False" Width="100%"
 						DataKeyNames="LugarHechosId, Nombre" onrowcommand="gvLugarHechos_RowCommand" 
                     onrowdatabound="gvLugarHechos_RowDataBound" onsorting="gvLugarHechos_Sorting">
 						<alternatingrowstyle cssclass="Grid_Row_Alternating" />
 						<headerstyle cssclass="Grid_Header" />
 						<rowstyle cssclass="Grid_Row" />
 						<EmptyDataTemplate>
-							<table border="1px" cellpadding="0px" cellspacing="0px">
+							<table border="1px" cellpadding="0px" cellspacing="0px" Width="100%">
 								<tr class="Grid_Header">
-									<td style="width:150px;">Nombre</td>
-                                    <td style="width:440px;">Descripción</td>
+									<td style="width:13%;">Nombre</td>
+                                    <td style="width:85%;">Descripción</td>
+                                    <td style="width:2%;" ></td>
                                 </tr>
 								<tr class="Grid_Row">
 									<td colspan="2">No se encontraron lugares registrados en el sistema</td>
@@ -64,8 +74,8 @@
 							</table>
 						</EmptyDataTemplate>
 						<Columns>
-							<asp:BoundField HeaderText="Nombre"	ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="125px" DataField="Nombre"        SortExpression="Nombre"></asp:BoundField>
-                            <asp:BoundField HeaderText="Descripción"		ItemStyle-HorizontalAlign="Left"		ItemStyle-Width="440px" DataField="Descripcion"	SortExpression="Descripcion"></asp:BoundField>
+							<asp:BoundField HeaderText="Nombre"	ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="150px" DataField="Nombre"        SortExpression="Nombre"></asp:BoundField>
+                            <asp:BoundField HeaderText="Descripción"		ItemStyle-HorizontalAlign="Left"                DataField="Descripcion"	SortExpression="Descripcion"></asp:BoundField>
                             <asp:TemplateField ItemStyle-HorizontalAlign ="Center" ItemStyle-Width="20px">
 								<ItemTemplate>
                                     <asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />

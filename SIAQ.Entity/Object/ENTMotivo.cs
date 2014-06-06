@@ -8,7 +8,7 @@ namespace SIAQ.Entity.Object
 {
     public class ENTMotivo : ENTBase
     {
-        private Int16 _MotivoId;
+        private Int32 _MotivoId;
         private string _Nombre;
         private DataSet _ResultData; //Otras propiedades
         private string _Descripcion; // Valor de Descripcion
@@ -25,7 +25,8 @@ namespace SIAQ.Entity.Object
             set { _Nombre = value; }
         }
 
-        public Int16 MotivoId {
+        public Int32 MotivoId
+        {
 
             get { return _MotivoId; }
             set { _MotivoId = value; }

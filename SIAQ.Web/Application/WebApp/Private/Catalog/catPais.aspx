@@ -16,7 +16,7 @@
 				<asp:Panel id="pnlFormulario" runat="server" Visible="true" Width="100%">
 					<table border="0" cellpadding="0" cellspacing="0" style="text-align:left; font-size:11px" width="100%">
                         <tr>
-                            <td colspan="3">Proporcione los filtros deseados para buscar al Pais</td>
+                            <td colspan="3">Proporcione los filtros deseados para buscar al País</td>
                         </tr>
                         <tr><td class="style2"></td></tr>
                         <tr>
@@ -67,7 +67,7 @@
 						<headerstyle cssclass="Grid_Header" />
 						<rowstyle cssclass="Grid_Row" />
 						<EmptyDataTemplate>
-							<table border="1px" cellpadding="0px" cellspacing="0px">
+							<table border="1px" cellpadding="0px" cellspacing="0px" width="100%">
 								<tr class="Grid_Header">
 									<td style="width:150px;">Nombre del País</td>
 									<td>Descripción</td>

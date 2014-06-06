@@ -12,24 +12,33 @@
 		</tr>
       <tr><td class="tdCeldaMiddleSpace_Title"></td></tr>
       <tr>
-         <td>
-            <asp:Panel id="pnlFormulario" runat="server" Visible="true" Width="100%">
-					<table border="0" cellpadding="0" cellspacing="0" width="100%">
-						<tr class="trFilaItem">
-							<td class="tdCeldaLeyendaItem">&nbsp;Nombre</td>
-							<td style="width:5px;"></td>
-							<td class="tdCeldaItem"><asp:TextBox ID="txtNombre" runat="server" CssClass="Textbox_General" width="210px" ></asp:TextBox></td>
-						</tr>
-                  <tr style="height:3px;"><td colspan="3"></td></tr>
-						<tr class="trFilaItem">
-							<td class="tdCeldaLeyendaItem">&nbsp;Estatus</td>
-							<td></td>
-							<td class="tdCeldaItem"><asp:DropDownList id="ddlStatus" runat="server" CssClass="DropDownList_General" width="216px" ></asp:DropDownList></td>
-						</tr>
+			<td>
+				<asp:Panel id="Panel1" runat="server" Visible="true" Width="100%">
+					<table border="0" cellpadding="0" cellspacing="0" style="text-align:left; font-size:11px" width="100%">
+                        <tr>
+                            <td colspan="3">Proporcione los filtros deseados para buscar la Ciudad</td>
+                        </tr>
+                        <tr><td class="style2"></td></tr>
+                        <tr>
+                            <td colspan="3">
+								<table border="0" style="width: 460px">
+									<tr>
+										<td class="Etiqueta">Nombre</td>
+										<td class="Espacio"></td>
+										<td class="Campo"><asp:TextBox ID="txtNombre" runat="server" CssClass="Textbox_General" width="210px" ></asp:TextBox></td>
+									</tr>
+									<tr>
+										<td class="Etiqueta">Estatus</td>
+										<td class="Espacio"></td>
+										<td class="Campo"><asp:DropDownList id="ddlStatus" runat="server" CssClass="DropDownList_General" width="216px" ></asp:DropDownList></td>
+									</tr>
+								</table>
+                            </td>
+                        </tr>
 					</table>
-            </asp:Panel>
-         </td>
-      </tr>
+				</asp:Panel>
+			</td>
+		</tr>
       <tr><td class="tdCeldaMiddleSpace"></td></tr>
       <tr>
          <td>
@@ -50,29 +59,31 @@
          <td>
             <asp:Panel id="pnlGrid" runat="server" Width="100%">
                <asp:GridView id="gvCiudad" runat="server" AllowPaging="false" 
-                    AllowSorting="true" AutoGenerateColumns="False" Width="790px"
+                    AllowSorting="true" AutoGenerateColumns="False" Width="100%"
 						DataKeyNames="CiudadId, EstadoId,Activo, Nombre" onrowcommand="gvCiudad_RowCommand" 
                     onrowdatabound="gvCiudad_RowDataBound" onsorting="gvCiudad_Sorting">
 						<alternatingrowstyle cssclass="Grid_Row_Alternating" />
 						<headerstyle cssclass="Grid_Header" />
 						<rowstyle cssclass="Grid_Row" />
 						<EmptyDataTemplate>
-							<table border="1px" cellpadding="0px" cellspacing="0px">
+							<table border="1px" cellpadding="0px" cellspacing="0px" width="100%">
 								<tr class="Grid_Header">
-									<td style="width:125px;">Nombre del Estado</td>
-                                    <td style="width:125px;">Nombre de Ciudad</td>
-									<td style="width:440px;">Descripción</td>
+									<td style="width:150px;">Nombre del Estado</td>
+                                    <td style="width:150px;">Nombre de Ciudad</td>
+									<td>Descripción</td>
                                     <td style="width:100px;">Estatus</td>
+                                    <td style="width:25px;" ></td>
+									<td style="width:25px;" ></td>
 								</tr>
 								<tr class="Grid_Row">
-									<td colspan="4">No se encontraron ciudades registrados en el sistema</td>
+									<td colspan="6">No se encontraron ciudades registrados en el sistema</td>
 								</tr>
 							</table>
 						</EmptyDataTemplate>
 						<Columns>
-							<asp:BoundField HeaderText="Nombre del Estado"	ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="125px" DataField="Estado"        SortExpression="Estado"></asp:BoundField>
-                            <asp:BoundField HeaderText="Nombre de Ciudad"	ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="125px" DataField="Nombre"        SortExpression="Nombre"></asp:BoundField>
-							<asp:BoundField HeaderText="Descripción"		ItemStyle-HorizontalAlign="Left"		ItemStyle-Width="440px" DataField="Descripcion"	SortExpression="Descripcion"></asp:BoundField>
+							<asp:BoundField HeaderText="Nombre del Estado"	ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="150px" DataField="Estado"        SortExpression="Estado"></asp:BoundField>
+                            <asp:BoundField HeaderText="Nombre de Ciudad"	ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="150px" DataField="Nombre"        SortExpression="Nombre"></asp:BoundField>
+							<asp:BoundField HeaderText="Descripción"		ItemStyle-HorizontalAlign="Left"		                    DataField="Descripcion"	SortExpression="Descripcion"></asp:BoundField>
                             <asp:BoundField HeaderText="Estatus"         ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100px" DataField="Estatus"       SortExpression="Estatus"></asp:BoundField>
 							<asp:TemplateField ItemStyle-HorizontalAlign ="Center" ItemStyle-Width="20px">
 								<ItemTemplate>

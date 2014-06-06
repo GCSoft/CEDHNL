@@ -180,43 +180,44 @@ namespace SIAQ.BusinessProcess.Object
 
 		}
 	  
-      ///<remarks>
-      ///   <name>BPUsuario.selectUsuario_Autenticacion</name>
-      ///   <create>21-Octubre-2013</create>
-      ///   <author>GCSoft - Web Project Creator BETA 1.0</author>
-      ///</remarks>
-      ///<summary>Valida las credenciales de un usuario para verificar el acceso al sistema. Si las credenciales son válidas configura la sesión.</summary>
-      ///<param name="oENTUsuario">Entidad de usuario con los parámetros necesarios para consultar la información</param>
-      ///<returns>Una entidad de respuesta</returns>
-      public ENTResponse SelectUsuario_Autenticacion(ENTUsuario oENTUsuario){
-         Authentication utilAuthentication = new Authentication();
-         Encryption utilEncryption = new Encryption();
+		///<remarks>
+		///   <name>BPUsuario.selectUsuario_Autenticacion</name>
+		///   <create>21-Octubre-2013</create>
+		///   <author>GCSoft - Web Project Creator BETA 1.0</author>
+		///</remarks>
+		///<summary>Valida las credenciales de un usuario para verificar el acceso al sistema. Si las credenciales son válidas configura la sesión.</summary>
+		///<param name="oENTUsuario">Entidad de usuario con los parámetros necesarios para consultar la información</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse SelectUsuario_Autenticacion(ENTUsuario oENTUsuario){
+			Authentication utilAuthentication = new Authentication();
+			Encryption utilEncryption = new Encryption();
 
-         DAUsuario oDAUsuario = new DAUsuario();
-         ENTResponse oENTResponse = new ENTResponse();
-         ENTSession oENTSession = new ENTSession();
+			DAUsuario oDAUsuario = new DAUsuario();
+			ENTResponse oENTResponse = new ENTResponse();
+			ENTSession oENTSession = new ENTSession();
 
-         HttpContext oContext;
+			HttpContext oContext;
 			
 			try{
 			
-            // Encriptar el password
-            oENTUsuario.sPassword = utilEncryption.EncryptString(oENTUsuario.sPassword, false);
+				// Encriptar el password
+				oENTUsuario.sPassword = utilEncryption.EncryptString(oENTUsuario.sPassword, false);
 				
-            // Consulta a base de datos
-            oENTResponse = oDAUsuario.SelectUsuario_Autenticacion(oENTUsuario, this.sConnectionApplication, 0);
+				// Consulta a base de datos
+				oENTResponse = oDAUsuario.SelectUsuario_Autenticacion(oENTUsuario, this.sConnectionApplication, 0);
 				
-            // Validación de error en consulta
-            if ( oENTResponse.GeneratesException ) { return oENTResponse; }
+				// Validación de error en consulta
+				if ( oENTResponse.GeneratesException ) { return oENTResponse; }
 				
-            // Validación de mensajes de la BD
-            oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-            if ( oENTResponse.sMessage != "" ) { return oENTResponse; }
+				// Validación de mensajes de la BD
+				oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+				if ( oENTResponse.sMessage != "" ) { return oENTResponse; }
 
 				// Configurar de entidad de sesión
 				oENTSession.idUsuario = int.Parse(oENTResponse.dsResponse.Tables[1].Rows[0]["idUsuario"].ToString());
-            oENTSession.idArea = int.Parse(oENTResponse.dsResponse.Tables[1].Rows[0]["idArea"].ToString());
-            oENTSession.idRol = int.Parse(oENTResponse.dsResponse.Tables[1].Rows[0]["idRol"].ToString());
+				oENTSession.FuncionarioId = int.Parse(oENTResponse.dsResponse.Tables[1].Rows[0]["FuncionarioId"].ToString());
+				oENTSession.idArea = int.Parse(oENTResponse.dsResponse.Tables[1].Rows[0]["idArea"].ToString());
+				oENTSession.idRol = int.Parse(oENTResponse.dsResponse.Tables[1].Rows[0]["idRol"].ToString());
 				oENTSession.sEmail = oENTUsuario.sEmail;
 				oENTSession.sNombre = oENTResponse.dsResponse.Tables[1].Rows[0]["sNombre"].ToString();
 				oENTSession.tblSubMenu = oENTResponse.dsResponse.Tables[2];
@@ -237,7 +238,7 @@ namespace SIAQ.BusinessProcess.Object
 			// Resultado
 			return oENTResponse;
 
-      }
+		}
 
       ///<remarks>
       /// <name>BPUsuario.SelectUsuario_ParaFuncionario</name>

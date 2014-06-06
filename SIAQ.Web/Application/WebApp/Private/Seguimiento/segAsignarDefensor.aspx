@@ -81,6 +81,11 @@
                 <td class="Espacio"></td>
                 <td class="Etiqueta" colspan="5"><asp:Label ID="DireccionHechosLabel" runat="server"></asp:Label></td>
             </tr>
+			<tr>
+                <td class="Nombre">Asignar a</td>
+                <td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
+                <td colspan="5" style="text-align:left;"><asp:DropDownList id="ddlFuncionario" runat="server" CssClass="DropDownList_General" width="216px" ></asp:DropDownList></td>
+            </tr>
         </table>
         
 		<!-- Grid -->
@@ -142,7 +147,6 @@
 
     </div>
 
-    
     <asp:HiddenField ID="ExpedienteIdHidden" runat="server" Value="0"  />
 	<asp:HiddenField ID="SenderId" runat="server" Value="0"  />
 	<asp:HiddenField ID="hddSort" runat="server" Value="iRow" />

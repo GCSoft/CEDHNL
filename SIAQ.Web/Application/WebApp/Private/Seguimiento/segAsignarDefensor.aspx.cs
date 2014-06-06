@@ -31,6 +31,24 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
 		// Rutinas del programador
 
+		void InsertSeguimientoRecomendacion() {
+			BPSeguimientoRecomendacion BPSeguimientoRecomendacion = new BPSeguimientoRecomendacion();
+
+			// Validaciones
+			if (this.ddlFuncionario.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar un funcionario")); }
+
+			// Parámetros
+			BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ExpedienteId = Int32.Parse(this.ExpedienteIdHidden.Value.Trim());
+			BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.FuncionarioId = Int32.Parse(this.ddlFuncionario.SelectedItem.Value);
+
+			// Transacción
+			BPSeguimientoRecomendacion.InsertSeguimientoRecomendacion();
+
+			// Errores
+			if (BPSeguimientoRecomendacion.ErrorId != 0) { throw (new Exception(BPSeguimientoRecomendacion.ErrorString)); }
+
+		}
+
 		void SelectedExpediente() {
 			BPSeguimientoRecomendacion BPSeguimientoRecomendacion = new BPSeguimientoRecomendacion();
 
@@ -68,40 +86,44 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
 		}
 
-		void SelectedFuncionarios(){
-			//BPFuncionario oBPFuncionario = new BPFuncionario();
+		void SelectedFuncionario(){
+			ENTFuncionario oENTFuncionario = new ENTFuncionario();
+			ENTResponse oENTResponse = new ENTResponse();
 
-			//try
-			//{
-			//    BPRecomendacion BPRecomendacion = new BPRecomendacion();
+			BPFuncionario oBPFuncionario = new BPFuncionario();
 
-			//    BPRecomendacion.RecomendacionEntity.RecomendacionId = Convert.ToInt32(recomendacionId);
-			//    BPRecomendacion.SelectAsignarFuncionarioCombo();
+			try
+			{
 
-			//    if (BPRecomendacion.ErrorId == 0)
-			//    {
-			//        if (BPRecomendacion.RecomendacionEntity.ResultData.Tables[0].Rows.Count > 0)
-			//        {
-			//            ddlAsignar.DataSource = BPRecomendacion.RecomendacionEntity.ResultData;
-			//            ddlAsignar.DataTextField = "FuncionarioNombre";
-			//            ddlAsignar.DataValueField = "FuncionarioId";
-			//            ddlAsignar.DataBind();
-			//        }
-			//    }
-			//    else
-			//    {
-			//        ddlAsignar.DataSource = null;
-			//        ddlAsignar.DataTextField = "FuncionarioNombre";
-			//        ddlAsignar.DataValueField = "FuncionarioId";
-			//        ddlAsignar.DataBind();
-			//    }
+				// Formulario
+				oENTFuncionario.FuncionarioId = 0;
+				oENTFuncionario.idUsuario = 0;
+				oENTFuncionario.idArea = 10;	// Seguimientos
+				oENTFuncionario.TituloId = 0;
+				oENTFuncionario.PuestoId = 0;
+				oENTFuncionario.Nombre = "";
 
-			//}
-			//catch (Exception ex)
-			//{
-			//    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true);", true);
-			//}
+				// Transacción
+				oENTResponse = oBPFuncionario.SelectFuncionario(oENTFuncionario);
 
+				// Validaciones
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+
+				// Mensaje de la BD
+				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', true);", true); }
+
+				// Llenado de combo
+				this.ddlFuncionario.DataTextField = "sFullName";
+				this.ddlFuncionario.DataValueField = "FuncionarioId";
+				this.ddlFuncionario.DataSource = oENTResponse.dsResponse.Tables[1];
+				this.ddlFuncionario.DataBind();
+
+				// Agregar Item de selección
+				this.ddlFuncionario.Items.Insert(0, new ListItem("[Selccione]", "0"));
+
+			}catch (Exception ex){
+				throw (ex);
+			}
 		}
 
 
@@ -124,10 +146,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
 				// Llenado de controles
 				SelectedExpediente();
-				SelectedFuncionarios();
+				SelectedFuncionario();
 				
 				// Foco
-				//ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtActionNombre.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlFuncionario.ClientID + "');", true);
 
             }catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
@@ -135,7 +157,18 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		}
 
 		protected void bnGuardar_Click(object sender, EventArgs e){
-			
+			try
+            {
+
+                // Obtener Expedientes
+				InsertSeguimientoRecomendacion();
+
+				// Regresar al detalle del formulario
+				Response.Redirect("segDetalleExpediente.aspx?key=" + this.ExpedienteIdHidden.Value + "|" + this.SenderId.Value, false);
+
+            }catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.ddlFuncionario.ClientID + "');", true);
+            }
 		}
 
 		protected void btnRegresar_Click(object sender, EventArgs e){

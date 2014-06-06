@@ -148,7 +148,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 					case 10:	// Seguimiento - Secretaria
 						this.InformacionPanel.Visible = true;
 						this.AsignarPanel.Visible = true;
-						this.SeguimientoPanel.Visible = true;
+						this.SeguimientoPanel.Visible = false;
 						this.NotificacionesPanel.Visible = false;
 						this.DiligenciaPanel.Visible = false;
 						this.CerrarExpedientePanel.Visible = false;
@@ -168,7 +168,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 					case 12:	// Seguimiento - Director
 						this.InformacionPanel.Visible = true;
 						this.AsignarPanel.Visible = true;
-						this.SeguimientoPanel.Visible = true;
+						this.SeguimientoPanel.Visible = false;
 						this.NotificacionesPanel.Visible = false;
 						this.DiligenciaPanel.Visible = false;
 						this.CerrarExpedientePanel.Visible = false;

@@ -105,12 +105,37 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
         #endregion
 
         #region "Method"
+            private int GetExpedienteParameter()
+            {
+                try
+                {
+                    return int.Parse(Request.QueryString["idExp"].ToString());
+                }
+                catch
+                {
+                    return 0;
+                }
+            }
+
             private void PageLoad()
             {
+                int ExpedienteId = 0;
+
                 if (Page.IsPostBack)
                     return;
 
                 SetPermisos();
+                
+                ExpedienteId = GetExpedienteParameter();
+
+                SelectCiudadano();
+
+                ExpedienteIdHidden.Value = ExpedienteId.ToString();
+            }
+
+            private void SelectCiudadano()
+            {
+
             }
 
             private void SetPermisos()

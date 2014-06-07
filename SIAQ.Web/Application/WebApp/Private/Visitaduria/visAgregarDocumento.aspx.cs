@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -13,12 +15,18 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 {
     public partial class visAgregarDocumento : System.Web.UI.Page
     {
+        const string ModuloId = "95DF4FFE-7DBE-4272-B0E9-CFAD4D9596D3";
         Function utilFunction = new Function();
 
         #region "Events"
-            protected void AgregarButton_Click(object sender, EventArgs e)
+            protected void DocumentoGrid_RowCommand(Object sender, GridViewCommandEventArgs e)
             {
-                MostrarPanel();
+                DocumentoGridRowCommand(e);
+            }
+
+            protected void DocumentoGrid_RowDataBound(object sender, GridViewRowEventArgs e)
+            {
+                DocumentoGridRowDataBound(e);
             }
 
             protected void GuardarButton_Click(object sender, EventArgs e)
@@ -26,18 +34,73 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 SaveDocumento();
             }
 
-            protected void imgCloseWindow_Click(object sender, ImageClickEventArgs e)
-            {
-                OcultarPanel();
-            }
-
             protected void Page_Load(object sender, EventArgs e)
             {
+                // Se le agrega una propiedad al formulario de la página para poder subir archivos
+                this.Form.Enctype = "multipart/form-data";
+
                 PageLoad();
             }
         #endregion
 
         #region "Methods"
+            private void DeleteRepositorio(string RepositorioId)
+            {
+                DeleteRepositorio(RepositorioId, int.Parse(SolicitudIdHidden.Value));
+            }
+
+            private void DeleteRepositorio(string RepositorioId, int SolicitudId)
+            {
+                BPDocumento DocumentoProcess = new BPDocumento();
+
+                DocumentoProcess.DocumentoEntity.RepositorioId = RepositorioId;
+                DocumentoProcess.DocumentoEntity.SolicitudId = SolicitudId;
+
+                DocumentoProcess.DeleteRepositorioSE();
+
+                if (DocumentoProcess.ErrorId == 0)
+                {
+                    SelectDocumento(int.Parse(SolicitudIdHidden.Value));
+
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('La información fue guardada con éxito!', 'Success', true);", true);
+                }
+                else
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(DocumentoProcess.ErrorDescription) + "', 'Error', true);", true);
+            }
+
+            private void DocumentoGridRowCommand(GridViewCommandEventArgs e)
+            {
+                string RepositorioId = string.Empty;
+
+                RepositorioId = e.CommandArgument.ToString();
+
+                switch (e.CommandName.ToString())
+                {
+                    case "Eliminar":
+                        DeleteRepositorio(RepositorioId);
+                        break;
+                }
+            }
+
+            private void DocumentoGridRowDataBound(GridViewRowEventArgs e)
+            {
+                HyperLink DocumentoLink;
+                Image DocumentoImage;
+                DataRowView DataRow;
+
+                //Validación de que sea fila 
+                if (e.Row.RowType != DataControlRowType.DataRow)
+                    return;
+
+                DocumentoImage = (Image)e.Row.FindControl("DocumentoImage");
+                DocumentoLink = (HyperLink)e.Row.FindControl("DocumentoLink");
+
+                DataRow = (DataRowView)e.Row.DataItem;
+
+                DocumentoImage.ImageUrl = BPDocumento.GetIconoDocumento(DataRow["FormatoDocumentoId"].ToString());
+                DocumentoLink.NavigateUrl = ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.ashx?R=" + DataRow["RepositorioId"].ToString() + "&S=" + DataRow["SolicitudId"].ToString();
+            }
+
             private int GetExpedienteParameter()
             {
                 try
@@ -48,16 +111,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 {
                     return 0;
                 }
-            }
-
-            private void MostrarPanel()
-            {
-                pnlAction.Visible = true;
-            }
-
-            private void OcultarPanel()
-            {
-                pnlAction.Visible = false;
             }
 
             private void PageLoad()
@@ -71,9 +124,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
                 SelectTipoDocumento();
                 SelectExpediente(ExpedienteId);
-
-                DocumentoGrid.DataSource = null;
-                DocumentoGrid.DataBind();
+                SelectDocumento(int.Parse(SolicitudIdHidden.Value));
 
                 ExpedienteIdHidden.Value = ExpedienteId.ToString();
             }
@@ -91,38 +142,39 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
                 SessionEntity = (ENTSession)Session["oENTSession"];
 
-                SaveDocumento(int.Parse(ExpedienteIdHidden.Value), SessionEntity.idUsuario, NombreBox.Text.Trim(), DescripcionBox.Text.Trim(), DocumentoFile);
+                SaveDocumento(int.Parse(SolicitudIdHidden.Value), SessionEntity.idUsuario, NombreBox.Text.Trim(), DescripcionBox.Text.Trim(), DocumentoFile);
             }
 
-            private void SaveDocumento(int ExpedienteId, int idUsuarioInsert, string Nombre, string Descripcion, FileUpload DocumentoFile)
+            private void SaveDocumento(int SolicitudId, int idUsuarioInsert, string Nombre, string Descripcion, FileUpload DocumentoFile)
             {
-                BPDocumento DocumentoProcess = new BPDocumento();
+                BPDocumento RepositorioProcess = new BPDocumento();
 
-                DocumentoProcess.DocumentoEntity.ExpedienteId = ExpedienteId;
-                DocumentoProcess.DocumentoEntity.idUsuarioInsert = idUsuarioInsert;
-                DocumentoProcess.DocumentoEntity.TipoDocumentoId = TipoDocumentoList.SelectedValue;
-                DocumentoProcess.DocumentoEntity.Nombre = Nombre;
-                DocumentoProcess.DocumentoEntity.Descripcion = Descripcion;
-                DocumentoProcess.DocumentoEntity.FileUpload = DocumentoFile;
+                RepositorioProcess.DocumentoEntity.ModuloId = ModuloId;
+                RepositorioProcess.DocumentoEntity.TipoDocumentoId = TipoDocumentoList.SelectedValue;
+                RepositorioProcess.DocumentoEntity.SolicitudId = SolicitudId;
+                RepositorioProcess.DocumentoEntity.idUsuarioInsert = idUsuarioInsert;
+                RepositorioProcess.DocumentoEntity.Nombre = Nombre;
+                RepositorioProcess.DocumentoEntity.Descripcion = Descripcion;
+                RepositorioProcess.DocumentoEntity.FileUpload = DocumentoFile;
 
-                DocumentoProcess.SaveRepositorioSE();
+                RepositorioProcess.SaveRepositorioSE();
 
-                if (DocumentoProcess.ErrorId == 0)
+                if (RepositorioProcess.ErrorId == 0)
                 {
                     ResetForm();
-                    SelectDocumento(int.Parse(ExpedienteIdHidden.Value));
+                    SelectDocumento(int.Parse(SolicitudIdHidden.Value));
 
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('La información fue guardada con éxito!', 'Success', true);", true);
                 }
                 else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(DocumentoProcess.ErrorDescription) + "', 'Error', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(RepositorioProcess.ErrorDescription) + "', 'Error', true);", true);
             }
 
-            private void SelectDocumento(int ExpedienteId)
+            private void SelectDocumento(int SolicitudId)
             {
                 BPDocumento DocumentoProcess = new BPDocumento();
 
-                DocumentoProcess.DocumentoEntity.ExpedienteId = ExpedienteId;
+                DocumentoProcess.DocumentoEntity.SolicitudId = SolicitudId;
 
                 DocumentoProcess.SelectRepositorioSE();
 
@@ -168,6 +220,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                         ObservacionesLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Observaciones"].ToString();
                         LugarHechosLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["LugarHechos"].ToString();
                         DireccionHechos.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["DireccionHechos"].ToString();
+
+                        SolicitudIdHidden.Value = oENTExpediente.ResultData.Tables[0].Rows[0]["SolicitudId"].ToString();
                     }
 
                     //Fechas

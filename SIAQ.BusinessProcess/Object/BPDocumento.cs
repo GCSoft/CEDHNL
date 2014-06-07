@@ -54,7 +54,7 @@ namespace SIAQ.BusinessProcess.Object
         }
 
         #region "Methods"
-        public void DeleteRepositorioSE()
+            public void DeleteRepositorioSE()
             {
                 DADocumento DocumentoAccess = new DADocumento();
 
@@ -105,6 +105,10 @@ namespace SIAQ.BusinessProcess.Object
                     case ".pptx":
                         Result = "bd168a5e-ec4c-47d7-96a7-03f05ad77bca";
                         break;
+
+                    default:
+                        Result = "c67454c0-2a89-4053-bbf9-bf0edcdd136c";
+                        break;
                 }
 
                 return Result;
@@ -151,6 +155,11 @@ namespace SIAQ.BusinessProcess.Object
                     case "cba3eb71-5c11-489d-9b92-da1cc7fbe8af":
                     case "bd168a5e-ec4c-47d7-96a7-03f05ad77bca":
                         IconoPath = "PowerPointIcon.png";
+                        break;
+
+                    // Formato desconocido
+                    default:
+                        IconoPath = "UnknownIcon.png";
                         break;
                 }
 
@@ -201,32 +210,31 @@ namespace SIAQ.BusinessProcess.Object
                 HttpContext httpContext = HttpContext.Current;
                 DADocumento DocumentoAccess = new DADocumento();
 
-                if (_DocumentoEntity.FileUpload.PostedFile == null && _DocumentoEntity.FileUpload.PostedFile.ContentLength == 0)
+                try
                 {
-                    _ErrorId = 50000;
-                    _ErrorDescription = "El campo Archivo es obligatorio";
-                }
-                else
-                {
-                    try
-                    {
-                        Extension = Path.GetExtension(_DocumentoEntity.FileUpload.PostedFile.FileName);
-                        DocumentoStream = _DocumentoEntity.FileUpload.PostedFile.InputStream;
-                        DocumentoLen = _DocumentoEntity.FileUpload.PostedFile.ContentLength;
-                        DocumentoBytes = new byte[DocumentoLen];
-                        DocumentoStream.Read(DocumentoBytes, 0, DocumentoLen);
-
-                        _DocumentoEntity.RepositorioId = Guid.NewGuid().ToString();
-                        _DocumentoEntity.FormatoDocumentoId = GetFileFormat(Extension);
-                        _DocumentoEntity.Documento = DocumentoBytes;
-                    }
-                    catch (Exception ex)
+                    if (_DocumentoEntity.FileUpload.PostedFile == null && _DocumentoEntity.FileUpload.PostedFile.ContentLength == 0)
                     {
                         _ErrorId = 50000;
-                        _ErrorDescription = ex.Message;
-                    } 
-                }
+                        _ErrorDescription = "El campo Archivo es obligatorio";
+                    }
+                    else
+                    {
+                            Extension = Path.GetExtension(_DocumentoEntity.FileUpload.PostedFile.FileName);
+                            DocumentoStream = _DocumentoEntity.FileUpload.PostedFile.InputStream;
+                            DocumentoLen = _DocumentoEntity.FileUpload.PostedFile.ContentLength;
+                            DocumentoBytes = new byte[DocumentoLen];
+                            DocumentoStream.Read(DocumentoBytes, 0, DocumentoLen);
 
+                            _DocumentoEntity.RepositorioId = Guid.NewGuid().ToString();
+                            _DocumentoEntity.FormatoDocumentoId = GetFileFormat(Extension);
+                            _DocumentoEntity.Documento = DocumentoBytes;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _ErrorId = 50000;
+                    _ErrorDescription = ex.Message;
+                }
             }
         #endregion
     }

@@ -150,10 +150,10 @@
             </tr>
             <tr>
                 <td>
-                    <asp:GridView id="gvRecomendacion" runat="server" AllowPaging="false" AllowSorting="true"  AutoGenerateColumns="False" Width="100%"
+                    <asp:GridView id="gvDiligencia" runat="server" AllowPaging="false" AllowSorting="true"  AutoGenerateColumns="False" Width="100%"
 						DataKeyNames="RecomendacionId,Numero" 
-						onrowdatabound="gvRecomendacion_RowDataBound"
-						onsorting="gvRecomendacion_Sorting">
+						onrowdatabound="gvDiligencia_RowDataBound"
+						onsorting="gvDiligencia_Sorting">
 						<alternatingrowstyle cssclass="Grid_Row_Alternating" />
 						<headerstyle cssclass="Grid_Header" />
 						<rowstyle cssclass="Grid_Row" />

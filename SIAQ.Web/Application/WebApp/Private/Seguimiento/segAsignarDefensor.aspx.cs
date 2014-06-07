@@ -160,7 +160,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			try
             {
 
-                // Obtener Expedientes
+                // Asignar el Defensor
 				InsertSeguimientoRecomendacion();
 
 				// Regresar al detalle del formulario

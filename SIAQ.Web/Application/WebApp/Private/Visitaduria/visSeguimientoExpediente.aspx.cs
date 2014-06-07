@@ -17,19 +17,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
         Function utilFunction = new Function();
 
         #region "Events"
-            protected void AgregarButton_Click(object sender, EventArgs e)
-            {
-                MostrarPanel();
-            }
-
             protected void GuardarButton_Click(object sender, EventArgs e)
             {
 
-            }
-
-            protected void imgCloseWindow_Click(object sender, ImageClickEventArgs e)
-            {
-                OcultarPanel();
             }
 
             protected void Page_Load(object sender, EventArgs e)
@@ -51,16 +41,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 }
             }
 
-            private void MostrarPanel()
-            {
-                pnlAction.Visible = true;
-            }
-
-            private void OcultarPanel()
-            {
-                pnlAction.Visible = false;
-            }
-
             private void PageLoad()
             {
                 int ExpedienteId = 0;
@@ -71,11 +51,17 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 ExpedienteId = GetExpedienteParameter();
 
                 SelectExpediente(ExpedienteId);
+                SelectTipoSeguimiento();
 
                 SeguimientoGrid.DataSource = null;
                 SeguimientoGrid.DataBind();
 
                 ExpedienteIdHidden.Value = ExpedienteId.ToString();
+            }
+
+            private void SaveExpedienteSeguimiento()
+            {
+
             }
 
             private void SelectExpediente(int ExpedienteId)
@@ -124,6 +110,42 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 }
                 else
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(BPExpediente.ErrorDescription) + "', 'Error', true);", true);
+            }
+
+            private void SelectTipoSeguimiento()
+            {
+                ENTTipoSeguimiento oENTTipoSeguimiento = new ENTTipoSeguimiento();
+                ENTResponse oENTResponse = new ENTResponse();
+                BPTipoSeguimiento oBPTipoSeguimiento = new BPTipoSeguimiento();
+
+                try
+                {
+                    // Formulario
+                    oENTTipoSeguimiento.TipoSeguimientoId = 0;
+                    oENTTipoSeguimiento.Nombre = "";
+
+                    // Transacción
+                    oENTResponse = oBPTipoSeguimiento.SelectTipoSeguimiento(oENTTipoSeguimiento);
+
+                    // Validaciones
+                    if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+
+                    // Mensaje de la BD
+                    if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', true);", true); }
+
+                    // Llenado de combo
+                    TipoSeguimientoList.DataTextField = "Nombre";
+                    TipoSeguimientoList.DataValueField = "TipoSeguimientoId";
+                    TipoSeguimientoList.DataSource = oENTResponse.dsResponse.Tables[1];
+                    TipoSeguimientoList.DataBind();
+
+                    // Agregar Item de selección
+                    this.TipoSeguimientoList.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+                }
+                catch (Exception ex)
+                {
+                    throw (ex);
+                }
             }
         #endregion
     }

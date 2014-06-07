@@ -65,6 +65,7 @@
     <Compile Include="Object\DAEstatus.cs" />
     <Compile Include="Object\DAExpediente.cs" />
     <Compile Include="Object\DAExpedienteComentario.cs" />
+    <Compile Include="Object\DAExpedienteSeguimiento.cs" />
     <Compile Include="Object\DAFormaContacto.cs" />
     <Compile Include="Object\DAFuncionario.cs" />
     <Compile Include="Object\DAIndicador.cs" />

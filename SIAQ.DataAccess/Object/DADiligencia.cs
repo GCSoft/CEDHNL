@@ -165,7 +165,7 @@ namespace SIAQ.DataAccess.Object
 		///   <create>07/Junio/2014</create>
 		///   <author>Ruben.Cobosz</author>
 		///</remarks>
-		///<summary>Obtiene el listado de las diligencias de recomendaciones</summary>
+		///<summary>Obtiene el listado de las diligencias de un expediente en la etapa de seguimientos</summary>
 		public DataSet SelectRecomendacionDiligencia(ENTDiligencia oENTDiligencia, string ConnectionString){
 			SqlConnection Connection = new SqlConnection(ConnectionString);
 			SqlCommand Command;
@@ -175,11 +175,15 @@ namespace SIAQ.DataAccess.Object
 
 			try
 			{
-				Command = new SqlCommand("spDiligencias_sel", Connection);
+				Command = new SqlCommand("uspRecomendacionDiligencia_Sel", Connection);
 				Command.CommandType = CommandType.StoredProcedure;
 
-				Parameter = new SqlParameter("Id", SqlDbType.Int);
-				Parameter.Value = oENTDiligencia.SolicitudId;
+				Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
+				Parameter.Value = oENTDiligencia.ExpedienteId;
+				Command.Parameters.Add(Parameter);
+
+				Parameter = new SqlParameter("DiligenciaId", SqlDbType.Int);
+				Parameter.Value = oENTDiligencia.DiligenciaId;
 				Command.Parameters.Add(Parameter);
 
 				DataAdapter = new SqlDataAdapter(Command);

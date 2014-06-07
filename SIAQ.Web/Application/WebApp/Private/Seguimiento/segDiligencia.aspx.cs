@@ -144,18 +144,31 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			oBPDiligencias.DiligenciaEntity.DiligenciaId = 0;
 
 			// Transacción
-			oBPDiligencias.SelectDiligencias();
+			oBPDiligencias.SelectRecomendacionDiligencia();
 
 			// Validaciones
 			if (oBPDiligencias.ErrorId != 0) { throw (new Exception(oBPDiligencias.ErrorDescription)); }
 
 			// Listado de recomendaciones
-			this.gvDiligencia.DataSource = oBPDiligencias.DiligenciaEntity.DataResult.Tables[2];
+			this.gvDiligencia.DataSource = oBPDiligencias.DiligenciaEntity.DataResult.Tables[0];
 			this.gvDiligencia.DataBind();
 		}
 
 		void SelectDiligenciaForEdit(){
-			
+			BPDiligencia oBPDiligencias = new BPDiligencia();
+
+			// Parámetros
+			oBPDiligencias.DiligenciaEntity.ExpedienteId = Int32.Parse(this.ExpedienteIdHidden.Value);
+			oBPDiligencias.DiligenciaEntity.DiligenciaId = Int32.Parse(this.DiligenciaId.Value);
+
+			// Transacción
+			oBPDiligencias.SelectRecomendacionDiligencia();
+
+			// Validaciones
+			if (oBPDiligencias.ErrorId != 0) { throw (new Exception(oBPDiligencias.ErrorDescription)); }
+
+			// Llenado de Formulario
+
 		}
 
 		void SelectedExpediente() {
@@ -188,10 +201,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			this.ObservacionesLabel.Text = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows[0]["Observaciones"].ToString();
 			this.LugarHechosLabel.Text = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows[0]["LugarHechosNombre"].ToString();
 			this.DireccionHechosLabel.Text = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows[0]["DireccionHechos"].ToString();
-
-			// Grid
-			this.gvDiligencia.DataSource = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[1];
-			this.gvDiligencia.DataBind();
 
 		}
 

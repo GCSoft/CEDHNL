@@ -151,7 +151,7 @@
             <tr>
                 <td>
                     <asp:GridView id="gvDiligencia" runat="server" AllowPaging="false" AllowSorting="true"  AutoGenerateColumns="False" Width="100%"
-						DataKeyNames="RecomendacionId,Numero" 
+						DataKeyNames="DiligenciaId" 
 						onrowdatabound="gvDiligencia_RowDataBound"
 						onsorting="gvDiligencia_Sorting">
 						<alternatingrowstyle cssclass="Grid_Row_Alternating" />
@@ -160,23 +160,25 @@
 						<EmptyDataTemplate>
 							<table border="1px" cellpadding="0px" cellspacing="0px" width="100%">
 								<tr class="Grid_Header">
-									<td style="width:75px;">Número</td>
-									<td style="width:200px;">Nombre de la Autoridad</td>
-									<td style="width:200px;">Puesto de la Autoridad</td>
 									<td style="width:70px;">Fecha</td>
-									<td>Comentarios</td>
+									<td style="width:100px;">Tipo de Diligencia</td>
+									<td style="width:100px;">Lugar de la Diligencia</td>
+									<td style="width:200px;">Visitador que ejecutó</td>
+									<td>Detalle</td>
+									<td>Resultado</td>
 								</tr>
 								<tr class="Grid_Row">
-									<td colspan="5">No se encontraron recomendaciones asociadas al expediente</td>
+									<td colspan="6">No se encontraron diligencias registradas para las recomendaciones </td>
 								</tr>
 							</table>
 						</EmptyDataTemplate>
 						<Columns>
-							<asp:BoundField HeaderText="Número"					ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="75px"	DataField="Numero"				SortExpression="Numero"></asp:BoundField>
-							<asp:BoundField HeaderText="Nombre de la Autoridad"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="AutoridadNombre"		SortExpression="AutoridadNombre"></asp:BoundField>
-							<asp:BoundField HeaderText="Puesto de la Autoridad"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="PuestoNombre"		SortExpression="PuestoNombre"></asp:BoundField>
-							<asp:BoundField HeaderText="Fecha"					ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="70px"	DataField="FechaRecomendacion"	SortExpression="FechaRecomendacion"></asp:BoundField>
-							<asp:BoundField HeaderText="Comentarios"			ItemStyle-HorizontalAlign="Left"							DataField="Comentarios"			SortExpression="Comentarios"></asp:BoundField>
+							<asp:BoundField HeaderText="Fecha"					ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="70px"	DataField="Fecha"					SortExpression="Fecha"></asp:BoundField>
+							<asp:BoundField HeaderText="Tipo de Diligencia"		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="100px"	DataField="TipoDiligenciaNombre"	SortExpression="TipoDiligenciaNombre"></asp:BoundField>
+							<asp:BoundField HeaderText="Lugar de la Diligencia"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="100px"	DataField="LugarDiligenciaNombre"	SortExpression="LugarDiligenciaNombre"></asp:BoundField>
+							<asp:BoundField HeaderText="Visitador que ejecutó"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="DefensorNombre"			SortExpression="DefensorNombre"></asp:BoundField>
+							<asp:BoundField HeaderText="Detalle"				ItemStyle-HorizontalAlign="Left"							DataField="Detalle"					SortExpression="Detalle"></asp:BoundField>
+							<asp:BoundField HeaderText="Resultado"				ItemStyle-HorizontalAlign="Left"							DataField="Resultado"				SortExpression="Resultado"></asp:BoundField>
 						</Columns>
 					</asp:GridView>
                 </td>
@@ -190,7 +192,7 @@
 
     <asp:HiddenField ID="ExpedienteIdHidden" runat="server" Value="0"  />
 	<asp:HiddenField ID="SenderId" runat="server" Value="0"  />
-	<asp:HiddenField ID="hddSort" runat="server" Value="Numero" />
+	<asp:HiddenField ID="hddSort" runat="server" Value="Fecha" />
 
 	<asp:HiddenField ID="EditMode" runat="server" Value="0"  />
 	<asp:HiddenField ID="DiligenciaId" runat="server" Value="0"  />

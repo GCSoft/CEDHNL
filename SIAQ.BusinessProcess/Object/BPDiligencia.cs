@@ -100,6 +100,27 @@ namespace SIAQ.BusinessProcess.Object
             return _DiligenciaEntity.DataResult;
         }
 
+		///<remarks>
+		///   <name>BPDiligencia.SelectRecomendacionDiligencia</name>
+		///   <create>07/Junio/2014</create>
+		///   <author>Ruben.Cobosz</author>
+		///</remarks>
+		///<summary>Obtiene el listado de las diligencias de un expediente en la etapa de seguimientos</summary>
+		public DataSet SelectRecomendacionDiligencia()
+		{
+			DADiligencia oDADiligencia = new DADiligencia();
+			string ConnectionString = string.Empty;
+
+			ConnectionString = sConnectionApplication;
+
+			_DiligenciaEntity.DataResult = oDADiligencia.SelectRecomendacionDiligencia(_DiligenciaEntity, ConnectionString);
+			_ErrorId = oDADiligencia.ErrorId;
+			_ErrorDescription = oDADiligencia.ErrorDescription;
+
+			return _DiligenciaEntity.DataResult;
+		}
+
+
         //Detalle
 
         /// <summary>

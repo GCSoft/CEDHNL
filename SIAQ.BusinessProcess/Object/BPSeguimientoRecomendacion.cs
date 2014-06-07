@@ -101,6 +101,24 @@ namespace SIAQ.BusinessProcess.Object
 			}
 
 			///<remarks>
+			///   <name>BPSeguimientoRecomendacion.InsertSegSeguimiento</name>
+			///   <create>05-Jun-2014</create>
+			///   <author>Ruben.Cobos</author>
+			///</remarks>
+			///<summary>Inserta un comentario en el seguimiento</summary>
+			public void InsertSegSeguimiento(){
+				string ConnectionString = String.Empty;
+				DASeguimientoRecomendacion DASeguimientoRecomendacion = new DASeguimientoRecomendacion();
+
+				ConnectionString = sConnectionApplication;
+
+				_SeguimientoRecomendacionEntity.ResultData = DASeguimientoRecomendacion.InsertSegSeguimiento(_SeguimientoRecomendacionEntity, ConnectionString);
+				_ErrorId = DASeguimientoRecomendacion.ErrorId;
+				_ErrorString = DASeguimientoRecomendacion.ErrorDescription;
+
+			}
+
+			///<remarks>
 			///   <name>BPSeguimientoRecomendacion.SelectExpediente_DetalleSeguimientos</name>
 			///   <create>04-Jun-2014</create>
 			///   <author>Ruben.Cobos</author>

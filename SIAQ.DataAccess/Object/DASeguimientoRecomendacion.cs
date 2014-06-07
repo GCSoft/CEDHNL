@@ -190,6 +190,62 @@ namespace SIAQ.DataAccess.Object
 				}
 			}
 
+		///<remarks>
+			///   <name>DASeguimientoRecomendacion.InsertSegSeguimiento</name>
+			///   <create>06-Jun-2014</create>
+			///   <author>Ruben.Cobos</author>
+			///</remarks>
+			///<summary>Inserta un nuevo seguimiento a una recomendación</summary>
+			///<param name="entRecomendacion">Entidad de Seguimiento con los parámetros necesarios para consultar el expediente</param>
+			///<param name="ConnectionString">Cadena de conexión a la base de datos</param>
+			///<returns>Una DataSet con información de la transacción</returns>
+			public DataSet InsertSegSeguimiento(ENTSeguimientoRecomendacion entRecomendacion, string ConnectionString){
+				DataSet ds = new DataSet();
+				SqlConnection Connection = new SqlConnection(ConnectionString);
+				SqlCommand Command;
+				SqlDataAdapter DataAdapter;
+				SqlParameter Parameter;
+
+				try
+				{
+					Command = new SqlCommand("uspSeguimientoSeg_Ins", Connection);
+					Command.CommandType = CommandType.StoredProcedure;
+
+					Parameter = new SqlParameter("RecomendacionId", SqlDbType.Int);
+					Parameter.Value = entRecomendacion.RecomendacionId;
+					Command.Parameters.Add(Parameter);
+
+					Parameter = new SqlParameter("TipoSeguimientoId", SqlDbType.Int);
+					Parameter.Value = entRecomendacion.TipoSeguimientoId;
+					Command.Parameters.Add(Parameter);
+
+					Parameter = new SqlParameter("FuncionarioId", SqlDbType.Int);
+					Parameter.Value = entRecomendacion.FuncionarioId;
+					Command.Parameters.Add(Parameter);
+
+					Parameter = new SqlParameter("Comentario", SqlDbType.VarChar);
+					Parameter.Value = entRecomendacion.Comentario;
+					Command.Parameters.Add(Parameter);
+
+					DataAdapter = new SqlDataAdapter(Command);
+
+					Connection.Open();
+					DataAdapter.Fill(ds);
+					Connection.Close();
+
+					return ds;
+
+				}catch (SqlException ex){
+
+					_ErrorId = ex.Number;
+					_ErrorDescription = ex.Message;
+
+					if (Connection.State == ConnectionState.Open) { Connection.Close(); }
+
+					return ds;
+				}
+			}
+
 			///<remarks>
 			///   <name>DASeguimientoRecomendacion.SelectExpediente_DetalleSeguimientos</name>
 			///   <create>04-Jun-2014</create>

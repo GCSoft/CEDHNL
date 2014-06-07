@@ -32,20 +32,29 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		// Rutinas del programador
 
 		void InsertSeguimientoRecomendacion() {
-			//BPSeguimientoRecomendacion BPSeguimientoRecomendacion = new BPSeguimientoRecomendacion();
+			ENTSession SessionEntity = new ENTSession();
+			BPSeguimientoRecomendacion BPSeguimientoRecomendacion = new BPSeguimientoRecomendacion();
 
-			//// Validaciones
-			//if (this.ddlTipoSeguimiento.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar un TipoSeguimiento")); }
+			// Validaciones
+			if (this.ddlRecomendacion.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar una Recomendación")); }
+			if (this.ddlTipoSeguimiento.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar un Tipo de Seguimiento")); }
+			if (this.ckeSeguimiento.Text.Trim() == "") { throw (new Exception("Es necesario ingresar un detalle del seguimiento")); }
 
-			//// Parámetros
-			//BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ExpedienteId = Int32.Parse(this.ExpedienteIdHidden.Value.Trim());
-			//BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.TipoSeguimientoId = Int32.Parse(this.ddlTipoSeguimiento.SelectedItem.Value);
+			// Obtener sesión
+			SessionEntity = (ENTSession)Session["oENTSession"];
 
-			//// Transacción
-			//BPSeguimientoRecomendacion.InsertSeguimientoRecomendacion();
+			// Parámetros
+			BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.RecomendacionId = Int32.Parse(this.ddlRecomendacion.SelectedItem.Value);
+			BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.TipoSeguimientoId = Int32.Parse(this.ddlTipoSeguimiento.SelectedItem.Value);
+			BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.FuncionarioId = SessionEntity.FuncionarioId;
+			BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.Comentario = this.ckeSeguimiento.Text.Trim();
 
-			//// Errores
-			//if (BPSeguimientoRecomendacion.ErrorId != 0) { throw (new Exception(BPSeguimientoRecomendacion.ErrorString)); }
+
+			// Transacción
+			BPSeguimientoRecomendacion.InsertSegSeguimiento();
+
+			// Errores
+			if (BPSeguimientoRecomendacion.ErrorId != 0) { throw (new Exception(BPSeguimientoRecomendacion.ErrorString)); }
 
 		}
 
@@ -173,8 +182,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
                 // Obtener Expedientes
 				InsertSeguimientoRecomendacion();
 
-				// Regresar al detalle del formulario
-				Response.Redirect("segDetalleExpediente.aspx?key=" + this.ExpedienteIdHidden.Value + "|" + this.SenderId.Value, false);
+				// Refrescar Formulario
+				SelectedExpediente();
+
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlRecomendacion.ClientID + "');", true);
 
             }catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.ddlRecomendacion.ClientID + "');", true);

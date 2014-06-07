@@ -18,7 +18,8 @@ namespace SIAQ.Entity.Object
 			
 			// Atributos para consulta de expedientes
 			private Int32	_ExpedienteId;			// Identificador único del expediente
-			private Int32 _EstatusId;				// Identificador único del estatus del expediente
+			private Int32	_EstatusId;				// Identificador único del estatus del expediente
+			private Int32	_TipoSeguimientoId;		// Identificador único del tipo de seguimiento de la recomendación
 			private Int32	_UsuarioId;				// Identificador único del usuario que realiza la transacción
 			private Int16	_Aprobar;				// Determina si se listarán los expedientes con Estatus 8 (Pendiente de aprobar Recomendación) cuando se establece en 1 ó se listaran los estatus 9 (Por asignar a defensor de Seguimientos) cuando se establece en 0
 			private String	_Numero;				// Número de expediente a filtrar
@@ -128,6 +129,18 @@ namespace SIAQ.Entity.Object
 			}
 
 			///<remarks>
+			///   <name>ENTSeguimientoRecomendacion.TipoSeguimientoId</name>
+			///   <create>06-Junio-2014</create>
+			///   <author>Ruben.Cobos</author>
+			///</remarks>
+			///<summary>Obtiene/Asigna el identificador único del tipo de seguimiento de la recomendación</summary>
+			public Int32 TipoSeguimientoId
+			{
+				get { return _TipoSeguimientoId; }
+				set { _TipoSeguimientoId = value; }
+			}
+
+			///<remarks>
 			///   <name>ENTSeguimientoRecomendacion.UsuarioId</name>
 			///   <create>31-Mayo-2014</create>
 			///   <author>Ruben.Cobos</author>
@@ -213,6 +226,7 @@ namespace SIAQ.Entity.Object
 				// Atributos para consulta de expedientes
 				_ExpedienteId = 0;
 				_EstatusId = 0;
+				_TipoSeguimientoId = 0;
 				_UsuarioId = 0;
 				_Aprobar = 0;
 				_Numero = "";

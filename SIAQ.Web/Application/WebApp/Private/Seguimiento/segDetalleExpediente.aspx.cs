@@ -458,7 +458,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		}
 
 		protected void DiligenciasButton_Click(object sender, ImageClickEventArgs e){
-			//Response.Redirect("/Application/WebApp/Private/Visitaduria/visDetalleExpediente.aspx?s=" + this.ExpedienteIdHidden.Value.ToString());
+			Response.Redirect("segDiligencia.aspx?key=" + this.ExpedienteIdHidden.Value.ToString() + "|" + this.SenderId.Value.ToString());
 		}
 
 		protected void InformacionGeneralButton_Click(object sender, ImageClickEventArgs e){
@@ -473,7 +473,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		}
 
 		protected void NotificacionesButton_Click(object sender, ImageClickEventArgs e){
-			//Response.Redirect("/Application/WebApp/Private/Visitaduria/visDetalleExpediente.aspx?s=" + this.ExpedienteIdHidden.Value.ToString());
+			//Response.Redirect("segDiligencia.aspx?key=" + this.ExpedienteIdHidden.Value.ToString() + "|" + this.SenderId.Value.ToString());
 		}
 
 		protected void SeguimientoButton_Click(object sender, ImageClickEventArgs e){

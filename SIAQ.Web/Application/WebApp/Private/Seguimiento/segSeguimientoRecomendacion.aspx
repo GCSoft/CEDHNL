@@ -95,7 +95,7 @@
 			<tr>
                 <td class="Nombre">Seguimiento</td>
                 <td class="Espacio"></td>
-                <td ></td>
+                <td colspan="5"></td>
             </tr>
 			<tr>
                 <td colspan="7" style="text-align:left;"><CKEditor:CKEditorControl ID="ckeSeguimiento" BasePath="/ckeditor/" runat="server"></CKEditor:CKEditorControl></td>

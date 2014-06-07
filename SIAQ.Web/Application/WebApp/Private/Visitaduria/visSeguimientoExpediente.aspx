@@ -175,7 +175,7 @@
             <tr>
                 <td class="Nombre">Tipo de seguimiento</td>
                 <td class="Espacio"></td>
-                <td class="Campo" colspan="5"><asp:DropDownList ID="TipoSeguimientoList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
+                <td class="Campo" colspan="5"><asp:DropDownList ID="TipoSeguimientoIdList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
             </tr>
             <tr>
                 <td class="Nombre">Detalle</td>
@@ -241,4 +241,5 @@
     </div>
 
     <asp:HiddenField ID="ExpedienteIdHidden" runat="server" Value="0" />
+    <asp:HiddenField ID="ExpedienteSeguimientoIdHidden" runat="server" Value="0" />
 </asp:Content>

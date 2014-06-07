@@ -19,7 +19,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
         #region "Events"
             protected void GuardarButton_Click(object sender, EventArgs e)
             {
-
+                SaveExpedienteSeguimiento();
             }
 
             protected void Page_Load(object sender, EventArgs e)
@@ -53,15 +53,54 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 SelectExpediente(ExpedienteId);
                 SelectTipoSeguimiento();
 
-                SeguimientoGrid.DataSource = null;
-                SeguimientoGrid.DataBind();
+                SelectExpedienteSeguimiento();
 
                 ExpedienteIdHidden.Value = ExpedienteId.ToString();
             }
 
+            private void ResetForm()
+            {
+                FechaBox.SetCurrentDate();
+                TipoSeguimientoIdList.SelectedIndex = 0;
+                SeguimientoBox.Text = "";
+            }
+
             private void SaveExpedienteSeguimiento()
             {
+                int ExpedienteSeguimientoId = 0;
+                int ExpedienteId = 0;
+                int TipoSeguimientoId = 0;
+                string Fecha = string.Empty;
+                string Detalle = string.Empty;
 
+                ExpedienteSeguimientoId = int.Parse(ExpedienteSeguimientoIdHidden.Value);
+                ExpedienteId = int.Parse(ExpedienteIdHidden.Value);
+                TipoSeguimientoId = int.Parse(TipoSeguimientoIdList.SelectedValue);
+                Fecha = FechaBox.DisplayDate;
+                Detalle = SeguimientoBox.Text.Trim();
+
+                SaveExpedienteSeguimiento(ExpedienteSeguimientoId, ExpedienteId, TipoSeguimientoId, Fecha, Detalle);
+            }
+
+            private void SaveExpedienteSeguimiento(int ExpedienteSeguimientoId, int ExpedienteId, int TipoSeguimientoId, string Fecha, string Detalle)
+            {
+                BPExpedienteSeguimiento ExpedienteSeguimientoProcess = new BPExpedienteSeguimiento();
+
+                ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ExpedienteSeguimientoId = ExpedienteSeguimientoId;
+                ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ExpedienteId = ExpedienteId;
+                ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.TipoSeguimientoId = TipoSeguimientoId;
+                ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.Fecha = Fecha;
+                ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.Detalle = Detalle;
+
+                ExpedienteSeguimientoProcess.SaveExpedienteSeguimiento();
+
+                if (ExpedienteSeguimientoProcess.ErrorId == 0)
+                {
+                    ResetForm();
+                    //SelectExpedienteSeguimiento
+                }
+                else
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ExpedienteSeguimientoProcess.ErrorDescription) + "', 'Error', true);", true);
             }
 
             private void SelectExpediente(int ExpedienteId)
@@ -112,6 +151,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(BPExpediente.ErrorDescription) + "', 'Error', true);", true);
             }
 
+            private void SelectExpedienteSeguimiento()
+            {
+                SeguimientoGrid.DataSource = null;
+                SeguimientoGrid.DataBind();
+            }
+
             private void SelectTipoSeguimiento()
             {
                 ENTTipoSeguimiento oENTTipoSeguimiento = new ENTTipoSeguimiento();
@@ -134,13 +179,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                     if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', true);", true); }
 
                     // Llenado de combo
-                    TipoSeguimientoList.DataTextField = "Nombre";
-                    TipoSeguimientoList.DataValueField = "TipoSeguimientoId";
-                    TipoSeguimientoList.DataSource = oENTResponse.dsResponse.Tables[1];
-                    TipoSeguimientoList.DataBind();
+                    TipoSeguimientoIdList.DataTextField = "Nombre";
+                    TipoSeguimientoIdList.DataValueField = "TipoSeguimientoId";
+                    TipoSeguimientoIdList.DataSource = oENTResponse.dsResponse.Tables[1];
+                    TipoSeguimientoIdList.DataBind();
 
                     // Agregar Item de selección
-                    this.TipoSeguimientoList.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+                    this.TipoSeguimientoIdList.Items.Insert(0, new ListItem("[Seleccione]", "0"));
                 }
                 catch (Exception ex)
                 {

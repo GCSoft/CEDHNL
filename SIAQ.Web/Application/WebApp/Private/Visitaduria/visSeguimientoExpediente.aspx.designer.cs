@@ -148,13 +148,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         protected global::SIAQ.Web.Include.WebUserControls.wucCalendar FechaBox;
         
         /// <summary>
-        /// TipoSeguimientoList control.
+        /// TipoSeguimientoIdList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList TipoSeguimientoList;
+        protected global::System.Web.UI.WebControls.DropDownList TipoSeguimientoIdList;
         
         /// <summary>
         /// SeguimientoBox control.
@@ -191,5 +191,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField ExpedienteIdHidden;
+        
+        /// <summary>
+        /// ExpedienteSeguimientoIdHidden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField ExpedienteSeguimientoIdHidden;
     }
 }

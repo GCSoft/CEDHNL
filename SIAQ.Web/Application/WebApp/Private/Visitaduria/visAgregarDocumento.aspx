@@ -31,137 +31,93 @@
     <div id="InformacionDiv">
         <table class="SolicitudTable">
             <tr>
-                <td class="Especial">
-                    Expediente número
-                </td>
-                <td class="Espacio">
-                </td>
-                <td class="Campo">
-                    <asp:Label CssClass="NumeroSolicitudLabel" ID="ExpedienteIdLabel" runat="server" Text="0"></asp:Label>
-                </td>
+                <td class="Especial">Expediente número</td>
+                <td class="Espacio"></td>
+                <td class="Campo"><asp:Label CssClass="NumeroSolicitudLabel" ID="ExpedienteIdLabel" runat="server" Text="0"></asp:Label></td>
                 <td colspan="4">
                 </td>
             </tr>
             <tr>
-                <td class="Nombre">
-                    Calificación
-                </td>
-                <td class="Espacio">
-                </td>
-                <td class="Etiqueta">
-                    <asp:Label ID="CalificacionLlabel" runat="server" Text=""></asp:Label>
-                </td>
-                <td colspan="4">
-                </td>
+                <td class="Nombre">Calificación</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta"><asp:Label ID="CalificacionLlabel" runat="server" Text=""></asp:Label></td>
+                <td colspan="4"></td>
             </tr>
             <tr>
-                <td class="Nombre">
-                    Estatus
-                </td>
-                <td class="Espacio">
-                </td>
-                <td class="Etiqueta">
-                    <asp:Label ID="EstatusaLabel" runat="server" Text=""></asp:Label>
-                </td>
-                <td class="Espacio">
-                </td>
-                <td class="Nombre">
-                    Fecha de recepción
-                </td>
-                <td class="Espacio">
-                </td>
-                <td class="Etiqueta">
-                    <asp:Label ID="FechaRecepcionLabel" runat="server" Text=""></asp:Label>
-                </td>
+                <td class="Nombre">Estatus</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta"><asp:Label ID="EstatusaLabel" runat="server" Text=""></asp:Label></td>
+                <td class="Espacio"></td>
+                <td class="Nombre">Fecha de recepción</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta"><asp:Label ID="FechaRecepcionLabel" runat="server" Text=""></asp:Label></td>
             </tr>
             <tr>
-                <td class="Nombre">
-                    Visitador
-                </td>
-                <td class="Espacio">
-                </td>
-                <td class="Etiqueta">
-                    <asp:Label ID="VisitadorLabel" runat="server"></asp:Label>
-                </td>
-                <td class="Espacio">
-                </td>
-                <td class="Nombre">
-                    Fecha de asignación
-                </td>
-                <td class="Espacio">
-                </td>
-                <td class="Etiqueta">
-                    <asp:Label ID="FechaAsignacionLabel" runat="server" Text=""></asp:Label>
-                </td>
+                <td class="Nombre">Visitador</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta"><asp:Label ID="VisitadorLabel" runat="server"></asp:Label></td>
+                <td class="Espacio"></td>
+                <td class="Nombre">Fecha de asignación</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta"><asp:Label ID="FechaAsignacionLabel" runat="server" Text=""></asp:Label></td>
             </tr>
             <tr>
-                <td class="Nombre">
-                    Forma de contacto
-                </td>
-                <td class="Espacio">
-                </td>
-                <td class="Etiqueta">
-                    <asp:Label ID="FormaContactoLabel" runat="server" Text=""></asp:Label>
-                </td>
-                <td class="Espacio">
-                </td>
-                <td class="Nombre">
-                    Fecha de inicio gestión
-                </td>
-                <td class="Espacio">
-                </td>
-                <td class="Etiqueta">
-                    <asp:Label ID="FechaGestionLabel" runat="server" Text=""></asp:Label>
-                </td>
+                <td class="Nombre">Forma de contacto</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta"><asp:Label ID="FormaContactoLabel" runat="server" Text=""></asp:Label></td>
+                <td class="Espacio"></td>
+                <td class="Nombre">Fecha de inicio gestión</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta"><asp:Label ID="FechaGestionLabel" runat="server" Text=""></asp:Label></td>
             </tr>
             <tr>
-                <td class="Nombre">
-                    Tipo de solicitud
-                </td>
-                <td class="Espacio">
-                </td>
-                <td class="Etiqueta">
-                    <asp:Label ID="TipoSolicitudLabel" runat="server" Text=""></asp:Label>
-                </td>
-                <td class="Espacio">
-                </td>
-                <td class="Nombre">
-                    Última modificación
-                </td>
-                <td class="Espacio">
-                </td>
-                <td class="Etiqueta">
-                    <asp:Label ID="FechaModificacionLabel" runat="server" Text=""></asp:Label>
-                </td>
+                <td class="Nombre">Tipo de solicitud</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta"><asp:Label ID="TipoSolicitudLabel" runat="server" Text=""></asp:Label></td>
+                <td class="Espacio"></td>
+                <td class="Nombre">Última modificación</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta"><asp:Label ID="FechaModificacionLabel" runat="server" Text=""></asp:Label></td>
             </tr>
             <tr>
-                <td class="Nombre">
-                    Observaciones (Recepción)
-                </td>
-                <td class="Espacio">
-                </td>
-                <td class="Observaciones" colspan="5">
-                    <asp:Label ID="ObservacionesLabel" runat="server" Text=""></asp:Label>
-                </td>
+                <td class="Nombre">Observaciones (Recepción)</td>
+                <td class="Espacio"></td>
+                <td class="Observaciones" colspan="5"><asp:Label ID="ObservacionesLabel" runat="server" Text=""></asp:Label></td>
             </tr>
             <tr>
-                <td class="Nombre">
-                    Lugar de los hechos
-                </td>
-                <td class="Espacio">
-                </td>
-                <td class="Etiqueta" colspan="5">
-                    <asp:Label ID="LugarHechosLabel" runat="server"></asp:Label>
-                </td>
+                <td class="Nombre">Lugar de los hechos</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta" colspan="5"><asp:Label ID="LugarHechosLabel" runat="server"></asp:Label></td>
             </tr>
             <tr>
-                <td class="Nombre">
-                    Dirección de los hechos
-                </td>
-                <td class="Espacio">
-                </td>
-                <td class="Etiqueta" colspan="5">
-                    <asp:Label ID="DireccionHechos" runat="server"></asp:Label>
+                <td class="Nombre">Dirección de los hechos</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta" colspan="5"><asp:Label ID="DireccionHechos" runat="server"></asp:Label></td>
+            </tr>
+            <tr>
+                <td class="Nombre">Archivo</td>
+                <td class="Espacio"></td>
+                <td class="Campo" colspan="5"><asp:FileUpload ID="DocumentoFile" runat="server" Width="210px" /></td>
+            </tr>
+            <tr>
+                <td class="Nombre">Tipo de documento</td>
+                <td class="Espacio"></td>
+                <td class="Campo" colspan="5"><asp:DropDownList ID="TipoDocumentoList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
+            </tr>
+            <tr>
+                <td class="Nombre">Nombre</td>
+                <td class="Espacio"></td>
+                <td class="Campo" colspan="5"><asp:TextBox ID="NombreBox" runat="server" CssClass="Textbox_General" width="210px" ></asp:TextBox></td>
+            </tr>
+            <tr>
+                <td class="Nombre">Descripción</td>
+                <td class="Espacio"></td>
+                <td class="Campo" colspan="5"><asp:TextBox ID="DescripcionBox" runat="server" CssClass="Textbox_General" TextMode="MultiLine" Height="100px" width="360px" ></asp:TextBox></td>
+            </tr>
+            <tr>
+                <td class="Botones" colspan="7">
+                    <br />
+                    <asp:Button ID="GuardarButton" runat="server" Text="Agregar" CssClass="Button_General" width="125px" onclick="GuardarButton_Click"/>
                 </td>
             </tr>
             <tr>
@@ -229,36 +185,7 @@
 
             <asp:Panel ID="pnlActionBody" runat="server" CssClass="ActionBody">
                 <table class="GeneralTable">
-                    <tr>
-                        <td class="Nombre">Archivo</td>
-                        <td class="Espacio"></td>
-                        <td class="Campo"><asp:FileUpload ID="DocumentoFile" runat="server" Width="210px" /></td>
-                        <td class="Espacio"></td>
-                    </tr>
-                    <tr>
-                        <td class="Nombre">Tipo de documento</td>
-                        <td class="Espacio"></td>
-                        <td class="Campo"><asp:DropDownList ID="TipoDocumentoList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
-                        <td class="Espacio"></td>
-                    </tr>
-                    <tr>
-                        <td class="Nombre">Nombre</td>
-                        <td class="Espacio"></td>
-                        <td class="Campo"><asp:TextBox ID="NombreBox" runat="server" CssClass="Textbox_General" width="210px" ></asp:TextBox></td>
-                        <td class="Espacio"></td>
-                    </tr>
-                    <tr>
-                        <td class="Nombre">Descripción</td>
-                        <td class="Espacio"></td>
-                        <td class="Campo"><asp:TextBox ID="DescripcionBox" runat="server" CssClass="Textbox_General" TextMode="MultiLine" Height="100px" width="360px" ></asp:TextBox></td>
-                        <td class="Espacio"></td>
-                    </tr>
-                    <tr>
-                        <td class="Botones" colspan="5">
-                            <br />
-                            <asp:Button ID="GuardarButton" runat="server" Text="Agregar" CssClass="Button_General" width="125px" onclick="GuardarButton_Click"/>
-                        </td>
-                    </tr>
+                    
                 </table>
             </asp:Panel>
         </asp:Panel>

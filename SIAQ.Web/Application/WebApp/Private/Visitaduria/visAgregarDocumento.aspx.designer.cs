@@ -139,6 +139,51 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         protected global::System.Web.UI.WebControls.Label DireccionHechos;
         
         /// <summary>
+        /// DocumentoFile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload DocumentoFile;
+        
+        /// <summary>
+        /// TipoDocumentoList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList TipoDocumentoList;
+        
+        /// <summary>
+        /// NombreBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox NombreBox;
+        
+        /// <summary>
+        /// DescripcionBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox DescripcionBox;
+        
+        /// <summary>
+        /// GuardarButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button GuardarButton;
+        
+        /// <summary>
         /// AgregarButton control.
         /// </summary>
         /// <remarks>
@@ -218,50 +263,5 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlActionBody;
-        
-        /// <summary>
-        /// DocumentoFile control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload DocumentoFile;
-        
-        /// <summary>
-        /// TipoDocumentoList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList TipoDocumentoList;
-        
-        /// <summary>
-        /// NombreBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox NombreBox;
-        
-        /// <summary>
-        /// DescripcionBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox DescripcionBox;
-        
-        /// <summary>
-        /// GuardarButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button GuardarButton;
     }
 }

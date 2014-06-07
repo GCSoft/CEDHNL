@@ -127,6 +127,44 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			}
 		}
 
+		void SelectLugarDiligencia() {
+			BPDiligencia oBPDiligencia = new BPDiligencia();
+
+			// Transacción
+			oBPDiligencia.SelectLugarDiligencias();
+
+			// Validaciones
+			if (oBPDiligencia.ErrorId != 0) { throw (new Exception(oBPDiligencia.ErrorDescription)); }
+
+			// Llenado de combo
+			this.ddlLugarDiligencia.DataSource = oBPDiligencia.DiligenciaEntity.DataResult;
+			this.ddlLugarDiligencia.DataTextField = "Nombre";
+			this.ddlLugarDiligencia.DataValueField = "LugarDiligenciaId";
+			this.ddlLugarDiligencia.DataBind();
+
+			// Agregar Item de selección
+			this.ddlLugarDiligencia.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+		}
+
+		void SelectTipoDiligencia() {
+			BPDiligencia oBPDiligencia = new BPDiligencia();
+
+			// Transacción
+			oBPDiligencia.SelectTipoDiligencias();
+
+			// Validaciones
+			if (oBPDiligencia.ErrorId != 0) { throw (new Exception(oBPDiligencia.ErrorDescription)); }
+
+			// Llenado de combo
+			this.ddlTipoDiligencia.DataSource = oBPDiligencia.DiligenciaEntity.DataResult;
+			this.ddlTipoDiligencia.DataTextField = "Nombre";
+			this.ddlTipoDiligencia.DataValueField = "TipoDiligenciaId";
+			this.ddlTipoDiligencia.DataBind();
+
+			// Agregar Item de selección
+			this.ddlTipoDiligencia.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+		}
+
 
 		// Eventos de la página
 
@@ -148,6 +186,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				// Llenado de controles
 				SelectedExpediente();
 				SelectedFuncionario();
+				SelectTipoDiligencia();
+				SelectLugarDiligencia();
 				
 				// Foco
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlFuncionario.ClientID + "'); }", true);
@@ -465,41 +505,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		//    }
 		//}
 
-		//private void ComboLugarDiligencia()
-		//{
-		//    BPDiligencia oBPDiligencia = new BPDiligencia();
 
-		//    oBPDiligencia.SelectLugarDiligencias();
-
-		//    if (oBPDiligencia.ErrorId == 0)
-		//    {
-		//        if (oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows.Count > 0)
-		//        {
-		//            ddlLugarDiligencia.DataSource = oBPDiligencia.DiligenciaEntity.DataResult;
-		//            ddlLugarDiligencia.DataTextField = "Nombre";
-		//            ddlLugarDiligencia.DataValueField = "LugarDiligenciaId";
-		//            ddlLugarDiligencia.DataBind();
-		//        }
-		//    }
-		//}
-
-		//private void ComboTipoDiligencia()
-		//{
-		//    BPDiligencia oBPDiligencia = new BPDiligencia();
-
-		//    oBPDiligencia.SelectTipoDiligencias();
-
-		//    if (oBPDiligencia.ErrorId == 0)
-		//    {
-		//        if (oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows.Count > 0)
-		//        {
-		//            ddlTipoDiligencia.DataSource = oBPDiligencia.DiligenciaEntity.DataResult;
-		//            ddlTipoDiligencia.DataTextField = "Nombre";
-		//            ddlTipoDiligencia.DataValueField = "TipoDiligenciaId";
-		//            ddlTipoDiligencia.DataBind();
-		//        }
-		//    }
-		//}
 
 		//private void GridDiligencias(string recomendacionId)
 		//{

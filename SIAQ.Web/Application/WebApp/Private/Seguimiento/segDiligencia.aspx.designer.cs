@@ -193,15 +193,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         protected global::CKEditor.NET.CKEditorControl ckeResultado;
         
         /// <summary>
-        /// gvRecomendacion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvRecomendacion;
-        
-        /// <summary>
         /// btnGuardar control.
         /// </summary>
         /// <remarks>
@@ -218,6 +209,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnRegresar;
+        
+        /// <summary>
+        /// gvRecomendacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvRecomendacion;
         
         /// <summary>
         /// ExpedienteIdHidden control.
@@ -245,5 +245,23 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hddSort;
+        
+        /// <summary>
+        /// EditMode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField EditMode;
+        
+        /// <summary>
+        /// DiligenciaId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField DiligenciaId;
     }
 }

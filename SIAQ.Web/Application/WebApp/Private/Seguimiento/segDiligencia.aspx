@@ -127,13 +127,25 @@
                 <td colspan="7" style="text-align:left;"><CKEditor:CKEditorControl ID="ckeResultado" BasePath="/ckeditor/" runat="server" Height="90px"></CKEditor:CKEditorControl></td>
             </tr>
         </table>
+
+		<!-- Botones -->
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr><td class="tdCeldaMiddleSpace"></td></tr>
+            <tr>
+                <td style="text-align: left;">
+					<asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="Button_General" width="125px" onclick="btnGuardar_Click" /> &nbsp;&nbsp;
+					<asp:Button ID="btnRegresar" runat="server" Text="Regresar" CssClass="Button_General" width="125px" onclick="btnRegresar_Click" />
+                </td>
+            </tr>
+        </table>
+		<br />
         
 		<!-- Grid -->
 		<table border="0" cellpadding="0" cellspacing="0" width="100%">
             <tr><td class="tdCeldaMiddleSpace"></td></tr>
             <tr>
                 <td style="text-align: left;">
-                    Recomendaciones
+                    Diligencias
                 </td>
             </tr>
             <tr>
@@ -174,21 +186,13 @@
         </table>
         <br />
 
-        <!-- Botones Pie de Página -->
-        <table border="0" cellpadding="0" cellspacing="0" width="100%">
-            <tr><td class="tdCeldaMiddleSpace"></td></tr>
-            <tr>
-                <td style="text-align: left;">
-					<asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="Button_General" width="125px" onclick="btnGuardar_Click" /> &nbsp;&nbsp;
-					<asp:Button ID="btnRegresar" runat="server" Text="Regresar" CssClass="Button_General" width="125px" onclick="btnRegresar_Click" />
-                </td>
-            </tr>
-        </table>
-
     </div>
 
     <asp:HiddenField ID="ExpedienteIdHidden" runat="server" Value="0"  />
 	<asp:HiddenField ID="SenderId" runat="server" Value="0"  />
 	<asp:HiddenField ID="hddSort" runat="server" Value="Numero" />
+
+	<asp:HiddenField ID="EditMode" runat="server" Value="0"  />
+	<asp:HiddenField ID="DiligenciaId" runat="server" Value="0"  />
 	
 </asp:Content>

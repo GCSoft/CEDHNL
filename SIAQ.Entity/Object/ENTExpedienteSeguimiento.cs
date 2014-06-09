@@ -11,6 +11,7 @@ namespace SIAQ.Entity.Object
     {
         private int _ExpedienteSeguimientoId;
         private int _ExpedienteId;
+        private int _FuncionarioId;
         private int _TipoSeguimientoId;
         private string _Fecha;
         private string _Detalle;
@@ -20,6 +21,7 @@ namespace SIAQ.Entity.Object
         {
             _ExpedienteSeguimientoId = 0;
             _ExpedienteId = 0;
+            _FuncionarioId = 0;
             _TipoSeguimientoId = 0;
             _Fecha = string.Empty;
             _Detalle = string.Empty;
@@ -42,6 +44,15 @@ namespace SIAQ.Entity.Object
         {
             get { return _ExpedienteId; }
             set { _ExpedienteId = value; }
+        }
+
+        /// <summary>
+        ///     Identificador del funcionario.
+        /// </summary>
+        public int FuncionarioId
+        {
+            get { return _FuncionarioId; }
+            set { _FuncionarioId = value; }
         }
 
         /// <summary>

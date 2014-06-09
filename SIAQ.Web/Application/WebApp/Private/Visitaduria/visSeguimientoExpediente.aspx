@@ -190,7 +190,7 @@
             <tr>
                 <td class="Botones" colspan="7">
                     <br />
-                    <asp:Button ID="GuardarButton" runat="server" Text="Agregar" CssClass="Button_General" width="125px" onclick="GuardarButton_Click"/>&nbsp;&nbsp;&nbsp;
+                    <asp:Button ID="GuardarButton" runat="server" Text="Guardar" CssClass="Button_General" width="125px" onclick="GuardarButton_Click"/>&nbsp;&nbsp;&nbsp;
                     <input class="Button_General" id="RegresarButton" onclick="GoBack();" style="width: 125px;" type="button" value="Regresar" />
                 </td>
             </tr>
@@ -198,7 +198,8 @@
 
         <br /><br />
         <div>
-            <asp:GridView AutoGenerateColumns="False" ID="SeguimientoGrid" PageSize="10" runat="server" Style="text-align: center" Width="100%">
+            <asp:GridView AutoGenerateColumns="False" ID="SeguimientoGrid" OnRowCommand="SeguimientoGrid_RowCommand" PageSize="10"
+                runat="server" Style="text-align: center" Width="100%">
                 <RowStyle CssClass="Grid_Row" />
                 <EditRowStyle Wrap="True" />
                 <HeaderStyle CssClass="Grid_Header" ForeColor="#E3EBF5" />
@@ -222,16 +223,16 @@
                     <asp:BoundField DataField="Fecha" HeaderText="Fecha" ItemStyle-HorizontalAlign="Left"></asp:BoundField>
                     <asp:BoundField DataField="NombreVisitador" HeaderText="Visitador"></asp:BoundField>
                     <asp:BoundField DataField="TipoSeguimiento" HeaderText="Tipo"></asp:BoundField>
-                    <asp:BoundField DataField="Descripcion" HeaderText="Descripcion"></asp:BoundField>
+                    <asp:BoundField DataField="Detalle" HeaderText="Detalle"></asp:BoundField>
                     <asp:TemplateField HeaderText="Editar">
                         <ItemTemplate>
-                            <asp:ImageButton ID="EditarButton" CommandArgument='<%#Eval("SeguimientoId")%>' CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
+                            <asp:ImageButton ID="EditarButton" CommandArgument='<%#Eval("ExpedienteSeguimientoId")%>' CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
                         </ItemTemplate>
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Borrar">
                         <ItemTemplate>
-                            <asp:ImageButton ID="EliminarButton" CommandArgument='<%#Eval("RepositorioId")%>' CommandName="Eliminar" ImageUrl="~/Include/Image/Buttons/Delete.png" OnClientClick="return confirm('¿En realidad desea eliminar el documento?');" runat="server" />
+                            <asp:ImageButton ID="EliminarButton" CommandArgument='<%#Eval("ExpedienteSeguimientoId")%>' CommandName="Eliminar" ImageUrl="~/Include/Image/Buttons/Delete.png" OnClientClick="return confirm('¿En realidad desea eliminar el seguimiento?');" runat="server" />
                         </ItemTemplate>
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:TemplateField>

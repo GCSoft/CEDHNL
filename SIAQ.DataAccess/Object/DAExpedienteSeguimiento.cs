@@ -41,6 +41,45 @@ namespace SIAQ.DataAccess.Object
 
         #region "Method"
             /// <summary>
+            ///     Elimina un registro de seguimiento del expediente.
+            /// </summary>
+            /// <param name="ExpedienteSeguimientoEntity">Entidad del seguimiento del expediente.</param>
+            /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
+            public void DeleteExpedienteSeguimiento(ENTExpedienteSeguimiento ExpedienteSeguimientoEntity, string ConnectionString)
+            {
+                DataSet ResultData = new DataSet();
+                SqlCommand Command;
+                SqlParameter Parameter;
+                SqlConnection Connection = new SqlConnection(ConnectionString);
+
+                try
+                {
+                    Command = new SqlCommand("DeleteExpedienteSeguimiento", Connection);
+                    Command.CommandType = CommandType.StoredProcedure;
+
+                    Parameter = new SqlParameter("ExpedienteSeguimientoId", SqlDbType.Int);
+                    Parameter.Value = ExpedienteSeguimientoEntity.ExpedienteSeguimientoId;
+                    Command.Parameters.Add(Parameter);
+
+                    Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
+                    Parameter.Value = ExpedienteSeguimientoEntity.ExpedienteId;
+                    Command.Parameters.Add(Parameter);
+
+                    Connection.Open();
+                    Command.ExecuteNonQuery();
+                    Connection.Close();
+                }
+                catch (SqlException Exception)
+                {
+                    _ErrorId = Exception.Number;
+                    _ErrorDescription = Exception.Message;
+
+                    if (Connection.State == ConnectionState.Open)
+                        Connection.Close();
+                }
+            }
+
+            /// <summary>
             ///     Guarda un registro nuevo de seguimiento del expediente.
             /// </summary>
             /// <param name="ExpedienteSeguimientoEntity">Entidad del seguimiento del expediente.</param>
@@ -59,6 +98,10 @@ namespace SIAQ.DataAccess.Object
 
                     Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
                     Parameter.Value = ExpedienteSeguimientoEntity.ExpedienteId;
+                    Command.Parameters.Add(Parameter);
+
+                    Parameter = new SqlParameter("FuncionarioId", SqlDbType.Int);
+                    Parameter.Value = ExpedienteSeguimientoEntity.FuncionarioId;
                     Command.Parameters.Add(Parameter);
 
                     Parameter = new SqlParameter("TipoSeguimientoId", SqlDbType.Int);
@@ -105,6 +148,10 @@ namespace SIAQ.DataAccess.Object
                 {
                     Command = new SqlCommand("SelectExpedienteSeguimiento", Connection);
                     Command.CommandType = CommandType.StoredProcedure;
+
+                    Parameter = new SqlParameter("ExpedienteSeguimientoId", SqlDbType.Int);
+                    Parameter.Value = ExpedienteSeguimientoEntity.ExpedienteSeguimientoId;
+                    Command.Parameters.Add(Parameter);
 
                     Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
                     Parameter.Value = ExpedienteSeguimientoEntity.ExpedienteId;

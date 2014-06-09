@@ -26,9 +26,32 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
             {
                 PageLoad();
             }
+
+            protected void SeguimientoGrid_RowCommand(Object sender, GridViewCommandEventArgs e)
+            {
+                SeguimientoGridRowCommand(e);
+            }
         #endregion
 
         #region "Methods"
+            private void DeleteExpedienteSeguimiento(int ExpedienteSeguimientoId, int ExpedienteId)
+            {
+                BPExpedienteSeguimiento ExpedienteSeguimientoProcess = new BPExpedienteSeguimiento();
+
+                ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ExpedienteSeguimientoId = ExpedienteSeguimientoId;
+                ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ExpedienteId = ExpedienteId;
+
+                ExpedienteSeguimientoProcess.DeleteExpedienteSeguimiento();
+
+                if (ExpedienteSeguimientoProcess.ErrorId == 0)
+                {
+                    ResetForm();
+                    SelectExpedienteSeguimiento(ExpedienteId);
+                }
+                else
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ExpedienteSeguimientoProcess.ErrorDescription) + "', 'Error', true);", true);
+            }
+
             private int GetExpedienteParameter()
             {
                 try
@@ -53,7 +76,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 SelectExpediente(ExpedienteId);
                 SelectTipoSeguimiento();
 
-                SelectExpedienteSeguimiento();
+                SelectExpedienteSeguimiento(ExpedienteId);
 
                 ExpedienteIdHidden.Value = ExpedienteId.ToString();
             }
@@ -63,31 +86,38 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 FechaBox.SetCurrentDate();
                 TipoSeguimientoIdList.SelectedIndex = 0;
                 SeguimientoBox.Text = "";
+                ExpedienteSeguimientoIdHidden.Value = "0";
             }
 
             private void SaveExpedienteSeguimiento()
             {
                 int ExpedienteSeguimientoId = 0;
                 int ExpedienteId = 0;
+                int FuncionarioId = 0;
                 int TipoSeguimientoId = 0;
                 string Fecha = string.Empty;
                 string Detalle = string.Empty;
+                ENTSession SessionEntity = new ENTSession();
+
+                SessionEntity = (ENTSession)Session["oENTSession"];
 
                 ExpedienteSeguimientoId = int.Parse(ExpedienteSeguimientoIdHidden.Value);
                 ExpedienteId = int.Parse(ExpedienteIdHidden.Value);
+                FuncionarioId = SessionEntity.FuncionarioId;
                 TipoSeguimientoId = int.Parse(TipoSeguimientoIdList.SelectedValue);
                 Fecha = FechaBox.DisplayDate;
                 Detalle = SeguimientoBox.Text.Trim();
 
-                SaveExpedienteSeguimiento(ExpedienteSeguimientoId, ExpedienteId, TipoSeguimientoId, Fecha, Detalle);
+                SaveExpedienteSeguimiento(ExpedienteSeguimientoId, ExpedienteId, FuncionarioId, TipoSeguimientoId, Fecha, Detalle);
             }
 
-            private void SaveExpedienteSeguimiento(int ExpedienteSeguimientoId, int ExpedienteId, int TipoSeguimientoId, string Fecha, string Detalle)
+            private void SaveExpedienteSeguimiento(int ExpedienteSeguimientoId, int ExpedienteId, int FuncionarioId, int TipoSeguimientoId, string Fecha, string Detalle)
             {
                 BPExpedienteSeguimiento ExpedienteSeguimientoProcess = new BPExpedienteSeguimiento();
 
                 ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ExpedienteSeguimientoId = ExpedienteSeguimientoId;
                 ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ExpedienteId = ExpedienteId;
+                ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.FuncionarioId = FuncionarioId;
                 ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.TipoSeguimientoId = TipoSeguimientoId;
                 ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.Fecha = Fecha;
                 ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.Detalle = Detalle;
@@ -97,10 +127,28 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 if (ExpedienteSeguimientoProcess.ErrorId == 0)
                 {
                     ResetForm();
-                    //SelectExpedienteSeguimiento
+                    SelectExpedienteSeguimiento(ExpedienteId);
                 }
                 else
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ExpedienteSeguimientoProcess.ErrorDescription) + "', 'Error', true);", true);
+            }
+
+            private void SeguimientoGridRowCommand(GridViewCommandEventArgs e)
+            {
+                int ExpedienteSeguimientoId = 0;
+
+                ExpedienteSeguimientoId = int.Parse(e.CommandArgument.ToString());
+
+                switch (e.CommandName.ToString())
+                {
+                    case "Editar":
+                        SelectExpedienteSeguimiento(ExpedienteSeguimientoId, int.Parse(ExpedienteIdHidden.Value));
+                        break;
+
+                    case "Eliminar":
+                        DeleteExpedienteSeguimiento(ExpedienteSeguimientoId, int.Parse(ExpedienteIdHidden.Value));
+                        break;
+                }
             }
 
             private void SelectExpediente(int ExpedienteId)
@@ -151,10 +199,49 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(BPExpediente.ErrorDescription) + "', 'Error', true);", true);
             }
 
-            private void SelectExpedienteSeguimiento()
+            private void SelectExpedienteSeguimiento(int ExpedienteId)
             {
-                SeguimientoGrid.DataSource = null;
-                SeguimientoGrid.DataBind();
+                BPExpedienteSeguimiento ExpedienteSeguimientoProcess = new BPExpedienteSeguimiento();
+
+                ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ExpedienteId = ExpedienteId;
+
+                ExpedienteSeguimientoProcess.SelectExpedienteSeguimiento();
+
+                if (ExpedienteSeguimientoProcess.ErrorId == 0)
+                {
+                    SeguimientoGrid.DataSource = ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ResultData;
+                    SeguimientoGrid.DataBind();
+                }
+                else
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ExpedienteSeguimientoProcess.ErrorDescription) + "', 'Error', true);", true);
+            }
+
+            private void SelectExpedienteSeguimiento(int ExpedienteSeguimientoId, int ExpedienteId)
+            {
+                BPExpedienteSeguimiento ExpedienteSeguimientoProcess = new BPExpedienteSeguimiento();
+
+                ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ExpedienteSeguimientoId = ExpedienteSeguimientoId;
+                ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ExpedienteId = ExpedienteId;
+
+                ExpedienteSeguimientoProcess.SelectExpedienteSeguimiento();
+
+                if (ExpedienteSeguimientoProcess.ErrorId != 0)
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ExpedienteSeguimientoProcess.ErrorDescription) + "', 'Error', true);", true);
+                    return;
+                }
+
+                if (ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ResultData.Tables[0].Rows.Count == 0)
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText("No se encontró información de seguimiento para el expediente") + "', 'Error', true);", true);
+                    return;
+                }
+
+                //FechaBox.SetDate;
+                TipoSeguimientoIdList.SelectedValue = ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ResultData.Tables[0].Rows[0]["TipoSeguimientoId"].ToString();
+                SeguimientoBox.Text = ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ResultData.Tables[0].Rows[0]["Detalle"].ToString();
+
+                ExpedienteIdHidden.Value = ExpedienteSeguimientoId.ToString();
             }
 
             private void SelectTipoSeguimiento()

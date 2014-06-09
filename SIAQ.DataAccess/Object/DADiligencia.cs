@@ -509,46 +509,42 @@ namespace SIAQ.DataAccess.Object
 
             ENTResponse oENTResponse = new ENTResponse();
 
-            Command = new SqlCommand("spDiligenciaRecomendacion_ins", Connection);
+			Command = new SqlCommand("uspRecomendacionDiligencia_Ins", Connection);
             Command.CommandType = CommandType.StoredProcedure;
 
             if (iAlternativeTimeOut > 0) { Command.CommandTimeout = iAlternativeTimeOut; }
 
-            Parameter = new SqlParameter("RecomendacionId", SqlDbType.Int);
-            Parameter.Value = oENTDiligencia.RecomendacionId;
+			Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
+			Parameter.Value = oENTDiligencia.ExpedienteId;
             Command.Parameters.Add(Parameter);
 
-            Parameter = new SqlParameter("FuncionarioAtiende", SqlDbType.Int);
-            Parameter.Value = oENTDiligencia.FuncionarioAtiendeId;
-            Command.Parameters.Add(Parameter);
+			Parameter = new SqlParameter("FuncionarioId_Atiende", SqlDbType.Int);
+			Parameter.Value = oENTDiligencia.FuncionarioAtiendeId;
+			Command.Parameters.Add(Parameter);
 
-            Parameter = new SqlParameter("FuncionarioEjecuta", SqlDbType.Int);
-            Parameter.Value = oENTDiligencia.FuncionarioEjecuta;
-            Command.Parameters.Add(Parameter);
+			Parameter = new SqlParameter("FuncionarioId_Ejecuta", SqlDbType.Int);
+			Parameter.Value = oENTDiligencia.FuncionarioEjecuta;
+			Command.Parameters.Add(Parameter);
 
-            Parameter = new SqlParameter("FechaDiligencia", SqlDbType.DateTime);
-            Parameter.Value = oENTDiligencia.FechaDiligencia;
-            Command.Parameters.Add(Parameter);
+			Parameter = new SqlParameter("TipoDiligenciaId", SqlDbType.Int);
+			Parameter.Value = oENTDiligencia.TipoDiligencia;
+			Command.Parameters.Add(Parameter);
 
-            Parameter = new SqlParameter("TipoDiligencia", SqlDbType.Int);
-            Parameter.Value = oENTDiligencia.TipoDiligencia;
-            Command.Parameters.Add(Parameter);
+			Parameter = new SqlParameter("LugarDiligenciaId", SqlDbType.Int);
+			Parameter.Value = oENTDiligencia.LugarDiligenciaId;
+			Command.Parameters.Add(Parameter);
 
-            Parameter = new SqlParameter("LugarDiligencia", SqlDbType.Int);
-            Parameter.Value = oENTDiligencia.LugarDiligenciaId;
-            Command.Parameters.Add(Parameter);
+			Parameter = new SqlParameter("FechaDiligencia", SqlDbType.DateTime);
+			Parameter.Value = oENTDiligencia.FechaDiligencia;
+			Command.Parameters.Add(Parameter);
 
-            Parameter = new SqlParameter("Detalle", SqlDbType.VarChar);
-            Parameter.Value = oENTDiligencia.Detalle;
-            Command.Parameters.Add(Parameter);
+			Parameter = new SqlParameter("SolicitadaPor", SqlDbType.VarChar);
+			Parameter.Value = oENTDiligencia.SolicitadaPor;
+			Command.Parameters.Add(Parameter);
 
-            Parameter = new SqlParameter("SolicitadaPor", SqlDbType.VarChar);
-            Parameter.Value = oENTDiligencia.SolicitadaPor;
-            Command.Parameters.Add(Parameter);
-
-            Parameter = new SqlParameter("Resultado", SqlDbType.VarChar);
-            Parameter.Value = oENTDiligencia.Resultado;
-            Command.Parameters.Add(Parameter);
+			Parameter = new SqlParameter("Detalle", SqlDbType.VarChar);
+			Parameter.Value = oENTDiligencia.Detalle;
+			Command.Parameters.Add(Parameter);
 
             oENTResponse.dsResponse = new DataSet();
             DataAdapter = new SqlDataAdapter(Command);
@@ -733,72 +729,75 @@ namespace SIAQ.DataAccess.Object
         ///<summary>Modifica una diligencia para una recomendación</summary>
         public ENTResponse UpdateDiligenciaRecomendacion(ENTDiligencia oENTDiligencia, string sConnectionString, int iAlternativeTimeOut)
         {
-            SqlConnection Connection = new SqlConnection(sConnectionString);
-            SqlCommand Command;
-            SqlParameter Parameter;
-            SqlDataAdapter DataAdapter;
+			SqlConnection Connection = new SqlConnection(sConnectionString);
+			SqlCommand Command;
+			SqlDataAdapter DataAdapter;
+			SqlParameter Parameter;
 
-            ENTResponse oENTResponse = new ENTResponse();
+			ENTResponse oENTResponse = new ENTResponse();
 
-            Command = new SqlCommand("spDiligenciaRecomendacion_upd", Connection);
-            Command.CommandType = CommandType.StoredProcedure;
+			Command = new SqlCommand("uspRecomendacionDiligencia_Upd", Connection);
+			Command.CommandType = CommandType.StoredProcedure;
 
-            if (iAlternativeTimeOut > 0) { Command.CommandTimeout = iAlternativeTimeOut; }
+			if (iAlternativeTimeOut > 0) { Command.CommandTimeout = iAlternativeTimeOut; }
 
-            Parameter = new SqlParameter("DiligenciaId", SqlDbType.Int);
-            Parameter.Value = oENTDiligencia.DiligenciaId;
-            Command.Parameters.Add(Parameter);
+			Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
+			Parameter.Value = oENTDiligencia.ExpedienteId;
+			Command.Parameters.Add(Parameter);
 
-            Parameter = new SqlParameter("RecomendacionId", SqlDbType.Int);
-            Parameter.Value = oENTDiligencia.RecomendacionId;
-            Command.Parameters.Add(Parameter);
+			Parameter = new SqlParameter("DiligenciaId", SqlDbType.Int);
+			Parameter.Value = oENTDiligencia.DiligenciaId;
+			Command.Parameters.Add(Parameter);
 
-            Parameter = new SqlParameter("FuncionarioEjecuta", SqlDbType.Int);
-            Parameter.Value = oENTDiligencia.FuncionarioEjecuta;
-            Command.Parameters.Add(Parameter);
+			Parameter = new SqlParameter("FuncionarioId_Atiende", SqlDbType.Int);
+			Parameter.Value = oENTDiligencia.FuncionarioAtiendeId;
+			Command.Parameters.Add(Parameter);
 
-            Parameter = new SqlParameter("FechaDiligencia", SqlDbType.DateTime);
-            Parameter.Value = oENTDiligencia.FechaDiligencia;
-            Command.Parameters.Add(Parameter);
+			Parameter = new SqlParameter("FuncionarioId_Ejecuta", SqlDbType.Int);
+			Parameter.Value = oENTDiligencia.FuncionarioEjecuta;
+			Command.Parameters.Add(Parameter);
 
-            Parameter = new SqlParameter("TipoDiligenciaId", SqlDbType.Int);
-            Parameter.Value = oENTDiligencia.TipoDiligencia;
-            Command.Parameters.Add(Parameter);
+			Parameter = new SqlParameter("TipoDiligenciaId", SqlDbType.Int);
+			Parameter.Value = oENTDiligencia.TipoDiligencia;
+			Command.Parameters.Add(Parameter);
 
-            Parameter = new SqlParameter("LugarDiligenciaId", SqlDbType.Int);
-            Parameter.Value = oENTDiligencia.LugarDiligenciaId;
-            Command.Parameters.Add(Parameter);
+			Parameter = new SqlParameter("LugarDiligenciaId", SqlDbType.Int);
+			Parameter.Value = oENTDiligencia.LugarDiligenciaId;
+			Command.Parameters.Add(Parameter);
 
-            Parameter = new SqlParameter("Detalle", SqlDbType.VarChar);
-            Parameter.Value = oENTDiligencia.Detalle;
-            Command.Parameters.Add(Parameter);
+			Parameter = new SqlParameter("FechaDiligencia", SqlDbType.DateTime);
+			Parameter.Value = oENTDiligencia.FechaDiligencia;
+			Command.Parameters.Add(Parameter);
 
-            Parameter = new SqlParameter("SolicitadaPor", SqlDbType.VarChar);
-            Parameter.Value = oENTDiligencia.SolicitadaPor;
-            Command.Parameters.Add(Parameter);
+			Parameter = new SqlParameter("SolicitadaPor", SqlDbType.VarChar);
+			Parameter.Value = oENTDiligencia.SolicitadaPor;
+			Command.Parameters.Add(Parameter);
 
-            Parameter = new SqlParameter("Resultado", SqlDbType.VarChar);
-            Parameter.Value = oENTDiligencia.Resultado;
-            Command.Parameters.Add(Parameter);
+			Parameter = new SqlParameter("Detalle", SqlDbType.VarChar);
+			Parameter.Value = oENTDiligencia.Detalle;
+			Command.Parameters.Add(Parameter);
 
-            oENTResponse.dsResponse = new DataSet();
-            DataAdapter = new SqlDataAdapter(Command);
+			Parameter = new SqlParameter("Resultado", SqlDbType.VarChar);
+			Parameter.Value = oENTDiligencia.Resultado;
+			Command.Parameters.Add(Parameter);
 
-            try
-            {
-                Connection.Open();
-                DataAdapter.Fill(oENTResponse.dsResponse);
-                Connection.Close();
-            }
-            catch (SqlException ex) { oENTResponse.ExceptionRaised(ex.Message); }
-            catch (Exception ex) { oENTResponse.ExceptionRaised(ex.Message); }
+			oENTResponse.dsResponse = new DataSet();
+			DataAdapter = new SqlDataAdapter(Command);
 
-            finally
-            {
-                if (Connection.State == ConnectionState.Open) { Connection.Close(); }
-            }
+			try
+			{
+				Connection.Open();
+				DataAdapter.Fill(oENTResponse.dsResponse);
+				Connection.Close();
+			}
+			catch (SqlException ex) { oENTResponse.ExceptionRaised(ex.Message); }
+			catch (Exception ex) { oENTResponse.ExceptionRaised(ex.Message); }
+			finally
+			{
+				if (Connection.State == ConnectionState.Open) { Connection.Close(); }
+			}
 
-            return oENTResponse;
+			return oENTResponse;
 
         }
 
@@ -919,17 +918,13 @@ namespace SIAQ.DataAccess.Object
 
             ENTResponse oENTResponse = new ENTResponse();
 
-            Command = new SqlCommand("spDiligenciaRecomendacion_del", Connection);
+			Command = new SqlCommand("uspRecomendacionDiligencia_Del", Connection);
             Command.CommandType = CommandType.StoredProcedure;
 
             if (iAlternativeTimeOut > 0) { Command.CommandTimeout = iAlternativeTimeOut; }
 
             Parameter = new SqlParameter("DiligenciaId", SqlDbType.Int);
             Parameter.Value = oENTDiligencia.DiligenciaId;
-            Command.Parameters.Add(Parameter);
-
-            Parameter = new SqlParameter("RecomendacionId", SqlDbType.Int);
-            Parameter.Value = oENTDiligencia.RecomendacionId;
             Command.Parameters.Add(Parameter);
 
             oENTResponse.dsResponse = new DataSet();

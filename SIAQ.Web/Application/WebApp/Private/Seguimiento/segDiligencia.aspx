@@ -151,9 +151,10 @@
             <tr>
                 <td>
                     <asp:GridView id="gvDiligencia" runat="server" AllowPaging="false" AllowSorting="true"  AutoGenerateColumns="False" Width="100%"
-						DataKeyNames="DiligenciaId" 
-						onrowdatabound="gvDiligencia_RowDataBound"
-						onsorting="gvDiligencia_Sorting">
+						DataKeyNames="DiligenciaId"
+						OnRowCommand="gvDiligencia_RowCommand"
+						OnRowDataBound="gvDiligencia_RowDataBound"
+						OnSorting="gvDiligencia_Sorting">
 						<alternatingrowstyle cssclass="Grid_Row_Alternating" />
 						<headerstyle cssclass="Grid_Header" />
 						<rowstyle cssclass="Grid_Row" />
@@ -173,12 +174,22 @@
 							</table>
 						</EmptyDataTemplate>
 						<Columns>
-							<asp:BoundField HeaderText="Fecha"					ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="70px"	DataField="Fecha"					SortExpression="Fecha"></asp:BoundField>
-							<asp:BoundField HeaderText="Tipo de Diligencia"		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="100px"	DataField="TipoDiligenciaNombre"	SortExpression="TipoDiligenciaNombre"></asp:BoundField>
-							<asp:BoundField HeaderText="Lugar de la Diligencia"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="100px"	DataField="LugarDiligenciaNombre"	SortExpression="LugarDiligenciaNombre"></asp:BoundField>
-							<asp:BoundField HeaderText="Visitador que ejecutó"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="DefensorNombre"			SortExpression="DefensorNombre"></asp:BoundField>
-							<asp:BoundField HeaderText="Detalle"				ItemStyle-HorizontalAlign="Left"							DataField="Detalle"					SortExpression="Detalle"></asp:BoundField>
-							<asp:BoundField HeaderText="Resultado"				ItemStyle-HorizontalAlign="Left"							DataField="Resultado"				SortExpression="Resultado"></asp:BoundField>
+							<asp:BoundField HeaderText="Fecha"					ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="70px"	DataField="Fecha"										SortExpression="Fecha"></asp:BoundField>
+							<asp:BoundField HeaderText="Tipo de Diligencia"		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="100px"	DataField="TipoDiligenciaNombre"						SortExpression="TipoDiligenciaNombre"></asp:BoundField>
+							<asp:BoundField HeaderText="Lugar de la Diligencia"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="100px"	DataField="LugarDiligenciaNombre"						SortExpression="LugarDiligenciaNombre"></asp:BoundField>
+							<asp:BoundField HeaderText="Visitador que ejecutó"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="DefensorNombre"								SortExpression="DefensorNombre"></asp:BoundField>
+							<asp:BoundField HeaderText="Detalle"				ItemStyle-HorizontalAlign="Left"							DataField="Detalle"					HtmlEncode="false"	SortExpression="Detalle"></asp:BoundField>
+							<asp:BoundField HeaderText="Resultado"				ItemStyle-HorizontalAlign="Left"							DataField="Resultado"				HtmlEncode="false"	SortExpression="Resultado"></asp:BoundField>
+							<asp:TemplateField ItemStyle-HorizontalAlign ="Center" ItemStyle-Width="20px">
+								<ItemTemplate>
+									<asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
+								</ItemTemplate>
+							</asp:TemplateField>
+							<asp:TemplateField ItemStyle-HorizontalAlign ="Center" ItemStyle-Width="20px">
+								<ItemTemplate>
+									<asp:ImageButton ID="imgDelete" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Eliminar" ImageUrl="~/Include/Image/Buttons/Delete.png" runat="server" OnClientClick="return confirm('¿Seguro que desea eliminar esta diligencia?');"  />
+								</ItemTemplate>
+							</asp:TemplateField>
 						</Columns>
 					</asp:GridView>
                 </td>

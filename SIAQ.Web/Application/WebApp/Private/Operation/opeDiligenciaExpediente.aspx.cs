@@ -361,7 +361,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 oENTDiligencia.ExpedienteId = Convert.ToInt32(expedienteId);
                 oENTDiligencia.FuncionarioAtiendeId = oENTSession.FuncionarioId;
                 oENTDiligencia.FuncionarioEjecuta = Convert.ToInt32(ddlVisitadorEjecuta.SelectedValue);
-                oENTDiligencia.FechaDiligencia = Convert.ToDateTime(calFecha.DisplayDate);
+				oENTDiligencia.FechaDiligencia = this.calFecha.BeginDate;
                 oENTDiligencia.TipoDiligencia = Convert.ToInt32(ddlTipoDiligencia.SelectedValue);
                 oENTDiligencia.LugarDiligenciaId = Convert.ToInt32(ddlLugarDiligencia.SelectedValue);
                 oENTDiligencia.Detalle = txtCampo.Text;
@@ -409,7 +409,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 oENTDiligencia.DiligenciaId = Convert.ToInt32(diligenciaId);
                 oENTDiligencia.ExpedienteId = Convert.ToInt32(expedienteId);
                 oENTDiligencia.FuncionarioEjecuta = Convert.ToInt32(ddlVisitadorEjecuta.SelectedValue);
-                oENTDiligencia.FechaDiligencia = Convert.ToDateTime(calFecha.DisplayDate);
+				oENTDiligencia.FechaDiligencia = calFecha.BeginDate;
                 oENTDiligencia.TipoDiligencia = Convert.ToInt32(ddlTipoDiligencia.SelectedValue);
                 oENTDiligencia.LugarDiligenciaId = Convert.ToInt32(ddlLugarDiligencia.SelectedValue);
                 oENTDiligencia.Detalle = txtCampo.Text;

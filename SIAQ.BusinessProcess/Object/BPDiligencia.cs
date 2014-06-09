@@ -330,7 +330,7 @@ namespace SIAQ.BusinessProcess.Object
         }
 
         /// <summary>
-        /// Modifica una diligencia para una solicitud
+		/// Modifica una diligencia para una recomendación
         /// </summary>
         public ENTResponse UpdateDiligenciaRecomendacion(ENTDiligencia oENTDiligencia)
         {
@@ -416,7 +416,7 @@ namespace SIAQ.BusinessProcess.Object
         }
 
         /// <summary>
-        /// Borra una diligencia de una recomendacion
+        /// Elimina una diligencia de una recomendacion
         /// </summary>
         public ENTResponse DeleteDiligenciaRecomendacion(ENTDiligencia oENTDiligencia)
         {

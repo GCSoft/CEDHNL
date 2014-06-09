@@ -17,7 +17,7 @@ namespace SIAQ.Entity.Object
         private int _RecomendacionId;                      // Identificador único de la recomendación
         private int _FuncionarioAtiendeId;                      // Identificador único del funcionario que atiende
         private int _FuncionarioEjecuta;                      // Identificador único del funcionario que ejecuta la diligencia
-        private DateTime _FechaDiligencia;                      // Fecha de la diligencia
+        private String _FechaDiligencia;                      // Fecha de la diligencia
         private DateTime _FechaRegistro;                      // Fecha de registro 
         private int _TipoDiligencia;                      // Identificador único del tipo de diligencia
         private string _NombreTipoDiligencia;                      // Nombre del tipo de diligencia
@@ -111,7 +111,7 @@ namespace SIAQ.Entity.Object
         ///   <author>Jose.Gomez</author>
         ///</remarks>
         ///<summary>Obtiene/Asigna FechaDiligencia</summary>
-        public DateTime FechaDiligencia
+		public String FechaDiligencia
         {
             get { return _FechaDiligencia; }
             set { _FechaDiligencia = value; }

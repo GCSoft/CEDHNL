@@ -69,6 +69,7 @@
     <Compile Include="Object\DAFormaContacto.cs" />
     <Compile Include="Object\DAFuncionario.cs" />
     <Compile Include="Object\DAIndicador.cs" />
+    <Compile Include="Object\DALugarComparecencia.cs" />
     <Compile Include="Object\DALugarDiligencia.cs" />
     <Compile Include="Object\DALugarHechos.cs" />
     <Compile Include="Object\DAMedioComunicacion.cs" />

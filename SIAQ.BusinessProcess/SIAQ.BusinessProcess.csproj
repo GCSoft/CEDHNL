@@ -65,6 +65,7 @@
     <Compile Include="Object\BPFormaContacto.cs" />
     <Compile Include="Object\BPFuncionario.cs" />
     <Compile Include="Object\BPIndicador.cs" />
+    <Compile Include="Object\BPLugarComparecencia.cs" />
     <Compile Include="Object\BPLugarDiligencia.cs" />
     <Compile Include="Object\BPLugarHechos.cs" />
     <Compile Include="Object\BPMedioComunicacion.cs" />

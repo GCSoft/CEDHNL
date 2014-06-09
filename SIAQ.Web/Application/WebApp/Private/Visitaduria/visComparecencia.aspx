@@ -167,8 +167,44 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="7" style="text-align: left;">
-                    <asp:Button CssClass="Button_General" ID="AgregarButton" OnClick="AgregarButton_Click" runat="server" Text="Agregar comparecencia" Width="150px" />&nbsp;&nbsp;&nbsp;
+                <td class="Nombre">Fecha</td>
+                <td class="Espacio"></td>
+                <td class="Campo" colspan="5"><cln:caldenar ID="FechaBox" runat="server" /></td>
+            </tr>
+            <tr>
+                <td class="Nombre">Lugar de la comparecencia</td>
+                <td class="Espacio"></td>
+                <td class="Campo" colspan="5"><asp:DropDownList ID="ComparecenciaList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
+            </tr>
+            <tr>
+                <td class="Nombre">Visitador</td>
+                <td class="Espacio"></td>
+                <td class="Campo" colspan="5"><asp:DropDownList ID="VisitadorList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
+            </tr>
+            <tr>
+                <td class="Nombre">Tipo de comparecencia</td>
+                <td class="Espacio"></td>
+                <td class="Campo" colspan="5"><asp:DropDownList ID="TipoComparecenciaList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
+            </tr>
+            <tr>
+                <td class="Nombre">Ciudadano o autoridad</td>
+                <td class="Espacio"></td>
+                <td class="Campo" colspan="5"><asp:DropDownList ID="CiudadanoList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
+            </tr>
+            <tr>
+                <td class="Nombre">Asunto</td>
+                <td class="Espacio"></td>
+                <td class="Campo" colspan="5"><asp:TextBox ID="AsuntoBox" runat="server" CssClass="Textbox_General" width="210px" ></asp:TextBox></td>
+            </tr>
+            <tr>
+                <td class="Nombre">Detalle</td>
+                <td class="Espacio"></td>
+                <td class="Campo" colspan="5"><asp:TextBox ID="DetalleBox" runat="server" CssClass="Textbox_General" TextMode="MultiLine" Height="100px" width="360px" ></asp:TextBox></td>
+            </tr>
+            <tr>
+                <td class="Botones" colspan="7">
+                    <br />
+                    <asp:Button ID="GuardarButton" runat="server" Text="Agregar" CssClass="Button_General" width="125px" onclick="GuardarButton_Click"/>&nbsp;&nbsp;&nbsp;
                     <input class="Button_General" id="RegresarButton" onclick="GoBack();" style="width: 125px;" type="button" value="Regresar" />
                 </td>
             </tr>
@@ -244,54 +280,7 @@
 
             <asp:Panel ID="pnlActionBody" runat="server" CssClass="ActionBody">
                 <table class="GeneralTable">
-                    <tr>
-                        <td class="Nombre">Fecha</td>
-                        <td class="Espacio"></td>
-                        <td class="Campo"><cln:caldenar ID="FechaBox" runat="server" /></td>
-                        <td class="Espacio"></td>
-                    </tr>
-                    <tr>
-                        <td class="Nombre">Lugar de la comparecencia</td>
-                        <td class="Espacio"></td>
-                        <td class="Campo"><asp:DropDownList ID="ComparecenciaList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
-                        <td class="Espacio"></td>
-                    </tr>
-                    <tr>
-                        <td class="Nombre">Visitador</td>
-                        <td class="Espacio"></td>
-                        <td class="Campo"><asp:DropDownList ID="VisitadorList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
-                        <td class="Espacio"></td>
-                    </tr>
-                    <tr>
-                        <td class="Nombre">Tipo de comparecencia</td>
-                        <td class="Espacio"></td>
-                        <td class="Campo"><asp:DropDownList ID="TipoComparecenciaList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
-                        <td class="Espacio"></td>
-                    </tr>
-                    <tr>
-                        <td class="Nombre">Ciudadano o autoridad</td>
-                        <td class="Espacio"></td>
-                        <td class="Campo"><asp:DropDownList ID="CiudadanoList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
-                        <td class="Espacio"></td>
-                    </tr>
-                    <tr>
-                        <td class="Nombre">Asunto</td>
-                        <td class="Espacio"></td>
-                        <td class="Campo"><asp:TextBox ID="AsuntoBox" runat="server" CssClass="Textbox_General" width="210px" ></asp:TextBox></td>
-                        <td class="Espacio"></td>
-                    </tr>
-                    <tr>
-                        <td class="Nombre">Detalle</td>
-                        <td class="Espacio"></td>
-                        <td class="Campo"><asp:TextBox ID="DetalleBox" runat="server" CssClass="Textbox_General" TextMode="MultiLine" Height="100px" width="360px" ></asp:TextBox></td>
-                        <td class="Espacio"></td>
-                    </tr>
-                    <tr>
-                        <td class="Botones" colspan="5">
-                            <br />
-                            <asp:Button ID="GuardarButton" runat="server" Text="Agregar" CssClass="Button_General" width="125px" onclick="GuardarButton_Click"/>
-                        </td>
-                    </tr>
+                    
                 </table>
             </asp:Panel>
         </asp:Panel>

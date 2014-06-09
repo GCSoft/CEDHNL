@@ -71,6 +71,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 ExpedienteId = GetExpedienteParameter();
 
                 SelectExpediente(ExpedienteId);
+                SelectLugarComparecencia();
 
                 ComparecenciaGrid.DataSource = null;
                 ComparecenciaGrid.DataBind();
@@ -124,6 +125,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 }
                 else
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(BPExpediente.ErrorDescription) + "', 'Error', true);", true);
+            }
+
+            private void SelectLugarComparecencia()
+            {
+
             }
         #endregion
     }

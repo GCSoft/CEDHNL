@@ -53,7 +53,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             if (!String.IsNullOrEmpty(ciudadanoId)) { ObtenerDetalleCiudadano(Convert.ToInt32(ciudadanoId)); }
 
             // Foco
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtNombre.ClientID + "');", true);
+			ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.txtNombre.ClientID + "'); }", true);
 
         }
 

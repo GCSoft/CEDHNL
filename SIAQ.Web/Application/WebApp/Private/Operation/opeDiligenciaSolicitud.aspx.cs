@@ -44,6 +44,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             ComboTipoDiligencia();
             GridDiligencias(SolicitudId);
             LlenarDetalle(NumeroSolicitud);
+
+			// Foco
+			ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlVisitadorEjecuta.ClientID + "'); }", true);
+
         }
 
         #region "Grid diligencias"

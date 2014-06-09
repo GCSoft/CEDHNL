@@ -148,22 +148,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         protected global::SIAQ.Web.Include.WebUserControls.wucCalendar FechaBox;
         
         /// <summary>
-        /// ComparecenciaList control.
+        /// LugarComparecenciaList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ComparecenciaList;
+        protected global::System.Web.UI.WebControls.DropDownList LugarComparecenciaList;
         
         /// <summary>
-        /// VisitadorList control.
+        /// FuncionarioList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList VisitadorList;
+        protected global::System.Web.UI.WebControls.DropDownList FuncionarioList;
         
         /// <summary>
         /// TipoComparecenciaList control.

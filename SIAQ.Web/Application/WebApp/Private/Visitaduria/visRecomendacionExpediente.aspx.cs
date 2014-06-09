@@ -17,19 +17,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
         Function utilFunction = new Function();
 
         #region "Events"
-            protected void AgregarButton_Click(object sender, EventArgs e)
-            {
-                MostrarPanel();
-            }
-
             protected void GuardarButton_Click(object sender, EventArgs e)
             {
 
-            }
-
-            protected void imgCloseWindow_Click(object sender, ImageClickEventArgs e)
-            {
-                OcultarPanel();
             }
 
             protected void Page_Load(object sender, EventArgs e)
@@ -51,16 +41,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 }
             }
 
-            private void MostrarPanel()
-            {
-                pnlAction.Visible = true;
-            }
-
-            private void OcultarPanel()
-            {
-                pnlAction.Visible = false;
-            }
-
             private void PageLoad()
             {
                 int ExpedienteId = 0;
@@ -74,6 +54,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 ExpedienteId = GetExpedienteParameter();
 
                 SelectExpediente(ExpedienteId);
+                SelectTipoRecomendacion();
 
                 ExpedienteIdHidden.Value = ExpedienteId.ToString();
             }
@@ -124,6 +105,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 }
                 else
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(BPExpediente.ErrorDescription) + "', 'Error', true);", true);
+            }
+
+            private void SelectTipoRecomendacion()
+            {
+                TipoRecomendacionList.Items.Insert(0, new ListItem("[Seleccione]", "0"));
             }
         #endregion
     }

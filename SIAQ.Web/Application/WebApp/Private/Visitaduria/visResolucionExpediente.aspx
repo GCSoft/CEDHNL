@@ -164,31 +164,24 @@
                     <asp:Label ID="DireccionHechos" runat="server"></asp:Label>
                 </td>
             </tr>
-        </table>
-
-        <br /><br />
-        <div>
-            <table class="GeneralTable">
                 <tr>
                     <td class="Nombre">Fecha</td>
                     <td class="Espacio"></td>
-                    <td class="Campo"><asp:Label ID="FechaLabel" runat="server" Text=""></asp:Label></td>
-                    <td class="Espacio"></td>
+                    <td class="Etiqueta"><asp:Label ID="FechaLabel" runat="server" Text=""></asp:Label></td>
+                    <td colspan="4"></td>
                 </tr>
                 <tr>
                     <td class="Nombre">Tipo de resolución</td>
                     <td class="Espacio"></td>
-                    <td class="Campo"><asp:DropDownList ID="TipoResoluciónList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
-                    <td class="Espacio"></td>
+                    <td class="Campo" colspan="5"><asp:DropDownList ID="TipoResoluciónList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
                 </tr>
                 <tr>
                     <td class="Nombre">Detalle</td>
                     <td class="Espacio"></td>
-                    <td class="Campo"><asp:TextBox ID="DetalleBox" runat="server" CssClass="Textbox_General" TextMode="MultiLine" Height="100px" width="360px" ></asp:TextBox></td>
-                    <td class="Espacio"></td>
+                    <td class="Campo" colspan="5"><asp:TextBox ID="DetalleBox" runat="server" CssClass="Textbox_General" TextMode="MultiLine" Height="100px" width="360px" ></asp:TextBox></td>
                 </tr>
                 <tr>
-                    <td class="Botones" colspan="5">
+                    <td class="Botones" colspan="7">
                         <br />
                         <asp:Button ID="GuardarButton" runat="server" Text="Guardar" CssClass="Button_General" width="125px" onclick="GuardarButton_Click"/>&nbsp;&nbsp;&nbsp;
                         <input class="Button_General" id="RegresarButton" onclick="GoBack();" style="width: 125px;" type="button" value="Regresar" />

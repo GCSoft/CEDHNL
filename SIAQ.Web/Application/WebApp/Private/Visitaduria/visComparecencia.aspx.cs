@@ -72,11 +72,19 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
                 SelectExpediente(ExpedienteId);
                 SelectLugarComparecencia();
+                SelectFuncionario();
+                SelectTipoComparecencia();
+                SelectCiudadano();
 
                 ComparecenciaGrid.DataSource = null;
                 ComparecenciaGrid.DataBind();
 
                 ExpedienteIdHidden.Value = ExpedienteId.ToString();
+            }
+
+            private void SelectCiudadano()
+            {
+                CiudadanoList.Items.Insert(0, new ListItem("[Seleccione]", "0"));
             }
 
             private void SelectExpediente(int ExpedienteId)
@@ -127,9 +135,68 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(BPExpediente.ErrorDescription) + "', 'Error', true);", true);
             }
 
+            private void SelectFuncionario()
+            {
+                BPFuncionario oBPFuncionario = new BPFuncionario();
+                ENTFuncionario oENTFuncionario = new ENTFuncionario();
+                ENTResponse oENTResponse = new ENTResponse();
+
+                try
+                {
+                    // Transacción
+                    oENTResponse = oBPFuncionario.SelectFuncionario(oENTFuncionario);
+
+                    // Validación de error en la consulta
+                    if (oENTResponse.GeneratesException)
+                    {
+                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sErrorMessage + "', 'Fail', true);", true);
+                        return;
+                    }
+
+                    // Mensaje de la base de datos
+                    if (oENTResponse.sMessage != "")
+                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Success', true);", true);
+
+                    //LLenado de control
+                    FuncionarioList.DataTextField = "sFullName";
+                    FuncionarioList.DataValueField = "FuncionarioId";
+
+                    FuncionarioList.DataSource = oENTResponse.dsResponse.Tables[1];
+                    FuncionarioList.DataBind();
+
+                    // Agregar Item de selección
+                    FuncionarioList.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+
+                }
+                catch (Exception ex)
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true);", true);
+                }
+            }
+
             private void SelectLugarComparecencia()
             {
+                BPLugarComparecencia LugarComparecenciaProcess = new BPLugarComparecencia();
 
+                LugarComparecenciaProcess.SelectLugarComparecencia();
+
+                if (LugarComparecenciaProcess.ErrorId == 0)
+                {
+                    LugarComparecenciaList.DataTextField = "Nombre";
+                    LugarComparecenciaList.DataValueField = "LugarComparecenciaId";
+
+                    LugarComparecenciaList.DataSource = LugarComparecenciaProcess.LugarComparecenciaEntity.ResultData.Tables[0];
+                    LugarComparecenciaList.DataBind();
+
+                    LugarComparecenciaList.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+                }
+                else
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(LugarComparecenciaProcess.ErrorDescription) + "', 'Error', true);", true);
+            }
+
+            private void SelectTipoComparecencia()
+            {
+                TipoComparecenciaList.Items.Insert(0, new ListItem("[Seleccione]", "0"));
             }
         #endregion
     }

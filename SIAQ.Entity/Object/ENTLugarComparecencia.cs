@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 
@@ -10,12 +11,14 @@ namespace SIAQ.Entity.Object
         private int _LugarComparecenciaId;
         private string _Nombre;
         private string _Descripcion;
+        private DataSet _ResultData;
 
         public ENTLugarComparecencia()
         {
             _LugarComparecenciaId = 0;
             _Nombre = string.Empty;
             _Descripcion = string.Empty;
+            _ResultData = null;
         }
 
         /// <summary>
@@ -43,6 +46,15 @@ namespace SIAQ.Entity.Object
         {
             get { return _Descripcion; }
             set { _Descripcion = value; }
+        }
+
+        /// <summary>
+        ///     DataSet con el resultado de una búsqueda.
+        /// </summary>
+        public DataSet ResultData
+        {
+            get { return _ResultData; }
+            set { _ResultData = value; }
         }
     }
 }

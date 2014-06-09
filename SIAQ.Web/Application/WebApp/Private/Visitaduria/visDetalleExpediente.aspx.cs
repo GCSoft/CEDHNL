@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -75,7 +77,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
             protected void DocumentList_ItemDataBound(Object sender, DataListItemEventArgs e)
             {
-
+                DocumentListItemDataBound(e);
             }
 
             protected void EnviarButton_Click(object sender, ImageClickEventArgs e)
@@ -110,6 +112,26 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
         #endregion
 
         #region "Method"
+            private void DocumentListItemDataBound(DataListItemEventArgs e)
+            {
+                HyperLink DocumentoLink;
+                Image DocumentoImage;
+                DataRowView DataRow;
+
+                if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+                {
+                    DocumentoImage = (Image)e.Item.FindControl("DocumentoImage");
+                    DocumentoLink = (HyperLink)e.Item.FindControl("DocumentoLink");
+
+                    DataRow = (DataRowView)e.Item.DataItem;
+
+                    //DocumentoImage.ImageUrl = ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.cs?R=SE&id=" + DataRow["RepositrioId"].ToString();
+                    DocumentoImage.ImageUrl = BPDocumento.GetIconoDocumento(DataRow["FormatoDocumentoId"].ToString());
+                    DocumentoLink.NavigateUrl = ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.ashx?R=" + DataRow["RepositorioId"].ToString() + "&S=" + DataRow["SolicitudId"].ToString();
+                    DocumentoLink.Text = DataRow["NombreDocumento"].ToString();
+                }
+            }
+
             private int GetExpedienteParameter()
             {
                 try

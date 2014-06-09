@@ -174,12 +174,12 @@
             <tr>
                 <td class="Nombre">Lugar de la comparecencia</td>
                 <td class="Espacio"></td>
-                <td class="Campo" colspan="5"><asp:DropDownList ID="ComparecenciaList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
+                <td class="Campo" colspan="5"><asp:DropDownList ID="LugarComparecenciaList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
             </tr>
             <tr>
                 <td class="Nombre">Visitador</td>
                 <td class="Espacio"></td>
-                <td class="Campo" colspan="5"><asp:DropDownList ID="VisitadorList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
+                <td class="Campo" colspan="5"><asp:DropDownList ID="FuncionarioList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
             </tr>
             <tr>
                 <td class="Nombre">Tipo de comparecencia</td>

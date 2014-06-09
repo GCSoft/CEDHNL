@@ -139,78 +139,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         protected global::System.Web.UI.WebControls.Label DireccionHechos;
         
         /// <summary>
-        /// AgregarButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button AgregarButton;
-        
-        /// <summary>
-        /// RecomendacionGrid control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView RecomendacionGrid;
-        
-        /// <summary>
-        /// pnlAction control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlAction;
-        
-        /// <summary>
-        /// pnlActionContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlActionContent;
-        
-        /// <summary>
-        /// pnlActionHeader control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlActionHeader;
-        
-        /// <summary>
-        /// lblActionTitle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblActionTitle;
-        
-        /// <summary>
-        /// imgCloseWindow control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imgCloseWindow;
-        
-        /// <summary>
-        /// pnlActionBody control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlActionBody;
-        
-        /// <summary>
         /// FechaLabel control.
         /// </summary>
         /// <remarks>
@@ -220,13 +148,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         protected global::System.Web.UI.WebControls.Label FechaLabel;
         
         /// <summary>
-        /// RecomendacionList control.
+        /// TipoRecomendacionList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList RecomendacionList;
+        protected global::System.Web.UI.WebControls.DropDownList TipoRecomendacionList;
         
         /// <summary>
         /// RecomendacionBox control.
@@ -245,6 +173,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button GuardarButton;
+        
+        /// <summary>
+        /// RecomendacionGrid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView RecomendacionGrid;
         
         /// <summary>
         /// ExpedienteIdHidden control.

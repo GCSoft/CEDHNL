@@ -165,8 +165,24 @@
                 </td>
             </tr>
             <tr>
+                <td class="Nombre">Fecha</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta"><asp:Label ID="FechaLabel" runat="server" Text=""></asp:Label></td>
+                <td coslpan="4"></td>
+            </tr>
+            <tr>
+                <td class="Nombre">Tipo de recomendación</td>
+                <td class="Espacio"></td>
+                <td class="Campo" colspan="5"><asp:DropDownList ID="TipoRecomendacionList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
+            </tr>
+            <tr>
+                <td class="Nombre">Recomendación</td>
+                <td class="Espacio"></td>
+                <td class="Campo" colspan="5"><asp:TextBox ID="RecomendacionBox" runat="server" CssClass="Textbox_General" TextMode="MultiLine" Height="100px" width="360px" ></asp:TextBox></td>
+            </tr>
+            <tr>
                 <td colspan="7" style="text-align: left;">
-                    <asp:Button CssClass="Button_General" ID="AgregarButton" OnClick="AgregarButton_Click" runat="server" Text="Agregar recomendación" Width="150px" />&nbsp;&nbsp;&nbsp;
+                    <asp:Button ID="GuardarButton" runat="server" Text="Agregar" CssClass="Button_General" width="125px" onclick="GuardarButton_Click"/>&nbsp;&nbsp;&nbsp;
                     <input class="Button_General" id="RegresarButton" onclick="GoBack();" style="width: 125px;" type="button" value="Regresar" />
                 </td>
             </tr>
@@ -215,57 +231,6 @@
             </asp:GridView>
         </div>
     </div>
-
-    <!-- Panel oculto -->
-    <asp:Panel ID="pnlAction" runat="server" CssClass="ActionBlock" Visible="false">
-        <asp:Panel ID="pnlActionContent" runat="server" CssClass="ActionContent" Style="top:180px;" Height="400px" Width="800px">
-            <asp:Panel ID="pnlActionHeader" runat="server" CssClass="ActionHeader">
-                <table border="0" cellpadding="0" cellspacing="0" style="height: 100%; width: 100%">
-                    <tr>
-                        <td style="width: 10px">
-                        </td>
-                        <td style="text-align: left;">
-                            <asp:Label ID="lblActionTitle" runat="server" CssClass="ActionHeaderTitle" Text="Agregar recomendación al expediente"></asp:Label>
-                        </td>
-                        <td style="vertical-align: middle; width: 14px;">
-                            <asp:ImageButton ID="imgCloseWindow" runat="server" ImageUrl="~/Include/Image/Buttons/CloseWindow.png" ToolTip="Cerrar Ventana" onclick="imgCloseWindow_Click"></asp:ImageButton>
-                        </td>
-                        <td style="width: 10px">
-                        </td>
-                    </tr>
-                </table>
-            </asp:Panel>
-
-            <asp:Panel ID="pnlActionBody" runat="server" CssClass="ActionBody">
-                <table class="GeneralTable">
-                    <tr>
-                        <td class="Nombre">Fecha</td>
-                        <td class="Espacio"></td>
-                        <td class="Campo"><asp:Label ID="FechaLabel" runat="server" Text=""></asp:Label></td>
-                        <td class="Espacio"></td>
-                    </tr>
-                    <tr>
-                        <td class="Nombre">Tipo de recomendación</td>
-                        <td class="Espacio"></td>
-                        <td class="Campo"><asp:DropDownList ID="RecomendacionList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
-                        <td class="Espacio"></td>
-                    </tr>
-                    <tr>
-                        <td class="Nombre">Recomendación</td>
-                        <td class="Espacio"></td>
-                        <td class="Campo"><asp:TextBox ID="RecomendacionBox" runat="server" CssClass="Textbox_General" TextMode="MultiLine" Height="100px" width="360px" ></asp:TextBox></td>
-                        <td class="Espacio"></td>
-                    </tr>
-                    <tr>
-                        <td class="Botones" colspan="5">
-                            <br />
-                            <asp:Button ID="GuardarButton" runat="server" Text="Agregar" CssClass="Button_General" width="125px" onclick="GuardarButton_Click"/>
-                        </td>
-                    </tr>
-                </table>
-            </asp:Panel>
-        </asp:Panel>
-    </asp:Panel>
 
     <asp:HiddenField ID="ExpedienteIdHidden" runat="server" Value="0" />
 </asp:Content>

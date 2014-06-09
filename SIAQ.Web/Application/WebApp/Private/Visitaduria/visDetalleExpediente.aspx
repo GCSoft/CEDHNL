@@ -7,9 +7,9 @@
         function ImprimirExpediente() {
             var ExpedienteId = 0;
 
-            ExpedienteId = document.getElementById("<%= ExpedienteIdHidden.ClientID %>");
+            ExpedienteId = document.getElementById("<%= ExpedienteIdHidden.ClientID %>").value;
 
-            window.open("visImprmirExpediente.aspx?E=" + ExpedienteId.Value, "ImprimirExpediente", "");
+            window.open("visImprmirExpediente.aspx?expId=" + ExpedienteId, "ImprimirExpediente", "");
         }
     </script>
 </asp:Content>
@@ -308,7 +308,7 @@
                     <div class="Item">
                         <asp:Image ID="DocumentoImage" runat="server" />
                         <br />
-                        <asp:Label CssClass="Texto" ID="DocumentoLabel" runat="server" Text="Nombre del documento"></asp:Label>
+                        <asp:HyperLink ID="DocumentoLink" runat="server" Target="_blank" Text="Nombre del documento"></asp:HyperLink>
                     </div>
                 </ItemTemplate>
             </asp:DataList>

@@ -51,6 +51,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 ExpedienteId = GetExpedienteParameter();
 
                 SelectExpediente(ExpedienteId);
+                SelectTipoResolucion();
 
                 ExpedienteIdHidden.Value = ExpedienteId.ToString();
             }
@@ -101,6 +102,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 }
                 else
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(BPExpediente.ErrorDescription) + "', 'Error', true);", true);
+            }
+
+            private void SelectTipoResolucion()
+            {
+                TipoResoluciónList.Items.Insert(0, new ListItem("[Seleccione]", "0"));
             }
         #endregion
     }

@@ -42,7 +42,7 @@
                         <td class="Espacio">
                         </td>
                         <td class="Campo">
-                            <asp:Label CssClass="NumeroSolicitudLabel" ID="SolicitudLabel" runat="server" Text="0"></asp:Label>
+                            <asp:Label CssClass="NumeroSolicitudLabel" ID="ExpedienteIdLabel" runat="server" Text="0"></asp:Label>
                         </td>
                         <td colspan="4">
                         </td>
@@ -233,8 +233,7 @@
                                     <asp:BoundField DataField="Tipo" HeaderText="Tipo" SortExpression="Tipo"></asp:BoundField>
                                     <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
                                         <ItemTemplate>
-                                            <asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Borrar"
-                                                ImageUrl="~/Include/Image/Buttons/Delete.png" runat="server" />
+                                            
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>
@@ -256,13 +255,13 @@
                 <div style="text-align: left;">
                     Documentos anexos</div>
                 <div class="DocumentoListDiv">
-                    <asp:DataList CellPadding="5" CellSpacing="5" ID="DocumentoList" HorizontalAlign="Left"
+                    <asp:DataList CellPadding="5" CellSpacing="5" ID="DocumentoList" HorizontalAlign="Left" OnItemDataBound="DocumentList_ItemDataBound"
                         RepeatDirection="Horizontal" RepeatLayout="Table" runat="server">
                         <ItemTemplate>
                             <div class="Item">
                                 <asp:Image ID="DocumentoImage" runat="server" />
                                 <br />
-                                <asp:Label CssClass="Texto" ID="DocumentoLabel" runat="server" Text="Nombre del documento"></asp:Label>
+                                <asp:HyperLink ID="DocumentoLink" runat="server" Target="_blank" Text="Nombre del documento"></asp:HyperLink>
                             </div>
                         </ItemTemplate>
                     </asp:DataList>
@@ -313,6 +312,9 @@
                 </div>
                 <!-- Fin repeater -->
             </div>
+
+            <asp:HiddenField ID="SolicitudIdHidden" runat="server" Value="0" />
+            <asp:HiddenField ID="ExpedienteIdHidden" runat="server" Value="0" />
         </form>
     </body>
 </html>

@@ -153,8 +153,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 switch (e.CommandName.ToString())
                 {
                     case "Editar":
+                        Response.Redirect(ConfigurationManager.AppSettings["Application.Url.SolicitudDetalle"].ToString() + "?s=" + SolicitudId.ToString());
                         // Cambiar el estatus de la solicitud
-                        SaveSolicitudEstatus(SolicitudId);
+                        //SaveSolicitudEstatus(SolicitudId);
                         break;
                 }
             }

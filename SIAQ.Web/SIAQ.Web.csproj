@@ -52,6 +52,7 @@
     <None Include="ckeditor\samples\sample_posteddata.php" />
     <None Include="ckeditor\skins\moono\readme.md" />
     <Content Include="Application\WebApp\Private\Seguimiento\segCierrarExpediente.aspx" />
+    <Content Include="Application\WebApp\Private\Seguimiento\segNotificacion.aspx" />
     <Content Include="Include\Handler\ObtenerRepositorio.ashx" />
     <None Include="Include\Image\Vectores\vssver2.scc" />
   </ItemGroup>
@@ -845,6 +846,13 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Seguimiento\segListadoExpedienteAprobacion.aspx.designer.cs">
       <DependentUpon>segListadoExpedienteAprobacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segNotificacion.aspx.cs">
+      <DependentUpon>segNotificacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segNotificacion.aspx.designer.cs">
+      <DependentUpon>segNotificacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Seguimiento\segSeguimientoRecomendacion.aspx.cs">
       <DependentUpon>segSeguimientoRecomendacion.aspx</DependentUpon>

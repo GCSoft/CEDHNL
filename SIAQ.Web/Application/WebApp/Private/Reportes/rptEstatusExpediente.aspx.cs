@@ -19,6 +19,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes
             if (!this.Page.IsPostBack)
             {
                 Fillcbo();
+
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.cboEstatus.ClientID + "'); }", true);
             }
         }
 

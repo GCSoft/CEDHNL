@@ -219,7 +219,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 calHasta.SetDate = dtHasta.ToString();
 
                 // Foco
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtNumeroSolicitud.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.txtNumeroSolicitud.ClientID + "'); }", true);
             }
 
         }

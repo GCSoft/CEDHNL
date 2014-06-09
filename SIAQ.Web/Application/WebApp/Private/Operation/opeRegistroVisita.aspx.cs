@@ -184,7 +184,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             ddlMotivo.DataValueField = "MotivoId";
             ddlMotivo.DataTextField = "Nombre";
 
-            ddlMotivo.DataSource = BPMotivo.SelectMotivo();
+			ddlMotivo.DataSource = BPMotivo.SelectMotivo().Tables[1];
             ddlMotivo.DataBind();
             ddlMotivo.Items.Insert(0, new ListItem(AllDefault, "0"));
         }

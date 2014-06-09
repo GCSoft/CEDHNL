@@ -172,11 +172,13 @@ namespace SIAQ.BusinessProcess.Object
 
                 UploadDocumento();
 
-                if(_ErrorId == 0)
-                    DocumentoAccess.InsertRepositorioSE(_DocumentoEntity, sConnectionRepositorio);
+				if (_ErrorId == 0){
 
-                _ErrorId = DocumentoAccess.ErrorId;
-                _ErrorDescription = DocumentoAccess.ErrorDescription;
+					DocumentoAccess.InsertRepositorioSE(_DocumentoEntity, sConnectionRepositorio);
+
+					_ErrorId = DocumentoAccess.ErrorId;
+					_ErrorDescription = DocumentoAccess.ErrorDescription;
+				}
             }
 
             public void SelectRepositorioSE()

@@ -473,7 +473,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		}
 
 		protected void NotificacionesButton_Click(object sender, ImageClickEventArgs e){
-			//Response.Redirect("segDiligencia.aspx?key=" + this.ExpedienteIdHidden.Value.ToString() + "|" + this.SenderId.Value.ToString());
+			Response.Redirect("segNotificacion.aspx?key=" + this.ExpedienteIdHidden.Value.ToString() + "|" + this.SenderId.Value.ToString());
 		}
 
 		protected void SeguimientoButton_Click(object sender, ImageClickEventArgs e){

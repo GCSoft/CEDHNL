@@ -179,7 +179,7 @@
             <tr>
                 <td class="Nombre">Visitador</td>
                 <td class="Espacio"></td>
-                <td class="Campo" colspan="5"><asp:DropDownList ID="FuncionarioList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
+                <td class="Campo" colspan="5"><asp:DropDownList ID="FuncionarioIdList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
             </tr>
             <tr>
                 <td class="Nombre">Tipo de comparecencia</td>
@@ -187,9 +187,9 @@
                 <td class="Campo" colspan="5"><asp:DropDownList ID="TipoComparecenciaList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
             </tr>
             <tr>
-                <td class="Nombre">Ciudadano o autoridad</td>
+                <td class="Nombre">Ciudadano</td>
                 <td class="Espacio"></td>
-                <td class="Campo" colspan="5"><asp:DropDownList ID="CiudadanoList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
+                <td class="Campo" colspan="5"><asp:DropDownList ID="CiudadanoIdList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
             </tr>
             <tr>
                 <td class="Nombre">Asunto</td>
@@ -287,4 +287,5 @@
     </asp:Panel>
 
     <asp:HiddenField ID="ExpedienteIdHidden" runat="server" Value="0" />
+    <asp:HiddenField ID="ExpedienteComparecenciaIdHidden" runat="server" Value="0" />
 </asp:Content>

@@ -24,7 +24,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
             protected void GuardarButton_Click(object sender, EventArgs e)
             {
-
+                SaveComparecencia();
             }
 
             protected void imgCloseWindow_Click(object sender, ImageClickEventArgs e)
@@ -74,7 +74,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 SelectLugarComparecencia();
                 SelectFuncionario();
                 SelectTipoComparecencia();
-                SelectCiudadano();
+                SelectCiudadano(ExpedienteId);
 
                 ComparecenciaGrid.DataSource = null;
                 ComparecenciaGrid.DataBind();
@@ -82,9 +82,89 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 ExpedienteIdHidden.Value = ExpedienteId.ToString();
             }
 
-            private void SelectCiudadano()
+            private void ResetForm()
             {
-                CiudadanoList.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+                FechaBox.SetCurrentDate();
+                LugarComparecenciaList.SelectedIndex = 0;
+                FuncionarioIdList.SelectedIndex = 0;
+                TipoComparecenciaList.SelectedIndex = 0;
+                CiudadanoIdList.SelectedIndex = 0;
+                AsuntoBox.Text = "";
+                DetalleBox.Text = "";
+
+            }
+
+            private void SaveComparecencia()
+            {
+                int ExpedienteComparecenciaId = 0;
+                int ExpedienteId = 0;
+                int LugarComparecenciaId = 0;
+                int FuncionarioId = 0;
+                int TipoComparecenciaId = 0;
+                int CiudadanoId = 0;
+                string Fecha = string.Empty;
+                string Asunto = string.Empty;
+                string Detalle = string.Empty;
+
+                ExpedienteComparecenciaId = int.Parse(ExpedienteComparecenciaIdHidden.Value);
+                ExpedienteId = int.Parse(ExpedienteIdHidden.Value);
+                Fecha = FechaBox.DisplayDate;
+                LugarComparecenciaId = int.Parse(LugarComparecenciaList.SelectedValue);
+                FuncionarioId = int.Parse(FuncionarioIdList.SelectedValue);
+                TipoComparecenciaId = int.Parse(TipoComparecenciaList.SelectedValue);
+                CiudadanoId = int.Parse(CiudadanoIdList.SelectedValue);
+                Asunto = AsuntoBox.Text.Trim();
+                Detalle = DetalleBox.Text.Trim();
+
+                SaveComparecencia(ExpedienteComparecenciaId, ExpedienteId, Fecha, LugarComparecenciaId, FuncionarioId, TipoComparecenciaId, CiudadanoId, Asunto, Detalle);
+            }
+
+            private void SaveComparecencia(int ExpedienteComparecenciaId, int ExpedienteId, string Fecha, int LugarComparecenciaId, int FuncionarioId, int TipoComparecenciaId, int CiudadanoId, string Asunto, string Detalle)
+            {
+                BPExpedienteSeguimiento ExpedienteSeguimientoProcess = new BPExpedienteSeguimiento();
+
+                //ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ExpedienteSeguimientoId = ExpedienteSeguimientoId;
+                //ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ExpedienteId = ExpedienteId;
+                //ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.FuncionarioId = FuncionarioId;
+                //ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.TipoSeguimientoId = TipoSeguimientoId;
+                //ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.Fecha = Fecha;
+                //ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.Detalle = Detalle;
+
+                //ExpedienteSeguimientoProcess.SaveExpedienteSeguimiento();
+
+                //if (ExpedienteSeguimientoProcess.ErrorId == 0)
+                //{
+                //    ResetForm();
+                //    SelectExpedienteSeguimiento(ExpedienteId);
+                //}
+                //else
+                //    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ExpedienteSeguimientoProcess.ErrorDescription) + "', 'Error', true);", true);
+            }
+
+            private void SelectCiudadano(int ExpedienteId)
+            {
+                BPExpediente ExpedienteProcess = new BPExpediente();
+                ENTExpediente ExpedienteEntity = new ENTExpediente();
+                ENTResponse ResponseEntity = new ENTResponse();
+
+                ExpedienteEntity.ExpedienteId = ExpedienteId;
+
+                ExpedienteProcess.SelectCiudadanosGrid(ExpedienteEntity);
+
+                if (ExpedienteProcess.ErrorId == 0)
+                {
+                    CiudadanoIdList.DataTextField = "Nombre";
+                    CiudadanoIdList.DataValueField = "CiudadanoId";
+
+                    CiudadanoIdList.DataSource = ExpedienteEntity.ResultData;
+                    CiudadanoIdList.DataBind();
+
+                    CiudadanoIdList.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ExpedienteProcess.ErrorDescription + "', 'Success', true);", true);
+                }
             }
 
             private void SelectExpediente(int ExpedienteId)
@@ -158,14 +238,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                         ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Success', true);", true);
 
                     //LLenado de control
-                    FuncionarioList.DataTextField = "sFullName";
-                    FuncionarioList.DataValueField = "FuncionarioId";
+                    FuncionarioIdList.DataTextField = "sFullName";
+                    FuncionarioIdList.DataValueField = "FuncionarioId";
 
-                    FuncionarioList.DataSource = oENTResponse.dsResponse.Tables[1];
-                    FuncionarioList.DataBind();
+                    FuncionarioIdList.DataSource = oENTResponse.dsResponse.Tables[1];
+                    FuncionarioIdList.DataBind();
 
                     // Agregar Item de selección
-                    FuncionarioList.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+                    FuncionarioIdList.Items.Insert(0, new ListItem("[Seleccione]", "0"));
 
                 }
                 catch (Exception ex)

@@ -324,6 +324,7 @@ namespace SIAQ.BusinessProcess.Object
                 ConnectionString = sConnectionApplication;
 
                 oENTExpediente.ResultData = DAExpediente.SelectCiudadanosGrid(oENTExpediente, ConnectionString);
+
                 _ErrorId = DAExpediente.ErrorId;
                 _ErrorDescription = DAExpediente.ErrorDescription;
             }

@@ -157,13 +157,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         protected global::System.Web.UI.WebControls.DropDownList LugarComparecenciaList;
         
         /// <summary>
-        /// FuncionarioList control.
+        /// FuncionarioIdList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList FuncionarioList;
+        protected global::System.Web.UI.WebControls.DropDownList FuncionarioIdList;
         
         /// <summary>
         /// TipoComparecenciaList control.
@@ -175,13 +175,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         protected global::System.Web.UI.WebControls.DropDownList TipoComparecenciaList;
         
         /// <summary>
-        /// CiudadanoList control.
+        /// CiudadanoIdList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList CiudadanoList;
+        protected global::System.Web.UI.WebControls.DropDownList CiudadanoIdList;
         
         /// <summary>
         /// AsuntoBox control.
@@ -281,5 +281,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField ExpedienteIdHidden;
+        
+        /// <summary>
+        /// ExpedienteComparecenciaIdHidden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField ExpedienteComparecenciaIdHidden;
     }
 }

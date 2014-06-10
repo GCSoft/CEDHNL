@@ -51,6 +51,10 @@
     <None Include="ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
     <None Include="ckeditor\samples\sample_posteddata.php" />
     <None Include="ckeditor\skins\moono\readme.md" />
+    <Content Include="Application\WebApp\Private\Archivo\arcAsignarExpediente.aspx" />
+    <Content Include="Application\WebApp\Private\Archivo\arcBusquedaExpediente.aspx" />
+    <Content Include="Application\WebApp\Private\Archivo\arcDetalleExpediente.aspx" />
+    <Content Include="Application\WebApp\Private\Archivo\arcLiberarExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segCierrarExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segNotificacion.aspx" />
     <Content Include="Include\Handler\ObtenerRepositorio.ashx" />
@@ -577,6 +581,34 @@
     <Content Include="Include\WebUserControls\wucMenu.ascx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\WebApp\Private\Archivo\arcAsignarExpediente.aspx.cs">
+      <DependentUpon>arcAsignarExpediente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Archivo\arcAsignarExpediente.aspx.designer.cs">
+      <DependentUpon>arcAsignarExpediente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Archivo\arcBusquedaExpediente.aspx.cs">
+      <DependentUpon>arcBusquedaExpediente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Archivo\arcBusquedaExpediente.aspx.designer.cs">
+      <DependentUpon>arcBusquedaExpediente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Archivo\arcDetalleExpediente.aspx.cs">
+      <DependentUpon>arcDetalleExpediente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Archivo\arcDetalleExpediente.aspx.designer.cs">
+      <DependentUpon>arcDetalleExpediente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Archivo\arcLiberarExpediente.aspx.cs">
+      <DependentUpon>arcLiberarExpediente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Archivo\arcLiberarExpediente.aspx.designer.cs">
+      <DependentUpon>arcLiberarExpediente.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Application\WebApp\Private\Catalog\catCiudad.aspx.cs">
       <DependentUpon>catCiudad.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

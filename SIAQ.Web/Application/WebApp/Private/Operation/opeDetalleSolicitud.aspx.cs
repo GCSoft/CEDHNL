@@ -1,22 +1,175 @@
-﻿using System;
+﻿// Referencias
+using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+// Referencias manuales
 using GCSoft.Utilities.Common;
-using SIAQ.BusinessProcess.Object;
+using GCSoft.Utilities.Security;
 using SIAQ.Entity.Object;
+using SIAQ.BusinessProcess.Object;
+using System.Data;
 
 namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
     public partial class opeDetalleSolicitud : System.Web.UI.Page
     {
-        // Utilerías
-        Function utilFunction = new Function();
+
+		// Utilerías
+		Function utilFunction = new Function();
+		Encryption utilEncryption = new Encryption();
+
+
+		// Funciones el programador
+
+		private void SelectCiudadano(int SolicitudId){
+			BPSolicitud SolicitudProcess = new BPSolicitud();
+
+			// Formulario
+			SolicitudProcess.SolicitudEntity.SolicitudId = SolicitudId;
+
+			// Transacción
+			SolicitudProcess.SelectSolicitudCiudadano();
+
+			// Manejo de errores
+			if (SolicitudProcess.ErrorId != 0) { throw( new Exception(SolicitudProcess.ErrorDescription)); }
+			
+			// LLenado de Grid
+			this.gvCiudadano.DataSource = SolicitudProcess.SolicitudEntity.ResultData.Tables[0];
+			this.gvCiudadano.DataBind();
+
+		}
+
+		
+		// Eventos de la página
+
+		protected void Page_Load(object sender, EventArgs e){
+			int SolicitudId = 0;
+
+			try
+			{
+				// Validaciones
+				if (Page.IsPostBack) { return; }
+				if (this.Request.QueryString["s"] == null) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
+
+				// Obtener SolicitudId
+				SolicitudId = int.Parse(Request.QueryString["s"].ToString());
+				SolicitudIdHidden.Value = SolicitudId.ToString();
+
+				// LLenado de controles
+				SetPermisos();
+				SelectLugarHechos();
+				SelectSolicitud(SolicitudId);
+				SelectCiudadano(SolicitudId);
+				SelectRepositorio(SolicitudId);
+				SelectComentario(SolicitudId);
+
+			}catch (Exception Exception){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(Exception.Message) + "', 'Fail', true);", true);
+			}
+		}
+
+		protected void gvCiudadano_RowCommand(object sender, GridViewCommandEventArgs e){
+			String CiudadanoId;
+
+			String strCommand = "";
+			Int32 intRow = 0;
+
+			try
+			{
+
+				// Opción seleccionada
+				strCommand = e.CommandName.ToString();
+
+				// Se dispara el evento RowCommand en el ordenamiento
+				if (strCommand == "Sort") { return; }
+
+				// Fila
+				intRow = Int32.Parse(e.CommandArgument.ToString());
+
+				// Datakeys
+				CiudadanoId = this.gvCiudadano.DataKeys[intRow]["CiudadanoId"].ToString();
+
+				// Acción
+				switch (strCommand){
+					case "Eliminar":
+
+						// Obtener sesión
+						//EliminarCiudadano
+						break;
+				}
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+			}
+		}
+
+		protected void gvCiudadano_RowDataBound(object sender, GridViewRowEventArgs e){
+			ImageButton imgDelete = null;
+
+			String sNombreCompleto = "";
+			String sImagesAttributes = "";
+			String sToolTip = "";
+
+			try
+			{
+				
+				// Validación de que sea fila 
+				if (e.Row.RowType != DataControlRowType.DataRow) { return; }
+
+				// Obtener imagenes
+				imgDelete = (ImageButton)e.Row.FindControl("imgDelete");
+
+				// DataKeys
+				sNombreCompleto = this.gvCiudadano.DataKeys[e.Row.RowIndex]["NombreCompleto"].ToString();
+
+				// Tooltip Deletear Ciudadano
+				sToolTip = "Elliminar del expediente al Ciudadano [" + sNombreCompleto + "]";
+				imgDelete.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
+				imgDelete.Attributes.Add("onmouseout", "tooltip.hide();");
+				imgDelete.Attributes.Add("style", "cursor:hand;");
+
+				// Atributos Over
+				sImagesAttributes = "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png'; ";
+				e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
+
+				// Atributos Out
+				sImagesAttributes = "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png'; ";
+				e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		protected void gvCiudadano_Sorting(object sender, GridViewSortEventArgs e){
+			DataTable tblData = null;
+			DataView viewData = null;
+
+			try
+			{
+				//Obtener DataTable y View del GridView
+				tblData = utilFunction.ParseGridViewToDataTable(gvCiudadano, false);
+				viewData = new DataView(tblData);
+
+				//Determinar ordenamiento
+				hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
+
+				//Ordenar Vista
+				viewData.Sort = hddSort.Value;
+
+				//Vaciar datos
+				this.gvCiudadano.DataSource = viewData;
+				this.gvCiudadano.DataBind();
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+			}
+		}
+
 
         #region "Events"
             protected void AsignarButton_Click(object sender, ImageClickEventArgs e)
@@ -67,7 +220,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
                     //DocumentoImage.ImageUrl = ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.cs?R=SE&id=" + DataRow["RepositrioId"].ToString();
                     DocumentoImage.ImageUrl = BPDocumento.GetIconoDocumento(DataRow["FormatoDocumentoId"].ToString());
-                    DocumentoLink.NavigateUrl = ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.ashx?R=" + DataRow["RepositorioId"].ToString() + "&S=" + DataRow["SolicitudId"].ToString();
+                    DocumentoLink.NavigateUrl = System.Configuration.ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.ashx?R=" + DataRow["RepositorioId"].ToString() + "&S=" + DataRow["SolicitudId"].ToString();
                     DocumentoLink.Text = DataRow["NombreDocumento"].ToString();
                 }
             }
@@ -91,82 +244,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             protected void InformacionGeneralButton_Click(object sender, ImageClickEventArgs e)
             {
                 Response.Redirect("/Application/WebApp/Private/Operation/opeDetalleSolicitud.aspx?s=" + SolicitudIdHidden.Value.ToString());
-            }
-
-            protected void gvCiudadano_RowCommand(object sender, GridViewCommandEventArgs e)
-            {
-                // Pendiente de ver si tendrá botones de comando 
-            }
-
-            protected void gvCiudadano_RowDataBound(object sender, GridViewRowEventArgs e)
-            {
-                ImageButton EliminarButton = null;
-                //String sNumeroSolicitud = "";
-                String sImagesAttributes = "";
-                String sToolTip = "";
-
-                try
-                {
-                    //Validación de que sea fila 
-                    if (e.Row.RowType != DataControlRowType.DataRow) { return; }
-
-                    //Obtener imagenes
-                    EliminarButton = (ImageButton)e.Row.FindControl("EliminarButton");
-
-                    //DataKeys
-                    //sNumeroSolicitud = gvApps.DataKeys[e.Row.RowIndex]["Recomendacion"].ToString();
-
-                    //Tooltip Edición
-                    sToolTip = "Eliminar ciudadano";
-                    EliminarButton.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
-                    EliminarButton.Attributes.Add("onmouseout", "tooltip.hide();");
-                    EliminarButton.Attributes.Add("style", "curosr:hand;");
-
-                    //Atributos Over
-                    sImagesAttributes = "document.getElementById('" + EliminarButton.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png';";
-
-                    //Puntero y Sombra en fila Over
-                    e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; ");
-
-                    //Atributos Out
-                    sImagesAttributes = "document.getElementById('" + EliminarButton.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png';";
-
-                    //Puntero y Sombra en fila Out
-                    e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "';");
-
-                }
-                catch (Exception ex)
-                {
-                    throw (ex);
-                }
-            }
-
-            protected void gvCiudadano_Sorting(object sender, GridViewSortEventArgs e)
-            {
-                DataTable TableRecomendacion = null;
-                DataView ViewRecomendacion = null;
-
-                try
-                {
-                    //Obtener DataTable y View del GridView
-                    TableRecomendacion = utilFunction.ParseGridViewToDataTable(gvCiudadano, false);
-                    ViewRecomendacion = new DataView(TableRecomendacion);
-
-                    //Determinar ordenamiento
-                    hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
-
-                    //Ordenar Vista
-                    ViewRecomendacion.Sort = hddSort.Value;
-
-                    //Vaciar datos
-                    gvCiudadano.DataSource = ViewRecomendacion;
-                    gvCiudadano.DataBind();
-
-                }
-                catch (Exception ex)
-                {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
-                }
             }
 
             protected void lnkAgregarComentario_Click(object sender, EventArgs e)
@@ -218,10 +295,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 }
             }
 
-            protected void Page_Load(object sender, EventArgs e)
-            {
-                PageLoad();
-            }
+           
         #endregion
 
         #region "Methods"
@@ -349,50 +423,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 {
                     throw (ex);
                 }
-            }
-
-            private void PageLoad()
-            {
-                int SolicitudId = 0;
-
-                if (!this.Page.IsPostBack)
-                {
-                    try
-                    {
-                        SolicitudId = int.Parse(Request.QueryString["s"].ToString());
-
-                        SetPermisos();
-                        SelectLugarHechos();
-                        SelectSolicitud(SolicitudId);
-                        SelectCiudadano(SolicitudId);
-                        //SelectAutoridades(SolicitudId);
-                        SelectRepositorio(SolicitudId);
-                        SelectComentario(SolicitudId);
-
-                        SolicitudIdHidden.Value = SolicitudId.ToString();
-                    }
-                    catch (Exception Exception)
-                    {
-                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(Exception.Message) + "', 'Fail', true);", true);
-                    }
-                }
-            }
-
-            private void SelectCiudadano(int SolicitudId)
-            {
-                BPSolicitud SolicitudProcess = new BPSolicitud();
-
-                SolicitudProcess.SolicitudEntity.SolicitudId = SolicitudId;
-
-                SolicitudProcess.SelectSolicitudCiudadano();
-
-                if (SolicitudProcess.ErrorId == 0)
-                {
-                    this.gvCiudadano.DataSource = SolicitudProcess.SolicitudEntity.ResultData.Tables[0];
-                    this.gvCiudadano.DataBind();
-                }
-                else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(SolicitudProcess.ErrorDescription) + "', 'Fail', true);", true);
             }
 
             private void SelectComentario(int SolicitudId)

@@ -56,6 +56,7 @@
     <Compile Include="Object\ENTEstatus.cs" />
     <Compile Include="Object\ENTExpediente.cs" />
     <Compile Include="Object\ENTExpedienteComentario.cs" />
+    <Compile Include="Object\ENTExpedienteComparecencia.cs" />
     <Compile Include="Object\ENTExpedienteSeguimiento.cs" />
     <Compile Include="Object\ENTFormaContacto.cs" />
     <Compile Include="Object\ENTFuncionario.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Object\ENTSolicitudCiudadano.cs" />
     <Compile Include="Object\ENTSolicitudComentario.cs" />
     <Compile Include="Object\ENTTipoCiudadano.cs" />
+    <Compile Include="Object\ENTTipoComparecencia.cs" />
     <Compile Include="Object\ENTTipoDocumento.cs" />
     <Compile Include="Object\ENTTipoEstatus.cs" />
     <Compile Include="Object\ENTTipoOrientacion.cs" />

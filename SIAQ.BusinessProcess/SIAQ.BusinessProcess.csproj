@@ -61,6 +61,7 @@
     <Compile Include="Object\BPEstatus.cs" />
     <Compile Include="Object\BPExpediente.cs" />
     <Compile Include="Object\BPExpedienteComentario.cs" />
+    <Compile Include="Object\BPExpedienteComparecencia.cs" />
     <Compile Include="Object\BPExpedienteSeguimiento.cs" />
     <Compile Include="Object\BPFormaContacto.cs" />
     <Compile Include="Object\BPFuncionario.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Object\BPSolicitudCiudadano.cs" />
     <Compile Include="Object\BPSolicitudComentario.cs" />
     <Compile Include="Object\BPTipoCiudadano.cs" />
+    <Compile Include="Object\BPTipoComparecencia.cs" />
     <Compile Include="Object\BPTipoDocumento.cs" />
     <Compile Include="Object\BPTipoEstatus.cs" />
     <Compile Include="Object\BPTipoOrientacion.cs" />

@@ -63,6 +63,7 @@
     <Compile Include="Object\BPExpediente.cs" />
     <Compile Include="Object\BPExpedienteComentario.cs" />
     <Compile Include="Object\BPExpedienteComparecencia.cs" />
+    <Compile Include="Object\BPExpedienteResolucion.cs" />
     <Compile Include="Object\BPExpedienteSeguimiento.cs" />
     <Compile Include="Object\BPFormaContacto.cs" />
     <Compile Include="Object\BPFuncionario.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Object\BPTipoDocumento.cs" />
     <Compile Include="Object\BPTipoEstatus.cs" />
     <Compile Include="Object\BPTipoOrientacion.cs" />
+    <Compile Include="Object\BPTipoResolucion.cs" />
     <Compile Include="Object\BPTipoSeguimiento.cs" />
     <Compile Include="Object\BPTipoSolicitud.cs" />
     <Compile Include="Object\BPTipoVivienda.cs" />

@@ -46,7 +46,7 @@ namespace SIAQ.DataAccess.Object
             /// <param name="ExpedienteSeguimientoEntity">Entidad del lugar de la comprarecencia.</param>
             /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
             /// <returns>Resultado de la búsqueda.</returns>
-            public DataSet SelectExpedienteSeguimiento(ENTLugarComparecencia LugarComparecenciaEntity, string ConnectionString)
+            public DataSet SelectLugarComparecencia(ENTLugarComparecencia LugarComparecenciaEntity, string ConnectionString)
             {
                 DataSet ResultData = new DataSet();
                 SqlConnection Connection = new SqlConnection(ConnectionString);

@@ -58,7 +58,7 @@ namespace SIAQ.BusinessProcess.Object
             {
                 DALugarComparecencia LugarComparecenciaAccess = new DALugarComparecencia();
 
-                LugarComparecenciaEntity.ResultData = LugarComparecenciaAccess.SelectExpedienteSeguimiento(_LugarComparecenciaEntity, sConnectionApplication);
+                LugarComparecenciaEntity.ResultData = LugarComparecenciaAccess.SelectLugarComparecencia(_LugarComparecenciaEntity, sConnectionApplication);
 
                 _ErrorId = LugarComparecenciaAccess.ErrorId;
                 _ErrorDescription = LugarComparecenciaAccess.ErrorDescription;

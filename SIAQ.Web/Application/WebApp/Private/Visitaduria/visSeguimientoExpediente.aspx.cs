@@ -75,7 +75,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
                 SelectExpediente(ExpedienteId);
                 SelectTipoSeguimiento();
-
                 SelectExpedienteSeguimiento(ExpedienteId);
 
                 ExpedienteIdHidden.Value = ExpedienteId.ToString();

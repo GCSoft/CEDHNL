@@ -236,10 +236,10 @@
                 </EmptyDataTemplate>
                 <Columns>
                     <asp:BoundField DataField="Fecha" HeaderText="Fecha" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="75px"></asp:BoundField>
-                    <asp:BoundField DataField="LugarComparecencia" HeaderText="Lugar" ItemStyle-Width="150px"></asp:BoundField>
+                    <asp:BoundField DataField="NombreCiudadano" HeaderText="Lugar" ItemStyle-Width="150px"></asp:BoundField>
                     <asp:BoundField DataField="NombreVisitador" HeaderText="Visitador" ItemStyle-Width="150px"></asp:BoundField>
+                    <asp:BoundField DataField="LugarComparecencia" HeaderText="Lugar" ItemStyle-Width="150px"></asp:BoundField>
                     <asp:BoundField DataField="TipoComparecencia" HeaderText="Tipo" ItemStyle-Width="150px"></asp:BoundField>
-                    <asp:BoundField DataField="NombreCompareciente" HeaderText="Lugar" ItemStyle-Width="150px"></asp:BoundField>
                     <asp:BoundField DataField="Asunto" HeaderText="Asunto"></asp:BoundField>
                     <asp:TemplateField HeaderText="Editar">
                         <ItemTemplate>

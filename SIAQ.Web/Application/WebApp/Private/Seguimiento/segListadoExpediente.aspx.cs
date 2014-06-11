@@ -19,12 +19,13 @@ using System.Web.UI.WebControls;
 using GCSoft.Utilities.Common;
 using GCSoft.Utilities.Security;
 using SIAQ.Entity.Object;
+using SIAQ.BusinessProcess.Page;
 using SIAQ.BusinessProcess.Object;
 using System.Data;
 
 namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 {
-	public partial class segListadoExpediente : System.Web.UI.Page
+	public partial class segListadoExpediente : BPPage
 	{
 
 

@@ -202,6 +202,10 @@ namespace SIAQ.DataAccess.Object
                     Parameter.Value = ExpedienteSeguimientoEntity.ExpedienteId;
                     Command.Parameters.Add(Parameter);
 
+                    Parameter = new SqlParameter("FuncionarioId", SqlDbType.Int);
+                    Parameter.Value = ExpedienteSeguimientoEntity.FuncionarioId;
+                    Command.Parameters.Add(Parameter);
+
                     Parameter = new SqlParameter("TipoSeguimientoId", SqlDbType.Int);
                     Parameter.Value = ExpedienteSeguimientoEntity.TipoSeguimientoId;
                     Command.Parameters.Add(Parameter);

@@ -241,6 +241,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 SeguimientoBox.Text = ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ResultData.Tables[0].Rows[0]["Detalle"].ToString();
 
                 ExpedienteIdHidden.Value = ExpedienteSeguimientoId.ToString();
+                ExpedienteSeguimientoIdHidden.Value = ExpedienteSeguimientoId.ToString();
             }
 
             private void SelectTipoSeguimiento()

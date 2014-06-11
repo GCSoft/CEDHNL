@@ -17,28 +17,59 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
         Function utilFunction = new Function();
 
         #region "Events"
-            protected void AgregarButton_Click(object sender, EventArgs e)
-            {
-                MostrarPanel();
-            }
-
             protected void GuardarButton_Click(object sender, EventArgs e)
             {
                 SaveComparecencia();
-            }
-
-            protected void imgCloseWindow_Click(object sender, ImageClickEventArgs e)
-            {
-                OcultarPanel();
             }
 
             protected void Page_Load(object sender, EventArgs e)
             {
                 PageLoad();
             }
+
+            protected void ComparecenciaGrid_RowCommand(Object sender, GridViewCommandEventArgs e)
+            {
+                ComparecenciaGridRowCommand(e);
+            }
         #endregion
 
         #region "Methods"
+            private void ComparecenciaGridRowCommand(GridViewCommandEventArgs e)
+            {
+                int ExpedienteComparecenciaId = 0;
+
+                ExpedienteComparecenciaId = int.Parse(e.CommandArgument.ToString());
+
+                switch (e.CommandName.ToString())
+                {
+                    case "Editar":
+                        SelectExpedienteComparecencia(ExpedienteComparecenciaId, int.Parse(ExpedienteIdHidden.Value));
+                        break;
+
+                    case "Eliminar":
+                        DeleteExpedienteComparecencia(ExpedienteComparecenciaId, int.Parse(ExpedienteIdHidden.Value));
+                        break;
+                }
+            }
+
+            private void DeleteExpedienteComparecencia(int ExpedienteComparecenciaId, int ExpedienteId)
+            {
+                BPExpedienteComparecencia ExpedienteComparecenciaProcess = new BPExpedienteComparecencia();
+
+                ExpedienteComparecenciaProcess.ExpedienteComparecenciaEntity.ExpedienteComparecenciaId = ExpedienteComparecenciaId;
+                ExpedienteComparecenciaProcess.ExpedienteComparecenciaEntity.ExpedienteId = ExpedienteId;
+
+                ExpedienteComparecenciaProcess.DeleteExpedienteComparecencia();
+
+                if (ExpedienteComparecenciaProcess.ErrorId == 0)
+                {
+                    ResetForm();
+                    SelectExpedienteComparecencia(ExpedienteId);
+                }
+                else
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ExpedienteComparecenciaProcess.ErrorDescription) + "', 'Error', true);", true);
+            }
+
             private int GetExpedienteParameter()
             {
                 try
@@ -49,16 +80,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 {
                     return 0;
                 }
-            }
-
-            private void MostrarPanel()
-            {
-                pnlAction.Visible = true;
-            }
-
-            private void OcultarPanel()
-            {
-                pnlAction.Visible = false;
             }
 
             private void PageLoad()
@@ -77,9 +98,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 SelectCiudadano(ExpedienteId);
                 SelectExpedienteComparecencia(ExpedienteId);
 
-                ComparecenciaGrid.DataSource = null;
-                ComparecenciaGrid.DataBind();
-
                 ExpedienteIdHidden.Value = ExpedienteId.ToString();
             }
 
@@ -88,10 +106,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 FechaBox.SetCurrentDate();
                 LugarComparecenciaList.SelectedIndex = 0;
                 FuncionarioIdList.SelectedIndex = 0;
-                TipoComparecenciaList.SelectedIndex = 0;
+                TipoComparecenciaIdList.SelectedIndex = 0;
                 CiudadanoIdList.SelectedIndex = 0;
                 AsuntoBox.Text = "";
                 DetalleBox.Text = "";
+                ExpedienteComparecenciaIdHidden.Value = "0";
             }
 
             private void SaveComparecencia()
@@ -111,7 +130,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 Fecha = FechaBox.DisplayDate;
                 LugarComparecenciaId = int.Parse(LugarComparecenciaList.SelectedValue);
                 FuncionarioId = int.Parse(FuncionarioIdList.SelectedValue);
-                TipoComparecenciaId = int.Parse(TipoComparecenciaList.SelectedValue);
+                TipoComparecenciaId = int.Parse(TipoComparecenciaIdList.SelectedValue);
                 CiudadanoId = int.Parse(CiudadanoIdList.SelectedValue);
                 Asunto = AsuntoBox.Text.Trim();
                 Detalle = DetalleBox.Text.Trim();
@@ -228,11 +247,44 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
                 if (ExpedienteComparecenciaProcess.ErrorId == 0)
                 {
-                    ComparecenciaGrid.DataSource = ExpedienteComparecenciaProcess.ExpedienteComparecenciaEntity.ResultData;
+                    ComparecenciaGrid.DataSource = ExpedienteComparecenciaProcess.ExpedienteComparecenciaEntity.ResultData.Tables[0];
                     ComparecenciaGrid.DataBind();
                 }
                 else
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ExpedienteComparecenciaProcess.ErrorDescription) + "', 'Error', true);", true);
+            }
+
+            private void SelectExpedienteComparecencia(int ExpedienteComparecenciaId, int ExpedienteId)
+            {
+                BPExpedienteComparecencia ExpedienteComparecenciaProcess = new BPExpedienteComparecencia();
+
+                ExpedienteComparecenciaProcess.ExpedienteComparecenciaEntity.ExpedienteComparecenciaId = ExpedienteComparecenciaId;
+                ExpedienteComparecenciaProcess.ExpedienteComparecenciaEntity.ExpedienteId = ExpedienteId;
+
+                ExpedienteComparecenciaProcess.SelectExpedienteComparecencia();
+
+                if (ExpedienteComparecenciaProcess.ErrorId != 0)
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ExpedienteComparecenciaProcess.ErrorDescription) + "', 'Error', true);", true);
+                    return;
+                }
+
+                if (ExpedienteComparecenciaProcess.ExpedienteComparecenciaEntity.ResultData.Tables[0].Rows.Count == 0)
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText("No se encontró información de seguimiento para el expediente") + "', 'Error', true);", true);
+                    return;
+                }
+
+                FechaBox.SetDate = ExpedienteComparecenciaProcess.ExpedienteComparecenciaEntity.ResultData.Tables[0].Rows[0]["Fecha"].ToString(); ;
+                LugarComparecenciaList.SelectedValue = ExpedienteComparecenciaProcess.ExpedienteComparecenciaEntity.ResultData.Tables[0].Rows[0]["LugarComparecenciaId"].ToString();
+                FuncionarioIdList.SelectedValue = ExpedienteComparecenciaProcess.ExpedienteComparecenciaEntity.ResultData.Tables[0].Rows[0]["FuncionarioId"].ToString();
+                TipoComparecenciaIdList.SelectedValue = ExpedienteComparecenciaProcess.ExpedienteComparecenciaEntity.ResultData.Tables[0].Rows[0]["TipoComparecenciaId"].ToString();
+                CiudadanoIdList.SelectedValue = ExpedienteComparecenciaProcess.ExpedienteComparecenciaEntity.ResultData.Tables[0].Rows[0]["CiudadanoId"].ToString();
+                AsuntoBox.Text = ExpedienteComparecenciaProcess.ExpedienteComparecenciaEntity.ResultData.Tables[0].Rows[0]["Asunto"].ToString();
+                DetalleBox.Text = ExpedienteComparecenciaProcess.ExpedienteComparecenciaEntity.ResultData.Tables[0].Rows[0]["Detalle"].ToString();
+
+                ExpedienteIdHidden.Value = ExpedienteId.ToString();
+                ExpedienteComparecenciaIdHidden.Value = ExpedienteComparecenciaId.ToString();
             }
 
             private void SelectFuncionario()
@@ -302,13 +354,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
                 if (TipoComparecenciaProcess.ErrorId == 0)
                 {
-                    TipoComparecenciaList.DataTextField = "Nombre";
-                    TipoComparecenciaList.DataValueField = "TipoComparecenciaId";
+                    TipoComparecenciaIdList.DataTextField = "Nombre";
+                    TipoComparecenciaIdList.DataValueField = "TipoComparecenciaId";
 
-                    TipoComparecenciaList.DataSource = TipoComparecenciaProcess.TipoComparecenciaEntity.ResultData.Tables[0];
-                    TipoComparecenciaList.DataBind();
+                    TipoComparecenciaIdList.DataSource = TipoComparecenciaProcess.TipoComparecenciaEntity.ResultData.Tables[0];
+                    TipoComparecenciaIdList.DataBind();
 
-                    TipoComparecenciaList.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+                    TipoComparecenciaIdList.Items.Insert(0, new ListItem("[Seleccione]", "0"));
                 }
                 else
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(TipoComparecenciaProcess.ErrorDescription) + "', 'Error', true);", true);

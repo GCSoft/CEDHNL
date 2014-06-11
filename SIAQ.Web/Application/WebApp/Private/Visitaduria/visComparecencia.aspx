@@ -184,7 +184,7 @@
             <tr>
                 <td class="Nombre">Tipo de comparecencia</td>
                 <td class="Espacio"></td>
-                <td class="Campo" colspan="5"><asp:DropDownList ID="TipoComparecenciaList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
+                <td class="Campo" colspan="5"><asp:DropDownList ID="TipoComparecenciaIdList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
             </tr>
             <tr>
                 <td class="Nombre">Ciudadano</td>
@@ -212,7 +212,8 @@
 
         <br /><br />
         <div>
-            <asp:GridView AutoGenerateColumns="False" ID="ComparecenciaGrid" PageSize="10" runat="server" Style="text-align: center" Width="100%">
+            <asp:GridView AutoGenerateColumns="False" ID="ComparecenciaGrid" OnRowCommand="ComparecenciaGrid_RowCommand" PageSize="10"
+                runat="server" Style="text-align: center" Width="100%">
                 <RowStyle CssClass="Grid_Row" />
                 <EditRowStyle Wrap="True" />
                 <HeaderStyle CssClass="Grid_Header" ForeColor="#E3EBF5" />
@@ -243,13 +244,13 @@
                     <asp:BoundField DataField="Asunto" HeaderText="Asunto"></asp:BoundField>
                     <asp:TemplateField HeaderText="Editar">
                         <ItemTemplate>
-                            <asp:ImageButton ID="EditarButton" CommandArgument='<%#Eval("SeguimientoId")%>' CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
+                            <asp:ImageButton ID="EditarButton" CommandArgument='<%#Eval("ExpedienteComparecenciaId")%>' CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
                         </ItemTemplate>
                         <ItemStyle HorizontalAlign="Center" Width="50px" />
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Borrar">
                         <ItemTemplate>
-                            <asp:ImageButton ID="EliminarButton" CommandArgument='<%#Eval("RepositorioId")%>' CommandName="Eliminar" ImageUrl="~/Include/Image/Buttons/Delete.png" OnClientClick="return confirm('¿En realidad desea eliminar el documento?');" runat="server" />
+                            <asp:ImageButton ID="EliminarButton" CommandArgument='<%#Eval("ExpedienteComparecenciaId")%>' CommandName="Eliminar" ImageUrl="~/Include/Image/Buttons/Delete.png" OnClientClick="return confirm('¿En realidad desea eliminar el registro?');" runat="server" />
                         </ItemTemplate>
                         <ItemStyle HorizontalAlign="Center" Width="50px" />
                     </asp:TemplateField>
@@ -257,34 +258,6 @@
             </asp:GridView>
         </div>
     </div>
-
-    <!-- Panel oculto -->
-    <asp:Panel ID="pnlAction" runat="server" CssClass="ActionBlock" Visible="false">
-        <asp:Panel ID="pnlActionContent" runat="server" CssClass="ActionContent" Style="top:180px;" Height="400px" Width="800px">
-            <asp:Panel ID="pnlActionHeader" runat="server" CssClass="ActionHeader">
-                <table border="0" cellpadding="0" cellspacing="0" style="height: 100%; width: 100%">
-                    <tr>
-                        <td style="width: 10px">
-                        </td>
-                        <td style="text-align: left;">
-                            <asp:Label ID="lblActionTitle" runat="server" CssClass="ActionHeaderTitle" Text="Agregar comparecencia al expediente"></asp:Label>
-                        </td>
-                        <td style="vertical-align: middle; width: 14px;">
-                            <asp:ImageButton ID="imgCloseWindow" runat="server" ImageUrl="~/Include/Image/Buttons/CloseWindow.png" ToolTip="Cerrar Ventana" onclick="imgCloseWindow_Click"></asp:ImageButton>
-                        </td>
-                        <td style="width: 10px">
-                        </td>
-                    </tr>
-                </table>
-            </asp:Panel>
-
-            <asp:Panel ID="pnlActionBody" runat="server" CssClass="ActionBody">
-                <table class="GeneralTable">
-                    
-                </table>
-            </asp:Panel>
-        </asp:Panel>
-    </asp:Panel>
 
     <asp:HiddenField ID="ExpedienteIdHidden" runat="server" Value="0" />
     <asp:HiddenField ID="ExpedienteComparecenciaIdHidden" runat="server" Value="0" />

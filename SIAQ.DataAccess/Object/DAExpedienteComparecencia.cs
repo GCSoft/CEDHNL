@@ -57,7 +57,7 @@ namespace SIAQ.DataAccess.Object
                     Command = new SqlCommand("DeleteExpedienteComparecencia", Connection);
                     Command.CommandType = CommandType.StoredProcedure;
 
-                    Parameter = new SqlParameter("ExpedienteSeguimientoId", SqlDbType.Int);
+                    Parameter = new SqlParameter("ExpedienteComparecenciaId", SqlDbType.Int);
                     Parameter.Value = ExpedienteComparecenciaEntity.ExpedienteComparecenciaId;
                     Command.Parameters.Add(Parameter);
 

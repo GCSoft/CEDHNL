@@ -19,7 +19,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
         #region "Events"
             protected void GuardarButton_Click(object sender, EventArgs e)
             {
-
+                SaveResolucion();
             }
 
             protected void Page_Load(object sender, EventArgs e)
@@ -54,6 +54,54 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 SelectTipoResolucion();
 
                 ExpedienteIdHidden.Value = ExpedienteId.ToString();
+            }
+
+            private void ResetForm()
+            {
+                TipoResolucionIdList.SelectedIndex = 0;
+                DetalleBox.Text = "";
+                ExpedienteResolucionIdHidden.Value = "0";
+            }
+
+            private void SaveResolucion()
+            {
+                int ExpedienteResolucionId = 0;
+                int ExpedienteId = 0;
+                int FuncionarioId = 0;
+                int TipoResolucionId = 0;
+                string Detalle = string.Empty;
+                ENTSession SessionEntity = new ENTSession();
+
+                SessionEntity = (ENTSession)Session["oENTSession"];
+
+                ExpedienteResolucionId = int.Parse(ExpedienteResolucionIdHidden.Value);
+                ExpedienteId = int.Parse(ExpedienteIdHidden.Value);
+                FuncionarioId = SessionEntity.FuncionarioId;
+                TipoResolucionId = int.Parse(TipoResolucionIdList.SelectedValue);
+                Detalle = DetalleBox.Text.Trim();
+
+                SaveResolucion(ExpedienteResolucionId, ExpedienteId, FuncionarioId, TipoResolucionId, Detalle);
+            }
+
+            private void SaveResolucion(int ExpedienteResolucionId, int ExpedienteId, int FuncionarioId, int TipoResolucionId, string Detalle)
+            {
+                BPExpedienteResolucion ExpedienteResolucionProcess = new BPExpedienteResolucion();
+
+                ExpedienteResolucionProcess.ExpedienteResolucionEntity.ExpedienteResolucionId = ExpedienteResolucionId;
+                ExpedienteResolucionProcess.ExpedienteResolucionEntity.ExpedienteId = ExpedienteId;
+                ExpedienteResolucionProcess.ExpedienteResolucionEntity.FuncionarioId = FuncionarioId;
+                ExpedienteResolucionProcess.ExpedienteResolucionEntity.TipoResolucionId = TipoResolucionId;
+                ExpedienteResolucionProcess.ExpedienteResolucionEntity.Detalle = Detalle;
+
+                ExpedienteResolucionProcess.SaveExpedienteResolucion();
+
+                if (ExpedienteResolucionProcess.ErrorId == 0)
+                {
+                    ResetForm();
+                    // Mensaje de que todo se guardó correctamente
+                }
+                else
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ExpedienteResolucionProcess.ErrorDescription) + "', 'Error', true);", true);
             }
 
             private void SelectExpediente(int ExpedienteId)

@@ -97,7 +97,7 @@ namespace SIAQ.Entity.Object
         }
 
         /// <summary>
-        ///     Detalle del seguimiento.
+        ///     Detalle de la comparecencia.
         /// </summary>
         public string Detalle
         {

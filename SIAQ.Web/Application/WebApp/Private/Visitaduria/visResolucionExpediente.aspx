@@ -191,5 +191,6 @@
         </div>
     </div>
 
+    <asp:HiddenField ID="ExpedienteResolucionIdHidden" runat="server" Value="0" />
     <asp:HiddenField ID="ExpedienteIdHidden" runat="server" Value="0" />
 </asp:Content>

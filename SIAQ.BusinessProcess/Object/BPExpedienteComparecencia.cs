@@ -92,7 +92,7 @@ namespace SIAQ.BusinessProcess.Object
                 if (_ExpedienteComparecenciaEntity.ExpedienteId == 0)
                 {
                     _ErrorId = 50001;
-                    _ErrorDescription = "Se debe proporcionar un número de expediente para el seguimiento";
+                    _ErrorDescription = "Se debe proporcionar un número de expediente para la comparecencia";
                     return false;
                 }
 

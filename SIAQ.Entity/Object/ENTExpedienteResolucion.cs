@@ -13,6 +13,7 @@ namespace SIAQ.Entity.Object
         private int _FuncionarioId;
         private int _TipoResolucionId;
         private string _Detalle;
+        private string _Fecha;
         private DataSet _ResultData;
 
         public ENTExpedienteResolucion()
@@ -22,6 +23,7 @@ namespace SIAQ.Entity.Object
             _FuncionarioId = 0;
             _TipoResolucionId = 0;
             _Detalle = string.Empty;
+            _Fecha = string.Empty;
             _ResultData = null;
         }
 
@@ -62,12 +64,21 @@ namespace SIAQ.Entity.Object
         }
 
         /// <summary>
-        ///     Detalle del seguimiento.
+        ///     Detalle de la resolución.
         /// </summary>
         public string Detalle
         {
             get { return _Detalle; }
             set { _Detalle = value; }
+        }
+
+        /// <summary>
+        ///     Fecha de la resolución.
+        /// </summary>
+        public string Fecha
+        {
+            get { return _Fecha; }
+            set { _Fecha = value; }
         }
 
         /// <summary>

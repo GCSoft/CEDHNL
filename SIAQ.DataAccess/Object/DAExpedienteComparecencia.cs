@@ -82,7 +82,7 @@ namespace SIAQ.DataAccess.Object
             /// <summary>
             ///     Guarda un registro nuevo de seguimiento del expediente.
             /// </summary>
-            /// <param name="ExpedienteSeguimientoEntity">Entidad del seguimiento del expediente.</param>
+            /// <param name="ExpedienteSeguimientoEntity">Entidad de la comparecencia del expediente.</param>
             /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
             public void InsertExpedienteComparecencia(ENTExpedienteComparecencia ExpedienteComparecenciaEntity, string ConnectionString)
             {
@@ -145,7 +145,7 @@ namespace SIAQ.DataAccess.Object
             /// <summary>
             ///     Realiza una búsqueda de las comparecencias de un expediente.
             /// </summary>
-            /// <param name="ExpedienteSeguimientoEntity">Entidad del seguimiento del expediente.</param>
+            /// <param name="ExpedienteSeguimientoEntity">Entidad de la comparecencia del expediente.</param>
             /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
             /// <returns>Resultado de la búsqueda.</returns>
             public DataSet SelectExpedienteComparecencia(ENTExpedienteComparecencia ExpedienteComparecenciaEntity, string ConnectionString)

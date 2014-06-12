@@ -148,13 +148,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         protected global::System.Web.UI.WebControls.Label FechaLabel;
         
         /// <summary>
-        /// TipoResoluciónList control.
+        /// TipoResolucionIdList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList TipoResoluciónList;
+        protected global::System.Web.UI.WebControls.DropDownList TipoResolucionIdList;
         
         /// <summary>
         /// DetalleBox control.

@@ -173,7 +173,7 @@
                 <tr>
                     <td class="Nombre">Tipo de resolución</td>
                     <td class="Espacio"></td>
-                    <td class="Campo" colspan="5"><asp:DropDownList ID="TipoResoluciónList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
+                    <td class="Campo" colspan="5"><asp:DropDownList ID="TipoResolucionIdList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
                 </tr>
                 <tr>
                     <td class="Nombre">Detalle</td>

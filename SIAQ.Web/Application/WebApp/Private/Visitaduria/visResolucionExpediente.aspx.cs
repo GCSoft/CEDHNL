@@ -106,7 +106,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
             private void SelectTipoResolucion()
             {
-                TipoResoluciónList.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+                BPTipoResolucion TipoResolucionProcess = new BPTipoResolucion();
+
+                TipoResolucionProcess.SelectTipoResolucion();
+
+                if (TipoResolucionProcess.ErrorId == 0)
+                {
+                    TipoResolucionIdList.DataTextField = "Nombre";
+                    TipoResolucionIdList.DataValueField = "TipoResolucionId";
+
+                    TipoResolucionIdList.DataSource = TipoResolucionProcess.TipoResolucionEntity.ResultData.Tables[0];
+                    TipoResolucionIdList.DataBind();
+
+                    TipoResolucionIdList.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+                }
+                else
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(TipoResolucionProcess.ErrorDescription) + "', 'Error', true);", true);
             }
         #endregion
     }

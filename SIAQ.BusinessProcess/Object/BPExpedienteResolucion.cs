@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -61,20 +63,61 @@ namespace SIAQ.BusinessProcess.Object
                 _ErrorDescription = ExpedienteResolucionAccess.ErrorDescription;
             }
 
+            public void SaveExpedienteEstatus(SqlConnection Connection, SqlTransaction Transaction, int ExpedienteId)
+            {
+                BPExpediente ExpedienteProcess = new BPExpediente();
+
+                ExpedienteProcess.ExpedienteEntity.ExpedienteId = ExpedienteId;
+
+                ExpedienteProcess.UpdateExpedienteEstatus(Connection, Transaction);
+            }
+
             public void SaveExpedienteResolucion()
             {
+                SqlTransaction Transaction;
+                SqlConnection Connection = new SqlConnection(sConnectionApplication);
                 DAExpedienteResolucion ExpedienteResolucionAccess = new DAExpedienteResolucion();
 
                 if (!ValidarExpedienteResolucion())
                     return;
 
-                if (_ExpedienteResolucionEntity.ExpedienteResolucionId == 0)
-                    ExpedienteResolucionAccess.InsertExpedienteResolucion(_ExpedienteResolucionEntity, sConnectionApplication);
-                else
-                    ExpedienteResolucionAccess.UpdateExpedienteResolucion(_ExpedienteResolucionEntity, sConnectionApplication);
+                Connection.Open();
+                Transaction = Connection.BeginTransaction();
 
-                _ErrorId = ExpedienteResolucionAccess.ErrorId;
-                _ErrorDescription = ExpedienteResolucionAccess.ErrorDescription;
+                try
+                {
+                    // Se guarda la información de la resolución
+                    if (_ExpedienteResolucionEntity.ExpedienteResolucionId == 0)
+                        ExpedienteResolucionAccess.InsertExpedienteResolucion(Connection, Transaction, _ExpedienteResolucionEntity);
+                    else
+                        ExpedienteResolucionAccess.UpdateExpedienteResolucion(Connection, Transaction, _ExpedienteResolucionEntity);
+
+                    // Si todo sale bien, se le cambia el estatus al expediente
+                    if (ExpedienteResolucionAccess.ErrorId == 0)
+                        SaveExpedienteEstatus(Connection, Transaction, _ExpedienteResolucionEntity.ExpedienteId);
+                    else
+                    {
+                        _ErrorId = ExpedienteResolucionAccess.ErrorId;
+                        _ErrorDescription = ExpedienteResolucionAccess.ErrorDescription;
+                    }
+
+                    if (_ErrorId == 0)
+                        Transaction.Commit();
+                    else
+                        Transaction.Rollback();
+
+                    Connection.Close();
+                }
+                catch (SqlException Ex)
+                {
+                    _ErrorId = 50000;
+                    _ErrorDescription = Ex.Message;
+
+                    Transaction.Rollback();
+
+                    if (Connection.State == ConnectionState.Open)
+                        Connection.Close();
+                }
             }
 
             public void SelectExpedienteResolucion()

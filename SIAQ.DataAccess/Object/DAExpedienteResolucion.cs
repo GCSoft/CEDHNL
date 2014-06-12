@@ -84,17 +84,18 @@ namespace SIAQ.DataAccess.Object
             /// </summary>
             /// <param name="ExpedienteSeguimientoEntity">Entidad de la resolución del expediente.</param>
             /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
-            public void InsertExpedienteResolucion(ENTExpedienteResolucion ExpedienteResolucionEntity, string ConnectionString)
+            public void InsertExpedienteResolucion(SqlConnection Connection, SqlTransaction Transaction, ENTExpedienteResolucion ExpedienteResolucionEntity)
             {
                 DataSet ResultData = new DataSet();
                 SqlCommand Command;
                 SqlParameter Parameter;
-                SqlConnection Connection = new SqlConnection(ConnectionString);
 
                 try
                 {
                     Command = new SqlCommand("InsertExpedienteResolucion", Connection);
                     Command.CommandType = CommandType.StoredProcedure;
+
+                    Command.Transaction = Transaction;
 
                     Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
                     Parameter.Value = ExpedienteResolucionEntity.ExpedienteId;
@@ -116,17 +117,12 @@ namespace SIAQ.DataAccess.Object
                     Parameter.Value = ExpedienteResolucionEntity.Fecha;
                     Command.Parameters.Add(Parameter);
 
-                    Connection.Open();
                     Command.ExecuteNonQuery();
-                    Connection.Close();
                 }
                 catch (SqlException Exception)
                 {
                     _ErrorId = Exception.Number;
                     _ErrorDescription = Exception.Message;
-
-                    if (Connection.State == ConnectionState.Open)
-                        Connection.Close();
                 }
             }
 
@@ -182,17 +178,18 @@ namespace SIAQ.DataAccess.Object
             /// </summary>
             /// <param name="ExpedienteSeguimientoEntity">Entidad de la resolución del expediente.</param>
             /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
-            public void UpdateExpedienteResolucion(ENTExpedienteResolucion ExpedienteResolucionEntity, string ConnectionString)
+            public void UpdateExpedienteResolucion(SqlConnection Connection, SqlTransaction Transaction, ENTExpedienteResolucion ExpedienteResolucionEntity)
             {
                 DataSet ResultData = new DataSet();
                 SqlCommand Command;
                 SqlParameter Parameter;
-                SqlConnection Connection = new SqlConnection(ConnectionString);
 
                 try
                 {
                     Command = new SqlCommand("UpdateExpedienteResolucion", Connection);
                     Command.CommandType = CommandType.StoredProcedure;
+
+                    Command.Transaction = Transaction;
 
                     Parameter = new SqlParameter("ExpedienteResolucionId", SqlDbType.Int);
                     Parameter.Value = ExpedienteResolucionEntity.ExpedienteResolucionId;
@@ -218,17 +215,12 @@ namespace SIAQ.DataAccess.Object
                     Parameter.Value = ExpedienteResolucionEntity.Fecha;
                     Command.Parameters.Add(Parameter);
 
-                    Connection.Open();
                     Command.ExecuteNonQuery();
-                    Connection.Close();
                 }
                 catch (SqlException Exception)
                 {
                     _ErrorId = Exception.Number;
                     _ErrorDescription = Exception.Message;
-
-                    if (Connection.State == ConnectionState.Open)
-                        Connection.Close();
                 }
             }
         #endregion

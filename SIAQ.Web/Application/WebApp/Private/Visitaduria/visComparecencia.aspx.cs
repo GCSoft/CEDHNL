@@ -275,7 +275,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                     return;
                 }
 
-                FechaBox.SetDate = ExpedienteComparecenciaProcess.ExpedienteComparecenciaEntity.ResultData.Tables[0].Rows[0]["Fecha"].ToString(); ;
+                FechaBox.SetDate = ExpedienteComparecenciaProcess.ExpedienteComparecenciaEntity.ResultData.Tables[0].Rows[0]["Fecha"].ToString();
                 LugarComparecenciaList.SelectedValue = ExpedienteComparecenciaProcess.ExpedienteComparecenciaEntity.ResultData.Tables[0].Rows[0]["LugarComparecenciaId"].ToString();
                 FuncionarioIdList.SelectedValue = ExpedienteComparecenciaProcess.ExpedienteComparecenciaEntity.ResultData.Tables[0].Rows[0]["FuncionarioId"].ToString();
                 TipoComparecenciaIdList.SelectedValue = ExpedienteComparecenciaProcess.ExpedienteComparecenciaEntity.ResultData.Tables[0].Rows[0]["TipoComparecenciaId"].ToString();

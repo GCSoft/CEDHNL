@@ -770,6 +770,41 @@ namespace SIAQ.DataAccess.Object
 
         }
 
+        /// <summary>
+        ///     Actualiza el estatus de un expediente.
+        /// </summary>
+        /// <param name="ExpedienteEntity">Entidad del expediente.</param>
+        /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
+        public void UpdateExpedienteEstatus(SqlConnection Connection, SqlTransaction Transaction, ENTExpediente ExpedienteEntity)
+        {
+            DataSet ResultData = new DataSet();
+            SqlCommand Command;
+            SqlParameter Parameter;
+
+            try
+            {
+                Command = new SqlCommand("UpdateExpedienteEstatus", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                Command.Transaction = Transaction;
+
+                Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
+                Parameter.Value = ExpedienteEntity.ExpedienteId;
+                Command.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("EstatusId", SqlDbType.Int);
+                Parameter.Value = ExpedienteEntity.EstatusId;
+                Command.Parameters.Add(Parameter);
+
+                Command.ExecuteNonQuery();
+            }
+            catch (SqlException Exception)
+            {
+                _ErrorId = Exception.Number;
+                _ErrorDescription = Exception.Message;
+            }
+        }
+
         ///<remarks>
         ///   <name>DASolicitud.UpdateObservaciones_Expediente</name>
         ///   <create>24/mar/2014</create>

@@ -168,7 +168,7 @@
                 <td class="Nombre">Fecha</td>
                 <td class="Espacio"></td>
                 <td class="Etiqueta"><asp:Label ID="FechaLabel" runat="server" Text=""></asp:Label></td>
-                <td coslpan="4"></td>
+                <td colspan="4"></td>
             </tr>
             <tr>
                 <td class="Nombre">Tipo de recomendación</td>

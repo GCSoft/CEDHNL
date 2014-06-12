@@ -1,6 +1,8 @@
 ﻿// Referencias
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -425,6 +427,22 @@ namespace SIAQ.BusinessProcess.Object
             }
 
             /// <summary>
+            ///     Actualiza el estatus de un expediente.
+            /// </summary>
+            public void UpdateExpedienteEstatus(SqlConnection Connection, SqlTransaction Transaction)
+            {
+                DAExpediente ExpedienteAccess = new DAExpediente();
+
+                if (!ValidarExpedienteEstatus())
+                    return;
+                    
+                ExpedienteAccess.UpdateExpedienteEstatus(Connection, Transaction, _ExpedienteEntity);
+
+                _ErrorId = ExpedienteAccess.ErrorId;
+                _ErrorDescription = ExpedienteAccess.ErrorDescription;
+            }
+
+            /// <summary>
             /// Modifica la observación de un expediente en específico
             /// </summary>
             public ENTResponse UpdateObservaciones_Expediente(ENTExpediente oENTExpediente)
@@ -448,6 +466,23 @@ namespace SIAQ.BusinessProcess.Object
 
                 //Resultado 
                 return oENTResponse;
+            }
+
+            private bool ValidarExpedienteEstatus()
+            {
+                if (_ExpedienteEntity.ExpedienteId == 0)
+                {
+                    _ErrorId = 50001;
+                    _ErrorDescription = "Se debe proporcionar un número de expediente";
+                }
+
+                if (_ExpedienteEntity.EstatusId == 0)
+                {
+                    _ErrorId = 50002;
+                    _ErrorDescription = "Se debe proporcionar un estatus para actualizar el expediente";
+                }
+
+                return true;
             }
         #endregion
     }

@@ -52,6 +52,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
                 SelectExpediente(ExpedienteId);
                 SelectTipoResolucion();
+                SelectExpedienteResolucion(ExpedienteId);
 
                 ExpedienteIdHidden.Value = ExpedienteId.ToString();
             }
@@ -150,6 +151,37 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 }
                 else
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(BPExpediente.ErrorDescription) + "', 'Error', true);", true);
+            }
+
+            private void SelectExpedienteResolucion(int ExpedienteId)
+            {
+                BPExpedienteResolucion ExpedienteResolucionProcess = new BPExpedienteResolucion();
+
+                ExpedienteResolucionProcess.ExpedienteResolucionEntity.ExpedienteId = ExpedienteId;
+
+                ExpedienteResolucionProcess.SelectExpedienteResolucion();
+
+                if (ExpedienteResolucionProcess.ErrorId == 0)
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ExpedienteResolucionProcess.ErrorDescription) + "', 'Error', true);", true);
+                    return;
+                }
+
+                if (ExpedienteResolucionProcess.ExpedienteResolucionEntity.ResultData.Tables[0].Rows.Count == 0)
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText("No se encontró información de resolución para el expediente") + "', 'Error', true);", true);
+                    return;
+                }
+
+                // Se llenan los valores de los controles con los de la base de datos
+                TipoResolucionIdList.SelectedValue = ExpedienteResolucionProcess.ExpedienteResolucionEntity.ResultData.Tables[0].Rows[0]["TipoResolicionId"].ToString();
+                DetalleBox.Text = ExpedienteResolucionProcess.ExpedienteResolucionEntity.ResultData.Tables[0].Rows[0]["Detalle"].ToString();
+                ExpedienteResolucionIdHidden.Value = ExpedienteResolucionProcess.ExpedienteResolucionEntity.ResultData.Tables[0].Rows[0]["ExpedienteResolicionId"].ToString();
+
+                // Se bloquean los controles porque no se le debe de permitir al funcionario modificar la información
+                TipoResolucionIdList.Enabled = false;
+                DetalleBox.Enabled = false;
+                GuardarButton.Enabled = false;
             }
 
             private void SelectTipoResolucion()

@@ -68,6 +68,7 @@
     <Compile Include="Object\ENTMedioComunicacion.cs" />
     <Compile Include="Object\ENTMotivo.cs" />
     <Compile Include="Object\ENTNacionalidad.cs" />
+    <Compile Include="Object\ENTOcupacion.cs" />
     <Compile Include="Object\ENTPais.cs" />
     <Compile Include="Object\ENTPuesto.cs" />
     <Compile Include="Object\ENTRecomendacion.cs" />

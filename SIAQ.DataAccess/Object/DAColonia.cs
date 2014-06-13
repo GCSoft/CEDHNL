@@ -124,14 +124,14 @@ namespace SIAQ.DataAccess.Object
         ///   <author>Generador</author>
         ///</remarks>
         ///<summary>Metodo para insertar catColonia del sistema</summary>
-        public ENTResponse insertcatColonia(ENTColonia entColonia)
+        public ENTResponse insertcatColonia(ENTColonia oENTColonia)
         {
             ENTResponse oENTResponse = new ENTResponse();
             DataSet ds = new DataSet();
             // Transacción
             try
             {
-                ds = dbs.ExecuteDataSet("catColoniaIns");
+                ds = dbs.ExecuteDataSet("uspcatColonia_Ins", oENTColonia.Descripcion, oENTColonia.CiudadId, oENTColonia.Nombre, oENTColonia.Activo);
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)
@@ -156,14 +156,46 @@ namespace SIAQ.DataAccess.Object
         ///   <author>Generador</author>
         ///</remarks>
         ///<summary>Metodo que actualiza catColonia del sistema</summary>
-        public ENTResponse updatecatColonia(ENTColonia entColonia)
+        public ENTResponse updatecatColonia(ENTColonia oENTColonia)
         {
             ENTResponse oENTResponse = new ENTResponse();
             DataSet ds = new DataSet();
             // Transacción
             try
             {
-                dbs.ExecuteDataSet("catColoniaUpd");
+                ds = dbs.ExecuteDataSet("uspcatColonia_Upd", oENTColonia.ColoniaId, oENTColonia.CiudadId, oENTColonia.Descripcion, oENTColonia.Nombre, oENTColonia.Activo);
+                oENTResponse.dsResponse = ds;
+            }
+            catch (SqlException sqlEx)
+            {
+                oENTResponse.ExceptionRaised(sqlEx.Message);
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+            finally
+            {
+            }
+            // Resultado
+            return oENTResponse;
+
+        }
+
+        ///<remarks>
+        ///   <name>DAcatColonia.updatecatColonia</name>
+        ///   <create>27/ene/2014</create>
+        ///   <author>Generador</author>
+        ///</remarks>
+        ///<summary>Metodo que actualiza catColonia del sistema</summary>
+        public ENTResponse updatecatColonia_Estatus(ENTColonia oENTColonia)
+        {
+            ENTResponse oENTResponse = new ENTResponse();
+            DataSet ds = new DataSet();
+            // Transacción
+            try
+            {
+                ds = dbs.ExecuteDataSet("uspcatColonia_Upd_Estatus", oENTColonia.ColoniaId, oENTColonia.Activo);
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)

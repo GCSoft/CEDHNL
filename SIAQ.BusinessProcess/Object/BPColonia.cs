@@ -101,7 +101,7 @@ namespace SIAQ.BusinessProcess.Object
             {
                 // Consulta a base de datos
                 DAColonia datacatColonia = new DAColonia();
-                oENTResponse = datacatColonia.searchcatColonia(entColonia);
+                oENTResponse = datacatColonia.insertcatColonia(entColonia);
                 // Validación de error en consulta
                 if (oENTResponse.GeneratesException) { return oENTResponse; }
                 // Validación de mensajes de la BD
@@ -131,7 +131,37 @@ namespace SIAQ.BusinessProcess.Object
             {
                 // Consulta a base de datos
                 DAColonia datacatColonia = new DAColonia();
-                oENTResponse = datacatColonia.searchcatColonia(entColonia);
+                oENTResponse = datacatColonia.updatecatColonia(entColonia);
+                // Validación de error en consulta
+                if (oENTResponse.GeneratesException) { return oENTResponse; }
+                // Validación de mensajes de la BD
+                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+                if (oENTResponse.sMessage != "") { return oENTResponse; }
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+            // Resultado
+            return oENTResponse;
+
+        }
+
+        ///<remarks>
+        ///   <name>BPcatColonia.updatecatColonia_Estatus</name>
+        ///   <create>27/ene/2014</create>
+        ///   <author>Generador</author>
+        ///</remarks>
+        ///<summary>Metodo que actualiza catColonia del sistema</summary>
+        public ENTResponse updatecatColonia_Estatus(ENTColonia entColonia)
+        {
+
+            ENTResponse oENTResponse = new ENTResponse();
+            try
+            {
+                // Consulta a base de datos
+                DAColonia datacatColonia = new DAColonia();
+                oENTResponse = datacatColonia.updatecatColonia_Estatus(entColonia);
                 // Validación de error en consulta
                 if (oENTResponse.GeneratesException) { return oENTResponse; }
                 // Validación de mensajes de la BD

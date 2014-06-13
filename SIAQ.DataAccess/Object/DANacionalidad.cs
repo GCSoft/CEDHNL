@@ -48,19 +48,50 @@ namespace SIAQ.DataAccess.Object
 
         }
         ///<remarks>
-        ///   <name>DAcatNacionalidad.insertcatNacionalidad</name>
+        ///   <name>DAcatNacionalidad.selectcatNacionalidad</name>
         ///   <create>27/ene/2014</create>
         ///   <author>Generador</author>
         ///</remarks>
-        ///<summary>Metodo para insertar catNacionalidad del sistema</summary>
-        public ENTResponse insertcatNacionalidad(ENTNacionalidad entNacionalidad)
+        ///<summary>Metodo para obtener las catNacionalidad del sistema</summary>
+        public ENTResponse selectcatNacionalidad(ENTNacionalidad oENTNacionalidad)
         {
             ENTResponse oENTResponse = new ENTResponse();
             DataSet ds = new DataSet();
             // Transacción
             try
             {
-                ds = dbs.ExecuteDataSet("catNacionalidadIns");
+                ds = dbs.ExecuteDataSet("uspcatNacionalidad_Sel", oENTNacionalidad.NacionalidadId, oENTNacionalidad.Nombre);
+                oENTResponse.dsResponse = ds;
+            }
+            catch (SqlException sqlEx)
+            {
+                oENTResponse.ExceptionRaised(sqlEx.Message);
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+            finally
+            {
+            }
+            // Resultado
+            return oENTResponse;
+
+        }
+        ///<remarks>
+        ///   <name>DAcatNacionalidad.insertcatNacionalidad</name>
+        ///   <create>27/ene/2014</create>
+        ///   <author>Generador</author>
+        ///</remarks>
+        ///<summary>Metodo para insertar catNacionalidad del sistema</summary>
+        public ENTResponse insertcatNacionalidad(ENTNacionalidad oENTNacionalidad)
+        {
+            ENTResponse oENTResponse = new ENTResponse();
+            DataSet ds = new DataSet();
+            // Transacción
+            try
+            {
+                ds = dbs.ExecuteDataSet("uspcatNacionalidad_Ins", oENTNacionalidad.Descripcion, oENTNacionalidad.Nombre);
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)
@@ -84,14 +115,14 @@ namespace SIAQ.DataAccess.Object
         ///   <author>Generador</author>
         ///</remarks>
         ///<summary>Metodo que actualiza catNacionalidad del sistema</summary>
-        public ENTResponse updatecatNacionalidad(ENTNacionalidad entNacionalidad)
+        public ENTResponse updatecatNacionalidad(ENTNacionalidad oENTNacionalidad)
         {
             ENTResponse oENTResponse = new ENTResponse();
             DataSet ds = new DataSet();
             // Transacción
             try
             {
-                dbs.ExecuteDataSet("catNacionalidadUpd");
+                ds = dbs.ExecuteDataSet("uspcatNacionalidad_Upd", oENTNacionalidad.NacionalidadId, oENTNacionalidad.Descripcion, oENTNacionalidad.Nombre);
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)

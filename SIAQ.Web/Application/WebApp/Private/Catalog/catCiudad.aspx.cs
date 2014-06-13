@@ -567,6 +567,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 
             }
             catch (Exception ex) { throw (ex); }
+
         }
 
         protected void gvCiudad_Sorting(object sender, GridViewSortEventArgs e)

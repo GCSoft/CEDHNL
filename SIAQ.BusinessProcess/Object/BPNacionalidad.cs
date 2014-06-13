@@ -38,6 +38,35 @@ namespace SIAQ.BusinessProcess.Object
 
         }
         ///<remarks>
+        ///   <name>BPcatNacionalidad.selectcatNacionalidad</name>
+        ///   <create>27/ene/2014</create>
+        ///   <author>Generador</author>
+        ///</remarks>
+        ///<summary>Metodo para obtener las catNacionalidad del sistema</summary>
+        public ENTResponse selectcatNacionalidad(ENTNacionalidad entNacionalidad)
+        {
+
+            ENTResponse oENTResponse = new ENTResponse();
+            try
+            {
+                // Consulta a base de datos
+                DANacionalidad datacatNacionalidad = new DANacionalidad();
+                oENTResponse = datacatNacionalidad.selectcatNacionalidad(entNacionalidad);
+                // Validación de error en consulta
+                if (oENTResponse.GeneratesException) { return oENTResponse; }
+                // Validación de mensajes de la BD
+                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+                if (oENTResponse.sMessage != "") { return oENTResponse; }
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+            // Resultado
+            return oENTResponse;
+
+        }
+        ///<remarks>
         ///   <name>BPcatNacionalidadinsertcatNacionalidad</name>
         ///   <create>27/ene/2014</create>
         ///   <author>Generador</author>
@@ -51,7 +80,7 @@ namespace SIAQ.BusinessProcess.Object
             {
                 // Consulta a base de datos
                 DANacionalidad datacatNacionalidad = new DANacionalidad();
-                oENTResponse = datacatNacionalidad.searchcatNacionalidad(entNacionalidad);
+                oENTResponse = datacatNacionalidad.insertcatNacionalidad(entNacionalidad);
                 // Validación de error en consulta
                 if (oENTResponse.GeneratesException) { return oENTResponse; }
                 // Validación de mensajes de la BD
@@ -80,7 +109,7 @@ namespace SIAQ.BusinessProcess.Object
             {
                 // Consulta a base de datos
                 DANacionalidad datacatNacionalidad = new DANacionalidad();
-                oENTResponse = datacatNacionalidad.searchcatNacionalidad(entNacionalidad);
+                oENTResponse = datacatNacionalidad.updatecatNacionalidad(entNacionalidad);
                 // Validación de error en consulta
                 if (oENTResponse.GeneratesException) { return oENTResponse; }
                 // Validación de mensajes de la BD

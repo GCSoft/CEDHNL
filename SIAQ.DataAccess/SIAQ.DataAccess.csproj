@@ -78,6 +78,7 @@
     <Compile Include="Object\DAMedioComunicacion.cs" />
     <Compile Include="Object\DAMotivo.cs" />
     <Compile Include="Object\DANacionalidad.cs" />
+    <Compile Include="Object\DAOcupacion.cs" />
     <Compile Include="Object\DAPais.cs" />
     <Compile Include="Object\DAPuesto.cs" />
     <Compile Include="Object\DARecomendacion.cs" />

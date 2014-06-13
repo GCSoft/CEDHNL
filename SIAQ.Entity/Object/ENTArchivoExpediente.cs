@@ -22,6 +22,8 @@ namespace SIAQ.Entity.Object
 		// Definiciones
 		private Int32	_ExpedienteId;			// Identificador único del Expediente a consultar
 		private Int32	_idUsuario;				// Identificador único del Usuario que tiene asignado el Expediente
+		private Int32	_idUsuario_Presta;		// Identificador único del Usuario que asigna el Expediente
+		private Int32	_idUsuario_Recibe;		// Identificador único del Usuario que recibe el Expediente
 		private Int32	_UbicacionExpedienteId;	// Identificador único de la Ubicacion del Expediente a consultar
 		private String  _Comentario;			// Comentario en el expediente dentro del módulo de archivo
 		private String	_Nombre;				// Nombre a filtrar
@@ -35,6 +37,8 @@ namespace SIAQ.Entity.Object
 		{
 			_ExpedienteId = 0;
 			_idUsuario = 0;
+			_idUsuario_Presta = 0;
+			_idUsuario_Recibe = 0;
 			_UbicacionExpedienteId = 0;
 			_Comentario = "";
 			_Nombre = "";
@@ -67,6 +71,30 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _idUsuario; }
 			set { _idUsuario = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTArchivoExpediente.idUsuario_Presta</name>
+		///   <create>11-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el identificador único del Usuario que asigna el Expediente/summary>
+		public Int32 idUsuario_Presta
+		{
+			get { return _idUsuario_Presta; }
+			set { _idUsuario_Presta = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTArchivoExpediente.idUsuario_Recibe</name>
+		///   <create>11-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el identificador único del Usuario que recibe el Expediente</summary>
+		public Int32 idUsuario_Recibe
+		{
+			get { return _idUsuario_Recibe; }
+			set { _idUsuario_Recibe = value; }
 		}
 
 		///<remarks>

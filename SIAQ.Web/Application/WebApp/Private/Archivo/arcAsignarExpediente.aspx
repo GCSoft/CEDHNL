@@ -75,7 +75,7 @@
 			<tr>
                 <td class="Nombre">Nueva Ubicación</td>
                 <td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
-                <td colspan="5" style="text-align:left;"><asp:DropDownList id="ddlUbicacionExpediente" runat="server" CssClass="DropDownList_General" width="216px" onselectedindexchanged="ddlUbicacionExpediente_SelectedIndexChanged" ></asp:DropDownList></td>
+                <td colspan="5" style="text-align:left;"><asp:DropDownList id="ddlUbicacionExpediente" runat="server" AutoPostBack="true" CssClass="DropDownList_General" width="216px" onselectedindexchanged="ddlUbicacionExpediente_SelectedIndexChanged" ></asp:DropDownList></td>
             </tr>
 			<tr>
                 <td class="Nombre">Usuario a Asignar</td>
@@ -88,7 +88,7 @@
                 <td colspan="5"></td>
             </tr>
 			<tr>
-                <td colspan="7" style="text-align:left;"><CKEditor:CKEditorControl ID="ckeSeguimiento" BasePath="/ckeditor/" runat="server"></CKEditor:CKEditorControl></td>
+                <td colspan="7" style="text-align:left;"><CKEditor:CKEditorControl ID="ckeComentarios" BasePath="/ckeditor/" runat="server"></CKEditor:CKEditorControl></td>
             </tr>
         </table>
 

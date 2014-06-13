@@ -30,7 +30,7 @@ namespace SIAQ.BusinessProcess.Object
 		///   <author>Ruben.Cobos</author>
 		///</remarks>
 		///<summary>Inserta un comentario al Expediente en el módulo de Archivo</summary>
-		///<param name="oENTArchivoExpediente">Entidad de ArchivoExpediente con los parámetros necesarios para consultar la información</param>
+		///<param name="oENTArchivoExpediente">Entidad de ArchivoExpediente con los parámetros necesarios para realizar la transacción</param>
 		///<returns>Una entidad de respuesta</returns>
 		public ENTResponse InsertArchivoComentario(ENTArchivoExpediente oENTArchivoExpediente){
 			DAArchivoExpediente oDAArchivoExpediente = new DAArchivoExpediente();
@@ -41,6 +41,39 @@ namespace SIAQ.BusinessProcess.Object
 
 				// Transacción en base de datos
 				oENTResponse = oDAArchivoExpediente.InsertArchivoComentario(oENTArchivoExpediente, this.sConnectionApplication, 0);
+
+				// Validación de error en consulta
+				if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+				// Validación de mensajes de la BD
+				oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+				if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
+		///<remarks>
+		///   <name>BPArchivoExpediente.InsertArchivoExpediente</name>
+		///   <create>12-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Inserta una nueva relación de préstamo en el modulo de Archivo</summary>
+		///<param name="oENTArchivoExpediente">Entidad de ArchivoExpediente con los parámetros necesarios para realizar la transacción</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse InsertArchivoExpediente(ENTArchivoExpediente oENTArchivoExpediente){
+			DAArchivoExpediente oDAArchivoExpediente = new DAArchivoExpediente();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Transacción en base de datos
+				oENTResponse = oDAArchivoExpediente.InsertArchivoExpediente(oENTArchivoExpediente, this.sConnectionApplication, 0);
 
 				// Validación de error en consulta
 				if (oENTResponse.GeneratesException) { return oENTResponse; }
@@ -140,6 +173,39 @@ namespace SIAQ.BusinessProcess.Object
 
 				// Transacción en base de datos
 				oENTResponse = oDAArchivoExpediente.SelectUbicacionExpediente(oENTArchivoExpediente, this.sConnectionApplication, 0);
+
+				// Validación de error en consulta
+				if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+				// Validación de mensajes de la BD
+				oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+				if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
+		///<remarks>
+		///   <name>BPArchivoExpediente.UpdateArchivoExpediente_Liberar</name>
+		///   <create>12-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Libera un expediente dejándolo disponible para una nueva asignación dentro del módulo de Archivo</summary>
+		///<param name="oENTArchivoExpediente">Entidad de ArchivoExpediente con los parámetros necesarios para realizar la transacción</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse UpdateArchivoExpediente_Liberar(ENTArchivoExpediente oENTArchivoExpediente){
+			DAArchivoExpediente oDAArchivoExpediente = new DAArchivoExpediente();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Transacción en base de datos
+				oENTResponse = oDAArchivoExpediente.UpdateArchivoExpediente_Liberar(oENTArchivoExpediente, this.sConnectionApplication, 0);
 
 				// Validación de error en consulta
 				if (oENTResponse.GeneratesException) { return oENTResponse; }

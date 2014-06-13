@@ -31,31 +31,48 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 
 		// Rutinas del programador
 
-		void InsertSeguimientoRecomendacion() {
+		void InsertArchivoExpediente() {
+			BPArchivoExpediente oBPArchivoExpediente = new BPArchivoExpediente();
+
+			ENTArchivoExpediente oENTArchivoExpediente = new ENTArchivoExpediente();
+			ENTResponse oENTResponse = new ENTResponse();
 			ENTSession SessionEntity = new ENTSession();
-			BPSeguimientoRecomendacion BPSeguimientoRecomendacion = new BPSeguimientoRecomendacion();
 
-			// Validaciones
-			if (this.ddlUbicacionExpediente.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar una Recomendación")); }
-			if (this.ddlUsuario_Recibe.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar un Tipo de Seguimiento")); }
-			if (this.ckeSeguimiento.Text.Trim() == "") { throw (new Exception("Es necesario ingresar un detalle del seguimiento")); }
+			Int32 UbicacionExpedienteId;
 
-			// Obtener sesión
-			SessionEntity = (ENTSession)Session["oENTSession"];
+			try
+			{
 
-			// Parámetros
-			BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.RecomendacionId = Int32.Parse(this.ddlUbicacionExpediente.SelectedItem.Value);
-			BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.TipoSeguimientoId = Int32.Parse(this.ddlUsuario_Recibe.SelectedItem.Value);
-			BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.FuncionarioId = SessionEntity.FuncionarioId;
-			BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.Comentario = this.ckeSeguimiento.Text.Trim();
+				// Ubicación seleccionada
+				UbicacionExpedienteId = Int32.Parse(this.ddlUbicacionExpediente.SelectedItem.Value);
 
+				// Validaciones
+				if (UbicacionExpedienteId == 0) { throw (new Exception("Es necesario seleccionar una Ubicación del Expediente")); }
 
-			// Transacción
-			BPSeguimientoRecomendacion.InsertSegSeguimiento();
+				if (UbicacionExpedienteId == 4) {
+					if (this.ddlUsuario_Recibe.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar un Tipo de Seguimiento")); }
+				}
 
-			// Errores
-			if (BPSeguimientoRecomendacion.ErrorId != 0) { throw (new Exception(BPSeguimientoRecomendacion.ErrorString)); }
+				// Obtener sesión
+				SessionEntity = (ENTSession)Session["oENTSession"];
+				
+				// Formulario
+				oENTArchivoExpediente.ExpedienteId = Int32.Parse(this.ExpedienteIdHidden.Value);
+				oENTArchivoExpediente.UbicacionExpedienteId = UbicacionExpedienteId;
+				oENTArchivoExpediente.idUsuario_Presta = SessionEntity.idUsuario;
+				oENTArchivoExpediente.idUsuario_Recibe = Int32.Parse(this.ddlUsuario_Recibe.SelectedItem.Value);
+				oENTArchivoExpediente.Comentario = this.ckeComentarios.Text.Trim();
 
+				// Transacción
+				oENTResponse = oBPArchivoExpediente.InsertArchivoExpediente(oENTArchivoExpediente);
+
+				// Errores y Warnings
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }	
+
+			}catch (Exception ex){
+				throw (ex);
+			}
 		}
 
 		void SelectedExpediente() {
@@ -193,7 +210,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlUbicacionExpediente.ClientID + "');", true);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.ddlUbicacionExpediente.ClientID + "');", true);
             }
 		}
 
@@ -201,14 +218,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 			try
             {
 
-                // Obtener Expedientes
-				InsertSeguimientoRecomendacion();
+                // Crear la asignación
+				InsertArchivoExpediente();
 
-				// Refrescar Formulario
-				SelectedExpediente();
-
-				// Foco
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlUbicacionExpediente.ClientID + "');", true);
+				// Regresar
+				Response.Redirect("arcDetalleExpediente.aspx?key=" + this.ExpedienteIdHidden.Value + "|" + this.SenderId.Value, false);
 
             }catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.ddlUbicacionExpediente.ClientID + "');", true);
@@ -220,7 +234,27 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 		}
 
 		protected void ddlUbicacionExpediente_SelectedIndexChanged(object sender, EventArgs e){
+			try
+            {
 
+                // Determinar la opción seleccionada
+				switch (this.ddlUbicacionExpediente.SelectedItem.Value) { 
+					case "1":
+					case "2":
+					case "3":
+						this.ddlUsuario_Recibe.SelectedIndex = 0;
+						this.ddlUsuario_Recibe.Enabled = false;
+						this.ckeComentarios.Focus();
+						break;
+					default:
+						this.ddlUsuario_Recibe.Enabled = true;
+						ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlUsuario_Recibe.ClientID + "');", true);
+						break;
+				}
+
+            }catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.ddlUbicacionExpediente.ClientID + "');", true);
+            }
 		}
 
 	}

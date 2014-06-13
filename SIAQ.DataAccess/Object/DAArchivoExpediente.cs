@@ -29,7 +29,7 @@ namespace SIAQ.DataAccess.Object
 		///   <author>Ruben.Cobos</author>
 		///</remarks>
 		///<summary>Inserta un comentario al Expediente en el módulo de Archivo</summary>
-		///<param name="oENTArchivoExpediente">Entidad de ArchivoExpediente con los parámetros necesarios para consultar la información</param>
+		///<param name="oENTArchivoExpediente">Entidad de ArchivoExpediente con los parámetros necesarios para crear el comentario</param>
 		///<param name="sConnection">Cadena de conexión a la base de datos</param>
 		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
 		///<returns>Una entidad de respuesta</returns>
@@ -55,6 +55,74 @@ namespace SIAQ.DataAccess.Object
 
 			sqlPar = new SqlParameter("UsuarioId", SqlDbType.Int);
 			sqlPar.Value = oENTArchivoExpediente.idUsuario;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Comentario", SqlDbType.VarChar);
+			sqlPar.Value = oENTArchivoExpediente.Comentario;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try{
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+			}catch (SqlException sqlEx){
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}finally{
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
+		///<remarks>
+		///   <name>DAArchivoExpediente.InsertArchivoExpediente</name>
+		///   <create>11-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Inserta una relación de préstamo de Expediente</summary>
+		///<param name="oENTArchivoExpediente">Entidad de ArchivoExpediente con los parámetros necesarios para crear la relación</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse InsertArchivoExpediente(ENTArchivoExpediente oENTArchivoExpediente, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspArchivoExpediente_Ins", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("ExpedienteId", SqlDbType.Int);
+			sqlPar.Value = oENTArchivoExpediente.ExpedienteId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("UbicacionExpedienteId", SqlDbType.Int);
+			sqlPar.Value = oENTArchivoExpediente.UbicacionExpedienteId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("idUsuario_Presta", SqlDbType.Int);
+			sqlPar.Value = oENTArchivoExpediente.idUsuario_Presta;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("idUsuario_Recibe", SqlDbType.Int);
+			sqlPar.Value = oENTArchivoExpediente.idUsuario_Recibe;
 			sqlCom.Parameters.Add(sqlPar);
 
 			sqlPar = new SqlParameter("Comentario", SqlDbType.VarChar);
@@ -227,6 +295,58 @@ namespace SIAQ.DataAccess.Object
 
 			sqlPar = new SqlParameter("Nombre", SqlDbType.VarChar);
 			sqlPar.Value = oENTArchivoExpediente.Nombre;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try{
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+			}catch (SqlException sqlEx){
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}finally{
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
+		///<remarks>
+		///   <name>DAArchivoExpediente.UpdateArchivoExpediente_Liberar</name>
+		///   <create>11-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Libera un expediente dejándolo disponible para una nueva asignación dentro del módulo de Archivo</summary>
+		///<param name="oENTArchivoExpediente">Entidad de ArchivoExpediente con los parámetros necesarios para liberar la relación</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse UpdateArchivoExpediente_Liberar(ENTArchivoExpediente oENTArchivoExpediente, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspArchivoExpediente_Upd_Liberar", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("ExpedienteId", SqlDbType.Int);
+			sqlPar.Value = oENTArchivoExpediente.ExpedienteId;
 			sqlCom.Parameters.Add(sqlPar);
 
 			// Inicializaciones

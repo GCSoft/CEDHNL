@@ -103,13 +103,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo {
         protected global::System.Web.UI.WebControls.DropDownList ddlUsuario_Recibe;
         
         /// <summary>
-        /// ckeSeguimiento control.
+        /// ckeComentarios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::CKEditor.NET.CKEditorControl ckeSeguimiento;
+        protected global::CKEditor.NET.CKEditorControl ckeComentarios;
         
         /// <summary>
         /// btnAsignar control.

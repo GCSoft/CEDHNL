@@ -33,39 +33,37 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 
 		// Rutinas del programador
 
-		private void SelectDefensor(){
-			BPFuncionario oBPFuncionario = new BPFuncionario();
-			ENTFuncionario oENTFuncionario = new ENTFuncionario();
+		private void SelectUsuario(){
+			ENTUsuario oENTUsuario = new ENTUsuario();
 			ENTResponse oENTResponse = new ENTResponse();
+
+			BPUsuario oBPUsuario = new BPUsuario();
 
 			try
 			{
 
 				// Formulario
-				oENTFuncionario.FuncionarioId = 0;
-				oENTFuncionario.idUsuario = 0;
-				oENTFuncionario.idArea = 10;	// Sólo del área de seguimientos 
-				oENTFuncionario.TituloId = 0;
-				oENTFuncionario.PuestoId = 0;
-				oENTFuncionario.Nombre = "";
+				oENTUsuario.idRol = 0;
+				oENTUsuario.idArea = 0;
+				oENTUsuario.sEmail = "";
+				oENTUsuario.sNombre = "";
+				oENTUsuario.tiActivo = 1;
 
 				// Transacción
-				oENTResponse = oBPFuncionario.SelectFuncionario(oENTFuncionario);
+				oENTResponse = oBPUsuario.SelectUsuario(oENTUsuario);
 
-				// Errores
+				// Errores y Warnings
 				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
-
-				// Warnings
 				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Warning', true);", true); }
 
 				// Llenado de control
-				this.ddlDefensor.DataTextField = "sFullName";
-				this.ddlDefensor.DataValueField = "FuncionarioId";
-				this.ddlDefensor.DataSource = oENTResponse.dsResponse.Tables[1];
-				this.ddlDefensor.DataBind();
+				this.ddlUsuario.DataTextField = "sFullName";
+				this.ddlUsuario.DataValueField = "idUsuario";
+				this.ddlUsuario.DataSource = oENTResponse.dsResponse.Tables[3];
+				this.ddlUsuario.DataBind();
 
 				// Opción todos
-				this.ddlDefensor.Items.Insert(0, new ListItem("[Todos]", "0"));
+				this.ddlUsuario.Items.Insert(0, new ListItem("[Todos]", "0"));
 
 			}catch (Exception ex){
 				throw (ex);
@@ -73,36 +71,35 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 		}
 
 		private void SelectExpedienteArchivo(){
+			BPArchivoExpediente oBPArchivoExpediente = new BPArchivoExpediente();
 
-			BPSeguimientoRecomendacion BPSeguimientoRecomendacion = new BPSeguimientoRecomendacion();
+			ENTArchivoExpediente oENTArchivoExpediente = new ENTArchivoExpediente();
+			ENTResponse oENTResponse = new ENTResponse();
 
-			// Estado inicial del grid
-			this.gvExpediente.DataSource = null;
-			this.gvExpediente.DataBind();
-
-			// Parámetros
-			BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.Numero = this.txtExpediente.Text.Trim();
-			BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.Quejoso = this.txtQuejoso.Text.Trim();
-			BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.FuncionarioId = Int32.Parse(this.ddlDefensor.SelectedItem.Value);
-
-			// Transacción
-			BPSeguimientoRecomendacion.SelectRecomendacionesSeguimientos_Filtro();
-
-			// Validaciones
-			if (BPSeguimientoRecomendacion.ErrorId != 0) { throw (new Exception(BPSeguimientoRecomendacion.ErrorString)); }
-
-			// Listado de recomendaciones
-			if (BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows.Count > 0)
+			try
 			{
 
-				this.gvExpediente.DataSource = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData;
+				// Formulario
+				oENTArchivoExpediente.idUsuario = Int32.Parse(this.ddlUsuario.SelectedItem.Value);
+				oENTArchivoExpediente.Numero = this.txtExpediente.Text.Trim();
+				oENTArchivoExpediente.Quejoso = this.txtQuejoso.Text.Trim();
+
+				// Transacción
+				oENTResponse = oBPArchivoExpediente.SelectArchivoExpedienteFiltro(oENTArchivoExpediente);
+
+				// Errores
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+
+				// Warnings
+				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Warning', false);", true); }
+
+				// Llenado de control
+				this.gvExpediente.DataSource = oENTResponse.dsResponse.Tables[1];
 				this.gvExpediente.DataBind();
-			}else {
 
-				// Sin resultados
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('No se encontraron expedientes', 'Warning', false);", true);
+			}catch (Exception ex){
+				throw (ex);
 			}
-
 		}
 
 
@@ -116,7 +113,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 				if (Page.IsPostBack) { return; }
 
 				// Llenado de controles
-				SelectDefensor();
+				SelectUsuario();
 
                 // Estado inicial
 				this.gvExpediente.DataSource = null;

@@ -20,22 +20,42 @@ namespace SIAQ.Entity.Object
 	{
 
 		// Definiciones
-		private Int32	_idUsuario;	// Identificador único del Usuario que tiene asignado el Expediente
-		private String	_Numero;	// Número de expediente a filtrar
-		private String	_Quejoso;	// Nombre del quejoso que levanta la denuncia
+		private Int32	_ExpedienteId;			// Identificador único del Expediente a consultar
+		private Int32	_idUsuario;				// Identificador único del Usuario que tiene asignado el Expediente
+		private Int32	_UbicacionExpedienteId;	// Identificador único de la Ubicacion del Expediente a consultar
+		private String  _Comentario;			// Comentario en el expediente dentro del módulo de archivo
+		private String	_Nombre;				// Nombre a filtrar
+		private String	_Numero;				// Número de expediente a filtrar
+		private String	_Quejoso;				// Nombre del quejoso que levanta la denuncia
 
 		
 		 //Constructor
 
 		public ENTArchivoExpediente()
 		{
+			_ExpedienteId = 0;
 			_idUsuario = 0;
+			_UbicacionExpedienteId = 0;
+			_Comentario = "";
+			_Nombre = "";
 			_Numero = "";
 			_Quejoso = "";
 		}
 
 
 		// Propiedades
+
+		///<remarks>
+		///   <name>ENTArchivoExpediente.ExpedienteId</name>
+		///   <create>12-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el identificador único del Expediente a consultar</summary>
+		public Int32 ExpedienteId
+		{
+			get { return _ExpedienteId; }
+			set { _ExpedienteId = value; }
+		}
 
 		///<remarks>
 		///   <name>ENTArchivoExpediente.idUsuario</name>
@@ -47,6 +67,42 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _idUsuario; }
 			set { _idUsuario = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTArchivoExpediente.UbicacionExpedienteId</name>
+		///   <create>11-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el identificador único de la Ubicacion del Expediente a consultar</summary>
+		public Int32 UbicacionExpedienteId
+		{
+			get { return _UbicacionExpedienteId; }
+			set { _UbicacionExpedienteId = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTArchivoExpediente.Comentario</name>
+		///   <create>11-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el comentario en el expediente dentro del modulo de Archivo</summary>
+		public String Comentario
+		{
+			get { return _Comentario; }
+			set { _Comentario = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTArchivoExpediente.Nombre</name>
+		///   <create>11-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el Nombre a filtrar</summary>
+		public String Nombre
+		{
+			get { return _Nombre; }
+			set { _Nombre = value; }
 		}
 
 		///<remarks>

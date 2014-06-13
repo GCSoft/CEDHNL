@@ -49,13 +49,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo {
         protected global::System.Web.UI.WebControls.TextBox txtQuejoso;
         
         /// <summary>
-        /// ddlDefensor control.
+        /// ddlUsuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDefensor;
+        protected global::System.Web.UI.WebControls.DropDownList ddlUsuario;
         
         /// <summary>
         /// Panel2 control.

@@ -28,9 +28,9 @@
                             <td class="Campo"><asp:TextBox ID="txtQuejoso" runat="server" CssClass="Textbox_General" Width="211px"></asp:TextBox></td>
                         </tr>
 						<tr>
-                            <td class="Etiqueta">Defensor</td>
+                            <td class="Etiqueta">Usuario con el Expediente</td>
                             <td class="Espacio"></td>
-                            <td class="Campo"><asp:DropDownList ID="ddlDefensor" runat="server" CssClass="DropDownList_General" Width="216px" ></asp:DropDownList></td>
+                            <td class="Campo"><asp:DropDownList ID="ddlUsuario" runat="server" CssClass="DropDownList_General" Width="216px" ></asp:DropDownList></td>
                         </tr>
                     </table>
                 </asp:Panel>
@@ -67,25 +67,23 @@
 							<table border="1px" cellpadding="0px" cellspacing="0px" width="100%">
 								<tr class="Grid_Header">
 									<td style="width:100px;">Número</td>
-									<td>Observaciones</td>
-									<td style="width:70px;">Fecha</td>
-									<td style="width:250px;">Estatus</td>
-									<td style="width:120px;">TipoSolicitud</td>
-									<td style="width:120px;">LugarHechos</td>
+									<td style="width:100px;">Ubicación</td>
+									<td style="width:300px;">Usuario con el Expediente</td>
+									<td style="width:110px;">Fecha de Préstamo</td>
+									<td>Comentarios</td>
 									<td style="width:25px;"></td>
 								</tr>
 								<tr class="Grid_Row">
-									<td colspan="7">Seleccione los filtros deseados y pulse el botón Buscar</td>
+									<td colspan="6">Seleccione los filtros deseados y pulse el botón Buscar</td>
 								</tr>
 							</table>
 						</EmptyDataTemplate>
 						<Columns>
-							<asp:BoundField HeaderText="Número"			ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="100px" DataField="Numero"			SortExpression="Numero"></asp:BoundField>
-							<asp:BoundField HeaderText="Observaciones"	ItemStyle-HorizontalAlign="Left"							DataField="Observaciones"	SortExpression="Observaciones"></asp:BoundField>
-							<asp:BoundField HeaderText="Fecha"			ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="70px"	DataField="Fecha"			SortExpression="Fecha"></asp:BoundField>
-							<asp:BoundField HeaderText="Estatus"		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="250px"	DataField="Estatus"			SortExpression="Estatus"></asp:BoundField>
-							<asp:BoundField HeaderText="TipoSolicitud"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="120px"	DataField="TipoSolicitud"	SortExpression="TipoSolicitud"></asp:BoundField>
-							<asp:BoundField HeaderText="LugarHechos"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="120px"	DataField="LugarHechos"		SortExpression="LugarHechos"></asp:BoundField>
+							<asp:BoundField HeaderText="Número"						ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="100px" DataField="Numero"				SortExpression="Numero"></asp:BoundField>
+							<asp:BoundField HeaderText="Ubicación"					ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="100px" DataField="Ubicacion"			SortExpression="Ubicacion"></asp:BoundField>
+							<asp:BoundField HeaderText="Usuario con el Expediente"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="300px" DataField="UsuarioNombreRecibe"	SortExpression="UsuarioNombreRecibe"></asp:BoundField>
+							<asp:BoundField HeaderText="Fecha de Préstamo"			ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="110px" DataField="FechaPrestamo"		SortExpression="FechaPrestamo"></asp:BoundField>
+							<asp:BoundField HeaderText="Comentarios"				ItemStyle-HorizontalAlign="Left"							DataField="Comentarios"			SortExpression="Comentarios"></asp:BoundField>
 							<asp:TemplateField ItemStyle-HorizontalAlign ="Center" ItemStyle-Width="20px">
 								<ItemTemplate>
 									<asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />

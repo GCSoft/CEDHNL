@@ -238,7 +238,7 @@
     </div>
 
 	<asp:Panel ID="pnlAction" runat="server" CssClass="ActionBlock" Visible="false">
-        <asp:Panel ID="pnlActionContent" runat="server" CssClass="ActionContent" Style="top:180px;" Height="400px" Width="800px">
+        <asp:Panel ID="pnlActionContent" runat="server" CssClass="ActionContent" Style="top:180px;" Height="380px" Width="800px">
             <asp:Panel ID="pnlActionHeader" runat="server" CssClass="ActionHeader">
                 <table border="0" cellpadding="0" cellspacing="0" style="height:100%; width:100%">
                     <tr>

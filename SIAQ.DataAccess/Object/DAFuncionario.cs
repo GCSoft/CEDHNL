@@ -466,5 +466,36 @@ namespace SIAQ.DataAccess.Object
             return oENTResponse;
         }
 
+        ///<remarks>
+        ///   <name>DAcatEstatus.searchcatDoctores</name>
+        ///   <create>27/ene/2014</create>
+        ///   <author>Generador</author>
+        ///</remarks>
+        ///<summary>Metodo para obtener las catEstatus del sistema</summary>
+        public ENTResponse searchDoctores(ENTFuncionario entFuncionario)
+        {
+            ENTResponse oENTResponse = new ENTResponse();
+            DataSet ds = new DataSet();
+            // Transacción
+            try
+            {
+                oENTResponse.dsResponse = dbs.ExecuteDataSet("uspcatDoctorSelcbo");
+            }
+            catch (SqlException sqlEx)
+            {
+                oENTResponse.ExceptionRaised(sqlEx.Message);
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+            finally
+            {
+            }
+            // Resultado
+            return oENTResponse;
+
+        }
+
     }
 }

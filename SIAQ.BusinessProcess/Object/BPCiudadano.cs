@@ -362,5 +362,34 @@ namespace SIAQ.BusinessProcess.Object
             return oENTResponse;
         }
 
+        ///<remarks>
+        ///   <name>BPCiudadano.searchCiudadanoAtencionSel</name>
+        ///   <create>11/jun/2014</create>
+        ///   <author>JJ</author>
+        ///</remarks>
+        ///<summary>Metodo para obtener las Ciudadanos que esten en una atención</summary>
+        public ENTResponse searchCiudadanoAtencion(ENTCiudadano entCiudadano)
+        {
+
+            ENTResponse oENTResponse = new ENTResponse();
+            try
+            {
+                // Consulta a base de datos
+                DACiudadano dataCiudadano = new DACiudadano();
+                oENTResponse = dataCiudadano.searchCiudadanoAtencion(entCiudadano);
+                // Validación de error en consulta
+                if (oENTResponse.GeneratesException) { return oENTResponse; }
+                // Validación de mensajes de la BD
+                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+                if (oENTResponse.sMessage != "") { return oENTResponse; }
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+            // Resultado
+            return oENTResponse;
+
+        }
     }
 }

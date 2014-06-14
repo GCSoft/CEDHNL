@@ -44,12 +44,14 @@
     <Compile Include="ENTBase.cs" />
     <Compile Include="Object\ENTArchivoExpediente.cs" />
     <Compile Include="Object\ENTArea.cs" />
+    <Compile Include="Object\ENTAtencion.cs" />
     <Compile Include="Object\ENTAutoridad.cs" />
     <Compile Include="Object\ENTCalificacion.cs" />
     <Compile Include="Object\ENTCanalizacion.cs" />
     <Compile Include="Object\ENTCiudad.cs" />
     <Compile Include="Object\ENTCiudadano.cs" />
     <Compile Include="Object\ENTColonia.cs" />
+    <Compile Include="Object\ENTDictamen.cs" />
     <Compile Include="Object\ENTDiligencia.cs" />
     <Compile Include="Object\ENTDocumento.cs" />
     <Compile Include="Object\ENTEscolaridad.cs" />

@@ -40,6 +40,7 @@ namespace SIAQ.Entity.Object
         private string _CorreoElectronico;
         private byte _AniosResidiendoNL;
         private byte _DependientesEconomicos;
+        private int _AtencionId; // Para atención a victimas
 
         public ENTCiudadano()
         {
@@ -65,6 +66,7 @@ namespace SIAQ.Entity.Object
             _ColoniaId = 0;
             _Calle = string.Empty;
             _CampoBusqueda = string.Empty;
+            _AtencionId = 0;
 
         }
         ///<remarks>
@@ -356,6 +358,15 @@ namespace SIAQ.Entity.Object
         {
             get { return _ResultData; }
             set { _ResultData = value; }
+        }
+
+        /// <summary>
+        /// GET/SET AtencionId
+        /// </summary>
+        public int AtencionId
+        {
+            get { return _AtencionId; }
+            set { _AtencionId = value; }
         }
     }
 }

@@ -49,12 +49,14 @@
     <Compile Include="BPBase.cs" />
     <Compile Include="Object\BPArchivoExpediente.cs" />
     <Compile Include="Object\BPArea.cs" />
+    <Compile Include="Object\BPAtencion.cs" />
     <Compile Include="Object\BPAutoridad.cs" />
     <Compile Include="Object\BPCalificacion.cs" />
     <Compile Include="Object\BPCanalizacion.cs" />
     <Compile Include="Object\BPCiudad.cs" />
     <Compile Include="Object\BPCiudadano.cs" />
     <Compile Include="Object\BPColonia.cs" />
+    <Compile Include="Object\BPDictamen.cs" />
     <Compile Include="Object\BPDiligencia.cs" />
     <Compile Include="Object\BPDocumento.cs" />
     <Compile Include="Object\BPEscolaridad.cs" />

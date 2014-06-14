@@ -57,6 +57,11 @@
     <Content Include="Application\WebApp\Private\Archivo\arcLiberarExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segCierrarExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segNotificacion.aspx" />
+    <Content Include="Application\WebApp\Private\Victimas\VicAgregarDocumento.aspx" />
+    <Content Include="Application\WebApp\Private\Victimas\VicBusquedaAtenciones.aspx" />
+    <Content Include="Application\WebApp\Private\Victimas\VicDetalleAtencion.aspx" />
+    <Content Include="Application\WebApp\Private\Victimas\VicDictamenMedico.aspx" />
+    <Content Include="Application\WebApp\Private\Victimas\VicListadoAtenciones.aspx" />
     <Content Include="Include\Handler\ObtenerRepositorio.ashx" />
     <None Include="Include\Image\Vectores\vssver2.scc" />
   </ItemGroup>
@@ -962,6 +967,41 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeBusquedaCiudadano.aspx.designer.cs">
       <DependentUpon>opeBusquedaCiudadano.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Victimas\VicAgregarDocumento.aspx.cs">
+      <DependentUpon>VicAgregarDocumento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Victimas\VicAgregarDocumento.aspx.designer.cs">
+      <DependentUpon>VicAgregarDocumento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Victimas\VicBusquedaAtenciones.aspx.cs">
+      <DependentUpon>VicBusquedaAtenciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Victimas\VicBusquedaAtenciones.aspx.designer.cs">
+      <DependentUpon>VicBusquedaAtenciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Victimas\VicDetalleAtencion.aspx.cs">
+      <DependentUpon>VicDetalleAtencion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Victimas\VicDetalleAtencion.aspx.designer.cs">
+      <DependentUpon>VicDetalleAtencion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Victimas\VicDictamenMedico.aspx.cs">
+      <DependentUpon>VicDictamenMedico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Victimas\VicDictamenMedico.aspx.designer.cs">
+      <DependentUpon>VicDictamenMedico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Victimas\VicListadoAtenciones.aspx.cs">
+      <DependentUpon>VicListadoAtenciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Victimas\VicListadoAtenciones.aspx.designer.cs">
+      <DependentUpon>VicListadoAtenciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Visitaduria\opeBusquedaExpedientes.aspx.cs">
       <DependentUpon>opeBusquedaExpedientes.aspx</DependentUpon>

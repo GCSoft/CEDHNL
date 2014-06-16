@@ -113,10 +113,6 @@ namespace SIAQ.DataAccess.Object
                     Parameter.Value = ExpedienteResolucionEntity.Detalle;
                     Command.Parameters.Add(Parameter);
 
-                    Parameter = new SqlParameter("Fecha", SqlDbType.VarChar);
-                    Parameter.Value = ExpedienteResolucionEntity.Fecha;
-                    Command.Parameters.Add(Parameter);
-
                     Command.ExecuteNonQuery();
                 }
                 catch (SqlException Exception)
@@ -199,20 +195,12 @@ namespace SIAQ.DataAccess.Object
                     Parameter.Value = ExpedienteResolucionEntity.ExpedienteId;
                     Command.Parameters.Add(Parameter);
 
-                    Parameter = new SqlParameter("FuncionarioId", SqlDbType.Int);
-                    Parameter.Value = ExpedienteResolucionEntity.FuncionarioId;
-                    Command.Parameters.Add(Parameter);
-
                     Parameter = new SqlParameter("TipoResolucionId", SqlDbType.Int);
                     Parameter.Value = ExpedienteResolucionEntity.TipoResolucionId;
                     Command.Parameters.Add(Parameter);
 
                     Parameter = new SqlParameter("Detalle", SqlDbType.VarChar);
                     Parameter.Value = ExpedienteResolucionEntity.Detalle;
-                    Command.Parameters.Add(Parameter);
-
-                    Parameter = new SqlParameter("Fecha", SqlDbType.VarChar);
-                    Parameter.Value = ExpedienteResolucionEntity.Fecha;
                     Command.Parameters.Add(Parameter);
 
                     Command.ExecuteNonQuery();

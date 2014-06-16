@@ -62,6 +62,8 @@
     <Content Include="Application\WebApp\Private\Victimas\VicDetalleAtencion.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\VicDictamenMedico.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\VicListadoAtenciones.aspx" />
+    <Content Include="Application\WebApp\Private\Visitaduria\opeLstEspedienteSecretaria.aspx" />
+    <Content Include="Application\WebApp\Private\Visitaduria\opeLstExpedientesFuncionario.aspx" />
     <Content Include="Include\Handler\ObtenerRepositorio.ashx" />
     <None Include="Include\Image\Vectores\vssver2.scc" />
   </ItemGroup>
@@ -170,8 +172,6 @@
     <Content Include="Application\WebApp\Private\Operation\opeDetalleSolicitud.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeEnviarSolicitud.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeInicio.aspx" />
-    <Content Include="Application\WebApp\Private\Visitaduria\opeLstEspedienteSecretaria.aspx" />
-    <Content Include="Application\WebApp\Private\Visitaduria\opeLstExpedientesFuncionario.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\opeLstExpedientesTitular.aspx" />
     <Content Include="Application\WebApp\Private\SysApp\Seguimiento\opeLstRecDefensor.aspx" />
     <Content Include="Application\WebApp\Private\SysApp\Seguimiento\opeLstRecDirector.aspx" />
@@ -1068,14 +1068,12 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Visitaduria\opeLstEspedienteSecretaria.aspx.cs">
       <DependentUpon>opeLstEspedienteSecretaria.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\Visitaduria\opeLstEspedienteSecretaria.aspx.designer.cs">
       <DependentUpon>opeLstEspedienteSecretaria.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Visitaduria\opeLstExpedientesFuncionario.aspx.cs">
       <DependentUpon>opeLstExpedientesFuncionario.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\Visitaduria\opeLstExpedientesFuncionario.aspx.designer.cs">
       <DependentUpon>opeLstExpedientesFuncionario.aspx</DependentUpon>

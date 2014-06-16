@@ -161,27 +161,24 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
                 ExpedienteResolucionProcess.SelectExpedienteResolucion();
 
-                if (ExpedienteResolucionProcess.ErrorId == 0)
+                if (ExpedienteResolucionProcess.ErrorId != 0)
                 {
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ExpedienteResolucionProcess.ErrorDescription) + "', 'Error', true);", true);
                     return;
                 }
 
-                if (ExpedienteResolucionProcess.ExpedienteResolucionEntity.ResultData.Tables[0].Rows.Count == 0)
+                if (ExpedienteResolucionProcess.ExpedienteResolucionEntity.ResultData.Tables[0].Rows.Count > 0)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText("No se encontró información de resolución para el expediente") + "', 'Error', true);", true);
-                    return;
+                    // Se llenan los valores de los controles con los de la base de datos
+                    TipoResolucionIdList.SelectedValue = ExpedienteResolucionProcess.ExpedienteResolucionEntity.ResultData.Tables[0].Rows[0]["TipoResolucionId"].ToString();
+                    DetalleBox.Text = ExpedienteResolucionProcess.ExpedienteResolucionEntity.ResultData.Tables[0].Rows[0]["Detalle"].ToString();
+                    ExpedienteResolucionIdHidden.Value = ExpedienteResolucionProcess.ExpedienteResolucionEntity.ResultData.Tables[0].Rows[0]["ExpedienteResolucionId"].ToString();
+
+                    // Se bloquean los controles porque no se le debe de permitir al funcionario modificar la información
+                    TipoResolucionIdList.Enabled = false;
+                    DetalleBox.Enabled = false;
+                    GuardarButton.Enabled = false;
                 }
-
-                // Se llenan los valores de los controles con los de la base de datos
-                TipoResolucionIdList.SelectedValue = ExpedienteResolucionProcess.ExpedienteResolucionEntity.ResultData.Tables[0].Rows[0]["TipoResolicionId"].ToString();
-                DetalleBox.Text = ExpedienteResolucionProcess.ExpedienteResolucionEntity.ResultData.Tables[0].Rows[0]["Detalle"].ToString();
-                ExpedienteResolucionIdHidden.Value = ExpedienteResolucionProcess.ExpedienteResolucionEntity.ResultData.Tables[0].Rows[0]["ExpedienteResolicionId"].ToString();
-
-                // Se bloquean los controles porque no se le debe de permitir al funcionario modificar la información
-                TipoResolucionIdList.Enabled = false;
-                DetalleBox.Enabled = false;
-                GuardarButton.Enabled = false;
             }
 
             private void SelectTipoResolucion()

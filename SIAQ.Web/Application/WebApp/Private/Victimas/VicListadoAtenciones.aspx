@@ -13,8 +13,7 @@
         <tr>
             <td>
                 <asp:Panel id="pnlGrid" runat="server" Width="100%">
-                    <asp:GridView id="gvApps" runat="server" AllowPaging="false" 
-                        AllowSorting="true"  AutoGenerateColumns="False" Width="100%"
+                    <asp:GridView id="gvApps" runat="server" AllowPaging="false" AllowSorting="true" AutoGenerateColumns="False" Width="100%"
 						DataKeyNames="AtencionId" 
 						onrowcommand="gvApps_RowCommand" 
 						onrowdatabound="gvApps_RowDataBound"

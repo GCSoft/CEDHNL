@@ -1,7 +1,7 @@
 /*---------------------------------------------------------------------------------------------------------------------------------
 ' Nombre:	AppIndex
-' Autor:		GCSoft - Web Project Creator BETA 1.0
-' Fecha:		21-Octubre-2013
+' Autor:	GCSoft - Web Project Creator BETA 1.0
+' Fecha:	21-Octubre-2013
 '
 ' Descripción:
 '           Pantalla inicial de la aplicación
@@ -81,15 +81,19 @@ namespace SIAQ.Web.Application.WebApp.Private.Home
 					break;
 
 				case 13: // Atención a Víctimas - Secretaria
+					this.Response.Redirect("../Victimas/VicListadoAtenciones.aspx", false);
 					break;
 
 				case 14: // Atención a Víctimas - Doctor
+					this.Response.Redirect("../Victimas/VicListadoAtenciones.aspx", false);
 					break;
 
 				case 15: // Atención a Víctimas - Director
+					this.Response.Redirect("../Victimas/VicListadoAtenciones.aspx", false);
 					break;
 
 				case 16: // Archivo
+					this.Response.Redirect("../Archivo/arcBusquedaExpediente.aspx", false);
 					break;
 
 				default:

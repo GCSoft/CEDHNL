@@ -407,7 +407,7 @@
                         </tr>
                         <tr class="trFilaItem">
                             <td class="tdActionCeldaLeyendaItem" colspan="3">
-                                <CKEditor:CKEditorControl ID="txtAsuntoSolicitud" BasePath="/ckeditor/" runat="server"></CKEditor:CKEditorControl>
+                                <CKEditor:CKEditorControl ID="txtAsuntoSolicitud" BasePath="/Include/Components/CKEditor/Core/" runat="server"></CKEditor:CKEditorControl>
                             </td>
                         </tr>
                         <tr style="height: 5px;">

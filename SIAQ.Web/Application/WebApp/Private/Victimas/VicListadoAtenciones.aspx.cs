@@ -19,12 +19,13 @@ using System.Web.UI.WebControls;
 using GCSoft.Utilities.Common;
 using GCSoft.Utilities.Security;
 using SIAQ.Entity.Object;
+using SIAQ.BusinessProcess.Page;
 using SIAQ.BusinessProcess.Object;
 using System.Data;
 
 namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 {
-	public partial class VicListadoAtenciones : System.Web.UI.Page
+	public partial class VicListadoAtenciones : BPPage
 	{
 
 		// Utilerías
@@ -35,31 +36,36 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		// Rutinas del programador
 
 		private void SelectAtencion(){
-			BPAtencion bss = new BPAtencion();
-			ENTAtencion ent = new ENTAtencion();
+			BPAtencion oBPAtencion = new BPAtencion();
+			ENTAtencion oENTAtencion = new ENTAtencion();
+			ENTResponse oENTResponse = new ENTResponse();
+
 			ENTSession oSession = (ENTSession)Session["oENTSession"];
-			ENTResponse oResponse = new ENTResponse();
 
-			// Estado inicial del grid
-			this.gvApps.DataSource = null;
-			this.gvApps.DataBind();
+			try
+			{
 
-			// Asignar valores
-			ent.IdUsuario = oSession.idUsuario;
-			ent.Aprobar = 0;
+				// Formulario
+				oENTAtencion.IdUsuario = oSession.idUsuario;
+				oENTAtencion.Aprobar = 0;
 
-			// Transacción
-			oResponse = bss.searchAtencion(ent);
+				// Transacción
+				oENTResponse = oBPAtencion.SelectAtencion(oENTAtencion);
 
-			// Validaciones
-			if (ent.ErrorId != 0) { throw (new Exception(ent.ErrorString)); }
+				// Errores
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
 
-			// Listado de Atenciones
-			if (oResponse.dsResponse.Tables[1].Rows.Count > 0){
-				this.gvApps.DataSource = oResponse.dsResponse.Tables[1];
+				// Warnings
+				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Warning', true);", true); }
+
+				// Llenado de control
+				this.gvApps.DataSource = oENTResponse.dsResponse.Tables[1];
 				this.gvApps.DataBind();
-			}
 
+
+			}catch (Exception ex){
+				throw (ex);
+			}
 		}
 
 

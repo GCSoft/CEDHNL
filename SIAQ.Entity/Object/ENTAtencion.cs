@@ -19,6 +19,8 @@ namespace SIAQ.Entity.Object
         private int _Aprobar; // Aprobar o no aprobar atención
         private string _NombreCiudadano; // Nombre del ciudadano
         private int _DoctorId; // Identificador del doctor
+		private int _FuncionarioId; // Identificador del funcionario
+		private string _Quejoso; // Valor de Numero
 
         public ENTAtencion()
         {
@@ -35,7 +37,11 @@ namespace SIAQ.Entity.Object
             _Aprobar = 0;
             _NombreCiudadano = "";
             _DoctorId = 0;
+			_FuncionarioId = 0;
+			_Quejoso = "";
         }
+
+
         ///<remarks>
         ///   <name>Atencion.AtencionId</name>
         ///   <create>04/jun/2014</create>
@@ -179,5 +185,31 @@ namespace SIAQ.Entity.Object
             get { return _DoctorId; }
             set { _DoctorId = value; }
         }
+
+
+		///<remarks>
+		///   <name>Atencion.FuncionarioId</name>
+		///   <create>04/jun/2014</create>
+		///   <author>JJ</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna FuncionarioId</summary>
+		public int FuncionarioId
+		{
+			get { return _FuncionarioId; }
+			set { _FuncionarioId = value; }
+		}
+
+		///<remarks>
+		///   <name>Atencion.Quejoso</name>
+		///   <create>04/jun/2014</create>
+		///   <author>Generador</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna Quejoso</summary>
+		public string Quejoso
+		{
+			get { return _Quejoso; }
+			set { _Quejoso = value; }
+		}
+
     }
 }

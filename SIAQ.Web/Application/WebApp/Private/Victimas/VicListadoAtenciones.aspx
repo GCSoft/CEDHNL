@@ -31,7 +31,7 @@
 									<td style="width:120px;">Solicitud</td>
 								</tr>
 								<tr class="Grid_Row">
-									<td colspan="7">No se encontraron Expedientes en proceso de seguimiento</td>
+									<td colspan="7">No se encontraron atenciones pendientes de aprobación de cierre</td>
 								</tr>
 							</table>
 						</EmptyDataTemplate>

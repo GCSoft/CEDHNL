@@ -224,34 +224,5 @@ namespace SIAQ.BusinessProcess.Object
 			return oENTResponse;
 		}
 
-        ///<remarks>
-        ///   <name>BPcatEstatus.searchcatEstatus</name>
-        ///   <create>27/ene/2014</create>
-        ///   <author>Generador</author>
-        ///</remarks>
-        ///<summary>Metodo para obtener las catEstatus del sistema</summary>
-        public ENTResponse searchDoctores(ENTFuncionario entFuncionario)
-        {
-
-            ENTResponse oENTResponse = new ENTResponse();
-            try
-            {
-                // Consulta a base de datos
-                DAFuncionario datacatEstatus = new DAFuncionario();
-                oENTResponse = datacatEstatus.searchDoctores(entFuncionario);
-                // Validación de error en consulta
-                if (oENTResponse.GeneratesException) { return oENTResponse; }
-                // Validación de mensajes de la BD
-                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-                if (oENTResponse.sMessage != "") { return oENTResponse; }
-            }
-            catch (Exception ex)
-            {
-                oENTResponse.ExceptionRaised(ex.Message);
-            }
-            // Resultado
-            return oENTResponse;
-
-        }
    }
 }

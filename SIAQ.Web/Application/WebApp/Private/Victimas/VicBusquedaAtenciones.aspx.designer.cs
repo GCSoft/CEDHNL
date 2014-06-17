@@ -31,31 +31,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         protected global::System.Web.UI.WebControls.Panel pnlFormulario;
         
         /// <summary>
-        /// txtAtencionId control.
+        /// txtAtencionNumero control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAtencionId;
+        protected global::System.Web.UI.WebControls.TextBox txtAtencionNumero;
         
         /// <summary>
-        /// txtSolicitudId control.
+        /// txtQuejoso control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSolicitudId;
-        
-        /// <summary>
-        /// txtCiudadano control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCiudadano;
+        protected global::System.Web.UI.WebControls.TextBox txtQuejoso;
         
         /// <summary>
         /// ddlDoctor control.

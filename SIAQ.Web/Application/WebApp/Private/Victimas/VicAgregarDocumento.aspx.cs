@@ -100,7 +100,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			ent.AtencionId = Int32.Parse(this.hddAtencionId.Value );
 
 			// Transacción
-            oResponse = bss.searchAtencion(ent); // SelectExpediente_DetalleSeguimientos();
+            //oResponse = bss.searchAtencion(ent); // SelectExpediente_DetalleSeguimientos();
 
             ds = oResponse.dsResponse;
 

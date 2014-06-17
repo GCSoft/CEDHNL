@@ -109,7 +109,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
             private void SelectTipoRecomendacion()
             {
-                TipoRecomendacionList.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+                BPTipoRecomendacion TipoRecomendacionProcess = new BPTipoRecomendacion();
+
+                TipoRecomendacionProcess.SelectTipoRecomendacion();
+
+                if (TipoRecomendacionProcess.ErrorId == 0)
+                {
+                    TipoRecomendacionList.DataTextField = "Nombre";
+                    TipoRecomendacionList.DataValueField = "TipoRecomendacionId";
+
+                    TipoRecomendacionList.DataSource = TipoRecomendacionProcess.TipoRecomendacionEntity.ResultData.Tables[0];
+                    TipoRecomendacionList.DataBind();
+
+                    TipoRecomendacionList.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+                }
+                else
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(TipoRecomendacionProcess.ErrorDescription) + "', 'Error', true);", true);
             }
         #endregion
     }

@@ -168,6 +168,39 @@ namespace SIAQ.BusinessProcess.Object
 		}
 
 		///<remarks>
+		///   <name>BPAtencion.InsertAtencionDoctor</name>
+		///   <create>19-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Crea una nueva asignación de un funcionario a un Expediente de Atención a Víctimas</summary>
+		///<param name="entAtencion">Entidad de Atención a Víctimas con los parámetros necesarios para realizar la transacción</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse InsertAtencionDoctor(ENTAtencion oENTAtencion){
+			DAAtencion oDAAtencion = new DAAtencion();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Transacción en base de datos
+				oENTResponse = oDAAtencion.InsertAtencionDoctor(oENTAtencion, this.sConnectionApplication, 0);
+
+				// Validación de error en consulta
+				if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+				// Validación de mensajes de la BD
+				oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+				if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
+		///<remarks>
 		///   <name>BPAtencion.SelectAtencion</name>
         ///   <create>17-Junio-2014</create>
         ///   <author>Ruben.Cobos</author>
@@ -265,6 +298,39 @@ namespace SIAQ.BusinessProcess.Object
            // Resultado
            return oENTResponse;
         }
+
+		///<remarks>
+		///   <name>BPAtencion.UpdateAtencion_Estatus</name>
+		///   <create>19-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Cambia el estatus de un Expediente de Atencion a Víctimas</summary>
+		///<param name="entAtencion">Entidad de Atención a Víctimas con los parámetros necesarios para realizar la transacción</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse UpdateAtencion_Estatus(ENTAtencion oENTAtencion){
+			DAAtencion oDAAtencion = new DAAtencion();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Transacción en base de datos
+				oENTResponse = oDAAtencion.UpdateAtencion_Estatus(oENTAtencion, this.sConnectionApplication, 0);
+
+				// Validación de error en consulta
+				if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+				// Validación de mensajes de la BD
+				oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+				if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
 
 	}
 }

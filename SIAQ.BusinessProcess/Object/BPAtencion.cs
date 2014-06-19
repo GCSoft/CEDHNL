@@ -15,35 +15,6 @@ namespace SIAQ.BusinessProcess.Object
 		#region Logica Original
 		
 			///<remarks>
-			///   <name>BPAtencion.searchAtencion</name>
-			///   <create>04/jun/2014</create>
-			///   <author>Generador</author>
-			///</remarks>
-			///<summary>Metodo para obtener las Atencion del sistema</summary>
-			public ENTResponse searchAtencionDetalle(ENTAtencion entAtencion)
-			{
-
-				ENTResponse oENTResponse = new ENTResponse();
-				try
-				{
-					// Consulta a base de datos
-					DAAtencion dataAtencion = new DAAtencion();
-					oENTResponse = dataAtencion.searchAtencionDetalle(entAtencion);
-					// Validación de error en consulta
-					if (oENTResponse.GeneratesException) { return oENTResponse; }
-					// Validación de mensajes de la BD
-					oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-					if (oENTResponse.sMessage != "") { return oENTResponse; }
-				}
-				catch (Exception ex)
-				{
-					oENTResponse.ExceptionRaised(ex.Message);
-				}
-				// Resultado
-				return oENTResponse;
-
-			}
-			///<remarks>
 			///   <name>BPAtencioninsertAtencion</name>
 			///   <create>04/jun/2014</create>
 			///   <author>Generador</author>
@@ -162,9 +133,43 @@ namespace SIAQ.BusinessProcess.Object
 
 		#endregion
 
+
 		///<remarks>
-		///   <name>BPPais.SelectAtencion</name>
-        ///   <create>17-Marzo-2014</create>
+		///   <name>BPAtencion.InsertAtencionComentario</name>
+		///   <create>19-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Inserta un comentario al Expediente de Atención a Víctimas</summary>
+		///<param name="entAtencion">Entidad de Atención a Víctimas con los parámetros necesarios para realizar la transacción</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse InsertAtencionComentario(ENTAtencion oENTAtencion){
+			DAAtencion oDAAtencion = new DAAtencion();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Transacción en base de datos
+				oENTResponse = oDAAtencion.InsertAtencionComentario(oENTAtencion, this.sConnectionApplication, 0);
+
+				// Validación de error en consulta
+				if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+				// Validación de mensajes de la BD
+				oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+				if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
+		///<remarks>
+		///   <name>BPAtencion.SelectAtencion</name>
+        ///   <create>17-Junio-2014</create>
         ///   <author>Ruben.Cobos</author>
         ///</remarks>
 		///<summary>Obtiene un listado de Expedientes de Atención a Víctimas en base a los parámetros proporcionados</summary>
@@ -196,8 +201,41 @@ namespace SIAQ.BusinessProcess.Object
         }
 
 		///<remarks>
-		///   <name>BPPais.SelectAtencion_Filtro</name>
-        ///   <create>17-Marzo-2014</create>
+		///   <name>BPAtencion.SelectAtencion_Detalle</name>
+		///   <create>19-Junio-2014</create>
+        ///   <author>Ruben.Cobos</author>
+        ///</remarks>
+		///<summary>Obtiene el detalle de un Expediente de Atención a Víctimas específico</summary>
+		///<param name="entAtencion">Entidad del Expediente de Atención a Víctimas con los filtros necesarios para la consulta</param>
+        ///<returns>Una entidad de respuesta</returns>
+        public ENTResponse SelectAtencion_Detalle(ENTAtencion entAtencion){
+           DAAtencion oDAAtencion = new DAAtencion();
+           ENTResponse oENTResponse = new ENTResponse();
+
+           try
+           {
+
+              // Transacción en base de datos
+			   oENTResponse = oDAAtencion.SelectAtencion_Detalle(entAtencion, this.sConnectionApplication, 0);
+
+              // Validación de error en consulta
+              if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+              // Validación de mensajes de la BD
+              oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+              if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+           }catch (Exception ex){
+              oENTResponse.ExceptionRaised(ex.Message);
+           }
+
+           // Resultado
+           return oENTResponse;
+        }
+
+		///<remarks>
+		///   <name>BPAtencion.SelectAtencion_Filtro</name>
+		///   <create>17-Junio-2014</create>
         ///   <author>Ruben.Cobos</author>
         ///</remarks>
 		///<summary>Obtiene un listado de Expedientes de Atención a Víctimas en base a los parámetros proporcionados</summary>

@@ -23,37 +23,6 @@ namespace SIAQ.DataAccess.Object
 			}
 
 			///<remarks>
-			///   <name>DAAtencion.searchAtencion</name>
-			///   <create>04/jun/2014</create>
-			///   <author>Generador</author>
-			///</remarks>
-			///<summary>Metodo para obtener las Atencion del sistema</summary>
-			public ENTResponse searchAtencionDetalle(ENTAtencion entAtencion)
-			{
-				ENTResponse oENTResponse = new ENTResponse();
-				DataSet ds = new DataSet();
-				// Transacción
-				try
-				{
-					ds = dbs.ExecuteDataSet("uspAtencionDetalleSel", entAtencion.IdUsuario, entAtencion.Aprobar, entAtencion.AtencionId);
-					oENTResponse.dsResponse = ds;
-				}
-				catch (SqlException sqlEx)
-				{
-					oENTResponse.ExceptionRaised(sqlEx.Message);
-				}
-				catch (Exception ex)
-				{
-					oENTResponse.ExceptionRaised(ex.Message);
-				}
-				finally
-				{
-				}
-				// Resultado
-				return oENTResponse;
-
-			}
-			///<remarks>
 			///   <name>DAAtencion.insertAtencion</name>
 			///   <create>04/jun/2014</create>
 			///   <author>Generador</author>
@@ -181,6 +150,66 @@ namespace SIAQ.DataAccess.Object
 		#endregion
 
 		///<remarks>
+		///   <name>DAAtencion.InsertAtencionComentario</name>
+		///   <create>19-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Inserta un comentario al Expediente de Atención a Víctimas</summary>
+		///<param name="oENTArchivoExpediente">Entidad de ArchivoExpediente con los parámetros necesarios para crear el comentario</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse InsertAtencionComentario(ENTAtencion oENTAtencion, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspAtencionComentario_Ins", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("AtencionId", SqlDbType.Int);
+			sqlPar.Value = oENTAtencion.AtencionId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("UsuarioId", SqlDbType.Int);
+			sqlPar.Value = oENTAtencion.IdUsuario;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Comentario", SqlDbType.VarChar);
+			sqlPar.Value = oENTAtencion.Comentario;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try{
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+			}catch (SqlException sqlEx){
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}finally{
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
+		///<remarks>
 		///   <name>DAAtencion.SelectAtencion</name>
 		///   <create>17-Junio-2014</create>
 		///   <author>Ruben.Cobos</author>
@@ -212,6 +241,68 @@ namespace SIAQ.DataAccess.Object
 
 			sqlPar = new SqlParameter("UsuarioId", SqlDbType.Int);
 			sqlPar.Value = entAtencion.IdUsuario;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try
+			{
+				
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+
+			}catch (SqlException sqlEx){
+
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+
+			}catch (Exception ex){
+
+				oENTResponse.ExceptionRaised(ex.Message);
+
+			}finally{
+
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+
+			}
+
+			// Resultado
+			return oENTResponse;
+
+        }
+
+		///<remarks>
+		///   <name>DAAtencion.SelectAtencion_Detalle</name>
+		///   <create>19-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene el detalle de un Expediente de Atención a Víctimas específico</summary>
+		///<param name="entAtencion">Entidad del Expediente de Atención a Víctimas con los filtros necesarios para la consulta</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+        public ENTResponse SelectAtencion_Detalle(ENTAtencion entAtencion, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspAtencion_Sel_Detalle", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("AtencionId", SqlDbType.Int);
+			sqlPar.Value = entAtencion.AtencionId;
 			sqlCom.Parameters.Add(sqlPar);
 
 			// Inicializaciones

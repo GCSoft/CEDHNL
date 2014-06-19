@@ -26,6 +26,10 @@
             <asp:ImageButton ID="cmdInformacionGeneral" ImageUrl="/Include/Image/Icon/GeneralIcon.png" runat="server" OnClick="cmdInformacionGeneral_Click"></asp:ImageButton><br />
             Información general
         </asp:Panel>
+		 <asp:Panel CssClass="IconoPanel" ID="AsignarPanel" runat="server" Visible="true">
+            <asp:ImageButton ID="AsignarButton" ImageUrl="/Include/Image/Icon/AsignarIcon.png" runat="server" OnClick="AsignarButton_Click"></asp:ImageButton><br />
+            Asignar doctor
+        </asp:Panel>
         <asp:Panel CssClass="IconoPanel" ID="pnlDictamenMedico" runat="server" Visible="true">
             <asp:ImageButton ID="cmdDictamenMedico" ImageUrl="/Include/Image/Icon/AsignarIcon.png" runat="server" OnClick="cmdDictamenMedico_Click"></asp:ImageButton><br />
             Dictámen Médico
@@ -38,6 +42,14 @@
             <asp:ImageButton ID="cmdEnviarOrientacion" ImageUrl="/Include/Image/Icon/NotificacionIcon.png" runat="server" OnClick="cmdEnviarOrientacion_Click"></asp:ImageButton><br />
             Enviar Orientación
         </asp:Panel>
+		<asp:Panel CssClass="IconoPanel" ID="CerrarExpedientePanel" runat="server" Visible="true">
+            <asp:ImageButton ID="CerrarExpedienteButton" ImageUrl="/Include/Image/Icon/CerrarExpedienteIcon.png" runat="server" OnClick="CerrarExpedienteButton_Click"></asp:ImageButton><br />
+            Cerrar Expediente de Atención
+        </asp:Panel>
+        <asp:Panel CssClass="IconoPanel" ID="ConfirmarCierreExpedientePanel" runat="server" Visible="true">
+            <asp:ImageButton ID="ConfirmarCierreExpedienteButton" ImageUrl="/Include/Image/Icon/ConfirmacionCierreIcon.png" runat="server" OnClick="ConfirmarCierreExpedienteButton_Click"></asp:ImageButton><br />
+            Confirmar Cierre de Expediente de Atención
+        </asp:Panel>
     </div>
 
 	<div id="InformacionDiv">
@@ -46,60 +58,50 @@
 		<table class="SolicitudTable">
 			<tr>
 				<td class="Especial">Atención número</td>
-                <td class="Espacio"></td>
-                <td class="Campo"><asp:Label CssClass="NumeroSolicitudLabel" ID="lblAtencionNumero" runat="server" Text="0"></asp:Label></td>
-                <td colspan="4"></td>
-            </tr>
-            <tr>
-                <td class="Nombre">Solicitud</td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta"><asp:Label ID="lblSolicitud" runat="server" Text=""></asp:Label></td>
-                <td class="Espacio"></td>
-                <td class="Nombre">Fecha de recepción</td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta"><asp:Label ID="lblFechaRecepcion" runat="server" Text=""></asp:Label></td>
-            </tr>
-            <tr>
-                <td class="Nombre">Estatus</td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta"><asp:Label ID="lblEstatus" runat="server"></asp:Label></td>
-                <td class="Espacio"></td>
-                <td class="Nombre">Fecha de asignación</td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta"><asp:Label ID="lblFechaAsignacion" runat="server" Text=""></asp:Label></td>
-            </tr>
-            <tr>
+				<td class="Espacio"></td>
+				<td class="Campo"><asp:Label ID="AtencionNumero" CssClass="NumeroSolicitudLabel" runat="server" Text="0"></asp:Label></td>
+				<td colspan="4"></td>
+			</tr>
+			<tr>
+				<td class="Nombre">Expediente número</td>
+				<td class="Espacio"></td>
+				<td class="Etiqueta"><asp:Label ID="ExpedienteNumeroLabel" runat="server" Text=""></asp:Label></td>
+				<td class="Espacio"></td>
+				<td class="Nombre"></td>
+				<td class="Espacio"></td>
+				<td class="Etiqueta"></td>
+			</tr>
+			<tr>
+				<td class="Nombre">Solicitud número</td>
+				<td class="Espacio"></td>
+				<td class="Etiqueta"><asp:Label ID="SolicitudNumeroLabel" runat="server" Text=""></asp:Label></td>
+				<td class="Espacio"></td>
+				<td class="Nombre"></td>
+				<td class="Espacio"></td>
+				<td class="Etiqueta"></td>
+			</tr>
+			<tr>
+				<td class="Nombre">Estatus</td>
+				<td class="Espacio"></td>
+				<td class="Etiqueta"><asp:Label ID="EstatusLabel" runat="server" Text=""></asp:Label></td>
+				<td class="Espacio"></td>
+				<td class="Nombre"></td>
+				<td class="Espacio"></td>
+				<td class="Etiqueta"></td>
+			</tr>
+			<tr>
                 <td class="Nombre">Doctor</td>
                 <td class="Espacio"></td>
-                <td class="Etiqueta"><asp:Label ID="lblDoctor" runat="server"></asp:Label></td>
+                <td class="Etiqueta"><asp:Label ID="DoctorLabel" runat="server" Text=""></asp:Label></td>
                 <td class="Espacio"></td>
-                <td class="Nombre">Fecha de inicio gestión</td>
+                <td class="Nombre">Fecha de Atención</td>
                 <td class="Espacio"></td>
-                <td class="Etiqueta"><asp:Label ID="lblFechaInicio" runat="server" Text=""></asp:Label></td>
-            </tr>
-			<tr>
-                <td class="Nombre">Área solicitante</td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta"><asp:Label ID="lblAreaSolicitante" runat="server"></asp:Label></td>
-                <td class="Espacio"></td>
-                <td class="Nombre">Última modificación</td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta"><asp:Label ID="lblFechaUltima" runat="server" Text=""></asp:Label></td>
+                <td class="Etiqueta"><asp:Label ID="FechaAtencionLabel" runat="server" Text=""></asp:Label></td>
             </tr>
             <tr>
                 <td class="Nombre">Observaciones</td>
                 <td class="Espacio"></td>
-                <td class="Observaciones" colspan="5"><asp:Label ID="lblObservaciones" runat="server" Text=""></asp:Label></td>
-            </tr>
-            <tr>
-                <td class="Nombre">Lugar de atención</td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta" colspan="5"><asp:Label ID="lblLugarAtencion" runat="server"></asp:Label></td>
-            </tr>
-            <tr>
-                <td class="Nombre">Tipo de dictámen</td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta" colspan="5"><asp:Label ID="lblTipoDictamen" runat="server"></asp:Label></td>
+                <td class="Observaciones" colspan="5"><asp:Label ID="ObservacionesLabel" runat="server" Text=""></asp:Label></td>
             </tr>
         </table>
         
@@ -228,7 +230,7 @@
     </div>
 
 	<asp:Panel ID="pnlAction" runat="server" CssClass="ActionBlock" Visible="false">
-        <asp:Panel ID="pnlActionContent" runat="server" CssClass="ActionContent" Style="top:180px;" Height="400px" Width="800px">
+        <asp:Panel ID="pnlActionContent" runat="server" CssClass="ActionContent" Style="top:180px;" Height="380px" Width="800px">
             <asp:Panel ID="pnlActionHeader" runat="server" CssClass="ActionHeader">
                 <table border="0" cellpadding="0" cellspacing="0" style="height:100%; width:100%">
                     <tr>
@@ -265,8 +267,8 @@
         </asp:Panel>
     </asp:Panel>
 
-	<asp:HiddenField ID="hddEstatusId" runat="server" Value="0"  />
 	<asp:HiddenField ID="hddAtencionId" runat="server" Value="0"  />
+	<asp:HiddenField ID="hddEstatusId" runat="server" Value="0"  />
 	<asp:HiddenField ID="hddFuncionarioId" runat="server" Value="0"  />
 	<asp:HiddenField ID="Sender" runat="server" Value=""  />
 	<asp:HiddenField ID="SenderId" runat="server" Value="0"  />

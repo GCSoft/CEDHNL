@@ -19,11 +19,14 @@ namespace SIAQ.Entity.Object
         private int _Aprobar; // Aprobar o no aprobar atención
         private string _NombreCiudadano; // Nombre del ciudadano
         private int _DoctorId; // Identificador del doctor
-		private int _FuncionarioId; // Identificador del funcionario
-		private string _Quejoso; // Valor de Numero
 
-        public ENTAtencion()
-        {
+
+		private Int32	_FuncionarioId;		// Identificador del funcionario que tiene asignado el caso
+		private String	_Comentario;		// Comentario en el expediente de Atención a Víctimas
+		private String	_Quejoso;			// Nombre del quejoso que levanta la denuncia
+
+
+        public ENTAtencion(){
             _AtencionId = 0;
             _SolicitudId = 0;
             _ExpedienteId = 0;
@@ -37,7 +40,9 @@ namespace SIAQ.Entity.Object
             _Aprobar = 0;
             _NombreCiudadano = "";
             _DoctorId = 0;
+
 			_FuncionarioId = 0;
+			_Comentario = "";
 			_Quejoso = "";
         }
 
@@ -187,25 +192,38 @@ namespace SIAQ.Entity.Object
         }
 
 
+
 		///<remarks>
-		///   <name>Atencion.FuncionarioId</name>
-		///   <create>04/jun/2014</create>
-		///   <author>JJ</author>
+		///   <name>ENTAtencion.FuncionarioId</name>
+		///   <create>19-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
 		///</remarks>
-		///<summary>Obtiene/Asigna FuncionarioId</summary>
-		public int FuncionarioId
+		///<summary>Obtiene/Asigna el identificador único del funcionario que tiene asignado el caso</summary>
+		public Int32 FuncionarioId
 		{
 			get { return _FuncionarioId; }
 			set { _FuncionarioId = value; }
 		}
 
 		///<remarks>
-		///   <name>Atencion.Quejoso</name>
-		///   <create>04/jun/2014</create>
-		///   <author>Generador</author>
+		///   <name>ENTAtencion.Comentario</name>
+		///   <create>19-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
 		///</remarks>
-		///<summary>Obtiene/Asigna Quejoso</summary>
-		public string Quejoso
+		///<summary>Obtiene/Asigna el comentario en el expediente de Atención a Víctimas</summary>
+		public String Comentario
+		{
+			get { return _Comentario; }
+			set { _Comentario = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTAtencion.Quejoso</name>
+		///   <create>19-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el nombre del quejoso que levanta la denuncia</summary>
+		public String Quejoso
 		{
 			get { return _Quejoso; }
 			set { _Quejoso = value; }

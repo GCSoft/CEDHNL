@@ -1,7 +1,7 @@
 ﻿/*---------------------------------------------------------------------------------------------------------------------------------
 ' Nombre:	VicDetalleAtencion
 ' Autor:	Ruben.Cobos
-' Fecha:	02-Junio-2014
+' Fecha:	18-Junio-2014
 '----------------------------------------------------------------------------------------------------------------------------------*/
 
 // Referencias
@@ -28,8 +28,228 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		Function utilFunction = new Function();
 		Encryption utilEncryption = new Encryption();
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
+		
+		// Rutinas del programador
+
+		void InsertAtencionComentario() {
+			BPAtencion oBPAtencion = new BPAtencion();
+
+			ENTAtencion oENTAtencion = new ENTAtencion();
+			ENTResponse oENTResponse = new ENTResponse();
+			ENTSession SessionEntity = new ENTSession();
+
+			try
+			{
+
+				// Validaciones
+				if (this.ckeComentario.Text.Trim() == "") { throw (new Exception("Es necesario ingresar un comentario")); }
+
+				// Obtener sesión
+				SessionEntity = (ENTSession)Session["oENTSession"];
+				
+				// Formulario
+				oENTAtencion.AtencionId = Int32.Parse(this.hddAtencionId.Value);
+				oENTAtencion.IdUsuario = SessionEntity.idUsuario;
+				oENTAtencion.Comentario = this.ckeComentario.Text.Trim();
+
+				// Transacción
+				oENTResponse = oBPAtencion.InsertAtencionComentario(oENTAtencion);
+
+				// Errores y Warnings
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }	
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		void SelectAtencion() {
+			BPAtencion oBPAtencion = new BPAtencion();
+			ENTAtencion oENTAtencion = new ENTAtencion();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Formulario
+				oENTAtencion.AtencionId = Int32.Parse(this.hddAtencionId.Value);
+
+				// Transacción
+				oENTResponse = oBPAtencion.SelectAtencion_Detalle(oENTAtencion);
+
+				// Errores y Warnings
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+
+				// Campos ocultos
+				this.hddEstatusId.Value = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusId"].ToString();
+				this.hddFuncionarioId.Value = oENTResponse.dsResponse.Tables[1].Rows[0]["FuncionarioId"].ToString();
+
+				// Formulario
+				this.AtencionNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["AtencionNumero"].ToString();
+				this.ExpedienteNumeroLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["ExpedienteNumero"].ToString();
+				this.SolicitudNumeroLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["SolicitudNumero"].ToString();
+				this.EstatusLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusNombre"].ToString();
+				this.DoctorLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FuncionarioNombre"].ToString();
+				this.FechaAtencionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaAtencion"].ToString();
+				this.ObservacionesLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Observaciones"].ToString();
+
+
+				//// Grid
+				//this.gvApps.DataSource = oENTResponse.dsResponse.Tables[2];
+				//this.gvApps.DataBind();
+
+				// Documentos
+				if (oENTResponse.dsResponse.Tables[3].Rows.Count == 0){
+
+					this.SinDocumentoLabel.Text = "<br /><br />No hay documentos anexados a la solicitud";
+				}else{
+
+					this.SinDocumentoLabel.Text = "";
+					this.dlstDocumentoList.DataSource = oENTResponse.dsResponse.Tables[3];
+					this.dlstDocumentoList.DataBind();
+				}
+
+				// Comentarios
+				if (oENTResponse.dsResponse.Tables[4].Rows.Count == 0){
+
+					this.SinComentariosLabel.Text = "<br /><br />No hay comentarios para esta solicitud";
+				}else{
+
+					this.SinComentariosLabel.Text = "";
+					this.repComentarios.DataSource = oENTResponse.dsResponse.Tables[4];
+					this.repComentarios.DataBind();
+					this.ComentarioTituloLabel.Text = oENTResponse.dsResponse.Tables[4].Rows.Count.ToString() + " comentarios";
+				}
+
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		void SetPermisosGenerales(Int32 idRol) {
+			try
+            {
+
+				// Permisos por rol
+				switch (idRol){
+
+					case 1:	// System Administrator
+						this.pnlInformacion.Visible = true;
+						this.AsignarPanel.Visible = true;
+						this.pnlDictamenMedico.Visible = true;
+						this.pnlAgregarDocumento.Visible = true;
+						this.pnlEnviarOrientacion.Visible = true;
+						this.CerrarExpedientePanel.Visible = true;
+						this.ConfirmarCierreExpedientePanel.Visible = true;
+						break;
+
+					case 2:	// Administrador
+						this.pnlInformacion.Visible = true;
+						this.AsignarPanel.Visible = true;
+						this.pnlDictamenMedico.Visible = true;
+						this.pnlAgregarDocumento.Visible = true;
+						this.pnlEnviarOrientacion.Visible = true;
+						this.CerrarExpedientePanel.Visible = true;
+						this.ConfirmarCierreExpedientePanel.Visible = true;
+						break;
+
+					case 13:	// Atención a Víctimas - Secretaria
+						this.pnlInformacion.Visible = true;
+						this.AsignarPanel.Visible = true;
+						this.pnlDictamenMedico.Visible = false;
+						this.pnlAgregarDocumento.Visible = false;
+						this.pnlEnviarOrientacion.Visible = false;
+						this.CerrarExpedientePanel.Visible = false;
+						this.ConfirmarCierreExpedientePanel.Visible = false;
+						break;
+
+					case 14:	// Atención a Víctimas - Doctor
+						this.pnlInformacion.Visible = true;
+						this.AsignarPanel.Visible = false;
+						this.pnlDictamenMedico.Visible = true;
+						this.pnlAgregarDocumento.Visible = true;
+						this.pnlEnviarOrientacion.Visible = true;
+						this.CerrarExpedientePanel.Visible = true;
+						this.ConfirmarCierreExpedientePanel.Visible = false;
+						break;
+
+					case 15:	// Atención a Víctimas - Director
+						this.pnlInformacion.Visible = true;
+						this.AsignarPanel.Visible = true;
+						this.pnlDictamenMedico.Visible = false;
+						this.pnlAgregarDocumento.Visible = false;
+						this.pnlEnviarOrientacion.Visible = false;
+						this.CerrarExpedientePanel.Visible = false;
+						this.ConfirmarCierreExpedientePanel.Visible = true;
+						break;
+
+					default:
+						this.pnlInformacion.Visible = false;
+						this.AsignarPanel.Visible = false;
+						this.pnlDictamenMedico.Visible = false;
+						this.pnlAgregarDocumento.Visible = false;
+						this.pnlEnviarOrientacion.Visible = false;
+						this.CerrarExpedientePanel.Visible = false;
+						this.ConfirmarCierreExpedientePanel.Visible = false;
+						break;
+
+				}
+	
+
+            }catch (Exception ex){
+				throw(ex);
+            }
+		}
+
+		void SetPermisosParticulares(Int32 idRol, Int32 FuncionarioId) {
+			try
+            {
+
+				// Si es Doctor pero el expediente no está asignado a él no lo podrá operar
+				if (idRol == 14 && Int32.Parse(this.hddFuncionarioId.Value) != FuncionarioId) {
+					this.pnlDictamenMedico.Visible = false;
+					this.pnlAgregarDocumento.Visible = false;
+					this.pnlEnviarOrientacion.Visible = false;
+					this.CerrarExpedientePanel.Visible = false;
+				}
+
+				// Si es Director y el expediente no está en estatus de confirmación de cierre ocultar dicha opción
+				if (idRol == 15 && Int32.Parse(this.hddEstatusId.Value) != 20) {
+					this.ConfirmarCierreExpedientePanel.Visible = false;
+				}
+
+				// Si es System Administrator y el expediente no está en estatus de confirmación de cierre ocultar dicha opción
+				if (idRol == 1 && Int32.Parse(this.hddEstatusId.Value) != 20) {
+					this.ConfirmarCierreExpedientePanel.Visible = false;
+				}
+
+				// Si es Administrador y el expediente no está en estatus de confirmación de cierre ocultar dicha opción
+				if (idRol == 2 && Int32.Parse(this.hddEstatusId.Value) != 20) {
+					this.ConfirmarCierreExpedientePanel.Visible = false;
+				}
+
+				// Si el expediente está en estatus de confirmación de cierre no se podrá operar
+				if ( Int32.Parse(this.hddEstatusId.Value) == 20 ){
+					this.AsignarPanel.Visible = false;
+					this.pnlDictamenMedico.Visible = false;
+					this.pnlAgregarDocumento.Visible = false;
+					this.pnlEnviarOrientacion.Visible = false;
+					this.CerrarExpedientePanel.Visible = false;
+				}
+
+            }catch (Exception ex){
+				throw(ex);
+            }
+		}
+
+
+
+		//  Eventos de la página
+
+        protected void Page_Load(object sender, EventArgs e){
             ENTSession SessionEntity = new ENTSession();
 
             try
@@ -40,21 +260,24 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
                 if (this.Request.QueryString["key"] == null) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
                 if (this.Request.QueryString["key"].ToString().Split(new Char[] { '|' }).Length != 2) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
 
-                // Obtener ExpedienteId
-                this.hddFuncionarioId.Value = this.Request.QueryString["key"].ToString().Split(new Char[] { '|' })[0];
+				// Obtener AtencionId
+				this.hddAtencionId.Value = this.Request.QueryString["key"].ToString().Split(new Char[] { '|' })[0];
 
                 // Obtener Sender
                 this.SenderId.Value = this.Request.QueryString["key"].ToString().ToString().Split(new Char[] { '|' })[1];
 
-                switch (this.SenderId.Value)
-                {
+                switch (this.SenderId.Value){
                     case "1": // Invocado desde [Listado de Atenciones]
-                        this.Sender.Value = "VicListadoAtenciones.aspx";
+						this.Sender.Value = "VicListadoAtenciones.aspx";
                         break;
 
                     case "2": // Invocado desde [Búsqueda de Atenciones]
-                        this.Sender.Value = "VicBusquedaAtenciones.aspx";
+						this.Sender.Value = "VicBusquedaAtenciones.aspx";
                         break;
+
+					case "3": // Invocado desde [Listado de Atenciones pendientes por Aprobar]
+						this.Sender.Value = "vicListadoAtencionAprobacion.aspx";
+						break;
 
                     default:
                         this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false);
@@ -64,30 +287,24 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
                 // Obtener sesión
                 SessionEntity = (ENTSession)Session["oENTSession"];
 
-                // Consultar detalle de expediente
-                BuscarAtencion();
+                // Consultar detalle de expediente de atención a víctimas
+                SelectAtencion();
 
                 // Seguridad
                 SetPermisosGenerales(SessionEntity.idRol);
                 SetPermisosParticulares(SessionEntity.idRol, SessionEntity.FuncionarioId);
 
 
-            }
-            catch (Exception ex)
-            {
+            }catch (Exception ex){
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
             }
         }
 
-        #region Rutinas de la página
-
-        protected void btnRegresar_Click(object sender, EventArgs e)
-        {
+        protected void btnRegresar_Click(object sender, EventArgs e){
             Response.Redirect(this.Sender.Value);
         }
 
-        protected void dlstDocumentoList_ItemDataBound(Object sender, DataListItemEventArgs e)
-        {
+        protected void dlstDocumentoList_ItemDataBound(Object sender, DataListItemEventArgs e){
             Label DocumentoLabel;
             Image DocumentoImage;
             DataRowView DataRow;
@@ -162,7 +379,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
                             ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('No cuenta con permisos para realizar ésta opción', 'Warning', false);", true);
                             return;
                         }
-                // TODO: "Aqui hay que ponerle la acción que le corresponde para eliminar lógiicamente el ciudadano"
+                // TODO: "Aqui hay que ponerle la acción que le corresponde para eliminar lógicamente el ciudadano"
                         this.Response.Redirect("segSeguimientoRecomendacion.aspx?key=" + this.hddFuncionarioId.Value.ToString() + "|" + this.SenderId.Value.ToString() + "|" + RecomendacionId, false);
                         break;
                 }
@@ -243,248 +460,52 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
             }
         }
 
-        protected void lnkAgregarComentario_Click(object sender, EventArgs e)
-        {
+        protected void lnkAgregarComentario_Click(object sender, EventArgs e){
             this.lblActionMessage.Text = "";
             this.ckeComentario.Text = "";
             this.ckeComentario.Focus();
             this.pnlAction.Visible = true;
         }
 
-        #endregion
-
-        #region Rutinas del programador
-
-        // Rutinas del programador
-
-		void InsertComentarioAtencion() {
-			ENTSession SessionEntity = new ENTSession();
-            BPAtencion bss = new BPAtencion();
-            ENTAtencion ent = new ENTAtencion();
-
-			// Validaciones
-			if (this.ckeComentario.Text.Trim() == "") { throw( new Exception("Es necesario ingresar un comentario")); }
-
-			// Obtener sesión
-			SessionEntity = (ENTSession)Session["oENTSession"];
-
-			// Parámetros
-            ent.AtencionId = Int32.Parse(this.hddFuncionarioId.Value.Trim());
-            ent.IdUsuario = SessionEntity.idUsuario;
-            ent.Observaciones = this.ckeComentario.Text.Trim();
-
-			// Transacción
-			bss.insertAtencionObservaciones(ent);
-
-			// Errores
-            //if (bss.ErrorId != 0) { throw (new Exception(bss.ErrorString)); }
-
-		}
-
-		void BuscarAtencion() {
-            BPAtencion bss = new BPAtencion();
-            ENTAtencion ent = new ENTAtencion();
-            ENTResponse oResponse =new ENTResponse();
-            DataSet ds = new DataSet();
-
-			// Parámetros
-            ent.AtencionId = Int32.Parse(this.hddFuncionarioId.Value );
-
-			// Transacción
-			oResponse = bss.searchAtencionDetalle(ent);
-
-			// Errores
-			//if (bss.ErrorId != 0) { throw (new Exception(bss.ErrorString)); }
-
-			// No se encontró el expediente
-            if (oResponse.dsResponse.Tables[0].Rows.Count == 0) { throw (new Exception("No se encontro el expediente")); }
-
-			// Campos ocultos
-            this.hddEstatusId.Value = ds.Tables[1].Rows[0]["EstatusId"].ToString();
-            this.hddFuncionarioId.Value = ds.Tables[1].Rows[0]["FuncionarioId"].ToString();
-
-			// Formulario
-            this.lblAtencionNumero.Text = ds.Tables[1].Rows[0]["AtencionId"].ToString();
-            this.lblSolicitud.Text = ds.Tables[1].Rows[0]["solicitudId"].ToString();
-            this.lblEstatus.Text = ds.Tables[1].Rows[0]["EstatusNombre"].ToString();
-            this.lblDoctor.Text = ds.Tables[1].Rows[0]["DoctorNombre"].ToString();
-
-            this.lblFechaRecepcion.Text = ds.Tables[1].Rows[0]["FechaRecepcion"].ToString();
-            this.lblFechaAsignacion.Text = ds.Tables[1].Rows[0]["FechaAsignacion"].ToString();
-            this.lblFechaInicio.Text = ds.Tables[1].Rows[0]["FechaInicioGestion"].ToString();
-            this.lblFechaUltima.Text = ds.Tables[1].Rows[0]["FechaUltimaModificacion"].ToString();
-
-            this.lblObservaciones.Text = ds.Tables[1].Rows[0]["Observaciones"].ToString();
-            this.lblAreaSolicitante.Text = ds.Tables[1].Rows[0]["AreaSolicitanteNombre"].ToString();
-            this.lblLugarAtencion.Text = ds.Tables[1].Rows[0]["LugarAtencion"].ToString();
-            this.lblTipoDictamen.Text = ds.Tables[1].Rows[0]["TipoDictamen"].ToString();
-
-
-			// Grid
-            this.gvApps.DataSource = ds.Tables[2];
-			this.gvApps.DataBind();
-
-			// Documentos
-			if (ds.Tables[2].Rows.Count == 0) {
-
-				this.SinDocumentoLabel.Text = "<br /><br />No hay documentos anexados a la solicitud";
-			} else {
-
-				this.SinDocumentoLabel.Text = "";
-                this.dlstDocumentoList.DataSource = ds.Tables[2];
-				this.dlstDocumentoList.DataBind();
-			}
-
-			// Comentarios
-            if (ds.Tables[3].Rows.Count == 0)
-            {
-
-				this.SinComentariosLabel.Text = "<br /><br />No hay comentarios para esta solicitud";
-			} else {
-
-				this.SinComentariosLabel.Text = "";
-                this.repComentarios.DataSource = ds.Tables[3];
-				this.repComentarios.DataBind();
-                this.ComentarioTituloLabel.Text = ds.Tables[3].Rows.Count.ToString() + " comentarios";
-			}
-
-		}
-
-		void SetPermisosGenerales(Int32 idRol) {
-			try
-            {
-
-				// Permisos por rol
-				switch (idRol){
-
-					case 1:	// System Administrator
-                        this.pnlInformacion.Visible = true;
-                        this.pnlDictamenMedico.Visible = true;
-                        this.pnlAgregarDocumento.Visible = true;
-                        this.pnlEnviarOrientacion.Visible = true;
-						break;
-
-					case 2:	// Administrador
-						this.pnlInformacion.Visible = true;
-                        this.pnlDictamenMedico.Visible = true;
-                        this.pnlAgregarDocumento.Visible = true;
-                        this.pnlEnviarOrientacion.Visible = true;
-						break;
-
-					case 10:	// Seguimiento - Secretaria
-                        this.pnlInformacion.Visible = true;
-                        this.pnlDictamenMedico.Visible = false;
-                        this.pnlAgregarDocumento.Visible = true;
-                        this.pnlEnviarOrientacion.Visible = true;
-						break;
-
-					case 11:	// Seguimiento - Doctor
-						this.pnlInformacion.Visible = true;
-                        this.pnlDictamenMedico.Visible = true;
-                        this.pnlAgregarDocumento.Visible = true;
-                        this.pnlEnviarOrientacion.Visible = false;
-						break;
-
-					case 12:	// Seguimiento - Director
-                        this.pnlInformacion.Visible = true;
-                        this.pnlDictamenMedico.Visible = false;
-                        this.pnlAgregarDocumento.Visible = false;
-                        this.pnlEnviarOrientacion.Visible = false;
-						break;
-
-					default:
-						this.pnlInformacion.Visible = false;
-                        this.pnlDictamenMedico.Visible = false;
-                        this.pnlAgregarDocumento.Visible = false;
-                        this.pnlEnviarOrientacion.Visible = false;
-						break;
-				}
-	
-
-            }catch (Exception ex){
-				throw(ex);
-            }
-		}
-
-		void SetPermisosParticulares(Int32 idRol, Int32 FuncionarioId) {
-			try
-            {
-
-				// Si es Defensor pero el expediente no está asignado a él no lo podrá operar
-				if (idRol == 11 && Int32.Parse(this.hddFuncionarioId.Value) != FuncionarioId) {
-                    this.pnlInformacion.Visible = false;
-                    this.pnlDictamenMedico.Visible = false;
-                    this.pnlAgregarDocumento.Visible = false;
-                    this.pnlEnviarOrientacion.Visible = false;
-				}
-
-				// Si es Director y el expediente no está en estatus de confirmación de cierre ocultar dicha opción
-                //if (idRol == 12 && Int32.Parse(this.hddEstatusId.Value) != 8) {
-                //    this.ConfirmarCierreExpedientePanel.Visible = false;
-                //}
-
-                //// Si es System Administrator y el expediente no está en estatus de confirmación de cierre ocultar dicha opción
-                //if (idRol == 1 && Int32.Parse(this.hddEstatusId.Value) != 8) {
-                //    this.ConfirmarCierreExpedientePanel.Visible = false;
-                //}
-
-                //// Si es Administrador y el expediente no está en estatus de confirmación de cierre ocultar dicha opción
-                //if (idRol == 2 && Int32.Parse(this.hddEstatusId.Value) != 8) {
-                //    this.ConfirmarCierreExpedientePanel.Visible = false;
-                //}
-
-				// Si el expediente está en estatus de confirmación de cierre no se podrá operar
-				if ( Int32.Parse(this.hddEstatusId.Value) == 8 ){
-                    this.pnlInformacion.Visible = false;
-                    this.pnlDictamenMedico.Visible = false;
-                    this.pnlAgregarDocumento.Visible = false;
-                    this.pnlEnviarOrientacion.Visible = false;
-				}
-
-            }catch (Exception ex){
-				throw(ex);
-            }
-		}
-
-        #endregion
-
-        #region Opciones de menú
 
         // Opciones de Menu
 
-        protected void cmdInformacionGeneral_Click(object sender, ImageClickEventArgs e)
-        {
+		protected void AsignarButton_Click(object sender, ImageClickEventArgs e){
+			Response.Redirect("vicAsignarDoctor.aspx?key=" + this.hddAtencionId.Value.ToString() + "|" + this.SenderId.Value.ToString());
+		}
+
+		protected void CerrarExpedienteButton_Click(object sender, ImageClickEventArgs e){
+			Response.Redirect("vicCerrarAtencion.aspx?key=" + this.hddAtencionId.Value.ToString() + "|" + this.SenderId.Value.ToString());
+		}
+
+		protected void ConfirmarCierreExpedienteButton_Click(object sender, ImageClickEventArgs e){
+			Response.Redirect("vicConfirmarCierreAtencion.aspx?key=" + this.hddAtencionId.Value.ToString() + "|" + this.SenderId.Value.ToString());
+		}
+
+		protected void cmdAgregarDocumento_Click(object sender, ImageClickEventArgs e){
+			Response.Redirect("VicAgregarDocumento.aspx?key=" + this.hddAtencionId.Value.ToString() + "|" + this.SenderId.Value.ToString());
+		}
+
+        protected void cmdInformacionGeneral_Click(object sender, ImageClickEventArgs e){
             try
             {
 
                 // Actualizar el expediente
-                BuscarAtencion();
+                SelectAtencion();
 
-            }
-            catch (Exception ex)
-            {
+            }catch (Exception ex){
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
             }
         }
 
-        protected void cmdDictamenMedico_Click(object sender, ImageClickEventArgs e)
-        {
+        protected void cmdDictamenMedico_Click(object sender, ImageClickEventArgs e){
             Response.Redirect("VicDictamenMedico.aspx?key=" + this.hddAtencionId.Value.ToString() + "|" + this.SenderId.Value.ToString());
         }
 
-        protected void cmdAgregarDocumento_Click(object sender, ImageClickEventArgs e)
-        {
-			Response.Redirect("VicAgregarDocumento.aspx?key=" + this.hddAtencionId.Value.ToString() + "|" + this.SenderId.Value.ToString());
-		}
-
-        protected void cmdEnviarOrientacion_Click(object sender, ImageClickEventArgs e)
-        {
+        protected void cmdEnviarOrientacion_Click(object sender, ImageClickEventArgs e){
 			Response.Redirect("VicEnviaOrientacion.aspx?key=" + this.hddAtencionId.Value.ToString() + "|" + this.SenderId.Value.ToString());
 		}
 
-        #endregion
-
-        #region Panel de comentarios
 
         // Eventos del panel Action (Agregar comentarios)
 
@@ -492,10 +513,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			try {
 
 				// Agregar el comentario
-				InsertComentarioAtencion();
+				InsertAtencionComentario();
 
 				// Actualizar el expediente
-				BuscarAtencion();
+				SelectAtencion();
 
 				// Ocultar el panel
 				this.pnlAction.Visible = false;
@@ -510,7 +531,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			this.pnlAction.Visible = false;
         }
 
-        #endregion
 
     }
 }

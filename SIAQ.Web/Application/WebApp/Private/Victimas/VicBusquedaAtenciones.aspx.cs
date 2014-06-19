@@ -55,8 +55,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Warning', true);", true); }
 
 				// Llenado de control
-				this.gvApps.DataSource = oENTResponse.dsResponse.Tables[1];
-				this.gvApps.DataBind();
+				this.gvAtencion.DataSource = oENTResponse.dsResponse.Tables[1];
+				this.gvAtencion.DataBind();
 
 
 			}catch (Exception ex){
@@ -117,8 +117,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				SelectDoctor();
 
                 // Estado inicial
-				this.gvApps.DataSource = null;
-				this.gvApps.DataBind();
+				this.gvAtencion.DataSource = null;
+				this.gvAtencion.DataBind();
 
 				// Foco
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtAtencionNumero.ClientID + "');", true);
@@ -143,7 +143,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			}
 		}
 
-		protected void gvApps_RowCommand(object sender, GridViewCommandEventArgs e){
+		protected void gvAtencion_RowCommand(object sender, GridViewCommandEventArgs e){
 			string AtencionId;
 
 			string strCommand = "";
@@ -162,7 +162,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				intRow = Int32.Parse(e.CommandArgument.ToString());
 
 				// Datakeys
-				AtencionId = this.gvApps.DataKeys[intRow]["AtencionId"].ToString();
+				AtencionId = this.gvAtencion.DataKeys[intRow]["AtencionId"].ToString();
 
 				// Acción
 				switch (strCommand){
@@ -176,7 +176,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			}
 		}
 
-		protected void gvApps_RowDataBound(object sender, GridViewRowEventArgs e){
+		protected void gvAtencion_RowDataBound(object sender, GridViewRowEventArgs e){
 			ImageButton imgEdit = null;
 
 			String sNumero = "";
@@ -193,7 +193,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
 
 				// DataKeys
-				sNumero = gvApps.DataKeys[e.Row.RowIndex]["Numero"].ToString();
+				sNumero = gvAtencion.DataKeys[e.Row.RowIndex]["AtencionNumero"].ToString();
 
 				// Tooltip Editar Atención
 				sToolTip = "Detalle de atención [" + sNumero + "]";
@@ -214,25 +214,25 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			}
 		}
 
-		protected void gvApps_Sorting(object sender, GridViewSortEventArgs e){
-			DataTable TableAutoridad = null;
-			DataView ViewAutoridad = null;
+		protected void gvAtencion_Sorting(object sender, GridViewSortEventArgs e){
+			DataTable tblData = null;
+			DataView viewData = null;
 
 			try
 			{
 				//Obtener DataTable y View del GridView
-				TableAutoridad = utilFunction.ParseGridViewToDataTable(gvApps, false);
-				ViewAutoridad = new DataView(TableAutoridad);
+				tblData = utilFunction.ParseGridViewToDataTable(gvAtencion, false);
+				viewData = new DataView(tblData);
 
 				//Determinar ordenamiento
 				hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
 
 				//Ordenar Vista
-				ViewAutoridad.Sort = hddSort.Value;
+				viewData.Sort = hddSort.Value;
 
 				//Vaciar datos
-				this.gvApps.DataSource = ViewAutoridad;
-				this.gvApps.DataBind();
+				this.gvAtencion.DataSource = viewData;
+				this.gvAtencion.DataBind();
 
 			}catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtAtencionNumero.ClientID + "');", true);

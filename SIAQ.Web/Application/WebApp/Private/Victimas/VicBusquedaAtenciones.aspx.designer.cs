@@ -85,13 +85,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         protected global::System.Web.UI.WebControls.Panel pnlGrid;
         
         /// <summary>
-        /// gvApps control.
+        /// gvAtencion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvApps;
+        protected global::System.Web.UI.WebControls.GridView gvAtencion;
         
         /// <summary>
         /// hddSort control.

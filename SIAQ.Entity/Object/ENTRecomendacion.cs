@@ -11,6 +11,7 @@ namespace SIAQ.Entity.Object
 
         private int _RecomendacionId;
         private int _ExpedienteId;
+        private int _FuncionarioId;
         private int _CalificacionId;
         private int _TipoSolicitudId;
         private int _LugarHechosId;
@@ -19,7 +20,7 @@ namespace SIAQ.Entity.Object
         private int _Numero;
         private DateTime _Fecha;
         private string _Observaciones;
-        private Int16 _Anio;
+        private int _Anio;
         private DataSet _ResultData;
 
         #endregion
@@ -52,6 +53,15 @@ namespace SIAQ.Entity.Object
         {
             get { return _ExpedienteId; }
             set { _ExpedienteId = value; }
+        }
+
+        /// <summary>
+        ///     Identificador del funcionario.
+        /// </summary>
+        public int FuncionarioId
+        {
+            get { return _FuncionarioId; }
+            set { _FuncionarioId = value; }
         }
 
         ///<remarks>
@@ -164,7 +174,7 @@ namespace SIAQ.Entity.Object
         /// <summary>
         ///     Número de año para calcular el siguiente número de folio.
         /// </summary>
-        public Int16 Anio
+        public int Anio
         {
             get { return _Anio; }
             set { _Anio = value; }

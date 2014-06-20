@@ -65,6 +65,14 @@ namespace SIAQ.DataAccess.Object
                 Parameter.Value = RecomendacionEntity.ExpedienteId;
                 Command.Parameters.Add(Parameter);
 
+                Parameter = new SqlParameter("VisitadorId", SqlDbType.Int);
+                Parameter.Value = RecomendacionEntity.FuncionarioId;
+                Command.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("TipoRecomendacionId", SqlDbType.Int);
+                Parameter.Value = RecomendacionEntity.TipoRecomendacionId;
+                Command.Parameters.Add(Parameter);
+
                 Parameter = new SqlParameter("EstatusId", SqlDbType.Int);
                 Parameter.Value = RecomendacionEntity.EstatusId;
                 Command.Parameters.Add(Parameter);
@@ -254,6 +262,49 @@ namespace SIAQ.DataAccess.Object
 
                 Parameter = new SqlParameter("Anio", SqlDbType.SmallInt);
                 Parameter.Value = RecomendacionEntity.Anio;
+                Command.Parameters.Add(Parameter);
+
+                DataAdapter = new SqlDataAdapter(Command);
+
+                Connection.Open();
+                DataAdapter.Fill(ResultData);
+                Connection.Close();
+
+                return ResultData;
+            }
+            catch (SqlException Exception)
+            {
+                _ErrorId = Exception.Number;
+                _ErrorString = Exception.Message;
+
+                if (Connection.State == ConnectionState.Open)
+                    Connection.Close();
+
+                return ResultData;
+            }
+        }
+
+        /// <summary>
+        ///     Realiza una búsqueda de las recomendaciones de un expediente.
+        /// </summary>
+        /// <param name="ExpedienteSeguimientoEntity">Entidad del expediente.</param>
+        /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
+        /// <returns>Resultado de la búsqueda.</returns>
+        public DataSet SelectRecomendacionExpediente(ENTRecomendacion RecomendacionEntity, string ConnectionString)
+        {
+            DataSet ResultData = new DataSet();
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            SqlCommand Command;
+            SqlParameter Parameter;
+            SqlDataAdapter DataAdapter;
+
+            try
+            {
+                Command = new SqlCommand("SelectRecomendacionExpediente", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
+                Parameter.Value = RecomendacionEntity.ExpedienteId;
                 Command.Parameters.Add(Parameter);
 
                 DataAdapter = new SqlDataAdapter(Command);

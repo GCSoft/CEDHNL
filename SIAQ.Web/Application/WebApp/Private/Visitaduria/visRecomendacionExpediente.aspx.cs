@@ -55,6 +55,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
                 SelectExpediente(ExpedienteId);
                 SelectTipoRecomendacion();
+                SelectRecomendacionExpediente(ExpedienteId);
 
                 ExpedienteIdHidden.Value = ExpedienteId.ToString();
             }
@@ -67,10 +68,19 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
             private void SaveRecomendacion()
             {
+                ENTSession SessionEntity = new ENTSession();
                 BPRecomendacion RecomendacionProcess = new BPRecomendacion();
 
+                SessionEntity = (ENTSession)Session["oENTSession"];
+
                 RecomendacionProcess.RecomendacionEntity.ExpedienteId = int.Parse(ExpedienteIdHidden.Value);
+                
+                // Identificador del visitador que da de alta la recomendación
+                RecomendacionProcess.RecomendacionEntity.FuncionarioId = SessionEntity.FuncionarioId;
+
+                RecomendacionProcess.RecomendacionEntity.TipoRecomendacionId = int.Parse(TipoRecomendacionList.SelectedValue);
                 RecomendacionProcess.RecomendacionEntity.EstatusId = EstatusIdRecomendacion;
+                RecomendacionProcess.RecomendacionEntity.Anio = int.Parse(DateTime.Now.Year.ToString());
                 RecomendacionProcess.RecomendacionEntity.Observaciones = RecomendacionBox.Text.Trim();
 
                 RecomendacionProcess.SaveRecomendacion();
@@ -78,7 +88,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 if (RecomendacionProcess.ErrorId == 0)
                 {
                     ResetForm();
-                    //SelectRecomendacion();
+                    SelectRecomendacionExpediente(int.Parse(ExpedienteIdHidden.Value));
                 }
                 else
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(RecomendacionProcess.ErrorString) + "', 'Error', true);", true);
@@ -150,6 +160,23 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 }
                 else
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(TipoRecomendacionProcess.ErrorDescription) + "', 'Error', true);", true);
+            }
+
+            private void SelectRecomendacionExpediente(int ExpedienteId)
+            {
+                BPRecomendacion RecomendacionProcess = new BPRecomendacion();
+
+                RecomendacionProcess.RecomendacionEntity.ExpedienteId = ExpedienteId;
+
+                RecomendacionProcess.SelectRecomendacionExpediente();
+
+                if (RecomendacionProcess.ErrorId == 0)
+                {
+                    RecomendacionGrid.DataSource = RecomendacionProcess.RecomendacionEntity.ResultData.Tables[0];
+                    RecomendacionGrid.DataBind();
+                }
+                else
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(RecomendacionProcess.ErrorString) + "', 'Error', true);", true);
             }
         #endregion
     }

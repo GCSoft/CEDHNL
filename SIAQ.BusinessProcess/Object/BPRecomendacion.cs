@@ -57,10 +57,13 @@ namespace SIAQ.BusinessProcess.Object
             if (!ValidarRecomendacion())
                 return;
 
+            _RecomendacionEntity.Numero = SelectNextFolio();
+
+            if (_ErrorId != 0)
+                return;
+
             if (_RecomendacionEntity.RecomendacionId == 0)
             {
-                _RecomendacionEntity.Numero = SelectNextFolio();
-
                 RecomendacionAccess.InsertRecomendacion(_RecomendacionEntity, sConnectionApplication);
             }
             //else
@@ -225,9 +228,20 @@ namespace SIAQ.BusinessProcess.Object
                 return 0;
             }
 
-            NextFolio = int.Parse(ResultData.Tables[0].Rows[0]["Folio"].ToString()) + 1;
+            // Falta validar que no exista el folio regresado
+            NextFolio = int.Parse(ResultData.Tables[0].Rows[0]["Folio"].ToString());
 
             return NextFolio;
+        }
+
+        public void SelectRecomendacionExpediente()
+        {
+            DARecomendacion DARecomendacion = new DARecomendacion();
+
+            _RecomendacionEntity.ResultData = DARecomendacion.SelectRecomendacionExpediente(_RecomendacionEntity, sConnectionApplication);
+
+            _ErrorId = DARecomendacion.ErrorId;
+            _ErrorString = DARecomendacion.ErrorDescription;
         }
 
         /// <summary>
@@ -247,13 +261,6 @@ namespace SIAQ.BusinessProcess.Object
             {
                 _ErrorId = 50002;
                 _ErrorString = "Se debe proporcionar un estatus de recomendación";
-                return false;
-            }
-
-            if (_RecomendacionEntity.Numero == 0)
-            {
-                _ErrorId = 50003;
-                _ErrorString = "Se debe proporcionar un número de folio de recomendación";
                 return false;
             }
 

@@ -14,10 +14,12 @@ namespace SIAQ.Entity.Object
         private int _CalificacionId;
         private int _TipoSolicitudId;
         private int _LugarHechosId;
+        private int _TipoRecomendacionId;
         private int _EstatusId;
         private int _Numero;
         private DateTime _Fecha;
         private string _Observaciones;
+        private Int16 _Anio;
         private DataSet _ResultData;
 
         #endregion
@@ -94,6 +96,15 @@ namespace SIAQ.Entity.Object
             set { _LugarHechosId = value; }
         }
 
+        /// <summary>
+        ///     Identificador del tipo de recomendación.
+        /// </summary>
+        public int TipoRecomendacionId
+        {
+            get { return _TipoRecomendacionId; }
+            set { _TipoRecomendacionId = value; }
+        }
+
         ///<remarks>
         ///   <name>Recomendacion.EstatusId</name>
         ///   <create>05/mar/2014</create>
@@ -150,6 +161,15 @@ namespace SIAQ.Entity.Object
             set { _Observaciones = value; }
         }
 
+        /// <summary>
+        ///     Número de año para calcular el siguiente número de folio.
+        /// </summary>
+        public Int16 Anio
+        {
+            get { return _Anio; }
+            set { _Anio = value; }
+        }
+
         ///<remarks>
         ///   <name>Recomendacion.ResultData</name>
         ///   <create>05/mar/2014</create>
@@ -176,10 +196,12 @@ namespace SIAQ.Entity.Object
             _CalificacionId = 0;
             _TipoSolicitudId = 0;
             _LugarHechosId = 0;
+            _TipoRecomendacionId = 0;
             _EstatusId = 0;
             _Numero = 0;
             _Fecha = DateTime.Now;
             _Observaciones = "";
+            _Anio = 0;
             _ResultData = new DataSet();
         }
         

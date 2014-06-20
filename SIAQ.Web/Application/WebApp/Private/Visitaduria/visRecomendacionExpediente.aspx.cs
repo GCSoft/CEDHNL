@@ -13,13 +13,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 {
     public partial class visRecomendacionExpediente : System.Web.UI.Page
     {
-        // Utilerías
+        const int EstatusIdRecomendacion = 13;
         Function utilFunction = new Function();
 
         #region "Events"
             protected void GuardarButton_Click(object sender, EventArgs e)
             {
-
+                SaveRecomendacion();
             }
 
             protected void Page_Load(object sender, EventArgs e)
@@ -57,6 +57,31 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 SelectTipoRecomendacion();
 
                 ExpedienteIdHidden.Value = ExpedienteId.ToString();
+            }
+
+            private void ResetForm()
+            {
+                TipoRecomendacionList.SelectedIndex = 0;
+                RecomendacionBox.Text = "";
+            }
+
+            private void SaveRecomendacion()
+            {
+                BPRecomendacion RecomendacionProcess = new BPRecomendacion();
+
+                RecomendacionProcess.RecomendacionEntity.ExpedienteId = int.Parse(ExpedienteIdHidden.Value);
+                RecomendacionProcess.RecomendacionEntity.EstatusId = EstatusIdRecomendacion;
+                RecomendacionProcess.RecomendacionEntity.Observaciones = RecomendacionBox.Text.Trim();
+
+                RecomendacionProcess.SaveRecomendacion();
+
+                if (RecomendacionProcess.ErrorId == 0)
+                {
+                    ResetForm();
+                    //SelectRecomendacion();
+                }
+                else
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(RecomendacionProcess.ErrorString) + "', 'Error', true);", true);
             }
 
             private void SelectExpediente(int ExpedienteId)

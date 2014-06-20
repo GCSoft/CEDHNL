@@ -44,6 +44,53 @@ namespace SIAQ.DataAccess.Object
             dbs = DatabaseFactory.CreateDatabase("Conn");
         }
 
+        /// <summary>
+        ///     Guarda un registro nuevo de recomendación del expediente.
+        /// </summary>
+        /// <param name="RecomendacionEntity">Entidad de la comparecencia del expediente.</param>
+        /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
+        public void InsertRecomendacion(ENTRecomendacion RecomendacionEntity, string ConnectionString)
+        {
+            DataSet ResultData = new DataSet();
+            SqlCommand Command;
+            SqlParameter Parameter;
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+
+            try
+            {
+                Command = new SqlCommand("InsertRecomendacion", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
+                Parameter.Value = RecomendacionEntity.ExpedienteId;
+                Command.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("EstatusId", SqlDbType.Int);
+                Parameter.Value = RecomendacionEntity.EstatusId;
+                Command.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("Numero", SqlDbType.VarChar);
+                Parameter.Value = RecomendacionEntity.Numero;
+                Command.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("Observaciones", SqlDbType.VarChar);
+                Parameter.Value = RecomendacionEntity.Observaciones;
+                Command.Parameters.Add(Parameter);
+
+                Connection.Open();
+                Command.ExecuteNonQuery();
+                Connection.Close();
+            }
+            catch (SqlException Exception)
+            {
+                _ErrorId = Exception.Number;
+                _ErrorString = Exception.Message;
+
+                if (Connection.State == ConnectionState.Open)
+                    Connection.Close();
+            }
+        }
+
         ///<remarks>
         ///<name>DASeguimiento.SelectListadoCiudadanosRecomendacion</name>
         ///<create>07/mar/2014</create>
@@ -184,6 +231,49 @@ namespace SIAQ.DataAccess.Object
                 return ds;
             }
 
+        }
+
+        /// <summary>
+        ///     Busca el siguiente número de folio para una recomendación.
+        /// </summary>
+        /// <param name="RecomendacionEntity">Entidad de la recomendación del expediente.</param>
+        /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
+        /// <returns>Resultado de la búsqueda.</returns>
+        public DataSet SelectNextFolio(ENTRecomendacion RecomendacionEntity, string ConnectionString)
+        {
+            DataSet ResultData = new DataSet();
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            SqlCommand Command;
+            SqlParameter Parameter;
+            SqlDataAdapter DataAdapter;
+
+            try
+            {
+                Command = new SqlCommand("SelectNextFolio", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                Parameter = new SqlParameter("Anio", SqlDbType.SmallInt);
+                Parameter.Value = RecomendacionEntity.Anio;
+                Command.Parameters.Add(Parameter);
+
+                DataAdapter = new SqlDataAdapter(Command);
+
+                Connection.Open();
+                DataAdapter.Fill(ResultData);
+                Connection.Close();
+
+                return ResultData;
+            }
+            catch (SqlException Exception)
+            {
+                _ErrorId = Exception.Number;
+                _ErrorString = Exception.Message;
+
+                if (Connection.State == ConnectionState.Open)
+                    Connection.Close();
+
+                return ResultData;
+            }
         }
 
         ///<remarks>

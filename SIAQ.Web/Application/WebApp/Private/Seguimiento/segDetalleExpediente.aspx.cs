@@ -357,6 +357,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 							return;
 						}
 
+						// Si el expediente está en estatus cerrado no se podrá editar
+						if (Int32.Parse(this.EstatusIdHidden.Value) == 12) {
+							ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('No es posible editar éste expediente debido a que está cerrado', 'Warning', false);", true);
+							return;
+						}
+
 						// Si no es Defensor no podrá editar
 						if (SessionEntity.idRol != 1 && SessionEntity.idRol != 2 && SessionEntity.idRol != 11) {
 							ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('No cuenta con permisos para realizar ésta opción', 'Warning', false);", true);

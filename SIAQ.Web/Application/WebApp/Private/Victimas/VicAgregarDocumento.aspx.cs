@@ -1,7 +1,7 @@
 ﻿/*---------------------------------------------------------------------------------------------------------------------------------
 ' Nombre:	VicAgregarDocumento
 ' Autor:	Ruben.Cobos
-' Fecha:	08-Junio-2014
+' Fecha:	19-Junio-2014
 '----------------------------------------------------------------------------------------------------------------------------------*/
 
 // Referencias
@@ -25,7 +25,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 	{
 		
 		// Constantes
-		const string ModuloId = "10c75a08-3ad4-4c44-a809-f3958e0f02b1";
+		const string ModuloId = "C14E2903-A657-43AF-8502-8AAD7D565AFC";
 
 		// Utilerías
 		Function utilFunction = new Function();
@@ -40,8 +40,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
 			// Validaciones
 			// if (this.DocumentoFile.HasFile == false ) { throw (new Exception("Es necesario seleccionar un archivo")); }
-            //if (this.TipoDocumentoList.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar un Tipo de Documento")); }
-			if (this.txtNombre.Text.Trim() == "") { throw (new Exception("Es necesario ingresar un nombre del documento")); }
+			if (this.TipoDocumentoList.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar un Tipo de Documento")); }
+			if (this.NombreBox.Text.Trim() == "") { throw (new Exception("Es necesario ingresar un nombre del documento")); }
 
 			// Obtener sesión
 			SessionEntity = (ENTSession)Session["oENTSession"];
@@ -49,22 +49,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			// Formulario
 			RepositorioProcess.DocumentoEntity.ModuloId = ModuloId;
 			RepositorioProcess.DocumentoEntity.TipoDocumentoId = this.TipoDocumentoList.SelectedValue;
-			RepositorioProcess.DocumentoEntity.SolicitudId = Int32.Parse(this.hddSolicitudId.Value);
+			RepositorioProcess.DocumentoEntity.SolicitudId = Int32.Parse(this.SolicitudIdHidden.Value);
 			RepositorioProcess.DocumentoEntity.idUsuarioInsert = SessionEntity.idUsuario;
-			RepositorioProcess.DocumentoEntity.Nombre = this.txtNombre.Text.Trim();
-			RepositorioProcess.DocumentoEntity.Descripcion = this.txtDescripcion.Text.Trim();
+			RepositorioProcess.DocumentoEntity.Nombre = this.NombreBox.Text.Trim();
+			RepositorioProcess.DocumentoEntity.Descripcion = this.DescripcionBox.Text.Trim();
 			RepositorioProcess.DocumentoEntity.FileUpload = this.DocumentoFile;
 
 			// Transacción
-            //RepositorioProcess.SaveRepositorioSE();
+			RepositorioProcess.SaveRepositorioSE();
 
 			// Manejo de errores
 			if (RepositorioProcess.ErrorId != 0) { throw(new Exception(RepositorioProcess.ErrorDescription)); }
 
 			// Transacción exitosa
 			this.TipoDocumentoList.SelectedIndex = 0;
-			this.txtNombre.Text = "";
-			this.txtDescripcion.Text = "";
+			this.NombreBox.Text = "";
+			this.DescripcionBox.Text = "";
 
 			ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('La información fue guardada con éxito!', 'Success', true); focusControl('" + this.DocumentoFile.ClientID + "');", true);
 			
@@ -72,56 +72,60 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
 		void DeleteRepositorio(string RepositorioId){
 			BPDocumento DocumentoProcess = new BPDocumento();
-            ENTResponse oResponse = new ENTResponse();
 
 			// Formulario
 			DocumentoProcess.DocumentoEntity.RepositorioId = RepositorioId;
-			DocumentoProcess.DocumentoEntity.SolicitudId = Int32.Parse(hddSolicitudId.Value);
+			DocumentoProcess.DocumentoEntity.SolicitudId = Int32.Parse(SolicitudIdHidden.Value);
 
 			// Transacción
-            //oResponse  = DocumentoProcess.DeleteRepositorioSE();
+			DocumentoProcess.DeleteRepositorioSE();
 
 			// Manejor de errores
 			if (DocumentoProcess.ErrorId != 0) { throw (new Exception(DocumentoProcess.ErrorDescription)); }
 			
 			// Transacción exitosa
-			SelectedExpediente();
+			SelectAtencion();
 			ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Archivo eliminado con éxito!', 'Success', true); focusControl('" + this.DocumentoFile.ClientID + "');", true);
 
 		}
 
-		void SelectedExpediente() {
-            BPAtencion bss = new BPAtencion();
-            ENTAtencion ent = new ENTAtencion();
-            ENTResponse oResponse = new ENTResponse();
-            DataSet ds = new DataSet();
+		void SelectAtencion() {
+			BPAtencion oBPAtencion = new BPAtencion();
+			ENTAtencion oENTAtencion = new ENTAtencion();
+			ENTResponse oENTResponse = new ENTResponse();
 
-			// Parámetros
-			ent.AtencionId = Int32.Parse(this.hddAtencionId.Value );
+			try
+			{
 
-			// Transacción
-            //oResponse = bss.searchAtencion(ent); // SelectExpediente_DetalleSeguimientos();
+				// Formulario
+				oENTAtencion.AtencionId = Int32.Parse(this.hddAtencionId.Value);
 
-            ds = oResponse.dsResponse;
+				// Transacción
+				oENTResponse = oBPAtencion.SelectAtencion_Detalle(oENTAtencion);
 
-			// Errores
-            //if (BPSeguimientoRecomendacion.ErrorId != 0) { throw (new Exception(BPSeguimientoRecomendacion.ErrorString)); }
+				// Errores y Warnings
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
 
-			// No se encontró el expediente
-			if (ds.Tables[0].Rows.Count == 0){ throw (new Exception("No se encontro el expediente")); }
+				// Campos ocultos
+				this.SolicitudIdHidden.Value = oENTResponse.dsResponse.Tables[1].Rows[0]["SolicitudId"].ToString();
 
-			// Formulario
-			this.lblAtencionId.Text = ds.Tables[0].Rows[0]["ExpedienteNumero"].ToString();
+				// Formulario
+				this.AtencionNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["AtencionNumero"].ToString();
+				this.ExpedienteNumeroLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["ExpedienteNumero"].ToString();
+				this.SolicitudNumeroLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["SolicitudNumero"].ToString();
+				this.EstatusLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusNombre"].ToString();
+				this.DoctorLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FuncionarioNombre"].ToString();
+				this.FechaAtencionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaAtencion"].ToString();
+				this.ObservacionesLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Observaciones"].ToString();
 
-            this.txtDescripcion.Text = ds.Tables[0].Rows[0]["Observaciones"].ToString();
+				// Grid
+				this.grdDocumento.DataSource = oENTResponse.dsResponse.Tables[5];
+				this.grdDocumento.DataBind();
 
-			// Campos ocultos
-			this.hddSolicitudId.Value = ds.Tables[0].Rows[0]["SolicitudId"].ToString();
-
-			// Grid
-			this.gvApps.DataSource = ds.Tables[5];
-			this.gvApps.DataBind();
-
+			}catch (Exception ex){
+				throw (ex);
+			}
 		}
 
 		void SelectedTipoDocumento(){
@@ -158,14 +162,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				if (this.Request.QueryString["key"] == null) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
 				if (this.Request.QueryString["key"].ToString().Split(new Char[] { '|' }).Length != 2) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
 
-				// Obtener ExpedienteId
+				// Obtener AtencionId
 				this.hddAtencionId.Value = this.Request.QueryString["key"].ToString().Split(new Char[] { '|' })[0];
 
 				// Obtener Sender
 				this.SenderId.Value = this.Request.QueryString["key"].ToString().ToString().Split(new Char[] { '|' })[1];
 
 				// Llenado de controles
-				SelectedExpediente();
+				SelectAtencion();
 				SelectedTipoDocumento();
 
 				// Foco
@@ -184,7 +188,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				AdjuntarDocumento();
 
 				// Refrescar Formulario
-				SelectedExpediente();
+				SelectAtencion();
 
             }catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.DocumentoFile.ClientID + "');", true);
@@ -192,10 +196,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		}
 
 		protected void btnRegresar_Click(object sender, EventArgs e){
-			Response.Redirect("segDetalleExpediente.aspx?key=" + this.hddAtencionId.Value + "|" + this.SenderId.Value, false);
+			Response.Redirect("VicDetalleAtencion.aspx?key=" + this.hddAtencionId.Value + "|" + this.SenderId.Value, false);
 		}
 
-		protected void gvApps_RowCommand(object sender, GridViewCommandEventArgs e){
+		protected void grdDocumento_RowCommand(object sender, GridViewCommandEventArgs e){
 			string RepositorioId = string.Empty;
 
 			RepositorioId = e.CommandArgument.ToString();
@@ -208,7 +212,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			}
 		}
 
-		protected void gvApps_RowDataBound(object sender,GridViewRowEventArgs e){
+		protected void grdDocumento_RowDataBound(object sender,GridViewRowEventArgs e){
 			HyperLink DocumentoLink;
 			Image DocumentoImage;
 			DataRowView DataRow;

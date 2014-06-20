@@ -27,17 +27,58 @@
 				<!-- Carátula -->
 				<table class="SolicitudTable">
 					<tr>
-						<td class="Especial">Expediente número</td>
+						<td class="Especial">Atención número</td>
 						<td class="Espacio"></td>
-						<td class="Campo"><asp:Label CssClass="NumeroSolicitudLabel" ID="lblAtencionId" runat="server" Text="0"></asp:Label></td>
+						<td class="Campo"><asp:Label ID="AtencionNumero" CssClass="NumeroSolicitudLabel" runat="server" Text="0"></asp:Label></td>
 						<td colspan="4"></td>
+					</tr>
+					<tr>
+						<td class="Nombre">Expediente número</td>
+						<td class="Espacio"></td>
+						<td class="Etiqueta"><asp:Label ID="ExpedienteNumeroLabel" runat="server" Text=""></asp:Label></td>
+						<td class="Espacio"></td>
+						<td class="Nombre"></td>
+						<td class="Espacio"></td>
+						<td class="Etiqueta"></td>
+					</tr>
+					<tr>
+						<td class="Nombre">Solicitud número</td>
+						<td class="Espacio"></td>
+						<td class="Etiqueta"><asp:Label ID="SolicitudNumeroLabel" runat="server" Text=""></asp:Label></td>
+						<td class="Espacio"></td>
+						<td class="Nombre"></td>
+						<td class="Espacio"></td>
+						<td class="Etiqueta"></td>
+					</tr>
+					<tr>
+						<td class="Nombre">Estatus</td>
+						<td class="Espacio"></td>
+						<td class="Etiqueta"><asp:Label ID="EstatusLabel" runat="server" Text=""></asp:Label></td>
+						<td class="Espacio"></td>
+						<td class="Nombre"></td>
+						<td class="Espacio"></td>
+						<td class="Etiqueta"></td>
+					</tr>
+					<tr>
+						<td class="Nombre">Doctor</td>
+						<td class="Espacio"></td>
+						<td class="Etiqueta"><asp:Label ID="DoctorLabel" runat="server" Text=""></asp:Label></td>
+						<td class="Espacio"></td>
+						<td class="Nombre">Fecha de Atención</td>
+						<td class="Espacio"></td>
+						<td class="Etiqueta"><asp:Label ID="FechaAtencionLabel" runat="server" Text=""></asp:Label></td>
+					</tr>
+					<tr>
+						<td class="Nombre">Observaciones</td>
+						<td class="Espacio"></td>
+						<td class="Observaciones" colspan="5"><asp:Label ID="ObservacionesLabel" runat="server" Text=""></asp:Label></td>
 					</tr>
 					<tr>
 						<td class="Nombre">Archivo</td>
 						<td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
 						<td class="Campo" colspan="5"><asp:FileUpload ID="DocumentoFile" runat="server" Width="300px" /></td>
 					</tr>
-                    <tr>
+					<tr>
 						<td class="Nombre">Tipo de documento</td>
 						<td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
 						<td class="Campo" colspan="5"><asp:DropDownList ID="TipoDocumentoList" runat="server" CssClass="DropDownList_General" Width="205px"></asp:DropDownList></td>
@@ -45,12 +86,12 @@
 					<tr>
 						<td class="Nombre">Nombre</td>
 						<td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
-						<td class="Campo" colspan="5"><asp:TextBox ID="txtNombre" runat="server" CssClass="Textbox_General" width="200px" ></asp:TextBox></td>
+						<td class="Campo" colspan="5"><asp:TextBox ID="NombreBox" runat="server" CssClass="Textbox_General" width="200px" ></asp:TextBox></td>
 					</tr>
 					<tr>
 						<td class="Nombre">Descripción</td>
 						<td class="Espacio"></td>
-						<td class="Campo" colspan="5"><asp:TextBox ID="txtDescripcion" runat="server" CssClass="Textbox_General" TextMode="MultiLine" Height="100px" width="360px" ></asp:TextBox></td>
+						<td class="Campo" colspan="5"><asp:TextBox ID="DescripcionBox" runat="server" CssClass="Textbox_General" TextMode="MultiLine" Height="100px" width="360px" ></asp:TextBox></td>
 					</tr>
 				</table>
 
@@ -71,14 +112,14 @@
 					<tr><td class="tdCeldaMiddleSpace"></td></tr>
 					<tr>
 						<td style="text-align: left;">
-							Notificaciones adjuntadas
+							Archivos adjuntados
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<asp:GridView AutoGenerateColumns="False" ID="gvApps" runat="server" Style="text-align: center" Width="100%"
-								OnRowCommand="gvApps_RowCommand"
-								OnRowDataBound="gvApps_RowDataBound">
+							<asp:GridView AutoGenerateColumns="False" ID="grdDocumento" runat="server" Style="text-align: center" Width="100%"
+								OnRowCommand="grdDocumento_RowCommand"
+								OnRowDataBound="grdDocumento_RowDataBound">
 								<RowStyle CssClass="Grid_Row" />
 								<EditRowStyle Wrap="True" />
 								<HeaderStyle CssClass="Grid_Header" ForeColor="#E3EBF5" />
@@ -92,7 +133,7 @@
 											<td style="width: 50px;"></td>
 										</tr>
 										<tr class="Grid_Row">
-											<td colspan="4">No se encontraron documentos relacionados a la atención</td>
+											<td colspan="4">No se encontraron achivos adjuntos</td>
 										</tr>
 									</table>
 								</EmptyDataTemplate>
@@ -123,7 +164,7 @@
 			</div>
 
 			<asp:HiddenField ID="hddAtencionId" runat="server" Value="0"  />
-			<asp:HiddenField ID="hddSolicitudId" runat="server" Value="0"  />
+			<asp:HiddenField ID="SolicitudIdHidden" runat="server" Value="0"  />
 			<asp:HiddenField ID="SenderId" runat="server" Value="0"  />
 			<asp:HiddenField ID="hddSort" runat="server" Value="Numero" />
 

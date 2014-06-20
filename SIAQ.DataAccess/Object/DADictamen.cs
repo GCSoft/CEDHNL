@@ -1,10 +1,19 @@
+/*---------------------------------------------------------------------------------------------------------------------------------
+' Clase: DADictamen
+' Autor: Ruben.Cobos
+' Fecha: 21-Octubre-2013
+'
+' Proposito:
+'          Clase que modela la capa de capa de acceso a datos de la aplicación con métodos relacionados con los Dictamenes Médicos
+'----------------------------------------------------------------------------------------------------------------------------------*/
+
+// Referencias
 using System;
-using System.Data;
-using System.Configuration;
-using System.Web;
 using System.Collections.Generic;
 using System.Text;
-using Microsoft.Practices.EnterpriseLibrary.Data;
+
+// Referencias manuales
+using System.Data;
 using System.Data.SqlClient;
 using SIAQ.Entity.Object;
 
@@ -12,134 +21,66 @@ namespace SIAQ.DataAccess.Object
 {
     public class DADictamen : DABase
     {
-        Database dbs;
-        public DADictamen()
-        {
-            dbs = DatabaseFactory.CreateDatabase("Conn");
-        }
-        ///<remarks>
-        ///   <name>DADictamen.searchDictamen</name>
-        ///   <create>11/jun/2014</create>
-        ///   <author>Generador</author>
-        ///</remarks>
-        ///<summary>Metodo para obtener las Dictamen del sistema</summary>
-        public ENTResponse searchDictamen(ENTDictamen entDictamen)
-        {
-            ENTResponse oENTResponse = new ENTResponse();
-            DataSet ds = new DataSet();
-            // Transacción
-            try
-            {
-                ds = dbs.ExecuteDataSet("DictamenSel");
-                oENTResponse.dsResponse = ds;
-            }
-            catch (SqlException sqlEx)
-            {
-                oENTResponse.ExceptionRaised(sqlEx.Message);
-            }
-            catch (Exception ex)
-            {
-                oENTResponse.ExceptionRaised(ex.Message);
-            }
-            finally
-            {
-            }
-            // Resultado
-            return oENTResponse;
+        
+		///<remarks>
+		///   <name>DADictamen.SelectDictamen</name>
+		///   <create>21-Octubre-2013</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene un listado de Dictamenes Médicos en base a los parámetros proporcionados</summary>
+		///<param name="oENTDictamen">Entidad de Dictamen con los parámetros necesarios para consultar la información</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse SelectDictamen(ENTDictamen oENTDictamen, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
 
-        }
-        ///<remarks>
-        ///   <name>DADictamen.insertDictamen</name>
-        ///   <create>11/jun/2014</create>
-        ///   <author>Generador</author>
-        ///</remarks>
-        ///<summary>Metodo para insertar Dictamen del sistema</summary>
-        public ENTResponse insertDictamen(ENTDictamen entDictamen)
-        {
-            ENTResponse oENTResponse = new ENTResponse();
-            DataSet ds = new DataSet();
-            // Transacción
-            try
-            {
-                ds = dbs.ExecuteDataSet("DictamenIns");
-                oENTResponse.dsResponse = ds;
-            }
-            catch (SqlException sqlEx)
-            {
-                oENTResponse.ExceptionRaised(sqlEx.Message);
-            }
-            catch (Exception ex)
-            {
-                oENTResponse.ExceptionRaised(ex.Message);
-            }
-            finally
-            {
-            }
-            // Resultado
-            return oENTResponse;
+			ENTResponse oENTResponse = new ENTResponse();
 
-        }
-        ///<remarks>
-        ///   <name>DADictamen.updateDictamen</name>
-        ///   <create>11/jun/2014</create>
-        ///   <author>Generador</author>
-        ///</remarks>
-        ///<summary>Metodo que actualiza Dictamen del sistema</summary>
-        public ENTResponse updateDictamen(ENTDictamen entDictamen)
-        {
-            ENTResponse oENTResponse = new ENTResponse();
-            DataSet ds = new DataSet();
-            // Transacción
-            try
-            {
-                dbs.ExecuteDataSet("DictamenUpd");
-                oENTResponse.dsResponse = ds;
-            }
-            catch (SqlException sqlEx)
-            {
-                oENTResponse.ExceptionRaised(sqlEx.Message);
-            }
-            catch (Exception ex)
-            {
-                oENTResponse.ExceptionRaised(ex.Message);
-            }
-            finally
-            {
-            }
-            // Resultado
-            return oENTResponse;
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspDictamen_Sel", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
 
-        }
-        ///<remarks>
-        ///   <name>DADictamen.deleteDictamen</name>
-        ///   <create>11/jun/2014</create>
-        ///   <author>Generador</author>
-        ///</remarks>
-        ///<summary>Metodo para eliminar de Dictamen del sistema</summary>
-        public ENTResponse deleteDictamen(ENTDictamen entDictamen)
-        {
-            ENTResponse oENTResponse = new ENTResponse();
-            DataSet ds = new DataSet();
-            // Transacción
-            try
-            {
-                dbs.ExecuteDataSet("DictamenDel");
-                oENTResponse.dsResponse = ds;
-            }
-            catch (SqlException sqlEx)
-            {
-                oENTResponse.ExceptionRaised(sqlEx.Message);
-            }
-            catch (Exception ex)
-            {
-                oENTResponse.ExceptionRaised(ex.Message);
-            }
-            finally
-            {
-            }
-            // Resultado
-            return oENTResponse;
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
 
-        }
+			// Parametros
+			sqlPar = new SqlParameter("AtencionId", SqlDbType.Int);
+			sqlPar.Value = oENTDictamen.AtencionId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try{
+				
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+
+			}catch (SqlException sqlEx){
+				
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+
+			}catch (Exception ex){
+				
+				oENTResponse.ExceptionRaised(ex.Message);
+
+			}finally{
+
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
     }
 }

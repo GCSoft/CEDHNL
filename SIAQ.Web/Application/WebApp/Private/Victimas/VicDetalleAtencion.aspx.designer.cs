@@ -211,13 +211,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         protected global::System.Web.UI.WebControls.Label ObservacionesLabel;
         
         /// <summary>
-        /// gvApps control.
+        /// gvCiudadano control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvApps;
+        protected global::System.Web.UI.WebControls.GridView gvCiudadano;
         
         /// <summary>
         /// dlstDocumentoList control.

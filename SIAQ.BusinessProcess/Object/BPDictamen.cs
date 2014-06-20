@@ -1,128 +1,59 @@
+/*---------------------------------------------------------------------------------------------------------------------------------
+' Clase: BPDictamen
+' Autor: Ruben.Cobos
+' Fecha: 21-Octubre-2013
+'
+' Proposito:
+'          Clase que modela la capa de reglas de negocio de la aplicación con métodos relacionados con los Dictamenes Médicos
+'----------------------------------------------------------------------------------------------------------------------------------*/
+
+// Referencias
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Data;
+
+// Referencias manuales
 using SIAQ.DataAccess.Object;
 using SIAQ.Entity.Object;
+using System.Data;
+using System.Web;
+
 namespace SIAQ.BusinessProcess.Object
 {
     public class BPDictamen : BPBase
     {
-        ///<remarks>
-        ///   <name>BPDictamen.searchDictamen</name>
-        ///   <create>11/jun/2014</create>
-        ///   <author>Generador</author>
-        ///</remarks>
-        ///<summary>Metodo para obtener las Dictamen del sistema</summary>
-        public ENTResponse searchDictamen(ENTDictamen entDictamen)
-        {
+       
+		///<remarks>
+		///   <name>BPDictamen.SelectDictamen</name>
+		///   <create>21-Octubre-2013</create>
+		///   <author>GCSoft - Web Project Creator BETA 1.0</author>
+		///</remarks>
+		///<summary>Obtiene un listado de Dictamenes Médicos en base a los parámetros proporcionados</summary>
+		///<param name="oENTDictamen">Entidad de Dictamen con los filtros necesarios para la consulta</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse SelectDictamen(ENTDictamen oENTDictamen){
+			DADictamen oDADictamen = new DADictamen();
+			ENTResponse oENTResponse = new ENTResponse();
 
-            ENTResponse oENTResponse = new ENTResponse();
-            try
-            {
-                // Consulta a base de datos
-                DADictamen dataDictamen = new DADictamen();
-                oENTResponse = dataDictamen.searchDictamen(entDictamen);
-                // Validación de error en consulta
-                if (oENTResponse.GeneratesException) { return oENTResponse; }
-                // Validación de mensajes de la BD
-                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-                if (oENTResponse.sMessage != "") { return oENTResponse; }
-            }
-            catch (Exception ex)
-            {
-                oENTResponse.ExceptionRaised(ex.Message);
-            }
-            // Resultado
-            return oENTResponse;
+			try{
 
-        }
-        ///<remarks>
-        ///   <name>BPDictameninsertDictamen</name>
-        ///   <create>11/jun/2014</create>
-        ///   <author>Generador</author>
-        ///</remarks>
-        ///<summary>Metodo para insertar Dictamen del sistema</summary>
-        public ENTResponse insertDictamen(ENTDictamen entDictamen)
-        {
+			// Transacción en base de datos
+			oENTResponse = oDADictamen.SelectDictamen(oENTDictamen, this.sConnectionApplication, 0);
 
-            ENTResponse oENTResponse = new ENTResponse();
-            try
-            {
-                // Consulta a base de datos
-                DADictamen dataDictamen = new DADictamen();
-                oENTResponse = dataDictamen.searchDictamen(entDictamen);
-                // Validación de error en consulta
-                if (oENTResponse.GeneratesException) { return oENTResponse; }
-                // Validación de mensajes de la BD
-                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-                if (oENTResponse.sMessage != "") { return oENTResponse; }
-            }
-            catch (Exception ex)
-            {
-                oENTResponse.ExceptionRaised(ex.Message);
-            }
-            // Resultado
-            return oENTResponse;
+			// Validación de error en consulta
+			if (oENTResponse.GeneratesException) { return oENTResponse; }
 
-        }
-        ///<remarks>
-        ///   <name>BPDictamenupdateDictamen</name>
-        ///   <create>11/jun/2014</create>
-        ///   <author>Generador</author>
-        ///</remarks>
-        ///<summary>Metodo que actualiza Dictamen del sistema</summary>
-        public ENTResponse updateDictamen(ENTDictamen entDictamen)
-        {
+			// Validación de mensajes de la BD
+			oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+			if (oENTResponse.sMessage != "") { return oENTResponse; }
 
-            ENTResponse oENTResponse = new ENTResponse();
-            try
-            {
-                // Consulta a base de datos
-                DADictamen dataDictamen = new DADictamen();
-                oENTResponse = dataDictamen.searchDictamen(entDictamen);
-                // Validación de error en consulta
-                if (oENTResponse.GeneratesException) { return oENTResponse; }
-                // Validación de mensajes de la BD
-                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-                if (oENTResponse.sMessage != "") { return oENTResponse; }
-            }
-            catch (Exception ex)
-            {
-                oENTResponse.ExceptionRaised(ex.Message);
-            }
-            // Resultado
-            return oENTResponse;
+			}catch (Exception ex){
+			oENTResponse.ExceptionRaised(ex.Message);
+			}
 
-        }
-        ///<remarks>
-        ///   <name>BPDictamendeleteDictamen</name>
-        ///   <create>11/jun/2014</create>
-        ///   <author>Generador</author>
-        ///</remarks>
-        ///<summary>Metodo para eliminar de Dictamen del sistema</summary>
-        public ENTResponse deleteDictamen(ENTDictamen entDictamen)
-        {
+			// Resultado
+			return oENTResponse;
+		}
 
-            ENTResponse oENTResponse = new ENTResponse();
-            try
-            {
-                // Consulta a base de datos
-                DADictamen dataDictamen = new DADictamen();
-                oENTResponse = dataDictamen.searchDictamen(entDictamen);
-                // Validación de error en consulta
-                if (oENTResponse.GeneratesException) { return oENTResponse; }
-                // Validación de mensajes de la BD
-                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-                if (oENTResponse.sMessage != "") { return oENTResponse; }
-            }
-            catch (Exception ex)
-            {
-                oENTResponse.ExceptionRaised(ex.Message);
-            }
-            // Resultado
-            return oENTResponse;
-
-        }
     }
 }

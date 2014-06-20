@@ -22,13 +22,67 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// lblAtencionId control.
+        /// AtencionNumero control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAtencionId;
+        protected global::System.Web.UI.WebControls.Label AtencionNumero;
+        
+        /// <summary>
+        /// ExpedienteNumeroLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ExpedienteNumeroLabel;
+        
+        /// <summary>
+        /// SolicitudNumeroLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SolicitudNumeroLabel;
+        
+        /// <summary>
+        /// EstatusLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label EstatusLabel;
+        
+        /// <summary>
+        /// DoctorLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label DoctorLabel;
+        
+        /// <summary>
+        /// FechaAtencionLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label FechaAtencionLabel;
+        
+        /// <summary>
+        /// ObservacionesLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ObservacionesLabel;
         
         /// <summary>
         /// ddlCiudadano control.
@@ -40,13 +94,31 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         protected global::System.Web.UI.WebControls.DropDownList ddlCiudadano;
         
         /// <summary>
-        /// txtDictamen control.
+        /// ddlTipoDictamen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDictamen;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTipoDictamen;
+        
+        /// <summary>
+        /// ddlLugarAtencion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlLugarAtencion;
+        
+        /// <summary>
+        /// ckeDictamen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::CKEditor.NET.CKEditorControl ckeDictamen;
         
         /// <summary>
         /// btnGuardar control.
@@ -67,13 +139,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         protected global::System.Web.UI.WebControls.Button btnRegresar;
         
         /// <summary>
-        /// gvApps control.
+        /// gvDictamen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvApps;
+        protected global::System.Web.UI.WebControls.GridView gvDictamen;
         
         /// <summary>
         /// hddAtencionId control.

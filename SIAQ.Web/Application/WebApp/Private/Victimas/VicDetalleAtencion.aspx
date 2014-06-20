@@ -115,44 +115,45 @@
             </tr>
             <tr>
                 <td>
-                    <asp:GridView id="gvApps" runat="server" AllowPaging="false" AllowSorting="true"  AutoGenerateColumns="False" Width="100%"
-						DataKeyNames="CiudadanoId" 
-						onrowcommand="gvApps_RowCommand" 
-						onrowdatabound="gvApps_RowDataBound"
-						onsorting="gvApps_Sorting">
-						<alternatingrowstyle cssclass="Grid_Row_Alternating" />
-						<headerstyle cssclass="Grid_Header" />
-						<rowstyle cssclass="Grid_Row" />
-						<EmptyDataTemplate>
-							<table border="1px" cellpadding="0px" cellspacing="0px" width="100%">
-								<tr class="Grid_Header">
-									<td style="width:75px;">No. Ciudadano</td>
-									<td style="width:200px;">Ciudadano</td>
-									<td style="width:200px;">Sexo</td>
-									<td style="width:70px;">Fecha de nacimiento</td>
+                    <asp:GridView ID="gvCiudadano" runat="server" AllowPaging="false" AllowSorting="true" AutoGenerateColumns="False" Width="100%"
+						DataKeyNames="CiudadanoId,NombreCompleto" 
+						OnRowCommand="gvCiudadano_RowCommand" 
+						OnRowDataBound="gvCiudadano_RowDataBound"
+                        OnSorting="gvCiudadano_Sorting">
+                        <RowStyle CssClass="Grid_Row" />
+                        <EditRowStyle Wrap="True" />
+                        <HeaderStyle CssClass="Grid_Header" ForeColor="#E3EBF5" />
+                        <AlternatingRowStyle CssClass="Grid_Row_Alternating" />
+                        <EmptyDataTemplate>
+                            <table border="1px" width="100%" cellpadding="0px" cellspacing="0px">
+                                <tr class="Grid_Header">
+									<td style="width:100px;">Tipo</td>
+									<td style="width:250px;">Nombre</td>
+									<td style="width:90px;">Nacimiento</td>
+									<td style="width:80px;">Sexo</td>
+                                    <td style="width:100px;">Telefono</td>
 									<td>Domicilio</td>
-                                    <td>teléfono</td>
 									<td style="width:25px;"></td>
-								</tr>
-								<tr class="Grid_Row">
-									<td colspan="6">No se dictamenes ciudadanos asociados a la atención</td>
-								</tr>
-							</table>
-						</EmptyDataTemplate>
-						<Columns>
-							<asp:BoundField HeaderText="CiudadanoId"			ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="75px"	DataField="Numero"				SortExpression="CiudadanoId"></asp:BoundField>
-                            <asp:BoundField HeaderText="Nombre"		            ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="75px"	DataField="Numero"				SortExpression="NombreCiudadano"></asp:BoundField>
-							<asp:BoundField HeaderText="Sexo"	                ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="AutoridadNombre"		SortExpression="Sexo"></asp:BoundField>
-							<asp:BoundField HeaderText="Fecha de Nacimiento"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="PuestoNombre"		SortExpression="FechaNacimiento"></asp:BoundField>
-							<asp:BoundField HeaderText="Domicilio"				ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="70px"	DataField="FechaRecomendacion"	SortExpression="Domicilio"></asp:BoundField>
-							<asp:BoundField HeaderText="Teléfono"		        ItemStyle-HorizontalAlign="Left"							DataField="Comentarios"			SortExpression="Telefono"></asp:BoundField>
+                                </tr>
+                                <tr class="Grid_Row">
+                                    <td colspan="8">No se encontraron Ciudadanos registrados en el sistema</td>
+                                </tr>
+                            </table>
+                        </EmptyDataTemplate>
+                        <Columns>
+							<asp:BoundField HeaderText="Tipo"		ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="100px"	DataField="NombreTipoCiudadano"		SortExpression="NombreTipoCiudadano"></asp:BoundField>
+							<asp:BoundField HeaderText="Nombre"		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="250px"	DataField="NombreCompleto"			SortExpression="NombreCompleto"></asp:BoundField>
+							<asp:BoundField HeaderText="Nacimiento"	ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="90px"	DataField="FechaNacimientoCorta"	SortExpression="FechaNacimientoCorta"></asp:BoundField>
+							<asp:BoundField HeaderText="Sexo"		ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="80px"	DataField="NombreSexo"				SortExpression="NombreSexo"></asp:BoundField>
+							<asp:BoundField HeaderText="Telefono"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="100px"	DataField="TelefonoPrincipal"		SortExpression="TelefonoPrincipal"></asp:BoundField>
+							<asp:BoundField HeaderText="Domicilio"	ItemStyle-HorizontalAlign="Left"							DataField="Domicilio"				SortExpression="Domicilio"></asp:BoundField>
 							<asp:TemplateField ItemStyle-HorizontalAlign ="Center" ItemStyle-Width="20px">
-								<ItemTemplate>
-									<asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
-								</ItemTemplate>
-							</asp:TemplateField>
-						</Columns>
-					</asp:GridView>
+							<ItemTemplate>
+								<asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
+							</ItemTemplate>
+						</asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
                 </td>
             </tr>
             <tr><td class="tdCeldaMiddleSpace"></td></tr>

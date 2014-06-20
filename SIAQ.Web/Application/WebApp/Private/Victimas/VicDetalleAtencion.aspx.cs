@@ -96,9 +96,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				this.ObservacionesLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Observaciones"].ToString();
 
 
-				//// Grid
-				//this.gvApps.DataSource = oENTResponse.dsResponse.Tables[2];
-				//this.gvApps.DataBind();
+				// Grid
+				this.gvCiudadano.DataSource = oENTResponse.dsResponse.Tables[2];
+				this.gvCiudadano.DataBind();
 
 				// Documentos
 				if (oENTResponse.dsResponse.Tables[3].Rows.Count == 0){
@@ -335,130 +335,124 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
             }
         }
 
-        protected void gvApps_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            ENTSession SessionEntity = new ENTSession();
-            String RecomendacionId;
+		protected void gvCiudadano_RowCommand(object sender, GridViewCommandEventArgs e){
+			ENTSession SessionEntity = new ENTSession();
+			String CiudadanoId;
 
-            String strCommand = "";
-            Int32 intRow = 0;
+			String strCommand = "";
+			Int32 intRow = 0;
 
-            try
-            {
+			try
+			{
 
-                // Opción seleccionada
-                strCommand = e.CommandName.ToString();
+				// Opción seleccionada
+				strCommand = e.CommandName.ToString();
 
-                // Se dispara el evento RowCommand en el ordenamiento
-                if (strCommand == "Sort") { return; }
+				// Se dispara el evento RowCommand en el ordenamiento
+				if (strCommand == "Sort") { return; }
 
-                // Fila
-                intRow = Int32.Parse(e.CommandArgument.ToString());
+				// Fila
+				intRow = Int32.Parse(e.CommandArgument.ToString());
 
-                // Datakeys
-                RecomendacionId = this.gvApps.DataKeys[intRow]["AtencionId"].ToString();
+				// Datakeys
+				CiudadanoId = this.gvCiudadano.DataKeys[intRow]["CiudadanoId"].ToString();
 
-                // Acción
-                switch (strCommand)
-                {
-                    case "Editar":
+				// Acción
+				switch (strCommand){
+					case "Editar":
 
-                        // Obtener sesión
-                        SessionEntity = (ENTSession)Session["oENTSession"];
+						// Obtener sesión
+						SessionEntity = (ENTSession)Session["oENTSession"];
 
-                        // Si el expediente está en estatus de espera e confirmación de cierre no se podrá editar
-                        if (Int32.Parse(this.hddEstatusId.Value) == 8)
-                        {
-                            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('No es posible editar esta atención debido a que está a la espera de confirmación de cierre', 'Warning', false);", true);
-                            return;
-                        }
+						// Si el expediente está en estatus de espera de confirmación de cierre no se podrá editar
+						if (Int32.Parse(this.hddEstatusId.Value) == 20) {
+							ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('No es posible editar éste expediente de atención a víctimas debido a que está a la espera de confirmación de cierre', 'Warning', false);", true);
+							return;
+						}
 
-                        // Si no es Defensor no podrá editar
-                        if (SessionEntity.idRol != 1 && SessionEntity.idRol != 2 && SessionEntity.idRol != 11)
-                        {
-                            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('No cuenta con permisos para realizar ésta opción', 'Warning', false);", true);
-                            return;
-                        }
-                // TODO: "Aqui hay que ponerle la acción que le corresponde para eliminar lógicamente el ciudadano"
-                        this.Response.Redirect("segSeguimientoRecomendacion.aspx?key=" + this.hddFuncionarioId.Value.ToString() + "|" + this.SenderId.Value.ToString() + "|" + RecomendacionId, false);
-                        break;
-                }
+						// Si el expediente está en estatus cerrado no se podrá editar
+						if (Int32.Parse(this.hddEstatusId.Value) == 21) {
+							ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('No es posible editar éste expediente de atención a víctimas debido a que ya está cerrado', 'Warning', false);", true);
+							return;
+						}
 
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
-            }
-        }
+						// Si no es Doctor no podrá editar
+						if (SessionEntity.idRol != 1 && SessionEntity.idRol != 2 && SessionEntity.idRol != 14) {
+							ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('No cuenta con permisos para realizar ésta opción', 'Warning', false);", true);
+							return;
+						}
 
-        protected void gvApps_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            ImageButton imgEdit = null;
+						this.Response.Redirect("VicDictamenMedico.aspx?key=" + this.hddAtencionId.Value.ToString() + "|" + this.SenderId.Value.ToString() + "|" + CiudadanoId, false);
+						break;
+				}
 
-            String sNumero = "";
-            String sImagesAttributes = "";
-            String sToolTip = "";
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+			}
+		}
 
-            try
-            {
+        protected void gvCiudadano_RowDataBound(object sender, GridViewRowEventArgs e){
+			ImageButton imgEdit = null;
 
-                // Validación de que sea fila 
-                if (e.Row.RowType != DataControlRowType.DataRow) { return; }
+			String sNombre = "";
+			String sImagesAttributes = "";
+			String sToolTip = "";
 
-                // Obtener imagenes
-                imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
+			try
+			{
+				
+				// Validación de que sea fila 
+				if (e.Row.RowType != DataControlRowType.DataRow) { return; }
 
-                // DataKeys
-                sNumero = gvApps.DataKeys[e.Row.RowIndex]["Numero"].ToString();
+				// Obtener imagenes
+				imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
 
-                // Tooltip Editar Recomendacion
-                sToolTip = "Número de atención [" + sNumero + "]";
-                imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
-                imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
-                imgEdit.Attributes.Add("style", "cursor:hand;");
+				// DataKeys
+				sNombre = this.gvCiudadano.DataKeys[e.Row.RowIndex]["NombreCompleto"].ToString();
 
-                // Atributos Over
-                sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png'; ";
-                e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
+				// Tooltip Editar Recomendacion
+				sToolTip = "Dictamen Médico [" + sNombre + "]";
+				imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
+				imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
+				imgEdit.Attributes.Add("style", "cursor:hand;");
 
-                // Atributos Out
-                sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png'; ";
-                e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
+				// Atributos Over
+				sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png'; ";
+				e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
 
-            }
-            catch (Exception ex)
-            {
-                throw (ex);
-            }
-        }
+				// Atributos Out
+				sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png'; ";
+				e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
 
-        protected void gvApps_Sorting(object sender, GridViewSortEventArgs e)
-        {
-            DataTable TableAutoridad = null;
-            DataView ViewAutoridad = null;
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
 
-            try
-            {
-                //Obtener DataTable y View del GridView
-                TableAutoridad = utilFunction.ParseGridViewToDataTable(gvApps, false);
-                ViewAutoridad = new DataView(TableAutoridad);
+		protected void gvCiudadano_Sorting(object sender, GridViewSortEventArgs e){
+			DataTable TableAutoridad = null;
+			DataView ViewAutoridad = null;
 
-                //Determinar ordenamiento
-                hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
+			try
+			{
+				//Obtener DataTable y View del GridView
+				TableAutoridad = utilFunction.ParseGridViewToDataTable(gvCiudadano, false);
+				ViewAutoridad = new DataView(TableAutoridad);
 
-                //Ordenar Vista
-                ViewAutoridad.Sort = hddSort.Value;
+				//Determinar ordenamiento
+				hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
 
-                //Vaciar datos
-                this.gvApps.DataSource = ViewAutoridad;
-                this.gvApps.DataBind();
+				//Ordenar Vista
+				ViewAutoridad.Sort = hddSort.Value;
 
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
-            }
-        }
+				//Vaciar datos
+				this.gvCiudadano.DataSource = ViewAutoridad;
+				this.gvCiudadano.DataBind();
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+			}
+		}
 
         protected void lnkAgregarComentario_Click(object sender, EventArgs e){
             this.lblActionMessage.Text = "";
@@ -499,7 +493,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
         }
 
         protected void cmdDictamenMedico_Click(object sender, ImageClickEventArgs e){
-            Response.Redirect("VicDictamenMedico.aspx?key=" + this.hddAtencionId.Value.ToString() + "|" + this.SenderId.Value.ToString());
+			Response.Redirect("VicDictamenMedico.aspx?key=" + this.hddAtencionId.Value.ToString() + "|" + this.SenderId.Value.ToString() + "|0");
         }
 
         protected void cmdEnviarOrientacion_Click(object sender, ImageClickEventArgs e){

@@ -22,14 +22,46 @@ namespace SIAQ.BusinessProcess.Object
 {
     public class BPDictamen : BPBase
     {
-       
+
 		///<remarks>
-		///   <name>BPDictamen.SelectDictamen</name>
-		///   <create>21-Octubre-2013</create>
-		///   <author>GCSoft - Web Project Creator BETA 1.0</author>
+		///   <name>BPTipoDictamen.InsertDictamen</name>
+		///   <create>20-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
 		///</remarks>
-		///<summary>Obtiene un listado de Dictamenes Médicos en base a los parámetros proporcionados</summary>
-		///<param name="oENTDictamen">Entidad de Dictamen con los filtros necesarios para la consulta</param>
+		///<summary>Crea un nuevo dictamen a un ciudadano en el modulo de atención a víctimas</summary>
+		///<param name="oENTTipoDictamen">Entidad de Dictamen con los parámetros necesarios para realizar la transacción</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse InsertDictamen(ENTDictamen oENTDictamen){
+			DADictamen oDADictamen = new DADictamen();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try{
+
+			// Transacción en base de datos
+			oENTResponse = oDADictamen.InsertDictamen(oENTDictamen, this.sConnectionApplication, 0);
+
+			// Validación de error en consulta
+			if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+			// Validación de mensajes de la BD
+			oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+			if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
+		///<remarks>
+		///   <name>BPTipoDictamen.SelectDictamen</name>
+		///   <create>20-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene el listado de Dictámenes asociados a una atención a Víctimas</summary>
+		///<param name="oENTTipoDictamen">Entidad de Dictamen con los filtros necesarios para la consulta</param>
 		///<returns>Una entidad de respuesta</returns>
 		public ENTResponse SelectDictamen(ENTDictamen oENTDictamen){
 			DADictamen oDADictamen = new DADictamen();
@@ -48,7 +80,71 @@ namespace SIAQ.BusinessProcess.Object
 			if (oENTResponse.sMessage != "") { return oENTResponse; }
 
 			}catch (Exception ex){
-			oENTResponse.ExceptionRaised(ex.Message);
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
+		///<remarks>
+		///   <name>BPTipoDictamen.SelectLugarAtencion</name>
+		///   <create>20-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene un listado de Lugares de Atención del dictamen en base a los parámetros proporcionados</summary>
+		///<param name="oENTTipoDictamen">Entidad de Dictamen con los filtros necesarios para la consulta</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse SelectLugarAtencion(ENTDictamen oENTDictamen){
+			DADictamen oDADictamen = new DADictamen();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try{
+
+			// Transacción en base de datos
+			oENTResponse = oDADictamen.SelectLugarAtencion(oENTDictamen, this.sConnectionApplication, 0);
+
+			// Validación de error en consulta
+			if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+			// Validación de mensajes de la BD
+			oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+			if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+       
+		///<remarks>
+		///   <name>BPTipoDictamen.SelectTipoDictamen</name>
+		///   <create>20-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene un listado de Tipos de Dictámenes en base a los parámetros proporcionados</summary>
+		///<param name="oENTTipoDictamen">Entidad de Dictamen con los filtros necesarios para la consulta</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse SelectTipoDictamen(ENTDictamen oENTDictamen){
+			DADictamen oDADictamen = new DADictamen();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try{
+
+			// Transacción en base de datos
+			oENTResponse = oDADictamen.SelectTipoDictamen(oENTDictamen, this.sConnectionApplication, 0);
+
+			// Validación de error en consulta
+			if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+			// Validación de mensajes de la BD
+			oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+			if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
 			}
 
 			// Resultado

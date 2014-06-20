@@ -120,32 +120,34 @@
             <tr>
                 <td>
                     <asp:GridView id="gvDictamen" runat="server" AllowPaging="false" AllowSorting="true"  AutoGenerateColumns="False" Width="100%"
-						DataKeyNames="RecomendacionId,Numero" 
-						onrowdatabound="gvDictamen_RowDataBound"
-						onsorting="gvDictamen_Sorting">
+						DataKeyNames="DictamenId" 
+						OnRowDataBound="gvDictamen_RowDataBound"
+						OnSorting="gvDictamen_Sorting">
 						<alternatingrowstyle cssclass="Grid_Row_Alternating" />
 						<headerstyle cssclass="Grid_Header" />
 						<rowstyle cssclass="Grid_Row" />
 						<EmptyDataTemplate>
 							<table border="1px" cellpadding="0px" cellspacing="0px" width="100%">
 								<tr class="Grid_Header">
-									<td style="width:75px;">Número</td>
-									<td style="width:200px;">Nombre de la Autoridad</td>
-									<td style="width:70px;">Fecha</td>
-									<td style="width:200px;">Tipo de Seguimiento</td>
-									<td>Seguimiento</td>
+									<td style="width:75px;">Fecha</td>
+									<td style="width:120px;">Tipo de Dictamen</td>
+									<td style="width:120px;">Lugar de Atención</td>
+									<td style="width:200px;">Doctor que Atendió</td>
+									<td style="width:200px;">Ciudadano</td>
+									<td>Dictamen</td>
 								</tr>
 								<tr class="Grid_Row">
-									<td colspan="5">No se encontraron seguimientos asociados a las recomendaciones del expediente</td>
+									<td colspan="6">No se encontraron dictámenes médicos de ciudadanos</td>
 								</tr>
 							</table>
 						</EmptyDataTemplate>
 						<Columns>
-							<asp:BoundField HeaderText="Número"					ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="75px"	DataField="Numero"										SortExpression="Numero"></asp:BoundField>
-							<asp:BoundField HeaderText="Nombre de la Autoridad"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="AutoridadNombre"								SortExpression="AutoridadNombre"></asp:BoundField>
-							<asp:BoundField HeaderText="Fecha"					ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="70px"	DataField="FechaRecomendacion"							SortExpression="FechaRecomendacion"></asp:BoundField>
-							<asp:BoundField HeaderText="Tipo de Seguimiento"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="TipoSeguimientoNombre"						SortExpression="TipoSeguimientoNombre"></asp:BoundField>
-							<asp:BoundField HeaderText="Seguimiento"			ItemStyle-HorizontalAlign="Left"							DataField="Seguimiento"				HtmlEncode="false"	SortExpression="Seguimiento"></asp:BoundField>
+							<asp:BoundField HeaderText="Fecha"				ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="75px"	DataField="Fecha"										SortExpression="Fecha"></asp:BoundField>
+							<asp:BoundField HeaderText="Tipo de Dictamen"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="120px"	DataField="TipoDictamenNombre"							SortExpression="TipoDictamenNombre"></asp:BoundField>
+							<asp:BoundField HeaderText="Lugar de Atención"	ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="120px"	DataField="LugarAtencionNombre"							SortExpression="LugarAtencionNombre"></asp:BoundField>
+							<asp:BoundField HeaderText="Doctor que Atendió"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="FuncionarioNombre"							SortExpression="FuncionarioNombre"></asp:BoundField>
+							<asp:BoundField HeaderText="Ciudadano"			ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="CiudadanoNombre"								SortExpression="CiudadanoNombre"></asp:BoundField>
+							<asp:BoundField HeaderText="Dictamen"			ItemStyle-HorizontalAlign="Left"							DataField="Dictamen"				HtmlEncode="false"	SortExpression="Dictamen"></asp:BoundField>
 						</Columns>
 					</asp:GridView>
                 </td>
@@ -159,6 +161,6 @@
 
     <asp:HiddenField ID="hddAtencionId" runat="server" Value="0"  />
 	<asp:HiddenField ID="SenderId" runat="server" Value="0"  />
-	<asp:HiddenField ID="hddSort" runat="server" Value="Numero" />
+	<asp:HiddenField ID="hddSort" runat="server" Value="Fecha" />
 
 </asp:Content>

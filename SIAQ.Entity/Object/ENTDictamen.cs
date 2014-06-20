@@ -10,8 +10,11 @@ namespace SIAQ.Entity.Object
         private int _CiudadanoId; // Valor de CiudadanoId
         private int _LugarAtencionId; // Valor de LugarAtencionId
         private int _TipoDictamenId; // Valor de TipoDictamenId
+		private int _FuncionarioId; // Valor de FuncionarioId
         private string _Fecha; // Valor de Fecha
         private string _Dictamen; // Valor de Dictamen
+		private string _Nombre; // Valor de Nombre
+
         public ENTDictamen()
         {
             _DictamenId = 0;
@@ -19,8 +22,10 @@ namespace SIAQ.Entity.Object
             _CiudadanoId = 0;
             _LugarAtencionId = 0;
             _TipoDictamenId = 0;
+			_FuncionarioId = 0;
             _Fecha = "";
             _Dictamen = "";
+			_Nombre = "";
         }
         ///<remarks>
         ///   <name>Dictamen.DictamenId</name>
@@ -77,6 +82,17 @@ namespace SIAQ.Entity.Object
             get { return _TipoDictamenId; }
             set { _TipoDictamenId = value; }
         }
+		///<remarks>
+		///   <name>Dictamen.FuncionarioId</name>
+		///   <create>11/jun/2014</create>
+		///   <author>Generador</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna FuncionarioId</summary>
+		public int FuncionarioId
+		{
+			get { return _FuncionarioId; }
+			set { _FuncionarioId = value; }
+		}
         ///<remarks>
         ///   <name>Dictamen.Fecha</name>
         ///   <create>11/jun/2014</create>
@@ -99,5 +115,16 @@ namespace SIAQ.Entity.Object
             get { return _Dictamen; }
             set { _Dictamen = value; }
         }
+		///<remarks>
+		///   <name>Dictamen.Nombre</name>
+		///   <create>11/jun/2014</create>
+		///   <author>Generador</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna Nombre</summary>
+		public string Nombre
+		{
+			get { return _Nombre; }
+			set { _Nombre = value; }
+		}
     }
 }

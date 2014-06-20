@@ -32,30 +32,42 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		// Rutinas del programador
 
 		void InsertDictamen() {
-			//ENTSession SessionEntity = new ENTSession();
-			//BPSeguimientoRecomendacion BPSeguimientoRecomendacion = new BPSeguimientoRecomendacion();
+			ENTDictamen oENTDictamen = new ENTDictamen();
+			ENTResponse oENTResponse = new ENTResponse();
+			ENTSession SessionEntity = new ENTSession();
 
-			//// Validaciones
-			//if (this.ddlCiudadano.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar una Recomendación")); }
-			//if (this.ddlTipoDictamen.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar un Tipo de Seguimiento")); }
-			//if (this.ckeDictamen.Text.Trim() == "") { throw (new Exception("Es necesario ingresar un detalle del seguimiento")); }
+			BPDictamen oBPDictamen = new BPDictamen();
 
-			//// Obtener sesión
-			//SessionEntity = (ENTSession)Session["oENTSession"];
+			try
+			{
 
-			//// Parámetros
-			//BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.RecomendacionId = Int32.Parse(this.ddlCiudadano.SelectedItem.Value);
-			//BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.TipoSeguimientoId = Int32.Parse(this.ddlTipoDictamen.SelectedItem.Value);
-			//BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.FuncionarioId = SessionEntity.FuncionarioId;
-			//BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.Comentario = this.ckeDictamen.Text.Trim();
+				// Validaciones
+				if (this.ddlCiudadano.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar un Ciudadano")); }
+				if (this.ddlTipoDictamen.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar un Tipo de Dictamen")); }
+				if (this.ddlLugarAtencion.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar un Lugar de Atención")); }
+				if (this.ckeDictamen.Text.Trim() == "") { throw (new Exception("Es necesario ingresar un detalle del dictamen")); }
 
+				// Obtener sesión
+				SessionEntity = (ENTSession)Session["oENTSession"];
 
-			//// Transacción
-			//BPSeguimientoRecomendacion.InsertSegSeguimiento();
+				// Formulario
+				oENTDictamen.AtencionId = Int32.Parse(this.hddAtencionId.Value);
+				oENTDictamen.FuncionarioId = SessionEntity.FuncionarioId;
+				oENTDictamen.CiudadanoId = Int32.Parse(this.ddlCiudadano.SelectedItem.Value);
+				oENTDictamen.TipoDictamenId = Int32.Parse(this.ddlTipoDictamen.SelectedItem.Value);
+				oENTDictamen.LugarAtencionId = Int32.Parse(this.ddlLugarAtencion.SelectedItem.Value);
+				oENTDictamen.Dictamen = this.ckeDictamen.Text.Trim();
 
-			//// Errores
-			//if (BPSeguimientoRecomendacion.ErrorId != 0) { throw (new Exception(BPSeguimientoRecomendacion.ErrorString)); }
+				// Transacción
+				oENTResponse = oBPDictamen.InsertDictamen(oENTDictamen);
 
+				// Errores y Warnings
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+
+			}catch (Exception ex){
+				throw (ex);
+			}
 		}
 
 		void SelectAtencion() {
@@ -92,9 +104,68 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				this.ddlCiudadano.DataBind();
 				this.ddlCiudadano.Items.Insert(0, new ListItem("[Seleccione]", "0"));
 
-				//// Grid
-				//this.gvDictamen.DataSource = oENTResponse.dsResponse.Tables[4];
-				//this.gvDictamen.DataBind();
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		void SelecDictamen(){
+			ENTDictamen oENTDictamen = new ENTDictamen();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			BPDictamen oBPDictamen = new BPDictamen();
+
+			try
+			{
+
+				// Formulario
+				oENTDictamen.AtencionId = Int32.Parse(this.hddAtencionId.Value);
+
+				// Transacción
+				oENTResponse = oBPDictamen.SelectDictamen(oENTDictamen);
+
+				// Validaciones
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+
+				// Llenado Grid
+				this.gvDictamen.DataSource = oENTResponse.dsResponse.Tables[1];
+				this.gvDictamen.DataBind();
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		void SelectLugarAtencion(){
+			ENTDictamen oENTDictamen = new ENTDictamen();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			BPDictamen oBPDictamen = new BPDictamen();
+
+			try
+			{
+
+				// Formulario
+				oENTDictamen.LugarAtencionId = 0;
+				oENTDictamen.Nombre = "";
+
+				// Transacción
+				oENTResponse = oBPDictamen.SelectLugarAtencion(oENTDictamen);
+
+				// Validaciones
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+
+				// Mensaje de la BD
+				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', true);", true); }
+
+				// Llenado de combo
+				this.ddlLugarAtencion.DataTextField = "Nombre";
+				this.ddlLugarAtencion.DataValueField = "LugarAtencionId";
+				this.ddlLugarAtencion.DataSource = oENTResponse.dsResponse.Tables[1];
+				this.ddlLugarAtencion.DataBind();
+
+				// Agregar Item de selección
+				this.ddlLugarAtencion.Items.Insert(0, new ListItem("[Seleccione]", "0"));
 
 			}catch (Exception ex){
 				throw (ex);
@@ -102,20 +173,20 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		}
 
 		void SelectTipoDictamen(){
-			ENTTipoSeguimiento oENTTipoSeguimiento = new ENTTipoSeguimiento();
+			ENTDictamen oENTDictamen = new ENTDictamen();
 			ENTResponse oENTResponse = new ENTResponse();
 
-			BPTipoSeguimiento oBPTipoSeguimiento = new BPTipoSeguimiento();
+			BPDictamen oBPDictamen = new BPDictamen();
 
 			try
 			{
 
 				// Formulario
-				oENTTipoSeguimiento.TipoSeguimientoId = 0;
-				oENTTipoSeguimiento.Nombre = "";
+				oENTDictamen.TipoDictamenId = 0;
+				oENTDictamen.Nombre = "";
 
 				// Transacción
-				oENTResponse = oBPTipoSeguimiento.SelectTipoSeguimiento(oENTTipoSeguimiento);
+				oENTResponse = oBPDictamen.SelectTipoDictamen(oENTDictamen);
 
 				// Validaciones
 				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
@@ -125,7 +196,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
 				// Llenado de combo
 				this.ddlTipoDictamen.DataTextField = "Nombre";
-				this.ddlTipoDictamen.DataValueField = "TipoSeguimientoId";
+				this.ddlTipoDictamen.DataValueField = "TipoDictamenId";
 				this.ddlTipoDictamen.DataSource = oENTResponse.dsResponse.Tables[1];
 				this.ddlTipoDictamen.DataBind();
 
@@ -158,6 +229,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				// Llenado de controles
 				SelectAtencion();
 				SelectTipoDictamen();
+				SelectLugarAtencion();
+				SelecDictamen();
 
 				// Seleccionar la recomendación y Foco
 				if (this.Request.QueryString["key"].ToString().ToString().Split(new Char[] { '|' })[2].ToString() != "0") {
@@ -181,8 +254,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
                 // Obtener Expedientes
 				InsertDictamen();
 
-				// Refrescar Formulario
-				SelectAtencion();
+				// Refrescar Dictámenes
+				SelecDictamen();
+
+				// Estado inicial del formulario
+				this.ddlCiudadano.SelectedIndex = 0;
+				this.ddlTipoDictamen.SelectedIndex = 0;
+				this.ddlLugarAtencion.SelectedIndex = 0;
+				this.ckeDictamen.Text = "";
 
 				// Foco
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlCiudadano.ClientID + "');", true);
@@ -215,23 +294,23 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		}
 
 		protected void gvDictamen_Sorting(object sender, GridViewSortEventArgs e){
-			DataTable TableAutoridad = null;
-			DataView ViewAutoridad = null;
+			DataTable tblData = null;
+			DataView viewData = null;
 
 			try
 			{
 				//Obtener DataTable y View del GridView
-				TableAutoridad = utilFunction.ParseGridViewToDataTable(gvDictamen, false);
-				ViewAutoridad = new DataView(TableAutoridad);
+				tblData = utilFunction.ParseGridViewToDataTable(gvDictamen, false);
+				viewData = new DataView(tblData);
 
 				//Determinar ordenamiento
 				hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
 
 				//Ordenar Vista
-				ViewAutoridad.Sort = hddSort.Value;
+				viewData.Sort = hddSort.Value;
 
 				//Vaciar datos
-				this.gvDictamen.DataSource = ViewAutoridad;
+				this.gvDictamen.DataSource = viewData;
 				this.gvDictamen.DataBind();
 
 			}catch (Exception ex){

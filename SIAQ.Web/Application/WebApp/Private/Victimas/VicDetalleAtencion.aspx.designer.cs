@@ -94,24 +94,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         protected global::System.Web.UI.WebControls.ImageButton cmdAgregarDocumento;
         
         /// <summary>
-        /// pnlEnviarOrientacion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlEnviarOrientacion;
-        
-        /// <summary>
-        /// cmdEnviarOrientacion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton cmdEnviarOrientacion;
-        
-        /// <summary>
         /// CerrarExpedientePanel control.
         /// </summary>
         /// <remarks>

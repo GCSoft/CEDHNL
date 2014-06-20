@@ -141,7 +141,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 						this.AsignarPanel.Visible = true;
 						this.pnlDictamenMedico.Visible = true;
 						this.pnlAgregarDocumento.Visible = true;
-						this.pnlEnviarOrientacion.Visible = true;
 						this.CerrarExpedientePanel.Visible = true;
 						this.ConfirmarCierreExpedientePanel.Visible = true;
 						break;
@@ -151,7 +150,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 						this.AsignarPanel.Visible = true;
 						this.pnlDictamenMedico.Visible = true;
 						this.pnlAgregarDocumento.Visible = true;
-						this.pnlEnviarOrientacion.Visible = true;
 						this.CerrarExpedientePanel.Visible = true;
 						this.ConfirmarCierreExpedientePanel.Visible = true;
 						break;
@@ -161,7 +159,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 						this.AsignarPanel.Visible = true;
 						this.pnlDictamenMedico.Visible = false;
 						this.pnlAgregarDocumento.Visible = false;
-						this.pnlEnviarOrientacion.Visible = false;
 						this.CerrarExpedientePanel.Visible = false;
 						this.ConfirmarCierreExpedientePanel.Visible = false;
 						break;
@@ -171,7 +168,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 						this.AsignarPanel.Visible = false;
 						this.pnlDictamenMedico.Visible = true;
 						this.pnlAgregarDocumento.Visible = true;
-						this.pnlEnviarOrientacion.Visible = true;
 						this.CerrarExpedientePanel.Visible = true;
 						this.ConfirmarCierreExpedientePanel.Visible = false;
 						break;
@@ -181,7 +177,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 						this.AsignarPanel.Visible = true;
 						this.pnlDictamenMedico.Visible = false;
 						this.pnlAgregarDocumento.Visible = false;
-						this.pnlEnviarOrientacion.Visible = false;
 						this.CerrarExpedientePanel.Visible = false;
 						this.ConfirmarCierreExpedientePanel.Visible = true;
 						break;
@@ -191,7 +186,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 						this.AsignarPanel.Visible = false;
 						this.pnlDictamenMedico.Visible = false;
 						this.pnlAgregarDocumento.Visible = false;
-						this.pnlEnviarOrientacion.Visible = false;
 						this.CerrarExpedientePanel.Visible = false;
 						this.ConfirmarCierreExpedientePanel.Visible = false;
 						break;
@@ -212,7 +206,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				if (idRol == 14 && Int32.Parse(this.hddFuncionarioId.Value) != FuncionarioId) {
 					this.pnlDictamenMedico.Visible = false;
 					this.pnlAgregarDocumento.Visible = false;
-					this.pnlEnviarOrientacion.Visible = false;
 					this.CerrarExpedientePanel.Visible = false;
 				}
 
@@ -236,7 +229,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 					this.AsignarPanel.Visible = false;
 					this.pnlDictamenMedico.Visible = false;
 					this.pnlAgregarDocumento.Visible = false;
-					this.pnlEnviarOrientacion.Visible = false;
 					this.CerrarExpedientePanel.Visible = false;
 				}
 
@@ -495,10 +487,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
         protected void cmdDictamenMedico_Click(object sender, ImageClickEventArgs e){
 			Response.Redirect("VicDictamenMedico.aspx?key=" + this.hddAtencionId.Value.ToString() + "|" + this.SenderId.Value.ToString() + "|0");
         }
-
-        protected void cmdEnviarOrientacion_Click(object sender, ImageClickEventArgs e){
-			Response.Redirect("VicEnviaOrientacion.aspx?key=" + this.hddAtencionId.Value.ToString() + "|" + this.SenderId.Value.ToString());
-		}
 
 
         // Eventos del panel Action (Agregar comentarios)

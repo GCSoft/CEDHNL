@@ -38,10 +38,6 @@
             <asp:ImageButton ID="cmdAgregarDocumento" ImageUrl="/Include/Image/Icon/SeguimientoIcon.png" runat="server" OnClick="cmdAgregarDocumento_Click"></asp:ImageButton><br />
             Agregar Documento
         </asp:Panel>
-		<asp:Panel CssClass="IconoPanel" ID="pnlEnviarOrientacion" runat="server" Visible="true">
-            <asp:ImageButton ID="cmdEnviarOrientacion" ImageUrl="/Include/Image/Icon/NotificacionIcon.png" runat="server" OnClick="cmdEnviarOrientacion_Click"></asp:ImageButton><br />
-            Enviar Orientación
-        </asp:Panel>
 		<asp:Panel CssClass="IconoPanel" ID="CerrarExpedientePanel" runat="server" Visible="true">
             <asp:ImageButton ID="CerrarExpedienteButton" ImageUrl="/Include/Image/Icon/CerrarExpedienteIcon.png" runat="server" OnClick="CerrarExpedienteButton_Click"></asp:ImageButton><br />
             Cerrar Expediente de Atención

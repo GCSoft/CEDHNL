@@ -23,15 +23,15 @@
 
 	<div id="SubMenuDiv">
         <asp:Panel CssClass="IconoPanel" ID="InformacionPanel" runat="server" Visible="true">
-            <asp:ImageButton ID="InformacionGeneralButton" ImageUrl="/Include/Image/Icon/GeneralIcon.png" runat="server" OnClick="InformacionGeneralButton_Click"></asp:ImageButton><br />
+            <asp:ImageButton ID="InformacionGeneralButton" ImageUrl="~/Include/Image/Icon/GeneralIcon.png" runat="server" OnClick="InformacionGeneralButton_Click"></asp:ImageButton><br />
             Información general
         </asp:Panel>
         <asp:Panel CssClass="IconoPanel" ID="AsignarPanel" runat="server" Visible="true">
-            <asp:ImageButton ID="AsignarButton" ImageUrl="/Include/Image/Icon/AsignarIcon.png" runat="server" OnClick="AsignarButton_Click"></asp:ImageButton><br />
+            <asp:ImageButton ID="AsignarButton" ImageUrl="~/Include/Image/Icon/AsignarIcon.png" runat="server" OnClick="AsignarButton_Click"></asp:ImageButton><br />
             Asignar expediente
         </asp:Panel>
         <asp:Panel CssClass="IconoPanel" ID="LiberarPanel" runat="server" Visible="true">
-            <asp:ImageButton ID="LiberarButton" ImageUrl="/Include/Image/Icon/AcuerdoIcon.png" runat="server" OnClick="LiberarButton_Click"></asp:ImageButton><br />
+            <asp:ImageButton ID="LiberarButton" ImageUrl="~/Include/Image/Icon/AcuerdoIcon.png" runat="server" OnClick="LiberarButton_Click"></asp:ImageButton><br />
             Liberar expediente
         </asp:Panel>
     </div>

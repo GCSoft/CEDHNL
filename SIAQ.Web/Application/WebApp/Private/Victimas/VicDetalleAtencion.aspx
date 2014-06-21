@@ -23,27 +23,27 @@
 
 	<div id="SubMenuDiv">
         <asp:Panel CssClass="IconoPanel" ID="pnlInformacion" runat="server" Visible="true">
-            <asp:ImageButton ID="cmdInformacionGeneral" ImageUrl="/Include/Image/Icon/GeneralIcon.png" runat="server" OnClick="cmdInformacionGeneral_Click"></asp:ImageButton><br />
+            <asp:ImageButton ID="cmdInformacionGeneral" ImageUrl="~/Include/Image/Icon/GeneralIcon.png" runat="server" OnClick="cmdInformacionGeneral_Click"></asp:ImageButton><br />
             Información general
         </asp:Panel>
 		 <asp:Panel CssClass="IconoPanel" ID="AsignarPanel" runat="server" Visible="true">
-            <asp:ImageButton ID="AsignarButton" ImageUrl="/Include/Image/Icon/AsignarIcon.png" runat="server" OnClick="AsignarButton_Click"></asp:ImageButton><br />
+            <asp:ImageButton ID="AsignarButton" ImageUrl="~/Include/Image/Icon/AsignarIcon.png" runat="server" OnClick="AsignarButton_Click"></asp:ImageButton><br />
             Asignar doctor
         </asp:Panel>
         <asp:Panel CssClass="IconoPanel" ID="pnlDictamenMedico" runat="server" Visible="true">
-            <asp:ImageButton ID="cmdDictamenMedico" ImageUrl="/Include/Image/Icon/AsignarIcon.png" runat="server" OnClick="cmdDictamenMedico_Click"></asp:ImageButton><br />
+            <asp:ImageButton ID="cmdDictamenMedico" ImageUrl="~/Include/Image/Icon/AsignarIcon.png" runat="server" OnClick="cmdDictamenMedico_Click"></asp:ImageButton><br />
             Dictámen Médico
         </asp:Panel>
         <asp:Panel CssClass="IconoPanel" ID="pnlAgregarDocumento" runat="server" Visible="true">
-            <asp:ImageButton ID="cmdAgregarDocumento" ImageUrl="/Include/Image/Icon/SeguimientoIcon.png" runat="server" OnClick="cmdAgregarDocumento_Click"></asp:ImageButton><br />
+            <asp:ImageButton ID="cmdAgregarDocumento" ImageUrl="~/Include/Image/Icon/SeguimientoIcon.png" runat="server" OnClick="cmdAgregarDocumento_Click"></asp:ImageButton><br />
             Agregar Documento
         </asp:Panel>
 		<asp:Panel CssClass="IconoPanel" ID="CerrarExpedientePanel" runat="server" Visible="true">
-            <asp:ImageButton ID="CerrarExpedienteButton" ImageUrl="/Include/Image/Icon/CerrarExpedienteIcon.png" runat="server" OnClick="CerrarExpedienteButton_Click"></asp:ImageButton><br />
+            <asp:ImageButton ID="CerrarExpedienteButton" ImageUrl="~/Include/Image/Icon/CerrarExpedienteIcon.png" runat="server" OnClick="CerrarExpedienteButton_Click"></asp:ImageButton><br />
             Cerrar Expediente de Atención
         </asp:Panel>
         <asp:Panel CssClass="IconoPanel" ID="ConfirmarCierreExpedientePanel" runat="server" Visible="true">
-            <asp:ImageButton ID="ConfirmarCierreExpedienteButton" ImageUrl="/Include/Image/Icon/ConfirmacionCierreIcon.png" runat="server" OnClick="ConfirmarCierreExpedienteButton_Click"></asp:ImageButton><br />
+            <asp:ImageButton ID="ConfirmarCierreExpedienteButton" ImageUrl="~/Include/Image/Icon/ConfirmacionCierreIcon.png" runat="server" OnClick="ConfirmarCierreExpedienteButton_Click"></asp:ImageButton><br />
             Confirmar Cierre de Expediente de Atención
         </asp:Panel>
     </div>

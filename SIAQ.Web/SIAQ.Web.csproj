@@ -69,7 +69,6 @@
     <Content Include="Application\WebApp\Private\Visitaduria\opeLstEspedienteSecretaria.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\opeLstExpedientesFuncionario.aspx" />
     <Content Include="Include\Handler\ObtenerRepositorio.ashx" />
-    <None Include="Include\Image\Vectores\vssver2.scc" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="CKEditor.NET, Version=3.6.4.0, Culture=neutral, PublicKeyToken=e379cdf2f8354999, processorArchitecture=MSIL">
@@ -517,6 +516,8 @@
     <Content Include="Include\Image\Vectores\CEDH.png" />
     <Content Include="Include\Image\Vectores\Exit.png" />
     <Content Include="Include\Image\Vectores\Iconografia.png" />
+    <Content Include="Include\Image\Vectores\Pesta+-ªasAcordeon.png" />
+    <Content Include="Include\Image\Vectores\Pesta+¦asAcordeon.png" />
     <Content Include="Include\Image\Vectores\PestañasAcordeon.png" />
     <Content Include="Include\Image\Vectores\TituloAcordeonTAE.png" />
     <Content Include="Include\Image\Web\Banner.png" />

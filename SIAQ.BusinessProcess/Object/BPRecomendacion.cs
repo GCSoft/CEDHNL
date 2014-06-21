@@ -48,6 +48,19 @@ namespace SIAQ.BusinessProcess.Object
         }
 
         /// <summary>
+        ///     Elimina un registro de recomendación del expediente.
+        /// </summary>
+        public void DeleteRecomendacion()
+        {
+            DARecomendacion RecomendacionAccess = new DARecomendacion();
+
+            RecomendacionAccess.DeleteRecomendacion(_RecomendacionEntity, sConnectionApplication);
+
+            _ErrorId = RecomendacionAccess.ErrorId;
+            _ErrorString = RecomendacionAccess.ErrorDescription;
+        }
+
+        /// <summary>
         ///     Guarda un registro nuevo de recomendación del expediente.
         /// </summary>
         public void SaveRecomendacion()
@@ -234,6 +247,22 @@ namespace SIAQ.BusinessProcess.Object
             return NextFolio;
         }
 
+        /// <summary>
+        ///     Realiza una búsqueda en la tabla de las recomendaciones.
+        /// </summary>
+        public void SelectRecomendacion()
+        {
+            DARecomendacion DARecomendacion = new DARecomendacion();
+
+            _RecomendacionEntity.ResultData = DARecomendacion.SelectRecomendacion(_RecomendacionEntity, sConnectionApplication);
+
+            _ErrorId = DARecomendacion.ErrorId;
+            _ErrorString = DARecomendacion.ErrorDescription;
+        }
+
+        /// <summary>
+        ///     Realiza una búsqueda de las recomendaciones de un expediente.
+        /// </summary>
         public void SelectRecomendacionExpediente()
         {
             DARecomendacion DARecomendacion = new DARecomendacion();
@@ -282,7 +311,6 @@ namespace SIAQ.BusinessProcess.Object
         }
 
         #endregion
-
 
     }
 }

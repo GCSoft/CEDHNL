@@ -429,6 +429,24 @@ namespace SIAQ.BusinessProcess.Object
             /// <summary>
             ///     Actualiza el estatus de un expediente.
             /// </summary>
+            public void UpdateExpedienteEstatus()
+            {
+                DAExpediente ExpedienteAccess = new DAExpediente();
+
+                if (!ValidarExpedienteEstatus())
+                    return;
+
+                ExpedienteAccess.UpdateExpedienteEstatus(_ExpedienteEntity, sConnectionApplication);
+
+                _ErrorId = ExpedienteAccess.ErrorId;
+                _ErrorDescription = ExpedienteAccess.ErrorDescription;
+            }
+
+            /// <summary>
+            ///     Actualiza el estatus de un expediente.
+            /// </summary>
+            /// <param name="Connection">Conexión actual a la base de datos.</param>
+            /// <param name="Transaction">Transacción actual a la base de datos.</param>
             public void UpdateExpedienteEstatus(SqlConnection Connection, SqlTransaction Transaction)
             {
                 DAExpediente ExpedienteAccess = new DAExpediente();

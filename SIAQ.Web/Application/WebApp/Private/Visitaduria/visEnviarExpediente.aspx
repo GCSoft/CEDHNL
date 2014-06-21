@@ -166,7 +166,7 @@
             </tr>
             <tr>
                 <td colspan="7" style="text-align: left;">
-                    <asp:Button CssClass="Button_General" ID="EnviarButton" runat="server" Text="Enviar expediente" Width="125px" />&nbsp;&nbsp;&nbsp;
+                    <asp:Button CssClass="Button_General" ID="EnviarButton" OnClick="EnviarButton_Click" runat="server" Text="Enviar expediente" Width="125px" />&nbsp;&nbsp;&nbsp;
                     <input class="Button_General" id="RegresarButton" onclick="GoBack();" style="width: 125px;" type="button" value="Regresar" />
                 </td>
             </tr>

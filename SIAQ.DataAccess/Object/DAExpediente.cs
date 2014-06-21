@@ -775,6 +775,45 @@ namespace SIAQ.DataAccess.Object
         /// </summary>
         /// <param name="ExpedienteEntity">Entidad del expediente.</param>
         /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
+        public void UpdateExpedienteEstatus(ENTExpediente ExpedienteEntity, string ConnectionString)
+        {
+            DataSet ResultData = new DataSet();
+            SqlCommand Command;
+            SqlParameter Parameter;
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+
+            try
+            {
+                Command = new SqlCommand("UpdateExpedienteEstatus", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
+                Parameter.Value = ExpedienteEntity.ExpedienteId;
+                Command.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("EstatusId", SqlDbType.Int);
+                Parameter.Value = ExpedienteEntity.EstatusId;
+                Command.Parameters.Add(Parameter);
+
+                Connection.Open();
+                Command.ExecuteNonQuery();
+                Connection.Close();
+            }
+            catch (SqlException Exception)
+            {
+                _ErrorId = Exception.Number;
+                _ErrorDescription = Exception.Message;
+
+                if (Connection.State == ConnectionState.Open)
+                    Connection.Close();
+            }
+        }
+
+        /// <summary>
+        ///     Actualiza el estatus de un expediente.
+        /// </summary>
+        /// <param name="ExpedienteEntity">Entidad del expediente.</param>
+        /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
         public void UpdateExpedienteEstatus(SqlConnection Connection, SqlTransaction Transaction, ENTExpediente ExpedienteEntity)
         {
             DataSet ResultData = new DataSet();

@@ -182,7 +182,7 @@
             </tr>
             <tr>
                 <td colspan="7" style="text-align: left;">
-                    <asp:Button ID="GuardarButton" runat="server" Text="Agregar" CssClass="Button_General" width="125px" onclick="GuardarButton_Click"/>&nbsp;&nbsp;&nbsp;
+                    <asp:Button ID="GuardarButton" runat="server" Text="Guardar" CssClass="Button_General" width="125px" onclick="GuardarButton_Click"/>&nbsp;&nbsp;&nbsp;
                     <input class="Button_General" id="RegresarButton" onclick="GoBack();" style="width: 125px;" type="button" value="Regresar" />
                 </td>
             </tr>
@@ -190,7 +190,8 @@
 
         <br /><br />
         <div>
-            <asp:GridView AutoGenerateColumns="False" ID="RecomendacionGrid" PageSize="10" runat="server" Style="text-align: center" Width="100%">
+            <asp:GridView AutoGenerateColumns="False" ID="RecomendacionGrid" OnRowCommand="RecomendacionGrid_RowCommand"
+                PageSize="10" runat="server" Style="text-align: center" Width="100%">
                 <RowStyle CssClass="Grid_Row" />
                 <EditRowStyle Wrap="True" />
                 <HeaderStyle CssClass="Grid_Header" ForeColor="#E3EBF5" />
@@ -212,18 +213,18 @@
                 </EmptyDataTemplate>
                 <Columns>
                     <asp:BoundField DataField="Fecha" HeaderText="Fecha" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="75px"></asp:BoundField>
-                    <asp:BoundField DataField="Visitador" HeaderText="Lugar" ItemStyle-Width="150px"></asp:BoundField>
-                    <asp:BoundField DataField="TipoRecomendacion" HeaderText="Visitador" ItemStyle-Width="150px"></asp:BoundField>
-                    <asp:BoundField DataField="Detalle" HeaderText="Tipo"></asp:BoundField>
+                    <asp:BoundField DataField="NombreVisitador" HeaderText="Lugar" ItemStyle-Width="150px"></asp:BoundField>
+                    <asp:BoundField DataField="NombreTipoRecomendacion" HeaderText="Visitador" ItemStyle-Width="150px"></asp:BoundField>
+                    <asp:BoundField DataField="Observaciones" HeaderText="Tipo"></asp:BoundField>
                     <asp:TemplateField HeaderText="Editar">
                         <ItemTemplate>
-                            <asp:ImageButton ID="EditarButton" CommandArgument='<%#Eval("SeguimientoId")%>' CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
+                            <asp:ImageButton ID="EditarButton" CommandArgument='<%#Eval("RecomendacionId")%>' CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
                         </ItemTemplate>
                         <ItemStyle HorizontalAlign="Center" Width="50px" />
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Borrar">
                         <ItemTemplate>
-                            <asp:ImageButton ID="EliminarButton" CommandArgument='<%#Eval("RepositorioId")%>' CommandName="Eliminar" ImageUrl="~/Include/Image/Buttons/Delete.png" OnClientClick="return confirm('¿En realidad desea eliminar el documento?');" runat="server" />
+                            <asp:ImageButton ID="EliminarButton" CommandArgument='<%#Eval("RecomendacionId")%>' CommandName="Eliminar" ImageUrl="~/Include/Image/Buttons/Delete.png" OnClientClick="return confirm('¿En realidad desea eliminar la recomendación?');" runat="server" />
                         </ItemTemplate>
                         <ItemStyle HorizontalAlign="Center" Width="50px" />
                     </asp:TemplateField>
@@ -233,4 +234,5 @@
     </div>
 
     <asp:HiddenField ID="ExpedienteIdHidden" runat="server" Value="0" />
+    <asp:HiddenField ID="RecomendacionIdHidden" runat="server" Value="0" />
 </asp:Content>

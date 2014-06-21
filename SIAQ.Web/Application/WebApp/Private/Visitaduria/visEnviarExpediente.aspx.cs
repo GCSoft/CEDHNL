@@ -13,10 +13,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 {
     public partial class visEnviarExpediente : System.Web.UI.Page
     {
-        // Utilerías
+        const int ExpedienteEnviadoEstatus = 12;
         Function utilFunction = new Function();
 
         #region "Events"
+            protected void EnviarButton_Click(object sender, EventArgs e)
+            {
+                EnviarExpediente(int.Parse(ExpedienteIdHidden.Value));
+            }
+
             protected void Page_Load(object sender, EventArgs e)
             {
                 PageLoad();
@@ -24,6 +29,24 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
         #endregion
 
         #region "Methods"
+            private void EnviarExpediente(int ExpedienteId)
+            {
+                BPExpediente ExpedienteProcess = new BPExpediente();
+
+                ExpedienteProcess.ExpedienteEntity.ExpedienteId = ExpedienteId;
+                ExpedienteProcess.ExpedienteEntity.EstatusId = ExpedienteEnviadoEstatus;
+
+                ExpedienteProcess.UpdateExpedienteEstatus();
+
+                if (ExpedienteProcess.ErrorId == 0)
+                {
+                    EnviarButton.Enabled = false;
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El expediente ha sido enviado para su revisión', 'Success', true);", true);
+                }
+                else
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ExpedienteProcess.ErrorDescription) + "', 'Error', true);", true);
+            }
+
             private int GetExpedienteParameter()
             {
                 try

@@ -22,6 +22,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 SaveRecomendacion();
             }
 
+            protected void RecomendacionGrid_RowCommand(Object sender, GridViewCommandEventArgs e)
+            {
+                RecomendacionGridRowCommand(e);
+            }
+
             protected void Page_Load(object sender, EventArgs e)
             {
                 PageLoad();
@@ -29,6 +34,24 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
         #endregion
 
         #region "Methods"
+            private void DeleteRecomendacion(int RecomendacionId, int ExpedienteId)
+            {
+                BPRecomendacion RecomendacionProcess = new BPRecomendacion();
+
+                RecomendacionProcess.RecomendacionEntity.RecomendacionId = RecomendacionId;
+                RecomendacionProcess.RecomendacionEntity.ExpedienteId = ExpedienteId;
+
+                RecomendacionProcess.DeleteRecomendacion();
+
+                if (RecomendacionProcess.ErrorId == 0)
+                {
+                    ResetForm();
+                    SelectRecomendacionExpediente(ExpedienteId);
+                }
+                else
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(RecomendacionProcess.ErrorString) + "', 'Error', true);", true);
+            }
+
             private int GetExpedienteParameter()
             {
                 try
@@ -58,6 +81,24 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 SelectRecomendacionExpediente(ExpedienteId);
 
                 ExpedienteIdHidden.Value = ExpedienteId.ToString();
+            }
+
+            private void RecomendacionGridRowCommand(GridViewCommandEventArgs e)
+            {
+                int RecomendacionId = 0;
+
+                RecomendacionId = int.Parse(e.CommandArgument.ToString());
+
+                switch (e.CommandName.ToString())
+                {
+                    case "Editar":
+                        SelectRecomendacion(RecomendacionId, int.Parse(ExpedienteIdHidden.Value));
+                        break;
+
+                    case "Eliminar":
+                        DeleteRecomendacion(RecomendacionId, int.Parse(ExpedienteIdHidden.Value));
+                        break;
+                }
             }
 
             private void ResetForm()
@@ -160,6 +201,34 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 }
                 else
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(TipoRecomendacionProcess.ErrorDescription) + "', 'Error', true);", true);
+            }
+
+            private void SelectRecomendacion(int RecomendacionId, int ExpedienteId)
+            {
+                BPRecomendacion RecomendacionProcess = new BPRecomendacion();
+
+                RecomendacionProcess.RecomendacionEntity.RecomendacionId = RecomendacionId;
+                RecomendacionProcess.RecomendacionEntity.ExpedienteId = ExpedienteId;
+
+                RecomendacionProcess.SelectRecomendacion();
+
+                if (RecomendacionProcess.ErrorId != 0)
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(RecomendacionProcess.ErrorString) + "', 'Error', true);", true);
+                    return;
+                }
+
+                if (RecomendacionProcess.RecomendacionEntity.ResultData.Tables[0].Rows.Count == 0)
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText("No se encontró información de la recomendación") + "', 'Error', true);", true);
+                    return;
+                }
+
+                FechaLabel.Text = RecomendacionProcess.RecomendacionEntity.ResultData.Tables[0].Rows[0]["Fecha"].ToString();
+                TipoRecomendacionList.SelectedValue = RecomendacionProcess.RecomendacionEntity.ResultData.Tables[0].Rows[0]["TipoRecomendacionId"].ToString();
+                RecomendacionBox.Text = RecomendacionProcess.RecomendacionEntity.ResultData.Tables[0].Rows[0]["Observaciones"].ToString();
+
+                RecomendacionIdHidden.Value = RecomendacionProcess.RecomendacionEntity.ResultData.Tables[0].Rows[0]["RecomendacionId"].ToString();
             }
 
             private void SelectRecomendacionExpediente(int ExpedienteId)

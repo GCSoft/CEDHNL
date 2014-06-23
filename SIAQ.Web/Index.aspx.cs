@@ -1,7 +1,7 @@
 /*---------------------------------------------------------------------------------------------------------------------------------
 ' Nombre:	Index
-' Autor:		GCSoft - Web Project Creator BETA 1.0
-' Fecha:		21-Octubre-2013
+' Autor:	GCSoft - Web Project Creator BETA 1.0
+' Fecha:	21-Octubre-2013
 '
 ' Descripción:
 '				Canaliza la aplicación al módulo de autenticación correspondiente

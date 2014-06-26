@@ -738,6 +738,49 @@ namespace SIAQ.DataAccess.Object
             }
         }
 
+        /// <summary>
+        ///     Busca la información importante de un expediente para su validación.
+        /// </summary>
+        /// <param name="ExpedienteId">Identificador del expediente.</param>
+        /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
+        /// <returns>Resultado de la búsqueda.</returns>
+        public DataSet SelectExpedienteEstatus(int ExpedienteId, string ConnectionString)
+        {
+            DataSet ResultData = new DataSet();
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            SqlCommand Command;
+            SqlParameter Parameter;
+            SqlDataAdapter DataAdapter;
+
+            try
+            {
+                Command = new SqlCommand("SelectExpedienteEstatus", Connection);
+                Command.CommandType = CommandType.StoredProcedure;
+
+                Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
+                Parameter.Value = ExpedienteId;
+                Command.Parameters.Add(Parameter);
+
+                DataAdapter = new SqlDataAdapter(Command);
+
+                Connection.Open();
+                DataAdapter.Fill(ResultData);
+                Connection.Close();
+
+                return ResultData;
+            }
+            catch (SqlException Exception)
+            {
+                _ErrorId = Exception.Number;
+                _ErrorDescription = Exception.Message;
+
+                if (Connection.State == ConnectionState.Open)
+                    Connection.Close();
+
+                return ResultData;
+            }
+        }
+
         ///<remarks>
         ///   <name>DAExpediente.updateExpediente</name>
         ///   <create>19/feberero/2014</create>

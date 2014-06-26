@@ -278,7 +278,7 @@
                             <asp:BoundField DataField="Tipo" HeaderText="Tipo" SortExpression="Tipo"></asp:BoundField>
                             <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
                                 <ItemTemplate>
-                                    <asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Borrar"
+                                    <asp:ImageButton ID="DeleteImage" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Borrar"
                                         ImageUrl="~/Include/Image/Buttons/Delete.png" runat="server" />
                                 </ItemTemplate>
                             </asp:TemplateField>

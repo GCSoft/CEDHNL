@@ -365,22 +365,6 @@ namespace SIAQ.BusinessProcess.Object
             }
 
             /// <summary>
-            ///     Obtiene los funcionarios a los cuales se podrán asignar a un expediente
-            /// </summary>
-            public void SelectFuncionario_Asignar(ENTExpediente oENTExpediente)
-            {
-
-                string sConnectionString = string.Empty;
-                DAExpediente oDAExpediente = new DAExpediente();
-
-                sConnectionString = sConnectionApplication;
-
-                oENTExpediente.ResultData = oDAExpediente.SelectFuncionario_Asignar(oENTExpediente, sConnectionString);
-                _ErrorId = oDAExpediente.ErrorId;
-                _ErrorDescription = oDAExpediente.ErrorDescription;
-            }
-
-            /// <summary>
             ///     Busca los comentarios realizados para una solicitud.
             /// </summary>
             public void SelectExpedienteComentario()
@@ -394,6 +378,47 @@ namespace SIAQ.BusinessProcess.Object
 
                 _ErrorId = DAExpediente.ErrorId;
                 _ErrorDescription = DAExpediente.ErrorDescription;
+            }
+
+            /// <summary>
+            ///     Busca la información importante de un expediente para su validación.
+            /// </summary>
+            public void SelectExpedienteEstatus(int ExpedienteId)
+            {
+                DataSet ResultData = new DataSet();
+                DAExpediente DAExpediente = new DAExpediente();
+
+                ResultData = DAExpediente.SelectExpedienteEstatus(ExpedienteId, sConnectionApplication);
+
+                _ErrorId = DAExpediente.ErrorId;
+                _ErrorDescription = DAExpediente.ErrorDescription;
+
+                if (_ErrorId != 0)
+                    return;
+
+                if (ResultData.Tables[0].Rows.Count == 0)
+                    return;
+
+                _ExpedienteEntity.ExpedienteId = ExpedienteId;
+                _ExpedienteEntity.FuncionarioId = int.Parse(ResultData.Tables[0].Rows[0]["FuncionarioId"].ToString());
+                _ExpedienteEntity.EstatusId = int.Parse(ResultData.Tables[0].Rows[0]["EstatusId"].ToString());
+                _ExpedienteEntity.Numero = ResultData.Tables[0].Rows[0]["EstatusId"].ToString();
+            }
+
+            /// <summary>
+            ///     Obtiene los funcionarios a los cuales se podrán asignar a un expediente
+            /// </summary>
+            public void SelectFuncionario_Asignar(ENTExpediente oENTExpediente)
+            {
+
+                string sConnectionString = string.Empty;
+                DAExpediente oDAExpediente = new DAExpediente();
+
+                sConnectionString = sConnectionApplication;
+
+                oENTExpediente.ResultData = oDAExpediente.SelectFuncionario_Asignar(oENTExpediente, sConnectionString);
+                _ErrorId = oDAExpediente.ErrorId;
+                _ErrorDescription = oDAExpediente.ErrorDescription;
             }
 
             ///<remarks>

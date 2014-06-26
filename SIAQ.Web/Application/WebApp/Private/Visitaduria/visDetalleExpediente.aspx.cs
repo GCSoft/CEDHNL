@@ -15,7 +15,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 {
     public partial class visDetalleExpediente : System.Web.UI.Page
     {
-        // Utilerías
+        bool IsReadOnly = false;
+        const int POR_ASIGNAR_ESTATUS = 5;
+        const int POR_ATENDER_ESTATUS = 6;
+        const int EN_PROCESO_ESTATUS = 7;
+        const int PENDIENTE_APROBAR_ESTATUS = 16;
         Function utilFunction = new Function();
 
         #region "Event"
@@ -46,7 +50,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
             protected void CiudadanosGrid_RowDataBound(object sender, GridViewRowEventArgs e)
             {
-
+                CiudadanosGridRowDataBound(e);
             }
 
             protected void CiudadanosGrid_Sorting(object sender, GridViewSortEventArgs e)
@@ -112,6 +116,23 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
         #endregion
 
         #region "Method"
+            private void CiudadanosGridRowDataBound(GridViewRowEventArgs e)
+            {
+                ImageButton DeleteImage;
+
+                //Validación de que sea fila 
+                if (e.Row.RowType != DataControlRowType.DataRow)
+                    return;
+
+                DeleteImage = (ImageButton)e.Row.FindControl("DeleteImage");
+
+                if (DeleteImage == null)
+                    return;
+
+                if(IsReadOnly)
+                    DeleteImage.Enabled = false;
+            }
+
             private void DocumentListItemDataBound(DataListItemEventArgs e)
             {
                 HyperLink DocumentoLink;
@@ -155,6 +176,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 
                 ExpedienteId = GetExpedienteParameter();
 
+                ValidarExpediente(ExpedienteId);
                 SelectExpediente(ExpedienteId);
                 SelectExpedienteCiudadano(ExpedienteId);
                 SelectExpedienteRepositorio(int.Parse(SolicitudIdHidden.Value));
@@ -353,6 +375,26 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                         ImprimirPanel.Visible = false;
                         EnviarPanel.Visible = false;
                         break;
+                }
+            }
+
+            private void ValidarExpediente(int ExpedienteId)
+            {
+                BPExpediente ExpedienteProcess = new BPExpediente();
+
+                ExpedienteProcess.SelectExpedienteEstatus(ExpedienteId);
+
+                if (ExpedienteProcess.ErrorId != 0)
+                {
+                    IsReadOnly = true;
+                    return;
+                }
+
+                if (ExpedienteProcess.ExpedienteEntity.EstatusId != POR_ASIGNAR_ESTATUS && ExpedienteProcess.ExpedienteEntity.EstatusId != POR_ATENDER_ESTATUS &&
+                        ExpedienteProcess.ExpedienteEntity.EstatusId != EN_PROCESO_ESTATUS && ExpedienteProcess.ExpedienteEntity.EstatusId != PENDIENTE_APROBAR_ESTATUS)
+                {
+                    IsReadOnly = true;
+                    return;
                 }
             }
         #endregion

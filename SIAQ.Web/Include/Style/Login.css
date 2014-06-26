@@ -1,7 +1,7 @@
 ﻿/* General*/
 html, body, form
 {
-	background: #fff url(../Include/Image/Background/HandsBackgorund.jpg) no-repeat center;
+	background: #fff url(../Image/Background/HandsBackgorund.jpg) no-repeat center;
 	color: #27245D;
 	background-size: cover;
 	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;

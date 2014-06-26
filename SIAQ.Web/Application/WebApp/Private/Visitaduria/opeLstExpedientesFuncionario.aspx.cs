@@ -28,6 +28,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             ENTSession oENTSession;
 
             oENTSession = (ENTSession)this.Session["oENTSession"];
+
             oENTExpediente.FuncionarioId = oENTSession.FuncionarioId;
 
             oBPExpediente.SelectExpediente_Funcionario(oENTExpediente);
@@ -55,9 +56,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         // Eventos de la página
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (this.Page.IsPostBack) { return; }
-
 
             selectExpediente();
         }
@@ -154,9 +153,5 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
             }
         }
-
-
-
-
     }
 }

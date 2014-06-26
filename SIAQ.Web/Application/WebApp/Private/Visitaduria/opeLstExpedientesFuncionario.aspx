@@ -59,7 +59,6 @@
                                     <td style="width: 100px;">
                                         Autoridades
                                     </td>
-                                    -->
                                     <td style="width: 100px;">
                                         Atender
                                     </td>

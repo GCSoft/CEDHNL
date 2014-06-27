@@ -16,10 +16,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
     public partial class visDetalleExpediente : System.Web.UI.Page
     {
         bool IsReadOnly = false;
-        const int POR_ASIGNAR_ESTATUS = 5;
-        const int POR_ATENDER_ESTATUS = 6;
-        const int EN_PROCESO_ESTATUS = 7;
-        const int PENDIENTE_APROBAR_ESTATUS = 16;
         Function utilFunction = new Function();
 
         #region "Event"
@@ -390,8 +386,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                     return;
                 }
 
-                if (ExpedienteProcess.ExpedienteEntity.EstatusId != POR_ASIGNAR_ESTATUS && ExpedienteProcess.ExpedienteEntity.EstatusId != POR_ATENDER_ESTATUS &&
-                        ExpedienteProcess.ExpedienteEntity.EstatusId != EN_PROCESO_ESTATUS && ExpedienteProcess.ExpedienteEntity.EstatusId != PENDIENTE_APROBAR_ESTATUS)
+                if (ExpedienteProcess.ExpedienteEntity.EstatusId != BPExpediente.POR_ASIGNAR_ESTATUS &&
+                        ExpedienteProcess.ExpedienteEntity.EstatusId != BPExpediente.POR_ATENDER_ESTATUS &&
+                        ExpedienteProcess.ExpedienteEntity.EstatusId != BPExpediente.EN_PROCESO_ESTATUS &&
+                        ExpedienteProcess.ExpedienteEntity.EstatusId != BPExpediente.PENDIENTE_APROBAR_ESTATUS)
                 {
                     IsReadOnly = true;
                     return;

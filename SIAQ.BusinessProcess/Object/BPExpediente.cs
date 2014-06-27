@@ -15,6 +15,10 @@ namespace SIAQ.BusinessProcess.Object
     public class BPExpediente : BPBase
     {
         protected int _ErrorId;
+        public const int POR_ASIGNAR_ESTATUS = 5;
+        public const int POR_ATENDER_ESTATUS = 6;
+        public const int EN_PROCESO_ESTATUS = 7;
+        public const int PENDIENTE_APROBAR_ESTATUS = 16;
         protected string _ErrorDescription;
         protected ENTExpediente _ExpedienteEntity;
 

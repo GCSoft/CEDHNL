@@ -103,13 +103,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.TextBox txtOtroTelefono;
         
         /// <summary>
-        /// calFechaNacimiento control.
+        /// txtEdad control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::SIAQ.Web.Include.WebUserControls.wucCalendar calFechaNacimiento;
+        protected global::System.Web.UI.WebControls.TextBox txtEdad;
         
         /// <summary>
         /// txtCorreoElectronico control.
@@ -238,13 +238,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.TextBox txtAniosResidiendo;
         
         /// <summary>
-        /// Panel3 control.
+        /// pnlFormularioInformacionOrigen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel3;
+        protected global::System.Web.UI.WebControls.Panel pnlFormularioInformacionOrigen;
         
         /// <summary>
         /// ddlPaisOrigen control.
@@ -274,13 +274,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.DropDownList ddlCiudadOrigen;
         
         /// <summary>
-        /// Panel1 control.
+        /// pnlFormularioBotones control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1;
+        protected global::System.Web.UI.WebControls.Panel pnlFormularioBotones;
         
         /// <summary>
         /// btnGuardar control.

@@ -16,6 +16,34 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
     public partial class opeRegistroCiudadano : System.Web.UI.Page
     {
 
+		// Funciones del programador
+
+		Int32 AniosTranscurridos (DateTime dtFecha) {
+			DateTime dtNow = DateTime.Now;
+			DateTime dtDiff;
+
+			TimeSpan tsDate;
+
+			try
+			{
+
+				// Restar fechas
+				tsDate = dtNow - dtFecha;
+
+				// En base al afecha inicial determinar el resultado de la diferencia
+				dtDiff = DateTime.MinValue + tsDate;
+
+				// Regresar los años transcurridos a partir de la fecha
+				return dtDiff.Day - 1;
+
+			}catch (Exception ex) {
+				throw (ex);
+			}
+		}
+
+
+		// Eventos de la página
+
          protected void Page_Load(object sender, EventArgs e){
             
             if (Page.IsPostBack) { return; }
@@ -596,6 +624,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             ENTResponse oENTResponse = new ENTResponse();
             ENTCiudadano oENTCiudadano = new ENTCiudadano();
 
+			DateTime dtFechaNacimiento;
+
             try
             {
                 //Validaciones 
@@ -668,13 +698,18 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                    return;
                 }
 
+				// Obtener fecha de nacimiento del ciudadano
+				dtFechaNacimiento = DateTime.Now;
+				if (this.txtEdad.Text.Trim() != "") { this.txtEdad.Text = "0"; }
+				dtFechaNacimiento = dtFechaNacimiento.AddYears(Int32.Parse(this.txtEdad.Text.Trim()) * -1);
+
                 //Asignación de parametros 
                 //Info general
                 oENTCiudadano.Nombre = txtNombre.Text;
                 oENTCiudadano.ApellidoPaterno = txtApellidoPaterno.Text;
                 oENTCiudadano.ApellidoMaterno = txtApellidoMaterno.Text;
                 oENTCiudadano.SexoId = Convert.ToInt32(ddlSexo.SelectedValue);
-                oENTCiudadano.FechaNacimiento = Convert.ToDateTime(calFechaNacimiento.DisplayDate);
+				oENTCiudadano.FechaNacimiento = dtFechaNacimiento;
                 oENTCiudadano.NacionalidadId = Convert.ToInt32(ddlNacionalidad.SelectedValue);
                 oENTCiudadano.OcupacionId = Convert.ToInt32(ddlOcupacion.SelectedValue);
                 oENTCiudadano.EscolaridadId = Convert.ToInt32(ddlEscolaridad.SelectedValue);
@@ -739,7 +774,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             txtApellidoPaterno.Text = String.Empty;
             txtApellidoMaterno.Text = String.Empty;
             ddlSexo.SelectedIndex = 0;
-            calFechaNacimiento.SetCurrentDate();
+			this.txtEdad.Text = "0";
             ddlNacionalidad.SelectedIndex = 0;
             ddlOcupacion.SelectedIndex = 0;
             ddlEscolaridad.SelectedIndex = 0;
@@ -774,6 +809,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             BPCiudadano oBPCiudadano = new BPCiudadano();
             ENTResponse oENTResponse = new ENTResponse();
             ENTCiudadano oENTCiudadano = new ENTCiudadano();
+
+			DateTime dtFechaNacimiento;
 
             try
             {
@@ -847,6 +884,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                    return;
                 }
 
+				// Obtener fecha de nacimiento del ciudadano
+				dtFechaNacimiento = DateTime.Now;
+				if (this.txtEdad.Text.Trim() != "") { this.txtEdad.Text = "0"; }
+				dtFechaNacimiento = dtFechaNacimiento.AddYears(Int32.Parse(this.txtEdad.Text.Trim()) * -1);
+
                 //Asignación de parametros 
                 //Info general
                 oENTCiudadano.CiudadanoId = CiudadanoId;
@@ -854,7 +896,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 oENTCiudadano.ApellidoPaterno = txtApellidoPaterno.Text;
                 oENTCiudadano.ApellidoMaterno = txtApellidoMaterno.Text;
                 oENTCiudadano.SexoId = Convert.ToInt32(ddlSexo.SelectedValue);
-                oENTCiudadano.FechaNacimiento = Convert.ToDateTime(calFechaNacimiento.DisplayDate);
+				oENTCiudadano.FechaNacimiento = dtFechaNacimiento;
                 oENTCiudadano.NacionalidadId = Convert.ToInt32(ddlNacionalidad.SelectedValue);
                 oENTCiudadano.OcupacionId = Convert.ToInt32(ddlOcupacion.SelectedValue);
                 oENTCiudadano.EscolaridadId = Convert.ToInt32(ddlEscolaridad.SelectedValue);
@@ -952,7 +994,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                         txtApellidoPaterno.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["ApellidoPaterno"].ToString();
                         txtApellidoMaterno.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["ApellidoMaterno"].ToString();
                         ddlSexo.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["SexoId"].ToString();
-                        calFechaNacimiento.SetDate = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["FechaNacimiento"].ToString();
+
+						this.txtEdad.Text = AniosTranscurridos(DateTime.Parse(oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["FechaNacimiento"].ToString())).ToString();
+
                         ddlNacionalidad.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["NacionalidadId"].ToString();
                         ddlOcupacion.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["OcupacionId"].ToString();
                         ddlEscolaridad.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["EscolaridadId"].ToString();

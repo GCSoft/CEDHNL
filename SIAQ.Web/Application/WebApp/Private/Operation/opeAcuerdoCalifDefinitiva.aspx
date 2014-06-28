@@ -212,12 +212,10 @@
                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
                         <tr>
                             <td style="height: 24px; text-align: left; width: 130px;">
-                                <asp:Button ID="cmdGuardar" runat="server" Text="Guardar"
-                                    CssClass="Button_General" Width="125px" onclick="cmdGuardar_Click" />
+                                <asp:Button ID="cmdGuardar" runat="server" Text="Guardar" CssClass="Button_General" Width="125px" onclick="cmdGuardar_Click" />
                             </td>
                             <td style="height: 24px; text-align: left; width: 130px;">
-                                <asp:Button ID="cmdRegresar" runat="server" Text="Regresar" CssClass="Button_General"
-                                    Width="125px" onclick="cmdRegresar_Click"/>
+                                <asp:Button ID="cmdRegresar" runat="server" Text="Regresar" CssClass="Button_General" Width="125px" onclick="cmdRegresar_Click"/>
                             </td>
                             <td style="height: 24px; width: 530px;">
                             </td>

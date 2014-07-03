@@ -16,6 +16,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
     public partial class visAgregarDocumento : System.Web.UI.Page
     {
         const string ModuloId = "95DF4FFE-7DBE-4272-B0E9-CFAD4D9596D3";
+        bool IsReadOnly = false;
         Function utilFunction = new Function();
 
         #region "Events"
@@ -68,6 +69,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(DocumentoProcess.ErrorDescription) + "', 'Error', true);", true);
             }
 
+            private void DisableControls()
+            {
+                GuardarButton.Enabled = false;
+            }
+
             private void DocumentoGridRowCommand(GridViewCommandEventArgs e)
             {
                 string RepositorioId = string.Empty;
@@ -86,6 +92,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
             {
                 HyperLink DocumentoLink;
                 Image DocumentoImage;
+                ImageButton EliminarButton;
                 DataRowView DataRow;
 
                 //Validación de que sea fila 
@@ -94,11 +101,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
                 DocumentoImage = (Image)e.Row.FindControl("DocumentoImage");
                 DocumentoLink = (HyperLink)e.Row.FindControl("DocumentoLink");
+                EliminarButton = (ImageButton)e.Row.FindControl("EliminarButton");
 
                 DataRow = (DataRowView)e.Row.DataItem;
 
                 DocumentoImage.ImageUrl = BPDocumento.GetIconoDocumento(DataRow["FormatoDocumentoId"].ToString());
                 DocumentoLink.NavigateUrl = ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.ashx?R=" + DataRow["RepositorioId"].ToString() + "&S=" + DataRow["SolicitudId"].ToString();
+
+                if (IsReadOnly)
+                    EliminarButton.Enabled = false;
             }
 
             private int GetExpedienteParameter()
@@ -121,6 +132,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                     return;
 
                 ExpedienteId = GetExpedienteParameter();
+
+                ValidarExpediente(ExpedienteId);
 
                 SelectTipoDocumento();
                 SelectExpediente(ExpedienteId);
@@ -255,6 +268,30 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 }
                 else
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + TipoDocumentoProcess.ErrorDescription + "', 'Error', true);", true);
+            }
+
+            private void ValidarExpediente(int ExpedienteId)
+            {
+                BPExpediente ExpedienteProcess = new BPExpediente();
+
+                ExpedienteProcess.SelectExpedienteEstatus(ExpedienteId);
+
+                if (ExpedienteProcess.ErrorId != 0)
+                {
+                    IsReadOnly = true;
+                    DisableControls();
+                    return;
+                }
+
+                if (ExpedienteProcess.ExpedienteEntity.EstatusId != BPExpediente.POR_ASIGNAR_ESTATUS &&
+                        ExpedienteProcess.ExpedienteEntity.EstatusId != BPExpediente.POR_ATENDER_ESTATUS &&
+                        ExpedienteProcess.ExpedienteEntity.EstatusId != BPExpediente.EN_PROCESO_ESTATUS &&
+                        ExpedienteProcess.ExpedienteEntity.EstatusId != BPExpediente.PENDIENTE_APROBAR_ESTATUS)
+                {
+                    IsReadOnly = true;
+                    DisableControls();
+                    return;
+                }
             }
         #endregion
     }

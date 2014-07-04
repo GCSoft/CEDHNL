@@ -198,8 +198,8 @@
 
         <br /><br />
         <div>
-            <asp:GridView AutoGenerateColumns="False" ID="SeguimientoGrid" OnRowCommand="SeguimientoGrid_RowCommand" PageSize="10"
-                runat="server" Style="text-align: center" Width="100%">
+            <asp:GridView AutoGenerateColumns="False" ID="SeguimientoGrid" OnRowCommand="SeguimientoGrid_RowCommand"
+                OnRowDataBound="SeguimientoGrid_RowDataBound" PageSize="10" runat="server" Style="text-align: center" Width="100%">
                 <RowStyle CssClass="Grid_Row" />
                 <EditRowStyle Wrap="True" />
                 <HeaderStyle CssClass="Grid_Header" ForeColor="#E3EBF5" />

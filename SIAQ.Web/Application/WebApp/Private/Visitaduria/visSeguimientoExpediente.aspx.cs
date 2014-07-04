@@ -13,7 +13,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 {
     public partial class visSeguimientoExpediente : System.Web.UI.Page
     {
-        // Utilerías
+        bool IsReadOnly = false;
         Function utilFunction = new Function();
 
         #region "Events"
@@ -30,6 +30,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
             protected void SeguimientoGrid_RowCommand(Object sender, GridViewCommandEventArgs e)
             {
                 SeguimientoGridRowCommand(e);
+            }
+
+            protected void SeguimientoGrid_RowDataBound(object sender, GridViewRowEventArgs e)
+            {
+                SeguimientoGridRowDataBound(e);
             }
         #endregion
 
@@ -52,6 +57,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ExpedienteSeguimientoProcess.ErrorDescription) + "', 'Error', true);", true);
             }
 
+            private void DisableControls()
+            {
+                GuardarButton.Enabled = false;
+            }
+
             private int GetExpedienteParameter()
             {
                 try
@@ -72,6 +82,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                     return;
 
                 ExpedienteId = GetExpedienteParameter();
+
+                ValidarExpediente(ExpedienteId);
 
                 SelectExpediente(ExpedienteId);
                 SelectTipoSeguimiento();
@@ -148,6 +160,23 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                         DeleteExpedienteSeguimiento(ExpedienteSeguimientoId, int.Parse(ExpedienteIdHidden.Value));
                         break;
                 }
+            }
+
+            private void SeguimientoGridRowDataBound(GridViewRowEventArgs e)
+            {
+                ImageButton EliminarButton;
+
+                //Validación de que sea fila 
+                if (e.Row.RowType != DataControlRowType.DataRow)
+                    return;
+
+                EliminarButton = (ImageButton)e.Row.FindControl("EliminarButton");
+
+                if (EliminarButton == null)
+                    return;
+
+                if (IsReadOnly)
+                    EliminarButton.Enabled = false;
             }
 
             private void SelectExpediente(int ExpedienteId)
@@ -277,6 +306,30 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 catch (Exception ex)
                 {
                     throw (ex);
+                }
+            }
+
+            private void ValidarExpediente(int ExpedienteId)
+            {
+                BPExpediente ExpedienteProcess = new BPExpediente();
+
+                ExpedienteProcess.SelectExpedienteEstatus(ExpedienteId);
+
+                if (ExpedienteProcess.ErrorId != 0)
+                {
+                    IsReadOnly = true;
+                    DisableControls();
+                    return;
+                }
+
+                if (ExpedienteProcess.ExpedienteEntity.EstatusId != BPExpediente.POR_ASIGNAR_ESTATUS &&
+                        ExpedienteProcess.ExpedienteEntity.EstatusId != BPExpediente.POR_ATENDER_ESTATUS &&
+                        ExpedienteProcess.ExpedienteEntity.EstatusId != BPExpediente.EN_PROCESO_ESTATUS &&
+                        ExpedienteProcess.ExpedienteEntity.EstatusId != BPExpediente.PENDIENTE_APROBAR_ESTATUS)
+                {
+                    IsReadOnly = true;
+                    DisableControls();
+                    return;
                 }
             }
         #endregion

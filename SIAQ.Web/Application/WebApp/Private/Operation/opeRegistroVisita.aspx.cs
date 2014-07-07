@@ -14,78 +14,73 @@ using SIAQ.Entity.Object;
 
 namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
-    public partial class opeRegistroVisita : System.Web.UI.Page
+    public partial class opeRegistroVisita : BPPage
     {
 
         // Utilerías
         Function utilFunction = new Function();
 
-        string AllDefault = "[Seleccione]";
 
-        protected void GuardarButton_Click(object sender, EventArgs e)
-        {
+		// Funciones del programador
 
-            // Validaciones
-            if (this.ddlArea.SelectedValue == "0")
-            {
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo de Área es obligatorio ', 'Success', true); focusControl('" + this.ddlArea.ClientID + "');", true);
-                return;
-            }
+		void InsertVisita(){
+			BPVisita BPVisita = new BPVisita();
 
-            if (this.ddlFuncionario.SelectedValue == "0")
-            {
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo de Funcionario es obligatorio ', 'Success', true); focusControl('" + this.ddlFuncionario.ClientID + "');", true);
-                return;
-            }
+			ENTResponse oENTResponse = new ENTResponse();
+			ENTVisita oENTVisita = new ENTVisita();
+			ENTSession oENTSession;
 
-            if (this.ddlMotivo.SelectedValue == "0")
-            {
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo de Motivo es obligatorio ', 'Success', true); focusControl('" + this.ddlMotivo.ClientID + "');", true);
-                return;
-            }
+			try
+			{
 
-            if (DescriptionBox.Text == "")
-            {
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo Detalle de visita es obligatorio ', 'Success', true); focusControl('" + this.DescriptionBox.ClientID + "');", true);
-                return;
-            }
+				// Validaciones
+				if (this.ddlArea.SelectedValue == "0") { throw new Exception("El campo [Área] es requerido"); }
+				if (this.ddlFuncionario.SelectedValue == "0") { throw new Exception("El campo [Funcionario] es requerido"); }
+				if (this.ddlMotivo.SelectedValue == "0") { throw new Exception("El campo [Motivo] es requerido"); }
+				if (this.txtVisitante.Text.Trim() == "") { throw new Exception("El campo [Visitante] es requerido"); }
+				if (this.ckeObservaciones.Text.Trim() == "") { throw new Exception("El campo [Observaciones] es requerido"); }
 
-            // Transacción
-            ENTSession SessionEntity = new ENTSession();
+				// Obtener la sesión
+				oENTSession = (ENTSession)this.Session["oENTSession"];
 
-            SessionEntity = (ENTSession)Session["oENTSession"];
-            GuardarVisita(SessionEntity.idUsuario);
+				//Formulario
+				oENTVisita.AreaId = Int32.Parse(this.ddlArea.SelectedValue);
+				oENTVisita.FuncionarioId = Int32.Parse(this.ddlFuncionario.SelectedValue);
+				oENTVisita.MotivoId = Int32.Parse(this.ddlMotivo.SelectedValue);
+				oENTVisita.CiudadanoId = Int32.Parse(this.CiudadanoId.Value);
+				oENTVisita.UsuarioIdInsert = oENTSession.idUsuario;
+				oENTVisita.Visitante = this.txtVisitante.Text.Trim();
+				oENTVisita.Observaciones = this.ckeObservaciones.Text.Trim();
 
-        }
+				//Transacción
+				oENTResponse = BPVisita.InsertVisita(oENTVisita);
 
-        protected void btnCancelar_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("/Application/WebApp/Private/Home/AppIndex.aspx");
-        }
+				//Validación
+				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+				if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            PageLoad();
-        }
+				// Transacción exitosa
+				ResetearCampos();
 
-        protected void PageLoad()
-        {
-            if (!Page.IsPostBack)
-            {
+				//Mensaje de usuario
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Visita registrada con éxito', 'Success', true); focusControl('" + this.ddlArea.ClientID + "');", true);
 
-                //Consultas para los DropdownList
-                SelectArea();
-                SelectFuncionario();
-                SelectMotivo();
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
 
-                // Foco
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlArea.ClientID + "');", true);
-            }
+		void ResetearCampos(){
+			this.wucFixedDateTime.SetDateTime();
+			this.ddlArea.SelectedIndex = 0;
+			this.ddlFuncionario.SelectedIndex = 0;
+			this.ddlMotivo.SelectedIndex = 0;
+			this.txtVisitante.Text = "";
+			this.ckeObservaciones.Text = "";
+			this.CiudadanoId.Value = "0";
+		}
 
-        }
-
-        protected void SelectArea()
-        {
+		void SelectArea(){
             ENTArea oENTArea = new ENTArea();
             ENTResponse oENTResponse = new ENTResponse();
 
@@ -116,95 +111,136 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
                 this.ddlArea.DataSource = oENTResponse.dsResponse.Tables[1];
                 this.ddlArea.DataBind();
-                this.ddlArea.Items.Insert(0, new ListItem(AllDefault, "0"));
+				this.ddlArea.Items.Insert(0, new ListItem("[Seleccione]", "0"));
 
                 // Mensaje al usuario
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), sMessage, true);
 
-            }
-            catch (Exception ex)
-            {
+            }catch (Exception ex){
                 throw (ex);
             }
-
-
         }
 
-        protected void SelectFuncionario()
-        {
-            ENTFuncionario oENTFuncionario = new ENTFuncionario();
-            ENTResponse oENTResponse = new ENTResponse();
-            BPFuncionario BPFuncionario = new BPFuncionario();
+		void SelectCiudadanoByID(){
+			BPCiudadano BPCiudadano = new BPCiudadano();
+			ENTResponse oENTResponse = new ENTResponse();
+			ENTCiudadano oENTCiudadano = new ENTCiudadano();
 
-            ddlFuncionario.DataValueField = "FuncionarioId";
-            ddlFuncionario.DataTextField = "sFullName";
+			try
+			{
 
-            oENTResponse = BPFuncionario.SelectFuncionario(oENTFuncionario);
+				// Formulario
+				oENTCiudadano.CiudadanoId = Int32.Parse(this.CiudadanoId.Value);
 
-            ddlFuncionario.DataSource = oENTResponse.dsResponse.Tables[1];
-            ddlFuncionario.DataBind();
-            ddlFuncionario.Items.Insert(0, new ListItem(AllDefault, "0"));
-        }
+				// Transacción
+				oENTResponse = BPCiudadano.SelectCiudadano_ByID(oENTCiudadano);
 
-        protected void GuardarVisita(int UsuarioIdInsert)
-        {
-            BPVisita BPVisita = new BPVisita();
+				// Validación
+				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+				if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
 
-            BPVisita.ENTVisita.AreaId = Int32.Parse(ddlArea.SelectedValue);
-            BPVisita.ENTVisita.MotivoId = Int32.Parse(ddlMotivo.SelectedValue);
-            BPVisita.ENTVisita.FuncionarioId = Int32.Parse(ddlFuncionario.SelectedValue);
-            BPVisita.ENTVisita.UsuarioIdInsert = UsuarioIdInsert;
-            BPVisita.ENTVisita.Observaciones = DescriptionBox.Text;
+				// Mostrar información del ciudadano
+				this.txtVisitante.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NombreCompleto"].ToString();
 
-            BPVisita.GuardarVisita();
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
 
-            if (BPVisita.ErrorId == 0)
-            {
-                ResetearCampos();
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Visita registrada con éxito', 'Success', true); focusControl('" + this.ddlArea.ClientID + "');", true);
-            }
-            else
-            {
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Problema al intentar de guardar la visita', 'Success', true); focusControl('" + this.ddlArea.ClientID + "');", true);
-            }
-        }
+		void SelectFuncionario(){
+			ENTFuncionario oENTFuncionario = new ENTFuncionario();
+			ENTResponse oENTResponse = new ENTResponse();
+			BPFuncionario BPFuncionario = new BPFuncionario();
 
-        protected void ResetearCampos()
-        {
-            ddlArea.SelectedIndex = 0;
-            ddlMotivo.SelectedIndex = 0;
-            ddlFuncionario.SelectedIndex = 0;
-            DescriptionBox.Text = "";
-        }
+			ddlFuncionario.DataValueField = "FuncionarioId";
+			ddlFuncionario.DataTextField = "sFullName";
 
-        protected void SelectMotivo()
-        {
+			oENTResponse = BPFuncionario.SelectFuncionario(oENTFuncionario);
 
-            BPMotivo BPMotivo = new BPMotivo();
-            ddlMotivo.DataValueField = "MotivoId";
-            ddlMotivo.DataTextField = "Nombre";
+			ddlFuncionario.DataSource = oENTResponse.dsResponse.Tables[1];
+			ddlFuncionario.DataBind();
+			ddlFuncionario.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+		}
+
+		void SelectMotivo(){
+			BPMotivo BPMotivo = new BPMotivo();
+			ddlMotivo.DataValueField = "MotivoId";
+			ddlMotivo.DataTextField = "Nombre";
 
 			ddlMotivo.DataSource = BPMotivo.SelectMotivo().Tables[1];
-            ddlMotivo.DataBind();
-            ddlMotivo.Items.Insert(0, new ListItem(AllDefault, "0"));
-        }
+			ddlMotivo.DataBind();
+			ddlMotivo.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+		}
 
-        protected void btnRegresar_Click(object sender, EventArgs e)
-        {
-            string tipo = Request.QueryString["t"];
 
-            switch (tipo)
+		// Eventos de la página
+
+		protected void Page_Load(object sender, EventArgs e){
+			try
             {
-                case "1":
-                    Response.Redirect("~/Application/WebApp/Private/Operation/opeInicio.aspx");
-                    break;
-                case "2":
-                    Response.Redirect("~/Application/WebApp/Private/Operation/opeBusquedaCiudadano.aspx");
-                    break;
-                default:
-                    Response.Redirect("~/Application/WebApp/Private/Operation/opeInicio.aspx");
-                    break;
+
+				// Validaciones
+				if (Page.IsPostBack) { return; }
+				if (this.Request.QueryString["key"] == null) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
+				if (this.Request.QueryString["key"].ToString().Split(new Char[] { '|' }).Length != 2) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
+
+				// Obtener CiudadanoId
+				this.CiudadanoId.Value = this.Request.QueryString["key"].ToString().Split(new Char[] { '|' })[0];
+
+				// Obtener Sender
+				this.SenderId.Value = this.Request.QueryString["key"].ToString().ToString().Split(new Char[] { '|' })[1];
+
+				switch (this.SenderId.Value){
+					case "0": // Invocado desde [Menú]
+						this.Sender.Value = "opeInicio.aspx";
+						break;
+
+					case "1": // Invocado desde [Recepción]
+						this.Sender.Value = "opeInicio.aspx";
+						break;
+
+					case "2": // Invocado desde [Buscar ciudadano]
+						this.Sender.Value = "opeBusquedaCiudadano.aspx";
+						break;
+
+					default:
+						this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false);
+						return;
+				}
+
+				// Llenado de controles
+				SelectArea();
+				SelectFuncionario();
+				SelectMotivo();
+				if (this.CiudadanoId.Value != "0") { SelectCiudadanoByID(); }
+
+				// Atributos
+				this.txtVisitante.Attributes.Add("onchange", "document.getElementById('" + this.CiudadanoId.ClientID + "').value = '0'");
+
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlArea.ClientID + "');", true);
+				
+            }catch (Exception ex){
+				this.btnGuardar.Visible = false;
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.ddlArea.ClientID + "');", true);
+            }
+		}
+
+        protected void btnGuardar_Click(object sender, EventArgs e){
+			try
+            {
+
+				// Transacción
+				InsertVisita();
+
+            }catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.ddlArea.ClientID + "');", true);
             }
         }
+
+        protected void btnRegresar_Click(object sender, EventArgs e){
+			Response.Redirect(this.Sender.Value);
+        }
+
     }
 }

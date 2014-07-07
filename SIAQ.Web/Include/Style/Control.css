@@ -209,6 +209,23 @@
     font-weight:lighter;
 }
 
+/*CALENDAR FIXED DATE TIME*/
+.CalendarFixed_Canvas{
+	background:url('../../../../Include/Image/Buttons/Watch.png') 98% 50% no-repeat;
+	background-color:#EFEFEF;
+	border:1px solid #4B4878;
+	color:#666666;
+	cursor:pointer;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 11px;
+	font-weight:bold;
+	height:20px;
+	line-height:20px;
+	text-align:center;
+	width:211px;
+}
+
+
 /*CHECKBOX*/
 .CheckBox_Regular{
 	color:#4B4878;

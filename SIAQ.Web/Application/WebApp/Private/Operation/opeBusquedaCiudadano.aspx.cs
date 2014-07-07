@@ -248,16 +248,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         // Eventos de la página
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
+        protected void Page_Load(object sender, EventArgs e){
             try
             {
 
                 PageLoad();
 
-            }
-            catch (Exception ex)
-            {
+            }catch (Exception ex){
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + utilFunction.JSClearText(ex.Message) + "'); focusControl('" + this.txtNombre.ClientID + "');", true);
             }
         }
@@ -324,132 +321,138 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        protected void gvCiudadano_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            gvCiudadanoGridRowCommand(e);
+        protected void gvCiudadano_RowCommand(object sender, GridViewCommandEventArgs e){
+			ENTSession oENTSession = new ENTSession();
+			String CiudadanoId = String.Empty;
+
+			try
+			{
+
+				oENTSession = (ENTSession)this.Session["oENTSession"];
+				CiudadanoId = e.CommandArgument.ToString();
+
+				switch (e.CommandName.ToString()){
+					case "Visita":
+						// vuelve a llenar el datatable de busqueda para que al regresar conserve el resultado de la busqueda en el grid
+						oENTSession.dsResultadoBusCiudadano = utilFunction.ParseGridViewToDataTable(gvCiudadano, false);
+						Response.Redirect(ConfigurationManager.AppSettings["Application.Url.RegistroVisita"].ToString() + "?key=" + CiudadanoId + "|2");
+						break;
+
+					case "Solicitud":
+						// vuelve a llenar el datatable de busqueda para que al regresar conserve el resultado de la busqueda en el grid
+						oENTSession.dsResultadoBusCiudadano = utilFunction.ParseGridViewToDataTable(gvCiudadano, false);
+						Response.Redirect(ConfigurationManager.AppSettings["Application.Url.RegistroVisita"].ToString() + "?s=" + CiudadanoId + "&t=2");
+						break;
+
+					case "Consultar":
+						// vuelve a llenar el datatable de busqueda para que al regresar conserve el resultado de la busqueda en el grid
+						oENTSession.dsResultadoBusCiudadano = utilFunction.ParseGridViewToDataTable(gvCiudadano, false);
+						Response.Redirect(ConfigurationManager.AppSettings["Application.Url.DetalleCiudadano"].ToString() + "?s=" + CiudadanoId);
+						break;
+
+					case "Editar":
+						// vuelve a llenar el datatable de busqueda para que al regresar conserve el resultado de la busqueda en el grid
+						oENTSession.dsResultadoBusCiudadano = utilFunction.ParseGridViewToDataTable(gvCiudadano, false);
+						Response.Redirect(ConfigurationManager.AppSettings["Application.Url.RegistroCiudadano"].ToString() + "?s=" + CiudadanoId);
+						break;
+				}
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+			}
         }
 
-        private void gvCiudadanoGridRowCommand(GridViewCommandEventArgs e)
-        {
-            string CiudadanoId = string.Empty;
-            ENTSession oENTSession = new ENTSession();
-
-            oENTSession = (ENTSession)this.Session["oENTSession"];
-            CiudadanoId = e.CommandArgument.ToString();
-
-            switch (e.CommandName.ToString())
-            {
-                case "Editar":
-                    // vuelve a llenar el datatable de busqueda para que al regresar conserve el resultado de la busqueda en el grid
-                    oENTSession.dsResultadoBusCiudadano = utilFunction.ParseGridViewToDataTable(gvCiudadano, false);
-                    Response.Redirect(ConfigurationManager.AppSettings["Application.Url.RegistroCiudadano"].ToString() + "?s=" + CiudadanoId);
-                    break;
-
-                case "Visita":
-                    // vuelve a llenar el datatable de busqueda para que al regresar conserve el resultado de la busqueda en el grid
-                    oENTSession.dsResultadoBusCiudadano = utilFunction.ParseGridViewToDataTable(gvCiudadano, false);
-                    Response.Redirect(ConfigurationManager.AppSettings["Application.Url.RegistroVisita"].ToString() + "?s=" + CiudadanoId + "&t=2");
-                    break;
-
-                case "Consultar":
-                    // vuelve a llenar el datatable de busqueda para que al regresar conserve el resultado de la busqueda en el grid
-                    oENTSession.dsResultadoBusCiudadano = utilFunction.ParseGridViewToDataTable(gvCiudadano, false);
-                    Response.Redirect(ConfigurationManager.AppSettings["Application.Url.DetalleCiudadano"].ToString() + "?s=" + CiudadanoId);
-                    break;
-            }
-        }
-
-        protected void gvCiudadano_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
+        protected void gvCiudadano_RowDataBound(object sender, GridViewRowEventArgs e){
+			ImageButton imgVisita = null;
+			ImageButton imgSolicitud = null;
+			ImageButton imgConsultar = null;
             ImageButton imgEdit = null;
-            ImageButton imgVisita = null;
-            ImageButton imgConsultar = null;
 
+			String sCiudadanoId = "";
+			String sNombreCiudadano = "";
 
-            String sNumeroCiudadano = "";
-            String sNombreCiudadano = "";
-            String sImagesAttributes = "";
-            String sImagesAttributesConsulta = "";
-            String sImagesAttributesVisita = "";
-
-            String sToolTip = "";
+			String sToolTip = "";
+			String sImagesAttributes = "";
 
             try
             {
-                //Validación de que sea fila 
+                
+				//Validación de que sea fila 
                 if (e.Row.RowType != DataControlRowType.DataRow) { return; }
 
                 //Obtener imagenes
+				imgVisita = (ImageButton)e.Row.FindControl("imgVisita");
+				imgSolicitud = (ImageButton)e.Row.FindControl("imgSolicitud");
+				imgConsultar = (ImageButton)e.Row.FindControl("imgConsultar");
                 imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
-                imgVisita = (ImageButton)e.Row.FindControl("imgVisita");
-                imgConsultar = (ImageButton)e.Row.FindControl("imgConsultar");
 
                 //DataKeys
-                sNumeroCiudadano = gvCiudadano.DataKeys[e.Row.RowIndex]["CiudadanoId"].ToString();
+                sCiudadanoId = gvCiudadano.DataKeys[e.Row.RowIndex]["CiudadanoId"].ToString();
                 sNombreCiudadano = this.gvCiudadano.DataKeys[e.Row.RowIndex]["NombreCompleto"].ToString();
 
-                //Tooltip Edición
-                sToolTip = "Agregar visita";
+                //Tooltips
+				sToolTip = "Agregar visita de [" + sNombreCiudadano + "]";
                 imgVisita.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
                 imgVisita.Attributes.Add("onmouseout", "tooltip.hide();");
                 imgVisita.Attributes.Add("style", "cursor:hand;");
+
+				sToolTip = "Crear solicitud a [" + sNombreCiudadano + "]";
+				imgSolicitud.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
+				imgSolicitud.Attributes.Add("onmouseout", "tooltip.hide();");
+				imgSolicitud.Attributes.Add("style", "cursor:hand;");
+
+				sToolTip = "Consultar ciudadano [" + sNombreCiudadano + "]";
+				imgConsultar.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
+				imgConsultar.Attributes.Add("onmouseout", "tooltip.hide();");
+				imgConsultar.Attributes.Add("style", "cursor:hand;");
 
                 sToolTip = "Editar ciudadano [" + sNombreCiudadano + "]";
                 imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
                 imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
                 imgEdit.Attributes.Add("style", "curosr:hand;");
 
-                sToolTip = "Consultar ciudadano [" + sNombreCiudadano + "]";
-                imgConsultar.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
-                imgConsultar.Attributes.Add("onmouseout", "tooltip.hide();");
-                imgConsultar.Attributes.Add("style", "cursor:hand;");
-
                 //Atributos Over
-                sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png';";
-                sImagesAttributesConsulta = "document.getElementById('" + imgConsultar.ClientID + "').src='../../../../Include/Image/Buttons/ConsultarCiudadano_Over.png';";
-                sImagesAttributesVisita = "document.getElementById('" + imgVisita.ClientID + "').src='../../../../Include/Image/Buttons/AgregarVisita_Over.png';";
+				sImagesAttributes = "document.getElementById('" + imgVisita.ClientID + "').src='../../../../Include/Image/Buttons/AgregarVisita_Over.png'; ";
+				sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSolicitud.ClientID + "').src='../../../../Include/Image/Buttons/AgregarSolicitud_Over.png'; ";
+				sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgConsultar.ClientID + "').src='../../../../Include/Image/Buttons/ConsultarCiudadano_Over.png'; ";
+				sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png'; ";
 
-                //Puntero y Sombra en fila Over
-                e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes + sImagesAttributesConsulta + sImagesAttributesVisita);
+                e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
 
                 //Atributos Out
-                sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png';";
-                sImagesAttributesConsulta = "document.getElementById('" + imgConsultar.ClientID + "').src='../../../../Include/Image/Buttons/ConsultarCiudadano.png';";
-                sImagesAttributesVisita = "document.getElementById('" + imgVisita.ClientID + "').src='../../../../Include/Image/Buttons/AgregarVisita.png';";
+				sImagesAttributes = "document.getElementById('" + imgVisita.ClientID + "').src='../../../../Include/Image/Buttons/AgregarVisita.png'; ";
+				sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSolicitud.ClientID + "').src='../../../../Include/Image/Buttons/AgregarSolicitud.png'; ";
+				sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgConsultar.ClientID + "').src='../../../../Include/Image/Buttons/ConsultarCiudadano.png'; ";
+				sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png'; ";
 
-                //Puntero y Sombra en fila Out
-                e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes + sImagesAttributesConsulta + sImagesAttributesVisita);
-            }
-            catch (Exception ex)
-            {
+                e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
+
+            }catch (Exception ex){
                 throw (ex);
             }
         }
 
-        protected void gvCiudadano_Sorting(object sender, GridViewSortEventArgs e)
-        {
-            DataTable TableRecomendacion = null;
-            DataView ViewRecomendacion = null;
+        protected void gvCiudadano_Sorting(object sender, GridViewSortEventArgs e){
+            DataTable tblData = null;
+            DataView viewData = null;
 
             try
             {
                 //Obtener DataTable y View del GridView
-                TableRecomendacion = utilFunction.ParseGridViewToDataTable(gvCiudadano, false);
-                ViewRecomendacion = new DataView(TableRecomendacion);
+                tblData = utilFunction.ParseGridViewToDataTable(gvCiudadano, false);
+                viewData = new DataView(tblData);
 
                 //Determinar ordenamiento
                 hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
 
                 //Ordenar Vista
-                ViewRecomendacion.Sort = hddSort.Value;
+                viewData.Sort = hddSort.Value;
 
                 //Vaciar datos
-                gvCiudadano.DataSource = ViewRecomendacion;
+                gvCiudadano.DataSource = viewData;
                 gvCiudadano.DataBind();
 
-            }
-            catch (Exception ex)
-            {
+            }catch (Exception ex){
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
             }
         }

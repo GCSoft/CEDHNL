@@ -68,6 +68,8 @@
     <Content Include="Application\WebApp\Private\Victimas\VicListadoAtenciones.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\opeLstEspedienteSecretaria.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\opeLstExpedientesFuncionario.aspx" />
+    <Content Include="Include\Components\Ajax\System.Web.Extensions.Design.dll" />
+    <Content Include="Include\Components\Ajax\System.Web.Extensions.dll" />
     <Content Include="Include\Handler\ObtenerRepositorio.ashx" />
   </ItemGroup>
   <ItemGroup>
@@ -464,6 +466,8 @@
     <Content Include="Include\Components\CKEditor\Core\styles.js" />
     <Content Include="Include\Components\CKEditor\CKEditor.NET.dll" />
     <Content Include="Include\Image\Background\HandsBackgorund.jpg" />
+    <Content Include="Include\Image\Buttons\AgregarSolicitud.png" />
+    <Content Include="Include\Image\Buttons\AgregarSolicitud_Over.png" />
     <Content Include="Include\Image\Buttons\AgregarVisita.png" />
     <Content Include="Include\Image\Buttons\AgregarVisita_Over.png" />
     <Content Include="Include\Image\Buttons\CloseWindow.png" />
@@ -484,6 +488,7 @@
     <Content Include="Include\Image\Buttons\Search.png" />
     <Content Include="Include\Image\Buttons\SelectItem.png" />
     <Content Include="Include\Image\Buttons\SelectItem_Null.png" />
+    <Content Include="Include\Image\Buttons\Watch.png" />
     <Content Include="Include\Image\Icon\AcuerdoIcon.png" />
     <Content Include="Include\Image\Icon\AsignarIcon.png" />
     <Content Include="Include\Image\Icon\AutoridadIcon.png" />
@@ -515,11 +520,8 @@
     <Content Include="Include\Image\Vectores\BarraTituloDePagina.png" />
     <Content Include="Include\Image\Vectores\CEDH.png" />
     <Content Include="Include\Image\Vectores\Exit.png" />
+    <Content Include="Include\Image\Vectores\Iconografia Nueva.png" />
     <Content Include="Include\Image\Vectores\Iconografia.png" />
-    <Content Include="Include\Image\Vectores\Pesta+-ªasAcordeon.png" />
-    <Content Include="Include\Image\Vectores\Pesta+¦asAcordeon.png" />
-    <Content Include="Include\Image\Vectores\PestañasAcordeon.png" />
-    <Content Include="Include\Image\Vectores\TituloAcordeonTAE.png" />
     <Content Include="Include\Image\Web\Banner.png" />
     <Content Include="Include\Image\Web\BannerFill.png" />
     <Content Include="Include\Image\Web\BarraTitulo.png" />
@@ -548,11 +550,6 @@
     <Content Include="Application\WebApp\Private\SysApp\saNotificacion.aspx" />
     <Content Include="Application\WebApp\Public\frmLogin.aspx" />
     <Content Include="Include\Components\Ajax\AjaxControlToolkit.dll" />
-    <Content Include="Include\Components\Charts\FusionCharts.dll" />
-    <Content Include="Include\Components\Charts\Flash\Doughnut2D.swf" />
-    <Content Include="Include\Components\Charts\Flash\FCF_Column3D.swf" />
-    <Content Include="Include\Components\Charts\Flash\FCF_Line.swf" />
-    <Content Include="Include\Components\Charts\Flash\Pie2D.swf" />
     <Content Include="Include\Components\GCSoft\GCSoft.Utilities.dll" />
     <Content Include="Include\Components\GCSoft\GCSoft.Map.xml" />
     <Content Include="Include\Components\Syncfusion\Syncfusion.Compression.Base.dll" />

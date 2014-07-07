@@ -10,18 +10,20 @@ namespace SIAQ.Entity.Object
         private Int32 _AreaId;
         private Int32 _FuncionarioId;
         private Int32 _MotivoId;
+		private Int32 _CiudadanoId;
         private Int32 _UsuarioIdInsert;
-        private string _Observaciones;
-        private string _Fecha;
+		private String _Visitante;
+        private String _Observaciones;
+        private String _Fecha;
         private DataSet _dsResponse;
 
-        public ENTVisita()
-        {
-
+        public ENTVisita(){
             _AreaId = 0;
             _FuncionarioId = 0;
             _MotivoId = 0;
+			_CiudadanoId = 0;
             _UsuarioIdInsert = 0;
+			_Visitante = "";
             _Observaciones = "";
             _Fecha = "";
         }
@@ -44,11 +46,23 @@ namespace SIAQ.Entity.Object
             set { _MotivoId = value; }
         }
 
+		public Int32 CiudadanoId
+		{
+			get { return _CiudadanoId; }
+			set { _CiudadanoId = value; }
+		}
+
         public Int32 UsuarioIdInsert
         {
             get { return _UsuarioIdInsert; }
             set { _UsuarioIdInsert = value; }
         }
+
+		public String Visitante
+		{
+			get { return _Visitante; }
+			set { _Visitante = value; }
+		}
 
         public String Observaciones
         {

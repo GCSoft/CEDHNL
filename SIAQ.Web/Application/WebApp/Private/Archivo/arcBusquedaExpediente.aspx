@@ -79,11 +79,11 @@
 							</table>
 						</EmptyDataTemplate>
 						<Columns>
-							<asp:BoundField HeaderText="Número"						ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="100px" DataField="Numero"				SortExpression="Numero"></asp:BoundField>
-							<asp:BoundField HeaderText="Ubicación"					ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="100px" DataField="Ubicacion"			SortExpression="Ubicacion"></asp:BoundField>
-							<asp:BoundField HeaderText="Usuario con el Expediente"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="300px" DataField="UsuarioNombreRecibe"	SortExpression="UsuarioNombreRecibe"></asp:BoundField>
-							<asp:BoundField HeaderText="Fecha de Préstamo"			ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="110px" DataField="FechaPrestamo"		SortExpression="FechaPrestamo"></asp:BoundField>
-							<asp:BoundField HeaderText="Comentarios"				ItemStyle-HorizontalAlign="Left"							DataField="Comentarios"			SortExpression="Comentarios"></asp:BoundField>
+							<asp:BoundField HeaderText="Número"						ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="100px" DataField="Numero"									SortExpression="Numero"></asp:BoundField>
+							<asp:BoundField HeaderText="Ubicación"					ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="100px" DataField="Ubicacion"								SortExpression="Ubicacion"></asp:BoundField>
+							<asp:BoundField HeaderText="Usuario con el Expediente"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="300px" DataField="UsuarioNombreRecibe"						SortExpression="UsuarioNombreRecibe"></asp:BoundField>
+							<asp:BoundField HeaderText="Fecha de Préstamo"			ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="110px" DataField="FechaPrestamo"							SortExpression="FechaPrestamo"></asp:BoundField>
+							<asp:BoundField HeaderText="Comentarios"				ItemStyle-HorizontalAlign="Left"							DataField="Comentarios"			HtmlEncode="false"	SortExpression="Comentarios"></asp:BoundField>
 							<asp:TemplateField ItemStyle-HorizontalAlign ="Center" ItemStyle-Width="20px">
 								<ItemTemplate>
 									<asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />

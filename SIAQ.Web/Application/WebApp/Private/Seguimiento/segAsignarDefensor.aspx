@@ -120,11 +120,11 @@
 							</table>
 						</EmptyDataTemplate>
 						<Columns>
-							<asp:BoundField HeaderText="Número"					ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="75px"	DataField="Numero"				SortExpression="Numero"></asp:BoundField>
-							<asp:BoundField HeaderText="Nombre de la Autoridad"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="AutoridadNombre"		SortExpression="AutoridadNombre"></asp:BoundField>
-							<asp:BoundField HeaderText="Puesto de la Autoridad"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="PuestoNombre"		SortExpression="PuestoNombre"></asp:BoundField>
-							<asp:BoundField HeaderText="Fecha"					ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="70px"	DataField="FechaRecomendacion"	SortExpression="FechaRecomendacion"></asp:BoundField>
-							<asp:BoundField HeaderText="Comentarios"			ItemStyle-HorizontalAlign="Left"							DataField="Comentarios"			SortExpression="Comentarios"></asp:BoundField>
+							<asp:BoundField HeaderText="Número"					ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="75px"	DataField="Numero"									SortExpression="Numero"></asp:BoundField>
+							<asp:BoundField HeaderText="Nombre de la Autoridad"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="AutoridadNombre"							SortExpression="AutoridadNombre"></asp:BoundField>
+							<asp:BoundField HeaderText="Puesto de la Autoridad"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="PuestoNombre"							SortExpression="PuestoNombre"></asp:BoundField>
+							<asp:BoundField HeaderText="Fecha"					ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="70px"	DataField="FechaRecomendacion"						SortExpression="FechaRecomendacion"></asp:BoundField>
+							<asp:BoundField HeaderText="Comentarios"			ItemStyle-HorizontalAlign="Left"							DataField="Comentarios"			HtmlEncode="false"	SortExpression="Comentarios"></asp:BoundField>
 						</Columns>
 					</asp:GridView>
                 </td>

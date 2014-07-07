@@ -78,12 +78,12 @@
 							</table>
 						</EmptyDataTemplate>
 						<Columns>
-							<asp:BoundField HeaderText="Número"			ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="100px" DataField="Numero"			SortExpression="Numero"></asp:BoundField>
-							<asp:BoundField HeaderText="Observaciones"	ItemStyle-HorizontalAlign="Left"							DataField="Observaciones"	SortExpression="Observaciones"></asp:BoundField>
-							<asp:BoundField HeaderText="Fecha"			ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="70px"	DataField="Fecha"			SortExpression="Fecha"></asp:BoundField>
-							<asp:BoundField HeaderText="Estatus"		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="250px"	DataField="Estatus"			SortExpression="Estatus"></asp:BoundField>
-							<asp:BoundField HeaderText="TipoSolicitud"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="120px"	DataField="TipoSolicitud"	SortExpression="TipoSolicitud"></asp:BoundField>
-							<asp:BoundField HeaderText="LugarHechos"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="120px"	DataField="LugarHechos"		SortExpression="LugarHechos"></asp:BoundField>
+							<asp:BoundField HeaderText="Número"			ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="100px" DataField="Numero"								SortExpression="Numero"></asp:BoundField>
+							<asp:BoundField HeaderText="Observaciones"	ItemStyle-HorizontalAlign="Left"							DataField="Observaciones"	HtmlEncode="false"	SortExpression="Observaciones"></asp:BoundField>
+							<asp:BoundField HeaderText="Fecha"			ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="70px"	DataField="Fecha"								SortExpression="Fecha"></asp:BoundField>
+							<asp:BoundField HeaderText="Estatus"		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="250px"	DataField="Estatus"								SortExpression="Estatus"></asp:BoundField>
+							<asp:BoundField HeaderText="TipoSolicitud"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="120px"	DataField="TipoSolicitud"						SortExpression="TipoSolicitud"></asp:BoundField>
+							<asp:BoundField HeaderText="LugarHechos"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="120px"	DataField="LugarHechos"							SortExpression="LugarHechos"></asp:BoundField>
 							<asp:TemplateField ItemStyle-HorizontalAlign ="Center" ItemStyle-Width="20px">
 								<ItemTemplate>
 									<asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />

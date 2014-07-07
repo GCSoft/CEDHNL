@@ -536,6 +536,7 @@
     <Content Include="Include\Image\Web\SetUp.png" />
     <Content Include="Include\Image\Web\word.png" />
     <Content Include="Include\Javascript\ToolTip\ImageError.png" />
+    <Content Include="Include\Javascript\ToolTip\ImageSuccess.png" />
     <Content Include="Include\Javascript\ToolTip\ImageWarning.png" />
     <Content Include="Include\Style\Login.css" />
     <Content Include="Include\Style\Table.css" />

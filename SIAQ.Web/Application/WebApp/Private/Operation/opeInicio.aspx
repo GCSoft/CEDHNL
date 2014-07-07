@@ -32,7 +32,7 @@
                             <td style="width:10%;"></td>
                             <td style="width:20%;">Registrar visita</td>
                             <td style="width:10%;"></td>
-                            <td style="width:20%;">Buscar solicitud</asp:ImageButton></td>
+                            <td style="width:20%;">Buscar solicitud</td>
                             <td style="width:10%;"></td>
                         </tr>
                     </table>

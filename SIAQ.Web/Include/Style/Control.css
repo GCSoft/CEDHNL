@@ -215,7 +215,7 @@
 	background-color:#EFEFEF;
 	border:1px solid #4B4878;
 	color:#666666;
-	cursor:pointer;
+	cursor:default;
 	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
 	font-size: 11px;
 	font-weight:bold;

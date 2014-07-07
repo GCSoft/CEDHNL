@@ -59,18 +59,23 @@ function tinyboxToolTipMessage(sMessage, sMessageType) {
 
    // Tipo de mensaje
    switch (sMessageType) {
-      case 'AlertFail':
-         sAltImageURL = '../../../Include/Javascript/ToolTip/ImageError.png';
-         sImageURL = '../../../../Include/Javascript/ToolTip/ImageError.png';
-         break;
+	case 'AlertFail':
+		sAltImageURL = '../../../Include/Javascript/ToolTip/ImageError.png';
+		sImageURL = '../../../../Include/Javascript/ToolTip/ImageError.png';
+		break;
 
-      case 'AlertWarning':
-         sAltImageURL = '../../../Include/Javascript/ToolTip/ImageWarning.png';
-         sImageURL = '../../../../Include/Javascript/ToolTip/ImageWarning.png';
-         break;
+	case 'AlertSuccess':
+		sAltImageURL = '../../../Include/Javascript/ToolTip/ImageSuccess.png';
+		sImageURL = '../../../../Include/Javascript/ToolTip/ImageSuccess.png';
+		break;
 
-      default:
-         return;
+	case 'AlertWarning':
+		sAltImageURL = '../../../Include/Javascript/ToolTip/ImageWarning.png';
+		sImageURL = '../../../../Include/Javascript/ToolTip/ImageWarning.png';
+		break;
+
+	default:
+		return;
    }
 
    // Crear y configurar Imagen

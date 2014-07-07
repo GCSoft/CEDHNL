@@ -259,37 +259,30 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        protected void btnBuscar_Click(object sender, EventArgs e)
-        {
+        protected void btnBuscar_Click(object sender, EventArgs e){
             try
             {
 
                 BuscarCiudadano(txtNombre.Text.Trim(), TextBoxPaterno.Text.Trim(), TextBoxMaterno.Text.Trim(), TextBoxCalle.Text.Trim(), int.Parse(BuscadorListaPais.SelectedValue), int.Parse(BuscadorListaEstado.SelectedValue), int.Parse(BuscadorListaCiudad.SelectedValue), int.Parse(BuscadorListaColonia.SelectedValue));
 
-            }
-            catch (Exception ex)
-            {
+            }catch (Exception ex){
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + utilFunction.JSClearText(ex.Message) + "'); focusControl('" + this.txtNombre.ClientID + "');", true);
             }
         }
 
-        protected void BuscadorListaCiudad_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        protected void BuscadorListaCiudad_SelectedIndexChanged(object sender, EventArgs e){
             try
             {
 
                 // Consulta de colonias
                 SelectColonia();
 
-            }
-            catch (Exception ex)
-            {
+            }catch (Exception ex){
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + utilFunction.JSClearText(ex.Message) + "'); focusControl('" + this.txtNombre.ClientID + "');", true);
             }
         }
 
-        protected void BuscadorListaEstado_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        protected void BuscadorListaEstado_SelectedIndexChanged(object sender, EventArgs e){
             try
             {
 
@@ -297,15 +290,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 SelectCiudad();
                 SelectColonia();
 
-            }
-            catch (Exception ex)
-            {
+            }catch (Exception ex){
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + utilFunction.JSClearText(ex.Message) + "'); focusControl('" + this.txtNombre.ClientID + "');", true);
             }
         }
 
-        protected void BuscadorListaPais_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        protected void BuscadorListaPais_SelectedIndexChanged(object sender, EventArgs e){
             try
             {
 
@@ -314,9 +304,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 SelectCiudad();
                 SelectColonia();
 
-            }
-            catch (Exception ex)
-            {
+            }catch (Exception ex){
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + utilFunction.JSClearText(ex.Message) + "'); focusControl('" + this.txtNombre.ClientID + "');", true);
             }
         }
@@ -341,7 +329,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 					case "Solicitud":
 						// vuelve a llenar el datatable de busqueda para que al regresar conserve el resultado de la busqueda en el grid
 						oENTSession.dsResultadoBusCiudadano = utilFunction.ParseGridViewToDataTable(gvCiudadano, false);
-						Response.Redirect(ConfigurationManager.AppSettings["Application.Url.RegistroVisita"].ToString() + "?s=" + CiudadanoId + "&t=2");
+						Response.Redirect("opeRegistroSolicitud.aspx?key=" + CiudadanoId + "|2");
 						break;
 
 					case "Consultar":

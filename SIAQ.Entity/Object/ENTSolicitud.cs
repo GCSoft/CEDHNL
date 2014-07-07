@@ -28,11 +28,11 @@ namespace SIAQ.Entity.Object
         private DateTime _FechaDesde;
         private DateTime _FechaHasta;
 
-        private int _CiudadanoId;                   // Identificador unico del ciudadano
 
-        public ENTSolicitud()
-        {
+        private Int32	_CiudadanoId;		// Identificador unico del ciudadano
+		private String	_NombreTemporal;	// Nombre Temporal
 
+        public ENTSolicitud(){
             _SolicitudId = 0;
             _FuncionarioId = 0;
             _CalificacionId = 0;
@@ -46,14 +46,17 @@ namespace SIAQ.Entity.Object
             _Observaciones = "";
             _FormaContactoId = 0;
             _DireccionHechos = string.Empty;
-            _CiudadanoId = 0;
             _idUsuarioInsert = 0;
             _idUsuarioLastUpdate = 0;
             _Fundamento = "";
             _CanalizacionId = 0;
             _CierreOrientacionId = 0;
 
+			_CiudadanoId = 0;
+			_NombreTemporal = "";
+
         }
+
         ///<remarks>
         ///   <name>Solicitud.SolicitudId</name>
         ///   <create>27/ene/2014</create>
@@ -89,6 +92,7 @@ namespace SIAQ.Entity.Object
             get { return _CierreOrientacionId; }
             set { _CierreOrientacionId = value; }
         }
+
         ///<remarks>
         ///   <name>Solicitud.TipoSolicitudId</name>
         ///   <create>27/ene/2014</create>
@@ -100,6 +104,7 @@ namespace SIAQ.Entity.Object
             get { return _TipoSolicitudId; }
             set { _TipoSolicitudId = value; }
         }
+
         ///<remarks>
         ///   <name>Solicitud.LugarHechosId</name>
         ///   <create>27/ene/2014</create>
@@ -111,6 +116,7 @@ namespace SIAQ.Entity.Object
             get { return _LugarHechosId; }
             set { _LugarHechosId = value; }
         }
+
         ///<remarks>
         ///   <name>Solicitud.EstatusId</name>
         ///   <create>27/ene/2014</create>
@@ -122,6 +128,7 @@ namespace SIAQ.Entity.Object
             get { return _EstatusId; }
             set { _EstatusId = value; }
         }
+
         ///<remarks>
         ///   <name>Solicitud.Numero</name>
         ///   <create>27/ene/2014</create>
@@ -133,6 +140,7 @@ namespace SIAQ.Entity.Object
             get { return _Numero; }
             set { _Numero = value; }
         }
+
         /// <summary>
         ///     Identificador del usuario que creó el registro.
         /// </summary>
@@ -150,6 +158,7 @@ namespace SIAQ.Entity.Object
             get { return _idUsuarioLastUpdate; }
             set { _idUsuarioLastUpdate = value; }
         }
+
         ///<remarks>
         ///   <name>Solicitud.Fecha</name>
         ///   <create>27/ene/2014</create>
@@ -213,12 +222,6 @@ namespace SIAQ.Entity.Object
             set { _DireccionHechos = value; }
         }
 
-        public int CiudadanoId
-        {
-            get { return _CiudadanoId; }
-            set { _CiudadanoId = value; }
-        }
-
         public DateTime FechaDesde
         {
             get { return _FechaDesde; }
@@ -230,6 +233,32 @@ namespace SIAQ.Entity.Object
             get { return _FechaHasta; }
             set { _FechaHasta = value; }
         }
+
+
+		///<remarks>
+		///   <name>Solicitud.CiudadanoId</name>
+		///   <create>27/ene/2014</create>
+		///   <author>Generador</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el id del ciudadano</summary>
+		public Int32 CiudadanoId
+		{
+			get { return _CiudadanoId; }
+			set { _CiudadanoId = value; }
+		}
+
+		///<remarks>
+		///   <name>Solicitud.NombreTemporal</name>
+		///   <create>27/ene/2014</create>
+		///   <author>Generador</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el nombre temporal</summary>
+		public String NombreTemporal
+		{
+			get { return _NombreTemporal; }
+			set { _NombreTemporal = value; }
+		}
+
 
     }
 }

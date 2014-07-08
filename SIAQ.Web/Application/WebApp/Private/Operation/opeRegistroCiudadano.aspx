@@ -1,28 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeRegistroCiudadano.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeRegistroCiudadano" %>
-<%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
-    <script type="text/javascript">
-
-       function CheckNumeric(e) {
-            if (window.event) // IE 
-            {
-               if ((e.keyCode < 48 || e.keyCode > 57) & e.keyCode != 8 & e.keyCode != 9 & e.keyCode != 37 & e.keyCode != 39) {
-                    event.returnValue = false;
-                    return false;
-
-                }
-            }
-            else { // Fire Fox
-               if ((e.which < 48 || e.which > 57) & e.which != 8 & e.which != 9 & e.which != 37 & e.which != 39) {
-                    e.preventDefault();
-                    return false;
-
-                }
-            }
-        }
-
-    </script>
+    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
     <table class="GeneralTable">
@@ -73,7 +52,7 @@
                             <td class="Espacio"></td>
                             <td class="Nombre">Teléfono principal</td>
                             <td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
-                            <td class="Campo"><asp:TextBox ID="txtTelefonoPrincipal" runat="server" CssClass="Textbox_General" onkeydown="return CheckNumeric(event)" Width="108px" TabIndex="10" MaxLength="15"></asp:TextBox></td>
+                            <td class="Campo"><asp:TextBox ID="txtTelefonoPrincipal" runat="server" CssClass="Textbox_General" Width="108px" TabIndex="10" MaxLength="15"></asp:TextBox></td>
                         </tr>
                         <tr>
                             <td class="Nombre">Sexo</td>
@@ -82,12 +61,12 @@
                             <td class="Espacio"></td>
                             <td class="Nombre">Otro teléfono</td>
                             <td class="Espacio"></td>
-                            <td class="Campo"><asp:TextBox ID="txtOtroTelefono" runat="server" CssClass="Textbox_General" onkeydown="return CheckNumeric(event)" Width="108px" TabIndex="11" MaxLength="15"></asp:TextBox></td>
+                            <td class="Campo"><asp:TextBox ID="txtOtroTelefono" runat="server" CssClass="Textbox_General" Width="108px" TabIndex="11" MaxLength="15"></asp:TextBox></td>
                         </tr>
                         <tr>
                             <td class="Nombre">Edad</td>
                             <td class="Espacio"></td>
-                            <td class="Campo"><asp:TextBox ID="txtEdad" runat="server" CssClass="Textbox_General" onkeydown="return CheckNumeric(event)" Width="108px" TabIndex="5" Text="0" MaxLength="3"></asp:TextBox></td>
+                            <td class="Campo"><asp:TextBox ID="txtEdad" runat="server" CssClass="Textbox_General" Width="108px" TabIndex="5" Text="0" MaxLength="3"></asp:TextBox></td>
                             <td class="Espacio"></td>
                             <td class="Nombre">Correo electrónico</td>
                             <td class="Espacio"></td>
@@ -143,7 +122,7 @@
                             <td class="Espacio"></td>
                             <td class="Nombre">Núm exterior</td>
                             <td class="Espacio"></td>
-                            <td class="Campo"><asp:TextBox ID="txtNumExterior" runat="server" CssClass="Textbox_General" onkeydown="return CheckNumeric(event)" Width="108px" TabIndex="20" MaxLength="10"></asp:TextBox></td>
+                            <td class="Campo"><asp:TextBox ID="txtNumExterior" runat="server" CssClass="Textbox_General" Width="108px" TabIndex="20" MaxLength="10"></asp:TextBox></td>
                         </tr>
                         <tr>
                             <td class="Nombre">Ciudad</td>
@@ -152,7 +131,7 @@
                             <td class="Espacio"></td>
                             <td class="Nombre">Núm interior</td>
                             <td class="Espacio"></td>
-                            <td class="Campo"><asp:TextBox ID="txtNumInterior" runat="server" CssClass="Textbox_General" onkeydown="return CheckNumeric(event)" Width="108px" TabIndex="21" MaxLength="10"></asp:TextBox></td>
+                            <td class="Campo"><asp:TextBox ID="txtNumInterior" runat="server" CssClass="Textbox_General" Width="108px" TabIndex="21" MaxLength="10"></asp:TextBox></td>
                         </tr>
                         <tr>
                             <td class="Nombre">Colonia</td>
@@ -161,7 +140,7 @@
                             <td class="Espacio"></td>
                             <td class="Nombre">Años residiendo en NL</td>
                             <td class="Espacio"></td>
-                            <td class="Campo"><asp:TextBox ID="txtAniosResidiendo" runat="server" CssClass="Textbox_General" onkeydown="return CheckNumeric(event)" Width="108px" TabIndex="22" MaxLength="3"></asp:TextBox></td>
+                            <td class="Campo"><asp:TextBox ID="txtAniosResidiendo" runat="server" CssClass="Textbox_General" Width="108px" TabIndex="22" MaxLength="3"></asp:TextBox></td>
                         </tr>
                     </table>
                 </asp:Panel>

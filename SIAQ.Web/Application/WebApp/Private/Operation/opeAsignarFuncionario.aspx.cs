@@ -18,18 +18,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         Function utilFunction = new Function();
 
         #region "Events"
-            protected void RegresarButton_Click(object sender, EventArgs e)
-            {
-                Response.Redirect("~/Application/WebApp/Private/Operation/opeDetalleSolicitud.aspx?s=" + SolicitudIdHidden.Value);
+            protected void RegresarButton_Click(object sender, EventArgs e){
+                Response.Redirect("opeDetalleSolicitud.aspx?s=" + SolicitudIdHidden.Value);
             }
 
-            protected void SaveButton_Click(object sender, EventArgs e)
-            {
+            protected void SaveButton_Click(object sender, EventArgs e){
                 SaveFuncionarioSolicitud(int.Parse(SolicitudIdHidden.Value), int.Parse(FuncionarioList.SelectedValue));
             }
 
-            protected void Page_Load(object sender, EventArgs e)
-            {
+            protected void Page_Load(object sender, EventArgs e){
                 PageLoad();
             }
         #endregion

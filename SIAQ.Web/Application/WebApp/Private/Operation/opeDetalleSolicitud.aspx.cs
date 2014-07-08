@@ -174,22 +174,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         #region "Events"
             protected void AsignarButton_Click(object sender, ImageClickEventArgs e)
             {
-                Response.Redirect("/Application/WebApp/Private/Operation/opeAsignarFuncionario.aspx?s=" + SolicitudIdHidden.Value.ToString());
+                Response.Redirect("opeAsignarFuncionario.aspx?s=" + SolicitudIdHidden.Value.ToString());
             }
 
             protected void AutoridadButton_Click(object sender, ImageClickEventArgs e)
             {
-                Response.Redirect("/Application/WebApp/Private/Operation/opeAgregarAutoridaSenalada.aspx?s=" + SolicitudIdHidden.Value.ToString());
+                Response.Redirect("opeAgregarAutoridaSenalada.aspx?s=" + SolicitudIdHidden.Value.ToString());
             }
 
             protected void CalificarButton_Click(object sender, ImageClickEventArgs e)
             {
-                Response.Redirect("/Application/WebApp/Private/Operation/opeCalificarSolicitud.aspx?s=" + SolicitudIdHidden.Value.ToString());
+                Response.Redirect("opeCalificarSolicitud.aspx?s=" + SolicitudIdHidden.Value.ToString());
             }
 
             protected void CiudadanoButton_Click(object sender, ImageClickEventArgs e)
             {
-                Response.Redirect("/Application/WebApp/Private/Operation/opeAgregarCiudadanosSol.aspx?s=" + SolicitudIdHidden.Value.ToString());
+                Response.Redirect("opeAgregarCiudadanosSol.aspx?s=" + SolicitudIdHidden.Value.ToString());
             }
 
             protected void DiligenciaPanel_Click(object sender, ImageClickEventArgs e)
@@ -197,12 +197,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 string solicitudId = SolicitudIdHidden.Value;
                 if (String.IsNullOrEmpty(solicitudId)) { solicitudId = Request.QueryString["s"].ToString(); }
 
-                Response.Redirect("~/Application/WebApp/Private/Operation/opeDiligenciaSolicitud.aspx?solId=" + solicitudId + "&numSol=" + SolicitudLabel.Text);
+                Response.Redirect("opeDiligenciaSolicitud.aspx?solId=" + solicitudId + "&numSol=" + SolicitudLabel.Text);
             }
 
             protected void DocumentoButton_Click(object sender, ImageClickEventArgs e)
             {
-                Response.Redirect("/Application/WebApp/Private/Operation/opeAgregarDocumentos.aspx?s=" + SolicitudIdHidden.Value.ToString());
+                Response.Redirect("opeAgregarDocumentos.aspx?s=" + SolicitudIdHidden.Value.ToString());
             }
 
             protected void DocumentList_ItemDataBound(Object sender, DataListItemEventArgs e)
@@ -228,22 +228,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             protected void ImprimirButton_Click(object sender, ImageClickEventArgs e)
             {
                 string SolicitudId = Request.QueryString["s"];
-                Response.Redirect("~/Application/WebApp/Private/Operation/opeSolicitudPaginaImpresion.aspx?s=" + SolicitudId);
+                Response.Redirect("opeSolicitudPaginaImpresion.aspx?s=" + SolicitudId);
             }
 
             protected void EnviarButton_Click(object sender, ImageClickEventArgs e)
             {
-                Response.Redirect("/Application/WebApp/Private/Operation/opeEnviarSolicitud.aspx?s=" + SolicitudIdHidden.Value.ToString());
+                Response.Redirect("opeEnviarSolicitud.aspx?s=" + SolicitudIdHidden.Value.ToString());
             }
 
             protected void IndicadorButton_Click(object sender, ImageClickEventArgs e)
             {
-                Response.Redirect("/Application/WebApp/Private/Operation/opeAgregarIndicadores.aspx?s=" + SolicitudIdHidden.Value.ToString());
+                Response.Redirect("opeAgregarIndicadores.aspx?s=" + SolicitudIdHidden.Value.ToString());
             }
 
             protected void InformacionGeneralButton_Click(object sender, ImageClickEventArgs e)
             {
-                Response.Redirect("/Application/WebApp/Private/Operation/opeDetalleSolicitud.aspx?s=" + SolicitudIdHidden.Value.ToString());
+                Response.Redirect("opeDetalleSolicitud.aspx?s=" + SolicitudIdHidden.Value.ToString());
             }
 
             protected void lnkAgregarComentario_Click(object sender, EventArgs e)

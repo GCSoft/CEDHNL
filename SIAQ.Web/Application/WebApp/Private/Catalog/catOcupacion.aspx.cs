@@ -88,7 +88,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
                selectOcupacion();
 
                // Mensaje al usuario
-               ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Motivo creado con éxito!', 'Success', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+               ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Motivo creado con éxito!', 'Success', false); focusControl('" + this.txtNombre.ClientID + "');", true);
 
            }
            catch (Exception ex) { throw (ex); }
@@ -243,7 +243,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
                selectOcupacion();
 
                // Mensaje de usuario
-               ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Información actualizada con éxito!', 'Success', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+               ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Información actualizada con éxito!', 'Success', false); focusControl('" + this.txtNombre.ClientID + "');", true);
 
            }
            catch (Exception ex) { throw (ex); }

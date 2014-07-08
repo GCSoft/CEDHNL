@@ -195,7 +195,7 @@
                         </tr>
                         <tr>
                             <td colspan="4" style="background-color: Gray;">
-                                <CKEditor:CKEditorControl ID="txtAsuntoSolicitud" BasePath="/Include/Components/CKEditor/Core/" runat="server"></CKEditor:CKEditorControl>
+                                <CKEditor:CKEditorControl ID="txtAsuntoSolicitud" BasePath="~/Include/Components/CKEditor/Core/" runat="server"></CKEditor:CKEditorControl>
                             </td>
                         </tr>
                     </table>

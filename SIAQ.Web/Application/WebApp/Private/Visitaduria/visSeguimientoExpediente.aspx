@@ -184,7 +184,7 @@
             </tr>
             <tr>
                 <tr>
-                    <td colspan="7"><CKEditor:CKEditorControl ID="SeguimientoBox" BasePath="/Include/Components/CKEditor/Core/" runat="server"></CKEditor:CKEditorControl></td>
+                    <td colspan="7"><CKEditor:CKEditorControl ID="SeguimientoBox" BasePath="~/Include/Components/CKEditor/Core/" runat="server"></CKEditor:CKEditorControl></td>
                 </tr>
             </tr>
             <tr>

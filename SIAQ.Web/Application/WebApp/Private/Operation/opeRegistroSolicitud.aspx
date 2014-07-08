@@ -43,7 +43,7 @@
 					</table>
 					<table border="0" style="width:100%">
 						<tr>
-							<td colspan="3" style="text-align:left;"><CKEditor:CKEditorControl ID="ckeObservaciones" BasePath="/Include/Components/CKEditor/Core/" runat="server"></CKEditor:CKEditorControl></td>
+							<td colspan="3" style="text-align:left;"><CKEditor:CKEditorControl ID="ckeObservaciones" BasePath="~/Include/Components/CKEditor/Core/" runat="server"></CKEditor:CKEditorControl></td>
 						</tr>
 					</table>
 				</asp:Panel>

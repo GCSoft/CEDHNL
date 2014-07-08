@@ -5,6 +5,7 @@ SIAQ.DataAccess/bin/
 SIAQ.DataAccess/obj/
 SIAQ.Entity/bin/
 SIAQ.Entity/obj/
+SIAQ.Web/SIAQ.Web.Publish.xml
 SIAQ.Web/bin/
 SIAQ.Web/obj/
 SolSIAQ.sln

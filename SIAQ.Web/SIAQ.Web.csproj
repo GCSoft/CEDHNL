@@ -172,7 +172,6 @@
     <Content Include="Application\WebApp\Private\SysApp\Seguimiento\opeBusquedaRecomendacion.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeBusquedaSolicitud.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeCalificarSolicitud.aspx" />
-    <Content Include="Application\WebApp\Private\Operation\opeCiudadano.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeDetalleCiudadano.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeDetalleSolicitud.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeEnviarSolicitud.aspx" />
@@ -542,7 +541,6 @@
     <Content Include="Include\Style\Table.css" />
     <Content Include="Include\WebUserControls\wucBusquedaCiudadano.ascx" />
     <Content Include="Include\WebUserControls\wucBusquedaUsuario.ascx" />
-    <Content Include="Include\WebUserControls\wucCalendario.ascx" />
     <Content Include="Include\WebUserControls\wucFixedDateTime.ascx" />
     <Content Include="Include\WebUserControls\wucTimeMask.ascx" />
     <Content Include="Index.aspx" />
@@ -1062,13 +1060,6 @@
     <Compile Include="Application\WebApp\Private\Operation\opeCalificarSolicitud.aspx.designer.cs">
       <DependentUpon>opeCalificarSolicitud.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeCiudadano.aspx.cs">
-      <DependentUpon>opeCiudadano.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeCiudadano.aspx.designer.cs">
-      <DependentUpon>opeCiudadano.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeDetalleCiudadano.aspx.cs">
       <DependentUpon>opeDetalleCiudadano.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1323,13 +1314,6 @@
     </Compile>
     <Compile Include="Include\WebUserControls\wucBusquedaUsuario.ascx.designer.cs">
       <DependentUpon>wucBusquedaUsuario.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Include\WebUserControls\wucCalendario.ascx.cs">
-      <DependentUpon>wucCalendario.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Include\WebUserControls\wucCalendario.ascx.designer.cs">
-      <DependentUpon>wucCalendario.ascx</DependentUpon>
     </Compile>
     <Compile Include="Include\WebUserControls\wucFixedDateTime.ascx.cs">
       <DependentUpon>wucFixedDateTime.ascx</DependentUpon>

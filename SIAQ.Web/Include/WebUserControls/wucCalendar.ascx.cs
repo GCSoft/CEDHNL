@@ -112,6 +112,14 @@ namespace SIAQ.Web.Include.WebUserControls
             }
         }
 
+		public DateTime SetDateTime
+		{
+			set
+			{
+				this.ceManager.SelectedDate = value;
+			}
+		}
+
         
        // Eventos del control
 

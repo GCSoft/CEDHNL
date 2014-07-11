@@ -22,63 +22,102 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         Function utilFunction = new Function();
 
 
-        // Variables
-        string AllDefault = "[Todos]";
-
-
         // Rutinas del programador
 
-        protected void BuscarCiudadano(string Nombre, string Paterno, string Materno, string Calle, int PaisId, int EstadoId, int CiudadId, int ColoniaId)
-        {
-            ENTSession oENTSession = new ENTSession();
-            BPCiudadano BPCiudadano = new BPCiudadano();
+		void RecoveryForm(){
+			ENTSession oENTSession = new ENTSession();
+			BPCiudadano oBPCiudadano;
 
-            oENTSession = (ENTSession)this.Session["oENTSession"];
-
-            BPCiudadano.ENTCiudadano.Nombre = Nombre;
-            BPCiudadano.ENTCiudadano.ApellidoPaterno = Paterno;
-            BPCiudadano.ENTCiudadano.ApellidoMaterno = Materno;
-            BPCiudadano.ENTCiudadano.CiudadId = CiudadId;
-            BPCiudadano.ENTCiudadano.EstadoId = EstadoId;
-            BPCiudadano.ENTCiudadano.PaisId = PaisId;
-            BPCiudadano.ENTCiudadano.ColoniaId = ColoniaId;
-            BPCiudadano.ENTCiudadano.Calle = Calle;
-            BPCiudadano.ENTCiudadano.CampoBusqueda = "";
-
-            BPCiudadano.BuscarCiudadano();
-
-            if (BPCiudadano.ErrorId == 0)
+            try
             {
-                if (BPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows.Count > 0)
-                {
-                    gvCiudadano.DataSource = BPCiudadano.ENTCiudadano.ResultData;
-                    gvCiudadano.DataBind();
 
-                    oENTSession.dsResultadoBusCiudadano = BPCiudadano.ENTCiudadano.ResultData.Tables[0];
-                }
-                else
-                {
-                    gvCiudadano.DataSource = null;
-                    gvCiudadano.DataBind();
+				// Obtener la sesion
+				oENTSession = (ENTSession)this.Session["oENTSession"];
 
-                    oENTSession.dsResultadoBusCiudadano = null;
-                }
+				// Validaciones
+				if (oENTSession.Entity == null) { return; }
+				if (oENTSession.Entity.GetType().Name != "BPCiudadano") { return; }
+
+                // Obtener Formulario
+				oBPCiudadano = (BPCiudadano)oENTSession.Entity;
+
+				// Vaciar formulario
+				this.txtNombre.Text = oBPCiudadano.ENTCiudadano.Nombre;
+				this.TextBoxPaterno.Text = oBPCiudadano.ENTCiudadano.ApellidoPaterno;
+				this.TextBoxMaterno.Text = oBPCiudadano.ENTCiudadano.ApellidoMaterno;
+				this.TextBoxCalle.Text = oBPCiudadano.ENTCiudadano.Calle;
+
+				this.BuscadorListaPais.SelectedValue = oBPCiudadano.ENTCiudadano.PaisId.ToString();
+				SelectEstado();
+
+				this.BuscadorListaEstado.SelectedValue = oBPCiudadano.ENTCiudadano.EstadoId.ToString();
+				SelectCiudad();
+
+				this.BuscadorListaCiudad.SelectedValue = oBPCiudadano.ENTCiudadano.CiudadId.ToString();
+				SelectColonia();
+				
+				this.BuscadorListaColonia.SelectedValue = oBPCiudadano.ENTCiudadano.ColoniaId.ToString();
+
+
+				// Liberar el formulario en la sesión
+				oENTSession.Entity = null;
+				this.Session["oENTSession"] = oENTSession;
+
+				// Realcular
+				SelectCiudadano();
+
+            }catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('No fue posible recuperar el formulario: " + utilFunction.JSClearText(ex.Message) + "', 'Warning', false);", true);
             }
-        }
+		}
 
-        protected void SelectCiudad()
-        {
-            ENTCiudad oENTCiudad = new ENTCiudad();
-            ENTResponse oENTResponse = new ENTResponse();
-
-            BPCiudad oBPCiudad = new BPCiudad();
+		void SaveForm(){
+			ENTSession oENTSession = new ENTSession();
+			BPCiudadano BPCiudadano = new BPCiudadano();
 
             try
             {
 
                 // Formulario
+				BPCiudadano.ENTCiudadano.Nombre = this.txtNombre.Text.Trim();
+				BPCiudadano.ENTCiudadano.ApellidoPaterno = this.TextBoxPaterno.Text.Trim();
+				BPCiudadano.ENTCiudadano.ApellidoMaterno = this.TextBoxMaterno.Text.Trim();
+				BPCiudadano.ENTCiudadano.CiudadId = Int32.Parse(this.BuscadorListaCiudad.SelectedValue);
+				BPCiudadano.ENTCiudadano.EstadoId = Int32.Parse(this.BuscadorListaEstado.SelectedValue);
+				BPCiudadano.ENTCiudadano.PaisId = Int32.Parse(this.BuscadorListaPais.SelectedValue);
+				BPCiudadano.ENTCiudadano.ColoniaId = Int32.Parse(this.BuscadorListaColonia.SelectedValue);
+				BPCiudadano.ENTCiudadano.Calle = this.TextBoxCalle.Text.Trim();
+				BPCiudadano.ENTCiudadano.CampoBusqueda = "";
+
+				// Obtener la sesion
+				oENTSession = (ENTSession)this.Session["oENTSession"];
+
+                // Guardar el formulario en la sesión
+				oENTSession.Entity = BPCiudadano;
+				this.Session["oENTSession"] = oENTSession;
+
+            }catch (Exception ex){
+                throw (ex);
+            }
+		}
+
+        void SelectCiudad(){
+            ENTCiudad oENTCiudad = new ENTCiudad();
+            ENTResponse oENTResponse = new ENTResponse();
+
+            BPCiudad oBPCiudad = new BPCiudad();
+
+			Int32 EstadoId;
+
+            try
+            {
+
+				// Estado seleccionado
+				EstadoId = Int32.Parse(this.BuscadorListaEstado.SelectedValue);
+
+                // Formulario
                 oENTCiudad.CiudadId = 0;
-                oENTCiudad.EstadoId = Int32.Parse(this.BuscadorListaEstado.SelectedValue);
+				oENTCiudad.EstadoId = (EstadoId == 0 ? -1 : EstadoId);
                 oENTCiudad.Nombre = "";
                 oENTCiudad.Activo = 1;
 
@@ -93,28 +132,69 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 this.BuscadorListaCiudad.DataValueField = "CiudadId";
                 this.BuscadorListaCiudad.DataSource = oENTResponse.dsResponse.Tables[1];
                 this.BuscadorListaCiudad.DataBind();
-                BuscadorListaCiudad.Items.Insert(0, new ListItem(AllDefault, "0"));
+				BuscadorListaCiudad.Items.Insert(0, new ListItem("[Todos]", "0"));
 
-            }
-            catch (Exception ex)
-            {
+            }catch (Exception ex){
                 throw (ex);
             }
         }
 
-        protected void SelectColonia()
-        {
+		void SelectCiudadano(){
+            BPCiudadano BPCiudadano = new BPCiudadano();
+
+			try
+            {
+
+				// Estado inicial del formulario
+				this.gvCiudadano.DataSource = null;
+				this.gvCiudadano.DataBind();
+
+				// Formulario
+				BPCiudadano.ENTCiudadano.Nombre = this.txtNombre.Text.Trim();
+				BPCiudadano.ENTCiudadano.ApellidoPaterno = this.TextBoxPaterno.Text.Trim();
+				BPCiudadano.ENTCiudadano.ApellidoMaterno = this.TextBoxMaterno.Text.Trim();
+				BPCiudadano.ENTCiudadano.CiudadId = Int32.Parse(this.BuscadorListaCiudad.SelectedValue);
+				BPCiudadano.ENTCiudadano.EstadoId = Int32.Parse(this.BuscadorListaEstado.SelectedValue);
+				BPCiudadano.ENTCiudadano.PaisId = Int32.Parse(this.BuscadorListaPais.SelectedValue);
+				BPCiudadano.ENTCiudadano.ColoniaId = Int32.Parse(this.BuscadorListaColonia.SelectedValue);
+				BPCiudadano.ENTCiudadano.Calle = this.TextBoxCalle.Text.Trim();
+				BPCiudadano.ENTCiudadano.CampoBusqueda = "";
+
+                // Transacción
+				BPCiudadano.BuscarCiudadano();
+
+                // Validaciones
+				if (BPCiudadano.ErrorId != 0) { throw (new Exception(BPCiudadano.ErrorDescription)); }
+
+                // Llenado de grid
+				if (BPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows.Count > 0){
+
+					this.gvCiudadano.DataSource = BPCiudadano.ENTCiudadano.ResultData;
+					this.gvCiudadano.DataBind();  
+                }
+
+            }catch (Exception ex){
+                throw (ex);
+            }
+        }
+
+        void SelectColonia(){
             ENTColonia oENTColonia = new ENTColonia();
             ENTResponse oENTResponse = new ENTResponse();
 
             BPColonia oBPColonia = new BPColonia();
 
+			Int32 CiudadId;
+
             try
             {
 
+				// Ciudad seleccionado
+				CiudadId = Int32.Parse(this.BuscadorListaCiudad.SelectedValue);
+
                 // Formulario
                 oENTColonia.ColoniaId = 0;
-                oENTColonia.CiudadId = Int32.Parse(this.BuscadorListaCiudad.SelectedValue);
+				oENTColonia.CiudadId = (CiudadId == 0 ? -1 : CiudadId);
                 oENTColonia.Nombre = "";
                 oENTColonia.Activo = 1;
 
@@ -129,28 +209,30 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 this.BuscadorListaColonia.DataValueField = "ColoniaId";
                 this.BuscadorListaColonia.DataSource = oENTResponse.dsResponse.Tables[1];
                 this.BuscadorListaColonia.DataBind();
-                BuscadorListaColonia.Items.Insert(0, new ListItem(AllDefault, "0"));
+				BuscadorListaColonia.Items.Insert(0, new ListItem("[Todos]", "0"));
 
-            }
-            catch (Exception ex)
-            {
+            }catch (Exception ex){
                 throw (ex);
             }
         }
 
-        protected void SelectEstado()
-        {
+        void SelectEstado(){
             ENTEstado oENTEstado = new ENTEstado();
             ENTResponse oENTResponse = new ENTResponse();
 
             BPEstado oBPEstado = new BPEstado();
 
+			Int32 PaisId;
+
             try
             {
 
+				// Pais seleccionado
+				PaisId = Int32.Parse(this.BuscadorListaPais.SelectedValue);
+
                 // Formulario
                 oENTEstado.EstadoId = 0;
-                oENTEstado.PaisId = Int32.Parse(this.BuscadorListaPais.SelectedValue);
+				oENTEstado.PaisId = (PaisId == 0 ? -1 : PaisId);
                 oENTEstado.Nombre = "";
                 oENTEstado.Activo = 1;
 
@@ -165,17 +247,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 this.BuscadorListaEstado.DataValueField = "EstadoId";
                 this.BuscadorListaEstado.DataSource = oENTResponse.dsResponse.Tables[1];
                 this.BuscadorListaEstado.DataBind();
-                BuscadorListaEstado.Items.Insert(0, new ListItem(AllDefault, "0"));
+				BuscadorListaEstado.Items.Insert(0, new ListItem("[Todos]", "0"));
 
-            }
-            catch (Exception ex)
-            {
+            }catch (Exception ex){
                 throw (ex);
             }
         }
 
-        protected void SelectPais()
-        {
+        void SelectPais(){
             ENTPais oENTPais = new ENTPais();
             ENTResponse oENTResponse = new ENTResponse();
 
@@ -202,46 +281,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 this.BuscadorListaPais.DataSource = oENTResponse.dsResponse.Tables[1];
                 this.BuscadorListaPais.DataBind();
 
-                BuscadorListaPais.Items.Insert(0, new ListItem(AllDefault, "0"));
+				BuscadorListaPais.Items.Insert(0, new ListItem("[Todos]", "0"));
 
-            }
-            catch (Exception ex)
-            {
+            }catch (Exception ex){
                 throw (ex);
-            }
-        }
-
-        protected void PageLoad()
-        {
-
-            if (!Page.IsPostBack)
-            {
-                ENTSession oENTSession = new ENTSession();
-
-                SelectPais();
-                SelectEstado();
-                SelectCiudad();
-                SelectColonia();
-
-                oENTSession = (ENTSession)this.Session["oENTSession"];
-                // Verifica si en la variable de sesión de resultado hay algo guardado, si lo hay lo muestra
-                if (oENTSession.dsResultadoBusCiudadano != null)
-                {
-                    gvCiudadano.DataSource = oENTSession.dsResultadoBusCiudadano;
-                    gvCiudadano.DataBind();
-
-                    // al llenar la busuqeda anterior se limpia la variable de sesion 
-                    oENTSession.dsResultadoBusCiudadano = null;
-                }
-                else
-                {
-                    gvCiudadano.DataSource = null;
-                    gvCiudadano.DataBind();
-                }
-
-                // Foco
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtNombre.ClientID + "');", true);
-
             }
         }
 
@@ -252,10 +295,27 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             try
             {
 
-                PageLoad();
+				// Validaciones
+				if (Page.IsPostBack) { return; }
+
+				// Llenado de controles
+				SelectPais();
+				SelectEstado();
+				SelectCiudad();
+				SelectColonia();
+
+				// Estado inicial del formulario
+				gvCiudadano.DataSource = null;
+				gvCiudadano.DataBind();
+
+				// Recuperar el formulario
+				RecoveryForm();
+
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtNombre.ClientID + "');", true);
 
             }catch (Exception ex){
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + utilFunction.JSClearText(ex.Message) + "'); focusControl('" + this.txtNombre.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
             }
         }
 
@@ -263,10 +323,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             try
             {
 
-                BuscarCiudadano(txtNombre.Text.Trim(), TextBoxPaterno.Text.Trim(), TextBoxMaterno.Text.Trim(), TextBoxCalle.Text.Trim(), int.Parse(BuscadorListaPais.SelectedValue), int.Parse(BuscadorListaEstado.SelectedValue), int.Parse(BuscadorListaCiudad.SelectedValue), int.Parse(BuscadorListaColonia.SelectedValue));
+				SelectCiudadano();
 
             }catch (Exception ex){
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + utilFunction.JSClearText(ex.Message) + "'); focusControl('" + this.txtNombre.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
             }
         }
 
@@ -274,11 +334,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             try
             {
 
-                // Consulta de colonias
+				// Llenado de combos en cascada
                 SelectColonia();
 
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.BuscadorListaColonia.ClientID + "'); }", true);
+
             }catch (Exception ex){
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + utilFunction.JSClearText(ex.Message) + "'); focusControl('" + this.txtNombre.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
             }
         }
 
@@ -286,12 +349,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             try
             {
 
-                // Consulta de ciudades y colonias
+				// Llenado de combos en cascada
                 SelectCiudad();
                 SelectColonia();
 
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.BuscadorListaCiudad.ClientID + "'); }", true);
+
             }catch (Exception ex){
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + utilFunction.JSClearText(ex.Message) + "'); focusControl('" + this.txtNombre.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
             }
         }
 
@@ -299,54 +365,59 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             try
             {
 
-                // Consulta de estados, ciudades y colonias
+				// Llenado de combos en cascada
                 SelectEstado();
                 SelectCiudad();
                 SelectColonia();
 
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.BuscadorListaEstado.ClientID + "'); }", true);
+
             }catch (Exception ex){
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + utilFunction.JSClearText(ex.Message) + "'); focusControl('" + this.txtNombre.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
             }
         }
 
         protected void gvCiudadano_RowCommand(object sender, GridViewCommandEventArgs e){
-			ENTSession oENTSession = new ENTSession();
-			String CiudadanoId = String.Empty;
+			String CiudadanoId = "";
+			String strCommand = "";
 
 			try
 			{
 
-				oENTSession = (ENTSession)this.Session["oENTSession"];
+				// Opción seleccionada
+				strCommand = e.CommandName.ToString();
+
+				// Se dispara el evento RowCommand en el ordenamiento
+				if (strCommand == "Sort") { return; }
+
+				// Obtener CiudadanoId
 				CiudadanoId = e.CommandArgument.ToString();
 
-				switch (e.CommandName.ToString()){
+				// Guardar formulario
+				SaveForm();
+
+				// Canalizar la página
+				switch (strCommand){
 					case "Visita":
-						// vuelve a llenar el datatable de busqueda para que al regresar conserve el resultado de la busqueda en el grid
-						oENTSession.dsResultadoBusCiudadano = utilFunction.ParseGridViewToDataTable(gvCiudadano, false);
 						Response.Redirect(ConfigurationManager.AppSettings["Application.Url.RegistroVisita"].ToString() + "?key=" + CiudadanoId + "|2");
 						break;
 
 					case "Solicitud":
-						// vuelve a llenar el datatable de busqueda para que al regresar conserve el resultado de la busqueda en el grid
-						oENTSession.dsResultadoBusCiudadano = utilFunction.ParseGridViewToDataTable(gvCiudadano, false);
 						Response.Redirect("opeRegistroSolicitud.aspx?key=" + CiudadanoId + "|2");
 						break;
 
 					case "Consultar":
-						// vuelve a llenar el datatable de busqueda para que al regresar conserve el resultado de la busqueda en el grid
-						oENTSession.dsResultadoBusCiudadano = utilFunction.ParseGridViewToDataTable(gvCiudadano, false);
 						Response.Redirect(ConfigurationManager.AppSettings["Application.Url.DetalleCiudadano"].ToString() + "?s=" + CiudadanoId);
 						break;
 
 					case "Editar":
-						// vuelve a llenar el datatable de busqueda para que al regresar conserve el resultado de la busqueda en el grid
-						oENTSession.dsResultadoBusCiudadano = utilFunction.ParseGridViewToDataTable(gvCiudadano, false);
 						Response.Redirect(ConfigurationManager.AppSettings["Application.Url.RegistroCiudadano"].ToString() + "?s=" + CiudadanoId);
 						break;
 				}
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
 			}
         }
 
@@ -426,22 +497,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
             try
             {
-                //Obtener DataTable y View del GridView
+                // Obtener DataTable y View del GridView
                 tblData = utilFunction.ParseGridViewToDataTable(gvCiudadano, false);
                 viewData = new DataView(tblData);
 
-                //Determinar ordenamiento
+                // Determinar ordenamiento
                 hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
 
-                //Ordenar Vista
+                // Ordenar Vista
                 viewData.Sort = hddSort.Value;
 
-                //Vaciar datos
+                // Vaciar datos
                 gvCiudadano.DataSource = viewData;
                 gvCiudadano.DataBind();
 
             }catch (Exception ex){
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
             }
         }
 

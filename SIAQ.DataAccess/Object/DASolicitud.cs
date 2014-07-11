@@ -214,7 +214,7 @@ namespace SIAQ.DataAccess.Object
 
 				try
 				{
-					Command = new SqlCommand("ConsultarSolicitud", Connection);
+					Command = new SqlCommand("uspSolicitud_Sel", Connection);
 					Command.CommandType = CommandType.StoredProcedure;
 
 					Parameter = new SqlParameter("Nombre", SqlDbType.VarChar);

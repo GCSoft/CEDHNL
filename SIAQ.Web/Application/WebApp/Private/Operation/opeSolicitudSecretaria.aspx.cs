@@ -133,7 +133,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 switch (e.CommandName.ToString())
                 {
                     case "Editar":
-                        Response.Redirect(ConfigurationManager.AppSettings["Application.Url.SolicitudDetalle"].ToString() + "?s=" + SolicitudId);
+						Response.Redirect("opeDetalleSolicitud.aspx?s=" + SolicitudId);
                         break;
                 }
             }

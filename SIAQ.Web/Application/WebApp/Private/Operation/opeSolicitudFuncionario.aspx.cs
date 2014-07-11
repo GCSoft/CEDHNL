@@ -119,7 +119,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 SolicitudProcess.SaveSolicitudEstatus();
 
                 if (SolicitudProcess.ErrorId == 0)
-                    Response.Redirect(ConfigurationManager.AppSettings["Application.Url.SolicitudDetalle"].ToString() + "?s=" + SolicitudId.ToString());
+					Response.Redirect("opeDetalleSolicitud.aspx?s=" + SolicitudId.ToString());
                 else
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(SolicitudProcess.ErrorDescription) + "', 'Error', true);", true);
             }
@@ -153,7 +153,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 switch (e.CommandName.ToString())
                 {
                     case "Editar":
-                        Response.Redirect(ConfigurationManager.AppSettings["Application.Url.SolicitudDetalle"].ToString() + "?s=" + SolicitudId.ToString());
+						Response.Redirect("opeDetalleSolicitud.aspx?s=" + SolicitudId.ToString());
                         // Cambiar el estatus de la solicitud
                         //SaveSolicitudEstatus(SolicitudId);
                         break;

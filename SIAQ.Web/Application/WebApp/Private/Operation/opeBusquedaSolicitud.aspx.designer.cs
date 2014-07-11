@@ -67,22 +67,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.DropDownList ddlFuncionario;
         
         /// <summary>
-        /// calDesde control.
+        /// wucBeginDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::SIAQ.Web.Include.WebUserControls.wucCalendario calDesde;
+        protected global::SIAQ.Web.Include.WebUserControls.wucCalendar wucBeginDate;
         
         /// <summary>
-        /// calHasta control.
+        /// wucEndDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::SIAQ.Web.Include.WebUserControls.wucCalendario calHasta;
+        protected global::SIAQ.Web.Include.WebUserControls.wucCalendar wucEndDate;
         
         /// <summary>
         /// pnlBotones control.
@@ -94,13 +94,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.Panel pnlBotones;
         
         /// <summary>
-        /// cmdGuardar control.
+        /// cmdBuscar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button cmdGuardar;
+        protected global::System.Web.UI.WebControls.Button cmdBuscar;
         
         /// <summary>
         /// cmdRegresar control.

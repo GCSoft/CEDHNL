@@ -23,21 +23,21 @@ namespace SIAQ.Entity.Object
     {
 
         // Definiciones
-        private Int32 _idUsuario;			// Identificador único de Usuario
-        private Int32 _idArea;          // Identificador único de la compañía a la que pertenece el usuario
-        private Int32 _idRol;           // Identificador único del Rol al que pertenece el usuario
-        private Int32 _FuncionarioId;   // Identificador único del funcionario. 0 si el usuario no es funcionario
-        private Boolean _TokenGenerado;	// Indica si el Usuario ya generó el Token de autenticación a la aplicación
-        private String _sEmail;				// Email/username del usuario
-        private String _sNombre;			// Nombre(s) del usuario
-        private DataTable _tblMenu;			// Contienen un DataTable con las opciones del Menú válidas para el usuario
-        private DataTable _tblSubMenu;		// Contienen un DataTable con las opciones del SubMenú válidas para el usuario
-        private DataTable _dsResultados;          // Contiene los datos de una busqueda para regresar y tener los mismos datos
-        private DataTable _dsResultadoBusCiudadano; // COntiene los datos de una búsqueda para regresar y tener los mismos datos en la pantalla de búsqueda ciudadano
+        private Int32		_idUsuario;		// Identificador único de Usuario
+        private Int32		_idArea;		// Identificador único de la compañía a la que pertenece el usuario
+        private Int32		_idRol;			// Identificador único del Rol al que pertenece el usuario
+        private Int32		_FuncionarioId;	// Identificador único del funcionario. 0 si el usuario no es funcionario
+        private Boolean		_TokenGenerado;	// Indica si el Usuario ya generó el Token de autenticación a la aplicación
+        private String		_sEmail;		// Email/username del usuario
+        private String		_sNombre;		// Nombre(s) del usuario
+        private DataTable	_tblMenu;		// Contienen un DataTable con las opciones del Menú válidas para el usuario
+        private DataTable	_tblSubMenu;	// Contienen un DataTable con las opciones del SubMenú válidas para el usuario
+		private object		_Entity;		// Almacena una entidad, es usada para guardar los filtros de un formulario
+		
+
         //Constructor
 
-        public ENTSession()
-        {
+        public ENTSession(){
             _idUsuario = 0;
             _idArea = 0;
             _idRol = 0;
@@ -47,6 +47,7 @@ namespace SIAQ.Entity.Object
             _sNombre = "";
             _tblMenu = null;
             _tblSubMenu = null;
+			_Entity = null;
         }
 
 
@@ -159,28 +160,19 @@ namespace SIAQ.Entity.Object
             get { return _tblSubMenu; }
             set { _tblSubMenu = value; }
         }
-        ///<remarks>
-        ///   <name>ENTSession.dsResultado</name>
-        ///   <create>10-Abril-2014</create>
-        ///   <author>Jose.Gomez</author>
-        ///</remarks>
-        ///<summary>Obtiene/Asigna un DataSet para retornar la busqueda que se haya hecho cuando se cambio de pagina</summary>
-        public DataTable dsResultado
-        {
-            get { return _dsResultados; }
-            set { _dsResultados = value; }
-        }
-        ///<remarks>
-        ///   <name>ENTSession.dsResultadoBusCiudadano</name>
-        ///   <create>15-Abril-2014</create>
-        ///   <author>Jose.Gomez</author>
-        ///</remarks>
-        ///<summary>Obtiene/Asigna un DataSet para retornar la busqueda que se haya hecho cuando se cambio de pagina de busqueda ciudadanos</summary>
-        public DataTable dsResultadoBusCiudadano
-        {
-            get { return _dsResultadoBusCiudadano; }
-            set { _dsResultadoBusCiudadano = value; }
-        }
+
+		///<remarks>
+		///   <name>ENTSession.Entity</name>
+		///   <create>10-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna un objeto que puede ser cualquier entidad, es usada para guardar los filtros de un formulario</summary>
+		public object Entity
+		{
+			get { return _Entity; }
+			set { _Entity = value; }
+		}
+
     }
 
 }

@@ -69,7 +69,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 SolicitudProcess.SaveFuncionarioSolicitud();
 
                 if (SolicitudProcess.ErrorId == 0)
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El funcionario fue asignado a la solicitud', 'Success', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El funcionario fue asignado a la solicitud', 'Success', false);", true);
                 else
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(SolicitudProcess.ErrorDescription) + "', 'Error', true);", true);
             }

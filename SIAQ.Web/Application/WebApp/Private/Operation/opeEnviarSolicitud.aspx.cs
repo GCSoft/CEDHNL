@@ -103,20 +103,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 //Transacción
                 oENTSolicitud.SolicitudId = solicitudId;
                 oENTResponse = oBPSolicitud.EnviarSolicitud(oENTSolicitud);
+
                 //Validación
                 if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
                 if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
 
-                ScriptManager.RegisterStartupScript(this.Page
-                    , this.GetType()
-                    , Convert.ToString(Guid.NewGuid())
-                    , "tinyboxMessage('Solicitud enviada con éxito','Success',true);"
-                    , true);
+				// Redireccionar al listado
+				Response.Redirect("opeSolicitudFuncionario.aspx", false);
 
-                SendButton.Enabled = false;
-            }
-            catch (Exception ex)
-            {
+            }catch (Exception ex){
                 throw (ex);
             }
         }

@@ -13,7 +13,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
     public partial class opeAgregarIndicadores : System.Web.UI.Page
     {
-        public string _SolicitudId;
         Function utilFunction = new Function();
 
         #region "Events"
@@ -34,9 +33,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     {
                         SolicitudId = int.Parse(Request.QueryString["s"].ToString());
 
-                        _SolicitudId = SolicitudId.ToString();
+						this.SolicitudIdHidden.Value = SolicitudId.ToString();
 
-                        SelectIndicadores(_SolicitudId);
+						SelectIndicadores(this.SolicitudIdHidden.Value);
                     }
                     catch (Exception Exception)
                     {
@@ -50,5 +49,17 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
             }
         #endregion
+
+			protected void btnGuardar_Click(object sender, EventArgs e)
+			{
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Grupos minoritarios asociados con éxito', 'Success', false);", true);
+			}
+
+			protected void btnRegresar_Click(object sender, EventArgs e)
+			{
+				Response.Redirect("opeDetalleSolicitud.aspx?s=" + this.SolicitudIdHidden.Value, false);
+			}
+
+
     }
 }

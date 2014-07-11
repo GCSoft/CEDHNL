@@ -96,12 +96,17 @@
                 <td>
                 <table width="100%" border="0">
               <tr>
-                <td style="text-align:left;" class="style1"><asp:Button ID="Button1" runat="server" Text="Guardar" CssClass="Button_General" width="125px"/>&nbsp;&nbsp;&nbsp;
-                <input class="Button_General" id="RegresarButton" onclick="document.location.href='opeDetalleSolicitud.aspx?s=<%= _SolicitudId %>';" style="width: 125px;" type="button" value="Regresar" /></td>
+                <td style="text-align:left;" class="style1">
+					<asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="Button_General" width="125px" onclick="btnGuardar_Click"/>&nbsp;&nbsp;&nbsp;
+					<asp:Button ID="btnRegresar" runat="server" Text="Regresar" CssClass="Button_General" width="125px" onclick="btnRegresar_Click"/>
+				</td>
               </tr>
             </table>
         </td>
       </tr>
     </table>
+
+	<asp:HiddenField ID="SolicitudIdHidden" runat="server" Value="0"  />
+
 </asp:Content>
 

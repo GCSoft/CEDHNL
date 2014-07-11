@@ -20,6 +20,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         Function utilFunction = new Function();
 
         #region "Events"
+
+			protected void btnRegresar_Click(object sender, EventArgs e){
+				Response.Redirect("opeDetalleSolicitud.aspx?s=" + this.SolicitudIdHidden.Value, false);
+			}	
+
             protected void DocumentoGrid_RowCommand(Object sender, GridViewCommandEventArgs e)
             {
                 DocumentoGridRowCommand(e);

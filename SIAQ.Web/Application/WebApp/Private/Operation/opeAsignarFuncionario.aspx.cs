@@ -94,7 +94,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
                     // Mensaje de la base de datos
                     if (oENTResponse.sMessage != "")
-                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Success', true);", true);
+                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Success', false);", true);
 
                     //LLenado de control
                     this.FuncionarioList.DataTextField = "sFullName";

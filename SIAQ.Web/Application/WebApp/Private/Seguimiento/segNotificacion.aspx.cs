@@ -66,7 +66,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			this.NombreBox.Text = "";
 			this.DescripcionBox.Text = "";
 
-			ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('La información fue guardada con éxito!', 'Success', true); focusControl('" + this.DocumentoFile.ClientID + "');", true);
+			ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('La información fue guardada con éxito!', 'Success', false); focusControl('" + this.DocumentoFile.ClientID + "');", true);
 			
 		}
 
@@ -85,7 +85,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			
 			// Transacción exitosa
 			SelectedExpediente();
-			ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Archivo eliminado con éxito!', 'Success', true); focusControl('" + this.DocumentoFile.ClientID + "');", true);
+			ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Archivo eliminado con éxito!', 'Success', false); focusControl('" + this.DocumentoFile.ClientID + "');", true);
 
 		}
 

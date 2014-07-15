@@ -134,7 +134,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
             SelectRol();
 
             // Mensaje de usuario
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Rol creado con éxito!', 'Success', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Rol creado con éxito!', 'Success', false); focusControl('" + this.txtNombre.ClientID + "');", true);
 
 			}catch (Exception ex){
             throw (ex);
@@ -429,7 +429,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
             SelectRol();
 
             // Mensaje de usuario
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Rol actualizado con éxito!', 'Success', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Rol actualizado con éxito!', 'Success', false); focusControl('" + this.txtNombre.ClientID + "');", true);
 
 			}catch (Exception ex){
             throw (ex);

@@ -116,7 +116,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
             SelectSubMenu();
 
             // Mensaje de usuario
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Menú creado con éxito! Recuerde agregarlo en los roles de los clientes.', 'Success', true); focusControl('" + this.ddlMenu.ClientID + "');", true);
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Menú creado con éxito! Recuerde agregarlo en los roles de los clientes.', 'Success', false); focusControl('" + this.ddlMenu.ClientID + "');", true);
 
 			}catch (Exception ex){
             throw (ex);
@@ -378,7 +378,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
             SelectSubMenu();
 
             // Mensaje de usuario
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Información actualizada con éxito!', 'Success', true); focusControl('" + this.ddlMenu.ClientID + "');", true);
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Información actualizada con éxito!', 'Success', false); focusControl('" + this.ddlMenu.ClientID + "');", true);
 
 			}catch (Exception ex){
             throw (ex);

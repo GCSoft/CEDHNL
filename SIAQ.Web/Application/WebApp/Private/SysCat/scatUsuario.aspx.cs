@@ -135,7 +135,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
             SelectUsuario();
 
             // Mensaje de usuario
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Usuario creado con éxito!. La contraseña fue enviada por correo electrónico. Favor de revisar el correo no deseado.', 'Success', true); focusControl('" + (this.ddlArea.Enabled ? this.ddlArea.ClientID : this.ddlRol.ClientID) + "');", true);
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Usuario creado con éxito!. La contraseña fue enviada por correo electrónico. Favor de revisar el correo no deseado.', 'Success', false); focusControl('" + (this.ddlArea.Enabled ? this.ddlArea.ClientID : this.ddlRol.ClientID) + "');", true);
 
          }catch (Exception ex){
             throw (ex);
@@ -472,7 +472,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
             SelectUsuario();
 
             // Mensaje de usuario
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Información actualizada con éxito!', 'Success', true); focusControl('" + (this.ddlArea.Enabled ? this.ddlArea.ClientID : this.ddlRol.ClientID) + "');", true);
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Información actualizada con éxito!', 'Success', false); focusControl('" + (this.ddlArea.Enabled ? this.ddlArea.ClientID : this.ddlRol.ClientID) + "');", true);
 
          }catch (Exception ex){
             throw (ex);

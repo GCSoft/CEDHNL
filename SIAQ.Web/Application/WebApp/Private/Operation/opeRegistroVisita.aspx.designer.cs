@@ -67,13 +67,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.DropDownList ddlMotivo;
         
         /// <summary>
-        /// txtVisitante control.
+        /// wucBusquedaCiudadano control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtVisitante;
+        protected global::SIAQ.Web.Include.WebUserControls.wucBusquedaCiudadano wucBusquedaCiudadano;
         
         /// <summary>
         /// ckeObservaciones control.
@@ -137,14 +137,5 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField SenderId;
-        
-        /// <summary>
-        /// CiudadanoId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField CiudadanoId;
     }
 }

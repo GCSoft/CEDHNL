@@ -420,7 +420,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 ScriptManager.RegisterStartupScript(this.Page
                     , this.GetType()
                     , Convert.ToString(Guid.NewGuid())
-                    , "tinyboxMessage('Diligencia agregada con éxito', 'Success', true);"
+                    , "tinyboxMessage('Diligencia agregada con éxito', 'Success', false);"
                     , true);
             }
             catch (Exception ex)
@@ -468,7 +468,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 ScriptManager.RegisterStartupScript(this.Page
                     , this.GetType()
                     , Convert.ToString(Guid.NewGuid())
-                    , "tinyboxMessage('Diligencia modificada con éxito', 'Success', true);"
+                    , "tinyboxMessage('Diligencia modificada con éxito', 'Success', false);"
                     , true);
 
             }

@@ -59,7 +59,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 // Validación mendaje de base de datos
                 if (oENTResponse.sMessage != "")
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Success', true); focusControl('" + this.txtNumeroExpediente.ClientID + "');", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Success', false); focusControl('" + this.txtNumeroExpediente.ClientID + "');", true);
                     this.gvApps.DataSource = null;
                     this.gvApps.DataBind();
                     return;

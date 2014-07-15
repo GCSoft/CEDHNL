@@ -83,7 +83,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
             if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
 
             // Transacción exitosa
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Funcionario eliminado con éxito!', 'Success', true);", true);
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Funcionario eliminado con éxito!', 'Success', false);", true);
 
             // Actualizar datos
             SelectFuncionario();
@@ -122,7 +122,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
             SelectFuncionario();
 
             // Mensaje de usuario
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Funcionario creado con éxtito!', 'Success', true); focusControl('" + this.ddlArea.ClientID + "');", true);
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Funcionario creado con éxtito!', 'Success', false); focusControl('" + this.ddlArea.ClientID + "');", true);
 
          }catch (Exception ex){
             throw (ex);
@@ -372,7 +372,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
             SelectFuncionario();
 
             // Mensaje de usuario
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Información actualizada con éxito!', 'Success', true); focusControl('" + this.ddlArea.ClientID + "');", true);
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Información actualizada con éxito!', 'Success', false); focusControl('" + this.ddlArea.ClientID + "');", true);
 
          }catch (Exception ex){
             throw (ex);

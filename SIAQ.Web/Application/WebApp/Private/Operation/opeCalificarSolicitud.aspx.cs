@@ -159,7 +159,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 BPSolicitud.GuardarCalificacionSol();
                 if (BPSolicitud.ErrorId == 0)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('La Calificacion se ha dado de alta correctamente ', 'Success', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('La Calificacion se ha dado de alta correctamente ', 'Success', false);", true);
                     LimpiarCampos();
                     Button1.Enabled = false;
                 }

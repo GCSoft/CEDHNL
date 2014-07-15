@@ -60,7 +60,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysApp
 				if (oENTResponse.sMessage != ""){ throw (new Exception(oENTResponse.sMessage)); }
 
 				// Transacción exitosa
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Su contraseña ha sido actualizada con éxito', 'Success', true); focusControl('" + this.sOldPassword.ClientID + "');", true);
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Su contraseña ha sido actualizada con éxito', 'Success', false); focusControl('" + this.sOldPassword.ClientID + "');", true);
 
 			}catch (Exception ex){
 				throw(ex);

@@ -128,7 +128,7 @@ namespace SIAQ.Web.Application.WebApp
 				if (oENTResponse.sMessage != ""){ throw (new Exception(oENTResponse.sMessage)); }
 
 				// Recuperación exitosa
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Los datos de recuperación de contraseña han sido enviados por correo electrónico', 'Success', true); function pageLoad(){ focusControl('" + this.txtEmail.ClientID + "'); }", true);
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Los datos de recuperación de contraseña han sido enviados por correo electrónico', 'Success', false); function pageLoad(){ focusControl('" + this.txtEmail.ClientID + "'); }", true);
 
 			}catch (Exception ex){
 				throw(ex);

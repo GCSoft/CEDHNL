@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeRegistroVisita.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeRegistroVisita" %>
+<%@ Register src="../../../../Include/WebUserControls/wucBusquedaCiudadano.ascx" tagname="wucBusquedaCiudadano" tagprefix="wuc" %>
 <%@ Register src="../../../../Include/WebUserControls/wucFixedDateTime.ascx" tagname="wucFixedDateTime" tagprefix="wuc" %>
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 
@@ -42,7 +43,7 @@
 						<tr>
 							<td class="Etiqueta">Visitante</td>
 							<td class="VinetaObligatorio">*</td>
-							<td class="Campo"><asp:TextBox ID="txtVisitante" runat="server" CssClass="Textbox_General" MaxLength="300" width="211px"></asp:TextBox></td>
+							<td class="Campo"><wuc:wucBusquedaCiudadano ID="wucBusquedaCiudadano" runat="server" OnItemSelected="wucBusquedaCiudadano_ItemSelected" /></td>
 						</tr>
 						<tr>
 							<td class="Etiqueta">Detalle de visita</td>
@@ -84,6 +85,5 @@
 
 	<asp:HiddenField ID="Sender" runat="server" Value=""  />
 	<asp:HiddenField ID="SenderId" runat="server" Value="0"  />
-	<asp:HiddenField ID="CiudadanoId" runat="server" Value="0" />
 
 </asp:Content>

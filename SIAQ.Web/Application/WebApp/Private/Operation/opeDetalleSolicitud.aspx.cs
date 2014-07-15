@@ -319,7 +319,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     ScriptManager.RegisterStartupScript(this.Page
                         , this.GetType()
                         , Convert.ToString(Guid.NewGuid())
-                        , "tinyboxMessage('Comentario agregado con éxito','Success', true);"
+                        , "tinyboxMessage('Comentario agregado con éxito','Success', false);"
                         , true);
                 }
                 catch (Exception ex)
@@ -348,7 +348,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     ScriptManager.RegisterStartupScript(this.Page
                         , this.GetType()
                         , Convert.ToString(Guid.NewGuid())
-                        , "tinyboxMessage('Comentario modificado con éxito','Success', true);"
+                        , "tinyboxMessage('Comentario modificado con éxito','Success', false);"
                         , true);
                 }
                 catch (Exception ex)
@@ -379,7 +379,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 SolicitudProcess.SaveSolicitudGeneral();
 
                 if (SolicitudProcess.ErrorId == 0)
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('La información fue guardada con éxito!', 'Success', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('La información fue guardada con éxito!', 'Success', false);", true);
                 else
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(SolicitudProcess.ErrorDescription) + "', 'Error', true);", true);
             }
@@ -416,7 +416,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     ScriptManager.RegisterStartupScript(this.Page
                         , this.GetType()
                         , Convert.ToString(Guid.NewGuid())
-                        , "tinyboxMessage('Comentario modificado con éxito','Success', true);"
+                        , "tinyboxMessage('Comentario modificado con éxito','Success', false);"
                         , true);
                 }
                 catch (Exception ex)

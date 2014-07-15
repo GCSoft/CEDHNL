@@ -50,7 +50,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
 
 				//Mensaje de usuario
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Diligencia eliminada con éxito', 'Success', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Diligencia eliminada con éxito', 'Success', false);", true);
 
 			}catch (Exception ex){
 				throw (ex);
@@ -150,7 +150,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
 
 				//Mensaje de usuario
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Diligencia agregada con éxito', 'Success', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Diligencia agregada con éxito', 'Success', false);", true);
 
 			}catch (Exception ex){
 				throw (ex);
@@ -352,7 +352,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
 
 				//Mensaje de usuario
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Diligencia actualizada con éxito', 'Success', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Diligencia actualizada con éxito', 'Success', false);", true);
 
 			}catch (Exception ex){
 				throw (ex);

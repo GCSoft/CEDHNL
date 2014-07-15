@@ -31,6 +31,60 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 			this.ckeObservaciones.Text = "";
 		}
 
+		void InsertSolicitud(){
+			BPSolicitud oBPSolicitud = new BPSolicitud();
+			ENTResponse oENTResponse = new ENTResponse();
+			ENTSolicitud oENTSolicitud = new ENTSolicitud();
+
+			String sFolio = "";
+
+			try{
+
+				// Validaciones
+				if (this.wucBusquedaCiudadano.Text.Trim() == "") { throw new Exception("El campo [Nombre del ciudadano] es requerido"); }
+				if (this.ckeObservaciones.Text.Trim() == "") { throw new Exception("El campo [Observaciones] es requerido"); }
+               
+				// Validación cambio de nombre
+				if (this.wucBusquedaCiudadano.Text != this.wucBusquedaCiudadano.NombreCiud) { this.wucBusquedaCiudadano.CiudadanoID = 0; }
+
+				// Formulario
+				oENTSolicitud.FuncionarioId = Int32.Parse(this.ddlAbogado.SelectedValue);
+				oENTSolicitud.CalificacionId = 1;	// Sin calificar
+				oENTSolicitud.TipoSolicitudId = 1;	// Individual
+				oENTSolicitud.LugarHechosId = 5;	// Otro
+				oENTSolicitud.EstatusId = (this.ddlAbogado.SelectedValue == "0" ? 1 : 2);	// Por Asignar o Por Atender
+				oENTSolicitud.CiudadanoId = this.wucBusquedaCiudadano.CiudadanoID;
+				oENTSolicitud.NombreTemporal = this.wucBusquedaCiudadano.Text.Trim();
+				oENTSolicitud.Observaciones = this.ckeObservaciones.Text.Trim();
+
+				// Transacción
+				oENTResponse = oBPSolicitud.InsertSolicitud(oENTSolicitud);
+
+				// Validación de error
+				if (oENTResponse.GeneratesException){
+					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sErrorMessage) + "', 'Fail', true);;", true);
+					return;
+				}
+
+				if (oENTResponse.sMessage != ""){
+					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', false);", true);
+					return;
+				}
+
+				// Obtener el folio generado
+				sFolio = oENTResponse.dsResponse.Tables[1].Rows[0]["Folio"].ToString();
+
+				// Mensaje de Exito
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Se registro la solicitud exitosamente para el ciudadano [" + this.wucBusquedaCiudadano.Text.Trim() + "] con folio: " + sFolio + "', 'Success', true);", true);
+
+				// Se limpia el formulario
+				Clear();
+
+			}catch (Exception ex){
+				throw(ex);
+			}
+		}
+
 		void SelectCiudadanoByID(String CiudadanoId){
 			BPCiudadano BPCiudadano = new BPCiudadano();
 			ENTResponse oENTResponse = new ENTResponse();
@@ -78,7 +132,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
 				// Mensaje de la base de datos
 				if (oENTResponse.sMessage != ""){
-					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Success', true);", true);
+					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Success', false);", true);
 				}
 
 				//LLenado de control
@@ -89,60 +143,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
 				// Agregar Item de selección
 				this.ddlAbogado.Items.Insert(0, new ListItem("[Seleccione]", "0"));
-
-			}catch (Exception ex){
-				throw(ex);
-			}
-		}
-
-		void InsertSolicitud(){
-			BPSolicitud oBPSolicitud = new BPSolicitud();
-			ENTResponse oENTResponse = new ENTResponse();
-			ENTSolicitud oENTSolicitud = new ENTSolicitud();
-
-			String sFolio = "";
-
-			try{
-
-				// Validaciones
-				if (this.wucBusquedaCiudadano.Text.Trim() == "") { throw new Exception("El campo [Nombre del ciudadano] es requerido"); }
-				if (this.ckeObservaciones.Text.Trim() == "") { throw new Exception("El campo [Observaciones] es requerido"); }
-               
-				// Validación cambio de nombre
-				if (this.wucBusquedaCiudadano.Text != this.wucBusquedaCiudadano.NombreCiud) { this.wucBusquedaCiudadano.CiudadanoID = 0; }
-
-				// Formulario
-				oENTSolicitud.FuncionarioId = Int32.Parse(this.ddlAbogado.SelectedValue);
-				oENTSolicitud.CalificacionId = 1;	// Sin calificar
-				oENTSolicitud.TipoSolicitudId = 1;	// Individual
-				oENTSolicitud.LugarHechosId = 5;	// Otro
-				oENTSolicitud.EstatusId = (this.ddlAbogado.SelectedValue == "0" ? 1 : 2);	// Por Asignar o Por Atender
-				oENTSolicitud.CiudadanoId = this.wucBusquedaCiudadano.CiudadanoID;
-				oENTSolicitud.NombreTemporal = this.wucBusquedaCiudadano.Text.Trim();
-				oENTSolicitud.Observaciones = this.ckeObservaciones.Text.Trim();
-
-				// Transacción
-				oENTResponse = oBPSolicitud.InsertSolicitud(oENTSolicitud);
-
-				// Validación de error
-				if (oENTResponse.GeneratesException){
-					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sErrorMessage) + "', 'Fail', true);;", true);
-					return;
-				}
-
-				if (oENTResponse.sMessage != ""){
-					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Success', true);", true);
-					return;
-				}
-
-				// Obtener el folio generado
-				sFolio = oENTResponse.dsResponse.Tables[1].Rows[0]["Folio"].ToString();
-
-				// Mensaje de Exito
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Se registro la solicitud exitosamente para el ciudadano [" + this.wucBusquedaCiudadano.Text.Trim() + "] con folio: " + sFolio + "', 'Success', true);", true);
-
-				// Se limpia el formulario
-				Clear();
 
 			}catch (Exception ex){
 				throw(ex);

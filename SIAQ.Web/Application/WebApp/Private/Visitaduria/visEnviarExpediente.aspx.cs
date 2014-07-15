@@ -41,7 +41,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 if (ExpedienteProcess.ErrorId == 0)
                 {
                     EnviarButton.Enabled = false;
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El expediente ha sido enviado para su revisión', 'Success', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El expediente ha sido enviado para su revisión', 'Success', false);", true);
                 }
                 else
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ExpedienteProcess.ErrorDescription) + "', 'Error', true);", true);

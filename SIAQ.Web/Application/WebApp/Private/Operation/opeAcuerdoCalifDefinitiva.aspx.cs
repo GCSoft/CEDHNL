@@ -112,7 +112,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     ScriptManager.RegisterStartupScript(this.Page
                         , this.GetType()
                         , Convert.ToString(Guid.NewGuid())
-                        , "tinyboxMessage('Acuerdo registrado con éxito','Success', true);"
+                        , "tinyboxMessage('Acuerdo registrado con éxito','Success', false);"
                         , true);
                 }
                 catch (Exception ex)

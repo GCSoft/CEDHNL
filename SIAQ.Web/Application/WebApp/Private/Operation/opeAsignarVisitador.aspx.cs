@@ -271,7 +271,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     ScriptManager.RegisterStartupScript(this.Page
                         , this.GetType()
                         , Convert.ToString(Guid.NewGuid())
-                        , "tinyboxMessage('Comentario agregado con éxito','Success', true);"
+                        , "tinyboxMessage('Comentario agregado con éxito','Success', false);"
                         , true);
                 }
                 catch (Exception ex)
@@ -311,7 +311,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     ScriptManager.RegisterStartupScript(this.Page
                         , this.GetType()
                         , Convert.ToString(Guid.NewGuid())
-                        , "tinyboxMessage('Funcionario asignado con éxito','Success', true);"
+                        , "tinyboxMessage('Funcionario asignado con éxito','Success', false);"
                         , true);
 
                 }
@@ -367,7 +367,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     ScriptManager.RegisterStartupScript(this.Page
                         , this.GetType()
                         , Convert.ToString(Guid.NewGuid())
-                        , "tinyboxMessage('Comentario modificado con éxito','Success', true);"
+                        , "tinyboxMessage('Comentario modificado con éxito','Success', false);"
                         , true);
                 }
                 catch (Exception ex)
@@ -518,7 +518,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     ScriptManager.RegisterStartupScript(this.Page
                         , this.GetType()
                         , Convert.ToString(Guid.NewGuid())
-                        , "tinyboxMessage('Comentario modificado con éxito','Success', true);"
+                        , "tinyboxMessage('Comentario modificado con éxito','Success', false);"
                         , true);
                 }
                 catch (Exception ex)

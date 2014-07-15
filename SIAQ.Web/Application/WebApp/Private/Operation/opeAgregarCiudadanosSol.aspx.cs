@@ -48,6 +48,38 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
            }
         }
 
+		private void SelectSolicitud(){
+			BPSolicitud SolicitudProcess = new BPSolicitud();
+			int SolicitudId;
+
+			// 
+			SolicitudId = Int32.Parse(SolicitudIDHidden.Value);
+
+			SolicitudProcess.SolicitudEntity.SolicitudId = SolicitudId;
+
+			SolicitudProcess.SelectSolicitudDetalle();
+
+			if (SolicitudProcess.ErrorId == 0)
+			{
+				if (SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows.Count > 0)
+				{
+					SolicitudLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["Numero"].ToString();
+					CalificacionLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["NombreCalificacion"].ToString();
+					EstatusaLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["NombreEstatus"].ToString();
+					FuncionarioLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["NombreFuncionario"].ToString();
+					ContactoLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["NombreContacto"].ToString();
+					TipoSolicitudLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["NombreTipoSolicitud"].ToString();
+					ObservacionesLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["Observaciones"].ToString();
+					LugarHechosLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["NombreLugarHechos"].ToString();
+					DireccionHechosLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["DireccionHechos"].ToString();
+				}
+			}
+			else
+			{
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(SolicitudProcess.ErrorDescription) + "', 'Fail', true);", true);
+			}
+		}
+
 
        // Eventos de la página
 
@@ -145,6 +177,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                SolicitudIDHidden.Value = Request.QueryString["s"].ToString();
                _SolicitudId = SolicitudIDHidden.Value;
 
+				// consultar la carátula
+			   SelectSolicitud();
+
+
                // Consultar ciudadanos agregados
                SelectCiudadanosAgregados(int.Parse(SolicitudIDHidden.Value));
 
@@ -215,9 +251,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
             }
 
-            // Número de solicitud
-            SolicitudLabel.Text = BPCiudadano.ENTCiudadano.ResultData.Tables[1].Rows[0]["Numero"].ToString();
-            SolicitudLabelSearch.Text = BPCiudadano.ENTCiudadano.ResultData.Tables[1].Rows[0]["Numero"].ToString();
+			//// Número de solicitud
+			//SolicitudLabel.Text = BPCiudadano.ENTCiudadano.ResultData.Tables[1].Rows[0]["Numero"].ToString();
+			//SolicitudLabelSearch.Text = BPCiudadano.ENTCiudadano.ResultData.Tables[1].Rows[0]["Numero"].ToString();
 
         }
 

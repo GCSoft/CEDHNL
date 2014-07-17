@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeRegistroCiudadano.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeRegistroCiudadano" %>
+<%@ Register src="../../../../Include/WebUserControls/wucFastCatalog.ascx" tagname="wucFastCatalog" tagprefix="wuc" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
     
@@ -109,7 +110,15 @@
                         <tr>
                             <td class="Nombre">País</td>
                             <td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
-                            <td class="Campo"><asp:DropDownList ID="ddlPais" runat="server" CssClass="DropDownList_General" Width="216px" AutoPostBack="true" onselectedindexchanged="ddlPais_SelectedIndexChanged" TabIndex="15"></asp:DropDownList></td>
+                            <td class="Campo">
+								<table border="0" cellpadding="0" cellspacing="0">
+									<tr>
+										<td><asp:DropDownList ID="ddlPais" runat="server" CssClass="DropDownList_General" Width="216px" AutoPostBack="true" onselectedindexchanged="ddlPais_SelectedIndexChanged" TabIndex="15"></asp:DropDownList></td>
+										<td style="width:5px;"></td>
+										<td><wuc:wucFastCatalog ID="wucFastCatalogPais" runat="server" OnClose="wucFastCatalogPais_Close" OnItemCreated="wucFastCatalogPais_ItemCreated"  /></td>
+									</tr>
+								</table>
+							</td>
                             <td class="Espacio"></td>
                             <td class="Nombre">Nombre calle</td>
                             <td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
@@ -118,7 +127,15 @@
                         <tr>
                             <td class="Nombre">Estado</td>
                             <td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
-                            <td class="Campo"><asp:DropDownList ID="ddlEstado" runat="server" CssClass="DropDownList_General" Width="216px" AutoPostBack="True" onselectedindexchanged="ddlEstado_SelectedIndexChanged" TabIndex="16"></asp:DropDownList></td>
+                            <td class="Campo">
+								<table border="0" cellpadding="0" cellspacing="0">
+									<tr>
+										<td><asp:DropDownList ID="ddlEstado" runat="server" CssClass="DropDownList_General" Width="216px" AutoPostBack="True" onselectedindexchanged="ddlEstado_SelectedIndexChanged" TabIndex="16"></asp:DropDownList></td>
+										<td style="width:5px;"></td>
+										<td><wuc:wucFastCatalog ID="wucFastCatalogEstado" runat="server" OnClick="wucFastCatalogEstado_Click" OnClose="wucFastCatalogEstado_Close" OnItemCreated="wucFastCatalogEstado_ItemCreated"  /></td>
+									</tr>
+								</table>
+							</td>
                             <td class="Espacio"></td>
                             <td class="Nombre">Núm exterior</td>
                             <td class="Espacio"></td>
@@ -127,7 +144,15 @@
                         <tr>
                             <td class="Nombre">Ciudad</td>
                             <td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
-                            <td class="Campo"><asp:DropDownList ID="ddlCiudad" runat="server" CssClass="DropDownList_General" Width="216px" AutoPostBack="True" onselectedindexchanged="ddlCiudad_SelectedIndexChanged" TabIndex="17"></asp:DropDownList></td>
+                            <td class="Campo">
+								<table border="0" cellpadding="0" cellspacing="0">
+									<tr>
+										<td><asp:DropDownList ID="ddlCiudad" runat="server" CssClass="DropDownList_General" Width="216px" AutoPostBack="True" onselectedindexchanged="ddlCiudad_SelectedIndexChanged" TabIndex="17"></asp:DropDownList></td>
+										<td style="width:5px;"></td>
+										<td><wuc:wucFastCatalog ID="wucFastCatalogCiudad" runat="server" OnClick="wucFastCatalogCiudad_Click" OnClose="wucFastCatalogCiudad_Close" OnItemCreated="wucFastCatalogCiudad_ItemCreated"  /></td>
+									</tr>
+								</table>
+							</td>
                             <td class="Espacio"></td>
                             <td class="Nombre">Núm interior</td>
                             <td class="Espacio"></td>
@@ -136,7 +161,15 @@
                         <tr>
                             <td class="Nombre">Colonia</td>
                             <td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
-                            <td class="Campo"><asp:DropDownList ID="ddlColonia" runat="server" CssClass="DropDownList_General" Width="216px" TabIndex="18"></asp:DropDownList></td>
+                            <td class="Campo">
+								<table border="0" cellpadding="0" cellspacing="0">
+									<tr>
+										<td><asp:DropDownList ID="ddlColonia" runat="server" CssClass="DropDownList_General" Width="216px" TabIndex="18"></asp:DropDownList></td>
+										<td style="width:5px;"></td>
+										<td><wuc:wucFastCatalog ID="wucFastCatalogColonia" runat="server" OnClick="wucFastCatalogColonia_Click" OnClose="wucFastCatalogColonia_Close" OnItemCreated="wucFastCatalogColonia_ItemCreated"  /></td>
+									</tr>
+								</table>
+							</td>
                             <td class="Espacio"></td>
                             <td class="Nombre">Años residiendo en NL</td>
                             <td class="Espacio"></td>
@@ -161,7 +194,15 @@
                         <tr>
                             <td class="Nombre">País</td>
                             <td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
-                            <td class="Campo"><asp:DropDownList ID="ddlPaisOrigen" runat="server" CssClass="DropDownList_General" Width="216px" AutoPostBack="True" onselectedindexchanged="ddlPaisOrigen_SelectedIndexChanged" TabIndex="23"></asp:DropDownList></td>
+                            <td class="Campo">
+								<table border="0" cellpadding="0" cellspacing="0">
+									<tr>
+										<td><asp:DropDownList ID="ddlPaisOrigen" runat="server" CssClass="DropDownList_General" Width="216px" AutoPostBack="True" onselectedindexchanged="ddlPaisOrigen_SelectedIndexChanged" TabIndex="23"></asp:DropDownList></td>
+										<td style="width:5px;"></td>
+										<td><wuc:wucFastCatalog ID="wucFastCatalogPaisOrigen" runat="server" OnClose="wucFastCatalogPaisOrigen_Close" OnItemCreated="wucFastCatalogPaisOrigen_ItemCreated"  /></td>
+									</tr>
+								</table>
+							</td>
                             <td class="Espacio"></td>
                             <td class="Nombre"></td>
                             <td class="Espacio"></td>
@@ -170,7 +211,15 @@
                         <tr>
                             <td class="Nombre">Estado</td>
                             <td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
-                            <td class="Campo"><asp:DropDownList ID="ddlEstadoOrigen" runat="server" CssClass="DropDownList_General" Width="216px" AutoPostBack="True" onselectedindexchanged="ddlEstadoOrigen_SelectedIndexChanged" TabIndex="24"></asp:DropDownList></td>
+                            <td class="Campo">
+								<table border="0" cellpadding="0" cellspacing="0">
+									<tr>
+										<td><asp:DropDownList ID="ddlEstadoOrigen" runat="server" CssClass="DropDownList_General" Width="216px" AutoPostBack="True" onselectedindexchanged="ddlEstadoOrigen_SelectedIndexChanged" TabIndex="24"></asp:DropDownList></td>
+										<td style="width:5px;"></td>
+										<td><wuc:wucFastCatalog ID="wucFastCatalogEstadoOrigen" runat="server" OnClick="wucFastCatalogEstadoOrigen_Click" OnClose="wucFastCatalogEstadoOrigen_Close" OnItemCreated="wucFastCatalogEstadoOrigen_ItemCreated"  /></td>
+									</tr>
+								</table>
+							</td>
                             <td class="Espacio"></td>
                             <td class="Nombre"></td>
                             <td class="Espacio"></td>
@@ -179,7 +228,15 @@
                         <tr>
                             <td class="Nombre">Ciudad</td>
                             <td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
-                            <td class="Campo"><asp:DropDownList ID="ddlCiudadOrigen" runat="server" CssClass="DropDownList_General" Width="216px" TabIndex="25"></asp:DropDownList></td>
+                            <td class="Campo">
+								<table border="0" cellpadding="0" cellspacing="0">
+									<tr>
+										<td><asp:DropDownList ID="ddlCiudadOrigen" runat="server" CssClass="DropDownList_General" Width="216px" TabIndex="25"></asp:DropDownList></td>
+										<td style="width:5px;"></td>
+										<td><wuc:wucFastCatalog ID="wucFastCatalogCiudadOrigen" runat="server" OnClick="wucFastCatalogCiudadOrigen_Click" OnClose="wucFastCatalogCiudadOrigen_Close" OnItemCreated="wucFastCatalogCiudadOrigen_ItemCreated"  /></td>
+									</tr>
+								</table>
+							</td>
                             <td class="Espacio"></td>
                             <td class="Nombre"></td>
                             <td class="Espacio"></td>

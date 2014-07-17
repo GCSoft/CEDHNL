@@ -117,6 +117,39 @@ namespace SIAQ.BusinessProcess.Object
 		}
 
 		///<remarks>
+		///   <name>BPEstado.InsertPais_FastCatalog</name>
+		///   <create>17-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Crea un nuevo Pais desde el wucFastCatalog</summary>
+		///<param name="oENTPais">Entidad de Pais con los parámetros necesarios para crear el registro</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse InsertPais_FastCatalog(ENTPais oENTPais){
+			DAPais oDAPais = new DAPais();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Transacción en base de datos
+				oENTResponse = oDAPais.InsertPais_FastCatalog(oENTPais, this.sConnectionApplication, 0);
+
+				// Validación de error en consulta
+				if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+				// Validación de mensajes de la BD
+				oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+				if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
+		///<remarks>
 		///   <name>BPcatPaisupdatecatPais</name>
 		///   <create>27/ene/2014</create>
 		///   <author>Generador</author>

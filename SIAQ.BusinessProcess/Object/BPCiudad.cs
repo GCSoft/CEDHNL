@@ -117,6 +117,39 @@ namespace SIAQ.BusinessProcess.Object
 
         }
 
+		///<remarks>
+		///   <name>BPEstado.InsertCiudad_FastCatalog</name>
+		///   <create>17-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Crea una nueva Ciudad desde el wucFastCatalog</summary>
+		///<param name="oENTCiudad">Entidad de Ciudad con los parámetros necesarios para crear el registro</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse InsertCiudad_FastCatalog(ENTCiudad oENTCiudad){
+			DACiudad oDACiudad = new DACiudad();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Transacción en base de datos
+				oENTResponse = oDACiudad.InsertCiudad_FastCatalog(oENTCiudad, this.sConnectionApplication, 0);
+
+				// Validación de error en consulta
+				if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+				// Validación de mensajes de la BD
+				oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+				if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
         ///<remarks>
         ///   <name>BPcatCiudadupdatecatCiudad</name>
         ///   <create>27/ene/2014</create>

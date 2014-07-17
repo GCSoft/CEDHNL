@@ -117,6 +117,39 @@ namespace SIAQ.BusinessProcess.Object
 
         }
 
+		///<remarks>
+		///   <name>BPCiudad.InsertColonia_FastCatalog</name>
+		///   <create>17-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Crea una nueva colonia desde el wucFastCatalog</summary>
+		///<param name="oENTColonia">Entidad de Colonia con los parámetros necesarios para crear el registro</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse InsertColonia_FastCatalog(ENTColonia oENTColonia){
+			DAColonia oDAColonia = new DAColonia();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Transacción en base de datos
+				oENTResponse = oDAColonia.InsertColonia_FastCatalog(oENTColonia, this.sConnectionApplication, 0);
+
+				// Validación de error en consulta
+				if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+				// Validación de mensajes de la BD
+				oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+				if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
         ///<remarks>
         ///   <name>BPcatColoniaupdatecatColonia</name>
         ///   <create>27/ene/2014</create>

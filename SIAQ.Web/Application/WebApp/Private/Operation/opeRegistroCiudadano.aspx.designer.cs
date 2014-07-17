@@ -175,6 +175,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.DropDownList ddlPais;
         
         /// <summary>
+        /// wucFastCatalogPais control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::SIAQ.Web.Include.WebUserControls.wucFastCatalog wucFastCatalogPais;
+        
+        /// <summary>
         /// txtNombreCalle control.
         /// </summary>
         /// <remarks>
@@ -191,6 +200,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlEstado;
+        
+        /// <summary>
+        /// wucFastCatalogEstado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::SIAQ.Web.Include.WebUserControls.wucFastCatalog wucFastCatalogEstado;
         
         /// <summary>
         /// txtNumExterior control.
@@ -211,6 +229,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.DropDownList ddlCiudad;
         
         /// <summary>
+        /// wucFastCatalogCiudad control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::SIAQ.Web.Include.WebUserControls.wucFastCatalog wucFastCatalogCiudad;
+        
+        /// <summary>
         /// txtNumInterior control.
         /// </summary>
         /// <remarks>
@@ -227,6 +254,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlColonia;
+        
+        /// <summary>
+        /// wucFastCatalogColonia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::SIAQ.Web.Include.WebUserControls.wucFastCatalog wucFastCatalogColonia;
         
         /// <summary>
         /// txtAniosResidiendo control.
@@ -256,6 +292,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.DropDownList ddlPaisOrigen;
         
         /// <summary>
+        /// wucFastCatalogPaisOrigen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::SIAQ.Web.Include.WebUserControls.wucFastCatalog wucFastCatalogPaisOrigen;
+        
+        /// <summary>
         /// ddlEstadoOrigen control.
         /// </summary>
         /// <remarks>
@@ -265,6 +310,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.DropDownList ddlEstadoOrigen;
         
         /// <summary>
+        /// wucFastCatalogEstadoOrigen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::SIAQ.Web.Include.WebUserControls.wucFastCatalog wucFastCatalogEstadoOrigen;
+        
+        /// <summary>
         /// ddlCiudadOrigen control.
         /// </summary>
         /// <remarks>
@@ -272,6 +326,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCiudadOrigen;
+        
+        /// <summary>
+        /// wucFastCatalogCiudadOrigen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::SIAQ.Web.Include.WebUserControls.wucFastCatalog wucFastCatalogCiudadOrigen;
         
         /// <summary>
         /// pnlFormularioBotones control.

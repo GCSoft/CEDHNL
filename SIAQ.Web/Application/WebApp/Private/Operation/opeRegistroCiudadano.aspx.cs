@@ -21,29 +21,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 		
 		// Funciones del programador
 
-		Int32 AniosTranscurridos (DateTime dtFecha) {
-			DateTime dtNow = DateTime.Now;
-			DateTime dtDiff;
-
-			TimeSpan tsDate;
-
-			try
-			{
-
-				// Restar fechas
-				tsDate = dtNow - dtFecha;
-
-				// En base al afecha inicial determinar el resultado de la diferencia
-				dtDiff = DateTime.MinValue + tsDate;
-
-				// Regresar los años transcurridos a partir de la fecha
-				return dtDiff.Day - 1;
-
-			}catch (Exception ex) {
-				throw (ex);
-			}
-		}
-
 		Boolean ValidateForm() {
 			Int16 iTemp;
 
@@ -352,7 +329,29 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 			ComboPaises();
 			ComboPaisesOrigen();
 
-			if (!String.IsNullOrEmpty(ciudadanoId)) { ObtenerDetalleCiudadano(Convert.ToInt32(ciudadanoId)); }
+			// Configurar wucFastCatalog's
+			this.wucFastCatalogPais.SetCatalogType(Include.WebUserControls.wucFastCatalog.FastCatalogTypes.NuevoPais, true);
+			this.wucFastCatalogEstado.SetCatalogType(Include.WebUserControls.wucFastCatalog.FastCatalogTypes.NuevoEstado, false);
+			this.wucFastCatalogCiudad.SetCatalogType(Include.WebUserControls.wucFastCatalog.FastCatalogTypes.NuevoMunicipio, false);
+			this.wucFastCatalogColonia.SetCatalogType(Include.WebUserControls.wucFastCatalog.FastCatalogTypes.NuevaColonia, false);
+
+			this.wucFastCatalogPaisOrigen.SetCatalogType(Include.WebUserControls.wucFastCatalog.FastCatalogTypes.NuevoPais, true);
+			this.wucFastCatalogEstadoOrigen.SetCatalogType(Include.WebUserControls.wucFastCatalog.FastCatalogTypes.NuevoEstado, false);
+			this.wucFastCatalogCiudadOrigen.SetCatalogType(Include.WebUserControls.wucFastCatalog.FastCatalogTypes.NuevoMunicipio, false);
+
+			// Modo Edición
+			if (!String.IsNullOrEmpty(ciudadanoId)) {
+
+				ObtenerDetalleCiudadano(Convert.ToInt32(ciudadanoId));
+
+				// Habilitar wucFastCatalog's
+				this.wucFastCatalogEstado.Enabled = true;
+				this.wucFastCatalogCiudad.Enabled = true;
+				this.wucFastCatalogColonia.Enabled = true;
+
+				this.wucFastCatalogEstadoOrigen.Enabled = true;
+				this.wucFastCatalogCiudadOrigen.Enabled = true;
+			}
 
 			// Foco
 			ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.txtNombre.ClientID + "'); }", true);
@@ -391,17 +390,24 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 		}
 
 
-		// Eventos de DropDownList en cascada
+		// Eventos [Domicilio] de DropDownList en cascada (ordenados por precedencia)
 
-		protected void ddlCiudad_SelectedIndexChanged(object sender, EventArgs e){
+		protected void ddlPais_SelectedIndexChanged(object sender, EventArgs e){
 			try
 			{
 
 				// Llenado de combos en cascada
+				ComboEstados();
+				ComboCiudades();
 				ComboColonia();
 
+				// Habilitar/Inhabilitar el control de Estado
+				this.wucFastCatalogEstado.Enabled = (this.ddlPais.SelectedIndex == 0 ? false : true);
+				this.wucFastCatalogCiudad.Enabled = (this.ddlEstado.SelectedIndex == 0 ? false : true);
+				this.wucFastCatalogColonia.Enabled = (this.ddlCiudad.SelectedIndex == 0 ? false : true);
+
 				// Foco
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlColonia.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlEstado.ClientID + "'); }", true);
 
 			}catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNombre.ClientID + "'); }", true);
@@ -416,6 +422,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				ComboCiudades();
 				ComboColonia();
 
+				// Habilitar/Inhabilitar el control de Ciudad
+				this.wucFastCatalogCiudad.Enabled = (this.ddlEstado.SelectedIndex == 0 ? false : true);
+				this.wucFastCatalogColonia.Enabled = (this.ddlCiudad.SelectedIndex == 0 ? false : true);
+
 				// Foco
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlCiudad.ClientID + "'); }", true);
 
@@ -424,35 +434,26 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 			}
 		}
 
-		protected void ddlEstadoOrigen_SelectedIndexChanged(object sender, EventArgs e){
-			try
-			{
-				ComboCiudadesOrigen();
-
-				// Foco
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlCiudadOrigen.ClientID + "'); }", true);
-
-			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNombre.ClientID + "'); }", true);
-			}
-		}
-
-		protected void ddlPais_SelectedIndexChanged(object sender, EventArgs e){
+		protected void ddlCiudad_SelectedIndexChanged(object sender, EventArgs e){
 			try
 			{
 
 				// Llenado de combos en cascada
-				ComboEstados();
-				ComboCiudades();
 				ComboColonia();
 
+				// Habilitar/Inhabilitar el control de Colonia
+				this.wucFastCatalogColonia.Enabled = (this.ddlCiudad.SelectedIndex == 0 ? false : true);
+
 				// Foco
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlEstado.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlColonia.ClientID + "'); }", true);
 
 			}catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNombre.ClientID + "'); }", true);
 			}
 		}
+
+
+		// Eventos [Información de Origen] de DropDownList en cascada (ordenados por precedencia)
 
 		protected void ddlPaisOrigen_SelectedIndexChanged(object sender, EventArgs e){
 			try
@@ -462,8 +463,390 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				ComboEstadosOrigen();
 				ComboCiudadesOrigen();
 
+				// Habilitar/Inhabilitar el control de Estado
+				this.wucFastCatalogEstadoOrigen.Enabled = (this.ddlPaisOrigen.SelectedIndex == 0 ? false : true);
+				this.wucFastCatalogCiudadOrigen.Enabled = (this.ddlEstadoOrigen.SelectedIndex == 0 ? false : true);
+
 				// Foco
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlEstadoOrigen.ClientID + "'); }", true);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNombre.ClientID + "'); }", true);
+			}
+		}
+		
+		protected void ddlEstadoOrigen_SelectedIndexChanged(object sender, EventArgs e){
+			try
+			{
+
+				// Llenado de combos en cascada
+				ComboCiudadesOrigen();
+
+				// Habilitar/Inhabilitar el control de Ciudad
+				this.wucFastCatalogCiudadOrigen.Enabled = (this.ddlEstadoOrigen.SelectedIndex == 0 ? false : true);
+
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlCiudadOrigen.ClientID + "'); }", true);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNombre.ClientID + "'); }", true);
+			}
+		}
+
+
+		// Eventos [Domicilio] de wucFastCatalog (ordenados por precedencia)
+
+		protected void wucFastCatalogEstado_Click(){
+			try
+			{
+
+				// Pais asociado al estado
+				this.wucFastCatalogEstado.PaisID = Int32.Parse(this.ddlPais.SelectedItem.Value);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNombre.ClientID + "'); }", true);
+			}
+		}
+
+		protected void wucFastCatalogCiudad_Click(){
+			try
+			{
+
+				// Estado asociado al estado
+				this.wucFastCatalogCiudad.EstadoID = Int32.Parse(this.ddlEstado.SelectedItem.Value);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNombre.ClientID + "'); }", true);
+			}
+		}
+
+		protected void wucFastCatalogColonia_Click(){
+			try
+			{
+
+				// Ciudad asociado al estado
+				this.wucFastCatalogColonia.MunicipioID = Int32.Parse(this.ddlCiudad.SelectedItem.Value);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNombre.ClientID + "'); }", true);
+			}
+		}
+
+		
+		protected void wucFastCatalogPais_Close(){
+			try
+			{
+
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlPais.ClientID + "'); }", true);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNombre.ClientID + "'); }", true);
+			}
+		}
+
+		protected void wucFastCatalogEstado_Close(){
+			try
+			{
+
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlEstado.ClientID + "'); }", true);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNombre.ClientID + "'); }", true);
+			}
+		}
+
+		protected void wucFastCatalogCiudad_Close(){
+			try
+			{
+
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlCiudad.ClientID + "'); }", true);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNombre.ClientID + "'); }", true);
+			}
+		}
+
+		protected void wucFastCatalogColonia_Close(){
+			try
+			{
+
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlColonia.ClientID + "'); }", true);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNombre.ClientID + "'); }", true);
+			}
+		}
+
+
+		protected void wucFastCatalogPais_ItemCreated(){
+			String sPaisOrigenValue = "";
+
+			try
+			{
+
+				// Obtener el valor del pais origen seleccionado
+				sPaisOrigenValue = this.ddlPaisOrigen.SelectedValue;
+
+				// Recálculo de Paises
+				ComboPaises();
+				ComboPaisesOrigen();
+
+				// Limpiar combos de cascada descendentes
+				this.ddlEstado.Items.Clear();
+				this.ddlCiudad.Items.Clear();
+				this.ddlColonia.Items.Clear();
+
+				// Seleccionar Items
+				this.ddlPais.SelectedValue = this.wucFastCatalogPais.ItemCreatedID.ToString();
+				this.ddlPaisOrigen.SelectedValue = sPaisOrigenValue;
+
+				// Habilitar/Inhabilitar controles de FastCatalog
+				this.wucFastCatalogEstado.Enabled = true;
+				this.wucFastCatalogCiudad.Enabled = false;
+				this.wucFastCatalogColonia.Enabled = false;
+
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlEstado.ClientID + "'); }", true);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNombre.ClientID + "'); }", true);
+			}
+		}
+
+		protected void wucFastCatalogEstado_ItemCreated(){
+			String sEstadoOrigenValue = "";
+
+			try
+			{
+
+				// Obtener el valor del estado origen seleccionado
+				sEstadoOrigenValue = this.ddlEstadoOrigen.SelectedValue;
+
+				// Recálculo de Estados
+				ComboEstados();
+				ComboEstadosOrigen();
+
+				// Limpiar combos de cascada descendentes
+				this.ddlCiudad.Items.Clear();
+				this.ddlColonia.Items.Clear();
+
+				// Seleccionar Items
+				this.ddlEstado.SelectedValue = this.wucFastCatalogEstado.ItemCreatedID.ToString();
+				this.ddlEstadoOrigen.SelectedValue = sEstadoOrigenValue;
+
+				// Habilitar/Inhabilitar controles de FastCatalog
+				this.wucFastCatalogCiudad.Enabled = true;
+				this.wucFastCatalogColonia.Enabled = false;
+
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlCiudad.ClientID + "'); }", true);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNombre.ClientID + "'); }", true);
+			}
+		}
+
+		protected void wucFastCatalogCiudad_ItemCreated(){
+			String sCiudadOrigenValue = "";
+
+			try
+			{
+
+				// Obtener el valor de la ciudad origen seleccionada
+				sCiudadOrigenValue = this.ddlCiudadOrigen.SelectedValue;
+
+				// Recálculo de Ciudades
+				ComboCiudades();
+				ComboCiudadesOrigen();
+
+				// Limpiar combos de cascada descendentes
+				this.ddlColonia.Items.Clear();
+
+				// Seleccionar Items
+				this.ddlCiudad.SelectedValue = this.wucFastCatalogCiudad.ItemCreatedID.ToString();
+				this.ddlCiudadOrigen.SelectedValue = sCiudadOrigenValue;
+
+				// Habilitar/Inhabilitar controles de FastCatalog
+				this.wucFastCatalogColonia.Enabled = true;
+
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlColonia.ClientID + "'); }", true);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNombre.ClientID + "'); }", true);
+			}
+		}
+
+		protected void wucFastCatalogColonia_ItemCreated(){
+			try
+			{
+
+				// Recálculo de Colonias
+				ComboColonia();
+
+				// Seleccionar el nuevo Item Creado
+				this.ddlColonia.SelectedValue = this.wucFastCatalogColonia.ItemCreatedID.ToString();
+
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlColonia.ClientID + "'); }", true);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNombre.ClientID + "'); }", true);
+			}
+		}
+
+
+		// Eventos [Domicilio] de wucFastCatalog (ordenados por precedencia)
+
+		protected void wucFastCatalogEstadoOrigen_Click(){
+			try
+			{
+
+				// Pais Origen asociado al estado
+				this.wucFastCatalogEstadoOrigen.PaisID = Int32.Parse(this.ddlPaisOrigen.SelectedItem.Value);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNombre.ClientID + "'); }", true);
+			}
+		}
+
+		protected void wucFastCatalogCiudadOrigen_Click(){
+			try
+			{
+
+				// Estado Origen asociado al estado
+				this.wucFastCatalogCiudadOrigen.EstadoID = Int32.Parse(this.ddlEstadoOrigen.SelectedItem.Value);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNombre.ClientID + "'); }", true);
+			}
+		}
+
+
+		protected void wucFastCatalogPaisOrigen_Close(){
+			try
+			{
+
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlPaisOrigen.ClientID + "'); }", true);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNombre.ClientID + "'); }", true);
+			}
+		}
+
+		protected void wucFastCatalogEstadoOrigen_Close(){
+			try
+			{
+
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlEstadoOrigen.ClientID + "'); }", true);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNombre.ClientID + "'); }", true);
+			}
+		}
+
+		protected void wucFastCatalogCiudadOrigen_Close(){
+			try
+			{
+
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlCiudadOrigen.ClientID + "'); }", true);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNombre.ClientID + "'); }", true);
+			}
+		}
+
+
+		protected void wucFastCatalogPaisOrigen_ItemCreated(){
+			String sPaisValue = "";
+
+			try
+			{
+
+				// Obtener el valor del pais seleccionado
+				sPaisValue = this.ddlPais.SelectedValue;
+
+				// Recálculo de Paises
+				ComboPaises();
+				ComboPaisesOrigen();
+
+				// Limpiar combos de cascada descendentes
+				this.ddlEstadoOrigen.Items.Clear();
+				this.ddlCiudadOrigen.Items.Clear();
+
+				// Seleccionar Items
+				this.ddlPaisOrigen.SelectedValue = this.wucFastCatalogPais.ItemCreatedID.ToString();
+				this.ddlPais.SelectedValue = sPaisValue;
+
+				// Habilitar/Inhabilitar controles de FastCatalog
+				this.wucFastCatalogEstadoOrigen.Enabled = true;
+				this.wucFastCatalogCiudadOrigen.Enabled = false;
+
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlEstadoOrigen.ClientID + "'); }", true);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNombre.ClientID + "'); }", true);
+			}
+		}
+
+		protected void wucFastCatalogEstadoOrigen_ItemCreated(){
+			String sEstadoValue = "";
+
+			try
+			{
+
+				// Obtener el valor del estado seleccionado
+				sEstadoValue = this.ddlEstado.SelectedValue;
+
+				// Recálculo de Estados
+				ComboEstados();
+				ComboEstadosOrigen();
+
+				// Limpiar combos de cascada descendentes
+				this.ddlCiudadOrigen.Items.Clear();
+
+				// Seleccionar Items
+				this.ddlEstadoOrigen.SelectedValue = this.wucFastCatalogEstadoOrigen.ItemCreatedID.ToString();
+				this.ddlEstado.SelectedValue = sEstadoValue;
+
+				// Habilitar/Inhabilitar controles de FastCatalog
+				this.wucFastCatalogCiudadOrigen.Enabled = true;
+
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlCiudadOrigen.ClientID + "'); }", true);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNombre.ClientID + "'); }", true);
+			}
+		}
+
+		protected void wucFastCatalogCiudadOrigen_ItemCreated(){
+			String sCiudadValue = "";
+
+			try
+			{
+
+				// Obtener el valor de la ciudad seleccionado
+				sCiudadValue = this.ddlCiudad.SelectedValue;
+
+				// Recálculo de Ciudades
+				ComboCiudades();
+				ComboCiudadesOrigen();
+
+				// Seleccionar Items
+				this.ddlCiudadOrigen.SelectedValue = this.wucFastCatalogCiudadOrigen.ItemCreatedID.ToString();
+				this.ddlCiudad.SelectedValue = sCiudadValue;
+
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlCiudadOrigen.ClientID + "'); }", true);
 
 			}catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNombre.ClientID + "'); }", true);
@@ -938,9 +1321,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                         txtApellidoPaterno.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["ApellidoPaterno"].ToString();
                         txtApellidoMaterno.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["ApellidoMaterno"].ToString();
                         ddlSexo.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["SexoId"].ToString();
-
-						this.txtEdad.Text = AniosTranscurridos(DateTime.Parse(oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["FechaNacimiento"].ToString())).ToString();
-
+						this.txtEdad.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["Anios"].ToString();
                         ddlNacionalidad.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["NacionalidadId"].ToString();
                         ddlOcupacion.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["OcupacionId"].ToString();
                         ddlEscolaridad.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["EscolaridadId"].ToString();

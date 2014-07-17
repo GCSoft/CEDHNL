@@ -150,6 +150,76 @@ namespace SIAQ.DataAccess.Object
 
         }
 
+		///<remarks>
+		///   <name>DAEstado.InsertCiudad_FastCatalog</name>
+		///   <create>17-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Crea una nueva Ciudad desde el wucFastCatalog</summary>
+		///<param name="oENTCiudad">Entidad de Ciudad con los parámetros necesarios para crear el registro</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse InsertCiudad_FastCatalog(ENTCiudad oENTCiudad, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspcatCiudad_Ins_FastCatalog", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("EstadoId", SqlDbType.Int);
+			sqlPar.Value = oENTCiudad.EstadoId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Nombre", SqlDbType.VarChar);
+			sqlPar.Value = oENTCiudad.Nombre;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Descripcion", SqlDbType.VarChar);
+			sqlPar.Value = oENTCiudad.Descripcion;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Activo", SqlDbType.TinyInt);
+			sqlPar.Value = oENTCiudad.Activo;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try
+			{
+
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+
+			}catch (SqlException sqlEx){
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+
+			}finally{
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
         ///<remarks>
         ///   <name>DAcatCiudad.updatecatCiudad</name>
         ///   <create>27/ene/2014</create>

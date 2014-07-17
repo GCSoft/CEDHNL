@@ -115,6 +115,39 @@ namespace SIAQ.BusinessProcess.Object
 
         }
 
+		///<remarks>
+		///   <name>BPEstado.InsertEstado_FastCatalog</name>
+		///   <create>17-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Crea un nuevo Estado desde el wucFastCatalog</summary>
+		///<param name="oENTEstado">Entidad de Estado con los parámetros necesarios para crear el registro</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse InsertEstado_FastCatalog(ENTEstado oENTEstado){
+			DAEstado oDAEstado = new DAEstado();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Transacción en base de datos
+				oENTResponse = oDAEstado.InsertEstado_FastCatalog(oENTEstado, this.sConnectionApplication, 0);
+
+				// Validación de error en consulta
+				if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+				// Validación de mensajes de la BD
+				oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+				if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
         ///<remarks>
         ///   <name>BPcatEstadoupdatecatEstado</name>
         ///   <create>27/ene/2014</create>

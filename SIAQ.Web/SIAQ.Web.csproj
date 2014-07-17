@@ -481,6 +481,8 @@
     <Content Include="Include\Image\Buttons\Expand.png" />
     <Content Include="Include\Image\Buttons\Expand_Header.png" />
     <Content Include="Include\Image\Buttons\Expand_Over.png" />
+    <Content Include="Include\Image\Buttons\FastCatalog_Off.png" />
+    <Content Include="Include\Image\Buttons\FastCatalog_On.png" />
     <Content Include="Include\Image\Buttons\Restore.png" />
     <Content Include="Include\Image\Buttons\Restore_Over.png" />
     <Content Include="Include\Image\Buttons\Search.png" />
@@ -540,8 +542,8 @@
     <Content Include="Include\Style\Table.css" />
     <Content Include="Include\WebUserControls\wucBusquedaCiudadano.ascx" />
     <Content Include="Include\WebUserControls\wucBusquedaUsuario.ascx" />
+    <Content Include="Include\WebUserControls\wucFastCatalog.ascx" />
     <Content Include="Include\WebUserControls\wucFixedDateTime.ascx" />
-    <Content Include="Include\WebUserControls\wucTimeMask.ascx" />
     <Content Include="Index.aspx" />
     <Content Include="Application\WebApp\Private\Home\AppIndex.aspx" />
     <Content Include="Application\WebApp\Private\SysApp\saLogout.aspx" />
@@ -1307,19 +1309,19 @@
     <Compile Include="Include\WebUserControls\wucBusquedaUsuario.ascx.designer.cs">
       <DependentUpon>wucBusquedaUsuario.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Include\WebUserControls\wucFastCatalog.ascx.cs">
+      <DependentUpon>wucFastCatalog.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Include\WebUserControls\wucFastCatalog.ascx.designer.cs">
+      <DependentUpon>wucFastCatalog.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Include\WebUserControls\wucFixedDateTime.ascx.cs">
       <DependentUpon>wucFixedDateTime.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Include\WebUserControls\wucFixedDateTime.ascx.designer.cs">
       <DependentUpon>wucFixedDateTime.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Include\WebUserControls\wucTimeMask.ascx.cs">
-      <DependentUpon>wucTimeMask.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Include\WebUserControls\wucTimeMask.ascx.designer.cs">
-      <DependentUpon>wucTimeMask.ascx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Index.aspx.cs">

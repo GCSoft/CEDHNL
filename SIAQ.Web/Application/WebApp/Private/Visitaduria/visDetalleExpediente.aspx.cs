@@ -19,10 +19,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
         Function utilFunction = new Function();
 
         #region "Event"
-            protected void AcuerdoButton_Click(object sender, ImageClickEventArgs e)
-            {
-                Response.Redirect("/Application/WebApp/Private/Operation/opeAcuerdoCalifDefinitiva.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
-            }
+           
 
             protected void AgregarComentarioButton_Click(object sender, EventArgs e)
             {
@@ -34,10 +31,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
             }
 
-            protected void AsignarButton_Click(object sender, ImageClickEventArgs e)
-            {
-                Response.Redirect("/Application/WebApp/Private/Operation/opeAsignarVisitador.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
-            }
+            
 
             protected void CiudadanosGrid_RowCommand(object sender, GridViewCommandEventArgs e)
             {
@@ -60,55 +54,27 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 //pnlAction.Visible = false;
             }
 
-            protected void ComparecenciaPanel_Click(object sender, ImageClickEventArgs e)
-            {
-                Response.Redirect("/Application/WebApp/Private/Visitaduria/visComparecencia.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
-            }
-
-            protected void DiligenciasButton_Click(object sender, ImageClickEventArgs e)
-            {
-                Response.Redirect("/Application/WebApp/Private/Operation/opeDiligenciaExpediente.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
-            }
-
-            protected void DocumentoButton_Click(object sender, ImageClickEventArgs e)
-            {
-                Response.Redirect("/Application/WebApp/Private/Visitaduria/visAgregarDocumento.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
-            }
+            
 
             protected void DocumentList_ItemDataBound(Object sender, DataListItemEventArgs e)
             {
                 DocumentListItemDataBound(e);
             }
 
-            protected void EnviarButton_Click(object sender, ImageClickEventArgs e)
-            {
-                Response.Redirect("/Application/WebApp/Private/Visitaduria/visEnviarExpediente.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
-            }
+           
 
-            protected void InformacionGeneralButton_Click(object sender, ImageClickEventArgs e)
-            {
-                Response.Redirect("/Application/WebApp/Private/Visitaduria/visDetalleExpediente.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
-            }
+            
 
             protected void Page_Load(object sender, EventArgs e)
             {
                 PageLoad();
             }
 
-            protected void RecomendacionButton_Click(object sender, ImageClickEventArgs e)
-            {
-                Response.Redirect("/Application/WebApp/Private/Visitaduria/visRecomendacionExpediente.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
-            }
+            
 
-            protected void ResolucionButton_Click(object sender, ImageClickEventArgs e)
-            {
-                Response.Redirect("/Application/WebApp/Private/Visitaduria/visResolucionExpediente.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
-            }
+            
 
-            protected void SeguimientoButton_Click(object sender, ImageClickEventArgs e)
-            {
-                Response.Redirect("/Application/WebApp/Private/Visitaduria/visSeguimientoExpediente.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
-            }
+            
         #endregion
 
         #region "Method"
@@ -396,5 +362,51 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 }
             }
         #endregion
+
+
+		// Opciones de Menu (en orden de aparación)
+
+		protected void InformacionGeneralButton_Click(object sender, ImageClickEventArgs e){
+			Response.Redirect("visDetalleExpediente.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
+		}
+
+		protected void AsignarButton_Click(object sender, ImageClickEventArgs e){
+			Response.Redirect("~/Application/WebApp/Private/Operation/opeAsignarVisitador.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
+		}
+
+		protected void AcuerdoButton_Click(object sender, ImageClickEventArgs e){
+			Response.Redirect("~/Application/WebApp/Private/Operation/opeAcuerdoCalifDefinitiva.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
+		}
+
+		protected void DiligenciasButton_Click(object sender, ImageClickEventArgs e){
+			Response.Redirect("~/Application/WebApp/Private/Operation/opeDiligenciaExpediente.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
+		}
+
+		protected void DocumentoButton_Click(object sender, ImageClickEventArgs e){
+			Response.Redirect("visAgregarDocumento.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
+		}
+
+		protected void SeguimientoButton_Click(object sender, ImageClickEventArgs e){
+			Response.Redirect("visSeguimientoExpediente.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
+		}
+
+		protected void ComparecenciaPanel_Click(object sender, ImageClickEventArgs e){
+			Response.Redirect("visComparecencia.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
+		}
+
+		protected void ResolucionButton_Click(object sender, ImageClickEventArgs e){
+			Response.Redirect("visResolucionExpediente.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
+		}
+
+		protected void RecomendacionButton_Click(object sender, ImageClickEventArgs e){
+			Response.Redirect("visRecomendacionExpediente.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
+		}
+
+		protected void EnviarButton_Click(object sender, ImageClickEventArgs e){
+			Response.Redirect("visEnviarExpediente.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
+		}
+
+
+
     }
 }

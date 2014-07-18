@@ -93,6 +93,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     case 9://Director
                         Response.Redirect("~/Application/WebApp/Private/Visitaduria/visDetalleExpediente.aspx?expId=" + expedienteId);
                         break;
+					default:
+						Response.Redirect("~/Application/WebApp/Private/Visitaduria/visDetalleExpediente.aspx?expId=" + expedienteId);
+						break;
                 }
 
             }

@@ -48,6 +48,16 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 					ObservacionesLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["Observaciones"].ToString();
 					LugarHechosLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["NombreLugarHechos"].ToString();
 					DireccionHechosLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[0].Rows[0]["DireccionHechos"].ToString();
+
+					FechaRecepcionLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[1].Rows[0]["FechaRecepcion"].ToString();
+					FechaAsignacionLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[1].Rows[0]["FechaAsignacion"].ToString();
+					FechaGestionLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[1].Rows[0]["FechaInicioGestion"].ToString();
+					FechaModificacionLabel.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[1].Rows[0]["UltimaModificacion"].ToString();
+
+					// Datos de calificación
+					this.CalificacionList.SelectedValue = SolicitudProcess.SolicitudEntity.ResultData.Tables[2].Rows[0]["CalificacionId"].ToString();
+					this.FundamentoBox.Text = SolicitudProcess.SolicitudEntity.ResultData.Tables[2].Rows[0]["Fundamento"].ToString();
+
 				}
 			}
 			else

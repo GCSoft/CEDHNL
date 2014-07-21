@@ -244,7 +244,7 @@
                         <tr style="height: 20px;"><td></td></tr>
                         <tr>
 							<td class="tdActionCeldaLeyendaItem">
-								<CKEditor:CKEditorControl ID="ckeComentario" BasePath="~/Include/Components/CKEditor/Core/" runat="server"></CKEditor:CKEditorControl>
+								<CKEditor:CKEditorControl ID="ckeComentario" BasePath="~/Include/Components/CKEditor/Core/" runat="server" MaxLength="8000"></CKEditor:CKEditorControl>
 							</td>
 						</tr>
                         <tr style="height:5px;"><td></td></tr>

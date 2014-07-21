@@ -374,6 +374,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 							return;
 						}
 
+						// Si es Doctor pero el expediente no está asignado a él no lo podrá editar
+						if (SessionEntity.idRol == 14 && Int32.Parse(this.hddFuncionarioId.Value) != SessionEntity.FuncionarioId){
+							ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('No cuenta con permisos para realizar ésta opción', 'Warning', false);", true);
+							return;
+						}
+
 						this.Response.Redirect("VicDictamenMedico.aspx?key=" + this.hddAtencionId.Value.ToString() + "|" + this.SenderId.Value.ToString() + "|" + CiudadanoId, false);
 						break;
 				}
@@ -422,23 +428,23 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		}
 
 		protected void gvCiudadano_Sorting(object sender, GridViewSortEventArgs e){
-			DataTable TableAutoridad = null;
-			DataView ViewAutoridad = null;
+			DataTable tblData = null;
+			DataView viewData = null;
 
 			try
 			{
 				//Obtener DataTable y View del GridView
-				TableAutoridad = utilFunction.ParseGridViewToDataTable(gvCiudadano, false);
-				ViewAutoridad = new DataView(TableAutoridad);
+				tblData = utilFunction.ParseGridViewToDataTable(gvCiudadano, false);
+				viewData = new DataView(tblData);
 
 				//Determinar ordenamiento
 				hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
 
 				//Ordenar Vista
-				ViewAutoridad.Sort = hddSort.Value;
+				viewData.Sort = hddSort.Value;
 
 				//Vaciar datos
-				this.gvCiudadano.DataSource = ViewAutoridad;
+				this.gvCiudadano.DataSource = viewData;
 				this.gvCiudadano.DataBind();
 
 			}catch (Exception ex){

@@ -93,7 +93,7 @@
                 <td colspan="5"></td>
             </tr>
 			<tr>
-                <td colspan="7" style="text-align:left;"><CKEditor:CKEditorControl ID="ckeDictamen" BasePath="~/Include/Components/CKEditor/Core/" runat="server"></CKEditor:CKEditorControl></td>
+                <td colspan="7" style="text-align:left;"><CKEditor:CKEditorControl ID="ckeDictamen" BasePath="~/Include/Components/CKEditor/Core/" runat="server" MaxLength="8000"></CKEditor:CKEditorControl></td>
             </tr>
         </table>
 

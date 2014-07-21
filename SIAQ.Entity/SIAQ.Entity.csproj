@@ -73,12 +73,12 @@
     <Compile Include="Object\ENTOcupacion.cs" />
     <Compile Include="Object\ENTPais.cs" />
     <Compile Include="Object\ENTPuesto.cs" />
+    <Compile Include="Object\ENTQueja.cs" />
     <Compile Include="Object\ENTRecomendacion.cs" />
     <Compile Include="Object\ENTRecomendacionAutoridad.cs" />
     <Compile Include="Object\ENTSeguimientoRecomendacion.cs" />
     <Compile Include="Object\ENTSolicitud.cs" />
     <Compile Include="Object\ENTSolicitudCiudadano.cs" />
-    <Compile Include="Object\ENTSolicitudComentario.cs" />
     <Compile Include="Object\ENTTipoCiudadano.cs" />
     <Compile Include="Object\ENTTipoComparecencia.cs" />
     <Compile Include="Object\ENTTipoDocumento.cs" />

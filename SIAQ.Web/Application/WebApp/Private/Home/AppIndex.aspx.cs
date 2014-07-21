@@ -48,15 +48,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Home
 					break;
 
 				case 4: // Queja - Secretaria
-					this.Response.Redirect("../Operation/opeSolicitudSecretaria.aspx", false);
+					this.Response.Redirect("../Quejas/QueListadoSolicitudes.aspx", false);
 					break;
 
 				case 5: // Queja - Funcionario
-					this.Response.Redirect("../Operation/opeSolicitudFuncionario.aspx", false);
+					this.Response.Redirect("../Quejas/QueListadoSolicitudes.aspx", false);
 					break;
 
 				case 6: // Queja - Director
-					this.Response.Redirect("../Operation/opeBusquedaSolicitud.aspx", false);
+					this.Response.Redirect("../Quejas/QueListadoSolicitudes.aspx", false);
 					break;
 
 				case 7: // Visitaduría - Secretaria

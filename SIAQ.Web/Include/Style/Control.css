@@ -133,29 +133,28 @@
 	height:20px;
 }
 
-.Button_General_Verde{
+.Button_General_Disabled{
   	font-family: Arial;
-	font-size: 10px;
-	color: #003366;
-	cursor:pointer;
-	background-color: #66FF66;
+	font-size: 11px;
+	color: #FFFFFF;
+	background-color: #CCCCCC;
 	border-top-width: 1px;
 	border-right-width: 1px;
 	border-bottom-width: 1px;
 	border-left-width: 1px;
 	border-top-style: solid;
-	border-top-color: #808080;
-	border-right-color: #808080;
-	border-bottom-color: #808080;
-	border-left-color: #808080;
+	border-top-color: #DDDDDD;
+	border-right-color: #DDDDDD;
+	border-bottom-color: #DDDDDD;
+	border-left-color: #DDDDDD;
 	margin-top: 4px;
 	font-weight: bold;
 	margin-bottom: 4px;
-	padding-top: 0px;
+	padding-top: 2px;
 	padding-right: 0px;
 	padding-bottom: 2px;
 	padding-left: 0px;
-	height:18px;
+	height:20px;
 }
 
 /*CALENDAR*/

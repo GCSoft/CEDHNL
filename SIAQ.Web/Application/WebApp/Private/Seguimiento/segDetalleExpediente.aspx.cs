@@ -369,6 +369,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 							return;
 						}
 
+						// Si es Defensor pero el expediente no está asignado a él no lo podrá editar
+						if (SessionEntity.idRol == 11 && Int32.Parse(this.FuncionarioIdHidden.Value) != SessionEntity.FuncionarioId){
+							ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('No cuenta con permisos para realizar ésta opción', 'Warning', false);", true);
+							return;
+						}
+
 						this.Response.Redirect("segSeguimientoRecomendacion.aspx?key=" + this.ExpedienteIdHidden.Value.ToString() + "|" + this.SenderId.Value.ToString() + "|" + RecomendacionId, false);
 						break;
 				}

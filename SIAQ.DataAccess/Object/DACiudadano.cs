@@ -224,45 +224,6 @@ namespace SIAQ.DataAccess.Object
 				}
 			}
 
-			public DataSet SelectCiudadanosAgregados(ENTCiudadano ENTCiudadano, string ConnectionString)
-			{
-				DataSet ResultData = new DataSet();
-				SqlConnection Connection = new SqlConnection(ConnectionString);
-				SqlCommand Command;
-				SqlParameter Parameter;
-				SqlDataAdapter DataAdapter;
-
-				try
-				{
-					Command = new SqlCommand("SelectSolicitudCiudadano", Connection);
-					Command.CommandType = CommandType.StoredProcedure;
-
-					Parameter = new SqlParameter("SolicitudId", SqlDbType.Int);
-					Parameter.Value = ENTCiudadano.SolicitudId;
-					Command.Parameters.Add(Parameter);
-
-
-					DataAdapter = new SqlDataAdapter(Command);
-
-					Connection.Open();
-					DataAdapter.Fill(ResultData);
-					Connection.Close();
-
-					return ResultData;
-
-				}
-				catch (SqlException Exception)
-				{
-					_ErrorId = Exception.Number;
-					_ErrorDescription = Exception.Message;
-
-					if (Connection.State == ConnectionState.Open)
-						Connection.Close();
-
-					return ResultData;
-				}
-			}
-
 			///<remarks>
 			///   <name>DACiudadano.SelectComboEscolaridad</name>
 			///   <create>03/abr/2014</create>

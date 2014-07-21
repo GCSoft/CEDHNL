@@ -115,7 +115,7 @@
                 <td colspan="5" ></td>
             </tr>
 			<tr>
-                <td colspan="7" style="text-align:left;"><CKEditor:CKEditorControl ID="ckeDetalle" BasePath="~/Include/Components/CKEditor/Core/" runat="server" Height="90px"></CKEditor:CKEditorControl></td>
+                <td colspan="7" style="text-align:left;"><CKEditor:CKEditorControl ID="ckeDetalle" BasePath="~/Include/Components/CKEditor/Core/" runat="server" Height="90px" MaxLength="8000"></CKEditor:CKEditorControl></td>
             </tr>
 			<tr style="height:10px;"><td colspan="7" ></td></tr>
 			<tr>
@@ -124,7 +124,7 @@
                 <td colspan="5" ></td>
             </tr>
 			<tr>
-                <td colspan="7" style="text-align:left;"><CKEditor:CKEditorControl ID="ckeResultado" BasePath="~/Include/Components/CKEditor/Core/" runat="server" Height="90px"></CKEditor:CKEditorControl></td>
+                <td colspan="7" style="text-align:left;"><CKEditor:CKEditorControl ID="ckeResultado" BasePath="~/Include/Components/CKEditor/Core/" runat="server" Height="90px" MaxLength="8000"></CKEditor:CKEditorControl></td>
             </tr>
         </table>
 

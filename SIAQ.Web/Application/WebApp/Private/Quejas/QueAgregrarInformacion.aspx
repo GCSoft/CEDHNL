@@ -35,30 +35,24 @@
                 <td class="Nombre">Calificación</td>
                 <td class="Espacio"></td>
                 <td class="Etiqueta"><asp:Label ID="CalificacionLabel" runat="server" Text=""></asp:Label></td>
-                <td colspan="4"></td>
-            </tr>
-            <tr>
-                <td class="Nombre">Estatus</td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta"><asp:Label ID="EstatusaLabel" runat="server" Text=""></asp:Label></td>
                 <td class="Espacio"></td>
                 <td class="Nombre">Fecha de recepción</td>
                 <td class="Espacio"></td>
                 <td class="Etiqueta"><asp:Label ID="FechaRecepcionLabel" runat="server" Text=""></asp:Label></td>
             </tr>
             <tr>
-                <td class="Nombre">Funcionario</td>
+                <td class="Nombre">Estatus</td>
                 <td class="Espacio"></td>
-                <td class="Etiqueta"><asp:Label ID="FuncionarioLabel" runat="server" Text=""></asp:Label></td>
+                <td class="Etiqueta"><asp:Label ID="EstatusaLabel" runat="server" Text=""></asp:Label></td>
                 <td class="Espacio"></td>
                 <td class="Nombre">Fecha de asignación</td>
                 <td class="Espacio"></td>
                 <td class="Etiqueta"><asp:Label ID="FechaAsignacionLabel" runat="server" Text=""></asp:Label></td>
             </tr>
             <tr>
-                <td class="Nombre">Forma de contacto</td>
+                <td class="Nombre">Funcionario</td>
                 <td class="Espacio"></td>
-                <td class="Etiqueta"><asp:Label ID="ContactoLabel" runat="server" Text=""></asp:Label></td>
+                <td class="Etiqueta"><asp:Label ID="FuncionarioLabel" runat="server" Text=""></asp:Label></td>
                 <td class="Espacio"></td>
                 <td class="Nombre">Fecha de inicio gestión</td>
                 <td class="Espacio"></td>
@@ -72,6 +66,13 @@
                 <td class="Nombre">Última modificación</td>
                 <td class="Espacio"></td>
                 <td class="Etiqueta"><asp:Label ID="FechaModificacionLabel" runat="server" Text=""></asp:Label></td>
+            </tr>
+			 <tr>
+                <td class="Nombre">Forma de Contacto</td>
+                <td class="Espacio"></td>
+                <td class="Campo" colspan="5">
+					<asp:DropDownList ID="ddlFormaContacto" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList>
+				</td>
             </tr>
             <tr>
                 <td class="Nombre">Lugar de los hechos</td>

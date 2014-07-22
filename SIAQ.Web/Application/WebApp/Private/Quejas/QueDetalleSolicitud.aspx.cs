@@ -174,11 +174,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 						this.ConfirmarCierreExpedientePanel.Visible = true;
 						break;
 
-					case 4:	// Quejas - Secretaria
+					case 3:	// Recepción
 						this.InformacionPanel.Visible = true;
 						this.AgregrarInformacionPanel.Visible = true;
-						this.AsignarPanel.Visible = true;
-						this.CiudadanoPanel.Visible = false;
+						this.AsignarPanel.Visible = false;
+						this.CiudadanoPanel.Visible = true;
 						this.CalificarPanel.Visible = false;
 						this.AutoridadPanel.Visible = false;
 						this.DiligenciasPanel.Visible = false;
@@ -189,9 +189,24 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 						this.ConfirmarCierreExpedientePanel.Visible = false;
 						break;
 
-					case 5:	// Quejas - Funcionario
+					case 4:	// Quejas - Secretaria
 						this.InformacionPanel.Visible = true;
 						this.AgregrarInformacionPanel.Visible = true;
+						this.AsignarPanel.Visible = true;
+						this.CiudadanoPanel.Visible = true;
+						this.CalificarPanel.Visible = false;
+						this.AutoridadPanel.Visible = false;
+						this.DiligenciasPanel.Visible = false;
+						this.IndicadorPanel.Visible = false;
+						this.DocumentoPanel.Visible = false;
+						this.ImprimirPanel.Visible = true;
+						this.EnviarPanel.Visible = false;
+						this.ConfirmarCierreExpedientePanel.Visible = true;
+						break;
+
+					case 5:	// Quejas - Funcionario
+						this.InformacionPanel.Visible = true;
+						this.AgregrarInformacionPanel.Visible = false;
 						this.AsignarPanel.Visible = false;
 						this.CiudadanoPanel.Visible = true;
 						this.CalificarPanel.Visible = true;
@@ -258,9 +273,24 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 					this.EnviarPanel.Visible = false;
 				}
 
-				// Si es Director y el expediente no está en estatus de confirmación de cierre ocultar dicha opción
-				if (idRol == 6 && Int32.Parse(this.hddEstatusId.Value) != 4) {
-					this.ConfirmarCierreExpedientePanel.Visible = false;
+				// Si no es Secretaria y el expediente ya está asignado a un funcionario no puede agregar información
+				if (idRol != 4 && Int32.Parse(this.hddFuncionarioId.Value) != 0) {
+					this.AgregrarInformacionPanel.Visible = false;
+				}
+
+				// Si es Secretaria y el expediente ya está asignado a un funcionario no puede agregar ciudadanos
+				if (idRol == 3 && Int32.Parse(this.hddFuncionarioId.Value) != 0) {
+					this.CiudadanoPanel.Visible = false;
+				}
+
+				// Si es Secretaria y el expediente ya está asignado a un funcionario no puede agregar ciudadanos
+				if (idRol == 4 && Int32.Parse(this.hddFuncionarioId.Value) != 0) {
+					this.CiudadanoPanel.Visible = false;
+				}
+
+				// Si es Funcionario y el expediente está asignado a el puede agregar comentarios siempre y cuando no esté en estatus de confirmación de cierre
+				if (idRol == 5 && Int32.Parse(this.hddFuncionarioId.Value) == FuncionarioId) {
+					if (Int32.Parse(this.hddEstatusId.Value) != 4) { this.lnkAgregarComentario.Visible = true; }
 				}
 
 				// Si es System Administrator y el expediente no está en estatus de confirmación de cierre ocultar dicha opción
@@ -273,7 +303,17 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 					this.ConfirmarCierreExpedientePanel.Visible = false;
 				}
 
-				// Si el expediente está en estatus de confirmación de cierre o en canalización no se podrá operar
+				// Si es Secretaria y el expediente no está en estatus de confirmación de cierre ocultar dicha opción
+				if (idRol == 4 && Int32.Parse(this.hddEstatusId.Value) != 4) {
+					this.ConfirmarCierreExpedientePanel.Visible = false;
+				}
+
+				// Si es Director y el expediente no está en estatus de confirmación de cierre ocultar dicha opción
+				if (idRol == 6 && Int32.Parse(this.hddEstatusId.Value) != 4) {
+					this.ConfirmarCierreExpedientePanel.Visible = false;
+				}
+
+				// Si el expediente está en estatus de confirmación de cierre no se podrá operar
 				if ( Int32.Parse(this.hddEstatusId.Value) == 4 ){
 					this.AgregrarInformacionPanel.Visible = false;
 					this.AsignarPanel.Visible = false;
@@ -381,94 +421,18 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
             }
         }
 
-		protected void gvCiudadano_RowCommand(object sender, GridViewCommandEventArgs e){
-			ENTSession SessionEntity = new ENTSession();
-			String CiudadanoId;
-
-			String strCommand = "";
-			Int32 intRow = 0;
-
-			try
-			{
-
-				// Opción seleccionada
-				strCommand = e.CommandName.ToString();
-
-				// Se dispara el evento RowCommand en el ordenamiento
-				if (strCommand == "Sort") { return; }
-
-				// Fila
-				intRow = Int32.Parse(e.CommandArgument.ToString());
-
-				// Datakeys
-				CiudadanoId = this.gvCiudadano.DataKeys[intRow]["CiudadanoId"].ToString();
-
-				// Acción
-				switch (strCommand){
-					case "Eliminar":
-
-						// Obtener sesión
-						SessionEntity = (ENTSession)Session["oENTSession"];
-
-						// Si el expediente está en estatus de espera de confirmación de cierre no se podrá editar
-						if (Int32.Parse(this.hddEstatusId.Value) == 4) {
-							ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('No es posible editar ésta solicitud debido a que está a la espera de aprobación', 'Warning', false);", true);
-							return;
-						}
-
-						// Si no es Funcionario no podrá editar
-						if (SessionEntity.idRol != 1 && SessionEntity.idRol != 2 && SessionEntity.idRol != 5) {
-							ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('No cuenta con permisos para realizar ésta opción', 'Warning', false);", true);
-							return;
-						}
-
-						// Si es Funcionario pero el expediente no está asignado a él no lo podrá editar
-						if (SessionEntity.idRol == 5 && Int32.Parse(this.hddFuncionarioId.Value) != SessionEntity.FuncionarioId){
-							ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('No cuenta con permisos para realizar ésta opción', 'Warning', false);", true);
-							return;
-						}
-
-						Response.Redirect("QueAgregarCiudadanos.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value + "|" + CiudadanoId, false);
-						break;
-				}
-
-			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
-			}
-		}
-
 		protected void gvCiudadano_RowDataBound(object sender, GridViewRowEventArgs e){
-			ImageButton imgDelete = null;
-
-			String sNombreCompleto = "";
-			String sImagesAttributes = "";
-			String sToolTip = "";
-
 			try
 			{
 				
 				// Validación de que sea fila 
 				if (e.Row.RowType != DataControlRowType.DataRow) { return; }
 
-				// Obtener imagenes
-				imgDelete = (ImageButton)e.Row.FindControl("imgDelete");
-
-				// DataKeys
-				sNombreCompleto = this.gvCiudadano.DataKeys[e.Row.RowIndex]["NombreCompleto"].ToString();
-
-				// Tooltip Deletear Ciudadano
-				sToolTip = "Elliminar de la solicitud al Ciudadano [" + sNombreCompleto + "]";
-				imgDelete.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
-				imgDelete.Attributes.Add("onmouseout", "tooltip.hide();");
-				imgDelete.Attributes.Add("style", "cursor:hand;");
-
 				// Atributos Over
-				sImagesAttributes = "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png'; ";
-				e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
+				e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; ");
 
 				// Atributos Out
-				sImagesAttributes = "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png'; ";
-				e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
+				e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; ");
 
 			}catch (Exception ex){
 				throw (ex);

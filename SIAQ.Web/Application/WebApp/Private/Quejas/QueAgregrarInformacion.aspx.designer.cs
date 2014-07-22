@@ -40,15 +40,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         protected global::System.Web.UI.WebControls.Label CalificacionLabel;
         
         /// <summary>
-        /// EstatusaLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label EstatusaLabel;
-        
-        /// <summary>
         /// FechaRecepcionLabel control.
         /// </summary>
         /// <remarks>
@@ -58,13 +49,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         protected global::System.Web.UI.WebControls.Label FechaRecepcionLabel;
         
         /// <summary>
-        /// FuncionarioLabel control.
+        /// EstatusaLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label FuncionarioLabel;
+        protected global::System.Web.UI.WebControls.Label EstatusaLabel;
         
         /// <summary>
         /// FechaAsignacionLabel control.
@@ -76,13 +67,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         protected global::System.Web.UI.WebControls.Label FechaAsignacionLabel;
         
         /// <summary>
-        /// ContactoLabel control.
+        /// FuncionarioLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ContactoLabel;
+        protected global::System.Web.UI.WebControls.Label FuncionarioLabel;
         
         /// <summary>
         /// FechaGestionLabel control.
@@ -110,6 +101,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label FechaModificacionLabel;
+        
+        /// <summary>
+        /// ddlFormaContacto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlFormaContacto;
         
         /// <summary>
         /// ddlLugarHechos control.

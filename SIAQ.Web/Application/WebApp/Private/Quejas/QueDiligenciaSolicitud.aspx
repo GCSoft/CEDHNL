@@ -123,7 +123,7 @@
                         </tr>
                         <tr>
                             <td class="Nombre">
-                                Visitador que atienda
+                                Funcionario que atienda
                             </td>
                             <td class="Espacio">
                             </td>
@@ -141,7 +141,7 @@
                         </tr>
                         <tr>
                             <td class="Nombre">
-                                Visitador que ejecuta
+                                Funcionario que ejecuta
                             </td>
                             <td class="Espacio">
                             </td>
@@ -309,7 +309,7 @@
                                         Fecha
                                     </td>
                                     <td style="width: 220px;">
-                                        Visitador que ejecuta
+                                        Funcionario que ejecuta
                                     </td>
                                     <td style="width: 120px;">
                                         Tipo
@@ -331,7 +331,7 @@
                         <Columns>
                             <asp:BoundField DataField="DiligenciaId" Visible="false" />
                             <asp:BoundField DataField="Fecha" HeaderText="Fecha" SortExpression="Fecha" />
-                            <asp:BoundField DataField="NombreVisitadorEjecuta" HeaderText="Visitador que ejecuta"
+                            <asp:BoundField DataField="NombreVisitadorEjecuta" HeaderText="Funcionario que ejecuta"
                                 SortExpression="NombreVisitadorEjecuta"></asp:BoundField>
                             <asp:BoundField DataField="Tipo" HeaderText="Tipo" SortExpression="Tipo"></asp:BoundField>
                             <asp:BoundField DataField="Detalle" HeaderText="Detalle" SortExpression="Detalle">

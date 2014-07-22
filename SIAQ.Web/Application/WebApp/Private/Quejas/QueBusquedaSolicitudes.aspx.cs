@@ -83,7 +83,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
             {
 
                 // Formulario
-				BPSolicitud.SolicitudEntity.Numero = (this.txtNumeroSolicitud.Text.Trim() == "" ? 0 : Int32.Parse(this.txtNumeroSolicitud.Text.Trim()));
+				BPSolicitud.SolicitudEntity.Numero = this.txtNumeroSolicitud.Text.Trim();
 				BPSolicitud.SolicitudEntity.Nombre = this.txtCiudadano.Text.Trim();
 				BPSolicitud.SolicitudEntity.FormaContactoId = Int32.Parse(this.ddlFormaContacto.SelectedValue);
 				BPSolicitud.SolicitudEntity.FuncionarioId = Int32.Parse(this.ddlFuncionario.SelectedValue);
@@ -140,7 +140,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 			{
 
 				// Formulario
-				oENTQueja.Numero = (this.txtNumeroSolicitud.Text.Trim() == "" ? 0 : Int32.Parse(this.txtNumeroSolicitud.Text.Trim()));
+				oENTQueja.Numero = this.txtNumeroSolicitud.Text.Trim();
 				oENTQueja.Nombre = this.txtCiudadano.Text.Trim();
 				oENTQueja.FormaContactoId = Int32.Parse(this.ddlFormaContacto.SelectedValue);
 				oENTQueja.FuncionarioId = Int32.Parse(this.ddlFuncionario.SelectedValue);

@@ -12,7 +12,7 @@ namespace SIAQ.Entity.Object
         private int _TipoSolicitudId; // Valor de TipoSolicitudId
         private int _LugarHechosId; // Valor de LugarHechosId
         private int _EstatusId; // Valor de EstatusId
-        private int _Numero; // Valor de Numero
+		private String _Numero; // Valor de Numero
         private int _MedioComunicacion;
         private int _FormaContactoId;
         private int _FuncionarioId;
@@ -39,7 +39,7 @@ namespace SIAQ.Entity.Object
             _TipoSolicitudId = 0;
             _LugarHechosId = 0;
             _EstatusId = 0;
-            _Numero = 0;
+            _Numero = "";
             _MedioComunicacion = 0;
             _Fecha = "";
             _Nombre = "";
@@ -135,7 +135,7 @@ namespace SIAQ.Entity.Object
         ///   <author>Generador</author>
         ///</remarks>
         ///<summary>Obtiene/Asigna Numero</summary>
-        public int Numero
+        public String Numero
         {
             get { return _Numero; }
             set { _Numero = value; }

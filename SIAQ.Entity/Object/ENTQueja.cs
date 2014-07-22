@@ -29,7 +29,7 @@ namespace SIAQ.Entity.Object
 		private String	_FechaHasta;		// Fecha final en una consulta
 		private Int16	_Nivel;				// Nivel de transacción
 		private String	_Nombre;			// Nombre del ciudadano
-		private Int32	_Numero;			// Número de la solicitud
+		private String	_Numero;			// Número de la solicitud
 		private String	_Observaciones;		// Observaciones de la solicitud
 
 
@@ -47,7 +47,7 @@ namespace SIAQ.Entity.Object
 			_FechaHasta = "";
 			_Nivel = -1;
 			_Nombre = "";
-			_Numero = 0;
+			_Numero = "";
 			_Observaciones = "";
         }
 
@@ -192,7 +192,7 @@ namespace SIAQ.Entity.Object
 		///   <author>Ruben.Cobos</author>
 		///</remarks>
 		///<summary>Obtiene/Asigna el número de la solicitud</summary>
-		public Int32 Numero
+		public String Numero
 		{
 			get { return _Numero; }
 			set { _Numero = value; }

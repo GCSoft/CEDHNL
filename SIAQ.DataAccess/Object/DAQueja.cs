@@ -297,7 +297,7 @@ namespace SIAQ.DataAccess.Object
 			sqlPar.Value = oENTQueja.Nombre;
 			sqlCom.Parameters.Add(sqlPar);
 
-			sqlPar = new SqlParameter("Numero", SqlDbType.Int);
+			sqlPar = new SqlParameter("Numero", SqlDbType.VarChar);
 			sqlPar.Value = oENTQueja.Numero;
 			sqlCom.Parameters.Add(sqlPar);
 
@@ -377,6 +377,10 @@ namespace SIAQ.DataAccess.Object
 			// Parametros
 			sqlPar = new SqlParameter("SolicitudId", SqlDbType.Int);
 			sqlPar.Value = oENTQueja.SolicitudId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("FormaContactoId", SqlDbType.Int);
+			sqlPar.Value = oENTQueja.FormaContactoId;
 			sqlCom.Parameters.Add(sqlPar);
 
 			sqlPar = new SqlParameter("LugarHechosId", SqlDbType.Int);

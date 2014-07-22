@@ -430,6 +430,10 @@ namespace SIAQ.DataAccess.Object
 			sqlPar.Value = oENTSolicitud.CiudadanoId;
 			sqlCom.Parameters.Add(sqlPar);
 
+			sqlPar = new SqlParameter("FormaContactoId", SqlDbType.Int);
+			sqlPar.Value = oENTSolicitud.FormaContactoId;
+			sqlCom.Parameters.Add(sqlPar);
+
 			sqlPar = new SqlParameter("NombreTemporal", SqlDbType.VarChar);
 			sqlPar.Value = oENTSolicitud.NombreTemporal;
 			sqlCom.Parameters.Add(sqlPar);

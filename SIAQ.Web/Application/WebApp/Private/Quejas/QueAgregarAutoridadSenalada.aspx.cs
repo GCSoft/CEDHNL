@@ -84,7 +84,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
             {
 
                 // Validaciones
-                if (this.ddlActionPrimerNivel.SelectedValue == "0") { throw new Exception("Debe elegir una autoridad"); }
+                if (this.ddlActionPrimerNivel.SelectedValue == "0") { throw new Exception("Debe elegir una autoridad de primer nivel"); }
+				if (this.ddlActionSegundoNivel.SelectedValue == "0") { throw new Exception("Debe elegir una autoridad de segundo nivel"); }
+				if (this.ddlActionTercerNivel.SelectedValue == "0") { throw new Exception("Debe elegir una autoridad de tercer nivel"); }
                 if (String.IsNullOrEmpty(this.tbActionNombreFuncionario.Text)) { throw new Exception("El campo [Nombre] es requerido"); }
 
                 // Determinar la última autoridad seleccionada
@@ -127,7 +129,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
             {
 
                 // Validaciones
-                if (this.ddlVocesTemporal_Nivel1.SelectedValue == "0") { throw new Exception("Debe elegir una voz señalada"); }
+                if (this.ddlVocesTemporal_Nivel1.SelectedValue == "0") { throw new Exception("Debe elegir una voz señalada de primer nivel"); }
+				if (this.ddlVocesTemporal_Nivel2.SelectedValue == "0") { throw new Exception("Debe elegir una voz señalada de segundo nivel"); }
+				if (this.ddlVocesTemporal_Nivel3.SelectedValue == "0") { throw new Exception("Debe elegir una voz señalada de tercer nivel"); }
 
                 // Determinar la última voz seleccionada
                 VozId = Convert.ToInt32(this.ddlVocesTemporal_Nivel1.SelectedValue);
@@ -461,7 +465,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
             {
 
                 // Validaciones
-                if (this.ddlActionPrimerNivel.SelectedValue == "0") { throw new Exception("Debe elegir una autoridad"); }
+				if (this.ddlActionPrimerNivel.SelectedValue == "0") { throw new Exception("Debe elegir una autoridad de primer nivel"); }
+				if (this.ddlActionSegundoNivel.SelectedValue == "0") { throw new Exception("Debe elegir una autoridad de segundo nivel"); }
+				if (this.ddlActionTercerNivel.SelectedValue == "0") { throw new Exception("Debe elegir una autoridad de tercer nivel"); }
                 if (String.IsNullOrEmpty(this.tbActionNombreFuncionario.Text)) { throw new Exception("El campo [Nombre] es requerido"); }
 
                 // Formulario 

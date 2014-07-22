@@ -70,10 +70,6 @@
             <asp:ImageButton ID="ConfirmarCierreSolicitudButton" ImageUrl="~/Include/Image/Icon/ConfirmacionCierreIcon.png" runat="server" OnClick="ConfirmarCierreSolicitudButton_Click"></asp:ImageButton><br />
             Confirmar envío de solicitud
         </asp:Panel>
-		<asp:Panel CssClass="IconoPanel" ID="CanalizarPanel" runat="server" Visible="true">
-            <asp:ImageButton ID="CanalizarButton" ImageUrl="~/Include/Image/Icon/CanalizarIcon.png" runat="server" OnClick="CanalizarButton_Click"></asp:ImageButton><br />
-            Canalizar solicitud
-        </asp:Panel>
     </div>
 
     <div id="InformacionDiv">
@@ -157,7 +153,6 @@
                 <td>
                     <asp:GridView ID="gvCiudadano" runat="server" AllowPaging="false" AllowSorting="true" AutoGenerateColumns="False" Width="100%"
 						DataKeyNames="CiudadanoId,NombreCompleto" 
-						OnRowCommand="gvCiudadano_RowCommand" 
 						OnRowDataBound="gvCiudadano_RowDataBound"
                         OnSorting="gvCiudadano_Sorting">
                         <RowStyle CssClass="Grid_Row" />
@@ -169,29 +164,23 @@
                                 <tr class="Grid_Header">
 									<td style="width:100px;">Tipo</td>
 									<td style="width:250px;">Nombre</td>
-									<td style="width:90px;">Nacimiento</td>
+									<td style="width:90px;">Edad</td>
 									<td style="width:80px;">Sexo</td>
                                     <td style="width:100px;">Telefono</td>
 									<td>Domicilio</td>
-									<td style="width:25px;"></td>
                                 </tr>
                                 <tr class="Grid_Row">
-                                    <td colspan="8">No se encontraron Ciudadanos registrados en el sistema</td>
+                                    <td colspan="6">No se encontraron Ciudadanos registrados en el sistema</td>
                                 </tr>
                             </table>
                         </EmptyDataTemplate>
                         <Columns>
 							<asp:BoundField HeaderText="Tipo"		ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="100px"	DataField="NombreTipoCiudadano"		SortExpression="NombreTipoCiudadano"></asp:BoundField>
 							<asp:BoundField HeaderText="Nombre"		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="250px"	DataField="NombreCompleto"			SortExpression="NombreCompleto"></asp:BoundField>
-							<asp:BoundField HeaderText="Nacimiento"	ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="90px"	DataField="FechaNacimientoCorta"	SortExpression="FechaNacimientoCorta"></asp:BoundField>
+							<asp:BoundField HeaderText="Edad"		ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="90px"	DataField="Edad"					SortExpression="Edad"></asp:BoundField>
 							<asp:BoundField HeaderText="Sexo"		ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="80px"	DataField="NombreSexo"				SortExpression="NombreSexo"></asp:BoundField>
 							<asp:BoundField HeaderText="Telefono"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="100px"	DataField="TelefonoPrincipal"		SortExpression="TelefonoPrincipal"></asp:BoundField>
 							<asp:BoundField HeaderText="Domicilio"	ItemStyle-HorizontalAlign="Left"							DataField="Domicilio"				SortExpression="Domicilio"></asp:BoundField>
-							<asp:TemplateField ItemStyle-HorizontalAlign ="Center" ItemStyle-Width="20px">
-							<ItemTemplate>
-								<asp:ImageButton ID="imgDelete" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Eliminar" ImageUrl="~/Include/Image/Buttons/Delete.png" runat="server" />
-							</ItemTemplate>
-						</asp:TemplateField>
                         </Columns>
                     </asp:GridView>
                 </td>
@@ -220,7 +209,7 @@
 		<div class="SolicitudComentarioDiv">
             <div style="text-align: left;">
                 Asuntos &nbsp;&nbsp;
-                <asp:LinkButton ID="lnkAgregarComentario" runat="server" CssClass="LinkButton_Regular" Text="Agregar comentario" OnClick="lnkAgregarComentario_Click"></asp:LinkButton>
+                <asp:LinkButton ID="lnkAgregarComentario" runat="server" CssClass="LinkButton_Regular" Text="Agregar comentario" OnClick="lnkAgregarComentario_Click" Visible="false"></asp:LinkButton>
             </div>
             <div class="TituloDiv"><asp:Label ID="ComentarioTituloLabel" runat="server" Text=""></asp:Label></div>
             <asp:Repeater ID="repComentarios" runat="server">

@@ -33,7 +33,12 @@
 						<tr>
 							<td class="Etiqueta">Funcionario</td>
 							<td class="Espacio"></td>
-							<td class="Campo"><asp:DropDownList ID="ddlAbogado" runat="server" CssClass="DropDownList_General" width="216px" ></asp:DropDownList></td>
+							<td class="Campo"><asp:DropDownList ID="ddlFuncionario" runat="server" CssClass="DropDownList_General" width="216px" ></asp:DropDownList></td>
+						</tr>
+						<tr>
+							<td class="Etiqueta">Forma de Contacto</td>
+							<td class="VinetaObligatorio">*</td>
+							<td class="Campo"><asp:DropDownList ID="ddlFormaContacto" runat="server" CssClass="DropDownList_General" width="216px" ></asp:DropDownList></td>
 						</tr>
 						<tr>
 							<td class="Etiqueta">Observaciones</td>

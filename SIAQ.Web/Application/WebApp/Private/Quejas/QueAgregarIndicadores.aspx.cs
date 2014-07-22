@@ -28,8 +28,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 		Function utilFunction = new Function();
 
 
-		void SelectSolicitud()
-		{
+		void SelectSolicitud(){
 			BPQueja oBPQueja = new BPQueja();
 			ENTQueja oENTQueja = new ENTQueja();
 			ENTResponse oENTResponse = new ENTResponse();
@@ -108,7 +107,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 		#endregion
 
 		protected void btnGuardar_Click(object sender, EventArgs e){
-			ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Grupos minoritarios asociados con éxito', 'Success', false);", true);
+			Response.Redirect("QueDetalleSolicitud.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value, false);
 		}
 
 		protected void btnRegresar_Click(object sender, EventArgs e){

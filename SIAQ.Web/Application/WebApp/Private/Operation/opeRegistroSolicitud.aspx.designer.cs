@@ -49,13 +49,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::SIAQ.Web.Include.WebUserControls.wucBusquedaCiudadano wucBusquedaCiudadano;
         
         /// <summary>
-        /// ddlAbogado control.
+        /// ddlFuncionario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAbogado;
+        protected global::System.Web.UI.WebControls.DropDownList ddlFuncionario;
+        
+        /// <summary>
+        /// ddlFormaContacto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlFormaContacto;
         
         /// <summary>
         /// ckeObservaciones control.

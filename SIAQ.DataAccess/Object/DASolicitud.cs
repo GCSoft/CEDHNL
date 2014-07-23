@@ -68,52 +68,6 @@ namespace SIAQ.DataAccess.Object
 
 			}
 
-			///<remarks>
-			///   <name>DASolicitud.EnviarSolicitud</name>
-			///   <create>11/04/2014</create>
-			///   <author>Jose.Gomez</author>
-			///</remarks>
-			///<summary>Metodo para enviar la solicitud a Visitadurías</summary>
-			public ENTResponse EnviarSolicitud(ENTSolicitud oENTSolicitud, string sConnectionString, int iAlternativeTimeoOut)
-			{
-				SqlConnection Connection = new SqlConnection(sConnectionString);
-				SqlCommand Command;
-				SqlDataAdapter DataAdapter;
-				SqlParameter Parameter;
-
-				ENTResponse oENTResponse = new ENTResponse();
-
-				Command = new SqlCommand("spEnviarSolicitud_ins", Connection);
-				Command.CommandType = CommandType.StoredProcedure;
-
-				if (iAlternativeTimeoOut > 0) { Command.CommandTimeout = iAlternativeTimeoOut; }
-
-				Parameter = new SqlParameter("SolicitudId", SqlDbType.Int);
-				Parameter.Value = oENTSolicitud.SolicitudId;
-				Command.Parameters.Add(Parameter);
-
-				oENTResponse.dsResponse = new DataSet();
-				DataAdapter = new SqlDataAdapter(Command);
-
-				try
-				{
-					Connection.Open();
-					DataAdapter.Fill(oENTResponse.dsResponse);
-					Connection.Close();
-				}
-				catch (SqlException ex) { oENTResponse.ExceptionRaised(ex.Message); }
-				catch (Exception ex) { oENTResponse.ExceptionRaised(ex.Message); }
-				finally
-				{
-					if (Connection.State == ConnectionState.Open)
-					{
-						Connection.Close();
-					}
-				}
-
-				return oENTResponse;
-			}
-
 			public void GuardarCalificacionSol(ENTSolicitud ENTSolicitud, string ConnectionString)
 			{
 				DataSet ResultData = new DataSet();

@@ -66,10 +66,6 @@
             <asp:ImageButton ID="EnviarButton" ImageUrl="~/Include/Image/Icon/EnviarIcon.png" runat="server" OnClick="EnviarButton_Click"></asp:ImageButton><br />
             Enviar solicitud
         </asp:Panel>
-		<asp:Panel CssClass="IconoPanel" ID="ConfirmarCierreExpedientePanel" runat="server" Visible="true">
-            <asp:ImageButton ID="ConfirmarCierreSolicitudButton" ImageUrl="~/Include/Image/Icon/ConfirmacionCierreIcon.png" runat="server" OnClick="ConfirmarCierreSolicitudButton_Click"></asp:ImageButton><br />
-            Confirmar envío de solicitud
-        </asp:Panel>
     </div>
 
     <div id="InformacionDiv">

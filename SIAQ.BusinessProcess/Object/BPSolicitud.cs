@@ -51,31 +51,6 @@ namespace SIAQ.BusinessProcess.Object
 			{
 				get { return _ErrorDescription; }
 			}
-        
-
-			/// <summary>
-			/// Metodo para enviar la solicitud a Visitadurías
-			/// </summary>
-			public ENTResponse EnviarSolicitud(ENTSolicitud oENTSolicitud)
-			{
-				ENTResponse oENTResponse = new ENTResponse();
-
-				try
-				{
-					//Consulta 
-					DASolicitud oDASolicitud = new DASolicitud();
-					oENTResponse = oDASolicitud.EnviarSolicitud(oENTSolicitud, sConnectionApplication, 0);
-					//Validacion de error en consulta
-					if (oENTResponse.GeneratesException) { return oENTResponse; }
-					oENTResponse.sMessage = String.Empty;
-					oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-					if (oENTResponse.sMessage != "") { return oENTResponse; }
-				}
-				catch (Exception ex) { oENTResponse.ExceptionRaised(ex.Message); }
-
-				//Resultado
-				return oENTResponse;
-			}
 
 			public void GuardarCalificacionSol()
 			{

@@ -24,11 +24,40 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 	public partial class QueEnviarSolicitud : System.Web.UI.Page
 	{
 
-		public string _SolicitudId;
-		Function utilFunction = new Function();
+		// TODO: Agregar un CheckList de las cosas que le faltan a la solicitud al cargarse
 
-		void SelectSolicitud()
-		{
+		// Utilerías
+		Function utilFunction = new Function();
+		Encryption utilEncryption = new Encryption();
+
+
+		// Rutinas del programador
+
+		void EnviarSolicitud(){
+			BPQueja oBPQueja = new BPQueja();
+			ENTResponse oENTResponse = new ENTResponse();
+			ENTQueja oENTQueja = new ENTQueja();
+
+			try
+			{
+
+				// Formulario
+				oENTQueja.SolicitudId = Int32.Parse(this.hddSolicitudId.Value);
+				oENTQueja.EstatusId = 4; // Pendiente de aprobar Queja
+
+				//Transacción
+				oENTResponse = oBPQueja.UpdateSolicitud_Estatus(oENTQueja);
+
+				//Validación
+				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+				if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		void SelectSolicitud(){
 			BPQueja oBPQueja = new BPQueja();
 			ENTQueja oENTQueja = new ENTQueja();
 			ENTResponse oENTResponse = new ENTResponse();
@@ -63,40 +92,68 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				this.DireccionHechosLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["DireccionHechos"].ToString();
 				this.ObservacionesLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Observaciones"].ToString();
 
-			}
-			catch (Exception ex)
-			{
+			}catch (Exception ex){
 				throw (ex);
 			}
 		}
 
-		#region "Events"
-		protected void SendButton_Click(object sender, EventArgs e)
-		{
+		void ValidarSolicitud(){
+			BPSolicitud oBPSolicitud = new BPSolicitud();
+
+			Int32 CiudadanosAdjuntos = 0;
+			Int32 Calificada = 0;
+			Int32 Autoridades = 0;
+			String AutoridadesSinVoz = "";
+
 			try
 			{
-				string sSolicitudId = hddSolicitudId.Value;
-				ValidarEnvio(Convert.ToInt32(sSolicitudId));
-			}
-			catch (Exception ex)
-			{
-				ScriptManager.RegisterStartupScript(this.Page
-					, this.GetType()
-					, Convert.ToString(Guid.NewGuid())
-					, "tinyboxMessage('" + ex.Message + "','Fail',true);"
-					, true);
+
+				// Formulario
+				oBPSolicitud.SolicitudEntity.SolicitudId = Int32.Parse(this.hddSolicitudId.Value);
+
+				// Transacción
+				oBPSolicitud.ValidarEnviarSolicitud();
+
+				// Validaciones generales en la consulta
+				if (oBPSolicitud.ErrorId != 0) { throw (new Exception(oBPSolicitud.ErrorDescription)); }
+				if (oBPSolicitud.SolicitudEntity.ResultData.Tables[0].Rows.Count == 0) { throw new Exception("No se ha encontrado información de la solicitud"); }
+
+				// Obtener datos de a consulta
+				CiudadanosAdjuntos = Int32.Parse(oBPSolicitud.SolicitudEntity.ResultData.Tables[0].Rows[0]["NumeroCiudadanos"].ToString());
+				Calificada = Int32.Parse(oBPSolicitud.SolicitudEntity.ResultData.Tables[0].Rows[0]["Calificada"].ToString());
+				Autoridades = Int32.Parse(oBPSolicitud.SolicitudEntity.ResultData.Tables[0].Rows[0]["NumeroAutoridad"].ToString());
+				AutoridadesSinVoz = oBPSolicitud.SolicitudEntity.ResultData.Tables[0].Rows[0]["AutoridadesSinVoz"].ToString();
+
+				// Validaciones de los datos
+				if (CiudadanosAdjuntos == 0) {
+					throw new Exception("No se ha podido realizar el envío, no se han agregado ciudadanos a la solicitud.");
+				}
+
+				if (Calificada == 0){
+					throw new Exception("No se ha podido realizar el envío, no se ha calificado la solicitud.");
+				}
+
+				if (Autoridades == 0){
+					throw new Exception("No se ha podido realizar el envío, no se han agregado autoridades a la solicitud.");
+				}
+
+				if (String.IsNullOrEmpty(AutoridadesSinVoz)){
+					throw new Exception("No se ha podido realizar el envío, no se han agregado voces señaladas a alguna de las autoridades.");
+				}
+
+				if (Convert.ToInt32(AutoridadesSinVoz) > 0){
+					throw new Exception("No se ha podido realizar el envío, no se han agregado voces señaladas a alguna de las autoridades.");
+				}
+
+			}catch (Exception ex){
+				throw (ex);
 			}
 		}
 
-		protected void Page_Load(object sender, EventArgs e)
-		{
-			PageLoad();
-		}
-		#endregion
+		
+		// Eventos de la página
 
-		#region "Methods"
-
-		private void PageLoad(){
+		protected void Page_Load(object sender, EventArgs e){
 			try
             {
 
@@ -105,7 +162,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				if (this.Request.QueryString["key"] == null) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
 				if (this.Request.QueryString["key"].ToString().Split(new Char[] { '|' }).Length != 2) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
 
-				// Obtener ExpedienteId
+				// Obtener SolicitudId
 				this.hddSolicitudId.Value = this.Request.QueryString["key"].ToString().Split(new Char[] { '|' })[0];
 
 				// Obtener Sender
@@ -119,93 +176,24 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
             }
 		}
 
-
-
-		private void SendSolicitud(int solicitudId)
-		{
-			BPSolicitud oBPSolicitud = new BPSolicitud();
-			ENTResponse oENTResponse = new ENTResponse();
-			ENTSolicitud oENTSolicitud = new ENTSolicitud();
-
+		protected void btnEnviar_Click(object sender, EventArgs e){
 			try
 			{
-				//Transacción
-				oENTSolicitud.SolicitudId = solicitudId;
-				oENTResponse = oBPSolicitud.EnviarSolicitud(oENTSolicitud);
+				// Validar la solicitud
+				ValidarSolicitud();
 
-				//Validación
-				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
-				if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+				// Envío de la solicitud al director
+				EnviarSolicitud();
 
-				// Redireccionar al listado
+				// Regresar a la pantalla de detalle de solicitudes
 				Response.Redirect("QueDetalleSolicitud.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value, false);
 
-			}
-			catch (Exception ex)
-			{
-				throw (ex);
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "','Fail',true);", true);
 			}
 		}
 
-		private void ValidarEnvio(int solicitudId)
-		{
-			BPSolicitud oBPSolicitud = new BPSolicitud();
-
-			try
-			{
-				oBPSolicitud.SolicitudEntity.SolicitudId = solicitudId;
-				oBPSolicitud.ValidarEnviarSolicitud();
-
-				if (oBPSolicitud.ErrorId == 0)
-				{
-					if (oBPSolicitud.SolicitudEntity.ResultData.Tables[0].Rows.Count > 0)
-					{
-						int iNumeroCiudadanos = Convert.ToInt32(oBPSolicitud.SolicitudEntity.ResultData.Tables[0].Rows[0]["NumeroCiudadanos"].ToString());
-						int iCalificada = Convert.ToInt32(oBPSolicitud.SolicitudEntity.ResultData.Tables[0].Rows[0]["Calificada"].ToString());
-						int iNumeroAutoridad = Convert.ToInt32(oBPSolicitud.SolicitudEntity.ResultData.Tables[0].Rows[0]["NumeroAutoridad"].ToString());
-						string sAutoridadesSinVoz = oBPSolicitud.SolicitudEntity.ResultData.Tables[0].Rows[0]["AutoridadesSinVoz"].ToString();
-
-						if (iNumeroCiudadanos == 0)
-						{
-							throw new Exception("No se ha podido realizar el envío, no se han agregado ciudadanos a la solicitud.");
-						}
-
-						if (iCalificada == 0)
-						{
-							throw new Exception("No se ha podido realizar el envío, no se ha calificado la solicitud.");
-						}
-
-						if (iNumeroAutoridad == 0)
-						{
-							throw new Exception("No se ha podido realizar el envío, no se han agregado autoridades a la solicitud.");
-						}
-
-						if (String.IsNullOrEmpty(sAutoridadesSinVoz))
-						{
-							throw new Exception("No se ha podido realizar el envío, no se han agregado voces señaladas a alguna de las autoridades.");
-						}
-						else
-						{
-							if (Convert.ToInt32(sAutoridadesSinVoz) > 0)
-							{
-								throw new Exception("No se ha podido realizar el envío, no se han agregado voces señaladas a alguna de las autoridades.");
-							}
-						}
-
-						SendSolicitud(solicitudId);
-					}
-				}
-			}
-			catch (Exception ex)
-			{
-				throw (ex);
-			}
-		}
-
-		#endregion
-
-		protected void RegresarButton_Click(object sender, EventArgs e)
-		{
+		protected void btnRegresar_Click(object sender, EventArgs e){
 			Response.Redirect("QueDetalleSolicitud.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value, false);
 		}
 

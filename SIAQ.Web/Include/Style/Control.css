@@ -579,6 +579,20 @@
 	font-weight: bold;
 }
 
+.NumeroNuevoExpedienteLabel{
+	background-color:#EFEFEF;
+	border:1px solid #4B4878;
+	color:#666666;
+	cursor:default;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 14px;
+	font-weight:bold;
+	height:25px;
+	line-height:20px;
+	text-align:left;
+}
+
+
 /*LINKBUTTON*/
 .LinkButton_Regular{
 	color: #4B4878;

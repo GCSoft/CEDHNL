@@ -123,7 +123,7 @@
                         </tr>
                         <tr>
                             <td class="Nombre">
-                                Funcionario que atienda
+                                Funcionario que atiende
                             </td>
                             <td class="Espacio">
                             </td>
@@ -160,7 +160,7 @@
                         </tr>
                         <tr>
                             <td class="Nombre">
-                                Fecha de la diligencia
+                                Fecha de diligencia
                             </td>
                             <td class="Espacio">
                             </td>

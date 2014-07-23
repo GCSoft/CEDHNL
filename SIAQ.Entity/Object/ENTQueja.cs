@@ -18,6 +18,7 @@ namespace SIAQ.Entity.Object
 	{
 
 		// Definiciones
+		private Int32	_EstatusId;			// Identificador único del Estatus de la Solicitud
 		private Int32	_FormaContactoId;	// Identificador único de la forma de contacto
 		private Int32	_FuncionarioId;		// Identificador único del funcionario asociado a la solicitud
 		private Int32	_LugarHechosId;		// Identificador único del lugar de los hechos asociado a la solicitud
@@ -36,6 +37,7 @@ namespace SIAQ.Entity.Object
 		 //Constructor
 
         public ENTQueja(){
+			_EstatusId = 0;
 			_FormaContactoId = 0;
 			_FuncionarioId = 0;
 			_LugarHechosId = 0;
@@ -53,6 +55,18 @@ namespace SIAQ.Entity.Object
 
 
 		// Propiedades
+
+		///<remarks>
+		///   <name>ENTQueja.EstatusId</name>
+		///   <create>18-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el identificador único del Estatus de la Solicitud</summary>
+		public Int32 EstatusId
+		{
+			get { return _EstatusId; }
+			set { _EstatusId = value; }
+		}
 
 		///<remarks>
 		///   <name>ENTQueja.FormaContactoId</name>

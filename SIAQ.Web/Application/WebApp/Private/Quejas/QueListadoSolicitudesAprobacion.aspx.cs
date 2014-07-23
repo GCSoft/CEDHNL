@@ -106,7 +106,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				// Acción
 				switch (strCommand){
 					case "Editar":
-						this.Response.Redirect("QueDetalleSolicitud.aspx?key=" + SolicitudId + "|2", false);
+						this.Response.Redirect("QueDetalleSolicitudCierre.aspx?key=" + SolicitudId + "|1", false);
 						break;
 				}
 

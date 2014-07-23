@@ -234,7 +234,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				// Canalizar la página
 				switch (strCommand){
 					case "Editar":
-						this.Response.Redirect("QueDetalleSolicitud.aspx?key=" + SolicitudId + "|4", false);
+						this.Response.Redirect("QueDetalleSolicitud.aspx?key=" + SolicitudId + "|2", false);
 						break;
 				}
 

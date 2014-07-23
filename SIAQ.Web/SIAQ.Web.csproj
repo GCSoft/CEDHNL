@@ -63,7 +63,9 @@
     <Content Include="Application\WebApp\Private\Quejas\QueAsignarFuncionario.aspx" />
     <Content Include="Application\WebApp\Private\Quejas\QueBusquedaSolicitudes.aspx" />
     <Content Include="Application\WebApp\Private\Quejas\QueCalificarSolicitud.aspx" />
+    <Content Include="Application\WebApp\Private\Quejas\QueCrearExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Quejas\QueDetalleSolicitud.aspx" />
+    <Content Include="Application\WebApp\Private\Quejas\QueDetalleSolicitudCierre.aspx" />
     <Content Include="Application\WebApp\Private\Quejas\QueDiligenciaSolicitud.aspx" />
     <Content Include="Application\WebApp\Private\Quejas\QueEnviarSolicitud.aspx" />
     <Content Include="Application\WebApp\Private\Quejas\QueImprimirSolicitud.aspx" />
@@ -512,6 +514,7 @@
     <Content Include="Include\Image\Icon\NotificacionIcon.png" />
     <Content Include="Include\Image\Icon\PdfIcon.png" />
     <Content Include="Include\Image\Icon\PowerPointIcon.png" />
+    <Content Include="Include\Image\Icon\RechazarCierreIcon.png" />
     <Content Include="Include\Image\Icon\RecomendacionIcon.png" />
     <Content Include="Include\Image\Icon\RegistrarSolicitud.png" />
     <Content Include="Include\Image\Icon\RegistrarVisita.png" />
@@ -793,12 +796,26 @@
     <Compile Include="Application\WebApp\Private\Quejas\QueCalificarSolicitud.aspx.designer.cs">
       <DependentUpon>QueCalificarSolicitud.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Application\WebApp\Private\Quejas\QueCrearExpediente.aspx.cs">
+      <DependentUpon>QueCrearExpediente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Quejas\QueCrearExpediente.aspx.designer.cs">
+      <DependentUpon>QueCrearExpediente.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Application\WebApp\Private\Quejas\QueDetalleSolicitud.aspx.cs">
       <DependentUpon>QueDetalleSolicitud.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\Quejas\QueDetalleSolicitud.aspx.designer.cs">
       <DependentUpon>QueDetalleSolicitud.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Quejas\QueDetalleSolicitudCierre.aspx.cs">
+      <DependentUpon>QueDetalleSolicitudCierre.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Quejas\QueDetalleSolicitudCierre.aspx.designer.cs">
+      <DependentUpon>QueDetalleSolicitudCierre.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Quejas\QueDiligenciaSolicitud.aspx.cs">
       <DependentUpon>QueDiligenciaSolicitud.aspx</DependentUpon>

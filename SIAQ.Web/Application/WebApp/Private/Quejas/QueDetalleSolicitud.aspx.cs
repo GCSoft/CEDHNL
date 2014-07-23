@@ -1,5 +1,5 @@
 ﻿/*---------------------------------------------------------------------------------------------------------------------------------
-' Nombre:	opeDetalleSolicitud
+' Nombre:	QueDetalleSolicitud
 ' Ajuste:	Ruben.Cobos
 ' Fecha:	17-Julio-2014
 '----------------------------------------------------------------------------------------------------------------------------------*/
@@ -156,7 +156,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 						this.DocumentoPanel.Visible = true;
 						this.ImprimirPanel.Visible = true;
 						this.EnviarPanel.Visible = true;
-						this.ConfirmarCierreExpedientePanel.Visible = true;
 						break;
 
 					case 2:	// Administrador
@@ -171,7 +170,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 						this.DocumentoPanel.Visible = true;
 						this.ImprimirPanel.Visible = true;
 						this.EnviarPanel.Visible = true;
-						this.ConfirmarCierreExpedientePanel.Visible = true;
 						break;
 
 					case 3:	// Recepción
@@ -186,7 +184,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 						this.DocumentoPanel.Visible = false;
 						this.ImprimirPanel.Visible = true;
 						this.EnviarPanel.Visible = false;
-						this.ConfirmarCierreExpedientePanel.Visible = false;
 						break;
 
 					case 4:	// Quejas - Secretaria
@@ -201,7 +198,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 						this.DocumentoPanel.Visible = false;
 						this.ImprimirPanel.Visible = true;
 						this.EnviarPanel.Visible = false;
-						this.ConfirmarCierreExpedientePanel.Visible = true;
 						break;
 
 					case 5:	// Quejas - Funcionario
@@ -216,7 +212,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 						this.DocumentoPanel.Visible = true;
 						this.ImprimirPanel.Visible = true;
 						this.EnviarPanel.Visible = true;
-						this.ConfirmarCierreExpedientePanel.Visible = false;
 						break;
 
 					case 6:	// Quejas - Director
@@ -231,7 +226,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 						this.DocumentoPanel.Visible = false;
 						this.ImprimirPanel.Visible = true;
 						this.EnviarPanel.Visible = false;
-						this.ConfirmarCierreExpedientePanel.Visible = true;
 						break;
 
 					default:
@@ -246,7 +240,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 						this.DocumentoPanel.Visible = false;
 						this.ImprimirPanel.Visible = true;
 						this.EnviarPanel.Visible = false;
-						this.ConfirmarCierreExpedientePanel.Visible = false;
 						break;
 
 				}
@@ -274,7 +267,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				}
 
 				// Si no es Secretaria y el expediente ya está asignado a un funcionario no puede agregar información
-				if (idRol != 4 && Int32.Parse(this.hddFuncionarioId.Value) != 0) {
+				if (idRol != 1 && idRol != 2 && idRol != 4 && Int32.Parse(this.hddFuncionarioId.Value) != 0){
 					this.AgregrarInformacionPanel.Visible = false;
 				}
 
@@ -291,26 +284,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				// Si es Funcionario y el expediente está asignado a el puede agregar comentarios siempre y cuando no esté en estatus de confirmación de cierre
 				if (idRol == 5 && Int32.Parse(this.hddFuncionarioId.Value) == FuncionarioId) {
 					if (Int32.Parse(this.hddEstatusId.Value) != 4) { this.lnkAgregarComentario.Visible = true; }
-				}
-
-				// Si es System Administrator y el expediente no está en estatus de confirmación de cierre ocultar dicha opción
-				if (idRol == 1 && Int32.Parse(this.hddEstatusId.Value) != 4) {
-					this.ConfirmarCierreExpedientePanel.Visible = false;
-				}
-
-				// Si es Administrador y el expediente no está en estatus de confirmación de cierre ocultar dicha opción
-				if (idRol == 2 && Int32.Parse(this.hddEstatusId.Value) != 4) {
-					this.ConfirmarCierreExpedientePanel.Visible = false;
-				}
-
-				// Si es Secretaria y el expediente no está en estatus de confirmación de cierre ocultar dicha opción
-				if (idRol == 4 && Int32.Parse(this.hddEstatusId.Value) != 4) {
-					this.ConfirmarCierreExpedientePanel.Visible = false;
-				}
-
-				// Si es Director y el expediente no está en estatus de confirmación de cierre ocultar dicha opción
-				if (idRol == 6 && Int32.Parse(this.hddEstatusId.Value) != 4) {
-					this.ConfirmarCierreExpedientePanel.Visible = false;
 				}
 
 				// Si el expediente está en estatus de confirmación de cierre no se podrá operar
@@ -356,15 +329,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 						this.Sender.Value = "QueListadoSolicitudes.aspx";
                         break;
 
-					case "2": // Invocado desde [Listado de Solicitudes pendientes por Aprobar]
-						this.Sender.Value = "QueListadoSolicitudesAprobacion.aspx";
-                        break;
-
-					case "3": // Invocado desde [Listado de Solicitudes pendientes por Canalizar]
-						this.Sender.Value = "QueListadoSolicitudesCanalizacion.aspx";
-						break;
-
-					case "4": // // Invocado desde [Búsqueda de Solicitudes]
+					case "2": // // Invocado desde [Búsqueda de Solicitudes]
 						this.Sender.Value = "QueBusquedaSolicitudes.aspx";
 						break;
 
@@ -525,18 +490,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 		protected void ImprimirButton_Click(object sender, ImageClickEventArgs e){
 			Response.Redirect("QueImprimirSolicitud.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value);
 		}
-
-	    // OJO AQUI: Envía la solicitud y aquí es donde inserta el expediente, se debe de mover la lógica
-		// Probablemente no va lo de canalización, hay que platicar con Diana el punto
+		// ----------------------------------------------------------------------------------------------
 		protected void EnviarButton_Click(object sender, ImageClickEventArgs e){
 			Response.Redirect("QueEnviarSolicitud.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value);
 		}
-
-		protected void ConfirmarCierreSolicitudButton_Click(object sender, ImageClickEventArgs e){
-			Response.Redirect("QueConfirmarCierreAtencion.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value);
-		}
-
-		// ----------------------------------------------------------------------------------------------
 
 
 		// Eventos del panel Action (Agregar comentarios)

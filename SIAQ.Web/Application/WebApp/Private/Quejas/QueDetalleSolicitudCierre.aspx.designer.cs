@@ -67,6 +67,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         protected global::System.Web.UI.WebControls.Label SolicitudNumero;
         
         /// <summary>
+        /// CalificacionLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label CalificacionLabel;
+        
+        /// <summary>
         /// EstatusaLabel control.
         /// </summary>
         /// <remarks>
@@ -139,6 +148,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         protected global::System.Web.UI.WebControls.Label FechaModificacionLabel;
         
         /// <summary>
+        /// TipoOrientacionLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label TipoOrientacionLabel;
+        
+        /// <summary>
         /// LugarHechosLabel control.
         /// </summary>
         /// <remarks>
@@ -166,15 +184,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         protected global::System.Web.UI.WebControls.Label ObservacionesLabel;
         
         /// <summary>
-        /// CalificacionLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CalificacionLabel;
-        
-        /// <summary>
         /// FundamentoLabel control.
         /// </summary>
         /// <remarks>
@@ -184,6 +193,24 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         protected global::System.Web.UI.WebControls.Label FundamentoLabel;
         
         /// <summary>
+        /// CanalizacionesLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label CanalizacionesLabel;
+        
+        /// <summary>
+        /// grdCanalizacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdCanalizacion;
+        
+        /// <summary>
         /// gvCiudadano control.
         /// </summary>
         /// <remarks>
@@ -191,6 +218,24 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvCiudadano;
+        
+        /// <summary>
+        /// dlstDocumentoList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dlstDocumentoList;
+        
+        /// <summary>
+        /// SinDocumentoLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SinDocumentoLabel;
         
         /// <summary>
         /// ComentarioTituloLabel control.
@@ -238,76 +283,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         protected global::System.Web.UI.WebControls.GridView gvDiligencia;
         
         /// <summary>
-        /// CBMenorEdad control.
+        /// chkIndicador control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CBMenorEdad;
-        
-        /// <summary>
-        /// CBMigranteInternaccional control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CBMigranteInternaccional;
-        
-        /// <summary>
-        /// CBAdultoMayor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CBAdultoMayor;
-        
-        /// <summary>
-        /// CBMigranteNacional control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CBMigranteNacional;
-        
-        /// <summary>
-        /// CBJornalero control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CBJornalero;
-        
-        /// <summary>
-        /// CBConstruccion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CBConstruccion;
-        
-        /// <summary>
-        /// CBSexoServidora control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CBSexoServidora;
-        
-        /// <summary>
-        /// CBEmpleadaDomestica control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CBEmpleadaDomestica;
+        protected global::System.Web.UI.WebControls.CheckBoxList chkIndicador;
         
         /// <summary>
         /// btnRegresar control.

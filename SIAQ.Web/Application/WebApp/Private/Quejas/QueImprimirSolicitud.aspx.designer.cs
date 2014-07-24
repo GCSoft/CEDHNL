@@ -121,13 +121,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         protected global::System.Web.UI.WebControls.Label FechaModificacionLabel;
         
         /// <summary>
-        /// ObservacionesLabel control.
+        /// TipoOrientacionLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ObservacionesLabel;
+        protected global::System.Web.UI.WebControls.Label TipoOrientacionLabel;
         
         /// <summary>
         /// LugarHechosLabel control.
@@ -148,6 +148,51 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         protected global::System.Web.UI.WebControls.Label DireccionHechosLabel;
         
         /// <summary>
+        /// ObservacionesLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ObservacionesLabel;
+        
+        /// <summary>
+        /// FundamentoLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label FundamentoLabel;
+        
+        /// <summary>
+        /// CanalizacionesLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label CanalizacionesLabel;
+        
+        /// <summary>
+        /// grdCanalizacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdCanalizacion;
+        
+        /// <summary>
+        /// gvCiudadano control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvCiudadano;
+        
+        /// <summary>
         /// ComentarioTituloLabel control.
         /// </summary>
         /// <remarks>
@@ -157,13 +202,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         protected global::System.Web.UI.WebControls.Label ComentarioTituloLabel;
         
         /// <summary>
-        /// ComentarioRepeater control.
+        /// repComentarios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater ComentarioRepeater;
+        protected global::System.Web.UI.WebControls.Repeater repComentarios;
         
         /// <summary>
         /// SinComentariosLabel control.
@@ -175,6 +220,33 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         protected global::System.Web.UI.WebControls.Label SinComentariosLabel;
         
         /// <summary>
+        /// gvAutoridades control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvAutoridades;
+        
+        /// <summary>
+        /// gvDiligencia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvDiligencia;
+        
+        /// <summary>
+        /// chkIndicador control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList chkIndicador;
+        
+        /// <summary>
         /// btnRegresar control.
         /// </summary>
         /// <remarks>
@@ -184,15 +256,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         protected global::System.Web.UI.WebControls.Button btnRegresar;
         
         /// <summary>
-        /// hddSort control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hddSort;
-        
-        /// <summary>
         /// hddSolicitudId control.
         /// </summary>
         /// <remarks>
@@ -200,6 +263,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hddSolicitudId;
+        
+        /// <summary>
+        /// Sender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField Sender;
         
         /// <summary>
         /// SenderId control.

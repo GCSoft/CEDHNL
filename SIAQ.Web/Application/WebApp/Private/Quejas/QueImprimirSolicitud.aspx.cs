@@ -27,9 +27,41 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 		// Utilerías
 		Function utilFunction = new Function();
 
+		
 		// Funciones el programador
 
-		void SelectSolicitud() {
+		void SelectIndicadores(){
+			BPIndicador oBPIndicador = new BPIndicador();
+			ENTIndicador oENTIndicador = new ENTIndicador();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Formulario
+				oENTIndicador.IndicadorId = 0;
+				oENTIndicador.Nombre = "";
+
+				// Transacción
+				oENTResponse = oBPIndicador.SelectIndicador(oENTIndicador);
+
+				// Errores y Warnings
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+
+				// Llenado de CheckBoxList
+				this.chkIndicador.DataTextField = "Nombre";
+				this.chkIndicador.DataValueField = "IndicadorId";
+				this.chkIndicador.DataSource = oENTResponse.dsResponse.Tables[1];
+				this.chkIndicador.DataBind();
+
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		void SelectSolicitud_Cierre() {
 			BPQueja oBPQueja = new BPQueja();
 			ENTQueja oENTQueja = new ENTQueja();
 			ENTResponse oENTResponse = new ENTResponse();
@@ -41,16 +73,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				oENTQueja.SolicitudId = Int32.Parse(this.hddSolicitudId.Value);
 
 				// Transacción
-				oENTResponse = oBPQueja.SelectSolicitud_Detalle(oENTQueja);
+				oENTResponse = oBPQueja.SelectSolicitud_Cierre(oENTQueja);
 
 				// Errores y Warnings
 				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
 				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
 
-
 				// Formulario
 				this.SolicitudNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["SolicitudNumero"].ToString();
-				this.CalificacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionNombre"].ToString();
 				this.EstatusaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusNombre"].ToString();
 				this.FuncionarioLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FuncionarioNombre"].ToString();
 				this.ContactoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FormaContactoNombre"].ToString();
@@ -61,22 +91,53 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				this.FechaGestionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaInicioGestion"].ToString();
 				this.FechaModificacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaUltimaModificacion"].ToString();
 
+				this.TipoOrientacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["TipoOrientacionNombre"].ToString();
 				this.LugarHechosLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["LugarHechosNombre"].ToString();
 				this.DireccionHechosLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["DireccionHechos"].ToString();
 				this.ObservacionesLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Observaciones"].ToString();
 
+				// Canalizaciones
+				if (oENTResponse.dsResponse.Tables[7].Rows.Count > 0){
+
+					this.CanalizacionesLabel.Visible = true;
+
+					this.grdCanalizacion.DataSource = oENTResponse.dsResponse.Tables[7];
+					this.grdCanalizacion.DataBind();
+				}
+
+				// Calificacion
+				this.CalificacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionNombre"].ToString();
+				this.FundamentoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Fundamento"].ToString();
+
+				// Ciudadanos
+				this.gvCiudadano.DataSource = oENTResponse.dsResponse.Tables[2];
+				this.gvCiudadano.DataBind();
+
 				// Comentarios
-				if (oENTResponse.dsResponse.Tables[4].Rows.Count == 0){
+				if (oENTResponse.dsResponse.Tables[3].Rows.Count == 0){
 
 					this.SinComentariosLabel.Text = "<br /><br />No hay comentarios para esta solicitud";
 				}else{
 
 					this.SinComentariosLabel.Text = "";
-					this.ComentarioRepeater.DataSource = oENTResponse.dsResponse.Tables[4];
-					this.ComentarioRepeater.DataBind();
-					this.ComentarioTituloLabel.Text = oENTResponse.dsResponse.Tables[4].Rows.Count.ToString() + " comentarios";
+					this.repComentarios.DataSource = oENTResponse.dsResponse.Tables[3];
+					this.repComentarios.DataBind();
+					this.ComentarioTituloLabel.Text = oENTResponse.dsResponse.Tables[3].Rows.Count.ToString() + " comentarios";
 				}
 
+				// Autoridad y voces señaladas
+				this.gvAutoridades.DataSource = oENTResponse.dsResponse.Tables[4];
+				this.gvAutoridades.DataBind();
+
+				// Diligencias
+				this.gvDiligencia.DataSource = oENTResponse.dsResponse.Tables[5];
+				this.gvDiligencia.DataBind();
+
+				// Seleccionar indicadores asociados a la solicitud
+				for (int k = 0; k < this.chkIndicador.Items.Count; k++) {
+					this.chkIndicador.Items[k].Selected = (oENTResponse.dsResponse.Tables[6].Select("IndicadorId=" + this.chkIndicador.Items[k].Value).Length == 0 ? false : true);
+					this.chkIndicador.Items[k].Enabled = false;
+				}
 
 			}catch (Exception ex){
 				throw (ex);
@@ -101,8 +162,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				// Obtener Sender
 				this.SenderId.Value = this.Request.QueryString["key"].ToString().ToString().Split(new Char[] { '|' })[1];
 
+				// Consulta de indicadores
+				SelectIndicadores();
+
 				// Carátula
-				SelectSolicitud();
+				SelectSolicitud_Cierre();
 
             }catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);

@@ -139,103 +139,76 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         protected global::System.Web.UI.WebControls.Label DireccionHechosLabel;
         
         /// <summary>
-        /// CalificacionList control.
+        /// ddlCalificacion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList CalificacionList;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCalificacion;
         
         /// <summary>
-        /// CeldaCierre control.
+        /// ddlTipoOrientacion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableRow CeldaCierre;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTipoOrientacion;
         
         /// <summary>
-        /// CierreList control.
+        /// ddlCanalizacion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList CierreList;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCanalizacion;
         
         /// <summary>
-        /// CeldaCanalizado control.
+        /// btnAgregarCanalizacion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableRow CeldaCanalizado;
+        protected global::System.Web.UI.WebControls.Button btnAgregarCanalizacion;
         
         /// <summary>
-        /// CanalizadoList control.
+        /// grdCanalizacion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList CanalizadoList;
+        protected global::System.Web.UI.WebControls.GridView grdCanalizacion;
         
         /// <summary>
-        /// AgregarButton control.
+        /// ckeFundamento control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button AgregarButton;
+        protected global::CKEditor.NET.CKEditorControl ckeFundamento;
         
         /// <summary>
-        /// CeldaGrid control.
+        /// btnGuardar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableRow CeldaGrid;
+        protected global::System.Web.UI.WebControls.Button btnGuardar;
         
         /// <summary>
-        /// CanalizacionGrid control.
+        /// btnRegresar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView CanalizacionGrid;
-        
-        /// <summary>
-        /// FundamentoBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox FundamentoBox;
-        
-        /// <summary>
-        /// Button1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
-        
-        /// <summary>
-        /// btnCancelar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelar;
+        protected global::System.Web.UI.WebControls.Button btnRegresar;
         
         /// <summary>
         /// hddSolicitudId control.

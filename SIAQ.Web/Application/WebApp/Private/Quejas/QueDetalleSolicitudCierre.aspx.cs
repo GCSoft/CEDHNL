@@ -55,6 +55,37 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 			}
 		}
 
+		void SelectIndicadores(){
+			BPIndicador oBPIndicador = new BPIndicador();
+			ENTIndicador oENTIndicador = new ENTIndicador();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Formulario
+				oENTIndicador.IndicadorId = 0;
+				oENTIndicador.Nombre = "";
+
+				// Transacción
+				oENTResponse = oBPIndicador.SelectIndicador(oENTIndicador);
+
+				// Errores y Warnings
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+
+				// Llenado de CheckBoxList
+				this.chkIndicador.DataTextField = "Nombre";
+				this.chkIndicador.DataValueField = "IndicadorId";
+				this.chkIndicador.DataSource = oENTResponse.dsResponse.Tables[1];
+				this.chkIndicador.DataBind();
+
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
 		void SelectSolicitud_Cierre() {
 			BPQueja oBPQueja = new BPQueja();
 			ENTQueja oENTQueja = new ENTQueja();
@@ -85,10 +116,19 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				this.FechaGestionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaInicioGestion"].ToString();
 				this.FechaModificacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaUltimaModificacion"].ToString();
 
+				this.TipoOrientacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["TipoOrientacionNombre"].ToString();
 				this.LugarHechosLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["LugarHechosNombre"].ToString();
 				this.DireccionHechosLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["DireccionHechos"].ToString();
 				this.ObservacionesLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Observaciones"].ToString();
 
+				// Canalizaciones
+				if (oENTResponse.dsResponse.Tables[7].Rows.Count > 0){
+
+					this.CanalizacionesLabel.Visible = true;
+
+					this.grdCanalizacion.DataSource = oENTResponse.dsResponse.Tables[7];
+					this.grdCanalizacion.DataBind();
+				}
 
 				// Calificacion
 				this.CalificacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionNombre"].ToString();
@@ -97,6 +137,17 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				// Ciudadanos
 				this.gvCiudadano.DataSource = oENTResponse.dsResponse.Tables[2];
 				this.gvCiudadano.DataBind();
+
+				// Documentos
+				if (oENTResponse.dsResponse.Tables[8].Rows.Count == 0){
+
+					this.SinDocumentoLabel.Text = "<br /><br />No hay documentos anexados a la solicitud";
+				}else{
+
+					this.SinDocumentoLabel.Text = "";
+					this.dlstDocumentoList.DataSource = oENTResponse.dsResponse.Tables[8];
+					this.dlstDocumentoList.DataBind();
+				}
 
 				// Comentarios
 				if (oENTResponse.dsResponse.Tables[3].Rows.Count == 0){
@@ -118,7 +169,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				this.gvDiligencia.DataSource = oENTResponse.dsResponse.Tables[5];
 				this.gvDiligencia.DataBind();
 
-				// TODO: Grupos minoritarios
+				// Seleccionar indicadores asociados a la solicitud
+				for (int k = 0; k < this.chkIndicador.Items.Count; k++) {
+					this.chkIndicador.Items[k].Selected = (oENTResponse.dsResponse.Tables[6].Select("IndicadorId=" + this.chkIndicador.Items[k].Value).Length == 0 ? false : true);
+					this.chkIndicador.Items[k].Enabled = false;
+				}
 
 			}catch (Exception ex){
 				throw (ex);
@@ -334,6 +389,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				// Obtener sesión
 				SessionEntity = (ENTSession)Session["oENTSession"];
 
+				// Consulta de indicadores
+				SelectIndicadores();
+
 				// Consultar detalle de la Solicitud de Quejas
 				SelectSolicitud_Cierre();
 
@@ -348,6 +406,35 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 		protected void btnRegresar_Click(object sender, EventArgs e){
 			Response.Redirect(this.Sender.Value);
 		}
+
+		protected void dlstDocumentoList_ItemDataBound(Object sender, DataListItemEventArgs e){
+            Label DocumentoLabel;
+            Image DocumentoImage;
+            DataRowView DataRow;
+
+            try
+            {
+
+                // Validación de que sea Item 
+                if (e.Item.ItemType != ListItemType.Item && e.Item.ItemType != ListItemType.AlternatingItem) { return; }
+
+                // Obtener controles
+                DocumentoImage = (Image)e.Item.FindControl("DocumentoImage");
+                DocumentoLabel = (Label)e.Item.FindControl("DocumentoLabel");
+                DataRow = (DataRowView)e.Item.DataItem;
+
+                // Configurar imagen
+                DocumentoLabel.Text = DataRow["NombreDocumento"].ToString();
+
+                DocumentoImage.ImageUrl = BPDocumento.GetIconoDocumento(DataRow["FormatoDocumentoId"].ToString());
+                DocumentoImage.Attributes.Add("onmouseover", "this.style.cursor='pointer'");
+                DocumentoImage.Attributes.Add("onmouseout", "this.style.cursor='auto'");
+                DocumentoImage.Attributes.Add("onclick", "window.open('" + System.Configuration.ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.ashx?R=" + DataRow["RepositorioId"].ToString() + "&S=0" + "');");
+
+            }catch (Exception ex){
+                throw (ex);
+            }
+        }
 
 		protected void gvCiudadano_RowDataBound(object sender, GridViewRowEventArgs e){
 			try

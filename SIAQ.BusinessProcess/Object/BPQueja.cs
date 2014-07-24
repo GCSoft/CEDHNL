@@ -89,6 +89,39 @@ namespace SIAQ.BusinessProcess.Object
 		}
 
 		///<remarks>
+		///   <name>BPQueja.InsertSolicitudIndicador</name>
+		///   <create>19-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Inserta el listado de Indicadores asociados a la solicitud de una Queja</summary>
+		///<param name="entSolicitud">Entidad de Queja con los parámetros necesarios para realizar la transacción</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse InsertSolicitudIndicador(ENTQueja oENTQueja){
+			DAQueja oDASolicitud = new DAQueja();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Transacción en base de datos
+				oENTResponse = oDASolicitud.InsertSolicitudIndicador(oENTQueja, this.sConnectionApplication, 0);
+
+				// Validación de error en consulta
+				if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+				// Validación de mensajes de la BD
+				oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+				if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
+		///<remarks>
 		///   <name>BPQueja.SelectSolicitud</name>
 		///   <create>17-Julio-2014</create>
         ///   <author>Ruben.Cobos</author>
@@ -237,6 +270,39 @@ namespace SIAQ.BusinessProcess.Object
 
               // Transacción en base de datos
 			   oENTResponse = oDAQueja.UpdateSolicitud(oENTQueja, this.sConnectionApplication, 0);
+
+              // Validación de error en consulta
+              if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+              // Validación de mensajes de la BD
+              oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+              if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+           }catch (Exception ex){
+              oENTResponse.ExceptionRaised(ex.Message);
+           }
+
+           // Resultado
+           return oENTResponse;
+        }
+
+		///<remarks>
+		///   <name>BPQueja.UpdateSolicitud_Calificacion</name>
+		///   <create>17-Julio-2014</create>
+        ///   <author>Ruben.Cobos</author>
+        ///</remarks>
+		///<summary>Actualiza la calificación de una solicitud de una Queja</summary>
+		///<param name="oENTQueja">Entidad de Queja con los parámetros necesarios para realizar la transacción</param>
+        ///<returns>Una entidad de respuesta</returns>
+        public ENTResponse UpdateSolicitud_Calificacion(ENTQueja oENTQueja){
+           DAQueja oDAQueja = new DAQueja();
+           ENTResponse oENTResponse = new ENTResponse();
+
+           try
+           {
+
+              // Transacción en base de datos
+			   oENTResponse = oDAQueja.UpdateSolicitud_Calificacion(oENTQueja, this.sConnectionApplication, 0);
 
               // Validación de error en consulta
               if (oENTResponse.GeneratesException) { return oENTResponse; }

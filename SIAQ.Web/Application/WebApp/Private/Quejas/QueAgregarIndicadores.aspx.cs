@@ -25,8 +25,83 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 	{
 
 
+		// Utilerías
 		Function utilFunction = new Function();
+		Encryption utilEncryption = new Encryption();
 
+
+		// Rutinas el programador
+
+		void InsertSolicitudIndicador() {
+			ENTQueja oENTQueja = new ENTQueja();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			BPQueja oBPQueja = new BPQueja();
+			DataRow rowIndicador;
+
+			try
+			{
+				
+				// Formulario
+				oENTQueja.SolicitudId = Int32.Parse(this.hddSolicitudId.Value);
+
+				// Indicadores seleccionados
+				oENTQueja.tblIndicador = new DataTable("tblIndicador");
+				oENTQueja.tblIndicador.Columns.Add("IndicadorId", typeof(Int32));
+
+				for (int k = 0; k < this.chkIndicador.Items.Count; k++) {
+
+					if(this.chkIndicador.Items[k].Selected){
+
+						rowIndicador = oENTQueja.tblIndicador.NewRow();
+						rowIndicador["IndicadorId"] = this.chkIndicador.Items[k].Value;
+						oENTQueja.tblIndicador.Rows.Add(rowIndicador);
+					}
+				}
+
+
+				// Transacción
+				oENTResponse = oBPQueja.InsertSolicitudIndicador(oENTQueja);
+
+				// Errores y Warnings
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		void SelectIndicadores(){
+			BPIndicador oBPIndicador = new BPIndicador();
+			ENTIndicador oENTIndicador = new ENTIndicador();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Formulario
+				oENTIndicador.IndicadorId = 0;
+				oENTIndicador.Nombre = "";
+
+				// Transacción
+				oENTResponse = oBPIndicador.SelectIndicador(oENTIndicador);
+
+				// Errores y Warnings
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+
+				// Llenado de CheckBoxList
+				this.chkIndicador.DataTextField = "Nombre";
+				this.chkIndicador.DataValueField = "IndicadorId";
+				this.chkIndicador.DataSource = oENTResponse.dsResponse.Tables[1];
+				this.chkIndicador.DataBind();
+
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
 
 		void SelectSolicitud(){
 			BPQueja oBPQueja = new BPQueja();
@@ -63,21 +138,20 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				this.DireccionHechosLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["DireccionHechos"].ToString();
 				this.ObservacionesLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Observaciones"].ToString();
 
+				// Seleccionar indicadores asociados a la solicitud
+				for (int k = 0; k < this.chkIndicador.Items.Count; k++) {
+					this.chkIndicador.Items[k].Selected = (oENTResponse.dsResponse.Tables[6].Select("IndicadorId=" + this.chkIndicador.Items[k].Value).Length == 0 ? false : true); 
+				}
+
 			}catch (Exception ex){
 				throw (ex);
 			}
 		}
 
 
-		#region "Events"
-		protected void Page_Load(object sender, EventArgs e)
-		{
-			PageLoad();
-		}
-		#endregion
+		// Eventos de la página
 
-		#region
-		private void PageLoad(){
+		protected void Page_Load(object sender, EventArgs e){
 			try
             {
 
@@ -92,6 +166,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				// Obtener Sender
 				this.SenderId.Value = this.Request.QueryString["key"].ToString().ToString().Split(new Char[] { '|' })[1];
 
+				// Consulta de indicadores
+				SelectIndicadores();
+
 				// Carátula
 				SelectSolicitud();
 
@@ -100,14 +177,19 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
             }
 		}
 
-		private void SelectIndicadores(string SolicitudId)
-		{
-
-		}
-		#endregion
-
 		protected void btnGuardar_Click(object sender, EventArgs e){
-			Response.Redirect("QueDetalleSolicitud.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value, false);
+			try
+            {
+
+				// Asignar el Defensor
+				InsertSolicitudIndicador();
+
+				// Regresar al detalle de la solicitud
+				Response.Redirect("QueDetalleSolicitud.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value, false);
+
+            }catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+            }
 		}
 
 		protected void btnRegresar_Click(object sender, EventArgs e){

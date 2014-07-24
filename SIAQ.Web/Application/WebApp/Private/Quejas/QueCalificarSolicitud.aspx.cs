@@ -25,11 +25,143 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 	public partial class QueCalificarSolicitud : System.Web.UI.Page
 	{
 
-		string AllDefault = "-- Seleccione --";
+		// Utilerías
 		Function utilFunction = new Function();
+		Encryption utilEncryption = new Encryption();
 
-		public string _SolicitudId;
 
+		// Rutinas del programador
+
+		void AgregaCanalizacion(){
+			DataTable tblCanalizacion = null;
+			DataRow rowCanalizacion = null;
+
+			try
+			{
+
+				// Obtener el DataTable del grid
+				tblCanalizacion = utilFunction.ParseGridViewToDataTable(this.grdCanalizacion, false);
+
+				// Validaciones
+				if (this.ddlCanalizacion.SelectedItem.Value == "0"){
+					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Debe seleccionar una opción de canalización', 'Warning', false); function pageLoad(){ focusControl('" + this.ddlCanalizacion.ClientID + "'); }", true);
+					return;
+				}
+				if( tblCanalizacion.Select("CanalizacionId='" + this.ddlCanalizacion.SelectedItem.Value + "'").Length > 0 ){
+					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Ya ha agregado esta canalización', 'Warning', false); function pageLoad(){ focusControl('" + this.ddlCanalizacion.ClientID + "'); }", true);
+					return;
+				}
+
+				// Nuevo Item
+				rowCanalizacion = tblCanalizacion.NewRow();
+				rowCanalizacion["CanalizacionId"] = this.ddlCanalizacion.SelectedItem.Value;
+				rowCanalizacion["Nombre"] = this.ddlCanalizacion.SelectedItem.Text;
+				tblCanalizacion.Rows.Add(rowCanalizacion);
+
+				// Refrescar el Grid
+				this.grdCanalizacion.DataSource = tblCanalizacion;
+				this.grdCanalizacion.DataBind();
+
+			}catch (Exception ex) { 
+				throw(ex);
+			}
+		}
+
+		void LimpiaGridCanalizaciones() {
+			DataTable tblCanalizacion = null;
+
+			try
+			{
+
+				// Obtener el DataTable del grid
+				tblCanalizacion = utilFunction.ParseGridViewToDataTable(this.grdCanalizacion, true);
+
+				// Limpiar la tabla
+				tblCanalizacion.Rows.Clear();
+
+				// Refrescar el Grid
+				this.grdCanalizacion.DataSource = tblCanalizacion;
+				this.grdCanalizacion.DataBind();
+
+			}catch (Exception ex) { 
+				throw(ex);
+			}
+		}
+
+		void SelectCalificacion(){
+			BPCalificacion BPCalificacion = new BPCalificacion();
+
+			try
+            {
+
+				// Configuración del control
+				this.ddlCalificacion.DataValueField = "CalificacionId";
+				this.ddlCalificacion.DataTextField = "Nombre";
+
+				// Transacción
+				this.ddlCalificacion.DataSource = BPCalificacion.SelectCalificacion();
+
+				// Validaciones
+				if (BPCalificacion.ErrorId != 0) { throw (new Exception(BPCalificacion.ErrorDescription)); }
+
+				// Llenado de datos
+				this.ddlCalificacion.DataBind();
+				this.ddlCalificacion.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+
+			}catch (Exception ex){
+				throw(ex);
+			}
+		}
+
+		void SelectCanalizacion(){
+			BPCanalizacion BPCanalizacion = new BPCanalizacion();
+
+			try
+            {
+
+				// Configuración del control
+				this.ddlCanalizacion.DataValueField = "CanalizacionId";
+				this.ddlCanalizacion.DataTextField = "Nombre";
+
+				// Transacción
+				this.ddlCanalizacion.DataSource = BPCanalizacion.SelectCanalizacion();
+
+				// Validaciones
+				if (BPCanalizacion.ErrorId != 0) { throw (new Exception(BPCanalizacion.ErrorDescription)); }
+
+				// Llenado de datos
+				this.ddlCanalizacion.DataBind();
+				this.ddlCanalizacion.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+
+			}catch (Exception ex){
+				throw(ex);
+			}
+		}
+
+		void SelectOrientacion(){
+			BPTipoOrientacion BPTipoOrientacion = new BPTipoOrientacion();
+
+			try
+            {
+
+				// Configuración del control
+				this.ddlTipoOrientacion.DataValueField = "TipoOrientacionId";
+				this.ddlTipoOrientacion.DataTextField = "Nombre";
+
+				// Transacción
+				this.ddlTipoOrientacion.DataSource = BPTipoOrientacion.SelectTipoOrientacion();
+
+				// Validaciones
+				if (BPTipoOrientacion.ErrorId != 0) { throw (new Exception(BPTipoOrientacion.ErrorDescription)); }
+
+				// Llenado de datos
+				this.ddlTipoOrientacion.DataBind();
+				this.ddlTipoOrientacion.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+
+			}catch (Exception ex){
+				throw(ex);
+			}
+		}
 
 		void SelectSolicitud(){
 			BPQueja oBPQueja = new BPQueja();
@@ -67,244 +199,299 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				this.ObservacionesLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Observaciones"].ToString();
 
 				// Datos de calificación
-				this.CalificacionList.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionId"].ToString();
-				this.FundamentoBox.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Fundamento"].ToString();
+				this.ddlCalificacion.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionId"].ToString();
+
+				if (oENTResponse.dsResponse.Tables[1].Rows[0]["TipoOrientacionId"].ToString() != "0") {
+					
+					this.ddlTipoOrientacion.Enabled = true;
+					this.ddlTipoOrientacion.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["TipoOrientacionId"].ToString();
+				}
+
+				if (oENTResponse.dsResponse.Tables[7].Rows.Count  > 0) {
+
+					this.ddlCanalizacion.Enabled = true;
+
+					this.btnAgregarCanalizacion.Enabled = true;
+					this.btnAgregarCanalizacion.CssClass = "Button_General";
+
+					this.grdCanalizacion.DataSource = oENTResponse.dsResponse.Tables[7];
+					this.grdCanalizacion.DataBind();
+				}
+
+				this.ckeFundamento.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Fundamento"].ToString();
 
 			}catch (Exception ex){
 				throw (ex);
 			}
 		}
 
+		void UpdateSolicitud_Calificacion() {
+			ENTQueja oENTQueja = new ENTQueja();
+			ENTResponse oENTResponse = new ENTResponse();
 
-		#region "Events"
-		protected void AgregarButton_Click(object sender, EventArgs e)
-		{
-			AgregarCanalizacion(int.Parse(CanalizadoList.SelectedValue), CanalizadoList.SelectedItem.Text);
-		}
+			BPQueja oBPQueja = new BPQueja();
 
-		protected void btnCancelar_Click(object sender, EventArgs e)
-		{
-			Response.Redirect("QueDetalleSolicitud.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value, false);
-		}
-
-		protected void CalificacionList_SelectedIndexChanged(Object sender, EventArgs e)
-		{
-			CalificacionListSelectedIndexChanged();
-		}
-
-		protected void CierreList_SelectedIndexChanged(Object sender, EventArgs e)
-		{
-			CierreListSelectedIndexChanged();
-		}
-
-		protected void GuardarCalificacionSol_Click(object sender, EventArgs e)
-		{
-			GuardarCalificacionSol();
-		}
-
-		protected void Page_Load(object sender, EventArgs e)
-		{
-			PageLoad();
-		}
-		#endregion
-
-		#region "Methods"
-		private void AgregarCanalizacion(int CanalizacionId, string NombreCanalizacion)
-		{
-			DataRow Row = null;
-			DataTable CanalizacionTable = null;
-
-			if (ValidarCanalizacion(CanalizacionId))
-			{
-				CanalizacionTable = utilFunction.ParseGridViewToDataTable(this.CanalizacionGrid, false);
-
-				Row = CanalizacionTable.NewRow();
-
-				Row["TipoOrientacionId"] = CanalizacionId;
-				Row["Nombre"] = NombreCanalizacion;
-
-				CanalizacionTable.Rows.Add(Row);
-
-				CanalizacionGrid.DataSource = CanalizacionTable;
-				CanalizacionGrid.DataBind();
-
-				CeldaGrid.Visible = true;
-			}
-		}
-
-		private void GuardarCalificacionSol()
-		{
-			ENTSession SessionEntity = new ENTSession();
-
-			SessionEntity = (ENTSession)Session["oENTSession"];
-
-			if (this.CalificacionList.SelectedValue == "0")
-			{
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo de Calificacion es obligatorio ', 'Fail', true); focusControl('" + this.CalificacionList.ClientID + "');", true);
-				return;
-			}
-
-			if (this.CierreList.SelectedValue != "0")
-			{
-
-				if (this.CanalizadoList.SelectedValue == "0")
-				{
-					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo de Canalizado es obligatorio ', 'Fail', true); focusControl('" + this.CanalizadoList.ClientID + "');", true);
-					return;
-				}
-
-				if (this.FundamentoBox.Text == "")
-				{
-					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo de Canalizado es obligatorio ', 'Fail', true); focusControl('" + this.CanalizadoList.ClientID + "');", true);
-					return;
-				}
-			}
-
-			GuardarCalificacionSol(SessionEntity.idUsuario, int.Parse(hddSolicitudId.Value), FundamentoBox.Text, int.Parse(CanalizadoList.SelectedValue), int.Parse(CalificacionList.SelectedValue), int.Parse(CierreList.SelectedValue));
-		}
-
-		private void GuardarCalificacionSol(int IdUsuarioInsert, int SolicitudId, string Fundamento, int CanalizacionId, int CalificacionId, int CierreOrientacionId)
-		{
-
-			BPSolicitud BPSolicitud = new BPSolicitud();
-
-			BPSolicitud.SolicitudEntity.idUsuarioInsert = IdUsuarioInsert;
-			BPSolicitud.SolicitudEntity.SolicitudId = SolicitudId;
-			BPSolicitud.SolicitudEntity.Fundamento = Fundamento;
-			BPSolicitud.SolicitudEntity.CanalizacionId = CanalizacionId;
-			BPSolicitud.SolicitudEntity.CalificacionId = CalificacionId;
-			BPSolicitud.SolicitudEntity.CierreOrientacionId = CierreOrientacionId;
-
-			BPSolicitud.GuardarCalificacionSol();
-			if (BPSolicitud.ErrorId == 0)
-			{
-				Response.Redirect("QueDetalleSolicitud.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value, false);
-			}
-			else
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + BPSolicitud.ErrorDescription + "', 'Error', true);", true);
-		}
-
-		private void LimpiarCampos()
-		{
-			CalificacionList.SelectedIndex = 0;
-			CierreList.SelectedIndex = 0;
-			CeldaCanalizado.Visible = false;
-
-			CalificacionList.Focus();
-		}
-
-		private void CalificacionListSelectedIndexChanged()
-		{
-			// ToDo: solo se debe mostrar esta información cuando la calificación es una orientación
-			if (int.Parse(CalificacionList.SelectedValue) == 3)
-			{
-				CeldaCierre.Visible = true;
-			}
-			else
-			{
-				CeldaCierre.Visible = false;
-				CeldaCanalizado.Visible = false;
-			}
-		}
-
-		private void CierreListSelectedIndexChanged()
-		{
-			// ToDo: solo se debe mostrar esta información cuando la calificación es una orientación
-			if (int.Parse(CalificacionList.SelectedValue) == 3)
-				CeldaCanalizado.Visible = true;
-			else
-				CeldaCanalizado.Visible = false;
-		}
-
-		private void PageLoad(){
-
-			// Validaciones
-			if (Page.IsPostBack) { return; }
-			if (this.Request.QueryString["key"] == null) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
-			if (this.Request.QueryString["key"].ToString().Split(new Char[] { '|' }).Length != 2) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
-
-			// Obtener ExpedienteId
-			this.hddSolicitudId.Value = this.Request.QueryString["key"].ToString().Split(new Char[] { '|' })[0];
-
-			// Obtener Sender
-			this.SenderId.Value = this.Request.QueryString["key"].ToString().ToString().Split(new Char[] { '|' })[1];
-
-
-
-			SelectCalificacion();
-			SelectOrientacion();
-			SelectCanalizacion();
+			DataTable tblCanalizacion = null;
+			DataRow rowCanalizacion;
 
 			try
 			{
 
+				// Obtener el DataTable del grid
+				tblCanalizacion = utilFunction.ParseGridViewToDataTable(this.grdCanalizacion, false);
 
-				_SolicitudId = hddSolicitudId.Value;
+			    // Validaciones
+				if (this.ddlCalificacion.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar una Calificación")); }
+				if (this.ddlTipoOrientacion.Enabled && this.ddlTipoOrientacion.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar un Tipo de Orientación")); }
+				if (this.ddlCanalizacion.Enabled && tblCanalizacion.Rows.Count == 0) { throw (new Exception("Es necesario seleccionar una Canalización")); }
+				if (this.ckeFundamento.Text.Trim() == "") { throw (new Exception("Es necesario ingresar un fundamento")); }
+				
+			    // Formulario
+			    oENTQueja.SolicitudId = Int32.Parse(this.hddSolicitudId.Value);
+				oENTQueja.CalificacionId = Int32.Parse(this.ddlCalificacion.SelectedItem.Value);
+				oENTQueja.TipoOrientacionId = Int32.Parse(this.ddlTipoOrientacion.SelectedItem.Value);
+				oENTQueja.Fundamento = this.ckeFundamento.Text.Trim();
 
-				// consultar la carátula
-				SelectSolicitud();
+				// Canalizaciones seleccionadas
+				oENTQueja.tblCanalizacion = new DataTable("tblCanalizacion");
+				oENTQueja.tblCanalizacion.Columns.Add("CanalizacionId", typeof(Int32));
 
-			}catch (Exception Exception){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + Exception.Message + "', 'Fail', true);", true);
-			}
-		}
+				foreach(DataRow oDataRow in tblCanalizacion.Rows){
 
-		private void SelectCalificacion()
-		{
-			BPCalificacion BPCalificacion = new BPCalificacion();
-
-			CalificacionList.DataValueField = "CalificacionId";
-			CalificacionList.DataTextField = "Nombre";
-
-			CalificacionList.DataSource = BPCalificacion.SelectCalificacion();
-			CalificacionList.DataBind();
-			CalificacionList.Items.Insert(0, new ListItem(AllDefault, "0"));
-		}
-
-		private void SelectCanalizacion()
-		{
-			BPCanalizacion BPCanalizacion = new BPCanalizacion();
-
-			CanalizadoList.DataValueField = "CanalizacionId";
-			CanalizadoList.DataTextField = "Nombre";
-
-			CanalizadoList.DataSource = BPCanalizacion.SelectCanalizacion();
-			CanalizadoList.DataBind();
-			CanalizadoList.Items.Insert(0, new ListItem(AllDefault, "0"));
-		}
-
-		private void SelectOrientacion()
-		{
-			BPTipoOrientacion BPTipoOrientacion = new BPTipoOrientacion();
-
-			CierreList.DataValueField = "TipoOrientacionId";
-			CierreList.DataTextField = "Nombre";
-
-			CierreList.DataSource = BPTipoOrientacion.SelectTipoOrientacion();
-			CierreList.DataBind();
-			CierreList.Items.Insert(0, new ListItem(AllDefault, "0"));
-		}
-
-		private bool ValidarCanalizacion(int CanalizacionId)
-		{
-			if (CanalizacionId == 0)
-			{
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Debe seleccionar una opción de canalización', 'Error', true);", true);
-				return false;
-			}
-
-			foreach (GridViewRow Row in CanalizacionGrid.Rows)
-			{
-				if (CanalizacionId.ToString() == CanalizacionGrid.DataKeys[Row.DataItemIndex]["TipoOrientacionId"].ToString())
-				{
-					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Esta opción de canalización ya ha sido seleccionada', 'Error', true);", true);
-					return false;
+					rowCanalizacion = oENTQueja.tblCanalizacion.NewRow();
+					rowCanalizacion["CanalizacionId"] = oDataRow["CanalizacionId"];
+					oENTQueja.tblCanalizacion.Rows.Add(rowCanalizacion);
 				}
-			}
 
-			return true;
+			    // Transacción
+				oENTResponse = oBPQueja.UpdateSolicitud_Calificacion(oENTQueja);
+
+			    // Errores y Warnings
+			    if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+			    if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+
+			}catch (Exception ex){
+			    throw (ex);
+			}
 		}
-		#endregion
+
+
+		// Eventos de la página
+
+		protected void Page_Load(object sender, EventArgs e){
+			try
+            {
+
+				// Validaciones
+				if (Page.IsPostBack) { return; }
+				if (this.Request.QueryString["key"] == null) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
+				if (this.Request.QueryString["key"].ToString().Split(new Char[] { '|' }).Length != 2) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
+
+				// Obtener ExpedienteId
+				this.hddSolicitudId.Value = this.Request.QueryString["key"].ToString().Split(new Char[] { '|' })[0];
+
+				// Obtener Sender
+				this.SenderId.Value = this.Request.QueryString["key"].ToString().ToString().Split(new Char[] { '|' })[1];
+
+				// Llenado de controles
+				SelectCalificacion();
+				SelectOrientacion();
+				SelectCanalizacion();
+
+				// Carátula
+				SelectSolicitud();
+				
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlCalificacion.ClientID + "'); }", true);
+
+            }catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlCalificacion.ClientID + "'); }", true);
+            }
+		}
+
+		protected void btnAgregarCanalizacion_Click(object sender, EventArgs e){
+			try
+            {
+
+				// Nuevo Item
+				AgregaCanalizacion();
+
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlCanalizacion.ClientID + "'); }", true);
+
+            }catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlCanalizacion.ClientID + "'); }", true);
+            }
+		}
+
+		protected void btnGuardar_Click(object sender, EventArgs e){
+			try
+            {
+
+				// Asignar el Defensor
+				UpdateSolicitud_Calificacion();
+
+				// Regresar al detalle de la solicitud
+				Response.Redirect("QueDetalleSolicitud.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value, false);
+
+            }catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlCalificacion.ClientID + "'); }", true);
+            }
+		}
+
+		protected void btnRegresar_Click(object sender, EventArgs e){
+			Response.Redirect("QueDetalleSolicitud.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value, false);
+		}
+
+		protected void ddlCalificacion_SelectedIndexChanged(Object sender, EventArgs e){
+			try
+            {
+
+				// Determinar la opcion seleccionada por el usuario
+				switch( this.ddlCalificacion.SelectedItem.Value  ){
+
+					case "3" :	// Orientación
+
+						this.ddlTipoOrientacion.Enabled = true;
+						ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlTipoOrientacion.ClientID + "'); }", true);
+						break;
+
+					default:
+
+						this.ddlTipoOrientacion.SelectedIndex = 0;
+						this.ddlCanalizacion.SelectedIndex = 0;
+
+						this.ddlTipoOrientacion.Enabled = false;
+						this.ddlCanalizacion.Enabled = false;
+
+						this.btnAgregarCanalizacion.Enabled = false;
+						this.btnAgregarCanalizacion.CssClass = "Button_General_Disabled";
+
+						LimpiaGridCanalizaciones();
+
+						break;
+				}
+
+            }catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlCalificacion.ClientID + "'); }", true);
+            }
+		}
+
+		protected void ddlTipoOrientacion_SelectedIndexChanged(Object sender, EventArgs e){
+			try
+            {
+
+				// Determinar la opcion seleccionada por el usuario
+				switch( this.ddlTipoOrientacion.SelectedItem.Value  ){
+
+					case "2":	// Canalización
+
+						this.btnAgregarCanalizacion.Enabled = true;
+						this.btnAgregarCanalizacion.CssClass = "Button_General";
+
+						this.ddlCanalizacion.Enabled = true;
+						ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlCanalizacion.ClientID + "'); }", true);
+						break;
+
+					default:
+
+						this.ddlCanalizacion.SelectedIndex = 0;
+						this.ddlCanalizacion.Enabled = false;
+
+						this.btnAgregarCanalizacion.Enabled = false;
+						this.btnAgregarCanalizacion.CssClass = "Button_General_Disabled";
+
+						LimpiaGridCanalizaciones();
+
+						break;
+				}
+
+            }catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlCalificacion.ClientID + "'); }", true);
+            }
+		}
+
+		protected void grdCanalizacion_RowCommand(object sender, GridViewCommandEventArgs e){
+			DataTable tblCanalizacion = null;
+			String CanalizacionId;
+
+			String strCommand = "";
+			Int32 intRow = 0;
+
+			try
+			{
+
+				// Opción seleccionada
+				strCommand = e.CommandName.ToString();
+
+				// Se dispara el evento RowCommand en el ordenamiento
+				if (strCommand == "Sort") { return; }
+
+				// Fila
+				intRow = Int32.Parse(e.CommandArgument.ToString());
+
+				// Datakeys
+				CanalizacionId = this.grdCanalizacion.DataKeys[intRow]["CanalizacionId"].ToString();
+
+				// Acción
+				switch (strCommand){
+					case "Eliminar":
+
+						// Obtener el DataTable del grid
+						tblCanalizacion = utilFunction.ParseGridViewToDataTable(this.grdCanalizacion, true);
+
+						// Eliminar el Item
+						tblCanalizacion.Rows.Remove(tblCanalizacion.Select("CanalizacionId=" + CanalizacionId)[0]);
+
+						// Refrescar el Grid
+						this.grdCanalizacion.DataSource = tblCanalizacion;
+						this.grdCanalizacion.DataBind();
+
+						break;
+				}
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlCanalizacion.ClientID + "'); }", true);
+			}
+		}
+
+		protected void grdCanalizacion_RowDataBound(object sender, GridViewRowEventArgs e){
+			ImageButton imgDelete = null;
+
+			String NombreCanalizacion = "";
+			String sImagesAttributes = "";
+			String sTootlTip = "";
+
+			try
+			{
+
+				// Validación de que sea fila
+				if (e.Row.RowType != DataControlRowType.DataRow) { return; }
+
+				// Obtener imágen
+				imgDelete = (ImageButton)e.Row.FindControl("imgDelete");
+
+				// Datakeys
+				NombreCanalizacion = this.grdCanalizacion.DataKeys[e.Row.RowIndex]["Nombre"].ToString();
+
+				// Tooltip Edición
+				sTootlTip = "Eliminar [" + NombreCanalizacion + "]";
+				imgDelete.Attributes.Add("onmouseover", "tooltip.show('" + sTootlTip + "', 'Izq');");
+				imgDelete.Attributes.Add("onmouseout", "tooltip.hide();");
+				imgDelete.Attributes.Add("style", "cursor:hand;");
+
+				// Atributos Over
+				sImagesAttributes = " document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png';";
+				e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over_Action'; " + sImagesAttributes);
+
+				// Atributos Out
+				sImagesAttributes = " document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png';";
+				e.Row.Attributes.Add("onmouseout", "this.className='Grid_Row_Action'; " + sImagesAttributes);
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
 
 	}
 }

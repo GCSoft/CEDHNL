@@ -1,18 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="QueAgregarIndicadores.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Quejas.QueAgregarIndicadores" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
-	<style type="text/css">   
-        .CeldaTabla 
-        {
-            border-bottom: 1px solid #cccccc;
-	        background-color: #ececff;
-	        border-spacing: 5px;
-	        font-size: 11px;
-	        font-weight: bold;
-	        padding: 5px;
-	        text-align:left;
-        }
-    </style>
+	
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
 	
@@ -101,66 +90,15 @@
         </table>
 		<br />
 
-		<!-- Grupos Minoritarios  -->
+		<!-- Indicadores  -->
 		<table border="0" cellpadding="0" cellspacing="0" width="100%">
-           <tr>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td class="CeldaTabla">Condición de la víctima</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td>
-            <table width="100%" border="0" style="text-align:left;">
-                  <tr>
-                    <td style="font-size: 12px; width:50%;"><asp:CheckBox Text="Menor de edad" runat="server" ID="CBMenorEdad" /></td>
-                    <td style="font-size: 12px;"><asp:CheckBox Text="Migrante internacional" runat="server" ID="CBMigranteInternaccional" /></td>
-                  </tr>
-                  <tr>
-                    <td style="font-size: 12px; width:50%;"><asp:CheckBox Text="Adulto mayor" runat="server" ID="CBAdultoMayor" /></td>
-                    <td>&nbsp;</td>
-                  </tr>
-                  <tr>
-                    <td style="font-size: 12px; width:50%;"><asp:CheckBox Text="Migrante nacional" runat="server" ID="CBMigranteNacional" /></td>
-                    <td>&nbsp;</td>
-                  </tr>
-           </table>
-
-            </td>
-         </tr>
-         <tr>
-            <td>&nbsp;</td>
-         </tr>
-      <tr>
-        <td class="CeldaTabla">Actividad de la víctima</td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>
-            <table width="100%" border="0" style="text-align:left;">
-              <tr>
-                <td style="font-size: 12px; width:50%;"><asp:CheckBox Text="Jornalero" runat="server" ID="CBJornalero" /></td>
-                <td style="font-size: 12px;"><asp:CheckBox Text="Construcción" runat="server" ID="CBConstruccion" /></td>
-              </tr>
-              <tr>
-                <td style="font-size: 12px; width:50%;"><asp:CheckBox Text="Sexo servidora"  runat="server" ID="CBSexoServidora" /></td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td style="font-size: 12px; width:50%;"><asp:CheckBox Text="Empleada doméstica"  runat="server" ID="CBEmpleadaDomestica" /></td>
-                <td>&nbsp;</td>
-              </tr>
-            </table>
-                </td>
-              </tr>
-              <tr>
-                <td>&nbsp;</td>
-              </tr>
+			<tr><td class="DivisonTabla">Indicadores</td></tr>
+			<tr><td></td></tr>
+			<tr>
+				<td>
+					<asp:CheckBoxList ID="chkIndicador" runat="server" CssClass="CheckBoxList_Regular" RepeatDirection="Horizontal" RepeatColumns="5" CellSpacing="20"></asp:CheckBoxList>
+				</td>
+			</tr>
 		</table>
 
 		<!-- Botones Pie de Página -->

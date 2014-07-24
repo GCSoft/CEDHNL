@@ -238,6 +238,25 @@
 	top:-2px;
 }
 
+/*CHECKBOXLIST*/
+.CheckBoxList_Regular{
+	color:#4B4878;
+	cursor:pointer;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 12px;
+	width:100%;
+	border: 1px solid #C1C1C1;
+}
+
+.CheckBoxList_Regular label{ 
+	float:left;
+}
+
+.CheckBoxList_Regular input{
+    float:left;
+    clear:both;
+}
+
 /*DROPDOWNLIST*/
 .DropDownList_General{
 	border:1px solid #5E8291;

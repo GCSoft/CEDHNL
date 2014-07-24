@@ -68,58 +68,6 @@ namespace SIAQ.DataAccess.Object
 
 			}
 
-			public void GuardarCalificacionSol(ENTSolicitud ENTSolicitud, string ConnectionString)
-			{
-				DataSet ResultData = new DataSet();
-				SqlCommand Command;
-				SqlParameter Parameter;
-				SqlConnection Connection = new SqlConnection(ConnectionString);
-
-				try
-				{
-					Command = new SqlCommand("InsertarCalificacionSol", Connection);
-					Command.CommandType = CommandType.StoredProcedure;
-
-					Parameter = new SqlParameter("SolicitudId", SqlDbType.Int);
-					Parameter.Value = ENTSolicitud.SolicitudId;
-					Command.Parameters.Add(Parameter);
-					/*
-					 * Esta entidad queda pendientee de revisar se propone que lleve el idUsuarioInsert para saber
-					 * quien calificó la solicitud FelipeVéliz
-					Parameter = new SqlParameter("IdUsuarioInsert", SqlDbType.Int);
-					Parameter.Value = ENTSolicitud.idUsuarioInsert;
-					Command.Parameters.Add(Parameter);*/
-
-					Parameter = new SqlParameter("Fundamento", SqlDbType.VarChar);
-					Parameter.Value = ENTSolicitud.Fundamento;
-					Command.Parameters.Add(Parameter);
-
-					Parameter = new SqlParameter("CanalizacionId", SqlDbType.Int);
-					Parameter.Value = ENTSolicitud.CalificacionId;
-					Command.Parameters.Add(Parameter);
-
-					Parameter = new SqlParameter("CalificacionId", SqlDbType.Int);
-					Parameter.Value = ENTSolicitud.CalificacionId;
-					Command.Parameters.Add(Parameter);
-
-					Parameter = new SqlParameter("TipoOrientacionId", SqlDbType.Int);
-					Parameter.Value = ENTSolicitud.CierreOrientacionId;
-					Command.Parameters.Add(Parameter);
-
-					Connection.Open();
-					Command.ExecuteNonQuery();
-					Connection.Close();
-				}
-				catch (SqlException Exception)
-				{
-					_ErrorId = Exception.Number;
-					_ErrorDescription = Exception.Message;
-
-					if (Connection.State == ConnectionState.Open)
-						Connection.Close();
-				}
-			}
-
 			/// <summary>
 			///     Busca las autoridades que están señaladas en una solicitud.
 			/// </summary>

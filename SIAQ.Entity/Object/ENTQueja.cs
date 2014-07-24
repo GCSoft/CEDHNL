@@ -18,43 +18,65 @@ namespace SIAQ.Entity.Object
 	{
 
 		// Definiciones
+		private Int32	_CalificacionId;	// Identificador único de la Calificación de la Solicitud
 		private Int32	_EstatusId;			// Identificador único del Estatus de la Solicitud
 		private Int32	_FormaContactoId;	// Identificador único de la forma de contacto
 		private Int32	_FuncionarioId;		// Identificador único del funcionario asociado a la solicitud
 		private Int32	_LugarHechosId;		// Identificador único del lugar de los hechos asociado a la solicitud
 		private Int32	_SolicitudId;		// Identificador único de la solicitud a consultar
+		private Int32	_TipoOrientacionId;	// Identificador único del tipo de orientación de una solicitud
 		private Int32	_UsuarioId;			// Identificador único de Usuario
 		private String	_Comentario;		// Comentarios
 		private String	_DireccionHechos;	// Dirección de los hechos en una solicitud
 		private String	_FechaDesde;		// Fecha de inicio en una consulta
 		private String	_FechaHasta;		// Fecha final en una consulta
+		private String _Fundamento;			// Fundameto de una calificación
 		private Int16	_Nivel;				// Nivel de transacción
 		private String	_Nombre;			// Nombre del ciudadano
 		private String	_Numero;			// Número de la solicitud
 		private String	_Observaciones;		// Observaciones de la solicitud
+		private DataTable _tblCanalizacion;		// DataTable el cual contiene los ID's Canalizaciones que se asociarán a la Solicitud
+		private DataTable _tblIndicador;		// DataTable el cual contiene los ID's de los grupos minoritarios asociadas a la solicitud
 
 
 		 //Constructor
 
         public ENTQueja(){
+			_CalificacionId = 0;
 			_EstatusId = 0;
 			_FormaContactoId = 0;
 			_FuncionarioId = 0;
 			_LugarHechosId = 0;
 			_SolicitudId = 0;
+			_TipoOrientacionId = 0;
 			_UsuarioId = 0;
 			_Comentario = "";
 			_DireccionHechos = "";
 			_FechaDesde = "";
 			_FechaHasta = "";
+			_Fundamento = "";
 			_Nivel = -1;
 			_Nombre = "";
 			_Numero = "";
 			_Observaciones = "";
+			_tblCanalizacion = null;
+			_tblIndicador = null;
         }
 
 
 		// Propiedades
+
+		///<remarks>
+		///   <name>ENTQueja.CalificacionId</name>
+		///   <create>18-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el identificador único de la Calificación de la Solicitud</summary>
+		public Int32 CalificacionId
+		{
+			get { return _CalificacionId; }
+			set { _CalificacionId = value; }
+		}
 
 		///<remarks>
 		///   <name>ENTQueja.EstatusId</name>
@@ -114,6 +136,18 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _SolicitudId; }
 			set { _SolicitudId = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTQueja.TipoOrientacionId</name>
+		///   <create>18-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el identificador único del tipo de orientación de una solicitud</summary>
+		public Int32 TipoOrientacionId
+		{
+			get { return _TipoOrientacionId; }
+			set { _TipoOrientacionId = value; }
 		}
 
         ///<remarks>
@@ -177,6 +211,18 @@ namespace SIAQ.Entity.Object
 		}
 
 		///<remarks>
+		///   <name>ENTQueja.Fundamento</name>
+		///   <create>18-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el fundameto de una calificación</summary>
+		public String Fundamento
+		{
+			get { return _Fundamento; }
+			set { _Fundamento = value; }
+		}
+
+		///<remarks>
 		///   <name>ENTQueja.Nivel</name>
 		///   <create>18-Julio-2014</create>
 		///   <author>Ruben.Cobos</author>
@@ -222,6 +268,30 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _Observaciones; }
 			set { _Observaciones = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTQueja.tblCanalizacion</name>
+		///   <create>18-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna un DataTable el cual contiene los ID's Canalizaciones que se asociarán a la Solicitud</summary>
+		public DataTable tblCanalizacion
+		{
+			get { return _tblCanalizacion; }
+			set { _tblCanalizacion = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTQueja.tblIndicador</name>
+		///   <create>18-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna un DataTable el cual contiene los ID's de los grupos minoritarios asociadas a la solicitud</summary>
+		public DataTable tblIndicador
+		{
+			get { return _tblIndicador; }
+			set { _tblIndicador = value; }
 		}
 
 	}

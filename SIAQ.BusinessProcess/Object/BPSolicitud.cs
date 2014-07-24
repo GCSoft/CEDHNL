@@ -52,18 +52,6 @@ namespace SIAQ.BusinessProcess.Object
 				get { return _ErrorDescription; }
 			}
 
-			public void GuardarCalificacionSol()
-			{
-
-				DASolicitud SolicitudAccess = new DASolicitud();
-
-				SolicitudAccess.GuardarCalificacionSol(_SolicitudEntity, sConnectionApplication);
-
-				_ErrorId = SolicitudAccess.ErrorId;
-				_ErrorDescription = SolicitudAccess.ErrorDescription;
-			}
-
-
 			/// <summary>
 			///     Busca las autoridades que están señaladas en una solicitud.
 			/// </summary>

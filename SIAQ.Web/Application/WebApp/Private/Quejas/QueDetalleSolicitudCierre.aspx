@@ -46,12 +46,18 @@
 
 	<div id="InformacionDiv">
 		
-		<!-- Carátula -->
+		<!-- Calificación -->
         <table class="SolicitudTable">
-            <tr>
+			<tr>
                 <td class="Especial">Solicitud Número</td>
                 <td class="Espacio"></td>
                 <td class="Campo"><asp:Label ID="SolicitudNumero" CssClass="NumeroSolicitudLabel" runat="server" Text="0"></asp:Label></td>
+                <td colspan="4"></td>
+            </tr>
+			<tr>
+                <td class="Especial">Calificación</td>
+                <td class="Espacio"></td>
+                <td class="Campo"><asp:Label ID="CalificacionLabel" CssClass="NumeroSolicitudLabel" runat="server" Text="0"></asp:Label></td>
                 <td colspan="4"></td>
             </tr>
             <tr>
@@ -90,6 +96,11 @@
                 <td class="Espacio"></td>
                 <td class="Etiqueta"><asp:Label ID="FechaModificacionLabel" runat="server" Text=""></asp:Label></td>
             </tr>
+			<tr>
+                <td class="Nombre">Tipo de Orientacion</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta" colspan="5"><asp:Label ID="TipoOrientacionLabel" runat="server"></asp:Label></td>
+            </tr>
             <tr>
                 <td class="Nombre">Lugar de los hechos</td>
                 <td class="Espacio"></td>
@@ -105,18 +116,23 @@
                 <td class="Espacio"></td>
                 <td class="Observaciones" colspan="5"><asp:Label ID="ObservacionesLabel" runat="server" Text=""></asp:Label></td>
             </tr>
-			<!-- Calificación -->
-			<tr style="height:20px;"><td colspan="7"></td></tr>
-			<tr>
-                <td class="Especial">Calificación</td>
-                <td class="Espacio"></td>
-                <td class="Campo"><asp:Label ID="CalificacionLabel" CssClass="NumeroSolicitudLabel" runat="server" Text="0"></asp:Label></td>
-                <td colspan="4"></td>
-            </tr>
 			<tr>
                 <td class="Nombre">Fundamento</td>
                 <td class="Espacio"></td>
                 <td class="Observaciones" colspan="5"><asp:Label ID="FundamentoLabel" runat="server" Text=""></asp:Label></td>
+            </tr>
+			<tr>
+                <td class="Nombre"><asp:Label ID="CanalizacionesLabel" runat="server" Text="Canalizaciones" Visible="false"></asp:Label></td>
+                <td class="Espacio"></td>
+                <td colspan="5">
+					<asp:GridView ID="grdCanalizacion" runat="server" AllowPaging="false" AllowSorting="false" AutoGenerateColumns="false" CssClass="GridDinamico" ShowHeader="false" Width="100%">
+                        <RowStyle CssClass="Grid_Row_Action" />
+                        <EditRowStyle Wrap="True" />
+                        <Columns>
+                            <asp:BoundField DataField="Nombre" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="100%"></asp:BoundField>
+                        </Columns>
+                    </asp:GridView>
+				</td>
             </tr>
 			<tr style="height:10px;"><td colspan="7"></td></tr>
         </table>
@@ -169,6 +185,21 @@
             <tr><td class="tdCeldaMiddleSpace"></td></tr>
         </table>
         <br />
+
+		<!-- Documentos -->
+        <div style="text-align: left;">Documentos anexos</div>
+        <div class="DocumentoListDiv">
+            <asp:DataList ID="dlstDocumentoList" runat="server" CellPadding="5" CellSpacing="5" HorizontalAlign="Left" RepeatDirection="Horizontal" RepeatLayout="Table" OnItemDataBound="dlstDocumentoList_ItemDataBound" >
+                <ItemTemplate>
+                    <div class="Item">
+                        <asp:Image ID="DocumentoImage" runat="server" />
+                        <br />
+                        <asp:Label CssClass="Texto" ID="DocumentoLabel" runat="server" Text="Nombre del documento"></asp:Label>
+                    </div>
+                </ItemTemplate>
+            </asp:DataList>
+            <asp:Label CssClass="Texto" ID="SinDocumentoLabel" runat="server" Text=""></asp:Label>
+        </div>
 
 		<!-- Comentarios -->
 		<div class="SolicitudComentarioDiv">
@@ -350,51 +381,15 @@
         </table>
         <br />
 
-		<!-- Grupos Minoritarios  -->
+		<!-- Indicadores (Grupos Minoritarios)  -->
 		<table border="0" cellpadding="0" cellspacing="0" width="100%">
-			<tr><td>&nbsp;</td></tr>
-			<tr><td class="CeldaTabla">Condición de la víctima</td></tr>
-			<tr><td>&nbsp;</td></tr>
+			<tr><td class="DivisonTabla">Indicadores</td></tr>
+			<tr><td></td></tr>
 			<tr>
 				<td>
-					<table width="100%" border="0" style="text-align:left;">
-						<tr>
-							<td style="font-size: 12px; width:50%;"><asp:CheckBox Text="Menor de edad" runat="server" ID="CBMenorEdad" Enabled="false" /></td>
-							<td style="font-size: 12px;"><asp:CheckBox Text="Migrante internacional" runat="server" ID="CBMigranteInternaccional" Enabled="false" /></td>
-						</tr>
-						<tr>
-							<td style="font-size: 12px; width:50%;"><asp:CheckBox Text="Adulto mayor" runat="server" ID="CBAdultoMayor" Enabled="false" /></td>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<td style="font-size: 12px; width:50%;"><asp:CheckBox Text="Migrante nacional" runat="server" ID="CBMigranteNacional" Enabled="false" /></td>
-							<td>&nbsp;</td>
-						</tr>
-					</table>
+					<asp:CheckBoxList ID="chkIndicador" runat="server" CssClass="CheckBoxList_Regular" RepeatDirection="Horizontal" RepeatColumns="5" CellSpacing="20"></asp:CheckBoxList>
 				</td>
 			</tr>
-			<tr><td>&nbsp;</td></tr>
-			<tr><td class="CeldaTabla">Actividad de la víctima</td></tr>
-			<tr><td>&nbsp;</td></tr>
-			<tr>
-				<td>
-					<table width="100%" border="0" style="text-align:left;">
-						<tr>
-							<td style="font-size: 12px; width:50%;"><asp:CheckBox Text="Jornalero" runat="server" ID="CBJornalero"  Enabled="false" /></td>
-							<td style="font-size: 12px;"><asp:CheckBox Text="Construcción" runat="server" ID="CBConstruccion" Enabled="false" /></td>
-						</tr>
-						<tr>
-							<td style="font-size: 12px; width:50%;"><asp:CheckBox Text="Sexo servidora"  runat="server" ID="CBSexoServidora" Enabled="false" /></td>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<td style="font-size: 12px; width:50%;"><asp:CheckBox Text="Empleada doméstica"  runat="server" ID="CBEmpleadaDomestica" Enabled="false" /></td>
-							<td>&nbsp;</td>
-						</tr>
-					</table>
-				</td>
-              </tr>
-              <tr><td>&nbsp;</td></tr>
 		</table>
 
 		<!-- Botones Pie de Página -->

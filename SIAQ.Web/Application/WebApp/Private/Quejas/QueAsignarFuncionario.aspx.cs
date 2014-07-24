@@ -55,9 +55,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
 				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
 
-				// Transación exitosa
-				Response.Redirect("QueDetalleSolicitud.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value, false);
-
 			}catch (Exception ex){
 				throw (ex);
 			}
@@ -180,6 +177,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
 				// Asignar el Defensor
 				InsertSolicitudFuncionario();
+
+				// Regresar al detalle de la solicitud
+				Response.Redirect("QueDetalleSolicitud.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value, false);
 
             }catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlFuncionario.ClientID + "'); }", true);

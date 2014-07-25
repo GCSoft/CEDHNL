@@ -7,8 +7,9 @@ namespace SIAQ.Entity.Object
    public class ENTFuncionario : ENTBase
    {
        
-      private Int32 _idUsuario;  // Identificador único del usuario asociado al funcionario
-      private Int32 _idArea;     // Identificador único del área al que pertence el funcionario
+      private Int32 _idUsuario;	// Identificador único del usuario asociado al funcionario
+      private Int32 _idArea;	// Identificador único del área al que pertence el funcionario
+	  private Int32 _idRol;		// Identificador único del Rol al que pertence el funcionario, aquí se determina a la sección de la aplicacion que puede acceder
 
         private int _FuncionarioId; // Valor de FuncionarioId
         private int _TituloId; // Valor de TituloId
@@ -25,6 +26,7 @@ namespace SIAQ.Entity.Object
 
          _idUsuario = 0;
          _idArea = 0;
+		 _idRol = 0;
 
            _Descripcion = "";
             _FuncionarioId = 0;
@@ -60,6 +62,18 @@ namespace SIAQ.Entity.Object
          get { return _idArea; }
          set { _idArea = value; }
       }
+
+	  ///<remarks>
+	  ///   <name>ENTFuncionario.idRol</name>
+	  ///   <create>06-Abril-2013</create>
+	  ///   <author>Ruben.Cobos</author>
+	  ///</remarks>
+	  ///<summary>Obtiene/Asigna el identificador único del Rol al que pertence el funcionario, aquí se determina a la sección de la aplicacion que puede acceder</summary>
+	  public Int32 idRol
+	  {
+		  get { return _idRol; }
+		  set { _idRol = value; }
+	  }
 
 
 

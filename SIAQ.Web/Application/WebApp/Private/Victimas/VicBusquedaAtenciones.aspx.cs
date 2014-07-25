@@ -75,7 +75,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				// Formulario
 				oENTFuncionario.FuncionarioId = 0;
 				oENTFuncionario.idUsuario = 0;
-				oENTFuncionario.idArea = 7;			// Sólo del área de Atención a Víctimas 
+				oENTFuncionario.idArea = 0;
+				oENTFuncionario.idRol = 14;			// Atención a Víctimas - Doctor
 				oENTFuncionario.TituloId = 0;
 				oENTFuncionario.PuestoId = 0;
 				oENTFuncionario.Nombre = "";

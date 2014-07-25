@@ -345,6 +345,10 @@ namespace SIAQ.DataAccess.Object
             sqlPar.Value = oENTFuncionario.idUsuario;
             sqlCom.Parameters.Add(sqlPar);
 
+			sqlPar = new SqlParameter("idRol", SqlDbType.Int);
+			sqlPar.Value = oENTFuncionario.idRol;
+			sqlCom.Parameters.Add(sqlPar);
+
             sqlPar = new SqlParameter("idArea", SqlDbType.Int);
             sqlPar.Value = oENTFuncionario.idArea;
             sqlCom.Parameters.Add(sqlPar);

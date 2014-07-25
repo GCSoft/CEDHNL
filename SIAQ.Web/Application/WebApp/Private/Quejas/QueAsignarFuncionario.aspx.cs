@@ -71,7 +71,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				// Formulario
 				oENTFuncionario.FuncionarioId = 0;
 				oENTFuncionario.idUsuario = 0;
-				oENTFuncionario.idArea = 3;			// Sólo del área de Quejas
+				oENTFuncionario.idArea = 0;
+				oENTFuncionario.idRol = 5;			// Queja - Funcionario
 				oENTFuncionario.TituloId = 0;
 				oENTFuncionario.PuestoId = 0;
 				oENTFuncionario.Nombre = "";

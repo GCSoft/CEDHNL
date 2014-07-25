@@ -244,7 +244,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				// Formulario
 				oENTFuncionario.FuncionarioId = 0;
 				oENTFuncionario.idUsuario = 0;
-				oENTFuncionario.idArea = 10;	// Seguimientos
+				oENTFuncionario.idArea = 0;
+				oENTFuncionario.idRol = 11;			// Seguimiento - Defensor
 				oENTFuncionario.TituloId = 0;
 				oENTFuncionario.PuestoId = 0;
 				oENTFuncionario.Nombre = "";

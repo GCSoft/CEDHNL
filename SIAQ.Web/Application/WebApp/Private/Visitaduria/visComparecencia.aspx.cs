@@ -295,6 +295,16 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
                 try
                 {
+
+					// Formulario
+					oENTFuncionario.FuncionarioId = 0;
+					oENTFuncionario.idUsuario = 0;
+					oENTFuncionario.idArea = 0;
+					oENTFuncionario.idRol = 8;			// Visitaduría - Visitador
+					oENTFuncionario.TituloId = 0;
+					oENTFuncionario.PuestoId = 0;
+					oENTFuncionario.Nombre = "";
+
                     // Transacción
                     oENTResponse = oBPFuncionario.SelectFuncionario(oENTFuncionario);
 

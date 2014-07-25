@@ -169,23 +169,18 @@
     <Content Include="Application\WebApp\Private\Seguimiento\segListadoExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segListadoExpedienteAprobacion.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segSeguimientoRecomendacion.aspx" />
-    <Content Include="Application\WebApp\Private\SysApp\Seguimiento\lstRecSectretarias.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeAcuerdoCalifDefinitiva.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeAprobarResolucionTitular.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeAsignarVisitador.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeBusquedaCiudadano.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\opeBusquedaExpedientes.aspx" />
-    <Content Include="Application\WebApp\Private\SysApp\Seguimiento\opeBusquedaRecomendacion.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeDetalleCiudadano.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeInicio.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\opeLstExpedientesTitular.aspx" />
-    <Content Include="Application\WebApp\Private\SysApp\Seguimiento\opeLstRecDefensor.aspx" />
-    <Content Include="Application\WebApp\Private\SysApp\Seguimiento\opeLstRecDirector.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeRegistroCiudadano.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeRegistroServPublico.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeRegistroSolicitud.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeRegistroVisita.aspx" />
-    <Content Include="Application\WebApp\Private\SysApp\Report\rptSIAQ.aspx" />
     <Content Include="Application\WebApp\Private\SysApp\saChangePassword.aspx" />
     <Content Include="Application\WebApp\Private\SysCat\ExcelMaker\xlsArea.aspx" />
     <Content Include="Application\WebApp\Private\SysCat\ExcelMaker\xlsMenu.aspx" />
@@ -982,13 +977,6 @@
     <Compile Include="Application\WebApp\Private\Seguimiento\segSeguimientoRecomendacion.aspx.designer.cs">
       <DependentUpon>segSeguimientoRecomendacion.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Application\WebApp\Private\SysApp\Seguimiento\lstRecSectretarias.aspx.cs">
-      <DependentUpon>lstRecSectretarias.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\SysApp\Seguimiento\lstRecSectretarias.aspx.designer.cs">
-      <DependentUpon>lstRecSectretarias.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeAcuerdoCalifDefinitiva.aspx.cs">
       <DependentUpon>opeAcuerdoCalifDefinitiva.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1087,13 +1075,6 @@
     <Compile Include="Application\WebApp\Private\Visitaduria\opeBusquedaExpedientes.aspx.designer.cs">
       <DependentUpon>opeBusquedaExpedientes.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Application\WebApp\Private\SysApp\Seguimiento\opeBusquedaRecomendacion.aspx.cs">
-      <DependentUpon>opeBusquedaRecomendacion.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\SysApp\Seguimiento\opeBusquedaRecomendacion.aspx.designer.cs">
-      <DependentUpon>opeBusquedaRecomendacion.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeDetalleCiudadano.aspx.cs">
       <DependentUpon>opeDetalleCiudadano.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1129,20 +1110,6 @@
     <Compile Include="Application\WebApp\Private\Visitaduria\opeLstExpedientesTitular.aspx.designer.cs">
       <DependentUpon>opeLstExpedientesTitular.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Application\WebApp\Private\SysApp\Seguimiento\opeLstRecDefensor.aspx.cs">
-      <DependentUpon>opeLstRecDefensor.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\SysApp\Seguimiento\opeLstRecDefensor.aspx.designer.cs">
-      <DependentUpon>opeLstRecDefensor.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\SysApp\Seguimiento\opeLstRecDirector.aspx.cs">
-      <DependentUpon>opeLstRecDirector.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\SysApp\Seguimiento\opeLstRecDirector.aspx.designer.cs">
-      <DependentUpon>opeLstRecDirector.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeRegistroCiudadano.aspx.cs">
       <DependentUpon>opeRegistroCiudadano.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1170,13 +1137,6 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeRegistroVisita.aspx.designer.cs">
       <DependentUpon>opeRegistroVisita.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\SysApp\Report\rptSIAQ.aspx.cs">
-      <DependentUpon>rptSIAQ.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\SysApp\Report\rptSIAQ.aspx.designer.cs">
-      <DependentUpon>rptSIAQ.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\SysApp\saChangePassword.aspx.cs">
       <DependentUpon>saChangePassword.aspx</DependentUpon>

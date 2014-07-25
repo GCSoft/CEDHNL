@@ -66,7 +66,7 @@
                         </tr>
                         <tr>
                             <td class="Nombre">Edad</td>
-                            <td class="Espacio"></td>
+                            <td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
                             <td class="Campo"><asp:TextBox ID="txtEdad" runat="server" CssClass="Textbox_General" Width="108px" TabIndex="5" Text="0" MaxLength="3"></asp:TextBox></td>
                             <td class="Espacio"></td>
                             <td class="Nombre">Correo electrónico</td>

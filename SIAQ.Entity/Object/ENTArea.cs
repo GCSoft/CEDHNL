@@ -17,22 +17,20 @@ using System.Data;
 namespace SIAQ.Entity.Object
 {
    
-   public class ENTArea : ENTBase
-   {
+	public class ENTArea : ENTBase
+	{
 
-      // Definiciones
-		private Int32	_idArea;          // Identificador único de Area
+		// Definiciones
+		private Int32	_idArea;			// Identificador único de Area
 		private String	_dtFechaCreacion;	// Fecha de creación del registro
 		private String	_sDescripcion;		// Descripción/notas del registro
 		private String	_sNombre;			// Nombre del Area
 		private Int16	_tiActivo;			// Control de baja lógica de registro
-      private Int16  _tiSistema;			// Determina si el área se visualizará en los combos o es para uso exclusivo de sistemas
+		private Int16	_tiVisitaduria;		// Determina si el área pertenece a visitadurías
+		private Int16	_tiVisita;			// Determina si el área puede recibir visitas
 
-      private DataSet _ResultData;     // Otras propiedades
-      private string _Descripcion;     // Valor de Descripcion
 
-		
-		 //Constructor
+		//Constructor
 
 		public ENTArea(){
 			_idArea = 0;
@@ -40,7 +38,8 @@ namespace SIAQ.Entity.Object
 			_sDescripcion = "";
 			_sNombre = "";
 			_tiActivo = 0;
-         _tiSistema = 0;
+			_tiVisitaduria = 0;
+			_tiVisita = 0;
 		}
 
 
@@ -90,8 +89,8 @@ namespace SIAQ.Entity.Object
 		///<summary>Obtiene/Asigna el nombre de la Compañía</summary>
 		public String sNombre
 		{
-			get { return _sNombre; }
-			set { _sNombre = value; }
+		get { return _sNombre; }
+		set { _sNombre = value; }
 		}
 
 		///<remarks>
@@ -106,28 +105,30 @@ namespace SIAQ.Entity.Object
 			set { _tiActivo = value; }
 		}
 
-      ///<remarks>
-      ///   <name>ENTArea.tiSistema</name>
-      ///   <create>21-Octubre-2013</create>
-      ///   <author>GCSoft - Web Project Creator BETA 1.0</author>
-      ///</remarks>
-      ///<summary>Obtiene/Asigna un valor que determina si el área se visualizará en los combos o es para uso exclusivo de sistemas</summary>
-      public Int16 tiSistema
-      {
-         get { return _tiSistema; }
-         set { _tiSistema = value; }
-      }
+		///<remarks>
+		///   <name>ENTArea.tiVisitaduria</name>
+		///   <create>21-Octubre-2013</create>
+		///   <author>GCSoft - Web Project Creator BETA 1.0</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna un valor que determina si el área pertenece a visitadurías</summary>
+		public Int16 tiVisitaduria
+		{
+			get { return _tiVisitaduria; }
+			set { _tiVisitaduria = value; }
+		}
 
+		///<remarks>
+		///   <name>ENTArea.tiVisita</name>
+		///   <create>21-Octubre-2013</create>
+		///   <author>GCSoft - Web Project Creator BETA 1.0</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna un valor que determina si el área puede recibir visitas</summary>
+		public Int16 tiVisita
+		{
+			get { return _tiVisita; }
+			set { _tiVisita = value; }
+		}
 
-      public string Descripcion{
-         get { return _Descripcion; }
-         set { _Descripcion = value; }
-      }
-
-      public DataSet ResultData{
-         get { return _ResultData; }
-         set { _ResultData = value; }
-      }
 
    }
 

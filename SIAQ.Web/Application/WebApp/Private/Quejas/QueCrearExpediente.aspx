@@ -101,12 +101,15 @@
 			<tr>
                 <td class="Nombre">Visitaduría a ser Asignada</td>
                 <td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
-                <td colspan="5" style="text-align:left;"><asp:DropDownList ID="ddlVisitaduria" runat="server" CssClass="DropDownList_General" width="216px" ></asp:DropDownList></td>
+                <td colspan="5" style="text-align:left;">
+					<asp:DropDownList ID="ddlVisitaduria" runat="server" CssClass="DropDownList_General" width="216px" ></asp:DropDownList>&nbsp;&nbsp;
+					<asp:Button ID="btnCrearFolio" runat="server" CssClass="Button_General" width="125px" Text="Crear Folio" OnClick="btnCrearFolio_Click" />
+				</td>
             </tr>
 			<tr>
                 <td class="Nombre"><asp:Label ID="lblVisitaduria" runat="server" Text="Número de expediente a ser asignado"></asp:Label></td>
                 <td class="Espacio"></td>
-                <td colspan="5" style="text-align:left;"><asp:Label ID="lblExpediente" runat="server" CssClass="NumeroNuevoExpedienteLabel" Text="0" Width="214" ></asp:Label></td>
+                <td colspan="5" style="text-align:left;"><asp:Label ID="lblExpediente" runat="server" CssClass="NumeroNuevoExpedienteLabel" Text="" Width="214" ></asp:Label></td>
             </tr>
         </table>
 		<br />
@@ -124,7 +127,8 @@
 
 	</div>
 
-	<asp:HiddenField ID="hddSolicitudId" runat="server" Value="0"  />
-	<asp:HiddenField ID="SenderId" runat="server" Value="0"  />
+	<asp:HiddenField ID="hddCalificacionId" runat="server" Value="0"/>
+	<asp:HiddenField ID="hddSolicitudId" runat="server" Value="0"/>
+	<asp:HiddenField ID="SenderId" runat="server" Value="0"/>
 
 </asp:Content>

@@ -286,8 +286,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 					if (Int32.Parse(this.hddEstatusId.Value) != 4) { this.lnkAgregarComentario.Visible = true; }
 				}
 
-				// Si el expediente está en estatus de confirmación de cierre no se podrá operar
-				if ( Int32.Parse(this.hddEstatusId.Value) == 4 ){
+				// Si el expediente está en estatus de Confirmación de cierre, Enviada a Visitadurías o Finalizada en Quejas no se podrá operar
+				if ( Int32.Parse(this.hddEstatusId.Value) == 4 || Int32.Parse(this.hddEstatusId.Value) == 22  || Int32.Parse(this.hddEstatusId.Value) == 23 ){
 					this.AgregrarInformacionPanel.Visible = false;
 					this.AsignarPanel.Visible = false;
 					this.CiudadanoPanel.Visible = false;

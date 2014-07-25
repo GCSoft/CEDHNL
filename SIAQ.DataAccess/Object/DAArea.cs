@@ -62,9 +62,13 @@ namespace SIAQ.DataAccess.Object
             sqlPar.Value = oENTArea.tiActivo;
             sqlCom.Parameters.Add(sqlPar);
 
-            sqlPar = new SqlParameter("tiSistema", SqlDbType.TinyInt);
-            sqlPar.Value = oENTArea.tiSistema;
+			sqlPar = new SqlParameter("tiVisitaduria", SqlDbType.TinyInt);
+            sqlPar.Value = oENTArea.tiVisitaduria;
             sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("tiVisita", SqlDbType.TinyInt);
+			sqlPar.Value = oENTArea.tiVisita;
+			sqlCom.Parameters.Add(sqlPar);
 
             // Inicializaciones
             oENTResponse.dsResponse = new DataSet();
@@ -177,8 +181,7 @@ namespace SIAQ.DataAccess.Object
         ///<param name="sConnection">Cadena de conexión a la base de datos</param>
         ///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
         ///<returns>Una entidad de respuesta</returns>
-        public ENTResponse SelectArea(ENTArea oENTArea, String sConnection, Int32 iAlternateDBTimeout)
-        {
+        public ENTResponse SelectArea(ENTArea oENTArea, String sConnection, Int32 iAlternateDBTimeout){
             SqlConnection sqlCnn = new SqlConnection(sConnection);
             SqlCommand sqlCom;
             SqlParameter sqlPar;
@@ -206,9 +209,13 @@ namespace SIAQ.DataAccess.Object
             sqlPar.Value = oENTArea.tiActivo;
             sqlCom.Parameters.Add(sqlPar);
 
-            sqlPar = new SqlParameter("tiSistema", SqlDbType.TinyInt);
-            sqlPar.Value = oENTArea.tiSistema;
+			sqlPar = new SqlParameter("tiVisitaduria", SqlDbType.TinyInt);
+			sqlPar.Value = oENTArea.tiVisitaduria;
             sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("tiVisita", SqlDbType.TinyInt);
+			sqlPar.Value = oENTArea.tiVisita;
+			sqlCom.Parameters.Add(sqlPar);
 
             // Inicializaciones
             oENTResponse.dsResponse = new DataSet();
@@ -282,9 +289,13 @@ namespace SIAQ.DataAccess.Object
             sqlPar.Value = oENTArea.tiActivo;
             sqlCom.Parameters.Add(sqlPar);
 
-            sqlPar = new SqlParameter("tiSistema", SqlDbType.TinyInt);
-            sqlPar.Value = oENTArea.tiSistema;
+			sqlPar = new SqlParameter("tiVisitaduria", SqlDbType.TinyInt);
+			sqlPar.Value = oENTArea.tiVisitaduria;
             sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("tiVisita", SqlDbType.TinyInt);
+			sqlPar.Value = oENTArea.tiVisita;
+			sqlCom.Parameters.Add(sqlPar);
 
             // Inicializaciones
             oENTResponse.dsResponse = new DataSet();

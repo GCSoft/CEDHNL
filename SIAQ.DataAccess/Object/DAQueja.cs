@@ -24,12 +24,128 @@ namespace SIAQ.DataAccess.Object
 	{
 
 		///<remarks>
+		///   <name>DASolicitud.CreateFolio</name>
+		///   <create>19-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Crea un nuevo folio para un expediente</summary>
+		///<param name="oENTQueja">Entidad de Queja con los parámetros necesarios para realizar la transacción</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse CreateFolio(ENTQueja oENTQueja, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspFolio_Create", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("TipoFolio", SqlDbType.TinyInt);
+			sqlPar.Value = oENTQueja.TipoFolio;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try{
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+			}catch (SqlException sqlEx){
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}finally{
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
+		///<remarks>
+		///   <name>DASolicitud.InsertExpediente</name>
+		///   <create>19-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Crea un nuevo expediente en base a la solicitud</summary>
+		///<param name="oENTQueja">Entidad de Queja con los parámetros necesarios para realizar la transacción</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse InsertExpediente(ENTQueja oENTQueja, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspExpediente_Ins", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("SolicitudId", SqlDbType.Int);
+			sqlPar.Value = oENTQueja.SolicitudId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("AreaId", SqlDbType.Int);
+			sqlPar.Value = oENTQueja.AreaId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("CalificacionId", SqlDbType.Int);
+			sqlPar.Value = oENTQueja.CalificacionId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("NumeroFolio", SqlDbType.VarChar);
+			sqlPar.Value = oENTQueja.NumeroFolio;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try{
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+			}catch (SqlException sqlEx){
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}finally{
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
+		///<remarks>
 		///   <name>DASolicitud.InsertSolicitudComentario</name>
 		///   <create>19-Junio-2014</create>
 		///   <author>Ruben.Cobos</author>
 		///</remarks>
 		///<summary>Inserta un comentario a la solicitud de una Queja</summary>
-		///<param name="entSolicitud">Entidad de Queja con los parámetros necesarios para realizar la transacción</param>
+		///<param name="oENTQueja">Entidad de Queja con los parámetros necesarios para realizar la transacción</param>
 		///<param name="sConnection">Cadena de conexión a la base de datos</param>
 		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
 		///<returns>Una entidad de respuesta</returns>
@@ -89,7 +205,7 @@ namespace SIAQ.DataAccess.Object
 		///   <author>Ruben.Cobos</author>
 		///</remarks>
 		///<summary>Crea una nueva asignación de un funcionario a una Solicitud de Quejas</summary>
-		///<param name="entSolicitud">Entidad de Queja con los parámetros necesarios para realizar la transacción</param>
+		///<param name="oENTQueja">Entidad de Queja con los parámetros necesarios para realizar la transacción</param>
 		///<param name="sConnection">Cadena de conexión a la base de datos</param>
 		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
 		///<returns>Una entidad de respuesta</returns>
@@ -145,7 +261,7 @@ namespace SIAQ.DataAccess.Object
 		///   <author>Ruben.Cobos</author>
 		///</remarks>
 		///<summary>Inserta el listado de Indicadores asociados a la solicitud de una Queja</summary>
-		///<param name="entSolicitud">Entidad de Queja con los parámetros necesarios para realizar la transacción</param>
+		///<param name="oENTQueja">Entidad de Queja con los parámetros necesarios para realizar la transacción</param>
 		///<param name="sConnection">Cadena de conexión a la base de datos</param>
 		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
 		///<returns>Una entidad de respuesta</returns>

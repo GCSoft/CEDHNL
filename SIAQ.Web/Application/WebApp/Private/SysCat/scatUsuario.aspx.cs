@@ -153,6 +153,8 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
             // Formulario
             oENTArea.sNombre = "";
             oENTArea.tiActivo = 1;
+			oENTArea.tiVisitaduria = 2;
+			oENTArea.tiVisita = 1;
 
 				// Transacción
 				oENTResponse = oBPArea.SelectArea(oENTArea);
@@ -186,6 +188,8 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
             // Formulario
             oENTArea.sNombre = "";
             oENTArea.tiActivo = 1;
+			oENTArea.tiVisitaduria = 2;
+			oENTArea.tiVisita = 1;
 
 				// Transacción
 				oENTResponse = oBPArea.SelectArea(oENTArea);

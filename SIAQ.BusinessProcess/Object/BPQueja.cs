@@ -23,12 +23,78 @@ namespace SIAQ.BusinessProcess.Object
 	{
 
 		///<remarks>
+		///   <name>BPQueja.CreateFolio</name>
+		///   <create>19-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Crea un nuevo folio para un expediente</summary>
+		///<param name="oENTQueja">Entidad de Queja con los parámetros necesarios para realizar la transacción</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse CreateFolio(ENTQueja oENTQueja){
+			DAQueja oDASolicitud = new DAQueja();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Transacción en base de datos
+				oENTResponse = oDASolicitud.CreateFolio(oENTQueja, this.sConnectionApplication, 0);
+
+				// Validación de error en consulta
+				if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+				// Validación de mensajes de la BD
+				oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+				if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
+		///<remarks>
+		///   <name>BPQueja.InsertExpediente</name>
+		///   <create>19-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Crea un nuevo expediente en base a la solicitud</summary>
+		///<param name="oENTQueja">Entidad de Queja con los parámetros necesarios para realizar la transacción</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse InsertExpediente(ENTQueja oENTQueja){
+			DAQueja oDASolicitud = new DAQueja();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Transacción en base de datos
+				oENTResponse = oDASolicitud.InsertExpediente(oENTQueja, this.sConnectionApplication, 0);
+
+				// Validación de error en consulta
+				if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+				// Validación de mensajes de la BD
+				oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+				if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
+		///<remarks>
 		///   <name>BPQueja.InsertSolicitudComentario</name>
 		///   <create>19-Julio-2014</create>
 		///   <author>Ruben.Cobos</author>
 		///</remarks>
 		///<summary>Inserta un comentario a la solicitud de una Queja</summary>
-		///<param name="entSolicitud">Entidad de Queja con los parámetros necesarios para realizar la transacción</param>
+		///<param name="oENTQueja">Entidad de Queja con los parámetros necesarios para realizar la transacción</param>
 		///<returns>Una entidad de respuesta</returns>
 		public ENTResponse InsertSolicitudComentario(ENTQueja oENTQueja){
 			DAQueja oDASolicitud = new DAQueja();
@@ -94,7 +160,7 @@ namespace SIAQ.BusinessProcess.Object
 		///   <author>Ruben.Cobos</author>
 		///</remarks>
 		///<summary>Inserta el listado de Indicadores asociados a la solicitud de una Queja</summary>
-		///<param name="entSolicitud">Entidad de Queja con los parámetros necesarios para realizar la transacción</param>
+		///<param name="oENTQueja">Entidad de Queja con los parámetros necesarios para realizar la transacción</param>
 		///<returns>Una entidad de respuesta</returns>
 		public ENTResponse InsertSolicitudIndicador(ENTQueja oENTQueja){
 			DAQueja oDASolicitud = new DAQueja();

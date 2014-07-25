@@ -148,15 +148,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         protected global::System.Web.UI.WebControls.Label FechaModificacionLabel;
         
         /// <summary>
-        /// TipoOrientacionLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label TipoOrientacionLabel;
-        
-        /// <summary>
         /// LugarHechosLabel control.
         /// </summary>
         /// <remarks>
@@ -191,6 +182,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label FundamentoLabel;
+        
+        /// <summary>
+        /// TipoOrientacionLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label TipoOrientacionLabel;
         
         /// <summary>
         /// CanalizacionesLabel control.

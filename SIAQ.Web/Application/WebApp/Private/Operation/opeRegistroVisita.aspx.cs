@@ -100,7 +100,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 oENTArea.idArea = 0;
                 oENTArea.sNombre = "";
                 oENTArea.tiActivo = 1;
-                oENTArea.tiSistema = 0;
+                oENTArea.tiVisitaduria = 2;
+				oENTArea.tiVisita = 1;
 
                 // Transacción
                 oENTResponse = oBPArea.SelectArea(oENTArea);

@@ -86,11 +86,6 @@
 					<td class="Etiqueta"><asp:Label ID="FechaModificacionLabel" runat="server" Text=""></asp:Label></td>
 				</tr>
 				<tr>
-					<td class="Nombre">Tipo de Orientacion</td>
-					<td class="Espacio"></td>
-					<td class="Etiqueta" colspan="5"><asp:Label ID="TipoOrientacionLabel" runat="server"></asp:Label></td>
-				</tr>
-				<tr>
 					<td class="Nombre">Lugar de los hechos</td>
 					<td class="Espacio"></td>
 					<td class="Etiqueta" colspan="5"><asp:Label ID="LugarHechosLabel" runat="server"></asp:Label></td>
@@ -109,6 +104,11 @@
 					<td class="Nombre">Fundamento</td>
 					<td class="Espacio"></td>
 					<td class="Observaciones" colspan="5"><asp:Label ID="FundamentoLabel" runat="server" Text=""></asp:Label></td>
+				</tr>
+				<tr>
+					<td class="Nombre">Cierre de Orientacion</td>
+					<td class="Espacio"></td>
+					<td class="Etiqueta" colspan="5"><asp:Label ID="TipoOrientacionLabel" runat="server"></asp:Label></td>
 				</tr>
 				<tr>
 					<td class="Nombre"><asp:Label ID="CanalizacionesLabel" runat="server" Text="Canalizaciones" Visible="false"></asp:Label></td>

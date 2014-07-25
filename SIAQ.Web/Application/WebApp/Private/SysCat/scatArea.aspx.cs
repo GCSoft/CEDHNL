@@ -92,7 +92,8 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
             // Formulario
             oENTArea.sDescripcion = this.txtActionDescripcion.Text.Trim();
             oENTArea.sNombre = this.txtActionNombre.Text.Trim();
-            oENTArea.tiSistema = Int16.Parse(this.ddlActionSistema.SelectedValue);
+			oENTArea.tiVisitaduria = Int16.Parse(this.ddlActionSistema.SelectedValue);
+			oENTArea.tiVisita = Int16.Parse(this.ddlActionSistema.SelectedValue);
             oENTArea.tiActivo = Int16.Parse(this.ddlActionStatus.SelectedValue);
 
 				// Transacción
@@ -128,7 +129,8 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
             // Formulario
             oENTArea.sNombre = this.txtNombre.Text;
             oENTArea.tiActivo = Int16.Parse(this.ddlStatus.SelectedItem.Value);
-            oENTArea.tiSistema = 2;
+			oENTArea.tiVisitaduria = 2;
+			oENTArea.tiVisita = 2;
 
 				// Transacción
 				oENTResponse = oBPArea.SelectArea(oENTArea);
@@ -163,7 +165,8 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
             oENTArea.idArea = idArea;
             oENTArea.sNombre = "";
             oENTArea.tiActivo = 2;
-            oENTArea.tiSistema = 2;
+			oENTArea.tiVisitaduria = 2;
+			oENTArea.tiVisita = 2;
 
 				// Transacción
 				oENTResponse = oBPArea.SelectArea(oENTArea);
@@ -273,7 +276,8 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
             oENTArea.idArea = idArea;
             oENTArea.sDescripcion = this.txtActionDescripcion.Text.Trim();
             oENTArea.sNombre = this.txtActionNombre.Text.Trim();
-            oENTArea.tiSistema = Int16.Parse(this.ddlActionSistema.SelectedValue);
+			oENTArea.tiVisitaduria = Int16.Parse(this.ddlActionSistema.SelectedValue);
+			oENTArea.tiVisita = Int16.Parse(this.ddlActionSistema.SelectedValue);
             oENTArea.tiActivo = Int16.Parse(this.ddlActionStatus.SelectedValue);
 
 				// Transacción

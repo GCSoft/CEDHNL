@@ -81,18 +81,19 @@ namespace SIAQ.BusinessProcess.Page
                this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx?key=" + sKey, true);
             }
 
-            // Compañía activa
-            if ( oENTSession.idArea != 1 ){
-               if (oDAArea.IsAreaActive(oENTSession.idArea, ConfigurationManager.ConnectionStrings["Application.DBCnn"].ToString(), 0) == false){
-                  sKey = utilEncryption.EncryptString("[V04] Su compañía no tiene permisos para acceder a esta página", true);
-                  this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx?key=" + sKey, true);
-               }
-            }
+			//// Compañía activa
+			//if ( oENTSession.idArea != 1 ){
+			//   if (oDAArea.IsAreaActive(oENTSession.idArea, ConfigurationManager.ConnectionStrings["Application.DBCnn"].ToString(), 0) == false){
+			//      sKey = utilEncryption.EncryptString("[V04] Su compañía no tiene permisos para acceder a esta página", true);
+			//      this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx?key=" + sKey, true);
+			//   }
+			//}
 
          }
 
          // Validación de acceso a opciones [System Administrator]
-         if ((sPage == "scatArea.aspx" || sPage == "scatMenu.aspx" || sPage == "scatSubMenu.aspx") && (oENTSession.idArea != 1) ){
+         // if ((sPage == "scatArea.aspx" || sPage == "scatMenu.aspx" || sPage == "scatSubMenu.aspx") && (oENTSession.idArea != 1) ){
+		if ((sPage == "scatArea.aspx" || sPage == "scatMenu.aspx" || sPage == "scatSubMenu.aspx") ){
 
             sKey = utilEncryption.EncryptString("[V03] No tiene permisos para acceder a esta página", true);
             this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx?key=" + sKey, true);

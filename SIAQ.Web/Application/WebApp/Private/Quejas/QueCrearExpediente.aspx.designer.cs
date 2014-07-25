@@ -157,6 +157,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         protected global::System.Web.UI.WebControls.DropDownList ddlVisitaduria;
         
         /// <summary>
+        /// btnCrearFolio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCrearFolio;
+        
+        /// <summary>
         /// lblVisitaduria control.
         /// </summary>
         /// <remarks>
@@ -191,6 +200,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancelar;
+        
+        /// <summary>
+        /// hddCalificacionId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hddCalificacionId;
         
         /// <summary>
         /// hddSolicitudId control.

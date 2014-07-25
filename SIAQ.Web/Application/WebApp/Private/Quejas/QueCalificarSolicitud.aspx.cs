@@ -242,7 +242,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
 			    // Validaciones
 				if (this.ddlCalificacion.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar una Calificación")); }
-				if (this.ddlTipoOrientacion.Enabled && this.ddlTipoOrientacion.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar un Tipo de Orientación")); }
+				if (this.ddlTipoOrientacion.Enabled && this.ddlTipoOrientacion.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar un Cierre de Orientación")); }
 				if (this.ddlCanalizacion.Enabled && tblCanalizacion.Rows.Count == 0) { throw (new Exception("Es necesario seleccionar una Canalización")); }
 				if (this.ckeFundamento.Text.Trim() == "") { throw (new Exception("Es necesario ingresar un fundamento")); }
 				

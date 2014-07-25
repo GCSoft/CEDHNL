@@ -140,11 +140,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
             // Formulario
             oENTArea.sNombre = "";
             oENTArea.tiActivo = 1;
+			oENTArea.tiVisitaduria = 2;
+			oENTArea.tiVisita = 1;
 
-				// Transacción
-				oENTResponse = oBPArea.SelectArea(oENTArea);
+			// Transacción
+			oENTResponse = oBPArea.SelectArea(oENTArea);
 
-				// Validaciones
+			// Validaciones
             if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
             if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
 

@@ -36,6 +36,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 			ENTResponse oENTResponse = new ENTResponse();
 			ENTSolicitud oENTSolicitud = new ENTSolicitud();
 
+			String JSMensaje = "";
+			String JSScript = "";
+
+			String SolicitudId = "";
 			String sFolio = "";
 
 			try{
@@ -73,14 +77,20 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 					return;
 				}
 
-				// Obtener el folio generado
+				// Obtener el folio y las Solicitud generados
 				sFolio = oENTResponse.dsResponse.Tables[1].Rows[0]["Folio"].ToString();
+				SolicitudId = oENTResponse.dsResponse.Tables[1].Rows[0]["SolicitudId"].ToString();
 
-				// Mensaje de Exito
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Se registro la solicitud exitosamente para el ciudadano [" + this.wucBusquedaCiudadano.Text.Trim() + "] con folio: " + sFolio + "', 'Success', true);", true);
+				// Mensaje a desplegar
+				JSMensaje = "Se registro la solicitud exitosamente para el ciudadano [" + this.wucBusquedaCiudadano.Text.Trim() + "] con folio: " + sFolio;
+				JSScript = "if( confirm('" + JSMensaje + "¿Desea ir al detalle para continuar con la captura?') ) { window.location.href('../Quejas/QueDetalleSolicitud.aspx?key=" + SolicitudId + "|2'); } else { tinyboxMessage('" + JSMensaje + "', 'Success', true);  }";
 
 				// Se limpia el formulario
 				Clear();
+
+				// Registrar Script
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), JSScript, true);
+				//ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Se registro la solicitud exitosamente para el ciudadano [" + this.wucBusquedaCiudadano.Text.Trim() + "] con folio: " + sFolio + "', 'Success', true);", true);
 
 			}catch (Exception ex){
 				throw(ex);

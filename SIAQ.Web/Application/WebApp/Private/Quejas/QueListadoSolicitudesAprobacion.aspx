@@ -26,7 +26,7 @@
 							<table border="1px" cellpadding="0px" cellspacing="0px" width="100%">
 								<tr class="Grid_Header">
                                     <td style="width:100px;">Número Solicitud</td>
-                                    <td style="width:100px;">Forma Contacto</td>
+                                    <td style="width:150px;">Calificación</td>
                                     <td style="width:150px;">Funcionario</td>
                                     <td>Detalle Queja</td>
                                     <td style="width:200px;">Estatus</td>
@@ -39,7 +39,7 @@
 						</EmptyDataTemplate>
 						<Columns>
 							<asp:BoundField HeaderText="Número Solicitud"	ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="100px"	DataField="NumeroSol"								SortExpression="NumeroSol"></asp:BoundField>
-                            <asp:BoundField HeaderText="Forma Contacto"		ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="100px"	DataField="NombreFormaContacto"						SortExpression="NombreFormaContacto"></asp:BoundField>
+                            <asp:BoundField HeaderText="Calificación"		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="150px"	DataField="NombreCalificacion"						SortExpression="NombreCalificacion"></asp:BoundField>
                             <asp:BoundField HeaderText="Funcionario"		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="150px"	DataField="NombreFuncionario"						SortExpression="NombreFuncionario"></asp:BoundField>
                             <asp:BoundField HeaderText="Detalle Queja"		ItemStyle-HorizontalAlign="Left"							DataField="Observaciones"		HtmlEncode="false"	SortExpression="Observaciones"></asp:BoundField>
                             <asp:BoundField HeaderText="Estatus"			ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="NombreEstatus"							SortExpression="NombreEstatus"></asp:BoundField>

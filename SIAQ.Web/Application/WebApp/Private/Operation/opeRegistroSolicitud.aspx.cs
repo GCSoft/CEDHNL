@@ -12,6 +12,7 @@ using GCSoft.Utilities.Security;
 using SIAQ.BusinessProcess.Object;
 using SIAQ.BusinessProcess.Page;
 using SIAQ.Entity.Object;
+using System.Data;
 
 namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
@@ -20,13 +21,56 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
 		// Utilerías
 		Function utilFunction = new Function();
+
+		// Servicio
+		[System.Web.Script.Services.ScriptMethod()]
+		[System.Web.Services.WebMethod]
+		public static List<string> GetCitizenList(string prefixText, int count){
+			BPCiudadano oBPCiudadano = new BPCiudadano();
+			ENTCiudadano oENTCiudadano = new ENTCiudadano();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			List<String> ServiceResponse = new List<String>();
+			String Item;
+
+			// Errores conocidos:
+			//		* No es posible que el control tome el foco con el metodo JS Focus()
+			//		* No se pudo encapsular en un WUC
+
+			try
+			{
+
+				// Formulario
+				oENTCiudadano.Nombre = prefixText;
+
+				// Transacción
+				oENTResponse = oBPCiudadano.searchCiudadano(oENTCiudadano);
+
+				// Validaciones
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+
+				// Configuración de arreglo de respuesta
+				foreach (DataRow rowCiudadano in oENTResponse.dsResponse.Tables[1].Rows){
+					Item = AjaxControlToolkit.AutoCompleteExtender.CreateAutoCompleteItem(rowCiudadano["NombreCiudadano"].ToString(), rowCiudadano["CiudadanoId"].ToString());
+					ServiceResponse.Add(Item);
+				}
+
+			}catch (Exception){
+				// Do Nothing
+			}
+
+			// Regresar listado de Ciudadanos
+			return ServiceResponse;
+		}
        
       
 		// Rutinas del programador
 
 		void Clear(){
 			this.wucFixedDateTime.SetDateTime();
-			this.wucBusquedaCiudadano.Text = "";
+			this.txtCiudadano.Text = "";
+			this.hddCiudadanoId.Value = "";
 			this.ddlFuncionario.SelectedValue = "0";
 			this.ckeObservaciones.Text = "";
 		}
@@ -42,58 +86,64 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 			String SolicitudId = "";
 			String sFolio = "";
 
+			String CiudadanoId;
+			String CiudadanoNombre;
+
 			try{
 
+				// Obtener información del ciudadano del Autosuggest
+				CiudadanoId = this.Request.Form[this.hddCiudadanoId.UniqueID];
+				CiudadanoNombre = this.Request.Form[this.txtCiudadano.UniqueID];
+
+				// Normalización
+				if (CiudadanoId == "") { CiudadanoId = "0"; }
+
 				// Validaciones
-				if (this.wucBusquedaCiudadano.Text.Trim() == "") { throw new Exception("El campo [Nombre del ciudadano] es requerido"); }
+				if (CiudadanoNombre == "") { throw new Exception("El campo [Nombre del ciudadano] es requerido"); }
 				if (this.ddlFormaContacto.SelectedItem.Value == "0") { throw new Exception("El campo [Forma de Contacto] es requerido"); }
 				if (this.ckeObservaciones.Text.Trim() == "") { throw new Exception("El campo [Observaciones] es requerido"); }
-               
-				// Validación cambio de nombre
-				if (this.wucBusquedaCiudadano.Text != this.wucBusquedaCiudadano.NombreCiud) { this.wucBusquedaCiudadano.CiudadanoID = 0; }
 
-				// Formulario
-				oENTSolicitud.FuncionarioId = Int32.Parse(this.ddlFuncionario.SelectedValue);
-				oENTSolicitud.CalificacionId = 1;	// Sin calificar
-				oENTSolicitud.TipoSolicitudId = 1;	// Individual
-				oENTSolicitud.LugarHechosId = 5;	// Otro
-				oENTSolicitud.EstatusId = (this.ddlFuncionario.SelectedValue == "0" ? 1 : 2);	// Por Asignar o Por Atender
-				oENTSolicitud.CiudadanoId = this.wucBusquedaCiudadano.CiudadanoID;
-				oENTSolicitud.FormaContactoId = Int32.Parse(this.ddlFormaContacto.SelectedItem.Value);
-				oENTSolicitud.NombreTemporal = this.wucBusquedaCiudadano.Text.Trim();
-				oENTSolicitud.Observaciones = this.ckeObservaciones.Text.Trim();
+			    // Formulario
+			    oENTSolicitud.FuncionarioId = Int32.Parse(this.ddlFuncionario.SelectedValue);
+			    oENTSolicitud.CalificacionId = 1;	// Sin calificar
+			    oENTSolicitud.TipoSolicitudId = 1;	// Individual
+			    oENTSolicitud.LugarHechosId = 5;	// Otro
+			    oENTSolicitud.EstatusId = (this.ddlFuncionario.SelectedValue == "0" ? 1 : 2);	// Por Asignar o Por Atender
+			    oENTSolicitud.CiudadanoId = Int32.Parse(CiudadanoId);
+			    oENTSolicitud.FormaContactoId = Int32.Parse(this.ddlFormaContacto.SelectedItem.Value);
+				oENTSolicitud.NombreTemporal = CiudadanoNombre;
+			    oENTSolicitud.Observaciones = this.ckeObservaciones.Text.Trim();
 
-				// Transacción
-				oENTResponse = oBPSolicitud.InsertSolicitud(oENTSolicitud);
+			    // Transacción
+			    oENTResponse = oBPSolicitud.InsertSolicitud(oENTSolicitud);
 
-				// Validación de error
-				if (oENTResponse.GeneratesException){
-					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sErrorMessage) + "', 'Fail', true);;", true);
-					return;
-				}
+			    // Validación de error
+			    if (oENTResponse.GeneratesException){
+			        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sErrorMessage) + "', 'Fail', true);;", true);
+			        return;
+			    }
 
-				if (oENTResponse.sMessage != ""){
-					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', false);", true);
-					return;
-				}
+			    if (oENTResponse.sMessage != ""){
+			        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', false);", true);
+			        return;
+			    }
 
-				// Obtener el folio y las Solicitud generados
-				sFolio = oENTResponse.dsResponse.Tables[1].Rows[0]["Folio"].ToString();
-				SolicitudId = oENTResponse.dsResponse.Tables[1].Rows[0]["SolicitudId"].ToString();
-
-				// Mensaje a desplegar
-				JSMensaje = "Se registro la solicitud exitosamente para el ciudadano [" + this.wucBusquedaCiudadano.Text.Trim() + "] con folio: " + sFolio;
-				JSScript = "if( confirm('" + JSMensaje + "¿Desea ir al detalle para continuar con la captura?') ) { window.location.href('../Quejas/QueDetalleSolicitud.aspx?key=" + SolicitudId + "|2'); } else { tinyboxMessage('" + JSMensaje + "', 'Success', true);  }";
+			    // Obtener el folio y las Solicitud generados
+			    sFolio = oENTResponse.dsResponse.Tables[1].Rows[0]["Folio"].ToString();
+			    SolicitudId = oENTResponse.dsResponse.Tables[1].Rows[0]["SolicitudId"].ToString();
 
 				// Se limpia el formulario
 				Clear();
 
-				// Registrar Script
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), JSScript, true);
-				//ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Se registro la solicitud exitosamente para el ciudadano [" + this.wucBusquedaCiudadano.Text.Trim() + "] con folio: " + sFolio + "', 'Success', true);", true);
+			    // Mensaje a desplegar
+				JSMensaje = "Se registro la solicitud exitosamente para el ciudadano [" + CiudadanoNombre + "] con folio: " + sFolio;
+			    JSScript = "if( confirm('" + JSMensaje + "¿Desea ir al detalle para continuar con la captura?') ) { window.location.href('../Quejas/QueDetalleSolicitud.aspx?key=" + SolicitudId + "|3'); } else { tinyboxMessage('" + JSMensaje + "', 'Success', true);  }";
+
+			    // Registrar Script
+			    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), JSScript, true);
 
 			}catch (Exception ex){
-				throw(ex);
+			    throw(ex);
 			}
 		}
 
@@ -105,23 +155,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 			try
 			{
 
-				// Formulario
-				oENTCiudadano.CiudadanoId = Int32.Parse(CiudadanoId);
+			    // Formulario
+			    oENTCiudadano.CiudadanoId = Int32.Parse(CiudadanoId);
 
-				// Transacción
-				oENTResponse = BPCiudadano.SelectCiudadano_ByID(oENTCiudadano);
+			    // Transacción
+			    oENTResponse = BPCiudadano.SelectCiudadano_ByID(oENTCiudadano);
 
-				// Validación
-				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
-				if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+			    // Validación
+			    if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+			    if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
 
-				// Cargar el WUC de Búsqueda de ciudadano
-				this.wucBusquedaCiudadano.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NombreCompleto"].ToString();
-				this.wucBusquedaCiudadano.NombreCiud = oENTResponse.dsResponse.Tables[1].Rows[0]["NombreCompleto"].ToString();
-				this.wucBusquedaCiudadano.CiudadanoID = Int32.Parse( oENTResponse.dsResponse.Tables[1].Rows[0]["CiudadanoId"].ToString());
+			    // Cargar el Autosuggest de Búsqueda de ciudadano
+				this.txtCiudadano.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NombreCompleto"].ToString();
+				this.hddCiudadanoId.Value = oENTResponse.dsResponse.Tables[1].Rows[0]["CiudadanoId"].ToString();
 
 			}catch (Exception ex){
-				throw (ex);
+			    throw (ex);
 			}
 		}
 
@@ -232,10 +281,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				if (CiudadanoId != "0") { SelectCiudadanoByID(CiudadanoId); }
 
 				// Foco
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + (CiudadanoId == "0" ? this.wucBusquedaCiudadano.CanvasID : this.ddlFuncionario.ClientID) + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlFuncionario.ClientID + "');", true);
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true); focusControl('" + this.wucBusquedaCiudadano.CanvasID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true); focusControl('" + this.ddlFuncionario.ClientID + "');", true);
 			}
 		}
 
@@ -247,24 +296,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				InsertSolicitud();
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.wucBusquedaCiudadano.CanvasID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.ddlFuncionario.ClientID + "');", true);
 			}
 		}
 
 		protected void btnRegresar_Click(object sender, EventArgs e){
 			Response.Redirect(this.Sender.Value);
-		}
-
-		protected void wucBusquedaCiudadano_ItemSelected(){
-			try
-			{
-
-				// Foco
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlFuncionario.ClientID + "');", true);
-
-			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.wucBusquedaCiudadano.CanvasID + "');", true);
-			}
 		}
    
    }

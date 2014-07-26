@@ -173,6 +173,10 @@ namespace SIAQ.DataAccess.Object
 			sqlPar.Value = oENTQueja.UsuarioId;
 			sqlCom.Parameters.Add(sqlPar);
 
+			sqlPar = new SqlParameter("MedidaPreventiva", SqlDbType.TinyInt);
+			sqlPar.Value = oENTQueja.MedidaPreventiva;
+			sqlCom.Parameters.Add(sqlPar);
+
 			sqlPar = new SqlParameter("Comentario", SqlDbType.VarChar);
 			sqlPar.Value = oENTQueja.Comentario;
 			sqlCom.Parameters.Add(sqlPar);

@@ -10,16 +10,16 @@
 namespace SIAQ.Web.Application.WebApp.Private.Operation {
     
     
-    public partial class opeRegistroSolicitud {
+    public partial class opeRegistroSolicitudOld {
         
         /// <summary>
-        /// lblSubTitulo control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSubTitulo;
+		protected global::System.Web.UI.WebControls.Label lblSubTitulo;
         
         /// <summary>
         /// pnlFormulario control.
@@ -40,6 +40,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::SIAQ.Web.Include.WebUserControls.wucFixedDateTime wucFixedDateTime;
         
         /// <summary>
+        /// wucBusquedaCiudadano control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::SIAQ.Web.Include.WebUserControls.wucBusquedaCiudadano wucBusquedaCiudadano;
+        
+        /// <summary>
         /// ddlFuncionario control.
         /// </summary>
         /// <remarks>
@@ -56,33 +65,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlFormaContacto;
-        
-        /// <summary>
-        /// txtCiudadano control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCiudadano;
-        
-        /// <summary>
-        /// hddCiudadanoId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hddCiudadanoId;
-        
-        /// <summary>
-        /// autoCompleteExtender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.AutoCompleteExtender autoCompleteExtender;
         
         /// <summary>
         /// ckeObservaciones control.
@@ -127,7 +109,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+		protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
         /// Label2 control.
@@ -136,16 +118,16 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+		protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// Label3 control.
+        /// Label4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+		protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
         /// Sender control.

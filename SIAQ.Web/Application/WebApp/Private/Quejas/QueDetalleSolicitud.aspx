@@ -201,11 +201,11 @@
             <asp:Label CssClass="Texto" ID="SinDocumentoLabel" runat="server" Text=""></asp:Label>
         </div>
         
-        <!-- Comentarios -->
+        <!-- Asuntos -->
 		<div class="SolicitudComentarioDiv">
             <div style="text-align: left;">
                 Asuntos &nbsp;&nbsp;
-                <asp:LinkButton ID="lnkAgregarComentario" runat="server" CssClass="LinkButton_Regular" Text="Agregar comentario" OnClick="lnkAgregarComentario_Click" Visible="false"></asp:LinkButton>
+                <asp:LinkButton ID="lnkAgregarComentario" runat="server" CssClass="LinkButton_Regular" Text="Agregar asunto" OnClick="lnkAgregarComentario_Click" Visible="false"></asp:LinkButton>
             </div>
             <div class="TituloDiv"><asp:Label ID="ComentarioTituloLabel" runat="server" Text=""></asp:Label></div>
             <asp:Repeater ID="repComentarios" runat="server">
@@ -224,7 +224,8 @@
 										<%# DataBinder.Eval(Container.DataItem, "UsuarioNombre")%>
 									</td>
                                     <td class="Fecha">
-										<%# DataBinder.Eval(Container.DataItem, "Fecha")%>
+										<%# DataBinder.Eval(Container.DataItem, "Fecha")%><br />
+										<%# DataBinder.Eval(Container.DataItem, "Tipo")%>
 									</td>
                                 </tr>
                                 <tr>
@@ -261,7 +262,7 @@
                 <table border="0" cellpadding="0" cellspacing="0" style="height:100%; width:100%">
                     <tr>
                         <td style="width: 10px"></td>
-                        <td style="text-align: left;"><asp:Label ID="lblActionTitle" runat="server" CssClass="ActionHeaderTitle" Text="Comentario"></asp:Label></td>
+                        <td style="text-align: left;"><asp:Label ID="lblActionTitle" runat="server" CssClass="ActionHeaderTitle" Text="Asunto"></asp:Label></td>
                         <td style="vertical-align: middle; width: 14px;"><asp:ImageButton ID="CloseWindowButton" runat="server" ImageUrl="~/Include/Image/Buttons/CloseWindow.png" ToolTip="Cerrar Ventana" onclick="CloseWindowButton_Click"></asp:ImageButton></td>
                         <td style="width: 10px"></td>
                     </tr>
@@ -278,8 +279,13 @@
 						</tr>
                         <tr style="height:5px;"><td></td></tr>
                         <tr>
-							<td style="text-align:right;">
-								<asp:Button ID="AgregarComentarioButton" runat="server" Text="Agregar comentario" CssClass="Button_General" Width="200px" onclick="AgregarComentarioButton_Click" />
+							<td>
+								<table border="0" cellpadding="0" cellspacing="0" width="100%">
+									 <tr>
+										<td style="text-align:left;"><asp:CheckBox ID="chkMedidaPreventiva" runat="server" Text ="Medida Preventiva"  CssClass="CheckBox_General" /></td>
+										<td style="text-align:right;"><asp:Button ID="AgregarComentarioButton" runat="server" Text="Agregar asunto" CssClass="Button_General" Width="200px" onclick="AgregarComentarioButton_Click" /></td>
+									</tr>
+								</table>
 							</td>
 						</tr>
                         <tr>

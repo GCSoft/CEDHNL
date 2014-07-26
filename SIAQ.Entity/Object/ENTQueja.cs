@@ -32,6 +32,7 @@ namespace SIAQ.Entity.Object
 		private String		_FechaDesde;		// Fecha de inicio en una consulta
 		private String		_FechaHasta;		// Fecha final en una consulta
 		private String		_Fundamento;		// Fundameto de una calificación
+		private Int16		_MedidaPreventiva;	// determina si un asunto es una medida preventiva
 		private Int16		_Nivel;				// Nivel de transacción
 		private String		_Nombre;			// Nombre del ciudadano
 		private String		_Numero;			// Número de la solicitud
@@ -59,6 +60,7 @@ namespace SIAQ.Entity.Object
 			_FechaDesde = "";
 			_FechaHasta = "";
 			_Fundamento = "";
+			_MedidaPreventiva = 0;
 			_Nivel = -1;
 			_Nombre = "";
 			_Numero = "";
@@ -238,6 +240,18 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _Fundamento; }
 			set { _Fundamento = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTQueja.MedidaPreventiva</name>
+		///   <create>18-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna un valor que determina si un asunto es una medida preventiva</summary>
+		public Int16 MedidaPreventiva
+		{
+			get { return _MedidaPreventiva; }
+			set { _MedidaPreventiva = value; }
 		}
 
 		///<remarks>

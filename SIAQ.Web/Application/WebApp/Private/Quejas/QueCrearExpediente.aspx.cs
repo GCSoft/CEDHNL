@@ -190,7 +190,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
 					case "3": // Orientación
 
-						this.ddlVisitaduria.Items.Insert(0, new ListItem("Finalizada", "0"));
+						this.ddlVisitaduria.Items.Insert(0, new ListItem("", "0"));
 						this.ddlVisitaduria.Enabled = false;
 						break;
 

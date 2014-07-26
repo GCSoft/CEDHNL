@@ -55,6 +55,7 @@
     <Content Include="Application\WebApp\Private\Archivo\arcBusquedaExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Archivo\arcDetalleExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Archivo\arcLiberarExpediente.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeRegistroSolicitudOld.aspx" />
     <Content Include="Application\WebApp\Private\Quejas\QueAgregarAutoridadSenalada.aspx" />
     <Content Include="Application\WebApp\Private\Quejas\QueAgregarCiudadanos.aspx" />
     <Content Include="Application\WebApp\Private\Quejas\QueAgregarDocumentos.aspx" />
@@ -540,6 +541,7 @@
     <Content Include="Include\Javascript\ToolTip\ImageWarning.png" />
     <Content Include="Include\Style\Login.css" />
     <Content Include="Include\Style\Table.css" />
+    <Content Include="Include\WebUserControls\wucASCiudadano.ascx" />
     <Content Include="Include\WebUserControls\wucBusquedaCiudadano.ascx" />
     <Content Include="Include\WebUserControls\wucBusquedaUsuario.ascx" />
     <Content Include="Include\WebUserControls\wucFastCatalog.ascx" />
@@ -734,6 +736,13 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeListadoSolicitudAprobacion.aspx.designer.cs">
       <DependentUpon>opeListadoSolicitudAprobacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeRegistroSolicitudOld.aspx.cs">
+      <DependentUpon>opeRegistroSolicitudOld.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeRegistroSolicitudOld.aspx.designer.cs">
+      <DependentUpon>opeRegistroSolicitudOld.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Quejas\QueAgregarAutoridadSenalada.aspx.cs">
       <DependentUpon>QueAgregarAutoridadSenalada.aspx</DependentUpon>
@@ -1280,6 +1289,13 @@
     </Compile>
     <Compile Include="Include\Handler\ObtenerRepositorio.ashx.cs">
       <DependentUpon>ObtenerRepositorio.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Include\WebUserControls\wucASCiudadano.ascx.cs">
+      <DependentUpon>wucASCiudadano.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Include\WebUserControls\wucASCiudadano.ascx.designer.cs">
+      <DependentUpon>wucASCiudadano.ascx</DependentUpon>
     </Compile>
     <Compile Include="Include\WebUserControls\wucBusquedaCiudadano.ascx.cs">
       <DependentUpon>wucBusquedaCiudadano.ascx</DependentUpon>

@@ -52,6 +52,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				oENTQueja.SolicitudId = Int32.Parse(this.hddSolicitudId.Value);
 				oENTQueja.UsuarioId = SessionEntity.idUsuario;
 				oENTQueja.Comentario = this.ckeComentario.Text.Trim();
+				oENTQueja.MedidaPreventiva = Int16.Parse((this.chkMedidaPreventiva.Checked ? 1 : 0).ToString());
 
 				// Transacción
 				oENTResponse = oBPQueja.InsertSolicitudComentario(oENTQueja);
@@ -119,16 +120,16 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 					this.dlstDocumentoList.DataBind();
 				}
 
-				// Comentarios
+				// Asuntos
 				if (oENTResponse.dsResponse.Tables[4].Rows.Count == 0){
 
-					this.SinComentariosLabel.Text = "<br /><br />No hay comentarios para esta solicitud";
+					this.SinComentariosLabel.Text = "<br /><br />No hay asuntos para esta solicitud";
 				}else{
 
 					this.SinComentariosLabel.Text = "";
 					this.repComentarios.DataSource = oENTResponse.dsResponse.Tables[4];
 					this.repComentarios.DataBind();
-					this.ComentarioTituloLabel.Text = oENTResponse.dsResponse.Tables[4].Rows.Count.ToString() + " comentarios";
+					this.ComentarioTituloLabel.Text = oENTResponse.dsResponse.Tables[4].Rows.Count.ToString() + " asuntos";
 				}
 
 
@@ -331,6 +332,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
 					case "2": // // Invocado desde [Búsqueda de Solicitudes]
 						this.Sender.Value = "QueBusquedaSolicitudes.aspx";
+						break;
+
+					case "3": // // Invocado desde [Registrar solicitud ]
+						this.Sender.Value = "../Operation/opeRegistroSolicitud.aspx?key=0|0";
 						break;
 
                     default:

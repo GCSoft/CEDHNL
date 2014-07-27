@@ -74,48 +74,6 @@ namespace SIAQ.DataAccess.Object
 
 			}
 
-			public void AgregarCiudadanoSolicitud(ENTCiudadano ENTCiudadano, string ConnectionString)
-			{
-
-				SqlConnection Connection = new SqlConnection(ConnectionString);
-				SqlCommand Command;
-				SqlParameter Parameter;
-				SqlDataAdapter DataAdapter;
-
-				try
-				{
-					Command = new SqlCommand("InsertarCiudadanoSolicitud", Connection);
-					Command.CommandType = CommandType.StoredProcedure;
-
-					Parameter = new SqlParameter("CiudadanoId", SqlDbType.Int);
-					Parameter.Value = ENTCiudadano.CiudadanoId;
-					Command.Parameters.Add(Parameter);
-
-					Parameter = new SqlParameter("SolicitudId", SqlDbType.Int);
-					Parameter.Value = ENTCiudadano.SolicitudId;
-					Command.Parameters.Add(Parameter);
-
-					Parameter = new SqlParameter("TipoCiudadanoId", SqlDbType.Int);
-					Parameter.Value = ENTCiudadano.TipoCiudadanoId;
-					Command.Parameters.Add(Parameter);
-
-					DataAdapter = new SqlDataAdapter(Command);
-
-					Connection.Open();
-					Command.ExecuteNonQuery();
-					Connection.Close();
-				}
-
-				catch (SqlException Exception)
-				{
-					_ErrorId = Exception.Number;
-					_ErrorDescription = Exception.Message;
-
-					if (Connection.State == ConnectionState.Open)
-						Connection.Close();
-				}
-			}
-
 			public DataSet SelectCiudadano(ENTCiudadano ENTCiudadano, string ConnectionString)
 			{
 				DataSet ResultData = new DataSet();

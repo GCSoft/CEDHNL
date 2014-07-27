@@ -269,5 +269,6 @@
 
     <asp:HiddenField ID="hdnCiudadanoId" runat="server" />
     <asp:HiddenField ID="hddSolicitudId" runat="server" />
+	<asp:HiddenField ID="SenderId" runat="server" Value="0"  />
 
 </asp:Content>

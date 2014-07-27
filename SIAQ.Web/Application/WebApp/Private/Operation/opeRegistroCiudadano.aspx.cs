@@ -215,10 +215,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
 				if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
 
-				// Si la pantalla fue invocada desde la pantalla de agregar ciudadanos a la solicitud (opeAgregarCiudadanosSol) regresar pasándo el CiudadanoId generado
+				// Si la pantalla fue invocada desde la pantalla de agregar ciudadanos a la solicitud (../Quejas/QueAgregarCiudadanos.aspx) regresar pasándo el CiudadanoId generado
 				if (this.hddSolicitudId.Value != ""){
 
-					Response.Redirect("opeAgregarCiudadanosSol.aspx?s=" + this.hddSolicitudId.Value + "&c=" + oENTResponse.dsResponse.Tables[1].Rows[0]["CiudadanoId"].ToString(), false);
+					Response.Redirect("../Quejas/QueAgregarCiudadanos.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value + "|" + oENTResponse.dsResponse.Tables[1].Rows[0]["CiudadanoId"].ToString(), false);
 				}else{
 
 					Limpiar();
@@ -312,10 +312,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				this.hdnCiudadanoId.Value = ciudadanoId;
 			}
 
-			if (Request.QueryString["acs"] != null){
-               
-				// La página viene de de la pantalla de agregar un ciudadano a una solicitud (opeAgregarCiudadanosSol)
-				this.hddSolicitudId.Value = Request.QueryString["acs"].ToString();
+			if (Request.QueryString["key"] != null){
+
+				// Obtener ExpedienteId
+				this.hddSolicitudId.Value = this.Request.QueryString["key"].ToString().Split(new Char[] { '|' })[0];
+
+				// Obtener Sender
+				this.SenderId.Value = this.Request.QueryString["key"].ToString().ToString().Split(new Char[] { '|' })[1];
 			}
             
 

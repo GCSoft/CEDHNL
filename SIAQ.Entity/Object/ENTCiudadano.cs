@@ -42,8 +42,11 @@ namespace SIAQ.Entity.Object
         private byte _DependientesEconomicos;
         private int _AtencionId; // Para atención a victimas
 
-        public ENTCiudadano()
-        {
+
+		private	Int32	_FuncionarioId;	// Determina le id del funcionario que realiza la transacción
+
+
+        public ENTCiudadano(){
             _CiudadanoId = 0;
             _SexoId = 0;
             _EstadoCivilId = 0;
@@ -67,6 +70,10 @@ namespace SIAQ.Entity.Object
             _Calle = string.Empty;
             _CampoBusqueda = string.Empty;
             _AtencionId = 0;
+
+
+			_FuncionarioId = 0;
+			
 
         }
         ///<remarks>
@@ -368,6 +375,29 @@ namespace SIAQ.Entity.Object
             get { return _AtencionId; }
             set { _AtencionId = value; }
         }
+
+
+
+
+
+
+
+
+		///<remarks>
+		///   <name>ENTCiudadano.FuncionarioId</name>
+		///   <create>18-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el Id del funcionario que realiza la transacción</summary>
+		public Int32 FuncionarioId
+		{
+			get { return _FuncionarioId; }
+			set { _FuncionarioId = value; }
+		}
+		
+		
+		
+
     }
 }
 

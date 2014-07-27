@@ -1,128 +1,59 @@
+/*---------------------------------------------------------------------------------------------------------------------------------
+' Clase: BPTipoCiudadano
+' Autor: Ruben.Cobos
+' Fecha: 18-Julio-2014
+'
+' Proposito:
+'          Clase que modela la capa de reglas de negocio de la aplicación con métodos relacionados con los Tipos de Ciudadano (Tipo de Participación)
+'----------------------------------------------------------------------------------------------------------------------------------*/
+
+// Referencias
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
-using System.Data;
+
+// Referencias manuales
 using SIAQ.DataAccess.Object;
 using SIAQ.Entity.Object;
+
 namespace SIAQ.BusinessProcess.Object
 {
     public class BPTipoCiudadano : BPBase
     {
-        ///<remarks>
-        ///   <name>BPcatTipoCiudadano.searchcatTipoCiudadano</name>
-        ///   <create>27/ene/2014</create>
-        ///   <author>Generador</author>
+        
+		///<remarks>
+		///   <name>BPTipoCiudadano.SelectTipoCiudadano</name>
+		///   <create>17-Julio-2014</create>
+        ///   <author>Ruben.Cobos</author>
         ///</remarks>
-        ///<summary>Metodo para obtener las catTipoCiudadano del sistema</summary>
-        public ENTResponse searchcatTipoCiudadano(ENTTipoCiudadano entTipoCiudadano)
-        {
+		///<summary>Obtiene un listado de TipoCiudadanoes de TipoCiudadanos en base a los parámetros proporcionados</summary>
+		///<param name="oENTTipoCiudadano">Entidad del Expediente de TipoCiudadano de TipoCiudadanos con los filtros necesarios para la consulta</param>
+        ///<returns>Una entidad de respuesta</returns>
+        public ENTResponse SelectTipoCiudadano(ENTTipoCiudadano oENTTipoCiudadano){
+           DATipoCiudadano oDATipoCiudadano = new DATipoCiudadano();
+           ENTResponse oENTResponse = new ENTResponse();
 
-            ENTResponse oENTResponse = new ENTResponse();
-            try
-            {
-                // Consulta a base de datos
-                DATipoCiudadano datacatTipoCiudadano = new DATipoCiudadano();
-                oENTResponse = datacatTipoCiudadano.searchcatTipoCiudadano(entTipoCiudadano);
-                // Validación de error en consulta
-                if (oENTResponse.GeneratesException) { return oENTResponse; }
-                // Validación de mensajes de la BD
-                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-                if (oENTResponse.sMessage != "") { return oENTResponse; }
-            }
-            catch (Exception ex)
-            {
-                oENTResponse.ExceptionRaised(ex.Message);
-            }
-            // Resultado
-            return oENTResponse;
+           try
+           {
 
+              // Transacción en base de datos
+			   oENTResponse = oDATipoCiudadano.SelectTipoCiudadano(oENTTipoCiudadano, this.sConnectionApplication, 0);
+
+              // Validación de error en consulta
+              if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+              // Validación de mensajes de la BD
+              oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+              if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+           }catch (Exception ex){
+              oENTResponse.ExceptionRaised(ex.Message);
+           }
+
+           // Resultado
+           return oENTResponse;
         }
-        ///<remarks>
-        ///   <name>BPcatTipoCiudadanoinsertcatTipoCiudadano</name>
-        ///   <create>27/ene/2014</create>
-        ///   <author>Generador</author>
-        ///</remarks>
-        ///<summary>Metodo para insertar catTipoCiudadano del sistema</summary>
-        public ENTResponse insertcatTipoCiudadano(ENTTipoCiudadano entTipoCiudadano)
-        {
 
-            ENTResponse oENTResponse = new ENTResponse();
-            try
-            {
-                // Consulta a base de datos
-                DATipoCiudadano datacatTipoCiudadano = new DATipoCiudadano();
-                oENTResponse = datacatTipoCiudadano.searchcatTipoCiudadano(entTipoCiudadano);
-                // Validación de error en consulta
-                if (oENTResponse.GeneratesException) { return oENTResponse; }
-                // Validación de mensajes de la BD
-                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-                if (oENTResponse.sMessage != "") { return oENTResponse; }
-            }
-            catch (Exception ex)
-            {
-                oENTResponse.ExceptionRaised(ex.Message);
-            }
-            // Resultado
-            return oENTResponse;
-
-        }
-        ///<remarks>
-        ///   <name>BPcatTipoCiudadanoupdatecatTipoCiudadano</name>
-        ///   <create>27/ene/2014</create>
-        ///   <author>Generador</author>
-        ///</remarks>
-        ///<summary>Metodo que actualiza catTipoCiudadano del sistema</summary>
-        public ENTResponse updatecatTipoCiudadano(ENTTipoCiudadano entTipoCiudadano)
-        {
-
-            ENTResponse oENTResponse = new ENTResponse();
-            try
-            {
-                // Consulta a base de datos
-                DATipoCiudadano datacatTipoCiudadano = new DATipoCiudadano();
-                oENTResponse = datacatTipoCiudadano.searchcatTipoCiudadano(entTipoCiudadano);
-                // Validación de error en consulta
-                if (oENTResponse.GeneratesException) { return oENTResponse; }
-                // Validación de mensajes de la BD
-                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-                if (oENTResponse.sMessage != "") { return oENTResponse; }
-            }
-            catch (Exception ex)
-            {
-                oENTResponse.ExceptionRaised(ex.Message);
-            }
-            // Resultado
-            return oENTResponse;
-
-        }
-        ///<remarks>
-        ///   <name>BPcatTipoCiudadanodeletecatTipoCiudadano</name>
-        ///   <create>27/ene/2014</create>
-        ///   <author>Generador</author>
-        ///</remarks>
-        ///<summary>Metodo para eliminar de catTipoCiudadano del sistema</summary>
-        public ENTResponse deletecatTipoCiudadano(ENTTipoCiudadano entTipoCiudadano)
-        {
-
-            ENTResponse oENTResponse = new ENTResponse();
-            try
-            {
-                // Consulta a base de datos
-                DATipoCiudadano datacatTipoCiudadano = new DATipoCiudadano();
-                oENTResponse = datacatTipoCiudadano.searchcatTipoCiudadano(entTipoCiudadano);
-                // Validación de error en consulta
-                if (oENTResponse.GeneratesException) { return oENTResponse; }
-                // Validación de mensajes de la BD
-                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-                if (oENTResponse.sMessage != "") { return oENTResponse; }
-            }
-            catch (Exception ex)
-            {
-                oENTResponse.ExceptionRaised(ex.Message);
-            }
-            // Resultado
-            return oENTResponse;
-
-        }
     }
 }

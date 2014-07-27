@@ -56,6 +56,39 @@ namespace SIAQ.BusinessProcess.Object
 		}
 
 		///<remarks>
+		///   <name>BPQueja.DeleteSolicitudCiudadano</name>
+		///   <create>19-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Elimina la asociación de un ciudadano a la solicitud de una Queja</summary>
+		///<param name="oENTQueja">Entidad de Queja con los parámetros necesarios para realizar la transacción</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse DeleteSolicitudCiudadano(ENTQueja oENTQueja){
+			DAQueja oDASolicitud = new DAQueja();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Transacción en base de datos
+				oENTResponse = oDASolicitud.DeleteSolicitudCiudadano(oENTQueja, this.sConnectionApplication, 0);
+
+				// Validación de error en consulta
+				if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+				// Validación de mensajes de la BD
+				oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+				if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
+		///<remarks>
 		///   <name>BPQueja.InsertExpediente</name>
 		///   <create>19-Julio-2014</create>
 		///   <author>Ruben.Cobos</author>
@@ -72,6 +105,39 @@ namespace SIAQ.BusinessProcess.Object
 
 				// Transacción en base de datos
 				oENTResponse = oDASolicitud.InsertExpediente(oENTQueja, this.sConnectionApplication, 0);
+
+				// Validación de error en consulta
+				if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+				// Validación de mensajes de la BD
+				oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+				if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
+		///<remarks>
+		///   <name>BPQueja.InsertSolicitudCiudadano</name>
+		///   <create>19-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Asocia un nuevo ciudadano a la solicitud de una Queja</summary>
+		///<param name="oENTQueja">Entidad de Queja con los parámetros necesarios para realizar la transacción</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse InsertSolicitudCiudadano(ENTQueja oENTQueja){
+			DAQueja oDASolicitud = new DAQueja();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Transacción en base de datos
+				oENTResponse = oDASolicitud.InsertSolicitudCiudadano(oENTQueja, this.sConnectionApplication, 0);
 
 				// Validación de error en consulta
 				if (oENTResponse.GeneratesException) { return oENTResponse; }
@@ -353,14 +419,14 @@ namespace SIAQ.BusinessProcess.Object
         }
 
 		///<remarks>
-		///   <name>BPQueja.UpdateSolicitud_Calificacion</name>
+		///   <name>BPQueja.UpdateSolicitudCalificacion</name>
 		///   <create>17-Julio-2014</create>
         ///   <author>Ruben.Cobos</author>
         ///</remarks>
 		///<summary>Actualiza la calificación de una solicitud de una Queja</summary>
 		///<param name="oENTQueja">Entidad de Queja con los parámetros necesarios para realizar la transacción</param>
         ///<returns>Una entidad de respuesta</returns>
-        public ENTResponse UpdateSolicitud_Calificacion(ENTQueja oENTQueja){
+        public ENTResponse UpdateSolicitudCalificacion(ENTQueja oENTQueja){
            DAQueja oDAQueja = new DAQueja();
            ENTResponse oENTResponse = new ENTResponse();
 
@@ -368,7 +434,7 @@ namespace SIAQ.BusinessProcess.Object
            {
 
               // Transacción en base de datos
-			   oENTResponse = oDAQueja.UpdateSolicitud_Calificacion(oENTQueja, this.sConnectionApplication, 0);
+			   oENTResponse = oDAQueja.UpdateSolicitudCalificacion(oENTQueja, this.sConnectionApplication, 0);
 
               // Validación de error en consulta
               if (oENTResponse.GeneratesException) { return oENTResponse; }
@@ -386,14 +452,14 @@ namespace SIAQ.BusinessProcess.Object
         }
 
 		///<remarks>
-		///   <name>BPQueja.UpdateSolicitud_Estatus</name>
+		///   <name>BPQueja.UpdateSolicitudCalificacion</name>
 		///   <create>17-Julio-2014</create>
         ///   <author>Ruben.Cobos</author>
         ///</remarks>
-		///<summary>Cambia el estatus de un una Solicitud de Quejas</summary>
+		///<summary>Actualiza la información de asociación de un ciudadano en particular que pertenece a una solicitud de una Queja</summary>
 		///<param name="oENTQueja">Entidad de Queja con los parámetros necesarios para realizar la transacción</param>
         ///<returns>Una entidad de respuesta</returns>
-        public ENTResponse UpdateSolicitud_Estatus(ENTQueja oENTQueja){
+        public ENTResponse UpdateSolicitudCiudadano(ENTQueja oENTQueja){
            DAQueja oDAQueja = new DAQueja();
            ENTResponse oENTResponse = new ENTResponse();
 
@@ -401,7 +467,40 @@ namespace SIAQ.BusinessProcess.Object
            {
 
               // Transacción en base de datos
-			   oENTResponse = oDAQueja.UpdateSolicitud_Estatus(oENTQueja, this.sConnectionApplication, 0);
+			   oENTResponse = oDAQueja.UpdateSolicitudCiudadano(oENTQueja, this.sConnectionApplication, 0);
+
+              // Validación de error en consulta
+              if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+              // Validación de mensajes de la BD
+              oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+              if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+           }catch (Exception ex){
+              oENTResponse.ExceptionRaised(ex.Message);
+           }
+
+           // Resultado
+           return oENTResponse;
+        }
+
+		///<remarks>
+		///   <name>BPQueja.UpdateSolicitudEstatus</name>
+		///   <create>17-Julio-2014</create>
+        ///   <author>Ruben.Cobos</author>
+        ///</remarks>
+		///<summary>Cambia el estatus de un una Solicitud de Quejas</summary>
+		///<param name="oENTQueja">Entidad de Queja con los parámetros necesarios para realizar la transacción</param>
+        ///<returns>Una entidad de respuesta</returns>
+        public ENTResponse UpdateSolicitudEstatus(ENTQueja oENTQueja){
+           DAQueja oDAQueja = new DAQueja();
+           ENTResponse oENTResponse = new ENTResponse();
+
+           try
+           {
+
+              // Transacción en base de datos
+			   oENTResponse = oDAQueja.UpdateSolicitudEstatus(oENTQueja, this.sConnectionApplication, 0);
 
               // Validación de error en consulta
               if (oENTResponse.GeneratesException) { return oENTResponse; }

@@ -76,6 +76,66 @@ namespace SIAQ.DataAccess.Object
 		}
 
 		///<remarks>
+		///   <name>DASolicitud.DeleteSolicitudCiudadano</name>
+		///   <create>19-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Elimina la asociación de un ciudadano a la solicitud de una Queja</summary>
+		///<param name="oENTQueja">Entidad de Queja con los parámetros necesarios para realizar la transacción</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse DeleteSolicitudCiudadano(ENTQueja oENTQueja, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspSolicitudCiudadano_Del", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("SolicitudId", SqlDbType.Int);
+			sqlPar.Value = oENTQueja.SolicitudId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("FuncionarioId", SqlDbType.Int);
+			sqlPar.Value = oENTQueja.FuncionarioId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("CiudadanoId", SqlDbType.Int);
+			sqlPar.Value = oENTQueja.CiudadanoId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try{
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+			}catch (SqlException sqlEx){
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}finally{
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
+		///<remarks>
 		///   <name>DASolicitud.InsertExpediente</name>
 		///   <create>19-Junio-2014</create>
 		///   <author>Ruben.Cobos</author>
@@ -115,6 +175,78 @@ namespace SIAQ.DataAccess.Object
 
 			sqlPar = new SqlParameter("NumeroFolio", SqlDbType.VarChar);
 			sqlPar.Value = oENTQueja.NumeroFolio;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try{
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+			}catch (SqlException sqlEx){
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}finally{
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
+		///<remarks>
+		///   <name>DASolicitud.InsertSolicitudCiudadano</name>
+		///   <create>19-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Asocia un nuevo ciudadano a la solicitud de una Queja</summary>
+		///<param name="oENTQueja">Entidad de Queja con los parámetros necesarios para realizar la transacción</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse InsertSolicitudCiudadano(ENTQueja oENTQueja, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspSolicitudCiudadano_Ins", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("SolicitudId", SqlDbType.Int);
+			sqlPar.Value = oENTQueja.SolicitudId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("FuncionarioId", SqlDbType.Int);
+			sqlPar.Value = oENTQueja.FuncionarioId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("CiudadanoId", SqlDbType.Int);
+			sqlPar.Value = oENTQueja.CiudadanoId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("TipoParticipacionId", SqlDbType.Int);
+			sqlPar.Value = oENTQueja.TipoParticipacionId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Check", SqlDbType.TinyInt);
+			sqlPar.Value = oENTQueja.Check;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("CheckNombre", SqlDbType.VarChar);
+			sqlPar.Value = oENTQueja.CheckNombre;
 			sqlCom.Parameters.Add(sqlPar);
 
 			// Inicializaciones
@@ -666,7 +798,7 @@ namespace SIAQ.DataAccess.Object
         }
 
 		///<remarks>
-		///   <name>DASolicitud.UpdateSolicitud_Calificacion</name>
+		///   <name>DASolicitud.UpdateSolicitudCalificacion</name>
 		///   <create>19-Junio-2014</create>
 		///   <author>Ruben.Cobos</author>
 		///</remarks>
@@ -675,7 +807,7 @@ namespace SIAQ.DataAccess.Object
 		///<param name="sConnection">Cadena de conexión a la base de datos</param>
 		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
 		///<returns>Una entidad de respuesta</returns>
-		public ENTResponse UpdateSolicitud_Calificacion(ENTQueja oENTQueja, String sConnection, Int32 iAlternateDBTimeout){
+		public ENTResponse UpdateSolicitudCalificacion(ENTQueja oENTQueja, String sConnection, Int32 iAlternateDBTimeout){
 			SqlConnection sqlCnn = new SqlConnection(sConnection);
 			SqlCommand sqlCom;
 			SqlParameter sqlPar;
@@ -734,7 +866,71 @@ namespace SIAQ.DataAccess.Object
 		}
 
 		///<remarks>
-		///   <name>DAQueja.UpdateSolicitud_Estatus</name>
+		///   <name>DASolicitud.UpdateSolicitudCiudadano</name>
+		///   <create>19-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Actualiza la información de asociación de un ciudadano en particular que pertenece a una solicitud de una Queja</summary>
+		///<param name="oENTQueja">Entidad de Queja con los parámetros necesarios para realizar la transacción</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse UpdateSolicitudCiudadano(ENTQueja oENTQueja, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspSolicitudCiudadano_Upd", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("SolicitudId", SqlDbType.Int);
+			sqlPar.Value = oENTQueja.SolicitudId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("FuncionarioId", SqlDbType.Int);
+			sqlPar.Value = oENTQueja.FuncionarioId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("CiudadanoId", SqlDbType.Int);
+			sqlPar.Value = oENTQueja.CiudadanoId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("TipoParticipacionId", SqlDbType.Int);
+			sqlPar.Value = oENTQueja.TipoParticipacionId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try{
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+			}catch (SqlException sqlEx){
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}finally{
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
+		///<remarks>
+		///   <name>DAQueja.UpdateSolicitudEstatus</name>
 		///   <create>17-Julio-2014</create>
 		///   <author>Ruben.Cobos</author>
 		///</remarks>
@@ -743,7 +939,7 @@ namespace SIAQ.DataAccess.Object
 		///<param name="sConnection">Cadena de conexión a la base de datos</param>
 		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
 		///<returns>Una entidad de respuesta</returns>
-        public ENTResponse UpdateSolicitud_Estatus(ENTQueja oENTQueja, String sConnection, Int32 iAlternateDBTimeout){
+        public ENTResponse UpdateSolicitudEstatus(ENTQueja oENTQueja, String sConnection, Int32 iAlternateDBTimeout){
 			SqlConnection sqlCnn = new SqlConnection(sConnection);
 			SqlCommand sqlCom;
 			SqlParameter sqlPar;

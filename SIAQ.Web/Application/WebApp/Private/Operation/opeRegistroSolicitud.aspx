@@ -21,25 +21,10 @@
 				<asp:Panel id="pnlFormulario" runat="server" Visible="true" Width="100%">
 					<table  border="0">
 						<tr>
-							<td class="Etiqueta">Fecha y Hora</td>
-							<td class="Espacio"></td>
-							<td class="Campo"><wuc:wucFixedDateTime ID="wucFixedDateTime" runat="server" /></td>
-						</tr>
-						<tr>
-							<td class="Etiqueta">Funcionario</td>
-							<td class="Espacio"></td>
-							<td class="Campo"><asp:DropDownList ID="ddlFuncionario" runat="server" CssClass="DropDownList_General" width="216px" ></asp:DropDownList></td>
-						</tr>
-						<tr>
-							<td class="Etiqueta">Forma de Contacto</td>
-							<td class="VinetaObligatorio">*</td>
-							<td class="Campo"><asp:DropDownList ID="ddlFormaContacto" runat="server" CssClass="DropDownList_General" width="216px" ></asp:DropDownList></td>
-						</tr>
-						<tr>
 							<td class="Etiqueta">Nombre del Ciudadano</td>
 							<td class="VinetaObligatorio">*</td>
 							<td class="Campo">
-								<script type = "text/javascript">									function ClientItemSelected(sender, e) { $get("<%=hddCiudadanoId.ClientID %>").value = e.get_value(); } </script>
+								<script type = "text/javascript"> function ClientItemSelected(sender, e) { $get("<%=hddCiudadanoId.ClientID %>").value = e.get_value(); } </script>
 								<asp:TextBox ID="txtCiudadano" runat="server" CssClass="Textbox_General" Width="400px"></asp:TextBox>
 								<asp:HiddenField ID="hddCiudadanoId" runat="server" />
 								<ajaxToolkit:AutoCompleteExtender
@@ -55,6 +40,21 @@
 									OnClientItemSelected="ClientItemSelected">
 								</ajaxToolkit:AutoCompleteExtender>
 							</td>
+						</tr>
+						<tr>
+							<td class="Etiqueta">Forma de Contacto</td>
+							<td class="VinetaObligatorio">*</td>
+							<td class="Campo"><asp:DropDownList ID="ddlFormaContacto" runat="server" CssClass="DropDownList_General" width="216px" ></asp:DropDownList></td>
+						</tr>
+						<tr>
+							<td class="Etiqueta">Funcionario</td>
+							<td class="Espacio"></td>
+							<td class="Campo"><asp:DropDownList ID="ddlFuncionario" runat="server" CssClass="DropDownList_General" width="216px" ></asp:DropDownList></td>
+						</tr>
+						<tr>
+							<td class="Etiqueta">Fecha y Hora</td>
+							<td class="Espacio"></td>
+							<td class="Campo"><wuc:wucFixedDateTime ID="wucFixedDateTime" runat="server" /></td>
 						</tr>
 						<tr>
 							<td class="Etiqueta">Observaciones</td>

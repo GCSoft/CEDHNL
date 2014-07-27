@@ -264,7 +264,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				}
 
 			    // Transacción
-				oENTResponse = oBPQueja.UpdateSolicitud_Calificacion(oENTQueja);
+				oENTResponse = oBPQueja.UpdateSolicitudCalificacion(oENTQueja);
 
 			    // Errores y Warnings
 			    if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }

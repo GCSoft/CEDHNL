@@ -83,18 +83,6 @@ namespace SIAQ.BusinessProcess.Object
 
 			}
 
-			public void AgregarCiudadanoSolicitud()
-			{
-				string ConnectionString = string.Empty;
-				DACiudadano DACiudadano = new DACiudadano();
-
-				ConnectionString = sConnectionApplication;
-				DACiudadano.AgregarCiudadanoSolicitud(_ENTCiudadano, ConnectionString);
-
-				_ErrorId = DACiudadano.ErrorId;
-				_ErrorDescription = DACiudadano.ErrorDescription;
-			}
-
 			public void BuscarCiudadano()
 			{
 				string ConnectionString = string.Empty;

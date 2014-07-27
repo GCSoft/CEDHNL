@@ -18,29 +18,33 @@ namespace SIAQ.Entity.Object
 	{
 
 		// Definiciones
-		private Int32		_AreaId;			// Identificador único del Área a la que se generará el Expediente
-		private Int32		_CalificacionId;	// Identificador único de la Calificación de la Solicitud
-		private Int32		_EstatusId;			// Identificador único del Estatus de la Solicitud
-		private Int32		_FormaContactoId;	// Identificador único de la forma de contacto
-		private Int32		_FuncionarioId;		// Identificador único del funcionario asociado a la solicitud
-		private Int32		_LugarHechosId;		// Identificador único del lugar de los hechos asociado a la solicitud
-		private Int32		_SolicitudId;		// Identificador único de la solicitud a consultar
-		private Int32		_TipoOrientacionId;	// Identificador único del tipo de orientación de una solicitud
-		private Int32		_UsuarioId;			// Identificador único de Usuario
-		private String		_Comentario;		// Comentarios
-		private String		_DireccionHechos;	// Dirección de los hechos en una solicitud
-		private String		_FechaDesde;		// Fecha de inicio en una consulta
-		private String		_FechaHasta;		// Fecha final en una consulta
-		private String		_Fundamento;		// Fundameto de una calificación
-		private Int16		_MedidaPreventiva;	// determina si un asunto es una medida preventiva
-		private Int16		_Nivel;				// Nivel de transacción
-		private String		_Nombre;			// Nombre del ciudadano
-		private String		_Numero;			// Número de la solicitud
-		private String		_NumeroFolio;		// Número de folio de expediente generado al aprobar la solicitud
-		private String		_Observaciones;		// Observaciones de la solicitud
-		private Int16		_TipoFolio;			// Tipo de Folio a generar: 1-> [Folio de Queja], 2-> [Folio de Orientacion], 3-> [Folio de Gestion de Quejas], 4-> [Folio de Gestion Penitenciaria]
-		private DataTable	_tblCanalizacion;	// DataTable el cual contiene los ID's Canalizaciones que se asociarán a la Solicitud
-		private DataTable	_tblIndicador;		// DataTable el cual contiene los ID's de los grupos minoritarios asociadas a la solicitud
+		private Int32		_AreaId;				// Identificador único del Área a la que se generará el Expediente
+		private Int32		_CalificacionId;		// Identificador único de la Calificación de la Solicitud
+		private Int32		_CiudadanoId;			// Identificador único del Ciudadano asociado a la solicitud
+		private Int32		_EstatusId;				// Identificador único del Estatus de la Solicitud
+		private Int32		_FormaContactoId;		// Identificador único de la forma de contacto
+		private Int32		_FuncionarioId;			// Identificador único del funcionario asociado a la solicitud
+		private Int32		_LugarHechosId;			// Identificador único del lugar de los hechos asociado a la solicitud
+		private Int32		_SolicitudId;			// Identificador único de la solicitud a consultar
+		private Int32		_TipoOrientacionId;		// Identificador único del tipo de orientación de una solicitud
+		private Int32		_TipoParticipacionId;	// Identificador único del tipo de participación de un ciudadano asociado a una solicitud
+		private Int32		_UsuarioId;				// Identificador único de Usuario
+		private String		_Comentario;			// Comentarios
+		private Int16		_Check;					// Determina con un 0 si es necesario hacer una revisión del ID del ciudadano por su nombre o con 1 en el caso contrario.
+		private String		_CheckNombre;			// Nombre a validar cuando se especifica la opción Check igual a uno
+		private String		_DireccionHechos;		// Dirección de los hechos en una solicitud
+		private String		_FechaDesde;			// Fecha de inicio en una consulta
+		private String		_FechaHasta;			// Fecha final en una consulta
+		private String		_Fundamento;			// Fundameto de una calificación
+		private Int16		_MedidaPreventiva;		// determina si un asunto es una medida preventiva
+		private Int16		_Nivel;					// Nivel de transacción
+		private String		_Nombre;				// Nombre del ciudadano
+		private String		_Numero;				// Número de la solicitud
+		private String		_NumeroFolio;			// Número de folio de expediente generado al aprobar la solicitud
+		private String		_Observaciones;			// Observaciones de la solicitud
+		private Int16		_TipoFolio;				// Tipo de Folio a generar: 1-> [Folio de Queja], 2-> [Folio de Orientacion], 3-> [Folio de Gestion de Quejas], 4-> [Folio de Gestion Penitenciaria]
+		private DataTable	_tblCanalizacion;		// DataTable el cual contiene los ID's Canalizaciones que se asociarán a la Solicitud
+		private DataTable	_tblIndicador;			// DataTable el cual contiene los ID's de los grupos minoritarios asociadas a la solicitud
 
 
 		 //Constructor
@@ -48,14 +52,18 @@ namespace SIAQ.Entity.Object
         public ENTQueja(){
 			_AreaId = 0;
 			_CalificacionId = 0;
+			_CiudadanoId = 0;
 			_EstatusId = 0;
 			_FormaContactoId = 0;
 			_FuncionarioId = 0;
 			_LugarHechosId = 0;
 			_SolicitudId = 0;
 			_TipoOrientacionId = 0;
+			_TipoParticipacionId = 0;
 			_UsuarioId = 0;
 			_Comentario = "";
+			_Check = 0;
+			_CheckNombre = "";
 			_DireccionHechos = "";
 			_FechaDesde = "";
 			_FechaHasta = "";
@@ -96,6 +104,18 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _CalificacionId; }
 			set { _CalificacionId = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTQueja.CiudadanoId</name>
+		///   <create>18-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el identificador único del Ciudadano asociado a la solicitud</summary>
+		public Int32 CiudadanoId
+		{
+			get { return _CiudadanoId; }
+			set { _CiudadanoId = value; }
 		}
 
 		///<remarks>
@@ -170,6 +190,18 @@ namespace SIAQ.Entity.Object
 			set { _TipoOrientacionId = value; }
 		}
 
+		///<remarks>
+		///   <name>ENTQueja.TipoParticipacionId</name>
+		///   <create>18-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el identificador único del tipo de participación de un ciudadano asociado a una solicitud</summary>
+		public Int32 TipoParticipacionId
+		{
+			get { return _TipoParticipacionId; }
+			set { _TipoParticipacionId = value; }
+		}
+
         ///<remarks>
 		///   <name>ENTQueja.UsuarioId</name>
 		///   <create>18-Julio-2014</create>
@@ -192,6 +224,30 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _Comentario; }
 			set { _Comentario = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTQueja.Check</name>
+		///   <create>18-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna un valor que determina con un 0 si es necesario hacer una revisión del ID del ciudadano por su nombre o con 1 en el caso contrario</summary>
+		public Int16 Check
+		{
+			get { return _Check; }
+			set { _Check = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTQueja.CheckNombre</name>
+		///   <create>18-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el nombre a validar cuando se especifica la opción Check igual a uno</summary>
+		public String CheckNombre
+		{
+			get { return _CheckNombre; }
+			set { _CheckNombre = value; }
 		}
 
 		///<remarks>

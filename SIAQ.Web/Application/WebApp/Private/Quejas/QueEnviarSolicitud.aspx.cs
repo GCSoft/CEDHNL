@@ -46,7 +46,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				oENTQueja.EstatusId = 4; // Pendiente de aprobar Queja
 
 				//Transacción
-				oENTResponse = oBPQueja.UpdateSolicitud_Estatus(oENTQueja);
+				oENTResponse = oBPQueja.UpdateSolicitudEstatus(oENTQueja);
 
 				//Validación
 				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }

@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="QueAgregarCiudadanos.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Quejas.QueAgregarCiudadanos" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
 	
@@ -87,162 +88,86 @@
                 <td class="Espacio"></td>
                 <td class="Etiqueta" colspan="5"><asp:Label ID="DireccionHechosLabel" runat="server" Text=""></asp:Label></td>
             </tr>
+			<!-- Fin de Carátula -->
 			<tr>
-                <td class="Nombre">Ciudadanos agregados a la solicitud</td>
+                <td class="Nombre">Ciudadano</td>
                 <td class="Espacio"><font class="MarcadorObligatorio"></font></td>
                 <td colspan="5" style="text-align:left; vertical-align: top;">
-					<asp:GridView id="gvCiudadanosAgregados" runat="server" AllowPaging="false" AllowSorting="false" AutoGenerateColumns="False" BorderWidth="0"
-						DataKeyNames="CiudadanoId"
-						OnRowCommand="gvCiudadanoAgregados_RowCommand"> 
-						<headerstyle cssclass="Grid_Encabezado" />
-						<rowstyle cssclass="Grid_Filas" />
-						<EmptyDataRowStyle CssClass="Empty" BorderStyle="None" BorderWidth="0px" />
-						<EmptyDataTemplate>
-							<table border="0px" cellpadding="0" style="border:0px;" cellspacing="0">
-								<tr><td style="height:5px"></td></tr>
-								<tr><td style="font-size:9.5px; text-align:center;"> No se han agregado ciudadanos a la solicitud</td></tr>
-								<tr><td style="height:130px;"></td></tr>
-							</table>
-						</EmptyDataTemplate>
-						<Columns>
-							<asp:TemplateField>
-								<ItemTemplate>
-									<asp:LinkButton Width="150px" CommandArgument='<%#Eval("CiudadanoId")%>' CommandName="SelectCiudadano" ID="CiudadanoButton" runat="server" Text='<%#Eval("NombreCompleto")%>'></asp:LinkButton>
-								</ItemTemplate>
-								<ItemStyle HorizontalAlign="Left" />
-							</asp:TemplateField>
-							<asp:TemplateField>
-								<ItemTemplate>
-									<asp:ImageButton CommandArgument='<%#Eval("CiudadanoId")%>' CommandName="Eliminar"  runat="server" ID="ImagenEliminar" ImageUrl="~/Include/Image/Buttons/Delete.png" Height="11px"> </asp:ImageButton>
-								</ItemTemplate>
-							</asp:TemplateField>
-						</Columns>
-					</asp:GridView>
+					<script type = "text/javascript"> function ClientItemSelected(sender, e) { $get("<%=hddCiudadanoId.ClientID %>").value = e.get_value(); } </script>
+					<asp:TextBox ID="txtCiudadano" runat="server" CssClass="Textbox_General" Width="400px"></asp:TextBox>
+					<asp:HiddenField ID="hddCiudadanoId" runat="server" />
+					<ajaxToolkit:AutoCompleteExtender
+						ID="autoCompleteExtender" 
+						runat="server"
+						TargetControlID="txtCiudadano"
+						ServiceMethod="GetCitizenList"
+						CompletionInterval="100"
+						CompletionSetCount="10"
+						EnableCaching="false"
+						FirstRowSelected="false"
+						MinimumPrefixLength="2"
+						OnClientItemSelected="ClientItemSelected">
+					</ajaxToolkit:AutoCompleteExtender>
+				</td>
+            </tr>
+			<tr>
+                <td class="Nombre">Tipo de Participación</td>
+                <td class="Espacio"><font class="MarcadorObligatorio"></font></td>
+                <td colspan="5" style="text-align:left; vertical-align: top;">
+					<asp:DropDownList ID="ddlTipoParticipacion" runat="server" CssClass="DropDownList_General" width="216px" ></asp:DropDownList>
+				</td>
+            </tr>
+			<tr>
+                <td colspan="7" style="text-align:left; vertical-align: top;">
+					<asp:Button ID="btnAgregarCiudadano" runat="server" Text="Agregar" CssClass="Button_General" onclick="btnAgregarCiudadano_Click" Width="125px" />
 				</td>
             </tr>
         </table>
 
-		<!-- Filtro -->
-		<table border="0" cellpadding="0" cellspacing="0" width="100%">
-            <tr><td class="tdCeldaMiddleSpace"></td></tr>
-            <tr>
-                <td style="text-align: left;">
-                    Buscar ciudadanos
-                </td>
-            </tr>
-            <tr>
-                <td style="text-align:left;">
-					<asp:Panel id="pnlBusquedaSimple" runat="server" Visible="true" Width="100%">
-						<table border="0" cellpadding="0" cellspacing="0" width="100%">
-							<tr style="height:20px;"><td colspan="4"></td></tr>
-							<tr>
-								<td class="tdCeldaLeyendaItemFondoBlanco"><asp:TextBox ID="txtNombre" runat="server" CssClass="Textbox_General" Width="177px"></asp:TextBox></td>
-								<td style="width:5px;"></td>
-								<td class="tdCeldaItem">
-									<asp:Button ID="btnBuscar" runat="server" OnClick="QuickSearchButton_Click" CssClass="Button_General" Text="Buscar" Width="120px"></asp:Button>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<asp:LinkButton ID="lnkBusquedaAvanzada" CssClass="Tamanoletra" runat="server" Text="Busqueda avanzada" onclick="BusquedaAvanzada_Click"></asp:LinkButton>
-								</td>
-								<td style="width:5px;"></td>
-							</tr>   
-						</table>
-					</asp:Panel>
-					<asp:Panel id="pnlBusqedaAvanzada" runat="server" Width="100%" Visible="false" CssClass="tdTituloEncabezado">
-						<table border="0px" class="TablaCiudadano">
-							<tr style="height:20px;"><td colspan="4"></td></tr>
-							<tr>
-								<td class="AnchoCeldaPrincipal" >Nombre</td>
-								<td class="EspacioCeldaIntermedia" ></td>
-								<td  ><asp:TextBox ID="TextBoxNombre" runat="server" CssClass="Textbox_General" width="210px" ></asp:TextBox></td>
-							</tr>
-							<tr>
-								<td class="AnchoCeldaPrincipal">Apellido Paterno</td>
-								<td class="EspacioCeldaIntermedia" ></td>
-								<td ><asp:TextBox ID="TextBoxPaterno" runat="server" CssClass="Textbox_General" width="210px" ></asp:TextBox></td>
-							</tr>
-							<tr>
-								<td class="AnchoCeldaPrincipal">Apellido Materno</td>
-								<td class="EspacioCeldaIntermedia" ></td>
-								<td><asp:TextBox ID="TextBoxMaterno" runat="server" CssClass="Textbox_General" width="210px" ></asp:TextBox></td>
-							</tr>
-							<tr>
-								<td class="AnchoCeldaPrincipal" >País</td>
-								<td class="EspacioCeldaIntermedia"></td>
-								<td ><asp:DropDownList ID="BuscadorListaPais" width="214px" runat="server"></asp:DropDownList></td>
-							</tr>
-							<tr>
-								<td class="AnchoCeldaPrincipal" >Estado</td>
-								<td class="EspacioCeldaIntermedia" ></td>
-								<td><asp:DropDownList ID="BuscadorListaEstado" width="214px" runat="server"></asp:DropDownList></td>
-							</tr>
-							<tr>
-								<td class="AnchoCeldaPrincipal" >Municipio</td>
-								<td class="EspacioCeldaIntermedia" ></td>
-								<td ><asp:DropDownList ID="BuscadorListaCiudad" width="214px" runat="server"></asp:DropDownList></td>
-							</tr>
-							<tr>
-								<td class="AnchoCeldaPrincipal" >Colonia</td>
-								<td class="EspacioCeldaIntermedia" ></td>
-								<td ><asp:DropDownList ID="BuscadorListaColonia" width="214px" runat="server"></asp:DropDownList></td>
-							</tr>
-							<tr>
-								<td class="AnchoCeldaPrincipal" >Calle</td>
-								<td class="EspacioCeldaIntermedia" ></td>
-								<td ><asp:TextBox ID="TextBoxCalle" runat="server" CssClass="Textbox_General" width="210px" ></asp:TextBox></td>
-							</tr>
-						</table>
-						<div style="text-align:left;">
-							<br /><br />
-							<table width="90%" border="0">
-								<tr>
-									<td class="tdBotonBuscar"><asp:Button ID="Button1" runat="server" Text="Buscar" CssClass="Button_General" OnClick="SearchButton_Click" width="125px"/></td>
-									<td class="EspacioCeldaMediano"></td>
-									<td><asp:LinkButton  class="EstiloBR" ID="LinkButton1" runat="server" OnClick="BusquedaRapida_Click">Búsqueda rapida</asp:LinkButton></td>
-								</tr>
-							</table>
-						</div>
-					</asp:Panel>
-                </td>
-            </tr>
-		</table>
-
 		<!-- Grid -->
+		<!-- Falta agregar el tipo de participación -->
 		<table border="0" cellpadding="0" cellspacing="0" width="100%">
             <tr><td class="tdCeldaMiddleSpace"></td></tr>
             <tr>
                 <td>
-					<asp:GridView id="gvCiudadano" runat="server" AllowPaging="false" AllowSorting="True" AutoGenerateColumns="False"
-						DataKeyNames="CiudadanoId"
+					<asp:GridView ID="gvCiudadano" runat="server" AllowPaging="false" AllowSorting="true" AutoGenerateColumns="False" Width="100%"
+						DataKeyNames="CiudadanoId,NombreCompleto" 
 						OnRowDataBound="gvCiudadano_RowDataBound"
 						OnRowCommand="gvCiudadano_RowCommand"
-						OnSorting="gvCiudadano_Sorting">
-						<alternatingrowstyle cssclass="Grid_Row_Alternating" />
-						<headerstyle cssclass="Grid_Header" />
-						<rowstyle cssclass="Grid_Row" />
-						<EmptyDataTemplate>
-							<table border="1px" cellpadding="0px" cellspacing="0px">
-								<tr class="Grid_Header">
-									<td style="width:150px; text-align:center;">Nombre</td>
-									<td style="width:70px; text-align:center;">Sexo</td>
-									<td style="width:100px; text-align:center;">Fecha Nacimiento</td>
-									<td style="width:200px; text-align:center;">Domicilio</td>
-									<td style="width:70px; text-align:center;" ></td>
-								</tr>
-								<tr class="Grid_Row"><td colspan="9"  style="text-align:center;">No se encontraron ciudadanos registradas en el sistema</td></tr>
-							</table>
-						</EmptyDataTemplate>
-					<Columns>
-						<asp:BoundField HeaderText="Nombre"             ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="170px" DataField="NombreCompleto"></asp:BoundField>
-						<asp:BoundField HeaderText="Sexo"               ItemStyle-HorizontalAlign="Left"		ItemStyle-Width="50px" DataField="SexoNombre"></asp:BoundField>
-						<asp:BoundField HeaderText="Fecha Nacimiento"   ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="65px" DataField="FechaNacimiento"></asp:BoundField>
-						<asp:BoundField HeaderText="Domicilio"          ItemStyle-HorizontalAlign="Left"		ItemStyle-Width="280px" DataField="DireccionCompleta"></asp:BoundField>
-						<asp:TemplateField HeaderText="Editar">
-							<ItemTemplate>
-								<asp:LinkButton CommandArgument='<%#Eval("CiudadanoId")%>' CommandName="Agregar" ID="AgregarLink" runat="server" Text='Agregar' Width="80px"></asp:LinkButton>
-							</ItemTemplate>
-						</asp:TemplateField>
-					</Columns>
-					</asp:GridView>
+                        OnSorting="gvCiudadano_Sorting">
+                        <RowStyle CssClass="Grid_Row" />
+                        <EditRowStyle Wrap="True" />
+                        <HeaderStyle CssClass="Grid_Header" ForeColor="#E3EBF5" />
+                        <AlternatingRowStyle CssClass="Grid_Row_Alternating" />
+                        <EmptyDataTemplate>
+                            <table border="1px" width="100%" cellpadding="0px" cellspacing="0px">
+                                <tr class="Grid_Header">
+									<td style="width:100px;">Tipo</td>
+									<td style="width:250px;">Nombre</td>
+									<td style="width:90px;">Edad</td>
+									<td style="width:80px;">Sexo</td>
+                                    <td style="width:100px;">Telefono</td>
+									<td>Domicilio</td>
+                                </tr>
+                                <tr class="Grid_Row">
+                                    <td colspan="6">No se encontraron Ciudadanos registrados en el sistema</td>
+                                </tr>
+                            </table>
+                        </EmptyDataTemplate>
+                        <Columns>
+							<asp:BoundField HeaderText="Tipo"		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="100px"	DataField="NombreTipoCiudadano"		SortExpression="NombreTipoCiudadano"></asp:BoundField>
+							<asp:BoundField HeaderText="Nombre"		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="250px"	DataField="NombreCompleto"			SortExpression="NombreCompleto"></asp:BoundField>
+							<asp:BoundField HeaderText="Edad"		ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="90px"	DataField="Edad"					SortExpression="Edad"></asp:BoundField>
+							<asp:BoundField HeaderText="Sexo"		ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="80px"	DataField="NombreSexo"				SortExpression="NombreSexo"></asp:BoundField>
+							<asp:BoundField HeaderText="Telefono"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="100px"	DataField="TelefonoPrincipal"		SortExpression="TelefonoPrincipal"></asp:BoundField>
+							<asp:BoundField HeaderText="Domicilio"	ItemStyle-HorizontalAlign="Left"							DataField="Domicilio"				SortExpression="Domicilio"></asp:BoundField>
+							<asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="25px">
+                                <ItemTemplate>
+                                    <asp:ImageButton ID="imgDelete" runat="server" CommandArgument='<%#Eval("CiudadanoId")%>' CommandName="Eliminar" ImageUrl="~/Include/Image/Buttons/Delete.png" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
                 </td>
             </tr>
         </table>

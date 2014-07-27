@@ -34,8 +34,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 			String Item;
 
 			// Errores conocidos:
-			//		* No es posible que el control tome el foco con el metodo JS Focus()
+			//		* El control toma el foco con el metodo JS Focus() sólo si es llamado con la función JS pageLoad() 
 			//		* No se pudo encapsular en un WUC
+			//		* Si se selecciona un nombre válido, enseguida se borra y se pone uno inválido, el control almacena el ID del nombre válido, se implemento el siguiente Script en la transacción
+			//			If Not Exists ( Select 1 From Ciudadano Where CiudadanoId = @CiudadanoId And ( Nombre + ' ' + ApellidoPaterno  + ' ' +  IsNull(ApellidoMaterno, '') = @NombreTemporal ) )
+			//				Begin
+			//					Set @CiudadanoId = 0
+			//				End
 
 			try
 			{
@@ -97,6 +102,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
 				// Normalización
 				if (CiudadanoId == "") { CiudadanoId = "0"; }
+				CiudadanoNombre = CiudadanoNombre.Trim();
 
 				// Validaciones
 				if (CiudadanoNombre == "") { throw new Exception("El campo [Nombre del ciudadano] es requerido"); }
@@ -281,10 +287,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				if (CiudadanoId != "0") { SelectCiudadanoByID(CiudadanoId); }
 
 				// Foco
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlFuncionario.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.txtCiudadano.ClientID + "'); }", true);
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true); focusControl('" + this.ddlFuncionario.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtCiudadano.ClientID + "'); }", true);
 			}
 		}
 
@@ -296,7 +302,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				InsertSolicitud();
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.ddlFuncionario.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtCiudadano.ClientID + "'); }", true);
 			}
 		}
 

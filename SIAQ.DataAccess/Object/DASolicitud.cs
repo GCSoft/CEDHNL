@@ -202,7 +202,7 @@ namespace SIAQ.DataAccess.Object
 
 				try
 				{
-					Command = new SqlCommand("spValidarEnviarSolicitud_sel", Connection);
+					Command = new SqlCommand("uspSolicitud_Sel_ValidaEnvio", Connection);
 					Command.CommandType = CommandType.StoredProcedure;
 
 					Parameter = new SqlParameter("SolicitudId", SqlDbType.Int);

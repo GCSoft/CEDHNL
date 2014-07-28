@@ -99,11 +99,26 @@
                 </td>
             </tr>
         </table>
+		<br />
 
     </div>
 
+	<div id="CheckList">
+        <asp:Panel CssClass="IconoPanel" ID="CiudadanoPanel" runat="server" Visible="true">
+			<asp:Image ID="imgCiudadanos" runat="server" ImageUrl="~/Include/Image/Icon/CiudadanoIcon_Success.png" /><br />
+            Agregar ciudadanos
+        </asp:Panel>
+		<asp:Panel CssClass="IconoPanel" ID="CalificarPanel" runat="server" Visible="true">
+			<asp:Image ID="imgCalificar" runat="server" ImageUrl="~/Include/Image/Icon/CalificarIcon_Success.png"  /><br />
+            Calificar solicitud
+        </asp:Panel>
+		<asp:Panel CssClass="IconoPanel" ID="AutoridadPanel" runat="server" Visible="true">
+			<asp:Image ID="imgAutoridad" runat="server" ImageUrl="~/Include/Image/Icon/AutoridadIcon_Success.png"  /><br />
+            Agegar autoridades señaladas y voces
+        </asp:Panel>
+    </div>
+
     <asp:HiddenField ID="hddSolicitudId" runat="server" Value="0" />
-	<asp:HiddenField ID="hddCalificacionId" runat="server" Value="0" />
 	<asp:HiddenField ID="SenderId" runat="server" Value="0"  />
 
 </asp:Content>

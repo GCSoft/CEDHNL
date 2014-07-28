@@ -24,8 +24,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 	public partial class QueEnviarSolicitud : System.Web.UI.Page
 	{
 
-		// TODO: Agregar un CheckList de las cosas que le faltan a la solicitud al cargarse
-
 		// Utilerías
 		Function utilFunction = new Function();
 		Encryption utilEncryption = new Encryption();
@@ -75,9 +73,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
 				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
 
-				// Campos ocultos
-				this.hddCalificacionId.Value = oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionId"].ToString();
-
 				// Formulario
 				this.SolicitudNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["SolicitudNumero"].ToString();
 				this.CalificacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionNombre"].ToString();
@@ -100,13 +95,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 			}
 		}
 
-		void ValidarSolicitud(){
+		void SetCheckList(){
 			BPSolicitud oBPSolicitud = new BPSolicitud();
-
-			Int32 CiudadanosAdjuntos = 0;
-			Int32 Calificada = 0;
-			Int32 Autoridades = 0;
-			String AutoridadesSinVoz = "";
 
 			try
 			{
@@ -121,34 +111,39 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				if (oBPSolicitud.ErrorId != 0) { throw (new Exception(oBPSolicitud.ErrorDescription)); }
 				if (oBPSolicitud.SolicitudEntity.ResultData.Tables[0].Rows.Count == 0) { throw new Exception("No se ha encontrado información de la solicitud"); }
 
-				// Obtener datos de a consulta
-				CiudadanosAdjuntos = Int32.Parse(oBPSolicitud.SolicitudEntity.ResultData.Tables[0].Rows[0]["NumeroCiudadanos"].ToString());
-				Calificada = Int32.Parse(oBPSolicitud.SolicitudEntity.ResultData.Tables[0].Rows[0]["Calificada"].ToString());
-				Autoridades = Int32.Parse(oBPSolicitud.SolicitudEntity.ResultData.Tables[0].Rows[0]["NumeroAutoridad"].ToString());
-				AutoridadesSinVoz = oBPSolicitud.SolicitudEntity.ResultData.Tables[0].Rows[0]["AutoridadesSinVoz"].ToString();
-
-				// Validaciones de los datos
-				if (CiudadanosAdjuntos == 0) {
-					throw new Exception("No se ha podido realizar el envío, no se han agregado ciudadanos a la solicitud.");
+				// Establecer imágenes a mostrar
+				if (oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["Ciudadanos"].ToString() == "0"){
+					this.imgCiudadanos.ImageUrl = "~/Include/Image/Icon/CiudadanoIcon_Pending.png";
+					this.btnEnviar.Enabled = false;
+					this.btnEnviar.CssClass = "Button_General_Disabled";
 				}
 
-				if (Calificada == 0){
-					throw new Exception("No se ha podido realizar el envío, no se ha calificado la solicitud.");
+				if (oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["CalificacionId"].ToString() == "1" ){
+					this.imgCalificar.ImageUrl = "~/Include/Image/Icon/CalificarIcon_Pending.png";
+					this.btnEnviar.Enabled = false;
+					this.btnEnviar.CssClass = "Button_General_Disabled";
 				}
 
-				if (Autoridades == 0){
-					throw new Exception("No se ha podido realizar el envío, no se han agregado autoridades a la solicitud.");
+				if (oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["CalificacionId"].ToString() != "2"){
+					this.AutoridadPanel.Visible = false;
+					return;
 				}
 
-				if (String.IsNullOrEmpty(AutoridadesSinVoz)){
-					throw new Exception("No se ha podido realizar el envío, no se han agregado voces señaladas a alguna de las autoridades.");
+				if (oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["Autoridades"].ToString() == "0"){
+					this.imgAutoridad.ImageUrl = "~/Include/Image/Icon/AutoridadIcon_Pending.png";
+					this.btnEnviar.Enabled = false;
+					this.btnEnviar.CssClass = "Button_General_Disabled";
 				}
 
-				if (Convert.ToInt32(AutoridadesSinVoz) > 0){
-					throw new Exception("No se ha podido realizar el envío, no se han agregado voces señaladas a alguna de las autoridades.");
+				if (oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["Autoridades"].ToString() != oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["AutoridadesConVoces"].ToString()){
+					this.imgAutoridad.ImageUrl = "~/Include/Image/Icon/AutoridadIcon_Pending.png";
+					this.btnEnviar.Enabled = false;
+					this.btnEnviar.CssClass = "Button_General_Disabled";
 				}
 
 			}catch (Exception ex){
+				this.btnEnviar.Enabled = false;
+				this.btnEnviar.CssClass = "Button_General_Disabled";
 				throw (ex);
 			}
 		}
@@ -174,6 +169,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				// Carátula
 				SelectSolicitud();
 
+				// CheckList
+				SetCheckList();
+
             }catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
             }
@@ -182,8 +180,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 		protected void btnEnviar_Click(object sender, EventArgs e){
 			try
 			{
-				// Validar la solicitud
-				ValidarSolicitud();
 
 				// Envío de la solicitud al director
 				EnviarSolicitud();

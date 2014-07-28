@@ -2,19 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
 	
-	<style type="text/css">   
-        .CeldaTabla 
-        {
-            border-bottom: 1px solid #cccccc;
-	        background-color: #ececff;
-	        border-spacing: 5px;
-	        font-size: 11px;
-	        font-weight: bold;
-	        padding: 5px;
-	        text-align:left;
-        }
-    </style>
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
 	
@@ -355,7 +342,7 @@
                         <HeaderStyle CssClass="Grid_Header" />
                         <RowStyle CssClass="Grid_Row" />
                         <EmptyDataTemplate>
-                            <table border="1px" cellpadding="0px" cellspacing="0px">
+                            <table border="1px" cellpadding="0px" cellspacing="0px" Width="100%">
                                 <tr class="Grid_Header">
                                     <td style="width:150px;">Fecha</td>
                                     <td style="width:250px;">Funcionario que ejecuta</td>

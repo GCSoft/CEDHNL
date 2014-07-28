@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="QueDiligenciaSolicitud.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Quejas.QueDiligenciaSolicitud" %>
+<%@ Register src="../../../../Include/WebUserControls/wucFixedDateTime.ascx" tagname="wucFixedDateTime" tagprefix="wuc" %>
 <%@ Register src="../../../../Include/WebUserControls/wucCalendar.ascx" tagname="wucCalendar" tagprefix="wuc" %>
+<%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
 	
@@ -88,189 +90,56 @@
                 <td class="Espacio"></td>
                 <td class="Etiqueta" colspan="5"><asp:Label ID="DireccionHechosLabel" runat="server" Text=""></asp:Label></td>
             </tr>
+			<!-- Fin de carátula   -->
+			<tr>
+                <td class="Nombre">Fecha de registro </td>
+                <td class="Espacio"></td>
+                <td colspan="5" style="text-align:left;"><wuc:wucFixedDateTime ID="wucFixedDateTime" runat="server" /></td>
+            </tr>
+			<tr>
+                <td class="Nombre">Funcionario que ejecuta </td>
+                <td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
+                <td colspan="5" style="text-align:left;"><asp:DropDownList ID="ddlFuncionario" runat="server" Width="216px" CssClass="DropDownList_General"></asp:DropDownList></td>
+            </tr>
+			<tr>
+                <td class="Nombre">Fecha de diligencia</td>
+                <td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
+                <td colspan="5" style="text-align:left;"><wuc:wucCalendar ID="calFecha" runat="server" /></td>
+            </tr>
+			<tr>
+                <td class="Nombre">Tipo de diligencia</td>
+                <td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
+                <td colspan="5" style="text-align:left;"><asp:DropDownList ID="ddlTipoDiligencia" runat="server" Width="216px" CssClass="DropDownList_General"></asp:DropDownList></td>
+            </tr>
+			<tr>
+                <td class="Nombre">Lugar de diligencia</td>
+                <td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
+                <td colspan="5" style="text-align:left;"><asp:DropDownList ID="ddlLugarDiligencia" runat="server" Width="216px" CssClass="DropDownList_General"></asp:DropDownList></td>
+            </tr>
+			<tr>
+                <td class="Nombre">Solicitada por</td>
+                <td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
+                <td colspan="5" style="text-align:left;"><asp:TextBox ID="txtSolicitadaPor" runat="server" CssClass="Textbox_General" Width="210px"></asp:TextBox></td>
+            </tr>
+			<tr>
+                <td class="Nombre">Detalle</td>
+                <td class="Espacio"></td>
+                <td colspan="5" ></td>
+            </tr>
+			<tr>
+                <td colspan="7" style="text-align:left;"><CKEditor:CKEditorControl ID="ckeDetalle" BasePath="~/Include/Components/CKEditor/Core/" runat="server" Height="90px" MaxLength="8000"></CKEditor:CKEditorControl></td>
+            </tr>
+			<tr style="height:10px;"><td colspan="7" ></td></tr>
+			<tr>
+                <td class="Nombre">Resultado</td>
+                <td class="Espacio"></td>
+                <td colspan="5" ></td>
+            </tr>
+			<tr>
+                <td colspan="7" style="text-align:left;"><CKEditor:CKEditorControl ID="ckeResultado" BasePath="~/Include/Components/CKEditor/Core/" runat="server" Height="90px" MaxLength="8000"></CKEditor:CKEditorControl></td>
+            </tr>
         </table>
 		<br />
-
-		<!-- Diligencias   -->
-		<table class="SolicitudTable">
-                        <tr>
-                            <td class="Nombre">
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                            <td colspan="4">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="Nombre">
-                                Fecha de registro
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                            <td class="Etiqueta">
-                                <asp:Label ID="FechaRegistroLabel" runat="server" Text=""></asp:Label>
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                            <td class="Nombre">
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="Nombre">
-                                Funcionario que atiende
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                            <td class="Etiqueta">
-                                <asp:Label ID="VisitadorAtiendeLabel" runat="server" Text=""></asp:Label>
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                            <td class="Nombre">
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="Nombre">
-                                Funcionario que ejecuta
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                            <td class="Campo">
-                                <asp:DropDownList ID="ddlVisitadorEjecuta" runat="server" Width="216px" CssClass="DropDownList_General">
-                                </asp:DropDownList>
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                            <td class="Nombre">
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="Nombre">
-                                Fecha de diligencia
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                            <td class="Campo">
-                                <wuc:wucCalendar ID="calFecha" runat="server" />
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                            <td class="Nombre">
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="Nombre">
-                                Tipo de diligencia
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                            <td class="Campo">
-                                <asp:DropDownList ID="ddlTipoDiligencia" runat="server" Width="216px" CssClass="DropDownList_General">
-                                </asp:DropDownList>
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                            <td class="Nombre">
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="Nombre">
-                                Lugar de diligencia
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                            <td class="Campo">
-                                <asp:DropDownList ID="ddlLugarDiligencia" runat="server" Width="216px" CssClass="DropDownList_General">
-                                </asp:DropDownList>
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                            <td class="Nombre">
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="Nombre">
-                                Detalle
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                            <td class="Campo">
-                                <asp:TextBox ID="txtCampo" runat="server" CssClass="Textarea_General" TextMode="MultiLine"
-                                    Width="210px"></asp:TextBox>
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                            <td class="Nombre">
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="Nombre">
-                                Solicitada por
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                            <td class="Campo">
-                                <asp:TextBox ID="txtSolicitadaPor" runat="server" CssClass="Textbox_General" Width="210px"></asp:TextBox>
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                            <td class="Nombre">
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="Nombre">
-                                Resultado
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                            <td class="Campo">
-                                <asp:TextBox ID="txtResultado" runat="server" CssClass="Textarea_General" TextMode="MultiLine"
-                                    Width="210px"></asp:TextBox>
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                            <td class="Nombre">
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                            <td class="Espacio">
-                            </td>
-                        </tr>
-                    </table>
 
 		<!-- Botones Pie de Página -->
         <table border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -294,58 +163,40 @@
             </tr>
             <tr>
                 <td>
-                    <asp:GridView ID="gvDiligenciasSolicitud" runat="server" AllowPaging="false" AllowSorting="true"
-                        AutoGenerateColumns="False" Width="800px" DataKeyNames="DiligenciaId" 
-                        onrowcommand="gvDiligenciasSolicitud_RowCommand" 
-                        onrowdatabound="gvDiligenciasSolicitud_RowDataBound" 
-                        onsorting="gvDiligenciasSolicitud_Sorting">
+                    <asp:GridView ID="gvDiligencia" runat="server" AllowPaging="false" AllowSorting="true"  AutoGenerateColumns="False" Width="100%"
+						DataKeyNames="DiligenciaId" 
+                        OnRowCommand="gvDiligencia_RowCommand" 
+                        OnRowDataBound="gvDiligencia_RowDataBound" 
+                        OnSorting="gvDiligencia_Sorting">
                         <AlternatingRowStyle CssClass="Grid_Row_Alternating" />
                         <HeaderStyle CssClass="Grid_Header" />
                         <RowStyle CssClass="Grid_Row" />
                         <EmptyDataTemplate>
-                            <table border="1px" cellpadding="0px" cellspacing="0px">
+                            <table border="1px" cellpadding="0px" cellspacing="0px" width="100%">
                                 <tr class="Grid_Header">
-                                    <td style="width: 150px;">
-                                        Fecha
-                                    </td>
-                                    <td style="width: 220px;">
-                                        Funcionario que ejecuta
-                                    </td>
-                                    <td style="width: 120px;">
-                                        Tipo
-                                    </td>
-                                    <td style="width: 200px;">
-                                        Detalle
-                                    </td>
-                                    <td style="width: 100px;">
-                                        Editar
-                                    </td>
+                                    <td style="width:70px;">Fecha</td>
+									<td style="width:100px;">Tipo de Diligencia</td>
+                                    <td style="width:200px;">Funcionario que ejecuta</td>
+                                    <td>Detalle</td>
                                 </tr>
                                 <tr class="Grid_Row">
-                                    <td colspan="7">
-                                        No se encontraron diligencias registradas en esta solicitud
-                                    </td>
+                                    <td colspan="4">No se encontraron diligencias registradas en esta solicitud</td>
                                 </tr>
                             </table>
                         </EmptyDataTemplate>
                         <Columns>
-                            <asp:BoundField DataField="DiligenciaId" Visible="false" />
-                            <asp:BoundField DataField="Fecha" HeaderText="Fecha" SortExpression="Fecha" />
-                            <asp:BoundField DataField="NombreVisitadorEjecuta" HeaderText="Funcionario que ejecuta"
-                                SortExpression="NombreVisitadorEjecuta"></asp:BoundField>
-                            <asp:BoundField DataField="Tipo" HeaderText="Tipo" SortExpression="Tipo"></asp:BoundField>
-                            <asp:BoundField DataField="Detalle" HeaderText="Detalle" SortExpression="Detalle">
-                            </asp:BoundField>
+							<asp:BoundField HeaderText="Fecha"						ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="70px"	DataField="Fecha"										SortExpression="Fecha"></asp:BoundField>
+							<asp:BoundField HeaderText="Tipo de Diligencia"			ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="100px"	DataField="Tipo"										SortExpression="Tipo"></asp:BoundField>
+							<asp:BoundField HeaderText="Funcionario que ejecuta"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="NombreVisitadorEjecuta"						SortExpression="NombreVisitadorEjecuta"></asp:BoundField>
+							<asp:BoundField HeaderText="Detalle"					ItemStyle-HorizontalAlign="Left"							DataField="Detalle"					HtmlEncode="false"	SortExpression="Detalle"></asp:BoundField>
                             <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
                                 <ItemTemplate>
-                                    <asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar"
-                                        ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
+                                    <asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
                                 <ItemTemplate>
-                                    <asp:ImageButton ID="imgDelete" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Borrar"
-                                        ImageUrl="~/Include/Image/Buttons/Delete.png" runat="server" />
+                                    <asp:ImageButton ID="imgDelete" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Borrar" ImageUrl="~/Include/Image/Buttons/Delete.png" runat="server" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:BoundField DataField="SolicitudId" Visible="false" />
@@ -361,8 +212,8 @@
 	</div>
 
 	<asp:HiddenField ID="hddSolicitudId" runat="server" Value="0"  />
+	<asp:HiddenField ID="hddDiligenciaId" runat="server" />
 	<asp:HiddenField ID="SenderId" runat="server" Value="0"  />
-	<asp:HiddenField ID="hddSort" runat="server" Value="NumeroSol" />
-    <asp:HiddenField ID="hdnDiligenciaId" runat="server" />
+	<asp:HiddenField ID="hddSort" runat="server" Value="Fecha" />
 
 </asp:Content>

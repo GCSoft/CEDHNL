@@ -75,6 +75,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
 				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
 
+				// Campos ocultos
+				this.hddCalificacionId.Value = oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionId"].ToString();
+
 				// Formulario
 				this.SolicitudNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["SolicitudNumero"].ToString();
 				this.CalificacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionNombre"].ToString();

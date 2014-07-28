@@ -31,7 +31,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
 		// Funciones del Programador
 
-		void AgregarDiligencia(){
+		void InsertSolicitudDiligencia(){
 			BPDiligencia oBPDiligencia = new BPDiligencia();
 
 			ENTResponse oENTResponse = new ENTResponse();
@@ -217,6 +217,48 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 			this.ddlTipoDiligencia.Items.Insert(0, new ListItem("[Seleccione]", "0"));
 		}
 
+		void UpdateSolicitudDiligencia(string diligenciaId){
+			ENTResponse oENTResponse = new ENTResponse();
+			ENTDiligencia oENTDiligencia = new ENTDiligencia();
+			BPDiligencia oBPDiligencia = new BPDiligencia();
+
+
+			if (ddlFuncionario.SelectedValue == "0") { throw new Exception("* El campo [Visitador que ejecuta] es requerido"); }
+			if (String.IsNullOrEmpty(calFecha.DisplayDate)) { throw new Exception("* El campo [Fecha de la diligencia] es requerido"); }
+			if (ddlTipoDiligencia.SelectedValue == "0") { throw new Exception("* El campo [Tipo de diligencia] es requerido"); }
+			if (ddlLugarDiligencia.SelectedValue == "0") { throw new Exception("* El campo [Lugar de diligencia] es requerido"); }
+			if (String.IsNullOrEmpty(ckeDetalle.Text)) { throw new Exception("* El campo [Detalle] es requerido"); }
+			if (String.IsNullOrEmpty(txtSolicitadaPor.Text)) { throw new Exception("* El campo [Solicitada por] es requerido"); }
+			if (String.IsNullOrEmpty(ckeResultado.Text)) { throw new Exception("* El campo [Resultado] es requerido"); }
+
+			try
+			{
+				//Formulario
+				oENTDiligencia.DiligenciaId = Convert.ToInt32(diligenciaId);
+				oENTDiligencia.SolicitudId = Convert.ToInt32(this.hddSolicitudId.Value);
+				oENTDiligencia.FuncionarioEjecuta = Convert.ToInt32(ddlFuncionario.SelectedValue);
+				oENTDiligencia.FechaDiligencia = calFecha.BeginDate;
+				oENTDiligencia.TipoDiligencia = Convert.ToInt32(ddlTipoDiligencia.SelectedValue);
+				oENTDiligencia.LugarDiligenciaId = Convert.ToInt32(ddlLugarDiligencia.SelectedValue);
+				oENTDiligencia.Detalle = ckeDetalle.Text;
+				oENTDiligencia.SolicitadaPor = txtSolicitadaPor.Text;
+				oENTDiligencia.Resultado = ckeResultado.Text;
+
+				//Transacción
+				oENTResponse = oBPDiligencia.UpdateDiligenciaSolicitud(oENTDiligencia);
+
+				//Validación
+				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+				if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+
+				//Mensaje usuario
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Diligencia modificada con éxito', 'Success', false);", true);
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
 
 		// Eventos de la página
 
@@ -261,13 +303,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				if (String.IsNullOrEmpty(diligenciaId))
 				{
 					//Agregar
-					AgregarDiligencia();
+					InsertSolicitudDiligencia();
 					SelectDiligencia();
 					LimpiarControles();
 				}else{
 
 					//Modificar
-					ModificarDiligencia(diligenciaId);
+					UpdateSolicitudDiligencia(diligenciaId);
 					SelectDiligencia();
 					LimpiarControles();
 				}
@@ -409,55 +451,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
 
 
-		private void ModificarDiligencia(string diligenciaId){
-			ENTResponse oENTResponse = new ENTResponse();
-			ENTDiligencia oENTDiligencia = new ENTDiligencia();
-			BPDiligencia oBPDiligencia = new BPDiligencia();
-
-
-			if (ddlFuncionario.SelectedValue == "0") { throw new Exception("* El campo [Visitador que ejecuta] es requerido"); }
-			if (String.IsNullOrEmpty(calFecha.DisplayDate)) { throw new Exception("* El campo [Fecha de la diligencia] es requerido"); }
-			if (ddlTipoDiligencia.SelectedValue == "0") { throw new Exception("* El campo [Tipo de diligencia] es requerido"); }
-			if (ddlLugarDiligencia.SelectedValue == "0") { throw new Exception("* El campo [Lugar de diligencia] es requerido"); }
-			if (String.IsNullOrEmpty(ckeDetalle.Text)) { throw new Exception("* El campo [Detalle] es requerido"); }
-			if (String.IsNullOrEmpty(txtSolicitadaPor.Text)) { throw new Exception("* El campo [Solicitada por] es requerido"); }
-			if (String.IsNullOrEmpty(ckeResultado.Text)) { throw new Exception("* El campo [Resultado] es requerido"); }
-
-			try
-			{
-				//Formulario
-				oENTDiligencia.DiligenciaId = Convert.ToInt32(diligenciaId);
-				oENTDiligencia.SolicitudId = Convert.ToInt32(this.hddSolicitudId.Value);
-				oENTDiligencia.FuncionarioEjecuta = Convert.ToInt32(ddlFuncionario.SelectedValue);
-				oENTDiligencia.FechaDiligencia = calFecha.BeginDate;
-				oENTDiligencia.TipoDiligencia = Convert.ToInt32(ddlTipoDiligencia.SelectedValue);
-				oENTDiligencia.LugarDiligenciaId = Convert.ToInt32(ddlLugarDiligencia.SelectedValue);
-				oENTDiligencia.Detalle = ckeDetalle.Text;
-				oENTDiligencia.SolicitadaPor = txtSolicitadaPor.Text;
-				oENTDiligencia.Resultado = ckeResultado.Text;
-
-				//Transacción
-				oENTResponse = oBPDiligencia.UpdateDiligenciaSolicitud(oENTDiligencia);
-
-				//Validación
-				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
-				if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
-
-				//Mensaje usuario
-				ScriptManager.RegisterStartupScript(this.Page
-					, this.GetType()
-					, Convert.ToString(Guid.NewGuid())
-					, "tinyboxMessage('Diligencia modificada con éxito', 'Success', false);"
-					, true);
-
-			}
-
-			catch (Exception ex)
-			{
-				throw (ex);
-			}
-
-		}
+		
 
 		private void EliminarDiligencia(string solicitudId, string diligenciaId){
 			ENTResponse oENTResponse = new ENTResponse();

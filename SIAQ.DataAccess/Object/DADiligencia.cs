@@ -434,7 +434,7 @@ namespace SIAQ.DataAccess.Object
 
             ENTResponse oENTResponse = new ENTResponse();
 
-            Command = new SqlCommand("spDiligenciaSolicitud_ins", Connection);
+			Command = new SqlCommand("uspSolicitudDiligencia_Ins", Connection);
             Command.CommandType = CommandType.StoredProcedure;
 
             if (iAlternativeTimeOut > 0) { Command.CommandTimeout = iAlternativeTimeOut; }
@@ -659,7 +659,7 @@ namespace SIAQ.DataAccess.Object
 
             ENTResponse oENTResponse = new ENTResponse();
 
-            Command = new SqlCommand("spDiligenciaSolicitud_upd", Connection);
+			Command = new SqlCommand("uspSolicitudDiligencia_Upd", Connection);
             Command.CommandType = CommandType.StoredProcedure;
 
             if (iAlternativeTimeOut > 0) { Command.CommandTimeout = iAlternativeTimeOut; }

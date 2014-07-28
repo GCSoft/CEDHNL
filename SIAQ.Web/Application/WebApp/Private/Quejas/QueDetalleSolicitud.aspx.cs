@@ -87,6 +87,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				// Campos ocultos
 				this.hddEstatusId.Value = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusId"].ToString();
 				this.hddFuncionarioId.Value = oENTResponse.dsResponse.Tables[1].Rows[0]["FuncionarioId"].ToString();
+				this.hddCalificacionId.Value = oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionId"].ToString();
 
 				// Formulario
 				this.SolicitudNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["SolicitudNumero"].ToString();
@@ -285,6 +286,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				// Si es Funcionario y el expediente está asignado a el puede agregar comentarios siempre y cuando no esté en estatus de confirmación de cierre
 				if (idRol == 5 && Int32.Parse(this.hddFuncionarioId.Value) == FuncionarioId) {
 					if (Int32.Parse(this.hddEstatusId.Value) != 4) { this.lnkAgregarComentario.Visible = true; }
+				}
+
+				// Si la calificación no es Queja ( CalficacionId = 2) no puede agregar autoridades y voces
+				if (this.hddCalificacionId.Value != "2") {
+					this.AutoridadPanel.Visible = false;
 				}
 
 				// Si el expediente está en estatus de Confirmación de cierre, Enviada a Visitadurías o Finalizada en Quejas no se podrá operar

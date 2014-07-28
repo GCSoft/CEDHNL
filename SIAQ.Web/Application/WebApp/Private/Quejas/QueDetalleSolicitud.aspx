@@ -301,6 +301,7 @@
 
 
 	<asp:HiddenField ID="hddSolicitudId" runat="server" Value="0"  />
+	<asp:HiddenField ID="hddCalificacionId" runat="server" Value="0"  />
 	<asp:HiddenField ID="hddEstatusId" runat="server" Value="0"  />
 	<asp:HiddenField ID="hddFuncionarioId" runat="server" Value="0"  />
 	<asp:HiddenField ID="Sender" runat="server" Value=""  />

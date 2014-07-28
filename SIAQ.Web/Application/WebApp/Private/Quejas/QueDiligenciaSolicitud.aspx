@@ -119,7 +119,7 @@
 			<tr>
                 <td class="Nombre">Solicitada por</td>
                 <td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
-                <td colspan="5" style="text-align:left;"><asp:TextBox ID="txtSolicitadaPor" runat="server" CssClass="Textbox_General" Width="210px"></asp:TextBox></td>
+                <td colspan="5" style="text-align:left;"><asp:TextBox ID="txtSolicitadaPor" runat="server" CssClass="Textbox_General" Width="210px" MaxLength="1000"></asp:TextBox></td>
             </tr>
 			<tr>
                 <td class="Nombre">Detalle</td>

@@ -102,7 +102,8 @@
 
     </div>
 
-    <asp:HiddenField ID="hddSolicitudId" runat="server" Value="0"  />
+    <asp:HiddenField ID="hddSolicitudId" runat="server" Value="0" />
+	<asp:HiddenField ID="hddCalificacionId" runat="server" Value="0" />
 	<asp:HiddenField ID="SenderId" runat="server" Value="0"  />
 
 </asp:Content>

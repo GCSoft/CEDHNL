@@ -25,7 +25,7 @@
 							<td class="VinetaObligatorio">*</td>
 							<td class="Campo">
 								<script type = "text/javascript"> function ClientItemSelected(sender, e) { $get("<%=hddCiudadanoId.ClientID %>").value = e.get_value(); } </script>
-								<asp:TextBox ID="txtCiudadano" runat="server" CssClass="Textbox_General" Width="400px"></asp:TextBox>
+								<asp:TextBox ID="txtCiudadano" runat="server" CssClass="Textbox_General" MaxLength="1000" Width="400px"></asp:TextBox>
 								<asp:HiddenField ID="hddCiudadanoId" runat="server" />
 								<ajaxToolkit:AutoCompleteExtender
 									ID="autoCompleteExtender" 

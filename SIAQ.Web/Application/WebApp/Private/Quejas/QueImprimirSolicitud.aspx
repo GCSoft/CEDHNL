@@ -309,7 +309,7 @@
 							<HeaderStyle CssClass="Grid_Header" />
 							<RowStyle CssClass="Grid_Row" />
 							<EmptyDataTemplate>
-								<table border="1px" cellpadding="0px" cellspacing="0px">
+								<table border="1px" cellpadding="0px" cellspacing="0px" width="100%">
 									<tr class="Grid_Header">
 										<td style="width:150px;">Fecha</td>
 										<td style="width:250px;">Funcionario que ejecuta</td>

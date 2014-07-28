@@ -17,7 +17,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 		}
 
 		protected void imgBuscarSol_Click(object sender, ImageClickEventArgs e){
-			Response.Redirect("opeBusquedaSolicitud.aspx");
+			Response.Redirect("../Quejas/QueBusquedaSolicitudes.aspx");
 		}
 
 		protected void imgRegistrarSol_Click(object sender, ImageClickEventArgs e){

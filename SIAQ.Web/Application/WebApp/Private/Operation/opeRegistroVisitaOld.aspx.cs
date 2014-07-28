@@ -12,76 +12,17 @@ using GCSoft.Utilities.Security;
 using SIAQ.BusinessProcess.Object;
 using SIAQ.BusinessProcess.Page;
 using SIAQ.Entity.Object;
-using System.Data;
 
 namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
-    public partial class opeRegistroVisita : BPPage
-    {
-
-        // Utilerías
+	public partial class opeRegistroVisitaOld : System.Web.UI.Page
+	{
+		
+		// Utilerías
         Function utilFunction = new Function();
-
-		// Servicio
-		[System.Web.Script.Services.ScriptMethod()]
-		[System.Web.Services.WebMethod]
-		public static List<string> GetCitizenList(string prefixText, int count){
-			BPCiudadano oBPCiudadano = new BPCiudadano();
-			ENTCiudadano oENTCiudadano = new ENTCiudadano();
-			ENTResponse oENTResponse = new ENTResponse();
-
-			List<String> ServiceResponse = new List<String>();
-			String Item;
-
-			// Errores conocidos:
-			//		* El control toma el foco con el metodo JS Focus() sólo si es llamado con la función JS pageLoad() 
-			//		* No se pudo encapsular en un WUC
-			//		* Si se selecciona un nombre válido, enseguida se borra y se pone uno inválido, el control almacena el ID del nombre válido, se implemento el siguiente Script en la transacción
-			//			If Not Exists ( Select 1 From Ciudadano Where CiudadanoId = @CiudadanoId And ( Nombre + ' ' + ApellidoPaterno  + ' ' +  IsNull(ApellidoMaterno, '') = @NombreTemporal ) )
-			//				Begin
-			//					Set @CiudadanoId = 0
-			//				End
-
-			try
-			{
-
-				// Formulario
-				oENTCiudadano.Nombre = prefixText;
-
-				// Transacción
-				oENTResponse = oBPCiudadano.searchCiudadano(oENTCiudadano);
-
-				// Validaciones
-				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
-				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
-
-				// Configuración de arreglo de respuesta
-				foreach (DataRow rowCiudadano in oENTResponse.dsResponse.Tables[1].Rows){
-					Item = AjaxControlToolkit.AutoCompleteExtender.CreateAutoCompleteItem(rowCiudadano["NombreCiudadano"].ToString(), rowCiudadano["CiudadanoId"].ToString());
-					ServiceResponse.Add(Item);
-				}
-
-			}catch (Exception){
-				// Do Nothing
-			}
-
-			// Regresar listado de Ciudadanos
-			return ServiceResponse;
-		}
 
 
 		// Funciones del programador
-
-		void Clear(){
-			this.wucFixedDateTime.SetDateTime();
-			this.ddlArea.SelectedIndex = 0;
-			this.ddlFuncionario.SelectedIndex = 0;
-			this.ddlMotivo.SelectedIndex = 0;
-			this.ckeObservaciones.Text = "";
-
-			this.txtCiudadano.Text = "";
-			this.hddCiudadanoId.Value = "";
-		}
 
 		void InsertVisita(){
 			BPVisita BPVisita = new BPVisita();
@@ -90,27 +31,19 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 			ENTVisita oENTVisita = new ENTVisita();
 			ENTSession oENTSession;
 
-			String CiudadanoId;
-			String CiudadanoNombre;
-
 			try
 			{
-
-				// Obtener información del ciudadano del Autosuggest
-				CiudadanoId = this.Request.Form[this.hddCiudadanoId.UniqueID];
-				CiudadanoNombre = this.Request.Form[this.txtCiudadano.UniqueID];
-
-				// Normalización
-				if (CiudadanoId == "") { CiudadanoId = "0"; }
-				CiudadanoNombre = CiudadanoNombre.Trim();
 
 				// Validaciones
 				if (this.ddlArea.SelectedValue == "0") { throw new Exception("El campo [Área] es requerido"); }
 				if (this.ddlFuncionario.SelectedValue == "0") { throw new Exception("El campo [Funcionario] es requerido"); }
 				if (this.ddlMotivo.SelectedValue == "0") { throw new Exception("El campo [Motivo] es requerido"); }
-				if (CiudadanoNombre == "") { throw new Exception("El campo [Visitante] es requerido"); }
-				if ( Int32.Parse(CiudadanoId) <= 0) { throw new Exception("Es necesario seleccionar un ciudadano válido"); }
+				if (this.wucBusquedaCiudadano.Text.Trim() == "") { throw new Exception("El campo [Visitante] es requerido"); }
+				if (this.wucBusquedaCiudadano.CiudadanoID <= 0) { throw new Exception("Es necesario seleccionar un ciudadano válido"); }
 				if (this.ckeObservaciones.Text.Trim() == "") { throw new Exception("El campo [Observaciones] es requerido"); }
+
+				// Validación cambio de nombre
+				if (this.wucBusquedaCiudadano.Text != this.wucBusquedaCiudadano.NombreCiud) { throw new Exception("Es necesario seleccionar un ciudadano válido"); }
 
 				// Obtener la sesión
 				oENTSession = (ENTSession)this.Session["oENTSession"];
@@ -119,9 +52,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				oENTVisita.AreaId = Int32.Parse(this.ddlArea.SelectedValue);
 				oENTVisita.FuncionarioId = Int32.Parse(this.ddlFuncionario.SelectedValue);
 				oENTVisita.MotivoId = Int32.Parse(this.ddlMotivo.SelectedValue);
-				oENTVisita.CiudadanoId = Int32.Parse(CiudadanoId);
+				oENTVisita.CiudadanoId = this.wucBusquedaCiudadano.CiudadanoID;
 				oENTVisita.UsuarioIdInsert = oENTSession.idUsuario;
-				oENTVisita.Visitante = CiudadanoNombre;
+				oENTVisita.Visitante = this.wucBusquedaCiudadano.Text.Trim();
 				oENTVisita.Observaciones = this.ckeObservaciones.Text.Trim();
 
 				//Transacción
@@ -129,14 +62,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
 				//Validación
 				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
-
-				if (oENTResponse.sMessage != ""){
-			        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', false);", true);
-			        return;
-			    }
+				if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
 
 				// Transacción exitosa
-				Clear();
+				ResetearCampos();
 
 				//Mensaje de usuario
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Visita registrada con éxito', 'Success', false); focusControl('" + this.ddlArea.ClientID + "');", true);
@@ -144,6 +73,17 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 			}catch (Exception ex){
 				throw (ex);
 			}
+		}
+
+		void ResetearCampos(){
+			this.wucFixedDateTime.SetDateTime();
+			this.ddlArea.SelectedIndex = 0;
+			this.ddlFuncionario.SelectedIndex = 0;
+			this.ddlMotivo.SelectedIndex = 0;
+			this.wucBusquedaCiudadano.Text = "";
+			this.wucBusquedaCiudadano.NombreCiud = "";
+			this.ckeObservaciones.Text = "";
+			this.wucBusquedaCiudadano.CiudadanoID = 0;
 		}
 
 		void SelectArea(){
@@ -206,9 +146,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
 				if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
 
-				// Cargar el Autosuggest de Búsqueda de ciudadano
-				this.txtCiudadano.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NombreCompleto"].ToString();
-				this.hddCiudadanoId.Value = oENTResponse.dsResponse.Tables[1].Rows[0]["CiudadanoId"].ToString();
+				// Cargar el WUC de Búsqueda de ciudadano
+				this.wucBusquedaCiudadano.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NombreCompleto"].ToString();
+				this.wucBusquedaCiudadano.NombreCiud = oENTResponse.dsResponse.Tables[1].Rows[0]["NombreCompleto"].ToString();
+				this.wucBusquedaCiudadano.CiudadanoID = Int32.Parse( oENTResponse.dsResponse.Tables[1].Rows[0]["CiudadanoId"].ToString());
 
 			}catch (Exception ex){
 				throw (ex);
@@ -309,5 +250,17 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 			Response.Redirect(this.Sender.Value);
         }
 
-    }
+		protected void wucBusquedaCiudadano_ItemSelected(){
+			try
+			{
+
+				// Foco
+				this.ckeObservaciones.Focus();
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.wucBusquedaCiudadano.CanvasID + "');", true);
+			}
+		}
+
+	}
 }

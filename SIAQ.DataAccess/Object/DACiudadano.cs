@@ -470,45 +470,6 @@ namespace SIAQ.DataAccess.Object
 			}
 
 			///<remarks>
-			///   <name>DACiudadano.SelectDetalleCiudadano</name>
-			///   <create>04/abr/2014</create>
-			///   <author>Jose.Gomez</author>
-			///</remarks>
-			///<summary>Selecciona los detalles del ciudadano en específico del sistema para el llenado de controles</summary>
-			public DataSet SelectDetalleCiudadano(ENTCiudadano oENTCiudadano, string ConnectionString)
-			{
-				SqlConnection Connection = new SqlConnection(ConnectionString);
-				SqlCommand Command;
-				SqlDataAdapter DataAdapter;
-				DataSet ds = new DataSet();
-				SqlParameter Parameter;
-
-				try
-				{
-					Command = new SqlCommand("spDetalleCiudadanoEditar_sel", Connection);
-					Command.CommandType = CommandType.StoredProcedure;
-
-					Parameter = new SqlParameter("CiudadanoId", SqlDbType.Int);
-					Parameter.Value = oENTCiudadano.CiudadanoId;
-					Command.Parameters.Add(Parameter);
-
-					DataAdapter = new SqlDataAdapter(Command);
-
-					Connection.Open();
-					DataAdapter.Fill(ds);
-					Connection.Close();
-				}
-				catch (SqlException ex)
-				{
-					_ErrorId = ex.Number;
-					_ErrorDescription = ex.Message;
-					if (Connection.State == ConnectionState.Open) { Connection.Close(); }
-				}
-
-				return ds;
-			}
-
-			///<remarks>
 			///   <name>DACiudadano.SelectComboNacionalidad</name>
 			///   <create>03/abr/2014</create>
 			///   <author>Jose.Gomez</author>

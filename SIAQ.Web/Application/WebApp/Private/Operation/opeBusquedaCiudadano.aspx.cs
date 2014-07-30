@@ -408,7 +408,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 						break;
 
 					case "Consultar":
-						Response.Redirect(ConfigurationManager.AppSettings["Application.Url.DetalleCiudadano"].ToString() + "?s=" + CiudadanoId);
+						Response.Redirect(ConfigurationManager.AppSettings["Application.Url.DetalleCiudadano"].ToString() + "?key=" + CiudadanoId);
 						break;
 
 					case "Editar":

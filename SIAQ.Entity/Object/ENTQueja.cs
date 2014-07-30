@@ -42,6 +42,7 @@ namespace SIAQ.Entity.Object
 		private String		_Numero;				// Número de la solicitud
 		private String		_NumeroFolio;			// Número de folio de expediente generado al aprobar la solicitud
 		private String		_Observaciones;			// Observaciones de la solicitud
+		private Int16		_Presente;				// Determina con un 1 si el ciudadano estuvo presente al momento del levantamientio de la solicitud
 		private Int16		_TipoFolio;				// Tipo de Folio a generar: 1-> [Folio de Queja], 2-> [Folio de Orientacion], 3-> [Folio de Gestion de Quejas], 4-> [Folio de Gestion Penitenciaria]
 		private DataTable	_tblCanalizacion;		// DataTable el cual contiene los ID's Canalizaciones que se asociarán a la Solicitud
 		private DataTable	_tblIndicador;			// DataTable el cual contiene los ID's de los grupos minoritarios asociadas a la solicitud
@@ -74,6 +75,7 @@ namespace SIAQ.Entity.Object
 			_Numero = "";
 			_NumeroFolio = "";
 			_Observaciones = "";
+			_Presente = 0;
 			_TipoFolio = 0;
 			_tblCanalizacion = null;
 			_tblIndicador = null;
@@ -368,6 +370,18 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _Observaciones; }
 			set { _Observaciones = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTQueja.Presente</name>
+		///   <create>18-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna un valor el cual determina con un 1 si el ciudadano estuvo presente al momento del levantamientio de la solicitud</summary>
+		public Int16 Presente
+		{
+			get { return _Presente; }
+			set { _Presente = value; }
 		}
 
 		///<remarks>

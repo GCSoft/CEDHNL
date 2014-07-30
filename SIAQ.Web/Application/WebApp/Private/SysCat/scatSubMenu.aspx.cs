@@ -228,7 +228,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
             if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
 
             // Mensaje de la BD
-            if (oENTResponse.sMessage != "") { sMessage = "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', true);"; }
+            if (oENTResponse.sMessage != "") { sMessage = "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', false);"; }
 
             // Llenado de controles
             this.gvSubMenu.DataSource = oENTResponse.dsResponse.Tables[1];

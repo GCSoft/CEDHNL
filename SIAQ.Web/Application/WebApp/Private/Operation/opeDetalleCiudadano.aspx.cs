@@ -1,252 +1,192 @@
-﻿using System;
+﻿// Referencias
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-using System.Data;
-
-using SIAQ.Entity.Object;
-using SIAQ.BusinessProcess.Object;
+// Referencias manuales
 using GCSoft.Utilities.Common;
+using GCSoft.Utilities.Security;
+using SIAQ.BusinessProcess.Object;
+using SIAQ.BusinessProcess.Page;
+using SIAQ.Entity.Object;
+using System.Data;
 
 
 namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
     public partial class opeDetalleCiudadano : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (Page.IsPostBack) { return; }
 
-            string ciudadanoId = Convert.ToString(Request.QueryString["s"]);
-            if (String.IsNullOrEmpty(ciudadanoId)) { ciudadanoId = "0"; }
-            hdnCiudadanoId.Value = ciudadanoId;
+		// Utilerías
+		Function utilFunction = new Function();
 
-            ObtenerDetalleCiudadano(Convert.ToInt32(ciudadanoId));
-            ComboSolicitudes(Convert.ToInt32(ciudadanoId));
-            ComboVisitas(Convert.ToInt32(ciudadanoId));
+
+		// Rutinas del programador
+
+		void SelectCiudadanoDetalle(){
+			BPCiudadano BPCiudadano = new BPCiudadano();
+			ENTResponse oENTResponse = new ENTResponse();
+			ENTCiudadano oENTCiudadano = new ENTCiudadano();
+
+			try
+			{
+
+				// Formulario
+				oENTCiudadano.CiudadanoId = Int32.Parse(this.hddCiudadanoId.Value);
+
+				// Transacción
+				oENTResponse = BPCiudadano.SelectCiudadano_ByID(oENTCiudadano);
+
+				// Validación
+				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+				if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+
+				// Detalle del ciudadano
+				this.lblNombre.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Nombre"].ToString();
+				this.lblApellidoPaterno.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["ApellidoPaterno"].ToString();
+				this.lblApellidoMaterno.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["ApellidoMaterno"].ToString();
+				this.lblSexo.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["SexoNombre"].ToString();
+				this.lblEdad.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Edad"].ToString().Split(new Char[] { ' ' })[0];
+				this.lblNacionalidad.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NacionalidadNombre"].ToString();
+				this.lblOcupacion.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["OcupacionNombre"].ToString();
+				this.lblEscolaridad.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["EscolaridadNombre"].ToString();
+				this.lblEstadoCivil.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["EstadoCivilNombre"].ToString();
+				this.lblTelefonoPrincipal.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["TelefonoPrincipal"].ToString();
+				this.lblOtroTelefono.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["TelefonoOtro"].ToString();
+				this.lblCorreoElectronico.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["CorreoElectronico"].ToString();
+				this.lblDependientesEconomicos.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["DependientesEconomicos"].ToString();
+				this.lblFormaEnterarse.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["MedioComunicacionNombre"].ToString();
+				this.lblPais.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NombrePais"].ToString();
+				this.lblEstado.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NombreEstado"].ToString();
+				this.lblCiudad.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NombreCiudad"].ToString();
+				this.lblColonia.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NombreColonia"].ToString();
+				this.lblCalle.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Calle"].ToString();
+				this.lblNoExterior.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NumeroExterior"].ToString();
+				this.lblNumInterior.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NumeroInterior"].ToString();
+				this.lblAniosResidiendoNL.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["AniosResidiendoNL"].ToString();
+
+				// Solicitudes y Expedientes
+				this.gvSolicitudes.DataSource = oENTResponse.dsResponse.Tables[2];
+				this.gvSolicitudes.DataBind();
+
+				// Visitas
+				this.gvVisitas.DataSource = oENTResponse.dsResponse.Tables[3];
+				this.gvVisitas.DataBind();
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+
+		// Eventos de la página
+
+		protected void Page_Load(object sender, EventArgs e){
+			try
+            {
+
+				// Validaciones
+				if (Page.IsPostBack) { return; }
+				if (this.Request.QueryString["key"] == null) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
+				if (this.Request.QueryString["key"].ToString().Split(new Char[] { '|' }).Length != 1) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
+
+				// Obtener CiudadanoId
+				this.hddCiudadanoId.Value = this.Request.QueryString["key"].ToString().Split(new Char[] { '|' })[0];
+
+				// Información del ciudadano
+				SelectCiudadanoDetalle();
+				
+            }catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+            }
         }
 
-        #region Atributos
+		protected void btnRegresar_Click(object sender, EventArgs e){
+			Response.Redirect("~/Application/WebApp/Private/Operation/opeBusquedaCiudadano.aspx");
+		}
 
-        Function utilFunction = new Function();
+		protected void gvSolicitudes_RowDataBound(object sender, GridViewRowEventArgs e){
+			try
+			{
 
-        #endregion
+				// Validación de que sea fila 
+				if (e.Row.RowType != DataControlRowType.DataRow) { return; }
 
-        #region Propiedades
-        #endregion
+				// Atributos Over y Out
+				e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over';");
+				e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; ");
 
-        #region Eventos
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
 
-        #region "GridView"
-        #endregion
+		protected void gvSolicitudes_Sorting(object sender, GridViewSortEventArgs e){
+			DataTable tblData = null;
+			DataView viewData = null;
 
-        #region "Botones"
-        #endregion
+			try
+			{
+				
+				// Obtener DataTable y View del GridView
+				tblData = utilFunction.ParseGridViewToDataTable(this.gvSolicitudes, false);
+				viewData = new DataView(tblData);
 
-        #endregion
+				// Determinar ordenamiento
+				hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
 
-        #region Funciones
+				// Ordenar Vista
+				viewData.Sort = hddSort.Value;
 
-        private void ObtenerDetalleCiudadano(int ciudadanoId)
-        {
-            BPCiudadano oBPCiudadano = new BPCiudadano();
+				// Vaciar datos
+				gvSolicitudes.DataSource = viewData;
+				gvSolicitudes.DataBind();
 
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+			}
+		}
+
+        protected void gvVisitas_RowDataBound(object sender, GridViewRowEventArgs e){
             try
             {
-                oBPCiudadano.ENTCiudadano.CiudadanoId = ciudadanoId;
-                oBPCiudadano.SelectDetalleCiudadano();
+				
+				// Validación de que sea fila 
+				if (e.Row.RowType != DataControlRowType.DataRow) { return; }
 
-                if (oBPCiudadano.ErrorId == 0)
-                {
-                    if (oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows.Count > 0)
-                    {
-                        lblNombre.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["Nombre"].ToString();
-                        lblApellidoPaterno.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["ApellidoPaterno"].ToString();
-                        lblApellidoMaterno.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["ApellidoMaterno"].ToString();
-                        lblSexo.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["Sexo"].ToString();
-                        lblFechaNacimiento.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["FechaNacimiento"].ToString().Split(new Char[] { ' ' })[0];
-                        lblNacionalidad.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["Nacionalidad"].ToString();
-                        lblOcupacion.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["Ocupacion"].ToString();
-                        lblEscolaridad.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["Escolaridad"].ToString();
-                        lblEstadoCivil.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["EstadoCivil"].ToString();
-                        lblTelefonoPrincipal.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["TelefonoPrincipal"].ToString();
-                        lblOtroTelefono.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["TelefonoOtro"].ToString();
-                        lblCorreoElectronico.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["CorreoElectronico"].ToString();
-                        lblDependientesEconomicos.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["DependientesEconomicos"].ToString();
-                        lblFormaEnterarse.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["MedioComunicacionId"].ToString();
-                        lblPais.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["Pais"].ToString();
-                        lblEstado.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["Estado"].ToString();
-                        lblCiudad.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["Ciudad"].ToString();
-                        lblColonia.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["Colonia"].ToString();
-                        lblCalle.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["Calle"].ToString();
-                        lblNoExterior.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["NumeroExterior"].ToString();
-                        lblNumInterior.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["NumeroInterior"].ToString();
-                        lblAniosResidiendoNL.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["AniosResidiendoNL"].ToString();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this.Page
-                    , this.GetType()
-                    , Convert.ToString(Guid.NewGuid())
-                    , "tinyboxMessage('" + ex.Message + "','Fail',true);"
-                    , true);
-            }
-        }
+				// Atributos Over y Out
+				e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over';");
+				e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; ");
 
-        private void ComboSolicitudes(int ciudadanoId)
-        {
-            BPSolicitudCiudadano oBPSolicitudCiudadano = new BPSolicitudCiudadano();
-
-            oBPSolicitudCiudadano.SolicitudCiudadanoEntity.CiudadanoId = ciudadanoId;
-            oBPSolicitudCiudadano.SelectSolicitudesCiudadano();
-
-            if (oBPSolicitudCiudadano.ErrorId == 0)
-            {
-                if (oBPSolicitudCiudadano.SolicitudCiudadanoEntity.dsResponse.Tables[0].Rows.Count > 0)
-                {
-                    gvSollicitudesIntervencion.DataSource = oBPSolicitudCiudadano.SolicitudCiudadanoEntity.dsResponse;
-                    gvSollicitudesIntervencion.DataBind();
-                }
-                else
-                {
-                    gvSollicitudesIntervencion.DataSource = null;
-                    gvSollicitudesIntervencion.DataBind();
-                }
-            }
-            else
-            {
-                gvSollicitudesIntervencion.DataSource = null;
-                gvSollicitudesIntervencion.DataBind();
-            }
-        }
-
-        private void ComboVisitas(int ciudadanoId)
-        {
-            BPVisita oBPVisita = new BPVisita();
-
-            oBPVisita.ENTVisita.UsuarioIdInsert = ciudadanoId;
-            oBPVisita.SelectVisitaCiudadano();
-
-            if (oBPVisita.ErrorId == 0)
-            {
-                if (oBPVisita.ENTVisita.dsResponse.Tables[0].Rows.Count > 0)
-                {
-                    gvVisitasCEDH.DataSource = oBPVisita.ENTVisita.dsResponse;
-                    gvVisitasCEDH.DataBind();
-                }
-                else
-                {
-                    gvVisitasCEDH.DataSource = null;
-                    gvVisitasCEDH.DataBind();
-                }
-            }
-            else
-            {
-                gvVisitasCEDH.DataSource = null;
-                gvVisitasCEDH.DataBind();
-            }
-        }
-
-        #endregion
-
-        protected void btnRegresar_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Application/WebApp/Private/Operation/opeBusquedaCiudadano.aspx");
-        }
-
-        protected void gvSollicitudesIntervencion_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            try
-            {
-                //Validación de que sea fila 
-                if (e.Row.RowType != DataControlRowType.DataRow) { return; }
-
-                //Puntero y Sombra en fila Over
-                e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over';");
-                //Puntero y Sombra en fila Out
-                e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; ");
-            }
-            catch (Exception ex)
-            {
+            }catch (Exception ex){
                 throw (ex);
             }
         }
 
-        protected void gvSollicitudesIntervencion_Sorting(object sender, GridViewSortEventArgs e)
-        {
-            DataTable TableSolicitudes = null;
-            DataView ViewSolicitudes = null;
+        protected void gvVisitas_Sorting(object sender, GridViewSortEventArgs e){
+            DataTable tblData = null;
+            DataView viewData = null;
 
             try
             {
-                //Obtener DataTable y View del GridView
-                TableSolicitudes = utilFunction.ParseGridViewToDataTable(gvSollicitudesIntervencion, false);
-                ViewSolicitudes = new DataView(TableSolicitudes);
+                // Obtener DataTable y View del GridView
+                tblData = utilFunction.ParseGridViewToDataTable(this.gvVisitas, false);
+                viewData = new DataView(tblData);
 
-                //Determinar ordenamiento
+                // Determinar ordenamiento
                 hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
 
-                //Ordenar Vista
-                ViewSolicitudes.Sort = hddSort.Value;
+                // Ordenar Vista
+                viewData.Sort = hddSort.Value;
 
-                //Vaciar datos
-                gvSollicitudesIntervencion.DataSource = ViewSolicitudes;
-                gvSollicitudesIntervencion.DataBind();
+                // Vaciar datos
+                gvVisitas.DataSource = viewData;
+                gvVisitas.DataBind();
 
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
-            }
-        }
-
-        protected void gvVisitasCEDH_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            try
-            {
-                //Validación de que sea fila 
-                if (e.Row.RowType != DataControlRowType.DataRow) { return; }
-
-                //Puntero y Sombra en fila Over
-                e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over';");
-                //Puntero y Sombra en fila Out
-                e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; ");
-            }
-            catch (Exception ex)
-            {
-                throw (ex);
-            }
-        }
-
-        protected void gvVisitasCEDH_Sorting(object sender, GridViewSortEventArgs e)
-        {
-            DataTable TableVisitas = null;
-            DataView ViewVisitas = null;
-
-            try
-            {
-                //Obtener DataTable y View del GridView
-                TableVisitas = utilFunction.ParseGridViewToDataTable(gvVisitasCEDH, false);
-                ViewVisitas = new DataView(TableVisitas);
-
-                //Determinar ordenamiento
-                hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
-
-                //Ordenar Vista
-                ViewVisitas.Sort = hddSort.Value;
-
-                //Vaciar datos
-                gvVisitasCEDH.DataSource = ViewVisitas;
-                gvVisitasCEDH.DataBind();
-
-            }
-            catch (Exception ex)
-            {
+            }catch (Exception ex){
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
             }
         }

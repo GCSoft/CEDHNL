@@ -113,12 +113,13 @@
 			<tr>
                 <td class="Nombre">Tipo de Participación</td>
                 <td class="Espacio"><font class="MarcadorObligatorio"></font></td>
-                <td colspan="5" style="text-align:left; vertical-align: top;">
-					<asp:DropDownList ID="ddlTipoParticipacion" runat="server" CssClass="DropDownList_General" width="216px" ></asp:DropDownList>
+                <td colspan="5" style="text-align:left; vertical-align:baseline;">
+					<asp:DropDownList ID="ddlTipoParticipacion" runat="server" CssClass="DropDownList_General" width="216px" ></asp:DropDownList>&nbsp;&nbsp;
+					<asp:CheckBox ID="chkPresente" runat="server" CssClass="CheckBox_Regular" Checked="true" Text="Ciudadano Presente" />
 				</td>
             </tr>
 			<tr>
-                <td colspan="7" style="text-align:left; vertical-align: top;">
+                <td colspan="7" style="text-align:left; vertical-align:bottom;">
 					<asp:Button ID="btnAgregarCiudadano" runat="server" Text="Agregar" CssClass="Button_General" onclick="btnAgregarCiudadano_Click" Width="125px" />
 				</td>
             </tr>
@@ -131,7 +132,7 @@
             <tr>
                 <td>
 					<asp:GridView ID="gvCiudadano" runat="server" AllowPaging="false" AllowSorting="true" AutoGenerateColumns="False" Width="100%"
-						DataKeyNames="CiudadanoId,NombreCompleto" 
+						DataKeyNames="CiudadanoId,UsuarioId,NombreCompleto" 
 						OnRowDataBound="gvCiudadano_RowDataBound"
 						OnRowCommand="gvCiudadano_RowCommand"
                         OnSorting="gvCiudadano_Sorting">
@@ -143,6 +144,7 @@
                             <table border="1px" width="100%" cellpadding="0px" cellspacing="0px">
                                 <tr class="Grid_Header">
 									<td style="width:100px;">Tipo</td>
+									<td style="width:80px;">Presente</td>
 									<td style="width:250px;">Nombre</td>
 									<td style="width:90px;">Edad</td>
 									<td style="width:80px;">Sexo</td>
@@ -150,12 +152,13 @@
 									<td>Domicilio</td>
                                 </tr>
                                 <tr class="Grid_Row">
-                                    <td colspan="6">No se encontraron Ciudadanos registrados en el sistema</td>
+                                    <td colspan="7" style="text-align:center;">No se encontraron Ciudadanos registrados en el sistema</td>
                                 </tr>
                             </table>
                         </EmptyDataTemplate>
                         <Columns>
 							<asp:BoundField HeaderText="Tipo"		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="100px"	DataField="NombreTipoCiudadano"		SortExpression="NombreTipoCiudadano"></asp:BoundField>
+							<asp:BoundField HeaderText="Presente"	ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="80px"	DataField="Presente"				SortExpression="Presente"></asp:BoundField>
 							<asp:BoundField HeaderText="Nombre"		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="250px"	DataField="NombreCompleto"			SortExpression="NombreCompleto"></asp:BoundField>
 							<asp:BoundField HeaderText="Edad"		ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="90px"	DataField="Edad"					SortExpression="Edad"></asp:BoundField>
 							<asp:BoundField HeaderText="Sexo"		ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="80px"	DataField="NombreSexo"				SortExpression="NombreSexo"></asp:BoundField>

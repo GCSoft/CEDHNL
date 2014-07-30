@@ -345,7 +345,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 			// Modo Edición
 			if (!String.IsNullOrEmpty(ciudadanoId)) {
 
-				ObtenerDetalleCiudadano(Convert.ToInt32(ciudadanoId));
+				SelectCiudadanoDetalle(Convert.ToInt32(ciudadanoId));
 
 				// Habilitar wucFastCatalog's
 				this.wucFastCatalogEstado.Enabled = true;
@@ -1307,60 +1307,68 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             return raw.Substring(startIdx, endIdx - startIdx);
         }
 
-        private void ObtenerDetalleCiudadano(int ciudadanoId)
-        {
-            BPCiudadano oBPCiudadano = new BPCiudadano();
+        private void SelectCiudadanoDetalle(Int32 CiudadanoId){
+			BPCiudadano BPCiudadano = new BPCiudadano();
+			ENTResponse oENTResponse = new ENTResponse();
+			ENTCiudadano oENTCiudadano = new ENTCiudadano();
 
-            try
-            {
-                oBPCiudadano.ENTCiudadano.CiudadanoId = ciudadanoId;
-                oBPCiudadano.SelectDetalleCiudadano();
+			try
+			{
 
-                if (oBPCiudadano.ErrorId == 0)
-                {
-                    if (oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows.Count > 0)
-                    {
-                        txtNombre.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["Nombre"].ToString();
-                        txtApellidoPaterno.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["ApellidoPaterno"].ToString();
-                        txtApellidoMaterno.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["ApellidoMaterno"].ToString();
-                        ddlSexo.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["SexoId"].ToString();
-						this.txtEdad.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["Anios"].ToString();
-                        ddlNacionalidad.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["NacionalidadId"].ToString();
-                        ddlOcupacion.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["OcupacionId"].ToString();
-                        ddlEscolaridad.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["EscolaridadId"].ToString();
-                        ddlEstadoCivil.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["EstadoCivilId"].ToString();
-                        txtTelefonoPrincipal.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["TelefonoPrincipal"].ToString();
-                        txtOtroTelefono.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["TelefonoOtro"].ToString();
-                        txtCorreoElectronico.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["CorreoElectronico"].ToString();
-                        txtDependientesEconomicos.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["DependientesEconomicos"].ToString();
-                        ddlFormaEnterarse.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["MedioComunicacionId"].ToString();
-                        ddlPais.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["PaisId"].ToString();
-                        ComboEstados();
-                        ddlEstado.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["EstadoId"].ToString();
-                        ComboCiudades();
-                        ddlCiudad.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["CiudadId"].ToString();
-                        ComboColonia();
-                        ddlColonia.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["ColoniaId"].ToString();
-                        txtNombreCalle.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["Calle"].ToString();
-                        txtNumExterior.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["NumeroExterior"].ToString();
-                        txtNumInterior.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["NumeroInterior"].ToString();
-                        txtAniosResidiendo.Text = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["AniosResidiendoNL"].ToString();
-                        ddlPaisOrigen.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["PaisOrigenId"].ToString();
-                        ComboEstadosOrigen();
-                        ddlEstadoOrigen.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["EstadoOrigenId"].ToString();
-                        ComboCiudadesOrigen();
-                        ddlCiudadOrigen.SelectedValue = oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows[0]["CiudadOrigenId"].ToString();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this.Page
-                    , this.GetType()
-                    , Convert.ToString(Guid.NewGuid())
-                    , "tinyboxMessage('" + ex.Message + "','Fail',true);"
-                    , true);
-            }
+				// Formulario
+				oENTCiudadano.CiudadanoId = CiudadanoId;
+
+				// Transacción
+				oENTResponse = BPCiudadano.SelectCiudadano_ByID(oENTCiudadano);
+
+				// Validación
+				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+				if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+
+				// Detalle del ciudadano
+				this.txtNombre.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Nombre"].ToString();
+				this.txtApellidoPaterno.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["ApellidoPaterno"].ToString();
+				this.txtApellidoMaterno.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["ApellidoMaterno"].ToString();
+				this.txtEdad.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Edad"].ToString();
+				this.txtTelefonoPrincipal.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["TelefonoPrincipal"].ToString();
+				this.txtOtroTelefono.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["TelefonoOtro"].ToString();
+				this.txtCorreoElectronico.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["CorreoElectronico"].ToString();
+				this.txtDependientesEconomicos.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["DependientesEconomicos"].ToString();
+				this.txtNombreCalle.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Calle"].ToString();
+				this.txtNumExterior.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NumeroExterior"].ToString();
+				this.txtNumInterior.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NumeroInterior"].ToString();
+				this.txtAniosResidiendo.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["AniosResidiendoNL"].ToString();
+
+				this.ddlSexo.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["SexoId"].ToString();
+				this.ddlNacionalidad.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["NacionalidadId"].ToString();
+				this.ddlOcupacion.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["OcupacionId"].ToString();
+				this.ddlEscolaridad.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["EscolaridadId"].ToString();
+				this.ddlEstadoCivil.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["EstadoCivilId"].ToString();
+				this.ddlFormaEnterarse.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["MedioComunicacionId"].ToString();
+
+				this.ddlPais.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["PaisId"].ToString();
+				ComboEstados();
+
+				this.ddlEstado.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["EstadoId"].ToString();
+				ComboCiudades();
+
+				this.ddlCiudad.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["CiudadId"].ToString();
+				ComboColonia();
+
+				this.ddlColonia.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["ColoniaId"].ToString();
+
+
+				this.ddlPaisOrigen.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["PaisOrigenId"].ToString();
+				ComboEstadosOrigen();
+
+				this.ddlEstadoOrigen.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["EstadoOrigenId"].ToString();
+				ComboCiudadesOrigen();
+
+				this.ddlCiudadOrigen.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["CiudadOrigenId"].ToString();
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+			}
         }
 
         #endregion

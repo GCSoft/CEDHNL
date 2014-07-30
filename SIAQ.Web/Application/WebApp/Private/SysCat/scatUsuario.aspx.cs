@@ -351,7 +351,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
             if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
 
             // Mensaje de la BD
-            if (oENTResponse.sMessage != "") { sMessage = "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', true);"; }
+            if (oENTResponse.sMessage != "") { sMessage = "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', false);"; }
 
             // Seguridad
             oENTSession = (ENTSession)this.Session["oENTSession"];
@@ -651,63 +651,63 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
       }
 
       protected void gvUsuario_RowDataBound(object sender, GridViewRowEventArgs e){
-			ImageButton imgEdit = null;
-         ImageButton imgAction = null;
+		ImageButton imgEdit = null;
+		ImageButton imgAction = null;
 
-         String idUsuario = "";
-         String sNombreUsuario = "";
-         String tiActivo = "";
+		String idUsuario = "";
+		String sNombreUsuario = "";
+		String tiActivo = "";
 
-         String sImagesAttributes = "";
-         String sTootlTip = "";
+		String sImagesAttributes = "";
+		String sTootlTip = "";
 			
-			try{
+		try{
 
-            // Validación de que sea fila
-            if (e.Row.RowType != DataControlRowType.DataRow) { return; }
+			// Validación de que sea fila
+			if (e.Row.RowType != DataControlRowType.DataRow) { return; }
 
-				// Obtener imagenes
-				imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
-            imgAction = (ImageButton)e.Row.FindControl("imgAction");
+			// Obtener imagenes
+			imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
+			imgAction = (ImageButton)e.Row.FindControl("imgAction");
 
-				// Datakeys
-            idUsuario = this.gvUsuario.DataKeys[e.Row.RowIndex]["idUsuario"].ToString();
-            tiActivo = this.gvUsuario.DataKeys[e.Row.RowIndex]["tiActivo"].ToString();
-            sNombreUsuario = this.gvUsuario.DataKeys[e.Row.RowIndex]["sFullName"].ToString();
+			// Datakeys
+			idUsuario = this.gvUsuario.DataKeys[e.Row.RowIndex]["idUsuario"].ToString();
+			tiActivo = this.gvUsuario.DataKeys[e.Row.RowIndex]["tiActivo"].ToString();
+			sNombreUsuario = this.gvUsuario.DataKeys[e.Row.RowIndex]["sFullName"].ToString();
 
-            // Tooltip Edición
-            sTootlTip = "Editar Usuario [" + sNombreUsuario + "]";
-            imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sTootlTip + "', 'Izq');");
-            imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
-            imgEdit.Attributes.Add("style", "cursor:hand;");
+			// Tooltip Edición
+			sTootlTip = "Editar Usuario [" + sNombreUsuario + "]";
+			imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sTootlTip + "', 'Izq');");
+			imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
+			imgEdit.Attributes.Add("style", "cursor:hand;");
 
-				// Tooltip Action
-            sTootlTip = (tiActivo == "1" ? "Eliminar" : "Reactivar") + " Usuario [" + sNombreUsuario + "]";
-				imgAction.Attributes.Add("onmouseover", "tooltip.show('" + sTootlTip + "', 'Izq');");
-				imgAction.Attributes.Add("onmouseout", "tooltip.hide();");
-				imgAction.Attributes.Add("style", "cursor:hand;");
+			// Tooltip Action
+			sTootlTip = (tiActivo == "1" ? "Eliminar" : "Reactivar") + " Usuario [" + sNombreUsuario + "]";
+			imgAction.Attributes.Add("onmouseover", "tooltip.show('" + sTootlTip + "', 'Izq');");
+			imgAction.Attributes.Add("onmouseout", "tooltip.hide();");
+			imgAction.Attributes.Add("style", "cursor:hand;");
 
-            // Imagen del botón [imgAction]
-            imgAction.ImageUrl = "../../../../Include/Image/Buttons/" + (tiActivo == "1" ? "Delete" : "Restore") + ".png";
+			// Imagen del botón [imgAction]
+			imgAction.ImageUrl = "../../../../Include/Image/Buttons/" + (tiActivo == "1" ? "Delete" : "Restore") + ".png";
 
-				// Atributos Over
-            sImagesAttributes = " document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png';";
-            sImagesAttributes = sImagesAttributes + " document.getElementById('" + imgAction.ClientID + "').src='../../../../Include/Image/Buttons/" + (tiActivo == "1" ? "Delete" : "Restore") + "_Over.png';";
+			// Atributos Over
+			sImagesAttributes = " document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png';";
+			sImagesAttributes = sImagesAttributes + " document.getElementById('" + imgAction.ClientID + "').src='../../../../Include/Image/Buttons/" + (tiActivo == "1" ? "Delete" : "Restore") + "_Over.png';";
 
-				// Puntero y Sombra en fila Over
-				e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
+			// Puntero y Sombra en fila Over
+			e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
 
-				// Atributos Out
-            sImagesAttributes = " document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png';";
-            sImagesAttributes = sImagesAttributes + " document.getElementById('" + imgAction.ClientID + "').src='../../../../Include/Image/Buttons/" + (tiActivo == "1" ? "Delete" : "Restore") + ".png';";
+			// Atributos Out
+			sImagesAttributes = " document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png';";
+			sImagesAttributes = sImagesAttributes + " document.getElementById('" + imgAction.ClientID + "').src='../../../../Include/Image/Buttons/" + (tiActivo == "1" ? "Delete" : "Restore") + ".png';";
 
-				// Puntero y Sombra en fila Out
-				e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
+			// Puntero y Sombra en fila Out
+			e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
 				
-			}catch (Exception ex){
-				throw (ex);
-			}
+		}catch (Exception ex){
+			throw (ex);
 		}
+	}
 
 		protected void gvUsuario_RowCommand(object sender, GridViewCommandEventArgs e){
          Int32 idUsuario = 0;

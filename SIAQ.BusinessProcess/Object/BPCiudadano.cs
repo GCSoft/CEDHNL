@@ -229,21 +229,6 @@ namespace SIAQ.BusinessProcess.Object
 			}
 
 			/// <summary>
-			/// Selecciona los detalles del ciudadano en específico del sistema para el llenado de controles
-			/// </summary>
-			public void SelectDetalleCiudadano()
-			{
-				string ConnectionString = string.Empty;
-				DACiudadano oDACiudadano = new DACiudadano();
-
-				ConnectionString = sConnectionApplication;
-				_ENTCiudadano.ResultData = oDACiudadano.SelectDetalleCiudadano(_ENTCiudadano, ConnectionString);
-
-				_ErrorId = oDACiudadano.ErrorId;
-				_ErrorDescription = oDACiudadano.ErrorDescription;
-			}
-
-			/// <summary>
 			/// Inserta ciudadanos en el sistema
 			/// </summary>
 			public ENTResponse InsertCiudadano(ENTCiudadano oENTCiudadano)

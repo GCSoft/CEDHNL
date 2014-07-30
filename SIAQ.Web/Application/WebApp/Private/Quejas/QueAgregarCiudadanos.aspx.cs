@@ -27,6 +27,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 		// Utilerías
 		Function utilFunction = new Function();
 
+		// Variables globales
+		ENTSession oENTSession = null;
+
 		// Servicio
 		[System.Web.Script.Services.ScriptMethod()]
 		[System.Web.Services.WebMethod]
@@ -76,6 +79,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 		void ClearForm() {
 
 			this.ddlTipoParticipacion.SelectedIndex = 0;
+			this.chkPresente.Checked = true;
 
 			this.txtCiudadano.Text = "";
 			this.hddCiudadanoId.Value = "";
@@ -141,11 +145,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				
 				// Formulario
 				oENTQueja.SolicitudId = Int32.Parse(this.hddSolicitudId.Value);
-				oENTQueja.FuncionarioId = SessionEntity.FuncionarioId;
+				oENTQueja.UsuarioId = SessionEntity.idUsuario;
 				oENTQueja.CiudadanoId = Int32.Parse(CiudadanoId);
 				oENTQueja.TipoParticipacionId = Int32.Parse(this.ddlTipoParticipacion.SelectedItem.Value);
 				oENTQueja.Check = 1; // Validar el Nombre del control con el Id debido al Bug del Autosuggest
 				oENTQueja.CheckNombre = CiudadanoNombre;
+				oENTQueja.Presente = Int16.Parse( (this.chkPresente.Checked ? 1 : 0).ToString() );
 
 				// Transacción
 				oENTResponse = oBPQueja.InsertSolicitudCiudadano(oENTQueja);
@@ -249,7 +254,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
 
 				// Warnings
-				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Warning', true);", true); }
+				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Warning', false);", true); }
 
 				// Llenado de control
 				this.ddlTipoParticipacion.DataTextField = "Nombre";
@@ -380,6 +385,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 			ImageButton imgDelete = null;
 
 			String sCiudadanoId = "";
+			String sUsuarioId = "";
 			String sNombreCiudadano = "";
 
 			String sToolTip = "";
@@ -389,28 +395,45 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 			{
 				
 				// Validación de que sea fila 
-				if (e.Row.RowType != DataControlRowType.DataRow) { return; }
+				if (e.Row.RowType != DataControlRowType.DataRow) {
+					oENTSession = (ENTSession)Session["oENTSession"];
+					return;
+				}
 
-				//Obtener imagenes
+				// Obtener imagenes
 				imgDelete = (ImageButton)e.Row.FindControl("imgDelete");
 
-				//DataKeys
+				// DataKeys
 				sCiudadanoId = gvCiudadano.DataKeys[e.Row.RowIndex]["CiudadanoId"].ToString();
+				sUsuarioId = gvCiudadano.DataKeys[e.Row.RowIndex]["UsuarioId"].ToString();
 				sNombreCiudadano = this.gvCiudadano.DataKeys[e.Row.RowIndex]["NombreCompleto"].ToString();
 
-				//Tooltips
-				sToolTip = "Eliminar de la Solicitud a [" + sNombreCiudadano + "]";
-				imgDelete.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
-				imgDelete.Attributes.Add("onmouseout", "tooltip.hide();");
-				imgDelete.Attributes.Add("style", "cursor:hand;");
+				// Si el usuario que está consultando es Funcionario no se permite que elimine ciudadanos que él no haya registrado
+				if( oENTSession.idRol == 5 && oENTSession.idUsuario.ToString() != sUsuarioId ){
 
-				//Atributos Over
-				sImagesAttributes = "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png'; ";
-				e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
+					imgDelete.Visible = false;
 
-				//Atributos Out
-				sImagesAttributes = "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png'; ";
-				e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
+					// Atributos Over y Out
+					e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; ");
+					e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; ");
+
+				}else{
+					
+					// Tooltips
+					sToolTip = "Eliminar de la Solicitud a [" + sNombreCiudadano + "]";
+					imgDelete.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
+					imgDelete.Attributes.Add("onmouseout", "tooltip.hide();");
+					imgDelete.Attributes.Add("style", "cursor:hand;");
+
+					// Atributos Over
+					sImagesAttributes = "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png'; ";
+					e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
+
+					// Atributos Out
+					sImagesAttributes = "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png'; ";
+					e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
+
+				}
 
 			}catch (Exception ex){
 				throw (ex);

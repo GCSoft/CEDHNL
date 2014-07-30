@@ -70,17 +70,20 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 		}
 
 
-		// Funciones del programador
+		// Rutinas del programador
 
 		void Clear(){
 			this.wucFixedDateTime.SetDateTime();
 			this.ddlArea.SelectedIndex = 0;
-			this.ddlFuncionario.SelectedIndex = 0;
+			this.ddlUsuario.SelectedIndex = 0;
 			this.ddlMotivo.SelectedIndex = 0;
 			this.ckeObservaciones.Text = "";
 
 			this.txtCiudadano.Text = "";
 			this.hddCiudadanoId.Value = "";
+
+			this.gvCiudadano.DataSource = null;
+			this.gvCiudadano.DataBind();
 		}
 
 		void InsertVisita(){
@@ -90,39 +93,42 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 			ENTVisita oENTVisita = new ENTVisita();
 			ENTSession oENTSession;
 
-			String CiudadanoId;
-			String CiudadanoNombre;
+			DataTable tblCiudadano = null;
+			DataRow rowCiudadano;
 
 			try
 			{
 
-				// Obtener información del ciudadano del Autosuggest
-				CiudadanoId = this.Request.Form[this.hddCiudadanoId.UniqueID];
-				CiudadanoNombre = this.Request.Form[this.txtCiudadano.UniqueID];
-
-				// Normalización
-				if (CiudadanoId == "") { CiudadanoId = "0"; }
-				CiudadanoNombre = CiudadanoNombre.Trim();
+				// Obtener el DataTable del grid
+				tblCiudadano = utilFunction.ParseGridViewToDataTable(this.gvCiudadano, false);
 
 				// Validaciones
 				if (this.ddlArea.SelectedValue == "0") { throw new Exception("El campo [Área] es requerido"); }
-				if (this.ddlFuncionario.SelectedValue == "0") { throw new Exception("El campo [Funcionario] es requerido"); }
+				if (this.ddlUsuario.SelectedValue == "0") { throw new Exception("El campo [Usuario] es requerido"); }
 				if (this.ddlMotivo.SelectedValue == "0") { throw new Exception("El campo [Motivo] es requerido"); }
-				if (CiudadanoNombre == "") { throw new Exception("El campo [Visitante] es requerido"); }
-				if ( Int32.Parse(CiudadanoId) <= 0) { throw new Exception("Es necesario seleccionar un ciudadano válido"); }
-				if (this.ckeObservaciones.Text.Trim() == "") { throw new Exception("El campo [Observaciones] es requerido"); }
+				if (tblCiudadano.Rows.Count == 0) { throw (new Exception("Es necesario seleccionar un Ciudadano")); }
+				if (this.ckeObservaciones.Text.Trim() == "") { throw new Exception("El campo [Detalle de visita] es requerido"); }
 
 				// Obtener la sesión
 				oENTSession = (ENTSession)this.Session["oENTSession"];
 
 				//Formulario
 				oENTVisita.AreaId = Int32.Parse(this.ddlArea.SelectedValue);
-				oENTVisita.FuncionarioId = Int32.Parse(this.ddlFuncionario.SelectedValue);
+				oENTVisita.UsuarioId = Int32.Parse(this.ddlUsuario.SelectedValue);
 				oENTVisita.MotivoId = Int32.Parse(this.ddlMotivo.SelectedValue);
-				oENTVisita.CiudadanoId = Int32.Parse(CiudadanoId);
 				oENTVisita.UsuarioIdInsert = oENTSession.idUsuario;
-				oENTVisita.Visitante = CiudadanoNombre;
 				oENTVisita.Observaciones = this.ckeObservaciones.Text.Trim();
+
+				// Ciudadanoes seleccionadas
+				oENTVisita.tblCiudadano = new DataTable("tblCiudadano");
+				oENTVisita.tblCiudadano.Columns.Add("CiudadanoId", typeof(Int32));
+
+				foreach(DataRow oDataRow in tblCiudadano.Rows){
+
+					rowCiudadano = oENTVisita.tblCiudadano.NewRow();
+					rowCiudadano["CiudadanoId"] = oDataRow["CiudadanoId"];
+					oENTVisita.tblCiudadano.Rows.Add(rowCiudadano);
+				}
 
 				//Transacción
 				oENTResponse = BPVisita.InsertVisita(oENTVisita);
@@ -140,6 +146,65 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
 				//Mensaje de usuario
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Visita registrada con éxito', 'Success', false); focusControl('" + this.ddlArea.ClientID + "');", true);
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		void InsertVisitaCiudadano_Local(String CiudadanoId, String Foco){
+			BPCiudadano BPCiudadano = new BPCiudadano();
+			ENTResponse oENTResponse = new ENTResponse();
+			ENTCiudadano oENTCiudadano = new ENTCiudadano();
+
+			DataTable tblCiudadano = null;
+			DataRow rowCiudadano = null;
+
+			try
+			{
+
+				// Formulario
+				oENTCiudadano.CiudadanoId = Int32.Parse(CiudadanoId);
+
+				// Transacción
+				oENTResponse = BPCiudadano.SelectCiudadano_ByID(oENTCiudadano);
+
+				// Validación
+				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+				if (oENTResponse.sMessage != "") {
+					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', false); function pageLoad(){ focusControl('" + this.txtCiudadano.ClientID + "'); }", true);
+					return;
+				}
+
+				// Obtener el DataTable del grid
+				tblCiudadano = utilFunction.ParseGridViewToDataTable(this.gvCiudadano, false);
+
+				// Validación de que no se haya agregado el ciudadano
+				if (tblCiudadano.Select("CiudadanoId='" + oENTResponse.dsResponse.Tables[1].Rows[0]["CiudadanoId"].ToString() + "'").Length > 0) {
+					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Ya ha seleccionado éste ciudadano', 'Warning', false); function pageLoad(){ focusControl('" + this.txtCiudadano.ClientID + "'); }", true);
+					return;
+				}
+
+				// Nuevo Item
+				rowCiudadano = tblCiudadano.NewRow();
+				rowCiudadano["CiudadanoId"] = oENTResponse.dsResponse.Tables[1].Rows[0]["CiudadanoId"];
+				rowCiudadano["NombreCompleto"] = oENTResponse.dsResponse.Tables[1].Rows[0]["NombreCompleto"];
+				rowCiudadano["Edad"] = oENTResponse.dsResponse.Tables[1].Rows[0]["Edad"];
+				rowCiudadano["SexoNombre"] = oENTResponse.dsResponse.Tables[1].Rows[0]["SexoNombre"];
+				rowCiudadano["TelefonoPrincipal"] = oENTResponse.dsResponse.Tables[1].Rows[0]["TelefonoPrincipal"];
+				rowCiudadano["Domicilio"] = oENTResponse.dsResponse.Tables[1].Rows[0]["Domicilio"];
+				tblCiudadano.Rows.Add(rowCiudadano);
+
+				// Refrescar el Grid
+				this.gvCiudadano.DataSource = tblCiudadano;
+				this.gvCiudadano.DataBind();
+
+				// Estado del atosuggest
+				this.txtCiudadano.Text = "";
+				this.hddCiudadanoId.Value = "";
+
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + Foco + "');", true);
 
 			}catch (Exception ex){
 				throw (ex);
@@ -170,7 +235,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
 
                 // Mensaje de la BD
-                if (oENTResponse.sMessage != "") { sMessage = "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', true);"; }
+                if (oENTResponse.sMessage != "") { sMessage = "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', false);"; }
 
                 // Llenado de controles
                 this.ddlArea.DataValueField = "idArea";
@@ -188,46 +253,41 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-		void SelectCiudadanoByID(String CiudadanoId){
-			BPCiudadano BPCiudadano = new BPCiudadano();
+		void SelectUsuario(){
+			ENTUsuario oENTUsuario = new ENTUsuario();
 			ENTResponse oENTResponse = new ENTResponse();
-			ENTCiudadano oENTCiudadano = new ENTCiudadano();
+
+			BPUsuario oBPUsuario = new BPUsuario();
 
 			try
 			{
 
 				// Formulario
-				oENTCiudadano.CiudadanoId = Int32.Parse(CiudadanoId);
+				oENTUsuario.idRol = 0;
+				oENTUsuario.idArea = 0;
+				oENTUsuario.sEmail = "";
+				oENTUsuario.sNombre = "";
+				oENTUsuario.tiActivo = 1;
 
 				// Transacción
-				oENTResponse = BPCiudadano.SelectCiudadano_ByID(oENTCiudadano);
+				oENTResponse = oBPUsuario.SelectUsuario(oENTUsuario);
 
-				// Validación
-				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
-				if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+				// Errores y Warnings
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Warning', false);", true); }
 
-				// Cargar el Autosuggest de Búsqueda de ciudadano
-				this.txtCiudadano.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NombreCompleto"].ToString();
-				this.hddCiudadanoId.Value = oENTResponse.dsResponse.Tables[1].Rows[0]["CiudadanoId"].ToString();
+				// Llenado de control
+				this.ddlUsuario.DataTextField = "sFullName";
+				this.ddlUsuario.DataValueField = "idUsuario";
+				this.ddlUsuario.DataSource = oENTResponse.dsResponse.Tables[3];
+				this.ddlUsuario.DataBind();
+
+				// Opción todos
+				this.ddlUsuario.Items.Insert(0, new ListItem("[Seleccione]", "0"));
 
 			}catch (Exception ex){
 				throw (ex);
 			}
-		}
-
-		void SelectFuncionario(){
-			ENTFuncionario oENTFuncionario = new ENTFuncionario();
-			ENTResponse oENTResponse = new ENTResponse();
-			BPFuncionario BPFuncionario = new BPFuncionario();
-
-			ddlFuncionario.DataValueField = "FuncionarioId";
-			ddlFuncionario.DataTextField = "sFullName";
-
-			oENTResponse = BPFuncionario.SelectFuncionario(oENTFuncionario);
-
-			ddlFuncionario.DataSource = oENTResponse.dsResponse.Tables[1];
-			ddlFuncionario.DataBind();
-			ddlFuncionario.Items.Insert(0, new ListItem("[Seleccione]", "0"));
 		}
 
 		void SelectMotivo(){
@@ -278,19 +338,40 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 						return;
 				}
 
+				// Estado inicial
+				this.gvCiudadano.DataSource = null;
+				this.gvCiudadano.DataBind();
+
 				// Llenado de controles
 				SelectArea();
-				SelectFuncionario();
+				SelectUsuario();
 				SelectMotivo();
-				if (CiudadanoId != "0") { SelectCiudadanoByID(CiudadanoId); }
-
-				// Foco
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlArea.ClientID + "');", true);
+				if (CiudadanoId != "0") { InsertVisitaCiudadano_Local(CiudadanoId, this.ddlArea.ClientID); }
 				
             }catch (Exception ex){
 				this.btnGuardar.Visible = false;
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.ddlArea.ClientID + "');", true);
             }
+		}
+
+		protected void btnAgregarCiudadano_Click(object sender, EventArgs e){
+			String CiudadanoId;
+
+			try
+			{
+
+				// Obtener información del ciudadano del Autosuggest
+				CiudadanoId = this.Request.Form[this.hddCiudadanoId.UniqueID];
+
+				// Normalización
+				if (CiudadanoId == "") { CiudadanoId = "0"; }
+
+				// Transacción
+				InsertVisitaCiudadano_Local(CiudadanoId, this.txtCiudadano.ClientID);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtCiudadano.ClientID + "'); }", true);
+			}
 		}
 
         protected void btnGuardar_Click(object sender, EventArgs e){
@@ -308,6 +389,120 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         protected void btnRegresar_Click(object sender, EventArgs e){
 			Response.Redirect(this.Sender.Value);
         }
+
+		protected void gvCiudadano_RowCommand(object sender, GridViewCommandEventArgs e){
+			String CiudadanoId = "";
+			String strCommand = "";
+
+			DataTable tblCiudadano = null;
+
+			try
+			{
+
+				// Opción seleccionada
+				strCommand = e.CommandName.ToString();
+
+				// Se dispara el evento RowCommand en el ordenamiento
+				if (strCommand == "Sort") { return; }
+
+				// Obtener CiudadanoId
+				CiudadanoId = e.CommandArgument.ToString();
+
+				// Transacción
+				switch (strCommand){
+
+					case "Eliminar":
+
+						// Obtener el DataTable del grid
+						tblCiudadano = utilFunction.ParseGridViewToDataTable(this.gvCiudadano, true);
+
+						// Eliminar el Item
+						tblCiudadano.Rows.Remove(tblCiudadano.Select("CiudadanoId=" + CiudadanoId)[0]);
+
+						// Refrescar el Grid
+						this.gvCiudadano.DataSource = tblCiudadano;
+						this.gvCiudadano.DataBind();
+
+						// Limpiar el formulario
+						Clear();
+
+						// Foco
+						ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlArea.ClientID + "'); }", true);
+
+						break;
+
+				}
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.ddlArea.ClientID + "');", true);
+			}
+        }
+
+		protected void gvCiudadano_RowDataBound(object sender, GridViewRowEventArgs e){
+			ImageButton imgDelete = null;
+
+			String sCiudadanoId = "";
+			String sNombreCiudadano = "";
+
+			String sToolTip = "";
+			String sImagesAttributes = "";
+
+			try
+			{
+				
+				// Validación de que sea fila 
+				if (e.Row.RowType != DataControlRowType.DataRow) { return; }
+
+				//Obtener imagenes
+				imgDelete = (ImageButton)e.Row.FindControl("imgDelete");
+
+				//DataKeys
+				sCiudadanoId = gvCiudadano.DataKeys[e.Row.RowIndex]["CiudadanoId"].ToString();
+				sNombreCiudadano = this.gvCiudadano.DataKeys[e.Row.RowIndex]["NombreCompleto"].ToString();
+
+				//Tooltips
+				sToolTip = "Eliminar de la Solicitud a [" + sNombreCiudadano + "]";
+				imgDelete.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
+				imgDelete.Attributes.Add("onmouseout", "tooltip.hide();");
+				imgDelete.Attributes.Add("style", "cursor:hand;");
+
+				//Atributos Over
+				sImagesAttributes = "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png'; ";
+				e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
+
+				//Atributos Out
+				sImagesAttributes = "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png'; ";
+				e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		protected void gvCiudadano_Sorting(object sender, GridViewSortEventArgs e){
+			DataTable tblData = null;
+			DataView viewData = null;
+
+			try
+			{
+				//Obtener DataTable y View del GridView
+				tblData = utilFunction.ParseGridViewToDataTable(gvCiudadano, false);
+				viewData = new DataView(tblData);
+
+				//Determinar ordenamiento
+				hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
+
+				//Ordenar Vista
+				viewData.Sort = hddSort.Value;
+
+				//Vaciar datos
+				this.gvCiudadano.DataSource = viewData;
+				this.gvCiudadano.DataBind();
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+			}
+		}
 
     }
 }

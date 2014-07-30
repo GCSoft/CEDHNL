@@ -55,8 +55,6 @@
     <Content Include="Application\WebApp\Private\Archivo\arcBusquedaExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Archivo\arcDetalleExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Archivo\arcLiberarExpediente.aspx" />
-    <Content Include="Application\WebApp\Private\Operation\opeRegistroSolicitudOld.aspx" />
-    <Content Include="Application\WebApp\Private\Operation\opeRegistroVisitaOld.aspx" />
     <Content Include="Application\WebApp\Private\Quejas\QueAgregarAutoridadSenalada.aspx" />
     <Content Include="Application\WebApp\Private\Quejas\QueAgregarCiudadanos.aspx" />
     <Content Include="Application\WebApp\Private\Quejas\QueAgregarDocumentos.aspx" />
@@ -745,20 +743,6 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeListadoSolicitudAprobacion.aspx.designer.cs">
       <DependentUpon>opeListadoSolicitudAprobacion.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeRegistroSolicitudOld.aspx.cs">
-      <DependentUpon>opeRegistroSolicitudOld.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeRegistroSolicitudOld.aspx.designer.cs">
-      <DependentUpon>opeRegistroSolicitudOld.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeRegistroVisitaOld.aspx.cs">
-      <DependentUpon>opeRegistroVisitaOld.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeRegistroVisitaOld.aspx.designer.cs">
-      <DependentUpon>opeRegistroVisitaOld.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Quejas\QueAgregarAutoridadSenalada.aspx.cs">
       <DependentUpon>QueAgregarAutoridadSenalada.aspx</DependentUpon>

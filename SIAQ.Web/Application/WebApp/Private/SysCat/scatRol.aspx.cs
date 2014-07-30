@@ -193,7 +193,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
             if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
 
             // Mensaje de la BD
-            if (oENTResponse.sMessage != "") { sMessage = "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', true);"; }
+            if (oENTResponse.sMessage != "") { sMessage = "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', false);"; }
 
             // Llenado de controles
             this.gvRol.DataSource = oENTResponse.dsResponse.Tables[1];
@@ -316,7 +316,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
             if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
 
             // Mensaje de la BD
-            if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', true);", true); }
+            if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', false);", true); }
 
             // Definición del DataTable
             tblSubMenu = new DataTable("tblSubMenu");

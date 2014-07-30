@@ -229,8 +229,8 @@ namespace SIAQ.DataAccess.Object
 			sqlPar.Value = oENTQueja.SolicitudId;
 			sqlCom.Parameters.Add(sqlPar);
 
-			sqlPar = new SqlParameter("FuncionarioId", SqlDbType.Int);
-			sqlPar.Value = oENTQueja.FuncionarioId;
+			sqlPar = new SqlParameter("UsuarioId", SqlDbType.Int);
+			sqlPar.Value = oENTQueja.UsuarioId;
 			sqlCom.Parameters.Add(sqlPar);
 
 			sqlPar = new SqlParameter("CiudadanoId", SqlDbType.Int);
@@ -247,6 +247,10 @@ namespace SIAQ.DataAccess.Object
 
 			sqlPar = new SqlParameter("CheckNombre", SqlDbType.VarChar);
 			sqlPar.Value = oENTQueja.CheckNombre;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Presente", SqlDbType.TinyInt);
+			sqlPar.Value = oENTQueja.Presente;
 			sqlCom.Parameters.Add(sqlPar);
 
 			// Inicializaciones

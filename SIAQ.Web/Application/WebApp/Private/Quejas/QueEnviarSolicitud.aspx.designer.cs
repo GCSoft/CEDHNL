@@ -31,6 +31,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         protected global::System.Web.UI.WebControls.Label SolicitudNumero;
         
         /// <summary>
+        /// AfectadoLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label AfectadoLabel;
+        
+        /// <summary>
         /// CalificacionLabel control.
         /// </summary>
         /// <remarks>
@@ -112,13 +121,40 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         protected global::System.Web.UI.WebControls.Label FechaModificacionLabel;
         
         /// <summary>
-        /// ObservacionesLabel control.
+        /// ProblematicaLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ObservacionesLabel;
+        protected global::System.Web.UI.WebControls.Label ProblematicaLabel;
+        
+        /// <summary>
+        /// NivelAutoridadLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label NivelAutoridadLabel;
+        
+        /// <summary>
+        /// ProblematicaDetalleLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ProblematicaDetalleLabel;
+        
+        /// <summary>
+        /// MecanismoAperturaLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label MecanismoAperturaLabel;
         
         /// <summary>
         /// LugarHechosLabel control.
@@ -137,6 +173,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label DireccionHechosLabel;
+        
+        /// <summary>
+        /// ObservacionesLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ObservacionesLabel;
         
         /// <summary>
         /// btnEnviar control.

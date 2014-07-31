@@ -91,6 +91,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
 				// Formulario
 				this.SolicitudNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["SolicitudNumero"].ToString();
+				this.AfectadoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Afectado"].ToString();
+
 				this.CalificacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionNombre"].ToString();
 				this.EstatusaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusNombre"].ToString();
 				this.FuncionarioLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FuncionarioNombre"].ToString();
@@ -181,7 +183,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 					case 3:	// Recepción
 						this.InformacionPanel.Visible = true;
 						this.AgregrarInformacionPanel.Visible = true;
-						this.AsignarPanel.Visible = false;
+						this.AsignarPanel.Visible = true;
 						this.CiudadanoPanel.Visible = true;
 						this.CalificarPanel.Visible = false;
 						this.AutoridadPanel.Visible = false;

@@ -1218,6 +1218,72 @@ namespace SIAQ.DataAccess.Object
 		}
 
 		///<remarks>
+		///   <name>DAQueja.UpdateSolicitudCapturaDiligencia</name>
+		///   <create>17-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Activa/Inactiva la bandera de captura de diligencias. Un cero determina que no se capturarán y un uno el caso contrario. Si se inhabilita se eliminan las capturas</summary>
+		///<param name="oENTQueja">Entidad de Queja con los parámetros necesarios para realizar la transacción</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+        public ENTResponse UpdateSolicitudCapturaDiligencia(ENTQueja oENTQueja, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspSolicitud_Upd_CapturaDiligencia", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("SolicitudId", SqlDbType.Int);
+			sqlPar.Value = oENTQueja.SolicitudId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Diligencias", SqlDbType.TinyInt);
+			sqlPar.Value = oENTQueja.Diligencias;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try
+			{
+				
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+
+			}catch (SqlException sqlEx){
+
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+
+			}catch (Exception ex){
+
+				oENTResponse.ExceptionRaised(ex.Message);
+
+			}finally{
+
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+
+			}
+
+			// Resultado
+			return oENTResponse;
+
+        }
+
+		///<remarks>
 		///   <name>DAQueja.UpdateSolicitudEstatus</name>
 		///   <create>17-Julio-2014</create>
 		///   <author>Ruben.Cobos</author>

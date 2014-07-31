@@ -36,6 +36,7 @@ namespace SIAQ.Entity.Object
 		private String		_Comentario;			// Comentarios
 		private Int16		_Check;					// Determina con un 0 si es necesario hacer una revisión del ID del ciudadano por su nombre o con 1 en el caso contrario.
 		private String		_CheckNombre;			// Nombre a validar cuando se especifica la opción Check igual a uno
+		private Int16		_Diligencias;			// Bandera de captura de diligencias. Un cero determina que no se capturarán y un uno el caso contrario
 		private String		_DireccionHechos;		// Dirección de los hechos en una solicitud
 		private String		_FechaDesde;			// Fecha de inicio en una consulta
 		private String		_FechaHasta;			// Fecha final en una consulta
@@ -73,6 +74,7 @@ namespace SIAQ.Entity.Object
 			_Comentario = "";
 			_Check = 0;
 			_CheckNombre = "";
+			_Diligencias = 0;
 			_DireccionHechos = "";
 			_FechaDesde = "";
 			_FechaHasta = "";
@@ -306,6 +308,18 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _CheckNombre; }
 			set { _CheckNombre = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTQueja.Diligencias</name>
+		///   <create>18-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna la bandera de captura de diligencias. Un cero determina que no se capturarán y un uno el caso contrario</summary>
+		public Int16 Diligencias
+		{
+			get { return _Diligencias; }
+			set { _Diligencias = value; }
 		}
 
 		///<remarks>

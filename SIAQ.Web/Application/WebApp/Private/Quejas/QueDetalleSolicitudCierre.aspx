@@ -47,6 +47,12 @@
                 <td class="Campo"><asp:Label ID="CalificacionLabel" CssClass="NumeroSolicitudLabel" runat="server" Text="0"></asp:Label></td>
                 <td colspan="4"></td>
             </tr>
+			<tr>
+				<td class="Especial">Afectado/Quejoso</td>
+				<td class="Espacio"></td>
+				<td class="Campo"><asp:Label ID="AfectadoLabel" CssClass="NumeroSolicitudLabel" runat="server" Text="0"></asp:Label></td>
+				<td colspan="4"></td>
+			</tr>
             <tr>
                 <td class="Nombre">Estatus</td>
                 <td class="Espacio"></td>
@@ -248,99 +254,101 @@
         </div>
 
 		<!-- Autoridad y voces señaladas -->
-		<table border="0" cellpadding="0" cellspacing="0" width="100%">
-            <tr><td class="tdCeldaMiddleSpace"></td></tr>
-            <tr>
-                <td style="text-align: left;">
-                    Autoridad y voces señaladas
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:GridView id="gvAutoridades" runat="server" AllowPaging="false" AllowSorting="true" AutoGenerateColumns="False" Width="100%"
-                        DataKeyNames="AutoridadId,Nombre"
-                        OnRowCommand="gvAutoridades_RowCommand"
-                        OnRowDataBound="gvAutoridades_RowDataBound"
-                        OnSorting="gvAutoridades_Sorting">
-                        <alternatingrowstyle cssclass="Grid_Row_Alternating" />
-                        <headerstyle cssclass="Grid_Header" />
-                        <rowstyle cssclass="Grid_Row" />
-                        <EmptyDataTemplate>
-                            <table border="1px" cellpadding="0px" cellspacing="0px" width="100%">
-                                <tr class="Grid_Header">
-                                    <td style="width:25px;" ></td>
-                                    <td style="width:140px;">Nombre</td>
-                                    <td style="width:140px;">Puesto</td>
-                                    <td style="width:140px;">Autoridad N1</td>
-                                    <td style="width:140px;">Autoridad N2</td>
-                                    <td style="width:140px;">Autoridad N3</td>
-                                    <td>Comentarios</td>
-                                    <td style="width:25px;" ></td>
-                                </tr>
-                                <tr class="Grid_Row">
-                                    <td colspan="8">No se encontraron Autoridades añadidas a la solicitud</td>
-                                </tr>
-                            </table>
-                        </EmptyDataTemplate>
-                        <Columns>
-                            <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle" ItemStyle-Width="25px">
-                                <HeaderTemplate>
-                                    <asp:ImageButton ID="imgSwapAll" runat="server" CommandName="SwapGridHeader" CommandArgument="-1" ImageUrl="~/Include/Image/Buttons/Collapse_Header.png" OnClick="imgSwapAll_Click" onmouseover="tooltip.show('Contraer todos los elementos', 'Der');" onmouseout="tooltip.hide();" />
-                                </HeaderTemplate>
-                                <ItemTemplate>
-                                    <asp:ImageButton ID="imgSwapGrid" CommandName="SwapGrid" CommandArgument="<%#Container.DataItemIndex%>" runat="server" ImageUrl="~/Include/Image/Buttons/Collapse.png" />
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:BoundField HeaderText="Nombre de Autoridad"    ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="140px" DataField="Nombre"      SortExpression="Nombre"></asp:BoundField>
-                            <asp:BoundField HeaderText="Puesto"                 ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="140px" DataField="Puesto"      SortExpression="Puesto"></asp:BoundField>
-                            <asp:BoundField HeaderText="Nivel 1 Autoridad"      ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="140px" DataField="Nivel1"      SortExpression="Nivel1"></asp:BoundField>
-                            <asp:BoundField HeaderText="Nivel 2 Autoridad"      ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="140px" DataField="Nivel2"      SortExpression="Nivel2"></asp:BoundField>
-                            <asp:BoundField HeaderText="Nivel 3 Autoridad"      ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="140px" DataField="Nivel3"      SortExpression="Nivel3"></asp:BoundField>
-                            <asp:BoundField HeaderText="Comentarios"            ItemStyle-HorizontalAlign="Left"                            DataField="Comentarios" SortExpression="Comentarios"></asp:BoundField>
-                            <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle" ItemStyle-Width="25px">
-								<ItemTemplate>
-									<asp:Panel ID="pnlGridDetail" runat="server">
-										<tr>
-											<td align="center" colspan="100%" style="border:1px solid #C1C1C1">
-                                                <asp:GridView id="gvVocesDetalle" runat="server" AllowPaging="false" AllowSorting="false" AutoGenerateColumns="False" Width="800px"
-                                                    DataKeyNames="VozId">
-                                                    <alternatingrowstyle cssclass="Grid_Row_Alternating" />
-                                                    <headerstyle cssclass="Grid_Header_Action_Alternative" />
-                                                    <rowstyle cssclass="Grid_Row" />
-                                                    <EmptyDataTemplate>
-                                                        <table border="1px" cellpadding="0px" cellspacing="0px">
-															<tr class="Grid_Header_Action_Alternative">
-																<td style="text-align:center; width:180px;">Voz1</td>
-																<td style="text-align:center; width:180px;">Voz2</td>
-																<td style="text-align:center; width:180px;">Voz3</td>
-																<td style="text-align:center; width:260px;">Comentarios</td>
-															</tr>
-															<tr class="Grid_Row">
-																<td colspan="4" style="text-align:center;">No se han agregado voces a la autoridad</td>
-															</tr>
-														</table>
-                                                    </EmptyDataTemplate>
-                                                    <Columns>
-                                                        <asp:BoundField HeaderText="Voz1" 			ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="180px"	DataField="Voz1"></asp:BoundField>
-                                                        <asp:BoundField HeaderText="Voz2" 			ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="180px"	DataField="Voz2"></asp:BoundField>
-                                                        <asp:BoundField HeaderText="Voz3"			ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="180px"	DataField="Voz3"></asp:BoundField>
-														<asp:BoundField HeaderText="Comentarios"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="260px"	DataField="Comentarios"></asp:BoundField>
-                                                    </Columns>
-                                                </asp:GridView>
-												<br />
-											</td>
-										</tr>
-									</asp:Panel>
-								</ItemTemplate>
-							</asp:TemplateField>
-                        </Columns>
-                    </asp:GridView>
-                </td>
-            </tr>
-            <tr><td class="tdCeldaMiddleSpace"></td></tr>
-            <tr><td class="tdCeldaMiddleSpace"></td></tr>
-        </table>
-        <br />
+		<asp:Panel ID="pnlAutoridades" runat="server" Width="100%">
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tr><td class="tdCeldaMiddleSpace"></td></tr>
+				<tr>
+					<td style="text-align: left;">
+						Autoridad y voces señaladas
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<asp:GridView id="gvAutoridades" runat="server" AllowPaging="false" AllowSorting="true" AutoGenerateColumns="False" Width="100%"
+							DataKeyNames="AutoridadId,Nombre"
+							OnRowCommand="gvAutoridades_RowCommand"
+							OnRowDataBound="gvAutoridades_RowDataBound"
+							OnSorting="gvAutoridades_Sorting">
+							<alternatingrowstyle cssclass="Grid_Row_Alternating" />
+							<headerstyle cssclass="Grid_Header" />
+							<rowstyle cssclass="Grid_Row" />
+							<EmptyDataTemplate>
+								<table border="1px" cellpadding="0px" cellspacing="0px" width="100%">
+									<tr class="Grid_Header">
+										<td style="width:25px;" ></td>
+										<td style="width:140px;">Nombre</td>
+										<td style="width:140px;">Puesto</td>
+										<td style="width:140px;">Autoridad N1</td>
+										<td style="width:140px;">Autoridad N2</td>
+										<td style="width:140px;">Autoridad N3</td>
+										<td>Comentarios</td>
+										<td style="width:25px;" ></td>
+									</tr>
+									<tr class="Grid_Row">
+										<td colspan="8">No se encontraron Autoridades añadidas a la solicitud</td>
+									</tr>
+								</table>
+							</EmptyDataTemplate>
+							<Columns>
+								<asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle" ItemStyle-Width="25px">
+									<HeaderTemplate>
+										<asp:ImageButton ID="imgSwapAll" runat="server" CommandName="SwapGridHeader" CommandArgument="-1" ImageUrl="~/Include/Image/Buttons/Collapse_Header.png" OnClick="imgSwapAll_Click" onmouseover="tooltip.show('Contraer todos los elementos', 'Der');" onmouseout="tooltip.hide();" />
+									</HeaderTemplate>
+									<ItemTemplate>
+										<asp:ImageButton ID="imgSwapGrid" CommandName="SwapGrid" CommandArgument="<%#Container.DataItemIndex%>" runat="server" ImageUrl="~/Include/Image/Buttons/Collapse.png" />
+									</ItemTemplate>
+								</asp:TemplateField>
+								<asp:BoundField HeaderText="Nombre de Autoridad"    ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="140px" DataField="Nombre"      SortExpression="Nombre"></asp:BoundField>
+								<asp:BoundField HeaderText="Puesto"                 ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="140px" DataField="Puesto"      SortExpression="Puesto"></asp:BoundField>
+								<asp:BoundField HeaderText="Nivel 1 Autoridad"      ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="140px" DataField="Nivel1"      SortExpression="Nivel1"></asp:BoundField>
+								<asp:BoundField HeaderText="Nivel 2 Autoridad"      ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="140px" DataField="Nivel2"      SortExpression="Nivel2"></asp:BoundField>
+								<asp:BoundField HeaderText="Nivel 3 Autoridad"      ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="140px" DataField="Nivel3"      SortExpression="Nivel3"></asp:BoundField>
+								<asp:BoundField HeaderText="Comentarios"            ItemStyle-HorizontalAlign="Left"                            DataField="Comentarios" SortExpression="Comentarios"></asp:BoundField>
+								<asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle" ItemStyle-Width="25px">
+									<ItemTemplate>
+										<asp:Panel ID="pnlGridDetail" runat="server">
+											<tr>
+												<td align="center" colspan="100%" style="border:1px solid #C1C1C1">
+													<asp:GridView id="gvVocesDetalle" runat="server" AllowPaging="false" AllowSorting="false" AutoGenerateColumns="False" Width="800px"
+														DataKeyNames="VozId">
+														<alternatingrowstyle cssclass="Grid_Row_Alternating" />
+														<headerstyle cssclass="Grid_Header_Action_Alternative" />
+														<rowstyle cssclass="Grid_Row" />
+														<EmptyDataTemplate>
+															<table border="1px" cellpadding="0px" cellspacing="0px">
+																<tr class="Grid_Header_Action_Alternative">
+																	<td style="text-align:center; width:180px;">Voz1</td>
+																	<td style="text-align:center; width:180px;">Voz2</td>
+																	<td style="text-align:center; width:180px;">Voz3</td>
+																	<td style="text-align:center; width:260px;">Comentarios</td>
+																</tr>
+																<tr class="Grid_Row">
+																	<td colspan="4" style="text-align:center;">No se han agregado voces a la autoridad</td>
+																</tr>
+															</table>
+														</EmptyDataTemplate>
+														<Columns>
+															<asp:BoundField HeaderText="Voz1" 			ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="180px"	DataField="Voz1"></asp:BoundField>
+															<asp:BoundField HeaderText="Voz2" 			ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="180px"	DataField="Voz2"></asp:BoundField>
+															<asp:BoundField HeaderText="Voz3"			ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="180px"	DataField="Voz3"></asp:BoundField>
+															<asp:BoundField HeaderText="Comentarios"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="260px"	DataField="Comentarios"></asp:BoundField>
+														</Columns>
+													</asp:GridView>
+													<br />
+												</td>
+											</tr>
+										</asp:Panel>
+									</ItemTemplate>
+								</asp:TemplateField>
+							</Columns>
+						</asp:GridView>
+					</td>
+				</tr>
+				<tr><td class="tdCeldaMiddleSpace"></td></tr>
+				<tr><td class="tdCeldaMiddleSpace"></td></tr>
+			</table>
+			<br />
+		</asp:Panel>
 
 		<!-- Diligencias -->
         <table border="0" cellpadding="0" cellspacing="0" width="100%">

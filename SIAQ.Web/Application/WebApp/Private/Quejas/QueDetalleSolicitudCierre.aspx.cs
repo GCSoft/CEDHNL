@@ -107,6 +107,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				// Formulario
 				this.SolicitudNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["SolicitudNumero"].ToString();
 				this.EstatusaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusNombre"].ToString();
+				this.AfectadoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Afectado"].ToString();
+
 				this.FuncionarioLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FuncionarioNombre"].ToString();
 				this.ContactoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FormaContactoNombre"].ToString();
 				this.TipoSolicitudLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["TipoSolicitudNombre"].ToString();
@@ -166,8 +168,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				}
 
 				// Autoridad y voces señaladas
-				this.gvAutoridades.DataSource = oENTResponse.dsResponse.Tables[4];
-				this.gvAutoridades.DataBind();
+				if(oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionId"].ToString() != "2"){
+					this.pnlAutoridades.Visible = false;
+				}else{
+					this.gvAutoridades.DataSource = oENTResponse.dsResponse.Tables[4];
+					this.gvAutoridades.DataBind();
+				}
 
 				// Diligencias
 				this.gvDiligencia.DataSource = oENTResponse.dsResponse.Tables[5];

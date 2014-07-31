@@ -78,6 +78,12 @@
                 <td class="Campo"><asp:Label ID="SolicitudNumero" CssClass="NumeroSolicitudLabel" runat="server" Text="0"></asp:Label></td>
                 <td colspan="4"></td>
             </tr>
+			<tr>
+				<td class="Especial">Afectado/Quejoso</td>
+				<td class="Espacio"></td>
+				<td class="Campo"><asp:Label ID="AfectadoLabel" CssClass="NumeroSolicitudLabel" runat="server" Text="0"></asp:Label></td>
+				<td colspan="4"></td>
+			</tr>
             <tr>
                 <td class="Nombre">Calificación</td>
                 <td class="Espacio"></td>

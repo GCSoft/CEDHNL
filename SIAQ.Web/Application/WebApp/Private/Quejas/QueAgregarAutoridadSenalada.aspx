@@ -29,7 +29,13 @@
 										<tr>
 											<td class="Especial">Solicitud Número</td>
 											<td class="Espacio"></td>
-											<td class="Campo"><asp:Label CssClass="NumeroSolicitudLabel" ID="SolicitudNumero" runat="server" Text="0"></asp:Label></td>
+											<td class="Campo"><asp:Label ID="SolicitudNumero" CssClass="NumeroSolicitudLabel" runat="server" Text="0"></asp:Label></td>
+											<td colspan="4"></td>
+										</tr>
+										<tr>
+											<td class="Especial">Afectado/Quejoso</td>
+											<td class="Espacio"></td>
+											<td class="Campo"><asp:Label ID="AfectadoLabel" CssClass="NumeroSolicitudLabel" runat="server" Text="0"></asp:Label></td>
 											<td colspan="4"></td>
 										</tr>
 										<tr>
@@ -75,19 +81,37 @@
 											<td class="Etiqueta"><asp:Label ID="FechaModificacionLabel" runat="server" Text=""></asp:Label></td>
 										</tr>
 										<tr>
-											<td class="Nombre">Observaciones (Recepción)</td>
+											<td class="Nombre">Problemática</td>
 											<td class="Espacio"></td>
-											<td class="Observaciones" colspan="5"><asp:Label ID="ObservacionesLabel" runat="server" Text=""></asp:Label></td>
+											<td class="Etiqueta"><asp:Label ID="ProblematicaLabel" runat="server" Text=""></asp:Label></td>
+											<td class="Espacio"></td>
+											<td class="Nombre">Nivel de Autoridad</td>
+											<td class="Espacio"></td>
+											<td class="Etiqueta"><asp:Label ID="NivelAutoridadLabel" runat="server" Text=""></asp:Label></td>
+										</tr>
+										<tr>
+											<td class="Nombre">Detalle de Problemática</td>
+											<td class="Espacio"></td>
+											<td class="Etiqueta"><asp:Label ID="ProblematicaDetalleLabel" runat="server" Text=""></asp:Label></td>
+											<td class="Espacio"></td>
+											<td class="Nombre">Mecanismo de Apertura</td>
+											<td class="Espacio"></td>
+											<td class="Etiqueta"><asp:Label ID="MecanismoAperturaLabel" runat="server" Text=""></asp:Label></td>
 										</tr>
 										<tr>
 											<td class="Nombre">Lugar de los hechos</td>
 											<td class="Espacio"></td>
-											<td class="Etiqueta" colspan="5"><asp:Label ID="LugarHechosLabel" runat="server" Text=""></asp:Label></td>
+											<td class="Etiqueta" colspan="5"><asp:Label ID="LugarHechosLabel" runat="server"></asp:Label></td>
 										</tr>
 										<tr>
 											<td class="Nombre">Dirección de los hechos</td>
 											<td class="Espacio"></td>
-											<td class="Etiqueta" colspan="5"><asp:Label ID="DireccionHechosLabel" runat="server" Text=""></asp:Label></td>
+											<td class="Etiqueta" colspan="5"><asp:Label ID="DireccionHechosLabel" runat="server"></asp:Label></td>
+										</tr>
+										<tr>
+											<td class="Nombre">Observaciones</td>
+											<td class="Espacio"></td>
+											<td class="Observaciones" colspan="5"><asp:Label ID="ObservacionesLabel" runat="server" Text=""></asp:Label></td>
 										</tr>
 									</table>
                                 </div>

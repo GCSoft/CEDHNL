@@ -178,20 +178,41 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
 				// Formulario
 				this.SolicitudNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["SolicitudNumero"].ToString();
+				this.AfectadoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Afectado"].ToString();
+
 				this.CalificacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionNombre"].ToString();
 				this.EstatusaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusNombre"].ToString();
 				this.FuncionarioLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FuncionarioNombre"].ToString();
 				this.ContactoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FormaContactoNombre"].ToString();
 				this.TipoSolicitudLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["TipoSolicitudNombre"].ToString();
+				this.ProblematicaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["ProblematicaNombre"].ToString();
+				this.ProblematicaDetalleLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["ProblematicaDetalleNombre"].ToString();
 
 				this.FechaRecepcionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaRecepcion"].ToString();
 				this.FechaAsignacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaAsignacion"].ToString();
 				this.FechaGestionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaInicioGestion"].ToString();
 				this.FechaModificacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaUltimaModificacion"].ToString();
+				this.NivelAutoridadLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["MecanismoAperturaNombre"].ToString();
+				this.MecanismoAperturaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NivelAutoridadNombre"].ToString();
 
 				this.LugarHechosLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["LugarHechosNombre"].ToString();
 				this.DireccionHechosLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["DireccionHechos"].ToString();
 				this.ObservacionesLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Observaciones"].ToString();
+
+				// Estatus de capturas de diligencias
+				if (oENTResponse.dsResponse.Tables[1].Rows[0]["Diligencias"].ToString() == "1"){
+
+					// Habilitar controles
+					this.chkDiligencias.Checked = true;
+					this.btnGuardar.Enabled = true;
+					this.btnGuardar.CssClass = "Button_General";
+				}else{
+
+					// Inhabilitar controles
+					this.chkDiligencias.Checked = false;
+					this.btnGuardar.Enabled = false;
+					this.btnGuardar.CssClass = "Button_General_Disabled";
+				}
 
 			}catch (Exception ex){
 				throw (ex);
@@ -215,6 +236,30 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
 			// Agregar Item de selección
 			this.ddlTipoDiligencia.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+		}
+
+		void UpdateSolicitudBanderaDiligencia(Int16 Diligencias){
+			BPQueja oBPQueja = new BPQueja();
+			ENTResponse oENTResponse = new ENTResponse();
+			ENTQueja oENTQueja = new ENTQueja();
+
+			try
+			{
+
+				// Formulario
+				oENTQueja.SolicitudId = Int32.Parse(this.hddSolicitudId.Value);
+				oENTQueja.Diligencias = Diligencias;
+
+				//Transacción
+				oENTResponse = oBPQueja.UpdateSolicitudCapturaDiligencia(oENTQueja);
+
+				//Validación
+				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+				if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+
+			}catch (Exception ex){
+				throw (ex);
+			}
 		}
 
 		void UpdateSolicitudDiligencia(string diligenciaId){
@@ -287,10 +332,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				SelectSolicitud();
 				
 				// Foco
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlFuncionario.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.chkDiligencias.ClientID + "'); }", true);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlFuncionario.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.chkDiligencias.ClientID + "'); }", true);
             }
 		}
 
@@ -321,6 +366,37 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
 		protected void btnRegresar_Click(object sender, EventArgs e){
 			Response.Redirect("QueDetalleSolicitud.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value, false);
+		}
+
+		protected void chkDiligencias_CheckedChanged(object sender, EventArgs e){
+			try
+			{
+
+				if (this.chkDiligencias.Checked){
+
+					// Marcar las diligencias como necesarias en la solicitud
+					UpdateSolicitudBanderaDiligencia(1);
+
+					// Habilitar controles
+					this.btnGuardar.Enabled = true;
+					this.btnGuardar.CssClass = "Button_General";
+				}else{
+
+					// Marcar las diligencias como no necesarias en la solicitud y eliminar las capturas
+					UpdateSolicitudBanderaDiligencia(0);
+
+					// Inhabilitar controles
+					this.btnGuardar.Enabled = false;
+					this.btnGuardar.CssClass = "Button_General_Disabled";
+
+					// Las diligencias se eliminaron en el SP, limpiar el grid
+					this.gvDiligencia.DataSource = null;
+					this.gvDiligencia.DataBind();
+				}
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true);", true);
+			}
 		}
 
 		protected void gvDiligencia_RowCommand(object sender, GridViewCommandEventArgs e){
@@ -360,7 +436,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				}
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlFuncionario.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.chkDiligencias.ClientID + "'); }", true);
 			}
 		}
 
@@ -439,12 +515,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				this.gvDiligencia.DataBind();
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlFuncionario.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.chkDiligencias.ClientID + "'); }", true);
 			}
 		}
-
-
-
 		
 
 		#region Funciones

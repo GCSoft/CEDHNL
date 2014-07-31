@@ -83,6 +83,24 @@
                 <td class="Espacio"></td>
                 <td class="Etiqueta"><asp:Label ID="FechaModificacionLabel" runat="server" Text=""></asp:Label></td>
             </tr>
+			<tr>
+                <td class="Nombre">Problemática</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta"><asp:Label ID="ProblematicaLabel" runat="server" Text=""></asp:Label></td>
+                <td class="Espacio"></td>
+                <td class="Nombre">Nivel de Autoridad</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta"><asp:Label ID="NivelAutoridadLabel" runat="server" Text=""></asp:Label></td>
+            </tr>
+			<tr>
+                <td class="Nombre">Detalle de Problemática</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta"><asp:Label ID="ProblematicaDetalleLabel" runat="server" Text=""></asp:Label></td>
+                <td class="Espacio"></td>
+                <td class="Nombre">Mecanismo de Apertura</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta"><asp:Label ID="MecanismoAperturaLabel" runat="server" Text=""></asp:Label></td>
+            </tr>
             <tr>
                 <td class="Nombre">Lugar de los hechos</td>
                 <td class="Espacio"></td>

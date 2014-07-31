@@ -38,14 +38,6 @@
             <asp:ImageButton ID="CiudadanoButton" ImageUrl="~/Include/Image/Icon/CiudadanoIcon.png" runat="server" OnClick="CiudadanoButton_Click"></asp:ImageButton><br />
             Agregar ciudadanos
         </asp:Panel>
-        <asp:Panel CssClass="IconoPanel" ID="CalificarPanel" runat="server" Visible="true">
-            <asp:ImageButton ID="CalificarButton" ImageUrl="~/Include/Image/Icon/CalificarIcon.png" runat="server" OnClick="CalificarButton_Click"></asp:ImageButton><br />
-            Calificar solicitud
-        </asp:Panel>
-        <asp:Panel CssClass="IconoPanel" ID="AutoridadPanel" runat="server" Visible="true">
-            <asp:ImageButton ID="AutoridadButton" ImageUrl="~/Include/Image/Icon/AutoridadIcon.png" runat="server" OnClick="AutoridadButton_Click"></asp:ImageButton><br />
-            Agegar autoridades señaladas y voces
-        </asp:Panel>
         <asp:Panel CssClass="IconoPanel" ID="DiligenciasPanel" runat="server" Visible="true">
             <asp:ImageButton ID="DiligenciaPanel" ImageUrl="~/Include/Image/Icon/DiligenciaIcon.png" runat="server" OnClick="DiligenciaPanel_Click"></asp:ImageButton><br />
             Diligencias
@@ -61,6 +53,14 @@
         <asp:Panel CssClass="IconoPanel" ID="ImprimirPanel" runat="server" Visible="true">
             <asp:ImageButton ID="ImprimirButton" ImageUrl="~/Include/Image/Icon/ImprimirIcon.png" runat="server" onclick="ImprimirButton_Click"></asp:ImageButton><br />
             Imprimir
+        </asp:Panel>
+		<asp:Panel CssClass="IconoPanel" ID="CalificarPanel" runat="server" Visible="true">
+            <asp:ImageButton ID="CalificarButton" ImageUrl="~/Include/Image/Icon/CalificarIcon.png" runat="server" OnClick="CalificarButton_Click"></asp:ImageButton><br />
+            Calificar solicitud
+        </asp:Panel>
+        <asp:Panel CssClass="IconoPanel" ID="AutoridadPanel" runat="server" Visible="true">
+            <asp:ImageButton ID="AutoridadButton" ImageUrl="~/Include/Image/Icon/AutoridadIcon.png" runat="server" OnClick="AutoridadButton_Click"></asp:ImageButton><br />
+            Agegar autoridades señaladas y voces
         </asp:Panel>
         <asp:Panel CssClass="IconoPanel" ID="EnviarPanel" runat="server" Visible="true">
             <asp:ImageButton ID="EnviarButton" ImageUrl="~/Include/Image/Icon/EnviarIcon.png" runat="server" OnClick="EnviarButton_Click"></asp:ImageButton><br />
@@ -119,6 +119,24 @@
                 <td class="Nombre">Última modificación</td>
                 <td class="Espacio"></td>
                 <td class="Etiqueta"><asp:Label ID="FechaModificacionLabel" runat="server" Text=""></asp:Label></td>
+            </tr>
+			<tr>
+                <td class="Nombre">Problemática</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta"><asp:Label ID="ProblematicaLabel" runat="server" Text=""></asp:Label></td>
+                <td class="Espacio"></td>
+                <td class="Nombre">Nivel de Autoridad</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta"><asp:Label ID="NivelAutoridadLabel" runat="server" Text=""></asp:Label></td>
+            </tr>
+			<tr>
+                <td class="Nombre">Detalle de Problemática</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta"><asp:Label ID="ProblematicaDetalleLabel" runat="server" Text=""></asp:Label></td>
+                <td class="Espacio"></td>
+                <td class="Nombre">Mecanismo de Apertura</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta"><asp:Label ID="MecanismoAperturaLabel" runat="server" Text=""></asp:Label></td>
             </tr>
             <tr>
                 <td class="Nombre">Lugar de los hechos</td>

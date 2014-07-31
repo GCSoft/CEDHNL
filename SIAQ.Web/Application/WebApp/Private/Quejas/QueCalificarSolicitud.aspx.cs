@@ -163,6 +163,147 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 			}
 		}
 
+		void SelectMecanismoApertura(){
+			BPQueja oBPQueja = new BPQueja();
+			ENTQueja oENTQueja = new ENTQueja();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Formulario
+				oENTQueja.MecanismoAperturaId = 0;
+				oENTQueja.Nombre = "";
+
+				// Transacción
+				oENTResponse = oBPQueja.SelectMecanismoApertura(oENTQueja);
+
+				// Errores
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+
+				// Warnings
+				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Warning', false);", true); }
+
+				// Llenado de control
+				this.ddlMecanismoApertura.DataTextField = "Nombre";
+				this.ddlMecanismoApertura.DataValueField = "MecanismoAperturaId";
+				this.ddlMecanismoApertura.DataSource = oENTResponse.dsResponse.Tables[1];
+				this.ddlMecanismoApertura.DataBind();
+
+				// Opción todos
+				this.ddlMecanismoApertura.Items.Insert(0, new ListItem("[Seleccione]", "-1"));
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		void SelectNivelAutoridad(){
+			BPQueja oBPQueja = new BPQueja();
+			ENTQueja oENTQueja = new ENTQueja();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Formulario
+				oENTQueja.NivelAutoridadId = 0;
+				oENTQueja.Nombre = "";
+
+				// Transacción
+				oENTResponse = oBPQueja.SelectNivelAutoridad(oENTQueja);
+
+				// Errores
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+
+				// Warnings
+				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Warning', false);", true); }
+
+				// Llenado de control
+				this.ddlNivelAutoridad.DataTextField = "Nombre";
+				this.ddlNivelAutoridad.DataValueField = "NivelAutoridadId";
+				this.ddlNivelAutoridad.DataSource = oENTResponse.dsResponse.Tables[1];
+				this.ddlNivelAutoridad.DataBind();
+
+				// Opción todos
+				this.ddlNivelAutoridad.Items.Insert(0, new ListItem("[Seleccione]", "-1"));
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		void SelectProblematica(){
+			BPQueja oBPQueja = new BPQueja();
+			ENTQueja oENTQueja = new ENTQueja();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Formulario
+				oENTQueja.ProblematicaId = 0;
+				oENTQueja.Nombre = "";
+
+				// Transacción
+				oENTResponse = oBPQueja.SelectProblematica(oENTQueja);
+
+				// Errores
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+
+				// Warnings
+				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Warning', false);", true); }
+
+				// Llenado de control
+				this.ddlProblematica.DataTextField = "Nombre";
+				this.ddlProblematica.DataValueField = "ProblematicaId";
+				this.ddlProblematica.DataSource = oENTResponse.dsResponse.Tables[1];
+				this.ddlProblematica.DataBind();
+
+				// Opción todos
+				this.ddlProblematica.Items.Insert(0, new ListItem("[Seleccione]", "-1"));
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		void SelectProblematicaDetalle(){
+			BPQueja oBPQueja = new BPQueja();
+			ENTQueja oENTQueja = new ENTQueja();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Formulario
+				oENTQueja.ProblematicaDetalleId = 0;
+				oENTQueja.ProblematicaId = Int32.Parse(this.ddlProblematica.SelectedItem.Value);
+				oENTQueja.Nombre = "";
+
+				// Transacción
+				oENTResponse = oBPQueja.SelectProblematicaDetalle(oENTQueja);
+
+				// Errores
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+
+				// Warnings
+				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Warning', false);", true); }
+
+				// Llenado de control
+				this.ddlProblematicaDetalle.DataTextField = "Nombre";
+				this.ddlProblematicaDetalle.DataValueField = "ProblematicaDetalleId";
+				this.ddlProblematicaDetalle.DataSource = oENTResponse.dsResponse.Tables[1];
+				this.ddlProblematicaDetalle.DataBind();
+
+				// Opción todos
+				this.ddlProblematicaDetalle.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
 		void SelectSolicitud(){
 			BPQueja oBPQueja = new BPQueja();
 			ENTQueja oENTQueja = new ENTQueja();
@@ -199,6 +340,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				this.ObservacionesLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Observaciones"].ToString();
 
 				// Datos de calificación
+				this.ddlProblematica.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["ProblematicaId"].ToString();
+				SelectProblematicaDetalle();
+
+				this.ddlProblematicaDetalle.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["ProblematicaDetalleId"].ToString();
+				this.ddlMecanismoApertura.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["MecanismoAperturaId"].ToString();
+				this.ddlNivelAutoridad.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["NivelAutoridadId"].ToString();
+
 				this.ddlCalificacion.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionId"].ToString();
 
 				if (oENTResponse.dsResponse.Tables[1].Rows[0]["TipoOrientacionId"].ToString() != "0") {
@@ -246,13 +394,21 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				tblCanalizacion = utilFunction.ParseGridViewToDataTable(this.grdCanalizacion, false);
 
 			    // Validaciones
-				if (this.ddlCalificacion.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar una Calificación")); }
+				if (this.ddlProblematica.SelectedIndex == 0) { throw (new Exception("Es necesario seleccionar una Problemática")); }
+				if (this.ddlProblematicaDetalle.SelectedIndex == 0) { throw (new Exception("Es necesario seleccionar un Detalle de Problemática")); }
+				if (this.ddlMecanismoApertura.SelectedIndex == 0) { throw (new Exception("Es necesario seleccionar un Mecanismo de Apertura")); }
+				if (this.ddlNivelAutoridad.SelectedIndex == 0) { throw (new Exception("Es necesario seleccionar un Nivel de Autoridad")); }
+				if (this.ddlCalificacion.SelectedIndex == 0) { throw (new Exception("Es necesario seleccionar una Calificación")); }
 				if (this.ddlTipoOrientacion.Enabled && this.ddlTipoOrientacion.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar un Cierre de Orientación")); }
 				if (this.ddlCanalizacion.Enabled && tblCanalizacion.Rows.Count == 0) { throw (new Exception("Es necesario seleccionar una Canalización")); }
 				if (this.ckeFundamento.Text.Trim() == "") { throw (new Exception("Es necesario ingresar un fundamento")); }
 				
 			    // Formulario
 			    oENTQueja.SolicitudId = Int32.Parse(this.hddSolicitudId.Value);
+				oENTQueja.ProblematicaId = Int32.Parse(this.ddlProblematica.SelectedItem.Value);
+				oENTQueja.ProblematicaDetalleId = Int32.Parse(this.ddlProblematicaDetalle.SelectedItem.Value);
+				oENTQueja.MecanismoAperturaId = Int32.Parse(this.ddlMecanismoApertura.SelectedItem.Value);
+				oENTQueja.NivelAutoridadId = Int32.Parse(this.ddlNivelAutoridad.SelectedItem.Value);
 				oENTQueja.CalificacionId = Int32.Parse(this.ddlCalificacion.SelectedItem.Value);
 				oENTQueja.TipoOrientacionId = Int32.Parse(this.ddlTipoOrientacion.SelectedItem.Value);
 				oENTQueja.Fundamento = this.ckeFundamento.Text.Trim();
@@ -288,7 +444,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
             {
 
 				// Validaciones
-				if (Page.IsPostBack) { return; }
+				if (Page.IsPostBack) { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxToolTipMessage_ClearOld(); tooltip.hide();", true); return; }
 				if (this.Request.QueryString["key"] == null) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
 				if (this.Request.QueryString["key"].ToString().Split(new Char[] { '|' }).Length != 2) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
 
@@ -299,6 +455,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				this.SenderId.Value = this.Request.QueryString["key"].ToString().ToString().Split(new Char[] { '|' })[1];
 
 				// Llenado de controles
+				SelectProblematica();
+				SelectMecanismoApertura();
+				SelectNivelAutoridad();
 				SelectCalificacion();
 				SelectOrientacion();
 				SelectCanalizacion();
@@ -307,10 +466,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				SelectSolicitud();
 				
 				// Foco
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlCalificacion.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlProblematica.ClientID + "'); }", true);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlCalificacion.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlProblematica.ClientID + "'); }", true);
             }
 		}
 
@@ -340,7 +499,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				Response.Redirect("QueDetalleSolicitud.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value, false);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlCalificacion.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlProblematica.ClientID + "'); }", true);
             }
 		}
 
@@ -378,7 +537,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				}
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlCalificacion.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlProblematica.ClientID + "'); }", true);
+            }
+		}
+
+		protected void ddlProblematica_SelectedIndexChanged(Object sender, EventArgs e){
+			try
+            {
+
+				// Detalles de problemáticas
+				SelectProblematicaDetalle();
+
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlProblematicaDetalle.ClientID + "'); }", true);
+
+            }catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlProblematica.ClientID + "'); }", true);
             }
 		}
 
@@ -412,7 +586,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				}
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlCalificacion.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlProblematica.ClientID + "'); }", true);
             }
 		}
 

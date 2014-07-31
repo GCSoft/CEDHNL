@@ -346,7 +346,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				SelectArea();
 				SelectUsuario();
 				SelectMotivo();
-				if (CiudadanoId != "0") { InsertVisitaCiudadano_Local(CiudadanoId, this.ddlArea.ClientID); }
+				if (CiudadanoId != "0") { 
+
+					InsertVisitaCiudadano_Local(CiudadanoId, this.ddlArea.ClientID); 
+				} else {
+
+					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlArea.ClientID + "');", true);
+				}
 				
             }catch (Exception ex){
 				this.btnGuardar.Visible = false;
@@ -422,9 +428,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 						// Refrescar el Grid
 						this.gvCiudadano.DataSource = tblCiudadano;
 						this.gvCiudadano.DataBind();
-
-						// Limpiar el formulario
-						Clear();
 
 						// Foco
 						ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlArea.ClientID + "'); }", true);

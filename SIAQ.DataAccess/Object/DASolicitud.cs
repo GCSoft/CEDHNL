@@ -328,20 +328,20 @@ namespace SIAQ.DataAccess.Object
 			sqlPar.Value = oENTSolicitud.EstatusId;
 			sqlCom.Parameters.Add(sqlPar);
 
-			sqlPar = new SqlParameter("CiudadanoId", SqlDbType.Int);
-			sqlPar.Value = oENTSolicitud.CiudadanoId;
-			sqlCom.Parameters.Add(sqlPar);
-
 			sqlPar = new SqlParameter("FormaContactoId", SqlDbType.Int);
 			sqlPar.Value = oENTSolicitud.FormaContactoId;
 			sqlCom.Parameters.Add(sqlPar);
 
-			sqlPar = new SqlParameter("NombreTemporal", SqlDbType.VarChar);
-			sqlPar.Value = oENTSolicitud.NombreTemporal;
+			sqlPar = new SqlParameter("ProblematicaId", SqlDbType.Int);
+			sqlPar.Value = oENTSolicitud.ProblematicaId;
 			sqlCom.Parameters.Add(sqlPar);
 
 			sqlPar = new SqlParameter("Observaciones", SqlDbType.VarChar);
 			sqlPar.Value = oENTSolicitud.Observaciones;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("tblCiudadano", SqlDbType.Structured);
+			sqlPar.Value = oENTSolicitud.tblCiudadano;
 			sqlCom.Parameters.Add(sqlPar);
 
 			// Inicializaciones

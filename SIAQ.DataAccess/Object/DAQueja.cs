@@ -452,6 +452,274 @@ namespace SIAQ.DataAccess.Object
 		}
 
 		///<remarks>
+		///   <name>DAQueja.SelectMecanismoApertura</name>
+		///   <create>17-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene un listado de MecanismoAperturas de Solicitudes en base a los parámetros proporcionados</summary>
+		///<param name="oENTQueja">Entidad del Expediente de Solicitud de Quejas con los filtros necesarios para la consulta</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+        public ENTResponse SelectMecanismoApertura(ENTQueja oENTQueja, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspMecanismoApertura_Sel", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("MecanismoAperturaId", SqlDbType.Int);
+			sqlPar.Value = oENTQueja.MecanismoAperturaId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Nombre", SqlDbType.VarChar);
+			sqlPar.Value = oENTQueja.Nombre;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try
+			{
+				
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+
+			}catch (SqlException sqlEx){
+
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+
+			}catch (Exception ex){
+
+				oENTResponse.ExceptionRaised(ex.Message);
+
+			}finally{
+
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+
+			}
+
+			// Resultado
+			return oENTResponse;
+
+        }
+
+		///<remarks>
+		///   <name>DAQueja.SelectNivelAutoridad</name>
+		///   <create>17-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene un listado de NivelAutoridads de Solicitudes en base a los parámetros proporcionados</summary>
+		///<param name="oENTQueja">Entidad del Expediente de Solicitud de Quejas con los filtros necesarios para la consulta</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+        public ENTResponse SelectNivelAutoridad(ENTQueja oENTQueja, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspNivelAutoridad_Sel", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("NivelAutoridadId", SqlDbType.Int);
+			sqlPar.Value = oENTQueja.NivelAutoridadId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Nombre", SqlDbType.VarChar);
+			sqlPar.Value = oENTQueja.Nombre;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try
+			{
+				
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+
+			}catch (SqlException sqlEx){
+
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+
+			}catch (Exception ex){
+
+				oENTResponse.ExceptionRaised(ex.Message);
+
+			}finally{
+
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+
+			}
+
+			// Resultado
+			return oENTResponse;
+
+        }
+
+		///<remarks>
+		///   <name>DAQueja.SelectProblematica</name>
+		///   <create>17-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene un listado de Problematicas de Solicitudes en base a los parámetros proporcionados</summary>
+		///<param name="oENTQueja">Entidad del Expediente de Solicitud de Quejas con los filtros necesarios para la consulta</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+        public ENTResponse SelectProblematica(ENTQueja oENTQueja, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspProblematica_Sel", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("ProblematicaId", SqlDbType.Int);
+			sqlPar.Value = oENTQueja.ProblematicaId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Nombre", SqlDbType.VarChar);
+			sqlPar.Value = oENTQueja.Nombre;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try
+			{
+				
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+
+			}catch (SqlException sqlEx){
+
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+
+			}catch (Exception ex){
+
+				oENTResponse.ExceptionRaised(ex.Message);
+
+			}finally{
+
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+
+			}
+
+			// Resultado
+			return oENTResponse;
+
+        }
+
+		///<remarks>
+		///   <name>DAQueja.SelectProblematicaDetalle</name>
+		///   <create>17-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene un listado de Problematicas de Solicitudes en base a los parámetros proporcionados</summary>
+		///<param name="oENTQueja">Entidad del Expediente de Solicitud de Quejas con los filtros necesarios para la consulta</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+        public ENTResponse SelectProblematicaDetalle(ENTQueja oENTQueja, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspProblematicaDetalle_Sel", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("ProblematicaDetalleId", SqlDbType.Int);
+			sqlPar.Value = oENTQueja.ProblematicaDetalleId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("ProblematicaId", SqlDbType.Int);
+			sqlPar.Value = oENTQueja.ProblematicaId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Nombre", SqlDbType.VarChar);
+			sqlPar.Value = oENTQueja.Nombre;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try
+			{
+				
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+
+			}catch (SqlException sqlEx){
+
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+
+			}catch (Exception ex){
+
+				oENTResponse.ExceptionRaised(ex.Message);
+
+			}finally{
+
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+
+			}
+
+			// Resultado
+			return oENTResponse;
+
+        }
+
+		///<remarks>
 		///   <name>DAQueja.SelectSolicitud</name>
 		///   <create>17-Julio-2014</create>
 		///   <author>Ruben.Cobos</author>
@@ -829,6 +1097,22 @@ namespace SIAQ.DataAccess.Object
 			// Parametros
 			sqlPar = new SqlParameter("SolicitudId", SqlDbType.Int);
 			sqlPar.Value = oENTQueja.SolicitudId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("ProblematicaId", SqlDbType.Int);
+			sqlPar.Value = oENTQueja.ProblematicaId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("ProblematicaDetalleId", SqlDbType.Int);
+			sqlPar.Value = oENTQueja.ProblematicaDetalleId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("MecanismoAperturaId", SqlDbType.Int);
+			sqlPar.Value = oENTQueja.MecanismoAperturaId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("NivelAutoridadId", SqlDbType.Int);
+			sqlPar.Value = oENTQueja.NivelAutoridadId;
 			sqlCom.Parameters.Add(sqlPar);
 
 			sqlPar = new SqlParameter("CalificacionId", SqlDbType.Int);

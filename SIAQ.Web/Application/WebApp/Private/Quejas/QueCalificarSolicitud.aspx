@@ -89,6 +89,34 @@
                 <td class="Etiqueta" colspan="5"><asp:Label ID="DireccionHechosLabel" runat="server" Text=""></asp:Label></td>
             </tr>
 			<tr>
+				<td class="Nombre">Problemática</td>
+				<td class="Espacio"></td>
+				<td class="Campo" colspan="5">
+					<asp:DropDownList ID="ddlProblematica" runat="server" AutoPostBack="true" CssClass="DropDownList_General" width="198px" OnSelectedIndexChanged="ddlProblematica_SelectedIndexChanged"></asp:DropDownList>
+				</td>
+			</tr>
+			<tr>
+				<td class="Nombre">Detalle de Problemática</td>
+				<td class="Espacio"></td>
+				<td class="Campo" colspan="5">
+					<asp:DropDownList ID="ddlProblematicaDetalle" runat="server" CssClass="DropDownList_General" width="198px" ></asp:DropDownList>
+				</td>
+			</tr>
+			<tr>
+				<td class="Nombre">Mecanismo de Apertura</td>
+				<td class="Espacio"></td>
+				<td class="Campo" colspan="5">
+					<asp:DropDownList ID="ddlMecanismoApertura" runat="server" CssClass="DropDownList_General" width="198px" ></asp:DropDownList>
+				</td>
+			</tr>
+			<tr>
+				<td class="Nombre">Nivel de Autoridad</td>
+				<td class="Espacio"></td>
+				<td class="Campo" colspan="5">
+					<asp:DropDownList ID="ddlNivelAutoridad" runat="server" CssClass="DropDownList_General" width="198px" ></asp:DropDownList>
+				</td>
+			</tr>
+			<tr>
                 <td class="Nombre">Calificación</td>
                 <td class="Espacio"></td>
                 <td class="Campo" colspan="5">

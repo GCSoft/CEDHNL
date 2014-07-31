@@ -25,6 +25,10 @@ namespace SIAQ.Entity.Object
 		private Int32		_FormaContactoId;		// Identificador único de la forma de contacto
 		private Int32		_FuncionarioId;			// Identificador único del funcionario asociado a la solicitud
 		private Int32		_LugarHechosId;			// Identificador único del lugar de los hechos asociado a la solicitud
+		private Int32		_MecanismoAperturaId;	// Identificador único del mecanismo de apertura de una solicitud
+		private Int32		_NivelAutoridadId;		// Identificador único del Nivel de Autoridad de una solicitud
+		private Int32		_ProblematicaId;		// Identificador único de la problemática detectada en la solicitud
+		private Int32		_ProblematicaDetalleId;	// Identificador único del detalle de la problemática detectada en la solicitud
 		private Int32		_SolicitudId;			// Identificador único de la solicitud a consultar
 		private Int32		_TipoOrientacionId;		// Identificador único del tipo de orientación de una solicitud
 		private Int32		_TipoParticipacionId;	// Identificador único del tipo de participación de un ciudadano asociado a una solicitud
@@ -38,7 +42,7 @@ namespace SIAQ.Entity.Object
 		private String		_Fundamento;			// Fundameto de una calificación
 		private Int16		_MedidaPreventiva;		// determina si un asunto es una medida preventiva
 		private Int16		_Nivel;					// Nivel de transacción
-		private String		_Nombre;				// Nombre del ciudadano
+		private String		_Nombre;				// Nombre del ciudadano/problematica/entidad
 		private String		_Numero;				// Número de la solicitud
 		private String		_NumeroFolio;			// Número de folio de expediente generado al aprobar la solicitud
 		private String		_Observaciones;			// Observaciones de la solicitud
@@ -58,6 +62,10 @@ namespace SIAQ.Entity.Object
 			_FormaContactoId = 0;
 			_FuncionarioId = 0;
 			_LugarHechosId = 0;
+			_MecanismoAperturaId = 0;
+			_NivelAutoridadId = 0;
+			_ProblematicaId = 0;
+			_ProblematicaDetalleId = 0;
 			_SolicitudId = 0;
 			_TipoOrientacionId = 0;
 			_TipoParticipacionId = 0;
@@ -166,6 +174,54 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _LugarHechosId; }
 			set { _LugarHechosId = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTQueja.MecanismoAperturaId</name>
+		///   <create>18-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el identificador único del mecanismo de apertura de una solicitud</summary>
+		public Int32 MecanismoAperturaId
+		{
+			get { return _MecanismoAperturaId; }
+			set { _MecanismoAperturaId = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTQueja.NivelAutoridadId</name>
+		///   <create>18-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el identificador único del Nivel de Autoridad de una solicitud</summary>
+		public Int32 NivelAutoridadId
+		{
+			get { return _NivelAutoridadId; }
+			set { _NivelAutoridadId = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTQueja.ProblematicaId</name>
+		///   <create>18-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el identificador único de la problemática detectada en la solicitud</summary>
+		public Int32 ProblematicaId
+		{
+			get { return _ProblematicaId; }
+			set { _ProblematicaId = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTQueja.ProblematicaDetalleId</name>
+		///   <create>18-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el identificador único del detalle de la problemática detectada en la solicitud</summary>
+		public Int32 ProblematicaDetalleId
+		{
+			get { return _ProblematicaDetalleId; }
+			set { _ProblematicaDetalleId = value; }
 		}
 
 		///<remarks>
@@ -329,7 +385,7 @@ namespace SIAQ.Entity.Object
 		///   <create>18-Julio-2014</create>
 		///   <author>Ruben.Cobos</author>
 		///</remarks>
-		///<summary>Obtiene/Asigna el nombre del ciudadano</summary>
+		///<summary>Obtiene/Asigna el nombre del ciudadano/problematica/entidad</summary>
 		public String Nombre
 		{
 			get { return _Nombre; }

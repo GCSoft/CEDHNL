@@ -139,6 +139,42 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         protected global::System.Web.UI.WebControls.Label DireccionHechosLabel;
         
         /// <summary>
+        /// ddlProblematica control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlProblematica;
+        
+        /// <summary>
+        /// ddlProblematicaDetalle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlProblematicaDetalle;
+        
+        /// <summary>
+        /// ddlMecanismoApertura control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlMecanismoApertura;
+        
+        /// <summary>
+        /// ddlNivelAutoridad control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlNivelAutoridad;
+        
+        /// <summary>
         /// ddlCalificacion control.
         /// </summary>
         /// <remarks>

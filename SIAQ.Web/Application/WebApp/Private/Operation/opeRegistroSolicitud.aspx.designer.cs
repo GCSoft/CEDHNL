@@ -31,6 +31,42 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.Panel pnlFormulario;
         
         /// <summary>
+        /// wucFixedDateTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::SIAQ.Web.Include.WebUserControls.wucFixedDateTime wucFixedDateTime;
+        
+        /// <summary>
+        /// ddlFormaContacto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlFormaContacto;
+        
+        /// <summary>
+        /// ddlProblematica control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlProblematica;
+        
+        /// <summary>
+        /// ddlFuncionario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlFuncionario;
+        
+        /// <summary>
         /// txtCiudadano control.
         /// </summary>
         /// <remarks>
@@ -58,31 +94,40 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         protected global::AjaxControlToolkit.AutoCompleteExtender autoCompleteExtender;
         
         /// <summary>
-        /// ddlFormaContacto control.
+        /// ddlTipoParticipacion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFormaContacto;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTipoParticipacion;
         
         /// <summary>
-        /// ddlFuncionario control.
+        /// chkPresente control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFuncionario;
+        protected global::System.Web.UI.WebControls.CheckBox chkPresente;
         
         /// <summary>
-        /// wucFixedDateTime control.
+        /// btnAgregarCiudadano control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::SIAQ.Web.Include.WebUserControls.wucFixedDateTime wucFixedDateTime;
+        protected global::System.Web.UI.WebControls.Button btnAgregarCiudadano;
+        
+        /// <summary>
+        /// gvCiudadano control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvCiudadano;
         
         /// <summary>
         /// ckeObservaciones control.
@@ -164,5 +209,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField SenderId;
+        
+        /// <summary>
+        /// hddSort control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hddSort;
     }
 }

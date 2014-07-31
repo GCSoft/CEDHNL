@@ -254,6 +254,138 @@ namespace SIAQ.BusinessProcess.Object
 		}
 
 		///<remarks>
+		///   <name>BPQueja.SelectMecanismoApertura</name>
+		///   <create>17-Julio-2014</create>
+        ///   <author>Ruben.Cobos</author>
+        ///</remarks>
+		///<summary>Obtiene un listado de Mecanismos de Apertura de Solicitudes en base a los parámetros proporcionados</summary>
+		///<param name="oENTQueja">Entidad del Expediente de Solicitud de Quejas con los filtros necesarios para la consulta</param>
+        ///<returns>Una entidad de respuesta</returns>
+        public ENTResponse SelectMecanismoApertura(ENTQueja oENTQueja){
+           DAQueja oDAQueja = new DAQueja();
+           ENTResponse oENTResponse = new ENTResponse();
+
+           try
+           {
+
+              // Transacción en base de datos
+			   oENTResponse = oDAQueja.SelectMecanismoApertura(oENTQueja, this.sConnectionApplication, 0);
+
+              // Validación de error en consulta
+              if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+              // Validación de mensajes de la BD
+              oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+              if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+           }catch (Exception ex){
+              oENTResponse.ExceptionRaised(ex.Message);
+           }
+
+           // Resultado
+           return oENTResponse;
+        }
+
+		///<remarks>
+		///   <name>BPQueja.SelectNivelAutoridad</name>
+		///   <create>17-Julio-2014</create>
+        ///   <author>Ruben.Cobos</author>
+        ///</remarks>
+		///<summary>Obtiene un listado de Nivel de Autoridads de Solicitudes en base a los parámetros proporcionados</summary>
+		///<param name="oENTQueja">Entidad del Expediente de Solicitud de Quejas con los filtros necesarios para la consulta</param>
+        ///<returns>Una entidad de respuesta</returns>
+        public ENTResponse SelectNivelAutoridad(ENTQueja oENTQueja){
+           DAQueja oDAQueja = new DAQueja();
+           ENTResponse oENTResponse = new ENTResponse();
+
+           try
+           {
+
+              // Transacción en base de datos
+			   oENTResponse = oDAQueja.SelectNivelAutoridad(oENTQueja, this.sConnectionApplication, 0);
+
+              // Validación de error en consulta
+              if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+              // Validación de mensajes de la BD
+              oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+              if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+           }catch (Exception ex){
+              oENTResponse.ExceptionRaised(ex.Message);
+           }
+
+           // Resultado
+           return oENTResponse;
+        }
+
+		///<remarks>
+		///   <name>BPQueja.SelectProblematica</name>
+		///   <create>17-Julio-2014</create>
+        ///   <author>Ruben.Cobos</author>
+        ///</remarks>
+		///<summary>Obtiene un listado de Problematicas de Solicitudes en base a los parámetros proporcionados</summary>
+		///<param name="oENTQueja">Entidad del Expediente de Solicitud de Quejas con los filtros necesarios para la consulta</param>
+        ///<returns>Una entidad de respuesta</returns>
+        public ENTResponse SelectProblematica(ENTQueja oENTQueja){
+           DAQueja oDAQueja = new DAQueja();
+           ENTResponse oENTResponse = new ENTResponse();
+
+           try
+           {
+
+              // Transacción en base de datos
+			   oENTResponse = oDAQueja.SelectProblematica(oENTQueja, this.sConnectionApplication, 0);
+
+              // Validación de error en consulta
+              if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+              // Validación de mensajes de la BD
+              oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+              if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+           }catch (Exception ex){
+              oENTResponse.ExceptionRaised(ex.Message);
+           }
+
+           // Resultado
+           return oENTResponse;
+        }
+
+		///<remarks>
+		///   <name>BPQueja.SelectProblematicaDetalle</name>
+		///   <create>17-Julio-2014</create>
+        ///   <author>Ruben.Cobos</author>
+        ///</remarks>
+		///<summary>Obtiene un listado de Detalle de Problematicas de Solicitudes en base a los parámetros proporcionados</summary>
+		///<param name="oENTQueja">Entidad del Expediente de Solicitud de Quejas con los filtros necesarios para la consulta</param>
+        ///<returns>Una entidad de respuesta</returns>
+        public ENTResponse SelectProblematicaDetalle(ENTQueja oENTQueja){
+           DAQueja oDAQueja = new DAQueja();
+           ENTResponse oENTResponse = new ENTResponse();
+
+           try
+           {
+
+              // Transacción en base de datos
+			   oENTResponse = oDAQueja.SelectProblematicaDetalle(oENTQueja, this.sConnectionApplication, 0);
+
+              // Validación de error en consulta
+              if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+              // Validación de mensajes de la BD
+              oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+              if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+           }catch (Exception ex){
+              oENTResponse.ExceptionRaised(ex.Message);
+           }
+
+           // Resultado
+           return oENTResponse;
+        }
+
+		///<remarks>
 		///   <name>BPQueja.SelectSolicitud</name>
 		///   <create>17-Julio-2014</create>
         ///   <author>Ruben.Cobos</author>

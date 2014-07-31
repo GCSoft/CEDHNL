@@ -69,7 +69,7 @@
 					</table>
 					<table border="0" style="width:100%">
 						<tr>
-							<td style="text-align:left;">
+							<td style="text-align:Center;">
 								<asp:GridView ID="gvCiudadano" runat="server" AllowPaging="false" AllowSorting="true" AutoGenerateColumns="False" Width="100%"
 									DataKeyNames="CiudadanoId,NombreCompleto" 
 									OnRowDataBound="gvCiudadano_RowDataBound"

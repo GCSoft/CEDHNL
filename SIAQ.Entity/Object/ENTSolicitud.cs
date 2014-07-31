@@ -30,7 +30,9 @@ namespace SIAQ.Entity.Object
 
 
         private Int32	_CiudadanoId;		// Identificador unico del ciudadano
+		private Int32	_ProblematicaId;
 		private String	_NombreTemporal;	// Nombre Temporal
+		private DataTable _tblCiudadano;
 
         public ENTSolicitud(){
             _SolicitudId = 0;
@@ -53,8 +55,9 @@ namespace SIAQ.Entity.Object
             _CierreOrientacionId = 0;
 
 			_CiudadanoId = 0;
+			_ProblematicaId = 0;
 			_NombreTemporal = "";
-
+			_tblCiudadano = null;
         }
 
         ///<remarks>
@@ -247,6 +250,12 @@ namespace SIAQ.Entity.Object
 			set { _CiudadanoId = value; }
 		}
 
+		public Int32 ProblematicaId
+		{
+			get { return _ProblematicaId; }
+			set { _ProblematicaId = value; }
+		}
+
 		///<remarks>
 		///   <name>Solicitud.NombreTemporal</name>
 		///   <create>27/ene/2014</create>
@@ -257,6 +266,12 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _NombreTemporal; }
 			set { _NombreTemporal = value; }
+		}
+
+		public DataTable tblCiudadano
+		{
+			get { return _tblCiudadano; }
+			set { _tblCiudadano = value; }
 		}
 
 

@@ -29,57 +29,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
         Function utilFunction = new Function();
         Encryption utilEncryption = new Encryption();
 
-
-		void SelectSolicitud() {
-			BPQueja oBPQueja = new BPQueja();
-			ENTQueja oENTQueja = new ENTQueja();
-			ENTResponse oENTResponse = new ENTResponse();
-
-			try
-			{
-
-				// Formulario
-				oENTQueja.SolicitudId = Int32.Parse(this.hddSolicitudId.Value);
-
-				// Transacción
-				oENTResponse = oBPQueja.SelectSolicitud_Detalle(oENTQueja);
-
-				// Errores y Warnings
-				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
-				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
-
-				// Formulario
-				this.SolicitudNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["SolicitudNumero"].ToString();
-				this.AfectadoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Afectado"].ToString();
-
-				this.CalificacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionNombre"].ToString();
-				this.EstatusaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusNombre"].ToString();
-				this.FuncionarioLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FuncionarioNombre"].ToString();
-				this.ContactoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FormaContactoNombre"].ToString();
-				this.TipoSolicitudLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["TipoSolicitudNombre"].ToString();
-				this.ProblematicaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["ProblematicaNombre"].ToString();
-				this.ProblematicaDetalleLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["ProblematicaDetalleNombre"].ToString();
-
-				this.FechaRecepcionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaRecepcion"].ToString();
-				this.FechaAsignacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaAsignacion"].ToString();
-				this.FechaGestionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaInicioGestion"].ToString();
-				this.FechaModificacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaUltimaModificacion"].ToString();
-				this.NivelAutoridadLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["MecanismoAperturaNombre"].ToString();
-				this.MecanismoAperturaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NivelAutoridadNombre"].ToString();
-
-				this.LugarHechosLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["LugarHechosNombre"].ToString();
-				this.DireccionHechosLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["DireccionHechos"].ToString();
-				this.ObservacionesLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Observaciones"].ToString();
-
-			}catch (Exception ex){
-				throw (ex);
-			}
-		}
-
       
         // Rutinas del programador
 
-        private void AgregarAutoridad(int SolicitudId){
+        void AgregarAutoridad(int SolicitudId){
             BPAutoridad oBPAutoridad = new BPAutoridad();
             ENTAutoridad oENTAutoridad = new ENTAutoridad();
             ENTResponse oENTResponse = new ENTResponse();
@@ -124,7 +77,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
             }
         }
 
-        private void AgregarVoz(int SolicitudId, int AutoridadId){
+        void AgregarVoz(int SolicitudId, int AutoridadId){
             BPVocesSenaladas oBPVocesSenaladas = new BPVocesSenaladas();
             ENTVocesSenaladas oENTVocesSenaladas = new ENTVocesSenaladas();
             ENTResponse oENTResponse = new ENTResponse();
@@ -166,7 +119,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
             }
         }
 
-        private void BorrarAutoridad(int SolicitudId, int AutoridadId){
+        void BorrarAutoridad(int SolicitudId, int AutoridadId){
             BPAutoridad oBPAutoridad = new BPAutoridad();
             ENTAutoridad oENTAutoridad = new ENTAutoridad();
             ENTResponse oENTResponse = new ENTResponse();
@@ -195,7 +148,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
             }
         }
 
-        private void BorrarVoz(int SolicitudId, int AutoridadId, int VozId){
+        void BorrarVoz(int SolicitudId, int AutoridadId, int VozId){
             BPVocesSenaladas oBPVocesSenaladas = new BPVocesSenaladas();
             ENTVocesSenaladas oENTVocesSenaladas = new ENTVocesSenaladas();
             ENTResponse oENTResponse = new ENTResponse();
@@ -225,7 +178,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
             }
         }
 
-        private void ClearActionPanel(Boolean EnableDDL, Int32 AutoridadId){
+        void ClearActionPanel(Boolean EnableDDL, Int32 AutoridadId){
             try
             {
 
@@ -247,14 +200,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
                 this.lblActionMessage.Text = "";
 
                 // Autoridad como parámetro
-                this.hdnAutoridadId.Value = AutoridadId.ToString();
+                this.hddAutoridadId.Value = AutoridadId.ToString();
 
             }catch (Exception ex){
                 throw (ex);
             }
         }
 
-        private void ClearVocesPanel(Int32 AutoridadId){
+        void ClearVocesPanel(Int32 AutoridadId){
             try
             {
 
@@ -272,14 +225,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
                 this.lblVocesMessage.Text = "";
 
                 // Autoridad como parámetro
-                this.hdnAutoridadId.Value = AutoridadId.ToString();
+                this.hddAutoridadId.Value = AutoridadId.ToString();
 
             }catch (Exception ex){
                 throw (ex);
             }
         }
 
-        private void ComboAutoridadPrimerNivel(){
+        void ComboAutoridadPrimerNivel(){
             BPAutoridad oBPAutoridad = new BPAutoridad();
 
             oBPAutoridad.AutoridadEntity.AutoridadIdPadrePrimerNivel = 0;
@@ -296,7 +249,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
             }
         }
 
-        private void ComboAutoridadSegundoNivel(){
+        void ComboAutoridadSegundoNivel(){
             BPAutoridad oBPAutoridad = new BPAutoridad();
 
             oBPAutoridad.AutoridadEntity.AutoridadIdPadrePrimerNivel = Convert.ToInt32(ddlActionPrimerNivel.SelectedValue);
@@ -313,7 +266,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
             }
         }
 
-        private void ComboAutoridadTercerNivel(){
+        void ComboAutoridadTercerNivel(){
             BPAutoridad oBPAutoridad = new BPAutoridad();
 
             oBPAutoridad.AutoridadEntity.AutoridadIdPadrePrimerNivel = Convert.ToInt32(ddlActionPrimerNivel.SelectedValue);
@@ -330,7 +283,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
             }
         }
 
-        private void ComboVocesTemporalPrimerNivel(){
+        void ComboVocesTemporalPrimerNivel(){
             BPVocesSenaladas oBPVocesSenaladas = new BPVocesSenaladas();
 
             oBPVocesSenaladas.VocesSenaladasEntity.VozIdPadrePrimerNivel = 0;
@@ -350,7 +303,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
             }
         }
 
-        private void ComboVocesTemporalSegundoNivel(){
+        void ComboVocesTemporalSegundoNivel(){
             BPVocesSenaladas oBPVocesSenaladas = new BPVocesSenaladas();
 
             oBPVocesSenaladas.VocesSenaladasEntity.VozIdPadrePrimerNivel = Convert.ToInt32(ddlVocesTemporal_Nivel1.SelectedValue);
@@ -370,7 +323,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
             }
         }
 
-        private void ComboVocesTemporalTercerNivel(){
+        void ComboVocesTemporalTercerNivel(){
             BPVocesSenaladas oBPVocesSenaladas = new BPVocesSenaladas();
 
             oBPVocesSenaladas.VocesSenaladasEntity.VozIdPadrePrimerNivel = Convert.ToInt32(ddlVocesTemporal_Nivel1.SelectedValue);
@@ -390,7 +343,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
             }
         }
 
-        private void LlenarGridAutoridades(int SolicitudId){
+        void LlenarGridAutoridades(int SolicitudId){
             BPSolicitud oBPSolicitud = new BPSolicitud();
 
             // Estado inicial del grid
@@ -416,7 +369,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
         }
 
-        private void LlenarGridVoces_Detalle(ref GridView grdDetalle, Int32 SolicitudId, Int32 AutoridadId){
+        void LlenarGridVoces_Detalle(ref GridView grdDetalle, Int32 SolicitudId, Int32 AutoridadId){
             BPSolicitud oBPSolicitud = new BPSolicitud();
 
             // Estado inicial del grid
@@ -439,7 +392,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
         }
 
-        private void LlenarGridVoces_Temporal(int SolicitudId, int AutoridadId){
+        void LlenarGridVoces_Temporal(int SolicitudId, int AutoridadId){
             BPSolicitud oBPSolicitud = new BPSolicitud();
 
             // Estado inicial del grid
@@ -462,7 +415,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
         }
 
-        private void ModificarAutoridad(int SolicitudId){
+        void ModificarAutoridad(int SolicitudId){
             BPAutoridad oBPAutoridad = new BPAutoridad();
             ENTAutoridad oENTAutoridad = new ENTAutoridad();
             ENTResponse oENTResponse = new ENTResponse();
@@ -478,7 +431,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
                 // Formulario 
                 oENTAutoridad.SolicitudId = SolicitudId;
-                oENTAutoridad.AutoridadId = Convert.ToInt32(this.hdnAutoridadId.Value);
+                oENTAutoridad.AutoridadId = Convert.ToInt32(this.hddAutoridadId.Value);
                 oENTAutoridad.Nombre = tbActionNombreFuncionario.Text;
                 oENTAutoridad.Puesto = tbActionPuestoActual.Text;
                 oENTAutoridad.Comentario = tbActionComentarios.Text;
@@ -500,7 +453,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
             }
         }
 
-        private void MostrarDetalleAutoridad(int SolicitudId, int AutoridadId){
+        void MostrarDetalleAutoridad(int SolicitudId, int AutoridadId){
             BPAutoridad oBPAutoridad = new BPAutoridad();
 
             oBPAutoridad.AutoridadEntity.SolicitudId = SolicitudId;
@@ -532,7 +485,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
             }
         }
 
-        private void MostrarDetalleAutoridadPopUp(int SolicitudId, int AutoridadId){
+        void MostrarDetalleAutoridadPopUp(int SolicitudId, int AutoridadId){
             BPAutoridad oBPAutoridad = new BPAutoridad();
 
             oBPAutoridad.AutoridadEntity.SolicitudId = SolicitudId;
@@ -568,7 +521,56 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
             }
         }
 
-        private void swapGrid(int iRow){
+		void SelectSolicitud() {
+			BPQueja oBPQueja = new BPQueja();
+			ENTQueja oENTQueja = new ENTQueja();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Formulario
+				oENTQueja.SolicitudId = Int32.Parse(this.hddSolicitudId.Value);
+
+				// Transacción
+				oENTResponse = oBPQueja.SelectSolicitud_Detalle(oENTQueja);
+
+				// Errores y Warnings
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+
+				// Campos ocultos
+				this.hddCalificacionId.Value = oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionId"].ToString();
+
+				// Formulario
+				this.SolicitudNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["SolicitudNumero"].ToString();
+				this.AfectadoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Afectado"].ToString();
+
+				this.CalificacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionNombre"].ToString();
+				this.EstatusaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusNombre"].ToString();
+				this.FuncionarioLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FuncionarioNombre"].ToString();
+				this.ContactoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FormaContactoNombre"].ToString();
+				this.TipoSolicitudLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["TipoSolicitudNombre"].ToString();
+				this.ProblematicaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["ProblematicaNombre"].ToString();
+				this.ProblematicaDetalleLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["ProblematicaDetalleNombre"].ToString();
+
+				this.FechaRecepcionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaRecepcion"].ToString();
+				this.FechaAsignacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaAsignacion"].ToString();
+				this.FechaGestionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaInicioGestion"].ToString();
+				this.FechaModificacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaUltimaModificacion"].ToString();
+				this.NivelAutoridadLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["MecanismoAperturaNombre"].ToString();
+				this.MecanismoAperturaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NivelAutoridadNombre"].ToString();
+
+				this.LugarHechosLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["LugarHechosNombre"].ToString();
+				this.DireccionHechosLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["DireccionHechos"].ToString();
+				this.ObservacionesLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Observaciones"].ToString();
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+        void swapGrid(int iRow){
             Panel oPanelDetail = new Panel();
             ImageButton oImageSwapGrid = new ImageButton();
 
@@ -631,7 +633,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
             }
         }
 
-        private void swapGridByHeader(Int32 iRow, Boolean isVisible){
+        void swapGridByHeader(Int32 iRow, Boolean isVisible){
             ImageButton oImageSwapGrid = null;
             Panel oPanelDetail = null;
 
@@ -781,7 +783,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
                         break;
 
                     case "SwapGrid": // Expande/Contrae una fila del grid (Aquí el Command Argument contiene el índice de la fila)
-                        swapGrid(Convert.ToInt32(e.CommandArgument.ToString()));
+						if (this.hddCalificacionId.Value != "8") { swapGrid(Convert.ToInt32(e.CommandArgument.ToString())); }
                         break;
                 }
 
@@ -820,10 +822,16 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
                 sAutoridad = gvAutoridades.DataKeys[e.Row.RowIndex]["Nombre"].ToString();
 
                 // Tooltip Agregar Voz
-                sToolTip = "Agregar voces a autoridad [" + sAutoridad + "]";
-                imgSeleccionar.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
-                imgSeleccionar.Attributes.Add("onmouseout", "tooltip.hide();");
-                imgSeleccionar.Attributes.Add("style", "cursor:hand;");
+				if (this.hddCalificacionId.Value == "8" ){
+
+					imgSeleccionar.Visible = false;
+				}else{
+
+					sToolTip = "Agregar voces a autoridad [" + sAutoridad + "]";
+					imgSeleccionar.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
+					imgSeleccionar.Attributes.Add("onmouseout", "tooltip.hide();");
+					imgSeleccionar.Attributes.Add("style", "cursor:hand;");
+				}
 
                 // Tooltip Editar Autoridad
                 sToolTip = "Editar autoridad [" + sAutoridad + "]";
@@ -840,7 +848,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
                 // Atributos Over
                 sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png'; ";
                 sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgBorrar.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png'; ";
-                sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSeleccionar.ClientID + "').src='../../../../Include/Image/Buttons/AgregarVisita_Over.png'; ";
+				if (this.hddCalificacionId.Value != "8") { sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSeleccionar.ClientID + "').src='../../../../Include/Image/Buttons/AgregarVisita_Over.png'; "; }
                 sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/Collapse_Over.png'; ";
 
                 //Puntero y Sombra en fila Over
@@ -849,7 +857,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
                 // Atributos Out
                 sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png'; ";
                 sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgBorrar.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png'; ";
-                sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSeleccionar.ClientID + "').src='../../../../Include/Image/Buttons/AgregarVisita.png'; ";
+				if (this.hddCalificacionId.Value != "8") { sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSeleccionar.ClientID + "').src='../../../../Include/Image/Buttons/AgregarVisita.png'; "; }
                 sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/Collapse.png'; ";
 
                 //Puntero y Sombra en fila Out
@@ -861,14 +869,20 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
                 imgSwapGrid.Attributes.Add("onmouseout", "tooltip.hide();");
                 imgSwapGrid.Attributes.Add("style", "cursor:hand;");
 
-                // Voces Agregadas
-                grdVocesAgregadas = new GridView();
-                grdVocesAgregadas = (GridView)e.Row.FindControl("gvVocesDetalle");
-                LlenarGridVoces_Detalle(ref grdVocesAgregadas, Int32.Parse(this.hddSolicitudId.Value), Int32.Parse(AutoridadId));
+				// Sólo autoridades
+				oPanelDetail = (Panel)e.Row.FindControl("pnlGridDetail");
 
-                // Panel visible
-                oPanelDetail = (Panel)e.Row.FindControl("pnlGridDetail");
-                oPanelDetail.Visible = true;
+				if (this.hddCalificacionId.Value == "8" ){
+
+					oPanelDetail.Visible = false;
+				}else{
+
+					// Voces Agregadas
+					grdVocesAgregadas = new GridView();
+					grdVocesAgregadas = (GridView)e.Row.FindControl("gvVocesDetalle");
+					LlenarGridVoces_Detalle(ref grdVocesAgregadas, Int32.Parse(this.hddSolicitudId.Value), Int32.Parse(AutoridadId));
+					oPanelDetail.Visible = true;
+				}
 
             }catch (Exception ex){
                 throw (ex);
@@ -907,6 +921,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
             try
             {
 
+				// Validaciones
+				if (this.hddCalificacionId.Value == "8") { return; }
+
                 // Acceso a la imagen
                 imgHeaderSwapGrid = (ImageButton)sender;
 
@@ -944,7 +961,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
             {
 
                 // Tipo de transacción
-                if (this.hdnAutoridadId.Value == "0"){
+                if (this.hddAutoridadId.Value == "0"){
 
                     AgregarAutoridad(Convert.ToInt32(this.hddSolicitudId.Value));
 
@@ -1035,7 +1052,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
         protected void btnVocesTemporal_Nuevo_Click(object sender, EventArgs e){
             String SolicitudId = this.hddSolicitudId.Value;
-            String AutoridadId = this.hdnAutoridadId.Value;
+            String AutoridadId = this.hddAutoridadId.Value;
 
             try
             {
@@ -1087,7 +1104,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
                 // Acción
                 switch (strCommand){
                     case "Eliminar":
-                        BorrarVoz(Int32.Parse(this.hddSolicitudId.Value), Int32.Parse(this.hdnAutoridadId.Value), Int32.Parse(VozId));
+                        BorrarVoz(Int32.Parse(this.hddSolicitudId.Value), Int32.Parse(this.hddAutoridadId.Value), Int32.Parse(VozId));
                         break;
                 }
 

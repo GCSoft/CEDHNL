@@ -191,7 +191,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
                                 <ItemTemplate>
-                                    <asp:ImageButton ID="DeleteButton" runat="server" CommandArgument='<%#Eval("AutoridadId")%>' CommandName="Borrar" ImageUrl="~/Include/Image/Buttons/Delete.png" OnClientClick="return confirm('¿Seguro que desea eliminar esta autoridad?, Se eliminarán también sus respectivas voces señaladas.');" />
+                                    <asp:ImageButton ID="DeleteButton" runat="server" CommandArgument='<%#Eval("AutoridadId")%>' CommandName="Borrar" ImageUrl="~/Include/Image/Buttons/Delete.png" OnClientClick="return confirm('¿Seguro que desea eliminar esta autoridad?');" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle" ItemStyle-Width="25px">
@@ -449,9 +449,11 @@
         <tr class="trFilaFooter"><td></td></tr>
     </table>
 
+	<asp:HiddenField ID="hddAutoridadId" runat="server" />
+	<asp:HiddenField ID="HiddenField2" runat="server" />
+	<asp:HiddenField ID="hddCalificacionId" runat="server" />
 	<asp:HiddenField ID="hddSolicitudId" runat="server" Value="0"  />
 	<asp:HiddenField ID="SenderId" runat="server" Value="0"  />
-	<asp:HiddenField ID="hdnAutoridadId" runat="server" />
     <asp:HiddenField ID="hddSort" runat="server" Value="Nombre" />
 
 </asp:Content>

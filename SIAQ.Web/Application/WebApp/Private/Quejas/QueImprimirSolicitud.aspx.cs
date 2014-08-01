@@ -30,6 +30,29 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 		
 		// Funciones el programador
 
+		void LlenarGridVoces_Detalle(ref GridView grdDetalle, Int32 SolicitudId, Int32 AutoridadId){
+            BPSolicitud oBPSolicitud = new BPSolicitud();
+
+            // Estado inicial del grid
+            grdDetalle.DataSource = null;
+            grdDetalle.DataBind();
+
+            // Transacción
+            oBPSolicitud.AutoridadEntity.SolicitudId = SolicitudId;
+            oBPSolicitud.AutoridadEntity.AutoridadId = AutoridadId;
+            oBPSolicitud.SelectSolicitudAutoridadVoces();
+
+            // Validaciones
+            if (oBPSolicitud.ErrorId != 0) { return; }
+
+            // Listado de voces
+            if (oBPSolicitud.AutoridadEntity.dsResponse.Tables[0].Rows.Count > 0){
+                grdDetalle.DataSource = oBPSolicitud.AutoridadEntity.dsResponse;
+                grdDetalle.DataBind();
+            }
+
+        }
+
 		void SelectIndicadores(){
 			BPIndicador oBPIndicador = new BPIndicador();
 			ENTIndicador oENTIndicador = new ENTIndicador();
@@ -78,6 +101,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				// Errores y Warnings
 				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
 				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+
+				// Campos ocultos
+				this.hddCalificacionId.Value = oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionId"].ToString();
 
 				// Formulario
 				this.SolicitudNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["SolicitudNumero"].ToString();
@@ -132,7 +158,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				}
 
 				// Autoridad y voces señaladas
-				if(oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionId"].ToString() != "2"){
+				if(this.hddCalificacionId.Value != "2" && this.hddCalificacionId.Value != "8" ){
 					this.pnlAutoridades.Visible = false;
 				}else{
 					this.gvAutoridades.DataSource = oENTResponse.dsResponse.Tables[4];
@@ -190,6 +216,40 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 		protected void btnRegresar_Click(object sender, EventArgs e){
 			Response.Redirect("QueDetalleSolicitud.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value, false);
 		}
+
+		protected void gvAutoridades_RowDataBound(object sender, GridViewRowEventArgs e){
+			GridView grdVocesAgregadas = null;
+            Panel oPanelDetail = null;
+
+			String AutoridadId = "";
+
+            try
+            {
+                // Validación de que sea fila 
+                if (e.Row.RowType != DataControlRowType.DataRow) { return; }
+
+				// DataKeys
+				AutoridadId = gvAutoridades.DataKeys[e.Row.RowIndex]["AutoridadId"].ToString();
+
+				// Sólo autoridades
+				oPanelDetail = (Panel)e.Row.FindControl("pnlGridDetail");
+
+				if (this.hddCalificacionId.Value == "8" ){
+
+					oPanelDetail.Visible = false;
+				}else{
+
+					// Voces Agregadas
+					grdVocesAgregadas = new GridView();
+					grdVocesAgregadas = (GridView)e.Row.FindControl("gvVocesDetalle");
+					LlenarGridVoces_Detalle(ref grdVocesAgregadas, Int32.Parse(this.hddSolicitudId.Value), Int32.Parse(AutoridadId));
+					oPanelDetail.Visible = true;
+				}
+
+            }catch (Exception ex){
+                throw (ex);
+            }
+        }
 
 	}
 }

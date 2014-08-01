@@ -104,6 +104,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
 				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
 
+				// Campos ocultos
+				this.hddCalificacionId.Value = oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionId"].ToString();
+
 				// Formulario
 				this.SolicitudNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["SolicitudNumero"].ToString();
 				this.EstatusaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusNombre"].ToString();
@@ -168,7 +171,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				}
 
 				// Autoridad y voces señaladas
-				if(oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionId"].ToString() != "2"){
+				if(this.hddCalificacionId.Value != "2" && this.hddCalificacionId.Value != "8" ){
 					this.pnlAutoridades.Visible = false;
 				}else{
 					this.gvAutoridades.DataSource = oENTResponse.dsResponse.Tables[4];
@@ -580,7 +583,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
                 switch (e.CommandName.ToString()){
                     case "SwapGrid": // Expande/Contrae una fila del grid (Aquí el Command Argument contiene el índice de la fila)
-                        SwapGrid(Convert.ToInt32(e.CommandArgument.ToString()));
+						if (this.hddCalificacionId.Value != "8") { SwapGrid(Convert.ToInt32(e.CommandArgument.ToString())); }
                         break;
                 }
 
@@ -628,14 +631,20 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
                 imgSwapGrid.Attributes.Add("onmouseout", "tooltip.hide();");
                 imgSwapGrid.Attributes.Add("style", "cursor:hand;");
 
-                // Voces Agregadas
-                grdVocesAgregadas = new GridView();
-                grdVocesAgregadas = (GridView)e.Row.FindControl("gvVocesDetalle");
-                LlenarGridVoces_Detalle(ref grdVocesAgregadas, Int32.Parse(this.hddSolicitudId.Value), Int32.Parse(AutoridadId));
+				// Sólo autoridades
+				oPanelDetail = (Panel)e.Row.FindControl("pnlGridDetail");
 
-                // Panel visible
-                oPanelDetail = (Panel)e.Row.FindControl("pnlGridDetail");
-                oPanelDetail.Visible = true;
+				if (this.hddCalificacionId.Value == "8" ){
+
+					oPanelDetail.Visible = false;
+				}else{
+
+					// Voces Agregadas
+					grdVocesAgregadas = new GridView();
+					grdVocesAgregadas = (GridView)e.Row.FindControl("gvVocesDetalle");
+					LlenarGridVoces_Detalle(ref grdVocesAgregadas, Int32.Parse(this.hddSolicitudId.Value), Int32.Parse(AutoridadId));
+					oPanelDetail.Visible = true;
+				}
 
             }catch (Exception ex){
                 throw (ex);

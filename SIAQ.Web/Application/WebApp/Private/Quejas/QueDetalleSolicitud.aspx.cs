@@ -295,7 +295,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				}
 
 				// Si la calificación no es Queja ( CalficacionId = 2 ) o Medidas Cautelares ( CalficacionId = 8 ) no puede agregar autoridades y voces
-				if ( this.hddCalificacionId.Value != "2" || this.hddCalificacionId.Value != "8" ) {
+				if ( this.hddCalificacionId.Value != "2" && this.hddCalificacionId.Value != "8" ) {
 					this.AutoridadPanel.Visible = false;
 				}
 

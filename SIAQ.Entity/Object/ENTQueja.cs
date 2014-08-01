@@ -49,7 +49,7 @@ namespace SIAQ.Entity.Object
 		private String		_NumeroFolio;			// Número de folio de expediente generado al aprobar la solicitud
 		private String		_Observaciones;			// Observaciones de la solicitud
 		private Int16		_Presente;				// Determina con un 1 si el ciudadano estuvo presente al momento del levantamientio de la solicitud
-		private Int16		_TipoFolio;				// Tipo de Folio a generar: 1-> [Folio de Queja], 2-> [Folio de Orientacion], 3-> [Folio de Gestion de Quejas], 4-> [Folio de Gestion Penitenciaria]
+		private Int16		_TipoFolio;				// Tipo de Folio a generar: 1-> [Folio de Queja], 2-> [Folio de Orientacion], 3-> [Folio de Gestion de Quejas], 4-> [Folio de Gestion Penitenciaria], 5-> [Folio de Medida Cautelar]
 		private DataTable	_tblCanalizacion;		// DataTable el cual contiene los ID's Canalizaciones que se asociarán a la Solicitud
 		private DataTable	_tblIndicador;			// DataTable el cual contiene los ID's de los grupos minoritarios asociadas a la solicitud
 
@@ -473,7 +473,7 @@ namespace SIAQ.Entity.Object
 		///   <create>18-Julio-2014</create>
 		///   <author>Ruben.Cobos</author>
 		///</remarks>
-		///<summary>Obtiene/Asigna el tipo de Folio a generar: 1-> [Folio de Queja], 2-> [Folio de Orientacion], 3-> [Folio de Gestión de Quejas], 4-> [Folio de Gestión Penitenciaria]</summary>
+		///<summary>Obtiene/Asigna el tipo de Folio a generar: 1-> [Folio de Queja], 2-> [Folio de Orientacion], 3-> [Folio de Gestión de Quejas], 4-> [Folio de Gestión Penitenciaria], 5-> [Folio de Medida Cautelar]</summary>
 		public Int16 TipoFolio
 		{
 			get { return _TipoFolio; }

@@ -52,12 +52,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 					case "4": // SI
 					case "5": // Otra CEDH
 					case "6": // Comisión Nacional de los Derechos Humanos
-					case "8": // Medidas Cautelares
 
 						oENTQueja.TipoFolio = 1; // Folio de Queja
 						break;
 
 					case "3": // Orientación
+					case "9": // Apoyo o colaboración
 
 						oENTQueja.TipoFolio = 2; // Folio de Orientacion
 						break;
@@ -72,6 +72,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 						
 						break;
 
+					case "8": // Medidas Cautelares
+
+						oENTQueja.TipoFolio = 5; // Folio de Medida Cautelar
+						break;
 
 					default: // No configurada
 
@@ -189,6 +193,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 						break;
 
 					case "3": // Orientación
+					case "9": // Apoyo o colaboración
 
 						this.ddlVisitaduria.Items.Insert(0, new ListItem("", "0"));
 						this.ddlVisitaduria.Enabled = false;

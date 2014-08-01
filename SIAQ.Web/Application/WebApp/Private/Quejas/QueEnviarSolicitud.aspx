@@ -132,6 +132,14 @@
 			<asp:Image ID="imgCiudadanos" runat="server" ImageUrl="~/Include/Image/Icon/CiudadanoIcon_Success.png" /><br />
             Agregar ciudadanos
         </asp:Panel>
+		<asp:Panel CssClass="IconoPanel" ID="DiligenciasPanel" runat="server" Visible="true">
+			<asp:Image ID="imgDiligencias" runat="server" ImageUrl="~/Include/Image/Icon/DiligenciaIcon_Success.png" /><br />
+            Diligencias
+        </asp:Panel>
+		<asp:Panel CssClass="IconoPanel" ID="IndicadorPanel" runat="server" Visible="true">
+			<asp:Image ID="imgIndicador" runat="server" ImageUrl="~/Include/Image/Icon/IndicadorIcon_Success.png" /><br />
+            Grupos minoritarios
+        </asp:Panel>
 		<asp:Panel CssClass="IconoPanel" ID="CalificarPanel" runat="server" Visible="true">
 			<asp:Image ID="imgCalificar" runat="server" ImageUrl="~/Include/Image/Icon/CalificarIcon_Success.png"  /><br />
             Calificar solicitud

@@ -505,6 +505,8 @@
     <Content Include="Include\Image\Icon\ComparecenciaIcon.png" />
     <Content Include="Include\Image\Icon\ConfirmacionCierreIcon.png" />
     <Content Include="Include\Image\Icon\DiligenciaIcon.png" />
+    <Content Include="Include\Image\Icon\DiligenciaIcon_Pending.png" />
+    <Content Include="Include\Image\Icon\DiligenciaIcon_Success.png" />
     <Content Include="Include\Image\Icon\DocumentoIcon.png" />
     <Content Include="Include\Image\Icon\EnviarIcon.png" />
     <Content Include="Include\Image\Icon\ExcelIcon.png" />
@@ -512,6 +514,8 @@
     <Content Include="Include\Image\Icon\GeneralIcon.png" />
     <Content Include="Include\Image\Icon\ImprimirIcon.png" />
     <Content Include="Include\Image\Icon\IndicadorIcon.png" />
+    <Content Include="Include\Image\Icon\IndicadorIcon_Pending.png" />
+    <Content Include="Include\Image\Icon\IndicadorIcon_Success.png" />
     <Content Include="Include\Image\Icon\NotificacionIcon.png" />
     <Content Include="Include\Image\Icon\PdfIcon.png" />
     <Content Include="Include\Image\Icon\PowerPointIcon.png" />

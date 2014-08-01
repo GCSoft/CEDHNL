@@ -117,34 +117,128 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				if (oBPSolicitud.ErrorId != 0) { throw (new Exception(oBPSolicitud.ErrorDescription)); }
 				if (oBPSolicitud.SolicitudEntity.ResultData.Tables[0].Rows.Count == 0) { throw new Exception("No se ha encontrado información de la solicitud"); }
 
-				// Establecer imágenes a mostrar
+				// Validación de ciudadanos
 				if (oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["Ciudadanos"].ToString() == "0"){
 					this.imgCiudadanos.ImageUrl = "~/Include/Image/Icon/CiudadanoIcon_Pending.png";
+					this.imgCiudadanos.ToolTip = "No se han capturado ciudadanos en la solicitud";
 					this.btnEnviar.Enabled = false;
 					this.btnEnviar.CssClass = "Button_General_Disabled";
 				}
 
-				if (oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["CalificacionId"].ToString() == "1" ){
+				if (oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["CiudadanosEdadCero"].ToString() != "0"){
+					this.imgCiudadanos.ImageUrl = "~/Include/Image/Icon/CiudadanoIcon_Pending.png";
+					this.imgCiudadanos.ToolTip = "Existen ciudadanos con edad cero asociados a la solicitud";
+					this.btnEnviar.Enabled = false;
+					this.btnEnviar.CssClass = "Button_General_Disabled";
+				}
+
+				// Validación de Diligencias
+				if (oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["DiligenciasBandera"].ToString() == "0"){
+
+					this.DiligenciasPanel.Visible = false;
+				}else{
+
+					if (oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["Diligencias"].ToString() == "0"){
+						this.imgDiligencias.ImageUrl = "~/Include/Image/Icon/DiligenciaIcon_Pending.png";
+						this.imgDiligencias.ToolTip = "No se han capturado diligencias en la solicitud";
+						this.btnEnviar.Enabled = false;
+						this.btnEnviar.CssClass = "Button_General_Disabled";
+					}
+
+				}
+
+				// Grupos Minoritarios
+				if (oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["GruposMinoritarios"].ToString() == "0"){
+					this.imgIndicador.ImageUrl = "~/Include/Image/Icon/IndicadorIcon_Pending.png";
+					this.imgIndicador.ToolTip = "No se han capturado grupos minoritarios en la solicitud";
+					this.btnEnviar.Enabled = false;
+					this.btnEnviar.CssClass = "Button_General_Disabled";
+				}
+
+				// Calificar solicitud 
+				if ( oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["CalificacionId"].ToString() == "0" || oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["CalificacionId"].ToString() == "1" ){
 					this.imgCalificar.ImageUrl = "~/Include/Image/Icon/CalificarIcon_Pending.png";
+					this.imgCalificar.ToolTip = "No se ha calificado la solicitud";
 					this.btnEnviar.Enabled = false;
 					this.btnEnviar.CssClass = "Button_General_Disabled";
 				}
 
-				if (oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["CalificacionId"].ToString() != "2"){
+				if ( oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["FormaContactoId"].ToString() == "0" ){
+					this.imgCalificar.ImageUrl = "~/Include/Image/Icon/CalificarIcon_Pending.png";
+					this.imgCalificar.ToolTip = "No se ha establecido una Forma de Contacto la solicitud";
+					this.btnEnviar.Enabled = false;
+					this.btnEnviar.CssClass = "Button_General_Disabled";
+				}
+
+				if ( oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["LugarHechosId"].ToString() == "0" ){
+					this.imgCalificar.ImageUrl = "~/Include/Image/Icon/CalificarIcon_Pending.png";
+					this.imgCalificar.ToolTip = "No se ha establecido el Lugar de los Hechos la solicitud";
+					this.btnEnviar.Enabled = false;
+					this.btnEnviar.CssClass = "Button_General_Disabled";
+				}
+
+				if ( oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["MecanismoAperturaId"].ToString() == "0" ){
+					this.imgCalificar.ImageUrl = "~/Include/Image/Icon/CalificarIcon_Pending.png";
+					this.imgCalificar.ToolTip = "No se ha establecido un Mecanismo de Apertura la solicitud";
+					this.btnEnviar.Enabled = false;
+					this.btnEnviar.CssClass = "Button_General_Disabled";
+				}
+
+				if ( oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["NivelAutoridadId"].ToString() == "0" ){
+					this.imgCalificar.ImageUrl = "~/Include/Image/Icon/CalificarIcon_Pending.png";
+					this.imgCalificar.ToolTip = "No se ha establecido el Nivel de Autoridad la solicitud";
+					this.btnEnviar.Enabled = false;
+					this.btnEnviar.CssClass = "Button_General_Disabled";
+				}
+
+				if ( oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["ProblematicaId"].ToString() == "0" ){
+					this.imgCalificar.ImageUrl = "~/Include/Image/Icon/CalificarIcon_Pending.png";
+					this.imgCalificar.ToolTip = "No se ha establecido la problemática de la solicitud";
+					this.btnEnviar.Enabled = false;
+					this.btnEnviar.CssClass = "Button_General_Disabled";
+				}
+
+				if ( oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["ProblematicaDetalleId"].ToString() == "0" ){
+					this.imgCalificar.ImageUrl = "~/Include/Image/Icon/CalificarIcon_Pending.png";
+					this.imgCalificar.ToolTip = "No se ha establecido el detalle de la problemática de la solicitud";
+					this.btnEnviar.Enabled = false;
+					this.btnEnviar.CssClass = "Button_General_Disabled";
+				}
+
+				// Autoridades señaladas y voces
+				if ( oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["CalificacionId"].ToString() != "2" && oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["CalificacionId"].ToString() != "8" ){
 					this.AutoridadPanel.Visible = false;
 					return;
 				}
 
-				if (oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["Autoridades"].ToString() == "0"){
-					this.imgAutoridad.ImageUrl = "~/Include/Image/Icon/AutoridadIcon_Pending.png";
-					this.btnEnviar.Enabled = false;
-					this.btnEnviar.CssClass = "Button_General_Disabled";
+				// Calificación de Queja
+				if ( oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["CalificacionId"].ToString() == "2" ){
+
+					if (oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["Autoridades"].ToString() == "0"){
+						this.imgAutoridad.ImageUrl = "~/Include/Image/Icon/AutoridadIcon_Pending.png";
+						this.imgAutoridad.ToolTip = "No se ha capturado Autoridades en la solicitud";
+						this.btnEnviar.Enabled = false;
+						this.btnEnviar.CssClass = "Button_General_Disabled";
+					}
+
+					if (oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["Autoridades"].ToString() != oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["AutoridadesConVoces"].ToString()){
+						this.imgAutoridad.ImageUrl = "~/Include/Image/Icon/AutoridadIcon_Pending.png";
+						this.imgAutoridad.ToolTip = "Existe por lo menos una autoridad sin captura de voces en la Solictud";
+						this.btnEnviar.Enabled = false;
+						this.btnEnviar.CssClass = "Button_General_Disabled";
+					}
+
 				}
 
-				if (oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["Autoridades"].ToString() != oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["AutoridadesConVoces"].ToString()){
-					this.imgAutoridad.ImageUrl = "~/Include/Image/Icon/AutoridadIcon_Pending.png";
-					this.btnEnviar.Enabled = false;
-					this.btnEnviar.CssClass = "Button_General_Disabled";
+				// Calificación de Medidas Cautelares
+				if ( oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["CalificacionId"].ToString() == "8" ){
+
+					if (oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["Autoridades"].ToString() == "0"){
+						this.imgAutoridad.ImageUrl = "~/Include/Image/Icon/AutoridadIcon_Pending.png";
+						this.imgAutoridad.ToolTip = "No se ha capturado Autoridades en la solicitud";
+						this.btnEnviar.Enabled = false;
+						this.btnEnviar.CssClass = "Button_General_Disabled";
+					}
 				}
 
 			}catch (Exception ex){
@@ -179,6 +273,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				SetCheckList();
 
             }catch (Exception ex){
+				this.btnEnviar.Enabled = false;
+				this.btnEnviar.CssClass = "Button_General_Disabled";
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
             }
 		}

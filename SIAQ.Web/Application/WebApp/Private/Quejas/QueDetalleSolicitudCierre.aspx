@@ -400,7 +400,7 @@
 			<tr><td></td></tr>
 			<tr>
 				<td>
-					<asp:CheckBoxList ID="chkIndicador" runat="server" CssClass="CheckBoxList_Regular" RepeatDirection="Horizontal" RepeatColumns="5" CellSpacing="20"></asp:CheckBoxList>
+					<asp:CheckBoxList ID="chkIndicador" runat="server" CssClass="CheckBoxList_Regular" RepeatDirection="Horizontal" RepeatColumns="4" CellSpacing="20"></asp:CheckBoxList>
 				</td>
 			</tr>
 		</table>

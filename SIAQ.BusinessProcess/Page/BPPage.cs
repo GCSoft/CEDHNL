@@ -93,7 +93,7 @@ namespace SIAQ.BusinessProcess.Page
 
          // Validación de acceso a opciones [System Administrator]
          // if ((sPage == "scatArea.aspx" || sPage == "scatMenu.aspx" || sPage == "scatSubMenu.aspx") && (oENTSession.idArea != 1) ){
-		if ((sPage == "scatArea.aspx" || sPage == "scatMenu.aspx" || sPage == "scatSubMenu.aspx") ){
+		if ((sPage == "scatArea.aspx" || sPage == "scatMenu.aspx" || sPage == "scatSubMenu.aspx") && (oENTSession.idRol != 1) ){
 
             sKey = utilEncryption.EncryptString("[V03] No tiene permisos para acceder a esta página", true);
             this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx?key=" + sKey, true);

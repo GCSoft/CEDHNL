@@ -294,8 +294,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 					if (Int32.Parse(this.hddEstatusId.Value) != 4) { this.lnkAgregarComentario.Visible = true; }
 				}
 
-				// Si la calificación no es Queja ( CalficacionId = 2) no puede agregar autoridades y voces
-				if (this.hddCalificacionId.Value != "2") {
+				// Si la calificación no es Queja ( CalficacionId = 2 ) o Medidas Cautelares ( CalficacionId = 8 ) no puede agregar autoridades y voces
+				if ( this.hddCalificacionId.Value != "2" || this.hddCalificacionId.Value != "8" ) {
 					this.AutoridadPanel.Visible = false;
 				}
 
@@ -478,7 +478,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
 		// ----------------------------------------------------------------------------------------------
 		// TODO: Quedan pendientes de validar las siguientes pantallas, hay que cambiar el estatus a "En proceso de Queja" en cada una.
-		// Tambien hay que cambiar el HTML de la carátula porque primero aparece los comentario sy deben de ser los últimos
 
 		protected void CiudadanoButton_Click(object sender, ImageClickEventArgs e){
 			Response.Redirect("QueAgregarCiudadanos.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value + "|0");

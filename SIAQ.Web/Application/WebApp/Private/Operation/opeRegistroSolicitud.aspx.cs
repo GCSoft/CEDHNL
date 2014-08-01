@@ -225,7 +225,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				rowCiudadano["Domicilio"] = oENTResponse.dsResponse.Tables[1].Rows[0]["Domicilio"];
 
 				rowCiudadano["TipoParticipacionId"] = (this.ddlTipoParticipacion.SelectedIndex == 0 ? 1 : Int32.Parse(this.ddlTipoParticipacion.SelectedItem.Value));
-				rowCiudadano["TipoParticipacionNombre"] = (this.ddlTipoParticipacion.SelectedIndex == 0 ? "Quejoso" : this.ddlTipoParticipacion.SelectedItem.Text);
+				rowCiudadano["TipoParticipacionNombre"] = (this.ddlTipoParticipacion.SelectedIndex == 0 ? "Afectado" : this.ddlTipoParticipacion.SelectedItem.Text);
 				rowCiudadano["Presente"] = Int16.Parse((this.chkPresente.Checked ? 1 : 0).ToString());
 				rowCiudadano["PresenteString"] = (this.chkPresente.Checked ? "Si" : "No");
 
@@ -392,7 +392,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 			{
 
 				// Validaciones
-				if (Page.IsPostBack) { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxToolTipMessage_ClearOld(); tooltip.hide();", true); return; }
+				if (Page.IsPostBack) { return; }
 				if (this.Request.QueryString["key"] == null) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
 				if (this.Request.QueryString["key"].ToString().Split(new Char[] { '|' }).Length != 2) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
 

@@ -112,7 +112,8 @@
 				<td class="Nombre">Mecanismo de Apertura</td>
 				<td class="Espacio"></td>
 				<td class="Campo" colspan="5">
-					<asp:DropDownList ID="ddlMecanismoApertura" runat="server" CssClass="DropDownList_General" width="198px" ></asp:DropDownList>
+					<asp:DropDownList ID="ddlMecanismoApertura" runat="server" AutoPostBack="true" CssClass="DropDownList_General" width="198px" OnSelectedIndexChanged="ddlMecanismoApertura_SelectedIndexChanged" ></asp:DropDownList>&nbsp;&nbsp;
+					<asp:CheckBox ID="chkMedioComunicacion" runat="server" CssClass="CheckBox_Regular" Enabled="false" Text="Medios de Comunicación" />
 				</td>
 			</tr>
 			<tr>

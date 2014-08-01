@@ -67,7 +67,7 @@ namespace SIAQ.Web.Include.WebUserControls
 					oAccordionPane.HeaderContainer.Controls.Add(lblAccordionHeader);
 
 					// Content
-					foreach (DataRow drSubMenu in oENTSession.tblSubMenu.Select("idMenu = " + sIDMenu, "sNombreSubMenu")){
+					foreach (DataRow drSubMenu in oENTSession.tblSubMenu.Select("idMenu = " + sIDMenu)){
 
 						// Nuevo panel
 						pnlContent = new Panel();
@@ -140,7 +140,7 @@ namespace SIAQ.Web.Include.WebUserControls
 					oAccordionPane.HeaderContainer.Controls.Add(lblAccordionHeader);
 
 					// Content
-					foreach (DataRow drSubMenu in dsMenu.Tables[1].Select("idMenu = " + sIDMenu, "sNombreSubMenu")){
+					foreach (DataRow drSubMenu in dsMenu.Tables[1].Select("idMenu = " + sIDMenu)){
 
 						// Nuevo panel
 						pnlContent = new Panel();

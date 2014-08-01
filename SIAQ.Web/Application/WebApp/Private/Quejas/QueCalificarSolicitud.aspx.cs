@@ -348,8 +348,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				this.ddlProblematicaDetalle.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["ProblematicaDetalleId"].ToString();
 				this.ddlMecanismoApertura.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["MecanismoAperturaId"].ToString();
 				this.ddlNivelAutoridad.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["NivelAutoridadId"].ToString();
-
 				this.ddlCalificacion.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionId"].ToString();
+
+				this.chkMedioComunicacion.Checked = ( oENTResponse.dsResponse.Tables[1].Rows[0]["MediosDeComunicacion"].ToString() == "1" ? true : false);
+				this.chkMedioComunicacion.Enabled = (oENTResponse.dsResponse.Tables[1].Rows[0]["MecanismoAperturaId"].ToString() == "2" ? true : false);
 
 				if (oENTResponse.dsResponse.Tables[1].Rows[0]["TipoOrientacionId"].ToString() != "0") {
 					
@@ -414,6 +416,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				oENTQueja.CalificacionId = Int32.Parse(this.ddlCalificacion.SelectedItem.Value);
 				oENTQueja.TipoOrientacionId = Int32.Parse(this.ddlTipoOrientacion.SelectedItem.Value);
 				oENTQueja.Fundamento = this.ckeFundamento.Text.Trim();
+				oENTQueja.MediosComunicacion = Int16.Parse( ( this.chkMedioComunicacion.Checked ? 1 : 0 ).ToString() );
 
 				// Canalizaciones seleccionadas
 				oENTQueja.tblCanalizacion = new DataTable("tblCanalizacion");
@@ -446,7 +449,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
             {
 
 				// Validaciones
-				if (Page.IsPostBack) { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxToolTipMessage_ClearOld(); tooltip.hide();", true); return; }
+				if (Page.IsPostBack) { return; }
 				if (this.Request.QueryString["key"] == null) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
 				if (this.Request.QueryString["key"].ToString().Split(new Char[] { '|' }).Length != 2) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
 
@@ -535,6 +538,31 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
 						LimpiaGridCanalizaciones();
 
+						ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlCalificacion.ClientID + "'); }", true);
+
+						break;
+				}
+
+            }catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlProblematica.ClientID + "'); }", true);
+            }
+		}
+
+		protected void ddlMecanismoApertura_SelectedIndexChanged(Object sender, EventArgs e){
+			try
+            {
+
+				switch (this.ddlMecanismoApertura.SelectedItem.Value){
+					case "2": // Oficio
+
+						this.chkMedioComunicacion.Enabled = true;
+						ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.chkMedioComunicacion.ClientID + "'); }", true);
+						break;
+
+					default:
+
+						this.chkMedioComunicacion.Enabled = false;
+						ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlNivelAutoridad.ClientID + "'); }", true);
 						break;
 				}
 

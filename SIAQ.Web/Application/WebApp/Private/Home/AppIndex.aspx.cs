@@ -44,7 +44,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Home
 					break;
 
 				case 3: // Recepción
-					this.Response.Redirect("../Operation/opeInicio.aspx", false);
+					this.Response.Redirect("../Operation/opeBusquedaCiudadano.aspx", false);
 					break;
 
 				case 4: // Queja - Secretaria

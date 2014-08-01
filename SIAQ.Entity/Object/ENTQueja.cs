@@ -41,7 +41,8 @@ namespace SIAQ.Entity.Object
 		private String		_FechaDesde;			// Fecha de inicio en una consulta
 		private String		_FechaHasta;			// Fecha final en una consulta
 		private String		_Fundamento;			// Fundameto de una calificación
-		private Int16		_MedidaPreventiva;		// determina si un asunto es una medida preventiva
+		private Int16		_MedidaPreventiva;		// Determina si un asunto es una medida preventiva
+		private Int16		_MediosComunicacion;	// Indicador de Medios de Comunicación. Solo se considera cuando el Mecanismo de Apertura es por Oficio
 		private Int16		_Nivel;					// Nivel de transacción
 		private String		_Nombre;				// Nombre del ciudadano/problematica/entidad
 		private String		_Numero;				// Número de la solicitud
@@ -80,6 +81,7 @@ namespace SIAQ.Entity.Object
 			_FechaHasta = "";
 			_Fundamento = "";
 			_MedidaPreventiva = 0;
+			_MediosComunicacion = 0;
 			_Nivel = -1;
 			_Nombre = "";
 			_Numero = "";
@@ -380,6 +382,18 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _MedidaPreventiva; }
 			set { _MedidaPreventiva = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTQueja.MediosComunicacion</name>
+		///   <create>18-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el indicador de Medios de Comunicación. Solo se considera cuando el Mecanismo de Apertura es por Oficio</summary>
+		public Int16 MediosComunicacion
+		{
+			get { return _MediosComunicacion; }
+			set { _MediosComunicacion = value; }
 		}
 
 		///<remarks>

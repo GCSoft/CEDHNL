@@ -1123,6 +1123,10 @@ namespace SIAQ.DataAccess.Object
 			sqlPar.Value = oENTQueja.TipoOrientacionId;
 			sqlCom.Parameters.Add(sqlPar);
 
+			sqlPar = new SqlParameter("MediosComunicacion", SqlDbType.TinyInt);
+			sqlPar.Value = oENTQueja.MediosComunicacion;
+			sqlCom.Parameters.Add(sqlPar);
+
 			sqlPar = new SqlParameter("Fundamento", SqlDbType.VarChar);
 			sqlPar.Value = oENTQueja.Fundamento;
 			sqlCom.Parameters.Add(sqlPar);

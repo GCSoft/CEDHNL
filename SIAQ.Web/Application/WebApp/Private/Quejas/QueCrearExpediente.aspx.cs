@@ -41,8 +41,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 			try
 			{
 
-				// Validaciones - A excepcion de la clasificación Orientación, será necesario seleccionar una visitaduría
-				if (CalificacionId != "3"){
+				// Validaciones - A excepcion de la clasificación Orientación/Apoyo, será necesario seleccionar una visitaduría
+				if (CalificacionId != "3" && CalificacionId != "9"){
 					if (this.ddlVisitaduria.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar una Visitaduría")); }
 				}
 

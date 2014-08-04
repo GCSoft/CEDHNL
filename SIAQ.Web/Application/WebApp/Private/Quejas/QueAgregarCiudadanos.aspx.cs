@@ -225,8 +225,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				this.FechaAsignacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaAsignacion"].ToString();
 				this.FechaGestionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaInicioGestion"].ToString();
 				this.FechaModificacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaUltimaModificacion"].ToString();
-				this.NivelAutoridadLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["MecanismoAperturaNombre"].ToString();
-				this.MecanismoAperturaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NivelAutoridadNombre"].ToString();
+				this.NivelAutoridadLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NivelAutoridadNombre"].ToString();
+				this.MecanismoAperturaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["MecanismoAperturaNombre"].ToString();
 
 				this.LugarHechosLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["LugarHechosNombre"].ToString();
 				this.DireccionHechosLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["DireccionHechos"].ToString();
@@ -364,6 +364,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				// Transacción
 				switch (strCommand){
 
+					case "Editar":
+						Response.Redirect("../Operation/opeRegistroCiudadano.aspx?s=" + CiudadanoId + "&key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value);
+						break;
+
 					case "Eliminar":
 
 						// Eliminar el ciudadano de la solicitud
@@ -389,6 +393,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
 		protected void gvCiudadano_RowDataBound(object sender, GridViewRowEventArgs e){
 			ImageButton imgDelete = null;
+			ImageButton imgEdit = null;
 
 			String sCiudadanoId = "";
 			String sUsuarioId = "";
@@ -407,6 +412,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				}
 
 				// Obtener imagenes
+				imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
 				imgDelete = (ImageButton)e.Row.FindControl("imgDelete");
 
 				// DataKeys
@@ -419,24 +425,42 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
 					imgDelete.Visible = false;
 
-					// Atributos Over y Out
-					e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; ");
-					e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; ");
+					// Tooltip Editar
+					sToolTip = "Editar ciudadano [" + sNombreCiudadano + "]";
+					imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
+					imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
+					imgEdit.Attributes.Add("style", "curosr:hand;");
+
+					// Atributos Over
+					sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png'; ";
+					e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
+
+					// Atributos Out
+					sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png'; ";
+					e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
 
 				}else{
+
+					// Tooltip Editar
+					sToolTip = "Editar ciudadano [" + sNombreCiudadano + "]";
+					imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
+					imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
+					imgEdit.Attributes.Add("style", "curosr:hand;");
 					
-					// Tooltips
+					// Tooltip Eliminar
 					sToolTip = "Eliminar de la Solicitud a [" + sNombreCiudadano + "]";
 					imgDelete.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
 					imgDelete.Attributes.Add("onmouseout", "tooltip.hide();");
 					imgDelete.Attributes.Add("style", "cursor:hand;");
 
 					// Atributos Over
-					sImagesAttributes = "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png'; ";
+					sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png'; ";
+					sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png'; ";
 					e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
 
 					// Atributos Out
-					sImagesAttributes = "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png'; ";
+					sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png'; ";
+					sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png'; ";
 					e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
 
 				}

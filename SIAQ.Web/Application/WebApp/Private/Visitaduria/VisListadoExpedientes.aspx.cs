@@ -1,10 +1,7 @@
 ﻿/*---------------------------------------------------------------------------------------------------------------------------------
-' Nombre:	segListadoExpediente
-' Autor:	Ruben.Cobos
-' Fecha:	27-Mayo-2014
-'
-' Modificación:
-'           Se reconstruyó la pantalla reutilizando los métodos existentes
+' Nombre:	    VisListadoExpedientes
+' Autor:		Ruben.Cobos
+' Fecha:		17-Julio-2014
 '----------------------------------------------------------------------------------------------------------------------------------*/
 
 // Referencias
@@ -23,12 +20,11 @@ using SIAQ.BusinessProcess.Page;
 using SIAQ.BusinessProcess.Object;
 using System.Data;
 
-namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
+namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 {
-	public partial class segListadoExpediente : BPPage
+	public partial class VisListadoExpedientes : BPPage
 	{
-
-
+		
 		// Utilerías
 		Function utilFunction = new Function();
 		Encryption utilEncryption = new Encryption();
@@ -36,52 +32,59 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
 		// Rutinas del programador
 
-		private void SelectRecomendacionesSeguimientos(){
-			BPSeguimientoRecomendacion BPSeguimientoRecomendacion = new BPSeguimientoRecomendacion();
+		void SelectExpediente(){
+			BPQueja oBPQueja = new BPQueja();
+			ENTQueja oENTQueja = new ENTQueja();
+			ENTResponse oENTResponse = new ENTResponse();
+
 			ENTSession oSession = (ENTSession)Session["oENTSession"];
 
-			// Estado inicial del grid
-			this.gvExpediente.DataSource = null;
-			this.gvExpediente.DataBind();
+			try
+			{
 
-			// Transacción
-			BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.UsuarioId = oSession.idUsuario;
-			BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.Aprobar = 0;
-			BPSeguimientoRecomendacion.SelectRecomendacionesSeguimientos();
+				// Formulario
+				oENTQueja.UsuarioId = oSession.idUsuario;
+				oENTQueja.Nivel = 0;
 
-			// Validaciones
-			if (BPSeguimientoRecomendacion.ErrorId != 0) { throw (new Exception(BPSeguimientoRecomendacion.ErrorString)); }
+				// Transacción
+				//oENTResponse = oBPQueja.SelectExpediente(oENTQueja);
 
-			// Listado de recomendaciones
-			if (BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows.Count > 0){
+				// Errores
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
 
-			    this.gvExpediente.DataSource = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData;
-			    this.gvExpediente.DataBind();
+				// Warnings
+				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Warning', false);", true); }
+
+				// Llenado de control
+				this.gvExpediente.DataSource = oENTResponse.dsResponse.Tables[1];
+				this.gvExpediente.DataBind();
+
+
+			}catch (Exception ex){
+				throw (ex);
 			}
-
 		}
 
 
 		// Eventos de la página
 
 		protected void Page_Load(object sender, EventArgs e){
-            try
-            {
+			try
+			{
 
 				// Validaciones
 				if (Page.IsPostBack) { return; }
 
-                // Obtener Expedientes
-				SelectRecomendacionesSeguimientos();
+				// Obtener Expedientees
+				SelectExpediente();
 
-            }catch (Exception ex){
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
-            }
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+			}
 		}
 
 		protected void gvExpediente_RowCommand(object sender, GridViewCommandEventArgs e){
 			String ExpedienteId;
-
 			String strCommand = "";
 			Int32 intRow = 0;
 
@@ -103,7 +106,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				// Acción
 				switch (strCommand){
 					case "Editar":
-						this.Response.Redirect("segDetalleExpediente.aspx?key=" + ExpedienteId + "|1", false);
+						this.Response.Redirect("QueDetalleExpediente.aspx?key=" + ExpedienteId + "|1", false);
 						break;
 				}
 
@@ -121,7 +124,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
 			try
 			{
-				
+
 				// Validación de que sea fila 
 				if (e.Row.RowType != DataControlRowType.DataRow) { return; }
 
@@ -129,10 +132,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
 
 				// DataKeys
-				sNumero = gvExpediente.DataKeys[e.Row.RowIndex]["Numero"].ToString();
+				sNumero = gvExpediente.DataKeys[e.Row.RowIndex]["NumeroSol"].ToString();
 
 				// Tooltip Editar Expediente
-				sToolTip = "Detalle de expediente [" + sNumero + "]";
+				sToolTip = "Detalle de atención [" + sNumero + "]";
 				imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
 				imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
 				imgEdit.Attributes.Add("style", "curosr:hand;");
@@ -151,23 +154,23 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		}
 
 		protected void gvExpediente_Sorting(object sender, GridViewSortEventArgs e){
-			DataTable TableAutoridad = null;
-			DataView ViewAutoridad = null;
+			DataTable tblData = null;
+			DataView viewData = null;
 
 			try
 			{
 				//Obtener DataTable y View del GridView
-				TableAutoridad = utilFunction.ParseGridViewToDataTable(gvExpediente, false);
-				ViewAutoridad = new DataView(TableAutoridad);
+				tblData = utilFunction.ParseGridViewToDataTable(gvExpediente, false);
+				viewData = new DataView(tblData);
 
 				//Determinar ordenamiento
 				hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
 
-				//Ordenar Vista
-				ViewAutoridad.Sort = hddSort.Value;
+				// Ordenar Vista
+				viewData.Sort = hddSort.Value;
 
 				//Vaciar datos
-				this.gvExpediente.DataSource = ViewAutoridad;
+				this.gvExpediente.DataSource = viewData;
 				this.gvExpediente.DataBind();
 
 			}catch (Exception ex){
@@ -175,6 +178,5 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			}
 		}
 
-	
 	}
 }

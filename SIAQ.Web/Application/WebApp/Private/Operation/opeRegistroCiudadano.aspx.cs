@@ -373,7 +373,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				}else{
 
 					ModificarCiudadano(Convert.ToInt32(hdnCiudadanoId.Value));
-					Response.Redirect("opeBusquedaCiudadano.aspx");
+
+					if (this.hddSolicitudId.Value != ""){
+
+						Response.Redirect("../Quejas/QueAgregarCiudadanos.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value + "|0", false);
+					}else{
+
+						Response.Redirect("opeBusquedaCiudadano.aspx");
+					}
 
 				}
 
@@ -385,7 +392,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 		protected void btnRegresar_Click(object sender, EventArgs e){
 			if (this.hddSolicitudId.Value != ""){
 
-				Response.Redirect("opeAgregarCiudadanosSol.aspx?s=" + this.hddSolicitudId.Value, false);
+				Response.Redirect("../Quejas/QueAgregarCiudadanos.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value + "|0", false);
 			}else{
 
 				Response.Redirect("opeBusquedaCiudadano.aspx");

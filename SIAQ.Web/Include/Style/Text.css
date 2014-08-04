@@ -21,6 +21,22 @@
 	vertical-align: top;
 }
 
+.Asunto_Success
+{
+	color: #27245D;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size:medium;
+	font-weight:bold;
+}
+
+.Asunto_Pending
+{
+	color:Red;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size:medium;
+	font-weight:bold;
+}
+
 /*'---------------------------------------------------------------------------------------------------------------------------------*/
 
 .GraphTabTitleText{

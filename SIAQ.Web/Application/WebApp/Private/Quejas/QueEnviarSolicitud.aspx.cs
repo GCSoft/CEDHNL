@@ -89,8 +89,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				this.FechaAsignacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaAsignacion"].ToString();
 				this.FechaGestionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaInicioGestion"].ToString();
 				this.FechaModificacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaUltimaModificacion"].ToString();
-				this.NivelAutoridadLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["MecanismoAperturaNombre"].ToString();
-				this.MecanismoAperturaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NivelAutoridadNombre"].ToString();
+				this.NivelAutoridadLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NivelAutoridadNombre"].ToString();
+				this.MecanismoAperturaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["MecanismoAperturaNombre"].ToString();
 
 				this.LugarHechosLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["LugarHechosNombre"].ToString();
 				this.DireccionHechosLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["DireccionHechos"].ToString();
@@ -201,6 +201,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				if ( oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["ProblematicaDetalleId"].ToString() == "0" ){
 					this.imgCalificar.ImageUrl = "~/Include/Image/Icon/CalificarIcon_Pending.png";
 					this.imgCalificar.ToolTip = "No se ha establecido el detalle de la problemática de la solicitud";
+					this.btnEnviar.Enabled = false;
+					this.btnEnviar.CssClass = "Button_General_Disabled";
+				}
+
+				// Asuntos
+				this.lblAsuntos.Text = "Asuntos capturados: " + oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["Asuntos"].ToString(); 
+				if (oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["Asuntos"].ToString() == "0"){
+					this.lblAsuntos.CssClass = "Asunto_Pending";
 					this.btnEnviar.Enabled = false;
 					this.btnEnviar.CssClass = "Button_General_Disabled";
 				}

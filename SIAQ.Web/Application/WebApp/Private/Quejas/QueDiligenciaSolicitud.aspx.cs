@@ -192,8 +192,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				this.FechaAsignacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaAsignacion"].ToString();
 				this.FechaGestionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaInicioGestion"].ToString();
 				this.FechaModificacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaUltimaModificacion"].ToString();
-				this.NivelAutoridadLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["MecanismoAperturaNombre"].ToString();
-				this.MecanismoAperturaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NivelAutoridadNombre"].ToString();
+				this.NivelAutoridadLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NivelAutoridadNombre"].ToString();
+				this.MecanismoAperturaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["MecanismoAperturaNombre"].ToString();
 
 				this.LugarHechosLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["LugarHechosNombre"].ToString();
 				this.DireccionHechosLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["DireccionHechos"].ToString();
@@ -522,71 +522,67 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
 		#region Funciones
 
+			private void EliminarDiligencia(string solicitudId, string diligenciaId){
+				ENTResponse oENTResponse = new ENTResponse();
+				ENTDiligencia oENTDiligencia = new ENTDiligencia();
+				BPDiligencia oBPDiligencia = new BPDiligencia();
 
-
-		
-
-		private void EliminarDiligencia(string solicitudId, string diligenciaId){
-			ENTResponse oENTResponse = new ENTResponse();
-			ENTDiligencia oENTDiligencia = new ENTDiligencia();
-			BPDiligencia oBPDiligencia = new BPDiligencia();
-
-			try
-			{
-				oENTDiligencia.DiligenciaId = Convert.ToInt32(diligenciaId);
-				oENTDiligencia.SolicitudId = Convert.ToInt32(solicitudId);
-
-				oENTResponse = oBPDiligencia.DeleteDiligenciaSolicitud(oENTDiligencia);
-
-				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
-				if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
-
-				SelectDiligencia();
-
-			}catch (Exception ex){
-				throw (ex);
-			}
-		}
-
-		private void LimpiarControles()
-		{
-			ddlFuncionario.SelectedIndex = 0;
-			calFecha.SetCurrentDate();
-			ddlTipoDiligencia.SelectedIndex = 0;
-			ddlLugarDiligencia.SelectedIndex = 0;
-			ckeDetalle.Text = String.Empty;
-			txtSolicitadaPor.Text = String.Empty;
-			ckeResultado.Text = String.Empty;
-			hddDiligenciaId.Value = String.Empty;
-
-			ddlFuncionario.Focus();
-
-		}
-
-		private void MostrarDatosEdicion(string solicitudId, string diligenciaId)
-		{
-			BPDiligencia oBPDiligencia = new BPDiligencia();
-
-			oBPDiligencia.DiligenciaEntity.SolicitudId = Convert.ToInt32(solicitudId);
-			oBPDiligencia.DiligenciaEntity.DiligenciaId = Convert.ToInt32(diligenciaId);
-
-			oBPDiligencia.SelectDetalleDiligenciaSolicitud();
-
-			if (oBPDiligencia.ErrorId == 0)
-			{
-				if (oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows.Count > 0)
+				try
 				{
-					hddDiligenciaId.Value = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["DiligenciaId"].ToString();
-					ddlFuncionario.SelectedValue = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["FuncionarioEjecuta"].ToString();
-					calFecha.SetDate = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["FechaDiligencia"].ToString();
-					ddlTipoDiligencia.SelectedValue = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["TipoDiligencia"].ToString();
-					ddlLugarDiligencia.SelectedValue = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["LugarDiligencia"].ToString();
-					ckeDetalle.Text = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["Detalle"].ToString();
-					txtSolicitadaPor.Text = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["SolicitadaPor"].ToString();
-					ckeResultado.Text = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["Resultado"].ToString();
+					oENTDiligencia.DiligenciaId = Convert.ToInt32(diligenciaId);
+					oENTDiligencia.SolicitudId = Convert.ToInt32(solicitudId);
+
+					oENTResponse = oBPDiligencia.DeleteDiligenciaSolicitud(oENTDiligencia);
+
+					if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+					if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+
+					SelectDiligencia();
+
+				}catch (Exception ex){
+					throw (ex);
 				}
 			}
-		}
+
+			private void LimpiarControles()
+			{
+				ddlFuncionario.SelectedIndex = 0;
+				calFecha.SetCurrentDate();
+				ddlTipoDiligencia.SelectedIndex = 0;
+				ddlLugarDiligencia.SelectedIndex = 0;
+				ckeDetalle.Text = String.Empty;
+				txtSolicitadaPor.Text = String.Empty;
+				ckeResultado.Text = String.Empty;
+				hddDiligenciaId.Value = String.Empty;
+
+				ddlFuncionario.Focus();
+
+			}
+
+			private void MostrarDatosEdicion(string solicitudId, string diligenciaId)
+			{
+				BPDiligencia oBPDiligencia = new BPDiligencia();
+
+				oBPDiligencia.DiligenciaEntity.SolicitudId = Convert.ToInt32(solicitudId);
+				oBPDiligencia.DiligenciaEntity.DiligenciaId = Convert.ToInt32(diligenciaId);
+
+				oBPDiligencia.SelectDetalleDiligenciaSolicitud();
+
+				if (oBPDiligencia.ErrorId == 0)
+				{
+					if (oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows.Count > 0)
+					{
+						hddDiligenciaId.Value = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["DiligenciaId"].ToString();
+						ddlFuncionario.SelectedValue = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["FuncionarioEjecuta"].ToString();
+						calFecha.SetDate = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["FechaDiligencia"].ToString();
+						ddlTipoDiligencia.SelectedValue = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["TipoDiligencia"].ToString();
+						ddlLugarDiligencia.SelectedValue = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["LugarDiligencia"].ToString();
+						ckeDetalle.Text = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["Detalle"].ToString();
+						txtSolicitadaPor.Text = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["SolicitadaPor"].ToString();
+						ckeResultado.Text = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["Resultado"].ToString();
+					}
+				}
+			}
 
 		#endregion
 

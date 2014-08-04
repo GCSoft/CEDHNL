@@ -122,8 +122,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				this.FechaAsignacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaAsignacion"].ToString();
 				this.FechaGestionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaInicioGestion"].ToString();
 				this.FechaModificacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaUltimaModificacion"].ToString();
-				this.NivelAutoridadLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["MecanismoAperturaNombre"].ToString();
-				this.MecanismoAperturaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NivelAutoridadNombre"].ToString();
+				this.NivelAutoridadLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NivelAutoridadNombre"].ToString();
+				this.MecanismoAperturaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["MecanismoAperturaNombre"].ToString();
 
 				this.TipoOrientacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["TipoOrientacionNombre"].ToString();
 				this.LugarHechosLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["LugarHechosNombre"].ToString();
@@ -245,6 +245,25 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
             }catch (Exception ex){
 				throw(ex);
             }
+		}
+
+		void SetStyleInItemChecked(){
+			try
+			{
+
+				for (int k = 0; k < this.chkIndicador.Items.Count; k++)
+				{
+
+					if (this.chkIndicador.Items[k].Selected )
+					{
+						this.chkIndicador.Items[k].Attributes.Add("Style", "color:red;");
+					}
+
+				}
+
+			}catch (Exception) { 
+				// Do Nothing
+			}
 		}
 
 
@@ -491,6 +510,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				this.gvCiudadano.DataSource = viewData;
 				this.gvCiudadano.DataBind();
 
+				// Estilos de Items Seleccionados
+				SetStyleInItemChecked();
+
 			}catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
 			}
@@ -534,6 +556,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				this.gvDiligencia.DataSource = viewData;
 				this.gvDiligencia.DataBind();
 
+				// Estilos de Items Seleccionados
+				SetStyleInItemChecked();
+
 			}catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
 			}
@@ -548,6 +573,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
             try
             {
+
+				// Validaciones
+				if (this.hddCalificacionId.Value == "8") { return; }
 
                 // Acceso a la imagen
                 imgHeaderSwapGrid = (ImageButton)sender;
@@ -572,6 +600,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
                     SwapGridByHeader(rowVozDetalle.DataItemIndex, isVisible);
                 }
 
+				// Estilos de Items Seleccionados
+				SetStyleInItemChecked();
+
             }catch (Exception ex){
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
             }
@@ -586,6 +617,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 						if (this.hddCalificacionId.Value != "8") { SwapGrid(Convert.ToInt32(e.CommandArgument.ToString())); }
                         break;
                 }
+
+				// Estilos de Items Seleccionados
+				SetStyleInItemChecked();
 
             }catch (Exception ex){
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
@@ -670,6 +704,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
                 //Vaciar datos
                 this.gvAutoridades.DataSource = ViewAutoridad;
                 this.gvAutoridades.DataBind();
+
+				// Estilos de Items Seleccionados
+				SetStyleInItemChecked();
 
             }catch (Exception ex){
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);

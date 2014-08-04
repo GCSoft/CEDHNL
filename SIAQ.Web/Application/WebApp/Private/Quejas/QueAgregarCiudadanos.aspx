@@ -190,6 +190,11 @@
 							<asp:BoundField HeaderText="Domicilio"	ItemStyle-HorizontalAlign="Left"							DataField="Domicilio"				SortExpression="Domicilio"></asp:BoundField>
 							<asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="25px">
                                 <ItemTemplate>
+                                    <asp:ImageButton ID="imgEdit" runat="server" CommandArgument='<%#Eval("CiudadanoId")%>' CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+							<asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="25px">
+                                <ItemTemplate>
                                     <asp:ImageButton ID="imgDelete" runat="server" CommandArgument='<%#Eval("CiudadanoId")%>' CommandName="Eliminar" ImageUrl="~/Include/Image/Buttons/Delete.png" />
                                 </ItemTemplate>
                             </asp:TemplateField>

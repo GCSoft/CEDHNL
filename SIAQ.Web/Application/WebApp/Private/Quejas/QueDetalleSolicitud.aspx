@@ -257,6 +257,11 @@
 										<%# DataBinder.Eval(Container.DataItem, "Comentario")%>
 									</td>
                                 </tr>
+								<tr>
+                                    <td colspan="2" style="text-align:right;">
+										<asp:LinkButton ID="lnkEliminarComentario" runat="server" CssClass="LinkButton_Regular" Text="Eiminar asunto" CommandArgument='<%#Eval("ComentarioId")%>' OnCommand="lnkEliminarComentario_Click" Visible="false" ></asp:LinkButton>
+									</td>
+                                </tr>
                             </table>
                         </td>
                     </tr>

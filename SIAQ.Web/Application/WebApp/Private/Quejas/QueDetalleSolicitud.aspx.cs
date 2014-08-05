@@ -32,6 +32,69 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
 		// Funciones el programador
 
+		void CheckDeleteLinkComentario(){
+			ENTSession SessionEntity = new ENTSession();
+
+			try
+			{
+
+				// Obtener sesión
+				SessionEntity = (ENTSession)Session["oENTSession"];
+
+				// Si es Funcionario y el expediente está asignado a el puede agregar comentarios siempre y cuando no esté en estatus de confirmación de cierre
+				if (SessionEntity.idRol == 5 && Int32.Parse(this.hddFuncionarioId.Value) == SessionEntity.FuncionarioId){
+					if (Int32.Parse(this.hddEstatusId.Value) != 4){
+
+						foreach (RepeaterItem repItem in repComentarios.Items){
+							LinkButton oLinkButton = (LinkButton)repItem.FindControl("lnkEliminarComentario");
+							oLinkButton.Visible = true;
+						}
+
+					}
+				}
+
+				// Si es Administrador puede agregar comentarios siempre y cuando no esté en estatus de confirmación de cierre
+				if (SessionEntity.idRol == 1 || SessionEntity.idRol == 2){
+					if (Int32.Parse(this.hddEstatusId.Value) != 4){
+
+						foreach (RepeaterItem repItem in repComentarios.Items){
+							LinkButton oLinkButton = (LinkButton)repItem.FindControl("lnkEliminarComentario");
+							oLinkButton.Visible = true;
+						}
+
+					}
+				}
+
+			}catch(Exception ex){
+				throw(ex);
+			}
+		}
+
+		void DeleteSolicitudComentario(Int32 ComentarioId) {
+			BPQueja oBPQueja = new BPQueja();
+
+			ENTQueja oENTQueja = new ENTQueja();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+				
+				// Formulario
+				oENTQueja.SolicitudId = Int32.Parse(this.hddSolicitudId.Value);
+				oENTQueja.ComentarioId = ComentarioId;
+
+				// Transacción
+				oENTResponse = oBPQueja.DeleteSolicitudComentario(oENTQueja);
+
+				// Errores y Warnings
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }	
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
 		void InsertSolicitudComentario() {
 			BPQueja oBPQueja = new BPQueja();
 
@@ -131,12 +194,18 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				if (oENTResponse.dsResponse.Tables[4].Rows.Count == 0){
 
 					this.SinComentariosLabel.Text = "<br /><br />No hay asuntos para esta solicitud";
+					this.repComentarios.DataSource = null;
+					this.repComentarios.DataBind();
+					this.ComentarioTituloLabel.Text = "";
 				}else{
 
 					this.SinComentariosLabel.Text = "";
 					this.repComentarios.DataSource = oENTResponse.dsResponse.Tables[4];
 					this.repComentarios.DataBind();
 					this.ComentarioTituloLabel.Text = oENTResponse.dsResponse.Tables[4].Rows.Count.ToString() + " asuntos";
+
+					CheckDeleteLinkComentario();
+
 				}
 
 
@@ -291,7 +360,18 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
 				// Si es Funcionario y el expediente está asignado a el puede agregar comentarios siempre y cuando no esté en estatus de confirmación de cierre
 				if (idRol == 5 && Int32.Parse(this.hddFuncionarioId.Value) == FuncionarioId) {
-					if (Int32.Parse(this.hddEstatusId.Value) != 4) { this.lnkAgregarComentario.Visible = true; }
+					if (Int32.Parse(this.hddEstatusId.Value) != 4) { 
+						
+						this.lnkAgregarComentario.Visible = true;
+					}
+				}
+
+				// Si es Administrador puede agregar comentarios siempre y cuando no esté en estatus de confirmación de cierre
+				if (idRol == 1 || idRol == 2) {
+					if (Int32.Parse(this.hddEstatusId.Value) != 4) { 
+						
+						this.lnkAgregarComentario.Visible = true;
+					}
 				}
 
 				// Si la calificación no es Queja ( CalficacionId = 2 ) o Medidas Cautelares ( CalficacionId = 8 ) no puede agregar autoridades y voces
@@ -453,6 +533,21 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
             this.pnlAction.Visible = true;
         }
 
+		protected void lnkEliminarComentario_Click(object sender, CommandEventArgs  e){
+			try
+            {
+
+				// Eliminar el comentario
+				DeleteSolicitudComentario(Int32.Parse(e.CommandArgument.ToString()));
+
+				// Consultar el expediente
+				SelectSolicitud();
+
+            }catch (Exception ex){
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+            }
+		}
+
 
 		// Opciones de Menu (por orden de aparación)
 
@@ -475,9 +570,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 		protected void AsignarButton_Click(object sender, ImageClickEventArgs e){
 			Response.Redirect("QueAsignarFuncionario.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value);
 		}
-
-		// ----------------------------------------------------------------------------------------------
-		// TODO: Quedan pendientes de validar las siguientes pantallas, hay que cambiar el estatus a "En proceso de Queja" en cada una.
 
 		protected void CiudadanoButton_Click(object sender, ImageClickEventArgs e){
 			Response.Redirect("QueAgregarCiudadanos.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value + "|0");
@@ -506,7 +598,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 		protected void ImprimirButton_Click(object sender, ImageClickEventArgs e){
 			Response.Redirect("QueImprimirSolicitud.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value);
 		}
-		// ----------------------------------------------------------------------------------------------
+		
 		protected void EnviarButton_Click(object sender, ImageClickEventArgs e){
 			Response.Redirect("QueEnviarSolicitud.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value);
 		}

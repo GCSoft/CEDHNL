@@ -1,7 +1,7 @@
 ﻿/*---------------------------------------------------------------------------------------------------------------------------------
 ' Nombre:	    VisListadoExpedientes
 ' Autor:		Ruben.Cobos
-' Fecha:		17-Julio-2014
+' Fecha:		04-Agosto-2014
 '----------------------------------------------------------------------------------------------------------------------------------*/
 
 // Referencias
@@ -32,9 +32,17 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
 		// Rutinas del programador
 
+		void SelectArea() {
+			this.ddlArea.Items.Insert(0, new ListItem("Coordinación Penitenciaria", "10"));
+			this.ddlArea.Items.Insert(0, new ListItem("Tercera Visitaduría", "6"));
+			this.ddlArea.Items.Insert(0, new ListItem("Segunda Visitaduría", "5"));
+			this.ddlArea.Items.Insert(0, new ListItem("Primera Visitaduría", "4"));
+			this.ddlArea.Items.Insert(0, new ListItem("[Todas]", "0"));
+		}
+
 		void SelectExpediente(){
-			BPQueja oBPQueja = new BPQueja();
-			ENTQueja oENTQueja = new ENTQueja();
+			BPVisitaduria oBPVisitaduria = new BPVisitaduria();
+			ENTVisitaduria oENTVisitaduria = new ENTVisitaduria();
 			ENTResponse oENTResponse = new ENTResponse();
 
 			ENTSession oSession = (ENTSession)Session["oENTSession"];
@@ -43,11 +51,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			{
 
 				// Formulario
-				oENTQueja.UsuarioId = oSession.idUsuario;
-				oENTQueja.Nivel = 0;
+				oENTVisitaduria.AreaId = Int32.Parse(this.ddlArea.SelectedItem.Value);
+				oENTVisitaduria.UsuarioId = oSession.idUsuario;
+				oENTVisitaduria.Nivel = 0;
 
 				// Transacción
-				//oENTResponse = oBPQueja.SelectExpediente(oENTQueja);
+				oENTResponse = oBPVisitaduria.SelectExpediente(oENTVisitaduria);
 
 				// Errores
 				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
@@ -59,6 +68,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				this.gvExpediente.DataSource = oENTResponse.dsResponse.Tables[1];
 				this.gvExpediente.DataBind();
 
+				// Si es Funcionario/Visitador Inhabilitar panel de consulta de Área
+				if (oSession.idRol == 8) { 
+					this.pnlFormulario.Visible = false;
+					this.hddAreaVisible.Value = "0";
+				}
 
 			}catch (Exception ex){
 				throw (ex);
@@ -75,12 +89,33 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				// Validaciones
 				if (Page.IsPostBack) { return; }
 
-				// Obtener Expedientees
+				// Llenado de controles
+				SelectArea();
+
+				// Obtener Expedientes
 				SelectExpediente();
 
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), (this.hddAreaVisible.Value == "0" ? "" : "focusControl('" + this.ddlArea.ClientID + "'); "), true);
+
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); " + (this.hddAreaVisible.Value == "0" ? "" : "focusControl('" + this.ddlArea.ClientID + "'); "), true);
 			}
+		}
+
+		protected void ddlArea_SelectedIndexChanged(object sender, EventArgs e){
+			try
+            {
+
+                // Recargar los expedientes
+				SelectExpediente();
+				
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlArea.ClientID + "');", true);
+
+            }catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); " + (this.hddAreaVisible.Value == "0" ? "" : "focusControl('" + this.ddlArea.ClientID + "'); "), true);
+            }
 		}
 
 		protected void gvExpediente_RowCommand(object sender, GridViewCommandEventArgs e){
@@ -106,12 +141,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				// Acción
 				switch (strCommand){
 					case "Editar":
-						this.Response.Redirect("QueDetalleExpediente.aspx?key=" + ExpedienteId + "|1", false);
+						this.Response.Redirect("VisDetalleExpediente.aspx?key=" + ExpedienteId + "|1", false);
 						break;
 				}
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); " + (this.hddAreaVisible.Value == "0" ? "" : "focusControl('" + this.ddlArea.ClientID + "'); "), true);
 			}
 		}
 
@@ -132,10 +167,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
 
 				// DataKeys
-				sNumero = gvExpediente.DataKeys[e.Row.RowIndex]["NumeroSol"].ToString();
+				sNumero = gvExpediente.DataKeys[e.Row.RowIndex]["ExpedienteNumero"].ToString();
 
 				// Tooltip Editar Expediente
-				sToolTip = "Detalle de atención [" + sNumero + "]";
+				sToolTip = "Detalle de Expediente [" + sNumero + "]";
 				imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
 				imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
 				imgEdit.Attributes.Add("style", "curosr:hand;");
@@ -174,7 +209,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				this.gvExpediente.DataBind();
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); " + (this.hddAreaVisible.Value == "0" ? "" : "focusControl('" + this.ddlArea.ClientID + "'); "), true);
 			}
 		}
 

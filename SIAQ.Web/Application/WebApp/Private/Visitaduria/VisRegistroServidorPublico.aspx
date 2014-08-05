@@ -1,8 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="opeRegistroServPublico.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Operation.opeRegistroServPublico" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="VisRegistroServidorPublico.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Visitaduria.VisRegistroServidorPublico" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
+	
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
-   <table border="0" cellpadding="0" cellspacing="0" width="100%">
+	
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
       <tr>
 			<td class="tdCeldaTituloEncabezado" style="background-image:url('../../../../Include/Image/Web/BarraTitulo.png');">
 				Registro de Servidores Públicos
@@ -158,4 +161,5 @@
          </td>
       </tr>
    </table>
+
 </asp:Content>

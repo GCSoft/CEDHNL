@@ -104,6 +104,7 @@
     <Compile Include="Object\DASubMenu.cs" />
     <Compile Include="Object\DARol.cs" />
     <Compile Include="Object\DAVisita.cs" />
+    <Compile Include="Object\DAVisitaduria.cs" />
     <Compile Include="Object\DAVocesSenaladas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

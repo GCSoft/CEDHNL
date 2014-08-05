@@ -60,12 +60,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Home
 					break;
 
 				case 7: // Visitaduría - Secretaria
+					this.Response.Redirect("../Visitaduria/VisListadoExpedientes.aspx", false);
 					break;
 
 				case 8: // Visitaduría - Visitador
+					this.Response.Redirect("../Visitaduria/VisListadoExpedientes.aspx", false);
 					break;
 
 				case 9: // Visitaduría - Director
+					this.Response.Redirect("../Visitaduria/VisListadoExpedientes.aspx", false);
 					break;
 
 				case 10: // Seguimiento - Secretaria

@@ -157,36 +157,6 @@ namespace SIAQ.BusinessProcess.Object
                 return oENTResponse;
             }
 
-            ///<remarks>
-            ///   <name>BPExpediente.deletecatTipoSolicitud</name>
-            ///   <create>27/ene/2014</create>
-            ///   <author>Generador</author>
-            ///</remarks>
-            ///<summary>Metodo para eliminar de Expediente del sistema</summary>
-            public ENTResponse deleteExpediente(ENTExpediente oENTExpediente)
-            {
-
-                ENTResponse oENTResponse = new ENTResponse();
-                try
-                {
-                    // Consulta a base de datos
-                    DAExpediente oDAExpediente = new DAExpediente();
-                    oENTResponse = oDAExpediente.searchExpediente(oENTExpediente);
-                    // Validación de error en consulta
-                    if (oENTResponse.GeneratesException) { return oENTResponse; }
-                    // Validación de mensajes de la BD
-                    oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-                    if (oENTResponse.sMessage != "") { return oENTResponse; }
-                }
-                catch (Exception ex)
-                {
-                    oENTResponse.ExceptionRaised(ex.Message);
-                }
-                // Resultado
-                return oENTResponse;
-
-            }
-
             /// <summary>
             /// Agrega el acuerdo de calificación definitiva
             /// </summary>
@@ -216,36 +186,6 @@ namespace SIAQ.BusinessProcess.Object
                 return oENTResponse;
             }
 
-            ///<remarks>
-            ///   <name>BPExpediente.insertcatTipoSolicitud</name>
-            ///   <create>27/ene/2014</create>
-            ///   <author>Generador</author>
-            ///</remarks>
-            ///<summary>Metodo para insertar Expediente del sistema</summary>
-            public ENTResponse insertExpediente(ENTExpediente oENTExpediente)
-            {
-
-                ENTResponse oENTResponse = new ENTResponse();
-                try
-                {
-                    // Consulta a base de datos
-                    DAExpediente oDAExpediente = new DAExpediente();
-                    oENTResponse = oDAExpediente.searchExpediente(oENTExpediente);
-                    // Validación de error en consulta
-                    if (oENTResponse.GeneratesException) { return oENTResponse; }
-                    // Validación de mensajes de la BD
-                    oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-                    if (oENTResponse.sMessage != "") { return oENTResponse; }
-                }
-                catch (Exception ex)
-                {
-                    oENTResponse.ExceptionRaised(ex.Message);
-                }
-                // Resultado
-                return oENTResponse;
-
-            }
-
             /// <summary>
             /// Rechaza resolución de expediente 
             /// </summary>
@@ -272,35 +212,6 @@ namespace SIAQ.BusinessProcess.Object
                 }
 
                 //Resultado
-                return oENTResponse;
-            }
-
-            ///<remarks>
-            ///   <name>BPExpediente.searchcatTipoSolicitud</name>
-            ///   <create>27/ene/2014</create>
-            ///   <author>Generador</author>
-            ///</remarks>
-            ///<summary>Metodo para obtener el Expediente del sistema</summary>
-            public ENTResponse searchExpediente(ENTExpediente oENTExpediente)
-            {
-
-                ENTResponse oENTResponse = new ENTResponse();
-                try
-                {
-                    // Consulta a base de datos
-                    DAExpediente oDAExpediente = new DAExpediente();
-                    oENTResponse = oDAExpediente.searchExpediente(oENTExpediente);
-                    // Validación de error en consulta
-                    if (oENTResponse.GeneratesException) { return oENTResponse; }
-                    // Validación de mensajes de la BD
-                    oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-                    if (oENTResponse.sMessage != "") { return oENTResponse; }
-                }
-                catch (Exception ex)
-                {
-                    oENTResponse.ExceptionRaised(ex.Message);
-                }
-                // Resultado
                 return oENTResponse;
             }
 
@@ -349,23 +260,6 @@ namespace SIAQ.BusinessProcess.Object
 
                 _ErrorId = DAExpediente.ErrorId;
                 _ErrorDescription = DAExpediente.ErrorDescription;
-            }
-
-            /// <summary>
-            ///     Obtiene los expedientes asignados a un funcionario en específico
-            /// </summary>
-            public void SelectExpediente_Funcionario(ENTExpediente oENTExpediente)
-            {
-                _ExpedienteEntity = new ENTExpediente();
-
-                string sConnectionString = string.Empty;
-                DAExpediente oDAExpediente = new DAExpediente();
-
-                sConnectionString = sConnectionApplication;
-
-                _ExpedienteEntity.ResultData = oDAExpediente.SelectExpediente_Funcionario(oENTExpediente, sConnectionString);
-                _ErrorId = oDAExpediente.ErrorId;
-                _ErrorDescription = oDAExpediente.ErrorDescription;
             }
 
             /// <summary>
@@ -423,36 +317,6 @@ namespace SIAQ.BusinessProcess.Object
                 oENTExpediente.ResultData = oDAExpediente.SelectFuncionario_Asignar(oENTExpediente, sConnectionString);
                 _ErrorId = oDAExpediente.ErrorId;
                 _ErrorDescription = oDAExpediente.ErrorDescription;
-            }
-
-            ///<remarks>
-            ///   <name>BPExpediente.updatecatTipoSolicitud</name>
-            ///   <create>27/ene/2014</create>
-            ///   <author>Generador</author>
-            ///</remarks>
-            ///<summary>Metodo que actualiza Expediente del sistema</summary>
-            public ENTResponse updateExpediente(ENTExpediente oENTExpediente)
-            {
-
-                ENTResponse oENTResponse = new ENTResponse();
-                try
-                {
-                    // Consulta a base de datos
-                    DAExpediente oDAExpediente = new DAExpediente();
-                    oENTResponse = oDAExpediente.searchExpediente(oENTExpediente);
-                    // Validación de error en consulta
-                    if (oENTResponse.GeneratesException) { return oENTResponse; }
-                    // Validación de mensajes de la BD
-                    oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-                    if (oENTResponse.sMessage != "") { return oENTResponse; }
-                }
-                catch (Exception ex)
-                {
-                    oENTResponse.ExceptionRaised(ex.Message);
-                }
-                // Resultado
-                return oENTResponse;
-
             }
 
             /// <summary>

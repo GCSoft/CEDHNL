@@ -89,6 +89,39 @@ namespace SIAQ.BusinessProcess.Object
 		}
 
 		///<remarks>
+		///   <name>BPQueja.DeleteSolicitudComentario</name>
+		///   <create>19-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Elimina un comentario a la solicitud de una Queja</summary>
+		///<param name="oENTQueja">Entidad de Queja con los parámetros necesarios para realizar la transacción</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse DeleteSolicitudComentario(ENTQueja oENTQueja){
+			DAQueja oDASolicitud = new DAQueja();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Transacción en base de datos
+				oENTResponse = oDASolicitud.DeleteSolicitudComentario(oENTQueja, this.sConnectionApplication, 0);
+
+				// Validación de error en consulta
+				if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+				// Validación de mensajes de la BD
+				oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+				if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
+		///<remarks>
 		///   <name>BPQueja.InsertExpediente</name>
 		///   <create>19-Julio-2014</create>
 		///   <author>Ruben.Cobos</author>

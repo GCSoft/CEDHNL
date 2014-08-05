@@ -21,6 +21,7 @@ namespace SIAQ.Entity.Object
 		private Int32		_AreaId;				// Identificador único del Área a la que se generará el Expediente
 		private Int32		_CalificacionId;		// Identificador único de la Calificación de la Solicitud
 		private Int32		_CiudadanoId;			// Identificador único del Ciudadano asociado a la solicitud
+		private Int32		_ComentarioId;			// Identificador único del comentario de una solicitud
 		private Int32		_EstatusId;				// Identificador único del Estatus de la Solicitud
 		private Int32		_FormaContactoId;		// Identificador único de la forma de contacto
 		private Int32		_FuncionarioId;			// Identificador único del funcionario asociado a la solicitud
@@ -60,6 +61,7 @@ namespace SIAQ.Entity.Object
 			_AreaId = 0;
 			_CalificacionId = 0;
 			_CiudadanoId = 0;
+			_ComentarioId = 0;
 			_EstatusId = 0;
 			_FormaContactoId = 0;
 			_FuncionarioId = 0;
@@ -130,6 +132,18 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _CiudadanoId; }
 			set { _CiudadanoId = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTQueja.ComentarioId</name>
+		///   <create>18-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el identificador único del comentario de una solicitud</summary>
+		public Int32 ComentarioId
+		{
+			get { return _ComentarioId; }
+			set { _ComentarioId = value; }
 		}
 
 		///<remarks>

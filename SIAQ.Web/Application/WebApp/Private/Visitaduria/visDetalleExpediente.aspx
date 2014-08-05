@@ -7,7 +7,7 @@
         function ImprimirExpediente() {
             var ExpedienteId = 0;
 
-            ExpedienteId = document.getElementById("<%= ExpedienteIdHidden.ClientID %>").value;
+            ExpedienteId = document.getElementById("<%= hddExpedienteId.ClientID %>").value;
 
             window.open("visImprmirExpediente.aspx?expId=" + ExpedienteId, "ImprimirExpediente", "");
         }
@@ -361,21 +361,16 @@
         </div>
         <!-- Fin repeater -->
 
+        <!-- Botones Pie de Página -->
         <table border="0" cellpadding="0" cellspacing="0" width="100%">
-            <tr>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td class="tdCeldaMiddleSpace">
-                </td>
-            </tr>
+            <tr><td class="tdCeldaMiddleSpace"></td></tr>
             <tr>
                 <td style="text-align: left;">
-                    <input class="Button_General" id="RegresarButton" onclick="document.location.href='opeBusquedaExpedientes.aspx';" style="width: 125px;" type="button" value="Regresar" />
+					<asp:Button ID="btnRegresar" runat="server" Text="Regresar" CssClass="Button_General" width="125px" onclick="btnRegresar_Click" />
                 </td>
             </tr>
         </table>
+
     </div>
 
     <asp:Panel ID="pnlAction" runat="server" CssClass="ActionBlock" Visible="false">
@@ -430,6 +425,12 @@
         </asp:Panel>
     </asp:Panel>
 
-    <asp:HiddenField ID="SolicitudIdHidden" runat="server" Value="0" />
-    <asp:HiddenField ID="ExpedienteIdHidden" runat="server" Value="0" />
+	<asp:HiddenField ID="hddExpedienteId" runat="server" Value="0"  />
+	<asp:HiddenField ID="hddCalificacionId" runat="server" Value="0"  />
+	<asp:HiddenField ID="hddEstatusId" runat="server" Value="0"  />
+	<asp:HiddenField ID="hddFuncionarioId" runat="server" Value="0"  />
+	<asp:HiddenField ID="Sender" runat="server" Value=""  />
+	<asp:HiddenField ID="SenderId" runat="server" Value="0"  />
+	<asp:HiddenField ID="hddSort" runat="server" Value="NombreTipoCiudadano" />
+
 </asp:Content>

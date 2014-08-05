@@ -18,6 +18,76 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
         bool IsReadOnly = false;
         Function utilFunction = new Function();
 
+
+		protected void Page_Load(object sender, EventArgs e){
+			ENTSession SessionEntity = new ENTSession();
+
+			int ExpedienteId = 0;
+
+            try
+            {
+
+                // Validaciones
+                if (Page.IsPostBack) { return; }
+                if (this.Request.QueryString["key"] == null) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
+                if (this.Request.QueryString["key"].ToString().Split(new Char[] { '|' }).Length != 2) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
+
+				// Obtener AtencionId
+				this.hddExpedienteId.Value = this.Request.QueryString["key"].ToString().Split(new Char[] { '|' })[0];
+
+                // Obtener Sender
+                this.SenderId.Value = this.Request.QueryString["key"].ToString().ToString().Split(new Char[] { '|' })[1];
+
+                switch (this.SenderId.Value){
+					case "1": // Invocado desde [Listado de Expedientes]
+						this.Sender.Value = "VisListadoExpedientes.aspx";
+                        break;
+
+					case "2": // Invocado desde [Búsqueda de Solicitudes]
+						this.Sender.Value = "VisBusquedaExpedientes.aspx";
+						break;
+
+					//case "3": // Invocado desde [Registrar solicitud ]
+					//    this.Sender.Value = "../Operation/opeRegistroSolicitud.aspx?key=0|0";
+					//    break;
+
+                    default:
+                        this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false);
+                        return;
+                }
+
+				//// Obtener sesión
+				//SessionEntity = (ENTSession)Session["oENTSession"];
+
+				//// Consultar detalle de la Solicitud de Quejas
+				//SelectSolicitud();
+
+				//// Seguridad
+				//SetPermisosGenerales(SessionEntity.idRol);
+				//SetPermisosParticulares(SessionEntity.idRol, SessionEntity.FuncionarioId);
+
+				SetPermisos();
+
+				ExpedienteId = Int32.Parse(this.hddExpedienteId.Value);
+
+				ValidarExpediente(ExpedienteId);
+				SelectExpediente(ExpedienteId);
+				SelectExpedienteCiudadano(ExpedienteId);
+				SelectExpedienteRepositorio(int.Parse(this.hddExpedienteId.Value));
+				SelectExpedienteComentario(ExpedienteId);
+
+				this.hddExpedienteId.Value = ExpedienteId.ToString();
+
+            }catch (Exception ex){
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+            }
+		}
+
+		protected void btnRegresar_Click(object sender, EventArgs e){
+			Response.Redirect(this.Sender.Value);
+		}
+
+
         #region "Event"
            
 
@@ -54,26 +124,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 //pnlAction.Visible = false;
             }
 
-            
-
             protected void DocumentList_ItemDataBound(Object sender, DataListItemEventArgs e)
             {
                 DocumentListItemDataBound(e);
             }
-
-           
-
-            
-
-            protected void Page_Load(object sender, EventArgs e)
-            {
-                PageLoad();
-            }
-
-            
-
-            
-
             
         #endregion
 
@@ -115,38 +169,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 }
             }
 
-            private int GetExpedienteParameter()
-            {
-                try
-                {
-                    return int.Parse(Request.QueryString["expId"].ToString());
-                }
-                catch
-                {
-                    return 0;
-                }
-            }
-
-            private void PageLoad()
-            {
-                int ExpedienteId = 0;
-
-                if (Page.IsPostBack)
-                    return;
-
-                SetPermisos();
-                
-                ExpedienteId = GetExpedienteParameter();
-
-                ValidarExpediente(ExpedienteId);
-                SelectExpediente(ExpedienteId);
-                SelectExpedienteCiudadano(ExpedienteId);
-                SelectExpedienteRepositorio(int.Parse(SolicitudIdHidden.Value));
-                SelectExpedienteComentario(ExpedienteId);
-
-                ExpedienteIdHidden.Value = ExpedienteId.ToString();
-            }
-
             private void SelectExpediente(int ExpedienteId)
             {
                 ENTSession UsuarioEntity = new ENTSession();
@@ -181,7 +203,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                         LugarHechosLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["LugarHechos"].ToString();
                         DireccionHechos.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["DireccionHechos"].ToString();
 
-                        SolicitudIdHidden.Value = oENTExpediente.ResultData.Tables[0].Rows[0]["SolicitudId"].ToString();
+                        this.hddExpedienteId.Value = oENTExpediente.ResultData.Tables[0].Rows[0]["SolicitudId"].ToString();
                     }
 
                     //Fechas
@@ -367,43 +389,43 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 		// Opciones de Menu (en orden de aparación)
 
 		protected void InformacionGeneralButton_Click(object sender, ImageClickEventArgs e){
-			Response.Redirect("visDetalleExpediente.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
+			Response.Redirect("visDetalleExpediente.aspx?expId=" + this.hddExpedienteId.Value);
 		}
 
 		protected void AsignarButton_Click(object sender, ImageClickEventArgs e){
-			Response.Redirect("~/Application/WebApp/Private/Operation/opeAsignarVisitador.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
+			Response.Redirect("~/Application/WebApp/Private/Operation/opeAsignarVisitador.aspx?expId=" + this.hddExpedienteId.Value);
 		}
 
 		protected void AcuerdoButton_Click(object sender, ImageClickEventArgs e){
-			Response.Redirect("~/Application/WebApp/Private/Operation/opeAcuerdoCalifDefinitiva.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
+			Response.Redirect("~/Application/WebApp/Private/Operation/opeAcuerdoCalifDefinitiva.aspx?expId=" + this.hddExpedienteId.Value);
 		}
 
 		protected void DiligenciasButton_Click(object sender, ImageClickEventArgs e){
-			Response.Redirect("~/Application/WebApp/Private/Operation/opeDiligenciaExpediente.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
+			Response.Redirect("~/Application/WebApp/Private/Operation/opeDiligenciaExpediente.aspx?expId=" + this.hddExpedienteId.Value);
 		}
 
 		protected void DocumentoButton_Click(object sender, ImageClickEventArgs e){
-			Response.Redirect("visAgregarDocumento.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
+			Response.Redirect("visAgregarDocumento.aspx?expId=" + this.hddExpedienteId.Value);
 		}
 
 		protected void SeguimientoButton_Click(object sender, ImageClickEventArgs e){
-			Response.Redirect("visSeguimientoExpediente.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
+			Response.Redirect("visSeguimientoExpediente.aspx?expId=" + this.hddExpedienteId.Value);
 		}
 
 		protected void ComparecenciaPanel_Click(object sender, ImageClickEventArgs e){
-			Response.Redirect("visComparecencia.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
+			Response.Redirect("visComparecencia.aspx?expId=" + this.hddExpedienteId.Value);
 		}
 
 		protected void ResolucionButton_Click(object sender, ImageClickEventArgs e){
-			Response.Redirect("visResolucionExpediente.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
+			Response.Redirect("visResolucionExpediente.aspx?expId=" + this.hddExpedienteId.Value);
 		}
 
 		protected void RecomendacionButton_Click(object sender, ImageClickEventArgs e){
-			Response.Redirect("visRecomendacionExpediente.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
+			Response.Redirect("visRecomendacionExpediente.aspx?expId=" + this.hddExpedienteId.Value);
 		}
 
 		protected void EnviarButton_Click(object sender, ImageClickEventArgs e){
-			Response.Redirect("visEnviarExpediente.aspx?expId=" + ExpedienteIdHidden.Value.ToString());
+			Response.Redirect("visEnviarExpediente.aspx?expId=" + this.hddExpedienteId.Value);
 		}
 
 

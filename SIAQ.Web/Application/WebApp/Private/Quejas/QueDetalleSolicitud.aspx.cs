@@ -379,8 +379,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 					this.AutoridadPanel.Visible = false;
 				}
 
-				// Si el expediente está en estatus de Confirmación de cierre, Enviada a Visitadurías o Finalizada en Quejas no se podrá operar
-				if ( Int32.Parse(this.hddEstatusId.Value) == 4 || Int32.Parse(this.hddEstatusId.Value) == 22  || Int32.Parse(this.hddEstatusId.Value) == 23 ){
+				// El expiente no se podrá operar en los siguientes Estatus (de Solicitud):
+				// 4  - Pendiente de aprobar Queja
+				// 5  - Por asignar a funcionario de Visitadurías
+				// 22 - Cerrada como Orientación
+				// 23 - Proyecto Aprobado
+				// 24 - Por asignar a funcionario de DORC
+				if ( Int32.Parse(this.hddEstatusId.Value) == 4 || Int32.Parse(this.hddEstatusId.Value) == 5|| Int32.Parse(this.hddEstatusId.Value) == 22  || Int32.Parse(this.hddEstatusId.Value) == 23 || Int32.Parse(this.hddEstatusId.Value) == 24 ){
 					this.AgregrarInformacionPanel.Visible = false;
 					this.AsignarPanel.Visible = false;
 					this.CiudadanoPanel.Visible = false;

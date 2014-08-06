@@ -79,7 +79,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 		void ClearForm() {
 
 			this.ddlTipoParticipacion.SelectedIndex = 0;
-			this.chkPresente.Checked = true;
+			this.rblPresente.Items[0].Selected = true;
 
 			this.txtCiudadano.Text = "";
 			this.hddCiudadanoId.Value = "";
@@ -150,7 +150,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				oENTQueja.TipoParticipacionId = Int32.Parse(this.ddlTipoParticipacion.SelectedItem.Value);
 				oENTQueja.Check = 1; // Validar el Nombre del control con el Id debido al Bug del Autosuggest
 				oENTQueja.CheckNombre = CiudadanoNombre;
-				oENTQueja.Presente = Int16.Parse( (this.chkPresente.Checked ? 1 : 0).ToString() );
+				oENTQueja.Presente = Int16.Parse((this.rblPresente.Items[0].Selected ? 1 : 0).ToString());
 
 				// Transacción
 				oENTResponse = oBPQueja.InsertSolicitudCiudadano(oENTQueja);

@@ -65,8 +65,17 @@
 							<td class="Etiqueta">Tipo de Participación</td>
 							<td class="VinetaObligatorio">*</td>
 							<td colspan="5" style="text-align:left; vertical-align:baseline;">
-								<asp:DropDownList ID="ddlTipoParticipacion" runat="server" CssClass="DropDownList_General" width="216px" ></asp:DropDownList>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<asp:CheckBox ID="chkPresente" runat="server" CssClass="CheckBox_Regular" Checked="true" Text="Ciudadano Presente" />
+								<asp:DropDownList ID="ddlTipoParticipacion" runat="server" CssClass="DropDownList_General" width="216px" ></asp:DropDownList>
+							</td>
+						</tr>
+						<tr>
+							<td class="Etiqueta">Ciudadano</td>
+							<td class="VinetaObligatorio"></td>
+							<td colspan="5" style="text-align:left; vertical-align:baseline;">
+								<asp:RadioButtonList ID="rblPresente" runat="server" RepeatDirection="Horizontal">
+									<asp:ListItem Text="Presente" Value="1" Selected="True"></asp:ListItem>
+									<asp:ListItem Text="Ausente" Value="0"></asp:ListItem>
+								</asp:RadioButtonList>
 							</td>
 						</tr>
 						<tr>

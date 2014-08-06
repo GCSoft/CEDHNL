@@ -76,7 +76,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 			this.txtCiudadano.Text = "";
 			this.hddCiudadanoId.Value = "";
 			this.ddlTipoParticipacion.SelectedIndex = 0;
-			this.chkPresente.Checked = true;
+			this.rblPresente.Items[0].Selected = true;
 			this.ckeObservaciones.Text = "";
 
 			this.gvCiudadano.DataSource = null;
@@ -226,8 +226,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
 				rowCiudadano["TipoParticipacionId"] = (this.ddlTipoParticipacion.SelectedIndex == 0 ? 1 : Int32.Parse(this.ddlTipoParticipacion.SelectedItem.Value));
 				rowCiudadano["TipoParticipacionNombre"] = (this.ddlTipoParticipacion.SelectedIndex == 0 ? "Afectado" : this.ddlTipoParticipacion.SelectedItem.Text);
-				rowCiudadano["Presente"] = Int16.Parse((this.chkPresente.Checked ? 1 : 0).ToString());
-				rowCiudadano["PresenteString"] = (this.chkPresente.Checked ? "Si" : "No");
+				rowCiudadano["Presente"] = Int16.Parse((this.rblPresente.Items[0].Selected ? 1 : 0).ToString());
+				rowCiudadano["PresenteString"] = (this.rblPresente.Items[0].Selected ? "Si" : "No");
 
 				tblCiudadano.Rows.Add(rowCiudadano);
 
@@ -239,10 +239,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				this.txtCiudadano.Text = "";
 				this.hddCiudadanoId.Value = "";
 				this.ddlTipoParticipacion.SelectedIndex = 0;
-				this.chkPresente.Checked = true;
+				this.rblPresente.Items[0].Selected = true;
 
 				// Foco
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + Foco + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + Foco + "'); }", true);
 
 			}catch (Exception ex){
 				throw (ex);

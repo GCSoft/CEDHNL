@@ -23,7 +23,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 
 // Referencias manuales
-using GCSoft.Utilities.Security;
+using GCUtility.Security;
 using SIAQ.BusinessProcess.Page;
 using SIAQ.Entity.Object;
 
@@ -33,7 +33,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysApp
 	{
 	
 		// Utilerías
-		Encryption utilEncryption = new Encryption();
+		GCEncryption gcEncryption = new GCEncryption();
 		
 
 		// Eventos de la página
@@ -52,7 +52,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysApp
             this.lblNotificacion.Text = "No tiene permisos de acceder a esta página";
 				
 				// Aviso
-            this.lblNotificacion.Text = (this.Request.QueryString["key"] == null ? this.lblNotificacion.Text : utilEncryption.DecryptString(this.Request.QueryString["key"], true));
+            this.lblNotificacion.Text = (this.Request.QueryString["key"] == null ? this.lblNotificacion.Text : gcEncryption.DecryptString(this.Request.QueryString["key"], true));
 
 				// Nombre de usuario
 				oENTSession = (ENTSession)this.Session["oENTSession"];

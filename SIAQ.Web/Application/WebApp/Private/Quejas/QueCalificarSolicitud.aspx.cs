@@ -13,8 +13,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 // Referencias manuales
-using GCSoft.Utilities.Common;
-using GCSoft.Utilities.Security;
+using GCUtility.Function;
 using SIAQ.Entity.Object;
 using SIAQ.BusinessProcess.Object;
 using System.Data;
@@ -26,8 +25,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 	{
 
 		// Utilerías
-		Function utilFunction = new Function();
-		Encryption utilEncryption = new Encryption();
+		GCJavascript gcJavascript = new GCJavascript();
+		GCParse gcParse = new GCParse();
 
 
 		// Rutinas del programador
@@ -40,7 +39,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 			{
 
 				// Obtener el DataTable del grid
-				tblCanalizacion = utilFunction.ParseGridViewToDataTable(this.grdCanalizacion, false);
+				tblCanalizacion = gcParse.GridViewToDataTable(this.grdCanalizacion, false);
 
 				// Validaciones
 				if (this.ddlCanalizacion.SelectedItem.Value == "0"){
@@ -74,7 +73,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 			{
 
 				// Obtener el DataTable del grid
-				tblCanalizacion = utilFunction.ParseGridViewToDataTable(this.grdCanalizacion, true);
+				tblCanalizacion = gcParse.GridViewToDataTable(this.grdCanalizacion, true);
 
 				// Limpiar la tabla
 				tblCanalizacion.Rows.Clear();
@@ -400,7 +399,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 			{
 
 				// Obtener el DataTable del grid
-				tblCanalizacion = utilFunction.ParseGridViewToDataTable(this.grdCanalizacion, false);
+				tblCanalizacion = gcParse.GridViewToDataTable(this.grdCanalizacion, false);
 
 			    // Validaciones
 				if (this.ddlProblematica.SelectedIndex == 0) { throw (new Exception("Es necesario seleccionar una Problemática")); }
@@ -479,7 +478,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlProblematica.ClientID + "'); }", true);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlProblematica.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlProblematica.ClientID + "'); }", true);
             }
 		}
 
@@ -494,7 +493,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlCanalizacion.ClientID + "'); }", true);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlCanalizacion.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlCanalizacion.ClientID + "'); }", true);
             }
 		}
 
@@ -509,7 +508,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				Response.Redirect("QueDetalleSolicitud.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value, false);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlProblematica.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlProblematica.ClientID + "'); }", true);
             }
 		}
 
@@ -549,7 +548,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				}
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlProblematica.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlProblematica.ClientID + "'); }", true);
             }
 		}
 
@@ -572,7 +571,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				}
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlProblematica.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlProblematica.ClientID + "'); }", true);
             }
 		}
 
@@ -587,7 +586,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlProblematicaDetalle.ClientID + "'); }", true);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlProblematica.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlProblematica.ClientID + "'); }", true);
             }
 		}
 
@@ -621,7 +620,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				}
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlProblematica.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlProblematica.ClientID + "'); }", true);
             }
 		}
 
@@ -652,7 +651,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 					case "Eliminar":
 
 						// Obtener el DataTable del grid
-						tblCanalizacion = utilFunction.ParseGridViewToDataTable(this.grdCanalizacion, true);
+						tblCanalizacion = gcParse.GridViewToDataTable(this.grdCanalizacion, true);
 
 						// Eliminar el Item
 						tblCanalizacion.Rows.Remove(tblCanalizacion.Select("CanalizacionId=" + CanalizacionId)[0]);
@@ -665,7 +664,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				}
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlCanalizacion.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.ddlCanalizacion.ClientID + "'); }", true);
 			}
 		}
 

@@ -16,7 +16,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 // Referencias manuales
-using GCSoft.Utilities.Security;
+using GCUtility.Security;
 using SIAQ.BusinessProcess.Object;
 using SIAQ.BusinessProcess.Page;
 using SIAQ.Entity.Object;
@@ -29,7 +29,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat.ExcelMaker
    {
       
       // Utilerías
-		Encryption utilEncryption = new Encryption();
+		GCEncryption gcEncryption = new GCEncryption();
 		
 		
 		// Funciones del programador
@@ -40,7 +40,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat.ExcelMaker
 			try{
 
 				// Query String
-				sKey = utilEncryption.DecryptString(sKey, true);
+				sKey = gcEncryption.DecryptString(sKey, true);
 
             // Parámetros de consulta (idMenu|sNombre|tiActivo)
             oENTSubMenu.idMenu = Int32.Parse(sKey.Split(new Char[] { '|' })[0].ToString());
@@ -228,7 +228,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat.ExcelMaker
 			{
 			
 				// Mensaje de error por default
-				sDefaultErrorMessage = utilEncryption.EncryptString("[V03] Acceso ilegal a la página", true);
+				sDefaultErrorMessage = gcEncryption.EncryptString("[V03] Acceso ilegal a la página", true);
 				
 				// Validaciones
 				if (this.Request.QueryString["key"] == null) {

@@ -9,13 +9,15 @@ using System.Text.RegularExpressions;
 
 using SIAQ.BusinessProcess.Object;
 using SIAQ.Entity.Object;
-using GCSoft.Utilities.Common;
+using GCUtility.Function;
 
 namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
     public partial class opeAsignarVisitador : System.Web.UI.Page
     {
-        Function utilFunction = new Function();
+
+		GCCommon gcCommon = new GCCommon();
+		GCJavascript gcJavascript = new GCJavascript();
 
         #region "Events"
             protected void btnAction_Click(object sender, EventArgs e)
@@ -149,7 +151,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 }
                 catch (Exception ex)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
                 }
             }
 
@@ -193,31 +195,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 }
             }
 
-            protected void gvCiudadanos_Sorting(object sender, GridViewSortEventArgs e)
-            {
-                DataTable TableExpediente = null;
-                DataView ViewExpediente = null;
+            protected void gvCiudadanos_Sorting(object sender, GridViewSortEventArgs e){
+				try
+				{
 
-                try
-                {
-                    //Obtener DataTable y View del GridView
-                    TableExpediente = utilFunction.ParseGridViewToDataTable(gvCiudadanos, false);
-                    ViewExpediente = new DataView(TableExpediente);
+					gcCommon.SortGridView(ref this.gvCiudadanos, ref this.hddSort, e.SortExpression);
 
-                    //Determinar ordenamiento
-                    hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
-
-                    //Ordenar Vista
-                    ViewExpediente.Sort = hddSort.Value;
-
-                    //Vaciar datos
-                    gvCiudadanos.DataSource = ViewExpediente;
-                    gvCiudadanos.DataBind();
-
-                }
-                catch (Exception ex)
-                {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+				}catch (Exception ex){
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
                 }
             }
 
@@ -551,7 +536,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     ComentarioTituloLabel.Text = ExpedienteProcess.ExpedienteEntity.ResultData.Tables[0].Rows.Count.ToString() + " comentarios";
                 }
                 else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ExpedienteProcess.ErrorDescription) + "', 'Fail', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ExpedienteProcess.ErrorDescription) + "', 'Fail', true);", true);
             }
         #endregion
     }

@@ -13,8 +13,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 // Referencias manuales
-using GCSoft.Utilities.Common;
-using GCSoft.Utilities.Security;
+using GCUtility.Function;
 using SIAQ.Entity.Object;
 using SIAQ.BusinessProcess.Object;
 using System.Data;
@@ -27,8 +26,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Victimas
 		
 
 		// Utilerías
-		Function utilFunction = new Function();
-		Encryption utilEncryption = new Encryption();
+		GCJavascript gcJavascript = new GCJavascript();
 
 
 		// Rutinas del programador
@@ -112,7 +110,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Victimas
 				SelectAtencion();
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
             }
 		}
 
@@ -127,7 +125,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Victimas
 				Response.Redirect("VicListadoAtenciones.aspx", false);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
             }
 		}
 

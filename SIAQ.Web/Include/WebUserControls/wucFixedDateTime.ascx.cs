@@ -17,7 +17,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 // Referencias manuales
-using GCSoft.Utilities.Common;
+using GCUtility.Function;
 
 namespace SIAQ.Web.Include.WebUserControls
 {
@@ -25,7 +25,7 @@ namespace SIAQ.Web.Include.WebUserControls
    {
 
       // Utilerias
-      Function utilFunction = new Function();
+	   GCJavascript gcJavascript = new GCJavascript();
 
 
       // Propiedades
@@ -81,7 +81,7 @@ namespace SIAQ.Web.Include.WebUserControls
             this.lblCanvas.Text = sCurrentDay + "/" + GetMonthName(sCurrentMonth) + "/" + sCurrentYear + " " + GetCustomeTime(sCurrenTime);
 
          }catch(Exception ex){
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + utilFunction.JSClearText(ex.Message) + "');", true);
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
          }
       }
 

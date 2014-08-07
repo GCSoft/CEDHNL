@@ -13,8 +13,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 // Referencias manuales
-using GCSoft.Utilities.Common;
-using GCSoft.Utilities.Security;
+using GCUtility.Function;
 using SIAQ.Entity.Object;
 using SIAQ.BusinessProcess.Object;
 using System.Data;
@@ -26,8 +25,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		
 
 		// Utilerías
-		Function utilFunction = new Function();
-		Encryption utilEncryption = new Encryption();
+		GCCommon gcCommon = new GCCommon();
+		GCJavascript gcJavascript = new GCJavascript();
 
 
 		// Rutinas del programador
@@ -106,7 +105,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				SelectedExpediente();
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
             }
 		}
 
@@ -121,7 +120,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				Response.Redirect("segListadoExpediente.aspx", false);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
             }
 		}
 
@@ -148,27 +147,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		}
 
 		protected void gvRecomendacion_Sorting(object sender, GridViewSortEventArgs e){
-			DataTable TableAutoridad = null;
-			DataView ViewAutoridad = null;
-
 			try
 			{
-				//Obtener DataTable y View del GridView
-				TableAutoridad = utilFunction.ParseGridViewToDataTable(gvRecomendacion, false);
-				ViewAutoridad = new DataView(TableAutoridad);
 
-				//Determinar ordenamiento
-				hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
-
-				//Ordenar Vista
-				ViewAutoridad.Sort = hddSort.Value;
-
-				//Vaciar datos
-				this.gvRecomendacion.DataSource = ViewAutoridad;
-				this.gvRecomendacion.DataBind();
+				gcCommon.SortGridView(ref this.gvRecomendacion, ref this.hddSort, e.SortExpression);
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
 			}
 		}
 

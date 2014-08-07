@@ -14,10 +14,10 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 // Referencias manuales
+using GCUtility.Function;
 using SIAQ.BusinessProcess.Object;
 using SIAQ.BusinessProcess.Page;
 using SIAQ.Entity.Object;
-using GCSoft.Utilities.Common;
 using System.Data;
 
 namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
@@ -26,7 +26,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 	{
 		
 		// Utilerías
-        Function utilFunction = new Function();
+		GCCommon gcCommon = new GCCommon();
+		GCJavascript gcJavascript = new GCJavascript();
 
 		// Variables publicas
 		String dtBeginDate;
@@ -71,7 +72,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				SelectExpediente(true);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('No fue posible recuperar el formulario: " + utilFunction.JSClearText(ex.Message) + "', 'Warning', false);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('No fue posible recuperar el formulario: " + gcJavascript.ClearText(ex.Message) + "', 'Warning', false);", true);
             }
 		}
 
@@ -228,7 +229,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.txtNumeroExpediente.ClientID + "'); }", true);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNumeroExpediente.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNumeroExpediente.ClientID + "'); }", true);
             }
 		}
 
@@ -240,7 +241,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				SelectExpediente(false);
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNumeroExpediente.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNumeroExpediente.ClientID + "'); }", true);
 			}
 		}
 
@@ -271,7 +272,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				}
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNumeroExpediente.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNumeroExpediente.ClientID + "'); }", true);
 			}
         }
 
@@ -318,28 +319,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
         }
 
         protected void gvExpediente_Sorting(object sender, GridViewSortEventArgs e){
-            DataTable tblData = null;
-            DataView viewData = null;
-
             try
-            {
+			{
 
-                // Obtener DataTable y DataView del GridView
-                tblData = utilFunction.ParseGridViewToDataTable(this.gvExpediente, false);
-                viewData = new DataView(tblData);
+				gcCommon.SortGridView(ref this.gvExpediente, ref this.hddSort, e.SortExpression);
 
-                // Determinar ordenamiento
-                this.hddSort.Value = (this.hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
-
-                // Ordenar vista
-                viewData.Sort = this.hddSort.Value;
-
-                // Vaciar datos
-                this.gvExpediente.DataSource = viewData;
-                this.gvExpediente.DataBind();
-
-            }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNumeroExpediente.ClientID + "'); }", true);
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtNumeroExpediente.ClientID + "'); }", true);
             }
         }
 

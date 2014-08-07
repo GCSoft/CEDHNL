@@ -89,6 +89,8 @@
     <Content Include="Application\WebApp\Private\Visitaduria\VisRegistroServidorPublico.aspx" />
     <Content Include="Include\Components\Ajax\System.Web.Extensions.Design.dll" />
     <Content Include="Include\Components\Ajax\System.Web.Extensions.dll" />
+    <Content Include="Include\Components\GCSoft\GCUtility.dll" />
+    <Content Include="Include\Components\GCSoft\GCUtility.xml" />
     <Content Include="Include\Handler\ObtenerRepositorio.ashx" />
   </ItemGroup>
   <ItemGroup>
@@ -100,6 +102,10 @@
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="GCUtility, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Include\Components\GCSoft\GCUtility.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -123,10 +129,6 @@
     <Reference Include="FusionCharts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Include\Components\Charts\FusionCharts.dll</HintPath>
-    </Reference>
-    <Reference Include="GCSoft.Utilities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Include\Components\GCSoft\GCSoft.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.Compression.Base, Version=9.303.0.61, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -563,8 +565,6 @@
     <Content Include="Application\WebApp\Private\SysApp\saNotificacion.aspx" />
     <Content Include="Application\WebApp\Public\frmLogin.aspx" />
     <Content Include="Include\Components\Ajax\AjaxControlToolkit.dll" />
-    <Content Include="Include\Components\GCSoft\GCSoft.Utilities.dll" />
-    <Content Include="Include\Components\GCSoft\GCSoft.Map.xml" />
     <Content Include="Include\Components\Syncfusion\Syncfusion.Compression.Base.dll" />
     <Content Include="Include\Components\Syncfusion\Syncfusion.Core.dll" />
     <Content Include="Include\Components\Syncfusion\Syncfusion.XlsIO.Base.dll" />

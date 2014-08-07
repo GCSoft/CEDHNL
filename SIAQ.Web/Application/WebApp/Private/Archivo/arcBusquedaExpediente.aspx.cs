@@ -13,8 +13,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 // Referencias manuales
-using GCSoft.Utilities.Common;
-using GCSoft.Utilities.Security;
+using GCUtility.Function;
 using SIAQ.Entity.Object;
 using SIAQ.BusinessProcess.Page;
 using SIAQ.BusinessProcess.Object;
@@ -27,8 +26,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 		
 
 		// Utilerías
-		Function utilFunction = new Function();
-		Encryption utilEncryption = new Encryption();
+
+		GCCommon gcCommon = new GCCommon();
+		GCJavascript gcJavascript = new GCJavascript();
 
 
 		// Rutinas del programador
@@ -123,7 +123,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtExpediente.ClientID + "');", true);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtExpediente.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtExpediente.ClientID + "');", true);
             }
 		}
 
@@ -138,7 +138,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtExpediente.ClientID + "');", true);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtExpediente.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtExpediente.ClientID + "');", true);
             }
 		}
 
@@ -171,7 +171,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 				}
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtExpediente.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtExpediente.ClientID + "');", true);
 			}
 		}
 
@@ -214,27 +214,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 		}
 
 		protected void gvExpediente_Sorting(object sender, GridViewSortEventArgs e){
-			DataTable TableAutoridad = null;
-			DataView ViewAutoridad = null;
-
 			try
-			{
-				//Obtener DataTable y View del GridView
-				TableAutoridad = utilFunction.ParseGridViewToDataTable(gvExpediente, false);
-				ViewAutoridad = new DataView(TableAutoridad);
+            {
 
-				//Determinar ordenamiento
-				hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
+				gcCommon.SortGridView(ref this.gvExpediente, ref this.hddSort, e.SortExpression);
 
-				//Ordenar Vista
-				ViewAutoridad.Sort = hddSort.Value;
-
-				//Vaciar datos
-				this.gvExpediente.DataSource = ViewAutoridad;
-				this.gvExpediente.DataBind();
-
-			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtExpediente.ClientID + "');", true);
+            }catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtExpediente.ClientID + "');", true);
 			}
 		}
 

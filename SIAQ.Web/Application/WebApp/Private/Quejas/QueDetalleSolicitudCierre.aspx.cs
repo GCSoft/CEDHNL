@@ -13,8 +13,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 // Referencias manuales
-using GCSoft.Utilities.Common;
-using GCSoft.Utilities.Security;
+using GCUtility.Function;
 using SIAQ.Entity.Object;
 using SIAQ.BusinessProcess.Object;
 using System.Data;
@@ -25,8 +24,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 	{
 
 		// Utilerías
-		Function utilFunction = new Function();
-		Encryption utilEncryption = new Encryption();
+		GCCommon gcCommon = new GCCommon();
+		GCJavascript gcJavascript = new GCJavascript();
 
 
 		// Rutinas el programador
@@ -435,7 +434,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				SetPermisosGenerales(SessionEntity.idRol);
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
 			}
 		}
 
@@ -491,30 +490,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 		}
 
 		protected void gvCiudadano_Sorting(object sender, GridViewSortEventArgs e){
-			DataTable tblData = null;
-			DataView viewData = null;
-
 			try
 			{
-				//Obtener DataTable y View del GridView
-				tblData = utilFunction.ParseGridViewToDataTable(gvCiudadano, false);
-				viewData = new DataView(tblData);
 
-				//Determinar ordenamiento
-				hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
-
-				//Ordenar Vista
-				viewData.Sort = hddSort.Value;
-
-				//Vaciar datos
-				this.gvCiudadano.DataSource = viewData;
-				this.gvCiudadano.DataBind();
-
-				// Estilos de Items Seleccionados
-				SetStyleInItemChecked();
+				gcCommon.SortGridView(ref this.gvCiudadano, ref this.hddSort, e.SortExpression);
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
 			}
 		}
 
@@ -537,30 +519,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 		}
 
 		protected void gvDiligencia_Sorting(object sender, GridViewSortEventArgs e){
-			DataTable tblData = null;
-			DataView viewData = null;
-
 			try
 			{
-				//Obtener DataTable y View del GridView
-				tblData = utilFunction.ParseGridViewToDataTable(gvDiligencia, false);
-				viewData = new DataView(tblData);
 
-				//Determinar ordenamiento
-				hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
-
-				//Ordenar Vista
-				viewData.Sort = hddSort.Value;
-
-				//Vaciar datos
-				this.gvDiligencia.DataSource = viewData;
-				this.gvDiligencia.DataBind();
-
-				// Estilos de Items Seleccionados
-				SetStyleInItemChecked();
+				gcCommon.SortGridView(ref this.gvDiligencia, ref this.hddSort, e.SortExpression);
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
 			}
 		}
 
@@ -604,7 +569,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				SetStyleInItemChecked();
 
             }catch (Exception ex){
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
             }
         }
 
@@ -622,7 +587,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				SetStyleInItemChecked();
 
             }catch (Exception ex){
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
             }
         }
 
@@ -686,30 +651,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
         }
 
         protected void gvAutoridades_Sorting(object sender, GridViewSortEventArgs e){
-            DataTable TableAutoridad = null;
-            DataView ViewAutoridad = null;
-
             try
-            {
-                //Obtener DataTable y View del GridView
-                TableAutoridad = utilFunction.ParseGridViewToDataTable(gvAutoridades, false);
-                ViewAutoridad = new DataView(TableAutoridad);
+			{
 
-                //Determinar ordenamiento
-                hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
+				gcCommon.SortGridView(ref this.gvAutoridades, ref this.hddSort, e.SortExpression);
 
-                //Ordenar Vista
-                ViewAutoridad.Sort = hddSort.Value;
-
-                //Vaciar datos
-                this.gvAutoridades.DataSource = ViewAutoridad;
-                this.gvAutoridades.DataBind();
-
-				// Estilos de Items Seleccionados
-				SetStyleInItemChecked();
-
-            }catch (Exception ex){
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+			}catch (Exception ex){
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
             }
         }
 
@@ -731,7 +679,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				Response.Redirect(this.Sender.Value);
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
 			}
 		}
 

@@ -13,8 +13,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 // Referencias manuales
-using GCSoft.Utilities.Common;
-using GCSoft.Utilities.Security;
+using GCUtility.Function;
 using SIAQ.Entity.Object;
 using SIAQ.BusinessProcess.Object;
 using System.Data;
@@ -27,7 +26,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
 		public string _SolicitudId;
 		const string ModuloId = "0AB3107A-3C18-4186-BB76-9DAAD63DBEC4";
-		Function utilFunction = new Function();
+		GCJavascript gcJavascript = new GCJavascript();
 
 
 		void SelectSolicitud()
@@ -130,7 +129,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('La información fue guardada con éxito!', 'Success', false);", true);
 			}
 			else
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(DocumentoProcess.ErrorDescription) + "', 'Error', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(DocumentoProcess.ErrorDescription) + "', 'Error', true);", true);
 		}
 
 		private void DocumentoGridRowCommand(GridViewCommandEventArgs e)
@@ -193,7 +192,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.TipoDocumentoList.ClientID + "'); }", true);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.TipoDocumentoList.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.TipoDocumentoList.ClientID + "'); }", true);
             }	
 		}
 
@@ -235,7 +234,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('La información fue guardada con éxito!', 'Success', false);", true);
 			}
 			else
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(RepositorioProcess.ErrorDescription) + "', 'Error', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(RepositorioProcess.ErrorDescription) + "', 'Error', true);", true);
 		}
 
 		private void SelectDocumento(int SolicitudId)

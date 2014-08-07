@@ -7,8 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 // Referencias manuales
-using GCSoft.Utilities.Common;
-using GCSoft.Utilities.Security;
+using GCUtility.Function;
 using SIAQ.BusinessProcess.Object;
 using SIAQ.BusinessProcess.Page;
 using SIAQ.Entity.Object;
@@ -20,7 +19,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
     {
 
         // Utilerías
-        Function utilFunction = new Function();
+		GCCommon gcCommon = new GCCommon();
+		GCJavascript gcJavascript = new GCJavascript();
+		GCParse gcParse = new GCParse();
 
 		// Servicio
 		[System.Web.Script.Services.ScriptMethod()]
@@ -100,7 +101,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 			{
 
 				// Obtener el DataTable del grid
-				tblCiudadano = utilFunction.ParseGridViewToDataTable(this.gvCiudadano, false);
+				tblCiudadano = gcParse.GridViewToDataTable(this.gvCiudadano, false);
 
 				// Validaciones
 				if (this.ddlArea.SelectedValue == "0") { throw new Exception("El campo [Área] es requerido"); }
@@ -137,7 +138,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
 
 				if (oENTResponse.sMessage != ""){
-			        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', false);", true);
+			        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(oENTResponse.sMessage) + "', 'Warning', false);", true);
 			        return;
 			    }
 
@@ -172,12 +173,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				// Validación
 				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
 				if (oENTResponse.sMessage != "") {
-					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', false); function pageLoad(){ focusControl('" + this.txtCiudadano.ClientID + "'); }", true);
+					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(oENTResponse.sMessage) + "', 'Warning', false); function pageLoad(){ focusControl('" + this.txtCiudadano.ClientID + "'); }", true);
 					return;
 				}
 
 				// Obtener el DataTable del grid
-				tblCiudadano = utilFunction.ParseGridViewToDataTable(this.gvCiudadano, false);
+				tblCiudadano = gcParse.GridViewToDataTable(this.gvCiudadano, false);
 
 				// Validación de que no se haya agregado el ciudadano
 				if (tblCiudadano.Select("CiudadanoId='" + oENTResponse.dsResponse.Tables[1].Rows[0]["CiudadanoId"].ToString() + "'").Length > 0) {
@@ -235,7 +236,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
 
                 // Mensaje de la BD
-                if (oENTResponse.sMessage != "") { sMessage = "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', false);"; }
+                if (oENTResponse.sMessage != "") { sMessage = "tinyboxMessage('" + gcJavascript.ClearText(oENTResponse.sMessage) + "', 'Warning', false);"; }
 
                 // Llenado de controles
                 this.ddlArea.DataValueField = "idArea";
@@ -356,7 +357,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				
             }catch (Exception ex){
 				this.btnGuardar.Visible = false;
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.ddlArea.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.ddlArea.ClientID + "');", true);
             }
 		}
 
@@ -376,7 +377,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				InsertVisitaCiudadano_Local(CiudadanoId, this.txtCiudadano.ClientID);
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtCiudadano.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtCiudadano.ClientID + "'); }", true);
 			}
 		}
 
@@ -388,7 +389,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				InsertVisita();
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.ddlArea.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.ddlArea.ClientID + "');", true);
             }
         }
 
@@ -420,7 +421,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 					case "Eliminar":
 
 						// Obtener el DataTable del grid
-						tblCiudadano = utilFunction.ParseGridViewToDataTable(this.gvCiudadano, true);
+						tblCiudadano = gcParse.GridViewToDataTable(this.gvCiudadano, true);
 
 						// Eliminar el Item
 						tblCiudadano.Rows.Remove(tblCiudadano.Select("CiudadanoId=" + CiudadanoId)[0]);
@@ -437,7 +438,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				}
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.ddlArea.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.ddlArea.ClientID + "');", true);
 			}
         }
 
@@ -483,27 +484,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 		}
 
 		protected void gvCiudadano_Sorting(object sender, GridViewSortEventArgs e){
-			DataTable tblData = null;
-			DataView viewData = null;
-
 			try
 			{
-				//Obtener DataTable y View del GridView
-				tblData = utilFunction.ParseGridViewToDataTable(gvCiudadano, false);
-				viewData = new DataView(tblData);
 
-				//Determinar ordenamiento
-				hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
-
-				//Ordenar Vista
-				viewData.Sort = hddSort.Value;
-
-				//Vaciar datos
-				this.gvCiudadano.DataSource = viewData;
-				this.gvCiudadano.DataBind();
+				gcCommon.SortGridView(ref this.gvCiudadano, ref this.hddSort, e.SortExpression);
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
 			}
 		}
 

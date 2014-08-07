@@ -7,8 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 // Referencias manuales
-using GCSoft.Utilities.Common;
-using GCSoft.Utilities.Security;
+using GCUtility.Function;
 using SIAQ.BusinessProcess.Object;
 using SIAQ.BusinessProcess.Page;
 using SIAQ.Entity.Object;
@@ -21,7 +20,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
     {
 
 		// Utilerías
-		Function utilFunction = new Function();
+		GCCommon gcCommon = new GCCommon();
+		GCJavascript gcJavascript = new GCJavascript();
 
 
 		// Rutinas del programador
@@ -100,7 +100,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				SelectCiudadanoDetalle();
 				
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
             }
         }
 
@@ -125,28 +125,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 		}
 
 		protected void gvSolicitudes_Sorting(object sender, GridViewSortEventArgs e){
-			DataTable tblData = null;
-			DataView viewData = null;
-
 			try
 			{
-				
-				// Obtener DataTable y View del GridView
-				tblData = utilFunction.ParseGridViewToDataTable(this.gvSolicitudes, false);
-				viewData = new DataView(tblData);
 
-				// Determinar ordenamiento
-				hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
-
-				// Ordenar Vista
-				viewData.Sort = hddSort.Value;
-
-				// Vaciar datos
-				gvSolicitudes.DataSource = viewData;
-				gvSolicitudes.DataBind();
+				gcCommon.SortGridView(ref this.gvSolicitudes, ref this.hddSort, e.SortExpression);
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
 			}
 		}
 
@@ -167,27 +152,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         }
 
         protected void gvVisitas_Sorting(object sender, GridViewSortEventArgs e){
-            DataTable tblData = null;
-            DataView viewData = null;
+           try
+			{
 
-            try
-            {
-                // Obtener DataTable y View del GridView
-                tblData = utilFunction.ParseGridViewToDataTable(this.gvVisitas, false);
-                viewData = new DataView(tblData);
+				gcCommon.SortGridView(ref this.gvVisitas, ref this.hddSort, e.SortExpression);
 
-                // Determinar ordenamiento
-                hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
-
-                // Ordenar Vista
-                viewData.Sort = hddSort.Value;
-
-                // Vaciar datos
-                gvVisitas.DataSource = viewData;
-                gvVisitas.DataBind();
-
-            }catch (Exception ex){
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+			}catch (Exception ex){
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
             }
         }
 

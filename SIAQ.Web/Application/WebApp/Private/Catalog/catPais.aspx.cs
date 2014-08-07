@@ -17,8 +17,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 // Referencias manuales
-using GCSoft.Utilities.Common;
-using GCSoft.Utilities.Security;
+using GCUtility.Function;
 using SIAQ.BusinessProcess.Object;
 using SIAQ.BusinessProcess.Page;
 using SIAQ.Entity.Object;
@@ -26,18 +25,20 @@ using System.Data;
 
 namespace SIAQ.Web.Application.WebApp.Private.Catalog
 {
-	public partial class catPais : System.Web.UI.Page
+	public partial class catPais : BPPage
 	{
 
 
 		// Utilerías
-		Function utilFunction = new Function();
-		Encryption utilEncryption = new Encryption();
+		GCCommon gcCommon = new GCCommon();
+		GCJavascript gcJavascript = new GCJavascript();
 
 		// Enumeraciones
 		private enum PaisActionTypes { DeletePais, InsertPais, ReactivatePais, UpdatePais }
 
+		
 		// Rutinas del programador
+
 		private void ClearActionPanel()
 		{
 			try
@@ -84,7 +85,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
 
 				// Mensaje de la BD
-				if (oENTResponse.sMessage != "") { sMessage = "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', true)"; }
+				if (oENTResponse.sMessage != "") { sMessage = "tinyboxMessage('" + gcJavascript.ClearText(oENTResponse.sMessage) + "', 'Warning', true)"; }
 
 				// Llenado de controles
 				this.gvPais.DataSource = oENTResponse.dsResponse.Tables[1];
@@ -333,7 +334,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 			catch (Exception ex) { throw (ex); }
 		}
 
+		
 		// Eventos de la página
+
 		protected void Page_Load(object sender, EventArgs e)
 		{
 			// Validación. Solo la primera vez que se ejecuta la página
@@ -357,7 +360,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 			}
 			catch (Exception ex)
 			{
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
 			}
 
 		}
@@ -470,36 +473,18 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 
 			}
 			catch (Exception ex)
-			{ ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true); }
+			{ ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true); }
 
 		}
 
-		protected void gvPais_Sorting(object sender, GridViewSortEventArgs e)
-		{
-			DataTable tblRegionesTelcel = null;
-			DataView viewRegionesTelcel = null;
-
+		protected void gvPais_Sorting(object sender, GridViewSortEventArgs e){
 			try
 			{
 
-				// Obtener DataTable y DataView del GridView
-				tblRegionesTelcel = utilFunction.ParseGridViewToDataTable(this.gvPais, true);
-				viewRegionesTelcel = new DataView(tblRegionesTelcel);
+				gcCommon.SortGridView(ref this.gvPais, ref this.hddSort, e.SortExpression);
 
-				// Determinar ordenamiento
-				this.hddSort.Value = (this.hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
-
-				// Ordenar vista
-				viewRegionesTelcel.Sort = this.hddSort.Value;
-
-				// Vaciar datos
-				this.gvPais.DataSource = viewRegionesTelcel;
-				this.gvPais.DataBind();
-
-			}
-			catch (Exception ex)
-			{
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
 			}
 		}
 
@@ -514,7 +499,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 			}
 			catch (Exception ex)
 			{
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
 			}
 		}
 
@@ -529,7 +514,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 			}
 			catch (Exception ex)
 			{
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
 			}
 		}
 
@@ -544,7 +529,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 			}
 			catch (Exception ex)
 			{
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
 			}
 		}
 

@@ -22,7 +22,7 @@ using System.Web.UI.WebControls;
 // Referencias manuales
 using SIAQ.BusinessProcess.Object;
 using SIAQ.Entity.Object;
-using GCSoft.Utilities.Common;
+using GCUtility.Function;
 using System.Data;
 
 namespace SIAQ.Web.Include.WebUserControls

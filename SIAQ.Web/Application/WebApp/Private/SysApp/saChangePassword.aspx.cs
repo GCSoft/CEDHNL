@@ -19,7 +19,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 // Referencias manuales
-using GCSoft.Utilities.Common;
+using GCUtility.Function;
 using SIAQ.BusinessProcess.Page;
 using SIAQ.BusinessProcess.Object;
 using SIAQ.Entity.Object;
@@ -30,7 +30,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysApp
    {
      
       // Utilerías
-		Function utilFunction = new Function();
+	   GCJavascript gcJavascript = new GCJavascript();
 
 
       // Funciones del programador
@@ -85,7 +85,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysApp
             ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.sOldPassword.ClientID + "');", true);
 
 			}catch (Exception ex){
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.sOldPassword.ClientID + "');", true);
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.sOldPassword.ClientID + "');", true);
 			}
 		}
 
@@ -97,7 +97,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysApp
             updateUserPassword();
 
          }catch(Exception ex){
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.sOldPassword.ClientID + "');", true);
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.sOldPassword.ClientID + "');", true);
          }
 		}
 

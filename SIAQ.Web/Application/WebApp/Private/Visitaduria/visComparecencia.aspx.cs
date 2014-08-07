@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-using GCSoft.Utilities.Common;
+using GCUtility.Function;
 using SIAQ.BusinessProcess.Object;
 using SIAQ.Entity.Object;
 
@@ -14,7 +14,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
     public partial class visComparecencia : System.Web.UI.Page
     {
         // Utilerías
-        Function utilFunction = new Function();
+		GCJavascript gcJavascript = new GCJavascript();
 
         #region "Events"
             protected void GuardarButton_Click(object sender, EventArgs e)
@@ -67,7 +67,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                     SelectExpedienteComparecencia(ExpedienteId);
                 }
                 else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ExpedienteComparecenciaProcess.ErrorDescription) + "', 'Error', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ExpedienteComparecenciaProcess.ErrorDescription) + "', 'Error', true);", true);
             }
 
             private int GetExpedienteParameter()
@@ -160,7 +160,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                     SelectExpedienteComparecencia(ExpedienteId);
                 }
                 else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ExpedienteComparecenciaProcess.ErrorDescription) + "', 'Error', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ExpedienteComparecenciaProcess.ErrorDescription) + "', 'Error', true);", true);
             }
 
             private void SelectCiudadano(int ExpedienteId)
@@ -234,7 +234,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                     }
                 }
                 else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(BPExpediente.ErrorDescription) + "', 'Error', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(BPExpediente.ErrorDescription) + "', 'Error', true);", true);
             }
 
             private void SelectExpedienteComparecencia(int ExpedienteId)
@@ -251,7 +251,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                     ComparecenciaGrid.DataBind();
                 }
                 else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ExpedienteComparecenciaProcess.ErrorDescription) + "', 'Error', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ExpedienteComparecenciaProcess.ErrorDescription) + "', 'Error', true);", true);
             }
 
             private void SelectExpedienteComparecencia(int ExpedienteComparecenciaId, int ExpedienteId)
@@ -265,13 +265,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
                 if (ExpedienteComparecenciaProcess.ErrorId != 0)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ExpedienteComparecenciaProcess.ErrorDescription) + "', 'Error', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ExpedienteComparecenciaProcess.ErrorDescription) + "', 'Error', true);", true);
                     return;
                 }
 
                 if (ExpedienteComparecenciaProcess.ExpedienteComparecenciaEntity.ResultData.Tables[0].Rows.Count == 0)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText("No se encontró información de seguimiento para el expediente") + "', 'Error', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText("No se encontró información de seguimiento para el expediente") + "', 'Error', true);", true);
                     return;
                 }
 
@@ -353,7 +353,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                     LugarComparecenciaList.Items.Insert(0, new ListItem("[Seleccione]", "0"));
                 }
                 else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(LugarComparecenciaProcess.ErrorDescription) + "', 'Error', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(LugarComparecenciaProcess.ErrorDescription) + "', 'Error', true);", true);
             }
 
             private void SelectTipoComparecencia()
@@ -373,7 +373,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                     TipoComparecenciaIdList.Items.Insert(0, new ListItem("[Seleccione]", "0"));
                 }
                 else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(TipoComparecenciaProcess.ErrorDescription) + "', 'Error', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(TipoComparecenciaProcess.ErrorDescription) + "', 'Error', true);", true);
             }
         #endregion
     }

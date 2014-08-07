@@ -17,11 +17,11 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 // Referencias manuales
+using GCUtility.Function;
 using AjaxControlToolkit;
-using GCSoft.Utilities.Common;
+using SIAQ.Entity.Object;
 using System.Data;
 using System.Web.UI.HtmlControls;
-using SIAQ.Entity.Object;
 
 namespace SIAQ.Web.Include.WebUserControls
 {
@@ -29,7 +29,7 @@ namespace SIAQ.Web.Include.WebUserControls
    {
      
 		// Utilerias
-		Function utilFunction = new Function();
+	   GCJavascript gcJavascript = new GCJavascript();
 
 
 		// Rutinas de la página
@@ -104,7 +104,7 @@ namespace SIAQ.Web.Include.WebUserControls
 				this.ViewState["dsMenu"] = dsMenu;
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + utilFunction.JSClearText(ex.Message) + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
 			}
 		}
 
@@ -171,7 +171,7 @@ namespace SIAQ.Web.Include.WebUserControls
 				}
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + utilFunction.JSClearText(ex.Message) + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
 			}
 		}
 
@@ -221,7 +221,7 @@ namespace SIAQ.Web.Include.WebUserControls
 
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + utilFunction.JSClearText(ex.Message) + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
 			}
 		}
 

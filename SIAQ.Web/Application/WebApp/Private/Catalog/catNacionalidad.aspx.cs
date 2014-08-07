@@ -17,8 +17,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 // Referencias manuales
-using GCSoft.Utilities.Common;
-using GCSoft.Utilities.Security;
+using GCUtility.Function;
 using SIAQ.BusinessProcess.Object;
 using SIAQ.BusinessProcess.Page;
 using SIAQ.Entity.Object;
@@ -27,474 +26,463 @@ using System.Data;
 
 namespace SIAQ.Web.Application.WebApp.Private.Catalog
 {
-   public partial class catNacionalidad : System.Web.UI.Page
-   {
-       // Utilerías
-       Function utilFunction = new Function();
-       Encryption utilEncryption = new Encryption();
+	public partial class catNacionalidad : BPPage
+	{
+		// Utilerías
+		GCCommon gcCommon = new GCCommon();
+		GCJavascript gcJavascript = new GCJavascript();
 
-       // Enumeraciones
-       private enum NacionalidadActionTypes { DeleteNacionalidad, InsertNacionalidad, ReactivateNacionalidad, UpdateNacionalidad }
+		// Enumeraciones
+		private enum NacionalidadActionTypes { DeleteNacionalidad, InsertNacionalidad, ReactivateNacionalidad, UpdateNacionalidad }
 
-       // Rutinas del programador
-       private void ClearActionPanel()
-       {
-           try
-           {
 
-               // Limpiar formulario
-               this.txtActionNombre.Text = "";
-               this.txtActionDescripcion.Text = "";
+		// Rutinas del programador
 
+		private void ClearActionPanel()
+		{
+			try
+			{
 
-               // Estado incial de controles
-               this.pnlAction.Visible = false;
-               this.lblActionTitle.Text = "";
-               this.btnAction.Text = "";
-               this.lblActionMessage.Text = "";
-               this.hddNacionalidad.Value = "";
+				// Limpiar formulario
+				this.txtActionNombre.Text = "";
+				this.txtActionDescripcion.Text = "";
 
-           }
-           catch (Exception ex)
-           {
-               throw (ex);
-           }
-       }
 
-       private void insertNacionalidad()
-       {
-           BPNacionalidad oBPNacionalidad = new BPNacionalidad();
-           ENTNacionalidad oENTNacionalidad = new ENTNacionalidad();
-           ENTResponse oENTResponse = new ENTResponse();
+				// Estado incial de controles
+				this.pnlAction.Visible = false;
+				this.lblActionTitle.Text = "";
+				this.btnAction.Text = "";
+				this.lblActionMessage.Text = "";
+				this.hddNacionalidad.Value = "";
 
-           try
-           {
+			}
+			catch (Exception ex)
+			{
+				throw (ex);
+			}
+		}
 
-               // Formilario
-               oENTNacionalidad.Nombre = this.txtActionNombre.Text.Trim();
-               oENTNacionalidad.Descripcion = this.txtActionDescripcion.Text.Trim();
+		private void insertNacionalidad()
+		{
+			BPNacionalidad oBPNacionalidad = new BPNacionalidad();
+			ENTNacionalidad oENTNacionalidad = new ENTNacionalidad();
+			ENTResponse oENTResponse = new ENTResponse();
 
+			try
+			{
 
-               // Transacción
-               oENTResponse = oBPNacionalidad.insertcatNacionalidad(oENTNacionalidad);
+				// Formilario
+				oENTNacionalidad.Nombre = this.txtActionNombre.Text.Trim();
+				oENTNacionalidad.Descripcion = this.txtActionDescripcion.Text.Trim();
 
-               // Validaciones
-               if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
-               if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
 
-               // Transacción exitosa
-               ClearActionPanel();
+				// Transacción
+				oENTResponse = oBPNacionalidad.insertcatNacionalidad(oENTNacionalidad);
 
-               // Actualizar Grid
-               selectNacionalidad();
+				// Validaciones
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
 
-               // Mensaje al usuario
-               ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Nacionalidad creado con éxito!', 'Success', false); focusControl('" + this.txtNombre.ClientID + "');", true);
+				// Transacción exitosa
+				ClearActionPanel();
 
-           }
-           catch (Exception ex) { throw (ex); }
-       }
+				// Actualizar Grid
+				selectNacionalidad();
 
-       private void selectNacionalidad()
-       {
-           BPNacionalidad oBPNacionalidad = new BPNacionalidad();
-           ENTNacionalidad oENTNacionalidad = new ENTNacionalidad();
-           ENTResponse oENTResponse = new ENTResponse();
+				// Mensaje al usuario
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Nacionalidad creado con éxito!', 'Success', false); focusControl('" + this.txtNombre.ClientID + "');", true);
 
-           String sMessage = "tinyboxToolTipMessage_ClearOld();";
+			}
+			catch (Exception ex) { throw (ex); }
+		}
 
-           try
-           {
+		private void selectNacionalidad()
+		{
+			BPNacionalidad oBPNacionalidad = new BPNacionalidad();
+			ENTNacionalidad oENTNacionalidad = new ENTNacionalidad();
+			ENTResponse oENTResponse = new ENTResponse();
 
-               // Formulario
-               oENTNacionalidad.Nombre = this.txtNombre.Text.Trim();
+			String sMessage = "tinyboxToolTipMessage_ClearOld();";
 
+			try
+			{
 
-               // Transacción
-               oENTResponse = oBPNacionalidad.selectcatNacionalidad(oENTNacionalidad);
+				// Formulario
+				oENTNacionalidad.Nombre = this.txtNombre.Text.Trim();
 
-               // Validaciones
-               if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
-               if (oENTResponse.sMessage != "") { sMessage = "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', true)"; }
 
-               // Llenado de controles
-               this.gvNacionalidad.DataSource = oENTResponse.dsResponse.Tables[1];
-               this.gvNacionalidad.DataBind();
+				// Transacción
+				oENTResponse = oBPNacionalidad.selectcatNacionalidad(oENTNacionalidad);
 
-               // Mensaje al usuario
-               ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), sMessage, true);
+				// Validaciones
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { sMessage = "tinyboxMessage('" + gcJavascript.ClearText(oENTResponse.sMessage) + "', 'Warning', true)"; }
 
-           }
-           catch (Exception ex) { throw (ex); }
+				// Llenado de controles
+				this.gvNacionalidad.DataSource = oENTResponse.dsResponse.Tables[1];
+				this.gvNacionalidad.DataBind();
 
-       }
+				// Mensaje al usuario
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), sMessage, true);
 
-       private void selectNacionalidad_ForEdit(Int32 NacionalidadId)
-       {
-           BPNacionalidad oBPNacionalidad = new BPNacionalidad();
-           ENTNacionalidad oENTNacionalidad = new ENTNacionalidad();
-           ENTResponse oENTResponse = new ENTResponse();
+			}
+			catch (Exception ex) { throw (ex); }
 
-           try
-           {
+		}
 
-               // Formulario
-               oENTNacionalidad.NacionalidadId = NacionalidadId;
-               oENTNacionalidad.Nombre = this.txtActionNombre.Text.Trim();
+		private void selectNacionalidad_ForEdit(Int32 NacionalidadId)
+		{
+			BPNacionalidad oBPNacionalidad = new BPNacionalidad();
+			ENTNacionalidad oENTNacionalidad = new ENTNacionalidad();
+			ENTResponse oENTResponse = new ENTResponse();
 
+			try
+			{
 
-               // Transacción
-               oENTResponse = oBPNacionalidad.selectcatNacionalidad(oENTNacionalidad);
+				// Formulario
+				oENTNacionalidad.NacionalidadId = NacionalidadId;
+				oENTNacionalidad.Nombre = this.txtActionNombre.Text.Trim();
 
-               // Validaciones
-               if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
-               this.lblActionMessage.Text = oENTResponse.sMessage;
 
-               // Llenado de controles
-               this.txtActionNombre.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Nombre"].ToString();
-               this.txtActionDescripcion.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Descripcion"].ToString();
+				// Transacción
+				oENTResponse = oBPNacionalidad.selectcatNacionalidad(oENTNacionalidad);
 
+				// Validaciones
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				this.lblActionMessage.Text = oENTResponse.sMessage;
 
+				// Llenado de controles
+				this.txtActionNombre.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Nombre"].ToString();
+				this.txtActionDescripcion.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Descripcion"].ToString();
 
-           }
-           catch (Exception ex) { throw (ex); }
 
-       }
 
-       private void SetPanel(NacionalidadActionTypes NacionalidadActionTypes, Int32 NacionalidadId = 0)
-       {
-           try
-           {
+			}
+			catch (Exception ex) { throw (ex); }
 
-               // Acciones comunes
-               this.pnlAction.Visible = true;
-               this.hddNacionalidad.Value = NacionalidadId.ToString();
+		}
 
-               // Detalle de acción
-               switch (NacionalidadActionTypes)
-               {
-                   case NacionalidadActionTypes.InsertNacionalidad:
-                       this.lblActionTitle.Text = "Nueva Nacionalidad";
-                       this.btnAction.Text = "Crear Nacionalidad";
+		private void SetPanel(NacionalidadActionTypes NacionalidadActionTypes, Int32 NacionalidadId = 0)
+		{
+			try
+			{
 
-                       break;
+				// Acciones comunes
+				this.pnlAction.Visible = true;
+				this.hddNacionalidad.Value = NacionalidadId.ToString();
 
-                   case NacionalidadActionTypes.UpdateNacionalidad:
-                       this.lblActionTitle.Text = "Edición de Nacionalidad";
-                       this.btnAction.Text = "Actualizar Nacionalidad";
-                       selectNacionalidad_ForEdit(NacionalidadId);
+				// Detalle de acción
+				switch (NacionalidadActionTypes)
+				{
+					case NacionalidadActionTypes.InsertNacionalidad:
+						this.lblActionTitle.Text = "Nueva Nacionalidad";
+						this.btnAction.Text = "Crear Nacionalidad";
 
-                       break;
+						break;
 
-                   default:
-                       throw (new Exception("Opción inválida"));
-               }
+					case NacionalidadActionTypes.UpdateNacionalidad:
+						this.lblActionTitle.Text = "Edición de Nacionalidad";
+						this.btnAction.Text = "Actualizar Nacionalidad";
+						selectNacionalidad_ForEdit(NacionalidadId);
 
-               // Foco
-               ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtActionNombre.ClientID + "');", true);
+						break;
 
-           }
-           catch (Exception ex)
-           {
-               throw (ex);
-           }
-       }
+					default:
+						throw (new Exception("Opción inválida"));
+				}
 
-       private void ValidateActionForm()
-       {
-           try
-           {
-               // Nombre
-               if (this.txtActionNombre.Text.Trim() == "") { throw new Exception("* El campo [Nombre] es requerido"); }
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtActionNombre.ClientID + "');", true);
 
+			}
+			catch (Exception ex)
+			{
+				throw (ex);
+			}
+		}
 
-           }
-           catch (Exception ex)
-           {
-               throw (ex);
-           }
-       }
+		private void ValidateActionForm()
+		{
+			try
+			{
+				// Nombre
+				if (this.txtActionNombre.Text.Trim() == "") { throw new Exception("* El campo [Nombre] es requerido"); }
 
-       private void updateNacionalidad(Int32 NacionalidadId)
-       {
-           BPNacionalidad oBPNacionalidad = new BPNacionalidad();
-           ENTNacionalidad oENTNacionalidad = new ENTNacionalidad();
-           ENTResponse oENTResponse = new ENTResponse();
 
-           try
-           {
+			}
+			catch (Exception ex)
+			{
+				throw (ex);
+			}
+		}
 
-               // Formulario
-               oENTNacionalidad.NacionalidadId = NacionalidadId;
-               oENTNacionalidad.Nombre = this.txtActionNombre.Text.Trim();
-               oENTNacionalidad.Descripcion = this.txtActionDescripcion.Text.Trim();
+		private void updateNacionalidad(Int32 NacionalidadId)
+		{
+			BPNacionalidad oBPNacionalidad = new BPNacionalidad();
+			ENTNacionalidad oENTNacionalidad = new ENTNacionalidad();
+			ENTResponse oENTResponse = new ENTResponse();
 
+			try
+			{
 
-               // Transacción
-               oENTResponse = oBPNacionalidad.updatecatNacionalidad(oENTNacionalidad);
+				// Formulario
+				oENTNacionalidad.NacionalidadId = NacionalidadId;
+				oENTNacionalidad.Nombre = this.txtActionNombre.Text.Trim();
+				oENTNacionalidad.Descripcion = this.txtActionDescripcion.Text.Trim();
 
-               // Validaciones
-               if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
-               if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
 
-               // Transacción exitosa
-               ClearActionPanel();
+				// Transacción
+				oENTResponse = oBPNacionalidad.updatecatNacionalidad(oENTNacionalidad);
 
-               // Actualizar grid
-               selectNacionalidad();
+				// Validaciones
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
 
-               // Mensaje de usuario
-               ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Información actualizada con éxito!', 'Success', false); focusControl('" + this.txtNombre.ClientID + "');", true);
+				// Transacción exitosa
+				ClearActionPanel();
 
-           }
-           catch (Exception ex) { throw (ex); }
+				// Actualizar grid
+				selectNacionalidad();
 
-       }
+				// Mensaje de usuario
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Información actualizada con éxito!', 'Success', false); focusControl('" + this.txtNombre.ClientID + "');", true);
 
-       // Eventos de la pagina
-      protected void Page_Load(object sender, EventArgs e)
-      {
-          // Validación. Solo la primera vez que se ejecuta la página
-          if (this.Page.IsPostBack) { return; }
+			}
+			catch (Exception ex) { throw (ex); }
 
-          // Lógica de la página
-          try
-          {
+		}
 
-              // Llenado de controles
-              selectNacionalidad();
 
-              // Estado inicial del formulario
-              ClearActionPanel();
+		// Eventos de la pagina
 
-              // Foco
-              ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtNombre.ClientID + "');", true);
+		protected void Page_Load(object sender, EventArgs e)
+		{
+			// Validación. Solo la primera vez que se ejecuta la página
+			if (this.Page.IsPostBack) { return; }
 
-          }
-          catch (Exception ex)
-          {
-              ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
-          }
+			// Lógica de la página
+			try
+			{
 
-      }
+				// Llenado de controles
+				selectNacionalidad();
 
-      protected void btnAction_Click(object sender, EventArgs e)
-      {
-          try
-          {
+				// Estado inicial del formulario
+				ClearActionPanel();
 
-              // Validar formulario
-              ValidateActionForm();
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtNombre.ClientID + "');", true);
 
-              // Determinar acción
-              if (this.hddNacionalidad.Value == "0")
-              {
+			}
+			catch (Exception ex)
+			{
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+			}
 
-                  insertNacionalidad();
-              }
-              else
-              {
+		}
 
-                  updateNacionalidad(Int32.Parse(this.hddNacionalidad.Value));
-              }
-          }
-          catch (Exception ex)
-          {
-              lblActionMessage.Text = ex.Message;
-              ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtActionNombre.ClientID + "');", true);
-          }
-      }
+		protected void btnAction_Click(object sender, EventArgs e)
+		{
+			try
+			{
 
-      protected void btnBuscar_Click(object sender, EventArgs e)
-      {
+				// Validar formulario
+				ValidateActionForm();
 
-          try
-          {
+				// Determinar acción
+				if (this.hddNacionalidad.Value == "0")
+				{
 
-              // Filtrar información
-              selectNacionalidad();
+					insertNacionalidad();
+				}
+				else
+				{
 
-          }
-          catch (Exception ex)
-          {
-              ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
-          }
+					updateNacionalidad(Int32.Parse(this.hddNacionalidad.Value));
+				}
+			}
+			catch (Exception ex)
+			{
+				lblActionMessage.Text = ex.Message;
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtActionNombre.ClientID + "');", true);
+			}
+		}
 
-      }
+		protected void btnBuscar_Click(object sender, EventArgs e)
+		{
 
-      protected void btnNuevo_Click(object sender, EventArgs e)
-      {
+			try
+			{
 
-          try
-          {
+				// Filtrar información
+				selectNacionalidad();
 
-              // Nuevo registro
-              SetPanel(NacionalidadActionTypes.InsertNacionalidad);
+			}
+			catch (Exception ex)
+			{
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+			}
 
-          }
-          catch (Exception ex)
-          {
-              ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
-          }
-      }
+		}
 
-      protected void gvNacionalidad_RowCommand(object sender, GridViewCommandEventArgs e)
-      {
-          Int32 NacionalidadId = 0;
+		protected void btnNuevo_Click(object sender, EventArgs e)
+		{
 
-          String strCommand = "";
-          Int32 intRow = 0;
+			try
+			{
 
-          try
-          {
+				// Nuevo registro
+				SetPanel(NacionalidadActionTypes.InsertNacionalidad);
 
-              // Opción seleccionada
-              strCommand = e.CommandName.ToString();
+			}
+			catch (Exception ex)
+			{
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+			}
+		}
 
-              // Se dispara el evento RowCommand en el ordenamiento
-              if (strCommand == "Sort") { return; }
+		protected void gvNacionalidad_RowCommand(object sender, GridViewCommandEventArgs e)
+		{
+			Int32 NacionalidadId = 0;
 
-              // Fila
-              intRow = Int32.Parse(e.CommandArgument.ToString());
+			String strCommand = "";
+			Int32 intRow = 0;
 
-              // Datakeys
-              NacionalidadId = Int32.Parse(this.gvNacionalidad.DataKeys[intRow]["NacionalidadId"].ToString());
+			try
+			{
 
-              // Reajuste de Command
-              //if (strCommand == "Action")
-              //{
+				// Opción seleccionada
+				strCommand = e.CommandName.ToString();
 
-              //    strCommand = (this.gvLugar.DataKeys[intRow]["Activo"].ToString() == "0" ? "Reactivar" : "Eliminar");
-              //}
+				// Se dispara el evento RowCommand en el ordenamiento
+				if (strCommand == "Sort") { return; }
 
-              // Acción
-              switch (strCommand)
-              {
-                  case "Editar":
-                      SetPanel(NacionalidadActionTypes.UpdateNacionalidad, NacionalidadId);
-                      ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tooltip.hide();", true);
-                      break;
-                  //case "Eliminar":
-                  //    updateEstado_Estatus(EstadoActionTypes.DeleteEstado, EstadoId);
-                  //    break;
-                  //case "Reactivar":
-                  //    updateEstado_Estatus(EstadoActionTypes.ReactivateEstado, EstadoId);
-                  //    break;
+				// Fila
+				intRow = Int32.Parse(e.CommandArgument.ToString());
 
-              }
+				// Datakeys
+				NacionalidadId = Int32.Parse(this.gvNacionalidad.DataKeys[intRow]["NacionalidadId"].ToString());
 
-          }
-          catch (Exception ex)
-          {
-              ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
-          }
-      }
+				// Reajuste de Command
+				//if (strCommand == "Action")
+				//{
 
-      protected void gvNacionalidad_RowDataBound(object sender, GridViewRowEventArgs e)
-      {
-          ImageButton imgEdit = null;
-          //ImageButton imgAction = null;
+				//    strCommand = (this.gvLugar.DataKeys[intRow]["Activo"].ToString() == "0" ? "Reactivar" : "Eliminar");
+				//}
 
-          String NacionalidadId = "";
-          String sNombre = "";
+				// Acción
+				switch (strCommand)
+				{
+					case "Editar":
+						SetPanel(NacionalidadActionTypes.UpdateNacionalidad, NacionalidadId);
+						ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tooltip.hide();", true);
+						break;
+					//case "Eliminar":
+					//    updateEstado_Estatus(EstadoActionTypes.DeleteEstado, EstadoId);
+					//    break;
+					//case "Reactivar":
+					//    updateEstado_Estatus(EstadoActionTypes.ReactivateEstado, EstadoId);
+					//    break;
 
+				}
 
-          String sImagesAttributes = "";
-          String sTootlTip = "";
+			}
+			catch (Exception ex)
+			{
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+			}
+		}
 
-          try
-          {
+		protected void gvNacionalidad_RowDataBound(object sender, GridViewRowEventArgs e)
+		{
+			ImageButton imgEdit = null;
+			//ImageButton imgAction = null;
 
-              // Validación de que sea fila
-              if (e.Row.RowType != DataControlRowType.DataRow) { return; }
+			String NacionalidadId = "";
+			String sNombre = "";
 
-              // Obtener imagenes
-              imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
-              //imgAction = (ImageButton)e.Row.FindControl("imgAction");
 
-              // Datakeys
-              NacionalidadId = this.gvNacionalidad.DataKeys[e.Row.RowIndex]["NacionalidadId"].ToString();
-              sNombre = this.gvNacionalidad.DataKeys[e.Row.RowIndex]["Nombre"].ToString();
+			String sImagesAttributes = "";
+			String sTootlTip = "";
 
+			try
+			{
 
-              // Tooltip Edición
-              sTootlTip = "Editar Nacionalidad [" + sNombre + "]";
-              imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sTootlTip + "', 'Izq');");
-              imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
-              imgEdit.Attributes.Add("style", "cursor:hand;");
+				// Validación de que sea fila
+				if (e.Row.RowType != DataControlRowType.DataRow) { return; }
 
-              // Tooltip Action
-              //sTootlTip = (Activo == "1" ? "Eliminar" : "Reactivar" + "Nacionalidad [" + sNombre + "]");
-              //imgAction.Attributes.Add("onmouseover", "tooltip.show('" + sTootlTip + "', 'Izq');");
-              //imgAction.Attributes.Add("onmouseout", "tooltip.hide();");
-              //imgAction.Attributes.Add("style", "cursor:hand;");
+				// Obtener imagenes
+				imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
+				//imgAction = (ImageButton)e.Row.FindControl("imgAction");
 
-              // Imagen del botón [imgAction]
-              // imgAction.ImageUrl = "../../../../Include/Image/Buttons/" + (Activo == "1" ? "Delete" : "Restore") + ".png";
+				// Datakeys
+				NacionalidadId = this.gvNacionalidad.DataKeys[e.Row.RowIndex]["NacionalidadId"].ToString();
+				sNombre = this.gvNacionalidad.DataKeys[e.Row.RowIndex]["Nombre"].ToString();
 
-              // Atributos Over
-              sImagesAttributes = " document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png';";
-              //sImagesAttributes = sImagesAttributes + " document.getElementById('" + imgAction.ClientID + "').src='../../../../Include/Image/Buttons/" + (Activo == "1" ? "Delete" : "Restore") + "_Over.png';";
 
-              // Puntero y Sombra en fila Over
-              e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
+				// Tooltip Edición
+				sTootlTip = "Editar Nacionalidad [" + sNombre + "]";
+				imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sTootlTip + "', 'Izq');");
+				imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
+				imgEdit.Attributes.Add("style", "cursor:hand;");
 
-              // Atributos Out
-              sImagesAttributes = " document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png';";
-              //sImagesAttributes = sImagesAttributes + " document.getElementById('" + imgAction.ClientID + "').src='../../../../Include/Image/Buttons/" + (Activo == "1" ? "Delete" : "Restore") + ".png';";
+				// Tooltip Action
+				//sTootlTip = (Activo == "1" ? "Eliminar" : "Reactivar" + "Nacionalidad [" + sNombre + "]");
+				//imgAction.Attributes.Add("onmouseover", "tooltip.show('" + sTootlTip + "', 'Izq');");
+				//imgAction.Attributes.Add("onmouseout", "tooltip.hide();");
+				//imgAction.Attributes.Add("style", "cursor:hand;");
 
-              // Puntero y Sombra en fila Out
-              e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
+				// Imagen del botón [imgAction]
+				// imgAction.ImageUrl = "../../../../Include/Image/Buttons/" + (Activo == "1" ? "Delete" : "Restore") + ".png";
 
-          }
-          catch (Exception ex) { throw (ex); }
-      }
+				// Atributos Over
+				sImagesAttributes = " document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png';";
+				//sImagesAttributes = sImagesAttributes + " document.getElementById('" + imgAction.ClientID + "').src='../../../../Include/Image/Buttons/" + (Activo == "1" ? "Delete" : "Restore") + "_Over.png';";
 
-      protected void gvNacionalidad_Sorting(object sender, GridViewSortEventArgs e)
-      {
-          DataTable tblRegionesTelcel = null;
-          DataView viewRegionesTelcel = null;
+				// Puntero y Sombra en fila Over
+				e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
 
-          try
-          {
+				// Atributos Out
+				sImagesAttributes = " document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png';";
+				//sImagesAttributes = sImagesAttributes + " document.getElementById('" + imgAction.ClientID + "').src='../../../../Include/Image/Buttons/" + (Activo == "1" ? "Delete" : "Restore") + ".png';";
 
-              // Obtener DataTable y DataView del GridView
-              tblRegionesTelcel = utilFunction.ParseGridViewToDataTable(this.gvNacionalidad, true);
-              viewRegionesTelcel = new DataView(tblRegionesTelcel);
+				// Puntero y Sombra en fila Out
+				e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
 
-              // Determinar ordenamiento
-              this.hddSort.Value = (this.hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
+			}
+			catch (Exception ex) { throw (ex); }
+		}
 
-              // Ordenar vista
-              viewRegionesTelcel.Sort = this.hddSort.Value;
+		protected void gvNacionalidad_Sorting(object sender, GridViewSortEventArgs e)
+		{
+			try
+			{
 
-              // Vaciar datos
-              this.gvNacionalidad.DataSource = viewRegionesTelcel;
-              this.gvNacionalidad.DataBind();
+				gcCommon.SortGridView(ref this.gvNacionalidad, ref this.hddSort, e.SortExpression);
 
-          }
-          catch (Exception ex)
-          {
-              ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
-          }
+			}
+			catch (Exception ex)
+			{
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+			}
 
-      }
+		}
 
-      protected void imgCloseWindow_Click(object sender, ImageClickEventArgs e)
-      {
-          try
-          {
+		protected void imgCloseWindow_Click(object sender, ImageClickEventArgs e)
+		{
+			try
+			{
 
-              // Cancelar transacción
-              ClearActionPanel();
+				// Cancelar transacción
+				ClearActionPanel();
 
-          }
-          catch (Exception ex)
-          {
-              ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
-          }
-      }
+			}
+			catch (Exception ex)
+			{
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+			}
+		}
 
 
-   }
+	}
 }

@@ -20,7 +20,7 @@ using System.Linq;
 using System.Text;
 
 // Referencias manuales
-using GCSoft.Utilities.Security;
+using GCUtility.Security;
 using SIAQ.Entity.Object;
 using SIAQ.DataAccess.Object;
 using System.Configuration;
@@ -30,6 +30,7 @@ namespace SIAQ.BusinessProcess.Page
 
    public class BPPage : System.Web.UI.Page
    {
+	   
 
       // Asignación de evento PreLoad
 
@@ -44,7 +45,7 @@ namespace SIAQ.BusinessProcess.Page
          DAArea oDAArea = new DAArea();
          ENTSession oENTSession;
 
-         Encryption utilEncryption = new Encryption();
+		 GCEncryption gcEncryption = new GCEncryption();
 
          String sKey = "";
          String sPage = "";
@@ -53,7 +54,7 @@ namespace SIAQ.BusinessProcess.Page
          if (this.IsPostBack) { return; }
 
          // Mensaje de error general
-         sKey = utilEncryption.EncryptString("[V01] Acceso denegado", true);
+         sKey = gcEncryption.EncryptString("[V01] Acceso denegado", true);
 
          // Sesión
          if (this.Session["oENTSession"] == null){
@@ -77,25 +78,15 @@ namespace SIAQ.BusinessProcess.Page
 
             // Permisos
             if (oENTSession.tblSubMenu.Select("sPageName = '" + sPage + "'").Length < 1){
-               sKey = utilEncryption.EncryptString("[V02] No tiene permisos para acceder a esta página", true);
+               sKey = gcEncryption.EncryptString("[V02] No tiene permisos para acceder a esta página", true);
                this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx?key=" + sKey, true);
             }
-
-			//// Compañía activa
-			//if ( oENTSession.idArea != 1 ){
-			//   if (oDAArea.IsAreaActive(oENTSession.idArea, ConfigurationManager.ConnectionStrings["Application.DBCnn"].ToString(), 0) == false){
-			//      sKey = utilEncryption.EncryptString("[V04] Su compañía no tiene permisos para acceder a esta página", true);
-			//      this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx?key=" + sKey, true);
-			//   }
-			//}
-
          }
 
          // Validación de acceso a opciones [System Administrator]
-         // if ((sPage == "scatArea.aspx" || sPage == "scatMenu.aspx" || sPage == "scatSubMenu.aspx") && (oENTSession.idArea != 1) ){
 		if ((sPage == "scatArea.aspx" || sPage == "scatMenu.aspx" || sPage == "scatSubMenu.aspx") && (oENTSession.idRol != 1) ){
 
-            sKey = utilEncryption.EncryptString("[V03] No tiene permisos para acceder a esta página", true);
+            sKey = gcEncryption.EncryptString("[V03] No tiene permisos para acceder a esta página", true);
             this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx?key=" + sKey, true);
          }
 

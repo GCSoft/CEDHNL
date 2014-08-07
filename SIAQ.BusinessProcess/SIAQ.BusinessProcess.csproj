@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GCSoft.Utilities">
-      <HintPath>..\SIAQ.Web\Include\Components\GCSoft\GCSoft.Utilities.dll</HintPath>
+    <Reference Include="GCUtility">
+      <HintPath>..\SIAQ.Web\Include\Components\GCSoft\GCUtility.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />

@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-using GCSoft.Utilities.Common;
+using GCUtility.Function;
 using SIAQ.BusinessProcess.Object;
 using SIAQ.Entity.Object;
 
@@ -14,7 +14,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
     public partial class visSeguimientoExpediente : System.Web.UI.Page
     {
         bool IsReadOnly = false;
-        Function utilFunction = new Function();
+		GCJavascript gcJavascript = new GCJavascript();
 
         #region "Events"
             protected void GuardarButton_Click(object sender, EventArgs e)
@@ -54,7 +54,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                     SelectExpedienteSeguimiento(ExpedienteId);
                 }
                 else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ExpedienteSeguimientoProcess.ErrorDescription) + "', 'Error', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ExpedienteSeguimientoProcess.ErrorDescription) + "', 'Error', true);", true);
             }
 
             private void DisableControls()
@@ -141,7 +141,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                     SelectExpedienteSeguimiento(ExpedienteId);
                 }
                 else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ExpedienteSeguimientoProcess.ErrorDescription) + "', 'Error', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ExpedienteSeguimientoProcess.ErrorDescription) + "', 'Error', true);", true);
             }
 
             private void SeguimientoGridRowCommand(GridViewCommandEventArgs e)
@@ -224,7 +224,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                     }
                 }
                 else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(BPExpediente.ErrorDescription) + "', 'Error', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(BPExpediente.ErrorDescription) + "', 'Error', true);", true);
             }
 
             private void SelectExpedienteSeguimiento(int ExpedienteId)
@@ -241,7 +241,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                     SeguimientoGrid.DataBind();
                 }
                 else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ExpedienteSeguimientoProcess.ErrorDescription) + "', 'Error', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ExpedienteSeguimientoProcess.ErrorDescription) + "', 'Error', true);", true);
             }
 
             private void SelectExpedienteSeguimiento(int ExpedienteSeguimientoId, int ExpedienteId)
@@ -255,13 +255,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
                 if (ExpedienteSeguimientoProcess.ErrorId != 0)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ExpedienteSeguimientoProcess.ErrorDescription) + "', 'Error', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ExpedienteSeguimientoProcess.ErrorDescription) + "', 'Error', true);", true);
                     return;
                 }
 
                 if (ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ResultData.Tables[0].Rows.Count == 0)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText("No se encontró información de seguimiento para el expediente") + "', 'Error', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText("No se encontró información de seguimiento para el expediente") + "', 'Error', true);", true);
                     return;
                 }
 
@@ -292,7 +292,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                     if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
 
                     // Mensaje de la BD
-                    if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', false);", true); }
+                    if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(oENTResponse.sMessage) + "', 'Warning', false);", true); }
 
                     // Llenado de combo
                     TipoSeguimientoIdList.DataTextField = "Nombre";

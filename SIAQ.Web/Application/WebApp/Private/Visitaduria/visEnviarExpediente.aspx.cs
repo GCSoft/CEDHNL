@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-using GCSoft.Utilities.Common;
+using GCUtility.Function;
 using SIAQ.BusinessProcess.Object;
 using SIAQ.Entity.Object;
 
@@ -14,7 +14,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
     public partial class visEnviarExpediente : System.Web.UI.Page
     {
         const int ExpedienteEnviadoEstatus = 12;
-        Function utilFunction = new Function();
+		GCJavascript gcJavascript = new GCJavascript();
 
         #region "Events"
             protected void EnviarButton_Click(object sender, EventArgs e)
@@ -44,7 +44,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El expediente ha sido enviado para su revisión', 'Success', false);", true);
                 }
                 else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ExpedienteProcess.ErrorDescription) + "', 'Error', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ExpedienteProcess.ErrorDescription) + "', 'Error', true);", true);
             }
 
             private int GetExpedienteParameter()
@@ -118,7 +118,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                     }
                 }
                 else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(BPExpediente.ErrorDescription) + "', 'Error', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(BPExpediente.ErrorDescription) + "', 'Error', true);", true);
             }
         #endregion
     }

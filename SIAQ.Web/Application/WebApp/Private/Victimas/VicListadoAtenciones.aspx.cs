@@ -16,8 +16,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 // Referencias manuales
-using GCSoft.Utilities.Common;
-using GCSoft.Utilities.Security;
+using GCUtility.Function;
 using SIAQ.Entity.Object;
 using SIAQ.BusinessProcess.Page;
 using SIAQ.BusinessProcess.Object;
@@ -29,8 +28,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 	{
 
 		// Utilerías
-		Function utilFunction = new Function();
-		Encryption utilEncryption = new Encryption();
+		GCCommon gcCommon = new GCCommon();
+		GCJavascript gcJavascript = new GCJavascript();
 
 		
 		// Rutinas del programador
@@ -82,7 +81,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				SelectAtencion();
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
 			}
 		}
 
@@ -114,7 +113,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				}
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
 			}
 		}
 
@@ -157,27 +156,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		}
 
 		protected void gvAtencion_Sorting(object sender, GridViewSortEventArgs e){
-			DataTable tblData = null;
-			DataView viewData = null;
-
 			try
 			{
-				//Obtener DataTable y View del GridView
-				tblData = utilFunction.ParseGridViewToDataTable(gvAtencion, false);
-				viewData = new DataView(tblData);
 
-				//Determinar ordenamiento
-				hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
-
-				// Ordenar Vista
-				viewData.Sort = hddSort.Value;
-
-				//Vaciar datos
-				this.gvAtencion.DataSource = viewData;
-				this.gvAtencion.DataBind();
+				gcCommon.SortGridView(ref this.gvAtencion, ref this.hddSort, e.SortExpression);
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
 			}
 		}
 

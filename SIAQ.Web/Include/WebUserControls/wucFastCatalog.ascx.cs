@@ -16,9 +16,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 // Referencias manuales
+using GCUtility.Function;
 using SIAQ.BusinessProcess.Object;
 using SIAQ.Entity.Object;
-using GCSoft.Utilities.Common;
 using System.Data;
 using System.Drawing;
 
@@ -42,7 +42,7 @@ namespace SIAQ.Web.Include.WebUserControls
 		public enum FastCatalogTypes { NuevoPais, NuevoEstado, NuevoMunicipio, NuevaColonia }
 
 		// Utilerías
-		Function utilFunction = new Function();
+		GCJavascript gcJavascript = new GCJavascript();
 
 
 		// Propiedades
@@ -305,7 +305,7 @@ namespace SIAQ.Web.Include.WebUserControls
 				this.pnlAction.Visible = false;
                 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
 			}
 		}
 

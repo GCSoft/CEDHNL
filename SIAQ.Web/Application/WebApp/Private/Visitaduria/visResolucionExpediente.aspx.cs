@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-using GCSoft.Utilities.Common;
+using GCUtility.Function;
 using SIAQ.BusinessProcess.Object;
 using SIAQ.Entity.Object;
 
@@ -14,7 +14,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
     public partial class visResolucionExpediente : System.Web.UI.Page
     {
         // Utilerías
-        Function utilFunction = new Function();
+		GCJavascript gcJavascript = new GCJavascript();
 
         #region "Events"
             protected void GuardarButton_Click(object sender, EventArgs e)
@@ -102,7 +102,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                     // Mensaje de que todo se guardó correctamente
                 }
                 else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ExpedienteResolucionProcess.ErrorDescription) + "', 'Error', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ExpedienteResolucionProcess.ErrorDescription) + "', 'Error', true);", true);
             }
 
             private void SelectExpediente(int ExpedienteId)
@@ -150,7 +150,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                     }
                 }
                 else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(BPExpediente.ErrorDescription) + "', 'Error', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(BPExpediente.ErrorDescription) + "', 'Error', true);", true);
             }
 
             private void SelectExpedienteResolucion(int ExpedienteId)
@@ -163,7 +163,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
                 if (ExpedienteResolucionProcess.ErrorId != 0)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ExpedienteResolucionProcess.ErrorDescription) + "', 'Error', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ExpedienteResolucionProcess.ErrorDescription) + "', 'Error', true);", true);
                     return;
                 }
 
@@ -198,7 +198,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                     TipoResolucionIdList.Items.Insert(0, new ListItem("[Seleccione]", "0"));
                 }
                 else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(TipoResolucionProcess.ErrorDescription) + "', 'Error', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(TipoResolucionProcess.ErrorDescription) + "', 'Error', true);", true);
             }
         #endregion
     }

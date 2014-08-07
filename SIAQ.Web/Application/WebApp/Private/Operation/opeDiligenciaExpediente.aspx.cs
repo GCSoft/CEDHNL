@@ -7,9 +7,10 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Text.RegularExpressions;
 
+using GCUtility.Function;
 using SIAQ.BusinessProcess.Object;
 using SIAQ.Entity.Object;
-using GCSoft.Utilities.Common;
+
 
 
 namespace SIAQ.Web.Application.WebApp.Private.Operation
@@ -20,7 +21,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
         #region Atributos
 
             bool IsReadOnly = false;
-            Function utilFunction = new Function();
+			GCCommon gcCommon = new GCCommon();
+			GCJavascript gcJavascript = new GCJavascript();
             protected string ExpedienteId;
 
         #endregion
@@ -80,7 +82,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 }
                 catch (Exception ex)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
                 }
             }
 
@@ -139,31 +141,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 }
             }
 
-            protected void gvDiligenciasExpediente_Sorting(object sender, GridViewSortEventArgs e)
-            {
-                DataTable TableExpediente = null;
-                DataView ViewExpediente = null;
+            protected void gvDiligenciasExpediente_Sorting(object sender, GridViewSortEventArgs e){
+				try
+				{
 
-                try
-                {
-                    //Obtener DataTable y View del GridView
-                    TableExpediente = utilFunction.ParseGridViewToDataTable(gvDiligenciasExpediente, false);
-                    ViewExpediente = new DataView(TableExpediente);
+					gcCommon.SortGridView(ref this.gvDiligenciasExpediente, ref this.hddSort, e.SortExpression);
 
-                    //Determinar ordenamiento
-                    hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
-
-                    //Ordenar Vista
-                    ViewExpediente.Sort = hddSort.Value;
-
-                    //Vaciar datos
-                    gvDiligenciasExpediente.DataSource = ViewExpediente;
-                    gvDiligenciasExpediente.DataBind();
-
-                }
-                catch (Exception ex)
-                {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+				}catch (Exception ex){
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
                 }
             }
 
@@ -430,7 +415,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
                 if (ExpedienteProcess.ErrorId != 0)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ExpedienteProcess.ErrorDescription) + "', 'Error', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ExpedienteProcess.ErrorDescription) + "', 'Error', true);", true);
                     DisableControls();
                     return;
                 }

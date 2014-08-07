@@ -16,7 +16,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 // Referencias manuales
-using GCSoft.Utilities.Security;
+using GCUtility.Security;
 using SIAQ.BusinessProcess.Object;
 using SIAQ.BusinessProcess.Page;
 using SIAQ.Entity.Object;
@@ -25,41 +25,46 @@ using System.Data;
 
 namespace SIAQ.Web.Application.WebApp.Private.SysCat.ExcelMaker
 {
-   public partial class xlsArea : System.Web.UI.Page
-   {
-     
-      // Utilerías
-		Encryption utilEncryption = new Encryption();
-		
-		
+	public partial class xlsArea : System.Web.UI.Page
+	{
+
+		// Utilerías
+		GCEncryption gcEncryption = new GCEncryption();
+
+
 		// Funciones del programador
-		
-		Boolean HasValidParams(String sKey, ref ENTArea oENTArea){
+
+		Boolean HasValidParams(String sKey, ref ENTArea oENTArea)
+		{
 			Boolean ValidParams = true;
-			
-			try{
+
+			try
+			{
 
 				// Query String
-				sKey = utilEncryption.DecryptString(sKey, true);
+				sKey = gcEncryption.DecryptString(sKey, true);
 
-            // Parámetros de consulta (sNombre|tiActivo)
-            oENTArea.sNombre  = sKey.Split(new Char[] { '|' })[0].ToString();
-            oENTArea.tiActivo = Int16.Parse(sKey.Split(new Char[] { '|' })[1].ToString());
+				// Parámetros de consulta (sNombre|tiActivo)
+				oENTArea.sNombre = sKey.Split(new Char[] { '|' })[0].ToString();
+				oENTArea.tiActivo = Int16.Parse(sKey.Split(new Char[] { '|' })[1].ToString());
 
 				// Parámetros validos
 				ValidParams = true;
-				
-			}catch(Exception){
+
+			}
+			catch (Exception)
+			{
 				ValidParams = false;
 			}
-			
+
 			return ValidParams;
 		}
 
-		
+
 		// Rutinas del programador
-		
-		void ExportExcel(DataTable oDataTable, String sSheetName){
+
+		void ExportExcel(DataTable oDataTable, String sSheetName)
+		{
 			ExcelEngine oEEngine = null;
 			IApplication oExcel;
 			IWorkbook oWorkbook;
@@ -70,7 +75,8 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat.ExcelMaker
 
 			String sGeneralTitle = "";
 
-			try{
+			try
+			{
 
 				// Crear Excel
 				oEEngine = new ExcelEngine();
@@ -85,96 +91,103 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat.ExcelMaker
 				oSheet.Name = sSheetName;
 
 				// Título general del reporte
-            sGeneralTitle = "SIAQ - Compañías al " + DateTime.Now.ToString("d");
+				sGeneralTitle = "SIAQ - Compañías al " + DateTime.Now.ToString("d");
 
 				// Encabezados
-				foreach (DataColumn oCol in oDataTable.Columns){
-				   iCol = iCol + 1;
-				   oSheet.Range[iRow, iCol].Text = oCol.ColumnName;
+				foreach (DataColumn oCol in oDataTable.Columns)
+				{
+					iCol = iCol + 1;
+					oSheet.Range[iRow, iCol].Text = oCol.ColumnName;
 				}
 
 				// Cuerpo
-				foreach (DataRow oRow in oDataTable.Rows){
+				foreach (DataRow oRow in oDataTable.Rows)
+				{
 
-				   // Avanza en la fila del Excel
-				   iRow = iRow + 1;
+					// Avanza en la fila del Excel
+					iRow = iRow + 1;
 
-				   // Para cada columna
-				   for (Int32 k = 0; k < iCol; k++){
-				      switch (oDataTable.Columns[k].DataType.FullName){
-				         case "System.DateTime":
-				            oSheet.Range[iRow, k + 1].DateTime = Convert.ToDateTime(oRow[k]);
-				            break;
-								
-				         case "System.Decimal":
-				            oSheet.Range[iRow, k + 1].Number = Convert.ToDouble(oRow[k]);
+					// Para cada columna
+					for (Int32 k = 0; k < iCol; k++)
+					{
+						switch (oDataTable.Columns[k].DataType.FullName)
+						{
+							case "System.DateTime":
+								oSheet.Range[iRow, k + 1].DateTime = Convert.ToDateTime(oRow[k]);
+								break;
+
+							case "System.Decimal":
+								oSheet.Range[iRow, k + 1].Number = Convert.ToDouble(oRow[k]);
 								oSheet.Range[iRow, k + 1].NumberFormat = "#,##0.00";
-				            oSheet.Range[iRow, k + 1].HorizontalAlignment = ExcelHAlign.HAlignRight;
-				            break;
-								
-				         case "System.Double":
-				            oSheet.Range[iRow, k + 1].Number = Convert.ToDouble(oRow[k]);
+								oSheet.Range[iRow, k + 1].HorizontalAlignment = ExcelHAlign.HAlignRight;
+								break;
+
+							case "System.Double":
+								oSheet.Range[iRow, k + 1].Number = Convert.ToDouble(oRow[k]);
 								oSheet.Range[iRow, k + 1].NumberFormat = "#,##0.00";
-				            oSheet.Range[iRow, k + 1].HorizontalAlignment = ExcelHAlign.HAlignRight;
-				            break;
-								
-				         case "System.Int16":
-				            oSheet.Range[iRow, k + 1].Number = Convert.ToInt16(oRow[k]);
-				            oSheet.Range[iRow, k + 1].NumberFormat = "#,##0";
-				            oSheet.Range[iRow, k + 1].HorizontalAlignment = ExcelHAlign.HAlignRight;
-				            break;
-								
-				         case "System.Int32":
-				            oSheet.Range[iRow, k + 1].Number = Convert.ToInt32(oRow[k]);
-				            oSheet.Range[iRow, k + 1].NumberFormat = "#,##0";
-				            oSheet.Range[iRow, k + 1].HorizontalAlignment = ExcelHAlign.HAlignRight;
-				            break;
-								
-				         case "System.Int64":
-				            oSheet.Range[iRow, k + 1].Number = Convert.ToInt64(oRow[k]);
-				            oSheet.Range[iRow, k + 1].NumberFormat = "#,##0";
-				            oSheet.Range[iRow, k + 1].HorizontalAlignment = ExcelHAlign.HAlignRight;
-				            break;
-								
-				         default:
-				            oSheet.Range[iRow, k + 1].Text = Convert.ToString(oRow[k]);
-				            break;
-				      }
-				      
-				      // Formato de moneda para filas específicas
-				      if(k == 5 || k == 7 || k == 8 || k == 9){
+								oSheet.Range[iRow, k + 1].HorizontalAlignment = ExcelHAlign.HAlignRight;
+								break;
+
+							case "System.Int16":
+								oSheet.Range[iRow, k + 1].Number = Convert.ToInt16(oRow[k]);
+								oSheet.Range[iRow, k + 1].NumberFormat = "#,##0";
+								oSheet.Range[iRow, k + 1].HorizontalAlignment = ExcelHAlign.HAlignRight;
+								break;
+
+							case "System.Int32":
+								oSheet.Range[iRow, k + 1].Number = Convert.ToInt32(oRow[k]);
+								oSheet.Range[iRow, k + 1].NumberFormat = "#,##0";
+								oSheet.Range[iRow, k + 1].HorizontalAlignment = ExcelHAlign.HAlignRight;
+								break;
+
+							case "System.Int64":
+								oSheet.Range[iRow, k + 1].Number = Convert.ToInt64(oRow[k]);
+								oSheet.Range[iRow, k + 1].NumberFormat = "#,##0";
+								oSheet.Range[iRow, k + 1].HorizontalAlignment = ExcelHAlign.HAlignRight;
+								break;
+
+							default:
+								oSheet.Range[iRow, k + 1].Text = Convert.ToString(oRow[k]);
+								break;
+						}
+
+						// Formato de moneda para filas específicas
+						if (k == 5 || k == 7 || k == 8 || k == 9)
+						{
 							oSheet.Range[iRow, k + 1].NumberFormat = "$#,##0.00";
-				      }
+						}
 
-				   }
+					}
 
 				}
 
 				// Formato
-				if (iCol > 0){
+				if (iCol > 0)
+				{
 
-				   // Encabezado principal
-				   oSheet.Range[1, 1, 1, iCol].CellStyle.Font.Bold = true;
-				   oSheet.Range[1, 1, 1, iCol].HorizontalAlignment = ExcelHAlign.HAlignCenter;
-				   oSheet.Range[1, 1, 1, iCol].CellStyle.ColorIndex = ExcelKnownColors.Grey_25_percent;
+					// Encabezado principal
+					oSheet.Range[1, 1, 1, iCol].CellStyle.Font.Bold = true;
+					oSheet.Range[1, 1, 1, iCol].HorizontalAlignment = ExcelHAlign.HAlignCenter;
+					oSheet.Range[1, 1, 1, iCol].CellStyle.ColorIndex = ExcelKnownColors.Grey_25_percent;
 
-				   // Encabezado de columnas
-				   oSheet.Range[1, 1, 2, iCol].CellStyle.Font.Bold = true;
-				   oSheet.Range[1, 1, 2, iCol].HorizontalAlignment = ExcelHAlign.HAlignCenter;
-				   oSheet.Range[1, 1, 2, iCol].CellStyle.ColorIndex = ExcelKnownColors.Grey_25_percent;
-				   oSheet.Range[1, 1, iRow, iCol].BorderInside(ExcelLineStyle.Thin);
-				   oSheet.Range[1, 1, 1, iCol].BorderAround(ExcelLineStyle.Medium);
-				   oSheet.Range[1, 1, iRow, iCol].BorderAround(ExcelLineStyle.Medium);
-				   oSheet.Range[1, 1, iRow, iCol].VerticalAlignment = ExcelVAlign.VAlignCenter;
+					// Encabezado de columnas
+					oSheet.Range[1, 1, 2, iCol].CellStyle.Font.Bold = true;
+					oSheet.Range[1, 1, 2, iCol].HorizontalAlignment = ExcelHAlign.HAlignCenter;
+					oSheet.Range[1, 1, 2, iCol].CellStyle.ColorIndex = ExcelKnownColors.Grey_25_percent;
+					oSheet.Range[1, 1, iRow, iCol].BorderInside(ExcelLineStyle.Thin);
+					oSheet.Range[1, 1, 1, iCol].BorderAround(ExcelLineStyle.Medium);
+					oSheet.Range[1, 1, iRow, iCol].BorderAround(ExcelLineStyle.Medium);
+					oSheet.Range[1, 1, iRow, iCol].VerticalAlignment = ExcelVAlign.VAlignCenter;
 
-				   // Ancho de las columnas
-				   for (Int32 j = 1; j <= iCol; j++){
-				      oSheet.AutofitColumn(j);
-				   }
+					// Ancho de las columnas
+					for (Int32 j = 1; j <= iCol; j++)
+					{
+						oSheet.AutofitColumn(j);
+					}
 
-				   // Título general (se mueve el set aquí para no afectar el ancho de las columnas)
-				   oSheet.Range[1, 1].Text = sGeneralTitle;
-				   oSheet.Range[1, 1, 1, iCol].Merge();
+					// Título general (se mueve el set aquí para no afectar el ancho de las columnas)
+					oSheet.Range[1, 1].Text = sGeneralTitle;
+					oSheet.Range[1, 1, 1, iCol].Merge();
 
 				}
 
@@ -184,68 +197,83 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat.ExcelMaker
 				// Cerrar el libro
 				oWorkbook.Close();
 
-			}catch (ExcelWorkbookNotSavedException){
+			}
+			catch (ExcelWorkbookNotSavedException)
+			{
 				// Do Nothing
 
-			}catch (Exception){
+			}
+			catch (Exception)
+			{
 				// Do Nothing
 
-			}finally{
+			}
+			finally
+			{
 				oEEngine.ThrowNotSavedOnDestroy = false;
 				oEEngine.Dispose();
 			}
 		}
-		
-		void SelectArea(ENTArea oENTArea){
+
+		void SelectArea(ENTArea oENTArea)
+		{
 			ENTResponse oENTResponse = new ENTResponse();
 			BPArea oBPArea = new BPArea();
 
-			try{
-				
+			try
+			{
+
 				// Transacción
 				oENTResponse = oBPArea.SelectArea(oENTArea);
 
 				// Validaciones
-				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage));  }
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
 
 				// Transacción exitosa
 				ExportExcel(oENTResponse.dsResponse.Tables[2], "Area");
-				
-			}catch (Exception ex){
+
+			}
+			catch (Exception ex)
+			{
 				throw (ex);
 			}
 		}
-		
-		
+
+
 		// Eventos de la página
 
-		protected void Page_Load(object sender, EventArgs e){
+		protected void Page_Load(object sender, EventArgs e)
+		{
 			ENTArea oENTArea = new ENTArea();
 			String sDefaultErrorMessage = "";
 
 			try
 			{
-			
+
 				// Mensaje de error por default
-				sDefaultErrorMessage = utilEncryption.EncryptString("[V03] Acceso ilegal a la página", true);
-				
+				sDefaultErrorMessage = gcEncryption.EncryptString("[V03] Acceso ilegal a la página", true);
+
 				// Validaciones
-				if (this.Request.QueryString["key"] == null) {
+				if (this.Request.QueryString["key"] == null)
+				{
 					this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx?key=" + sDefaultErrorMessage, false);
 				}
-				
-				if (!HasValidParams(this.Request.QueryString["key"].ToString(), ref oENTArea)){
+
+				if (!HasValidParams(this.Request.QueryString["key"].ToString(), ref oENTArea))
+				{
 					this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx?key=" + sDefaultErrorMessage, false);
 				}
-				
+
 				// Consultar Órdenes de Compra
 				SelectArea(oENTArea);
-				
-			}catch (Exception){
+
+			}
+			catch (Exception)
+			{
 				// Do Nothing
 			}
 
 		}
 
-   }
+	}
 }

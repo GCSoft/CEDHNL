@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 
 using SIAQ.BusinessProcess.Object;
 using SIAQ.Entity.Object;
-using GCSoft.Utilities.Common;
+using GCUtility.Function;
 
 namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
@@ -18,7 +18,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         #region Atributos
 
-        Function utilFunction = new Function();
+		GCCommon gcCommon = new GCCommon();
+		GCJavascript gcJavascript = new GCJavascript();
+
         protected string id;
         protected int tipo;
 
@@ -114,31 +116,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        protected void gvDiligenciasExpediente_Sorting(object sender, GridViewSortEventArgs e)
-        {
-            DataTable TableExpediente = null;
-            DataView ViewExpediente = null;
-
+        protected void gvDiligenciasExpediente_Sorting(object sender, GridViewSortEventArgs e){
             try
             {
-                //Obtener DataTable y View del GridView
-                TableExpediente = utilFunction.ParseGridViewToDataTable(gvDiligenciasExpediente, false);
-                ViewExpediente = new DataView(TableExpediente);
 
-                //Determinar ordenamiento
-                hddSort.Value = (hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
+				// Ordenar el Grid View
+				gcCommon.SortGridView(ref this.gvDiligenciasExpediente, ref this.hddSort, e.SortExpression);
 
-                //Ordenar Vista
-                ViewExpediente.Sort = hddSort.Value;
-
-                //Vaciar datos
-                gvDiligenciasExpediente.DataSource = ViewExpediente;
-                gvDiligenciasExpediente.DataBind();
-
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true);", true);
+            }catch (Exception ex){
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
             }
         }
 

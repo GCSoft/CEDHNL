@@ -169,21 +169,6 @@ namespace SIAQ.BusinessProcess.Object
 			}
 
 			/// <summary>
-			/// Metodo para obtener las formas de contacto del sistema
-			/// </summary>
-			public void SelectComboFormaContacto()
-			{
-				string ConnectionString = string.Empty;
-				DACiudadano oDACiudadano = new DACiudadano();
-
-				ConnectionString = sConnectionApplication;
-				_ENTCiudadano.ResultData = oDACiudadano.SelectComboFormaContacto(_ENTCiudadano, ConnectionString);
-
-				_ErrorId = oDACiudadano.ErrorId;
-				_ErrorDescription = oDACiudadano.ErrorDescription;
-			}
-
-			/// <summary>
 			/// Metodo para obtener las colonias del sistema
 			/// </summary>
 			public void SelectComboColonia()

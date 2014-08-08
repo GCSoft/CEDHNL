@@ -319,40 +319,6 @@ namespace SIAQ.DataAccess.Object
 			}
 
 			///<remarks>
-			///   <name>DACiudadano.SelectComboFormaContacto</name>
-			///   <create>03/abr/2014</create>
-			///   <author>Jose.Gomez</author>
-			///</remarks>
-			///<summary>Metodo para obtener las formas de contacto del sistema</summary>
-			public DataSet SelectComboFormaContacto(ENTCiudadano oENTCiudadano, string ConnectionString)
-			{
-				SqlConnection Connection = new SqlConnection(ConnectionString);
-				SqlCommand Command;
-				SqlDataAdapter DataAdapter;
-				DataSet ds = new DataSet();
-
-				try
-				{
-					Command = new SqlCommand("spcatFormaContacto_SelForControl", Connection);
-					Command.CommandType = CommandType.StoredProcedure;
-
-					DataAdapter = new SqlDataAdapter(Command);
-
-					Connection.Open();
-					DataAdapter.Fill(ds);
-					Connection.Close();
-				}
-				catch (SqlException ex)
-				{
-					_ErrorId = ex.Number;
-					_ErrorDescription = ex.Message;
-					if (Connection.State == ConnectionState.Open) { Connection.Close(); }
-				}
-
-				return ds;
-			}
-
-			///<remarks>
 			///   <name>DACiudadano.SelectComboColonia</name>
 			///   <create>03/abr/2014</create>
 			///   <author>Jose.Gomez</author>

@@ -18,15 +18,17 @@ namespace SIAQ.Entity.Object
 	{
 
 		// Definiciones
-		private Int32	_IndicadorId;	// Identificador único del Indicador a consultar
-		private String	_Nombre;		// Nombre del indicador
-		private String	_Descripcion;	// Descripcion del indicador
+		private Int32	_IndicadorId;		// Identificador único del Indicador a consultar
+		private Int32	_IndicadorGrupoId;	// Identificador único del Grupo al que pertenece el Indicador a consultar
+		private String	_Nombre;			// Nombre del indicador
+		private String	_Descripcion;		// Descripcion del indicador
 
 
 		 //Constructor
 
         public ENTIndicador(){
 			_IndicadorId = 0;
+			_IndicadorGrupoId = 0;
 			_Nombre = "";
 			_Descripcion = "";
         }
@@ -44,6 +46,18 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _IndicadorId; }
 			set { _IndicadorId = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTIndicador.IndicadorGrupoId</name>
+		///   <create>18-Julio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el identificador único del Grupo al que pertenece el indicador a consultar</summary>
+		public Int32 IndicadorGrupoId
+		{
+			get { return _IndicadorGrupoId; }
+			set { _IndicadorGrupoId = value; }
 		}
 
         ///<remarks>

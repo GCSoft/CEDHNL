@@ -240,12 +240,13 @@
 
 /*CHECKBOXLIST*/
 .CheckBoxList_Regular{
+	border: 1px solid #C1C1C1;
 	color:#4B4878;
 	cursor:pointer;
 	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
 	font-size: 12px;
+	height:100px;
 	width:100%;
-	border: 1px solid #C1C1C1;
 }
 
 .CheckBoxList_Regular label{ 
@@ -255,6 +256,14 @@
 .CheckBoxList_Regular input{
     float:left;
     clear:both;
+}
+
+.CheckBoxList_Regular tr{
+   height:24px;
+}
+
+.CheckBoxList_Regular td{
+   width:250px;
 }
 
 /*DROPDOWNLIST*/

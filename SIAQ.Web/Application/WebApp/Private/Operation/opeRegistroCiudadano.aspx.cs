@@ -5,15 +5,16 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-// Referencias Manuales
+// Referencias manuales
 using GCUtility.Function;
-using SIAQ.Entity.Object;
 using SIAQ.BusinessProcess.Object;
+using SIAQ.BusinessProcess.Page;
+using SIAQ.Entity.Object;
 using System.Data;
 
 namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
-    public partial class opeRegistroCiudadano : System.Web.UI.Page
+    public partial class opeRegistroCiudadano : BPPage
     {
 
 		// Utilerías
@@ -987,34 +988,27 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        private void ComboFormaContacto()
-        {
-            BPCiudadano oBPCiudadano = new BPCiudadano();
-            ENTCiudadano oENTCiudadano = new ENTCiudadano();
+        private void ComboFormaContacto(){
+			try
+			{
 
-            try
-            {
-                oBPCiudadano.SelectComboFormaContacto();
+				// Transporte
+				BPFormaContacto BPFormaContacto = new BPFormaContacto();
 
-                if (oBPCiudadano.ErrorId == 0)
-                {
-                    if (oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows.Count > 0)
-                    {
-                        ddlFormaEnterarse.DataSource = oBPCiudadano.ENTCiudadano.ResultData;
-                        ddlFormaEnterarse.DataTextField = "Nombre";
-                        ddlFormaEnterarse.DataValueField = "FormaContactoId";
-                        ddlFormaEnterarse.DataBind();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this.Page
-                    , this.GetType()
-                    , Convert.ToString(Guid.NewGuid())
-                    , "tinyboxMessage('" + ex.Message + "', 'Fail', true);"
-                    , true);
-            }
+				// COnfguración del objeto
+				this.ddlFormaEnterarse.DataTextField = "Nombre";
+				this.ddlFormaEnterarse.DataValueField = "FormaContactoId";
+
+				// Transacción
+				this.ddlFormaEnterarse.DataSource = BPFormaContacto.SelectFormaContacto();
+
+				// Bind
+				this.ddlFormaEnterarse.DataBind();
+				this.ddlFormaEnterarse.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ex.Message + "', 'Fail', true);", true);
+			}
         }
 
         private void ComboColonia()

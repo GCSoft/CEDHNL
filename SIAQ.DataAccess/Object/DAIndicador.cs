@@ -53,6 +53,10 @@ namespace SIAQ.DataAccess.Object
 			sqlPar.Value = oENTIndicador.IndicadorId;
 			sqlCom.Parameters.Add(sqlPar);
 
+			sqlPar = new SqlParameter("IndicadorGrupoId", SqlDbType.Int);
+			sqlPar.Value = oENTIndicador.IndicadorGrupoId;
+			sqlCom.Parameters.Add(sqlPar);
+
 			sqlPar = new SqlParameter("Nombre", SqlDbType.VarChar);
 			sqlPar.Value = oENTIndicador.Nombre;
 			sqlCom.Parameters.Add(sqlPar);

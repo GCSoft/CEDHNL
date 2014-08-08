@@ -363,16 +363,76 @@
 			</table>
 			<br />
 
-			<!-- Indicadores (Grupos Minoritarios)  -->
-			<table border="0" cellpadding="0" cellspacing="0" width="100%">
-				<tr><td class="DivisonTabla">Indicadores</td></tr>
-				<tr><td></td></tr>
-				<tr>
-					<td>
-						<asp:CheckBoxList ID="chkIndicador" runat="server" CssClass="CheckBoxList_Regular" RepeatDirection="Horizontal" RepeatColumns="4" CellSpacing="20"></asp:CheckBoxList>
-					</td>
-				</tr>
-			</table>
+			<!-- Indicadores  -->
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr><td class="DivisonTabla">&nbsp;Género</td></tr>
+			<tr><td></td></tr>
+			<tr>
+				<td>
+					<asp:CheckBoxList ID="chkIndicadorGenero" runat="server" CssClass="CheckBoxList_Regular" RepeatDirection="Horizontal" RepeatColumns="4" CellSpacing="20"></asp:CheckBoxList>
+				</td>
+			</tr>
+		</table>
+
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr><td class="DivisonTabla">&nbsp;Edad</td></tr>
+			<tr><td></td></tr>
+			<tr>
+				<td>
+					<asp:CheckBoxList ID="chkIndicadorEdad" runat="server" CssClass="CheckBoxList_Regular" RepeatDirection="Horizontal" RepeatColumns="4" CellSpacing="20"></asp:CheckBoxList>
+				</td>
+			</tr>
+		</table>
+
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr><td class="DivisonTabla">&nbsp;Actividad</td></tr>
+			<tr><td></td></tr>
+			<tr>
+				<td>
+					<asp:CheckBoxList ID="chkIndicadorActividad" runat="server" CssClass="CheckBoxList_Regular" RepeatDirection="Horizontal" RepeatColumns="4" CellSpacing="20"></asp:CheckBoxList>
+				</td>
+			</tr>
+		</table>
+
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr><td class="DivisonTabla">&nbsp;Condición</td></tr>
+			<tr><td></td></tr>
+			<tr>
+				<td>
+					<asp:CheckBoxList ID="chkIndicadorCondicion" runat="server" CssClass="CheckBoxList_Regular" RepeatDirection="Horizontal" RepeatColumns="4" CellSpacing="20"></asp:CheckBoxList>
+				</td>
+			</tr>
+		</table>
+
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr><td class="DivisonTabla">&nbsp;Comunidades</td></tr>
+			<tr><td></td></tr>
+			<tr>
+				<td>
+					<asp:CheckBoxList ID="chkIndicadorComunidades" runat="server" CssClass="CheckBoxList_Regular" RepeatDirection="Horizontal" RepeatColumns="4" CellSpacing="20"></asp:CheckBoxList>
+				</td>
+			</tr>
+		</table>
+
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr><td class="DivisonTabla">&nbsp;Victimas</td></tr>
+			<tr><td></td></tr>
+			<tr>
+				<td>
+					<asp:CheckBoxList ID="chkIndicadorVictimas" runat="server" CssClass="CheckBoxList_Regular" RepeatDirection="Horizontal" RepeatColumns="4" CellSpacing="20"></asp:CheckBoxList>
+				</td>
+			</tr>
+		</table>
+
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr><td class="DivisonTabla">&nbsp;Temas</td></tr>
+			<tr><td></td></tr>
+			<tr>
+				<td>
+					<asp:CheckBoxList ID="chkIndicadorTemas" runat="server" CssClass="CheckBoxList_Regular" RepeatDirection="Horizontal" RepeatColumns="4" CellSpacing="20"></asp:CheckBoxList>
+				</td>
+			</tr>
+		</table>
 
 			<!-- Botones Pie de Página -->
 			<table border="0" cellpadding="0" cellspacing="0" width="100%">

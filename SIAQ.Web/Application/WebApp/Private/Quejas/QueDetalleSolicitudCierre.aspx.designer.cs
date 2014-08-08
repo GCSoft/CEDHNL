@@ -337,13 +337,67 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         protected global::System.Web.UI.WebControls.GridView gvDiligencia;
         
         /// <summary>
-        /// chkIndicador control.
+        /// chkIndicadorGenero control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList chkIndicador;
+        protected global::System.Web.UI.WebControls.CheckBoxList chkIndicadorGenero;
+        
+        /// <summary>
+        /// chkIndicadorEdad control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList chkIndicadorEdad;
+        
+        /// <summary>
+        /// chkIndicadorActividad control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList chkIndicadorActividad;
+        
+        /// <summary>
+        /// chkIndicadorCondicion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList chkIndicadorCondicion;
+        
+        /// <summary>
+        /// chkIndicadorComunidades control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList chkIndicadorComunidades;
+        
+        /// <summary>
+        /// chkIndicadorVictimas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList chkIndicadorVictimas;
+        
+        /// <summary>
+        /// chkIndicadorTemas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList chkIndicadorTemas;
         
         /// <summary>
         /// btnRegresar control.

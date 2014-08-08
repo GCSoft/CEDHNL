@@ -62,6 +62,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
 				// Formulario
 				oENTIndicador.IndicadorId = 0;
+				oENTIndicador.IndicadorGrupoId = 0;
 				oENTIndicador.Nombre = "";
 
 				// Transacción
@@ -71,11 +72,47 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
 				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
 
-				// Llenado de CheckBoxList
-				this.chkIndicador.DataTextField = "Nombre";
-				this.chkIndicador.DataValueField = "IndicadorId";
-				this.chkIndicador.DataSource = oENTResponse.dsResponse.Tables[1];
-				this.chkIndicador.DataBind();
+				// Listado de Indicadores de Género
+				this.chkIndicadorGenero.DataTextField = "IndicadorNombre";
+				this.chkIndicadorGenero.DataValueField = "IndicadorId";
+				this.chkIndicadorGenero.DataSource = oENTResponse.dsResponse.Tables[2];
+				this.chkIndicadorGenero.DataBind();
+
+				// Listado de Indicadores de Edad
+				this.chkIndicadorEdad.DataTextField = "IndicadorNombre";
+				this.chkIndicadorEdad.DataValueField = "IndicadorId";
+				this.chkIndicadorEdad.DataSource = oENTResponse.dsResponse.Tables[3];
+				this.chkIndicadorEdad.DataBind();
+
+				// Listado de Indicadores de Actividad
+				this.chkIndicadorActividad.DataTextField = "IndicadorNombre";
+				this.chkIndicadorActividad.DataValueField = "IndicadorId";
+				this.chkIndicadorActividad.DataSource = oENTResponse.dsResponse.Tables[4];
+				this.chkIndicadorActividad.DataBind();
+
+				// Listado de Indicadores de Condición
+				this.chkIndicadorCondicion.DataTextField = "IndicadorNombre";
+				this.chkIndicadorCondicion.DataValueField = "IndicadorId";
+				this.chkIndicadorCondicion.DataSource = oENTResponse.dsResponse.Tables[5];
+				this.chkIndicadorCondicion.DataBind();
+
+				// Listado de Indicadores de Comunidades
+				this.chkIndicadorComunidades.DataTextField = "IndicadorNombre";
+				this.chkIndicadorComunidades.DataValueField = "IndicadorId";
+				this.chkIndicadorComunidades.DataSource = oENTResponse.dsResponse.Tables[6];
+				this.chkIndicadorComunidades.DataBind();
+
+				// Listado de Indicadores de Victimas
+				this.chkIndicadorVictimas.DataTextField = "IndicadorNombre";
+				this.chkIndicadorVictimas.DataValueField = "IndicadorId";
+				this.chkIndicadorVictimas.DataSource = oENTResponse.dsResponse.Tables[7];
+				this.chkIndicadorVictimas.DataBind();
+
+				// Listado de Indicadores de Temas
+				this.chkIndicadorTemas.DataTextField = "IndicadorNombre";
+				this.chkIndicadorTemas.DataValueField = "IndicadorId";
+				this.chkIndicadorTemas.DataSource = oENTResponse.dsResponse.Tables[8];
+				this.chkIndicadorTemas.DataBind();
 
 
 			}catch (Exception ex){
@@ -169,13 +206,67 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				this.gvDiligencia.DataBind();
 
 				// Seleccionar indicadores asociados a la solicitud
-				for (int k = 0; k < this.chkIndicador.Items.Count; k++) {
+				for (int k = 0; k < this.chkIndicadorGenero.Items.Count; k++) {
 
-					if (oENTResponse.dsResponse.Tables[6].Select("IndicadorId=" + this.chkIndicador.Items[k].Value).Length == 1) {
-						this.chkIndicador.Items[k].Selected = true;
-						this.chkIndicador.Items[k].Attributes.Add("Style", "color:red;");
+					if (oENTResponse.dsResponse.Tables[6].Select("IndicadorId=" + this.chkIndicadorGenero.Items[k].Value).Length == 1) {
+						this.chkIndicadorGenero.Items[k].Selected = true;
+						this.chkIndicadorGenero.Items[k].Attributes.Add("Style", "color:red;");
 					}
-					this.chkIndicador.Items[k].Enabled = false;
+					this.chkIndicadorGenero.Items[k].Enabled = false;
+				}
+
+				for (int k = 0; k < this.chkIndicadorEdad.Items.Count; k++) {
+
+					if (oENTResponse.dsResponse.Tables[6].Select("IndicadorId=" + this.chkIndicadorEdad.Items[k].Value).Length == 1) {
+						this.chkIndicadorEdad.Items[k].Selected = true;
+						this.chkIndicadorEdad.Items[k].Attributes.Add("Style", "color:red;");
+					}
+					this.chkIndicadorEdad.Items[k].Enabled = false;
+				}
+				
+				for (int k = 0; k < this.chkIndicadorActividad.Items.Count; k++) {
+
+					if (oENTResponse.dsResponse.Tables[6].Select("IndicadorId=" + this.chkIndicadorActividad.Items[k].Value).Length == 1) {
+						this.chkIndicadorActividad.Items[k].Selected = true;
+						this.chkIndicadorActividad.Items[k].Attributes.Add("Style", "color:red;");
+					}
+					this.chkIndicadorActividad.Items[k].Enabled = false;
+				}
+
+				for (int k = 0; k < this.chkIndicadorCondicion.Items.Count; k++) {
+
+					if (oENTResponse.dsResponse.Tables[6].Select("IndicadorId=" + this.chkIndicadorCondicion.Items[k].Value).Length == 1) {
+						this.chkIndicadorCondicion.Items[k].Selected = true;
+						this.chkIndicadorCondicion.Items[k].Attributes.Add("Style", "color:red;");
+					}
+					this.chkIndicadorCondicion.Items[k].Enabled = false;
+				}
+
+				for (int k = 0; k < this.chkIndicadorComunidades.Items.Count; k++) {
+
+					if (oENTResponse.dsResponse.Tables[6].Select("IndicadorId=" + this.chkIndicadorComunidades.Items[k].Value).Length == 1) {
+						this.chkIndicadorComunidades.Items[k].Selected = true;
+						this.chkIndicadorComunidades.Items[k].Attributes.Add("Style", "color:red;");
+					}
+					this.chkIndicadorComunidades.Items[k].Enabled = false;
+				}
+
+				for (int k = 0; k < this.chkIndicadorVictimas.Items.Count; k++) {
+
+					if (oENTResponse.dsResponse.Tables[6].Select("IndicadorId=" + this.chkIndicadorVictimas.Items[k].Value).Length == 1) {
+						this.chkIndicadorVictimas.Items[k].Selected = true;
+						this.chkIndicadorVictimas.Items[k].Attributes.Add("Style", "color:red;");
+					}
+					this.chkIndicadorVictimas.Items[k].Enabled = false;
+				}
+
+				for (int k = 0; k < this.chkIndicadorTemas.Items.Count; k++) {
+
+					if (oENTResponse.dsResponse.Tables[6].Select("IndicadorId=" + this.chkIndicadorTemas.Items[k].Value).Length == 1) {
+						this.chkIndicadorTemas.Items[k].Selected = true;
+						this.chkIndicadorTemas.Items[k].Attributes.Add("Style", "color:red;");
+					}
+					this.chkIndicadorTemas.Items[k].Enabled = false;
 				}
 
 			}catch (Exception ex){

@@ -60,7 +60,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysApp
 				if (oENTResponse.sMessage != ""){ throw (new Exception(oENTResponse.sMessage)); }
 
 				// Transacción exitosa
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Su contraseña ha sido actualizada con éxito', 'Success', false); focusControl('" + this.sOldPassword.ClientID + "');", true);
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('Su contraseña ha sido actualizada con éxito'); focusControl('" + this.sOldPassword.ClientID + "');", true);
 
 			}catch (Exception ex){
 				throw(ex);
@@ -85,7 +85,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysApp
             ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.sOldPassword.ClientID + "');", true);
 
 			}catch (Exception ex){
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.sOldPassword.ClientID + "');", true);
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.sOldPassword.ClientID + "');", true);
 			}
 		}
 
@@ -97,7 +97,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysApp
             updateUserPassword();
 
          }catch(Exception ex){
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.sOldPassword.ClientID + "');", true);
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.sOldPassword.ClientID + "');", true);
          }
 		}
 

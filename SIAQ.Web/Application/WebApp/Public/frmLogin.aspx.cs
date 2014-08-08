@@ -131,7 +131,7 @@ namespace SIAQ.Web.Application.WebApp
 				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
 
 				// Recuperación exitosa
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Los datos de recuperación de contraseña han sido enviados por correo electrónico', 'Success', false); function pageLoad(){ focusControl('" + this.txtEmail.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('Los datos de recuperación de contraseña han sido enviados por correo electrónico'); function pageLoad(){ focusControl('" + this.txtEmail.ClientID + "'); }", true);
 
 			}catch (Exception ex){
 				throw (ex);
@@ -163,7 +163,7 @@ namespace SIAQ.Web.Application.WebApp
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.txtEmail.ClientID + "'); }", true);
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtEmail.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.txtEmail.ClientID + "'); }", true);
 			}
 		}
 
@@ -175,7 +175,7 @@ namespace SIAQ.Web.Application.WebApp
 				loginUser();
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtEmail.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.txtEmail.ClientID + "'); }", true);
 			}
 		}
 
@@ -187,7 +187,7 @@ namespace SIAQ.Web.Application.WebApp
 				recoveryPassword();
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtEmail.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.txtEmail.ClientID + "'); }", true);
 			}
 		}
 

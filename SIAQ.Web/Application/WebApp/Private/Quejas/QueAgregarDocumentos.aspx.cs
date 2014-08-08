@@ -126,10 +126,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 			{
 				SelectDocumento(int.Parse(hddSolicitudId.Value));
 
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('La información fue guardada con éxito!', 'Success', false);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('La información fue guardada con éxito!');", true);
 			}
 			else
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(DocumentoProcess.ErrorDescription) + "', 'Error', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(DocumentoProcess.ErrorDescription) + "');", true);
 		}
 
 		private void DocumentoGridRowCommand(GridViewCommandEventArgs e)
@@ -192,7 +192,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.TipoDocumentoList.ClientID + "'); }", true);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.TipoDocumentoList.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.TipoDocumentoList.ClientID + "'); }", true);
             }	
 		}
 
@@ -231,10 +231,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				ResetForm();
 				SelectDocumento(int.Parse(hddSolicitudId.Value));
 
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('La información fue guardada con éxito!', 'Success', false);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('La información fue guardada con éxito!');", true);
 			}
 			else
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(RepositorioProcess.ErrorDescription) + "', 'Error', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(RepositorioProcess.ErrorDescription) + "');", true);
 		}
 
 		private void SelectDocumento(int SolicitudId)
@@ -251,7 +251,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				DocumentoGrid.DataBind();
 			}
 			else
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + DocumentoProcess.ErrorDescription + "', 'Error', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + DocumentoProcess.ErrorDescription + "');", true);
 		}
 
 		private void SelectTipoDocumento()
@@ -271,7 +271,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				TipoDocumentoList.Items.Insert(0, new ListItem("-- Seleccione --", "0"));
 			}
 			else
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + TipoDocumentoProcess.ErrorDescription + "', 'Error', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + TipoDocumentoProcess.ErrorDescription + "');", true);
 		}
 		#endregion
 

@@ -61,7 +61,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
 
 				// Warnings
-				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Warning', false);", true); }
+				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + oENTResponse.sMessage + "');", true); }
 
 				// Llenado de control
 				this.gvExpediente.DataSource = oENTResponse.dsResponse.Tables[1];
@@ -98,7 +98,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), (this.hddAreaVisible.Value == "0" ? "" : "focusControl('" + this.ddlArea.ClientID + "'); "), true);
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); " + (this.hddAreaVisible.Value == "0" ? "" : "focusControl('" + this.ddlArea.ClientID + "'); "), true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); " + (this.hddAreaVisible.Value == "0" ? "" : "focusControl('" + this.ddlArea.ClientID + "'); "), true);
 			}
 		}
 
@@ -113,7 +113,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlArea.ClientID + "');", true);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); " + (this.hddAreaVisible.Value == "0" ? "" : "focusControl('" + this.ddlArea.ClientID + "'); "), true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); " + (this.hddAreaVisible.Value == "0" ? "" : "focusControl('" + this.ddlArea.ClientID + "'); "), true);
             }
 		}
 
@@ -145,7 +145,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				}
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); " + (this.hddAreaVisible.Value == "0" ? "" : "focusControl('" + this.ddlArea.ClientID + "'); "), true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); " + (this.hddAreaVisible.Value == "0" ? "" : "focusControl('" + this.ddlArea.ClientID + "'); "), true);
 			}
 		}
 
@@ -194,7 +194,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				gcCommon.SortGridView(ref this.gvExpediente, ref this.hddSort, e.SortExpression);
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); " + (this.hddAreaVisible.Value == "0" ? "" : "focusControl('" + this.ddlArea.ClientID + "'); "), true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); " + (this.hddAreaVisible.Value == "0" ? "" : "focusControl('" + this.ddlArea.ClientID + "'); "), true);
 			}
 		}
 

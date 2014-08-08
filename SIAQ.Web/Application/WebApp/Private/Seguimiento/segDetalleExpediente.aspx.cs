@@ -284,7 +284,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
             }
 		}
 
@@ -352,25 +352,25 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
 						// Si el expediente está en estatus de espera e confirmación de cierre no se podrá editar
 						if (Int32.Parse(this.EstatusIdHidden.Value) == 8) {
-							ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('No es posible editar éste expediente debido a que está a la espera de confirmación de cierre', 'Warning', false);", true);
+							ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('No es posible editar éste expediente debido a que está a la espera de confirmación de cierre');", true);
 							return;
 						}
 
 						// Si el expediente está en estatus cerrado no se podrá editar
 						if (Int32.Parse(this.EstatusIdHidden.Value) == 12) {
-							ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('No es posible editar éste expediente debido a que está cerrado', 'Warning', false);", true);
+							ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('No es posible editar éste expediente debido a que está cerrado');", true);
 							return;
 						}
 
 						// Si no es Defensor no podrá editar
 						if (SessionEntity.idRol != 1 && SessionEntity.idRol != 2 && SessionEntity.idRol != 11) {
-							ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('No cuenta con permisos para realizar ésta opción', 'Warning', false);", true);
+							ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('No cuenta con permisos para realizar ésta opción');", true);
 							return;
 						}
 
 						// Si es Defensor pero el expediente no está asignado a él no lo podrá editar
 						if (SessionEntity.idRol == 11 && Int32.Parse(this.FuncionarioIdHidden.Value) != SessionEntity.FuncionarioId){
-							ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('No cuenta con permisos para realizar ésta opción', 'Warning', false);", true);
+							ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('No cuenta con permisos para realizar ésta opción');", true);
 							return;
 						}
 
@@ -379,7 +379,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				}
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
 			}
 		}
 
@@ -428,7 +428,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				gcCommon.SortGridView(ref this.gvRecomendacion, ref this.hddSort, e.SortExpression);
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
 			}
 		}
 
@@ -465,7 +465,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				SelectedExpediente();
 
 			}catch (Exception ex) {
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
 			}
 		}
 

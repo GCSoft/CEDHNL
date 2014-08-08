@@ -82,7 +82,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 }
                 catch (Exception ex)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
                 }
             }
 
@@ -148,7 +148,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 					gcCommon.SortGridView(ref this.gvDiligenciasExpediente, ref this.hddSort, e.SortExpression);
 
 				}catch (Exception ex){
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
                 }
             }
 
@@ -195,7 +195,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 ScriptManager.RegisterStartupScript(this.Page
                     , this.GetType()
                     , Convert.ToString(Guid.NewGuid())
-                    , "tinyboxMessage('" + ex.Message + "', 'Fail', true);"
+					, "alert('" + gcJavascript.ClearText(ex.Message) + "');"
                     , true);
             }
         }
@@ -247,7 +247,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     ScriptManager.RegisterStartupScript(this.Page
                         , this.GetType()
                         , Convert.ToString(Guid.NewGuid())
-                        , "tinyboxMessage('Diligencia agregada con éxito', 'Success', false);"
+						, "alert('Diligencia agregada con éxito');"
                         , true);
                 }
                 catch (Exception ex)
@@ -415,7 +415,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
                 if (ExpedienteProcess.ErrorId != 0)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ExpedienteProcess.ErrorDescription) + "', 'Error', true);", true);
+					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ExpedienteProcess.ErrorDescription) + "');", true);
                     DisableControls();
                     return;
                 }
@@ -426,7 +426,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('No se encontró información del expediente', 'Error', true);", true);
+					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('No se encontró información del expediente');", true);
                     DisableControls();
                 }
             
@@ -473,7 +473,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     ScriptManager.RegisterStartupScript(this.Page
                         , this.GetType()
                         , Convert.ToString(Guid.NewGuid())
-                        , "tinyboxMessage('Diligencia modificada con éxito', 'Success', false);"
+						, "alert('Diligencia modificada con éxito');"
                         , true);
 
                 }

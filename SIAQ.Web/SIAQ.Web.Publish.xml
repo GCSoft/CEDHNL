@@ -3,10 +3,9 @@
   <publishProfile publishUrl="C:\Ruben\Proyectos\CEDH\SIAQ\Publish" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="True" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
     <file relUrl="Include/Image/Icon/CalificarIcon.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Icon/AcuerdoIcon.png" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="bin/SIAQ.BusinessProcess.dll" publishTime="08/06/2014 21:30:39" />
+    <file relUrl="Application/WebApp/Private/Visitaduria/VisListadoExpedientes.aspx" publishTime="08/04/2014 21:53:43" />
+    <file relUrl="bin/SIAQ.BusinessProcess.dll" publishTime="08/08/2014 10:46:28" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/nl.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/es.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/bg.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/skins/moono/dialog_ie.css" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/samples/plugins/dialog/assets/my_dialog.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/skins/moono/editor_iequirks.css" publishTime="06/23/2014 11:45:59" />
@@ -15,15 +14,14 @@
     <file relUrl="Include/Style/Login.css" publishTime="06/27/2014 15:52:56" />
     <file relUrl="Include/Components/CKEditor/Core/lang/fa.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/magicline/images/hidpi/icon.png" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/th.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/samples/plugins/htmlwriter/outputforflash.html" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Background/HandsBackgorund.jpg" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/uk.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Buttons/Delete.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/id.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/lang/th.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/wsc/dialogs/tmp.html" publishTime="06/23/2014 11:45:59" />
     <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Common.dll" publishTime="06/23/2014 11:45:58" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/nb.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="bin/AjaxControlToolkit.dll" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Operation/opeAcuerdoCalifDefinitiva.aspx" publishTime="07/20/2014 20:11:04" />
     <file relUrl="Include/Image/Wait/Loading.gif" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/de.js" publishTime="06/23/2014 11:45:59" />
@@ -32,7 +30,6 @@
     <file relUrl="Include/Image/Web/Div.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Reportes/rptEstatusExpediente.aspx" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/samples/index.html" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Application/WebApp/Private/Archivo/arcAsignarExpediente.aspx" publishTime="07/20/2014 20:11:04" />
     <file relUrl="Include/Components/CKEditor/Core/samples/plugins/wysiwygarea/fullpage.html" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/skins/moono/dialog_iequirks.css" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/samples/plugins/dialog/dialog.html" publishTime="06/23/2014 11:45:59" />
@@ -43,8 +40,7 @@
     <file relUrl="Include/Components/CKEditor/Core/plugins/wsc/dialogs/wsc_ie.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Buttons/Expand.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/da.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="bin/AjaxControlToolkit.dll" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Application/WebApp/Private/Quejas/QueListadoSolicitudes.aspx" publishTime="07/31/2014 20:14:40" />
+    <file relUrl="Include/Components/CKEditor/Core/lang/da.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/bs.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/Ajax/AjaxControlToolkit.dll" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/skins/moono/editor.css" publishTime="06/23/2014 11:45:59" />
@@ -54,32 +50,29 @@
     <file relUrl="Include/Components/CKEditor/Core/lang/he.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/ca.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Victimas/vicCerrarAtencion.aspx" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/samples/uicolor.html" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/config.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/uk.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Visitaduria/VisDetalleExpedienteCierre.aspx" publishTime="08/04/2014 22:07:15" />
     <file relUrl="Include/Components/CKEditor/Core/lang/lt.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/WebUserControls/wucASCiudadano.ascx" publishTime="07/25/2014 19:32:08" />
-    <file relUrl="Application/WebApp/Private/SysCat/scatSubMenu.aspx" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/link/dialogs/link.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Buttons/Graph.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/gl.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/skins/moono/dialog_opera.css" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Buttons/Collapse_Over.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/cy.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Application/WebApp/Private/Quejas/QueCalificarSolicitud.aspx" publishTime="07/31/2014 18:26:20" />
+    <file relUrl="Include/Components/CKEditor/Core/samples/uicolor.html" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Home/AppIndex.aspx" publishTime="07/17/2014 12:42:00" />
     <file relUrl="Include/Components/CKEditor/Core/samples/xhtmlstyle.html" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/ru.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Victimas/VicListadoAtenciones.aspx" publishTime="08/03/2014 22:31:38" />
     <file relUrl="Include/Image/Web/Buscar.jpg" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Javascript/GCSoft/GCSoft.js" publishTime="07/07/2014 15:59:04" />
+    <file relUrl="Include/Javascript/GCSoft/GCSoft.js" publishTime="08/07/2014 21:35:19" />
     <file relUrl="Include/Components/CKEditor/Core/samples/inlineall.html" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/fr.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/mn.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="bin/SIAQ.DataAccess.dll" publishTime="08/06/2014 21:30:39" />
+    <file relUrl="bin/SIAQ.DataAccess.dll" publishTime="08/08/2014 10:46:28" />
     <file relUrl="Application/WebApp/Private/Catalog/ExcelMaker/xlsColonia.aspx" publishTime="06/23/2014 11:45:58" />
-    <file relUrl="Include/Components/Syncfusion/Syncfusion.Compression.Base.dll" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/skins/moono/images/lock.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/SysApp/saLogout.aspx" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/sr-latn.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Operation/opeDetalleCiudadano.aspx" publishTime="07/30/2014 14:02:58" />
@@ -87,45 +80,50 @@
     <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/cs.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/ko.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="bin/Syncfusion.Compression.Base.dll" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="bin/CKEditor.NET.dll" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Application/WebApp/Private/Catalog/catMotivo.aspx" publishTime="06/23/2014 11:45:58" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/hi.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/skins/moono/editor_ie7.css" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Visitaduria/visResolucionExpediente.aspx" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Image/Icon/RegistrarVisita.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/fi.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/skins/moono/images/hidpi/refresh.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Javascript/TinyBox/TinyBox.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/tabletools/dialogs/tableCell.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="bin/SIAQ.Entity.pdb" publishTime="08/06/2014 21:30:39" />
+    <file relUrl="bin/SIAQ.Entity.pdb" publishTime="08/08/2014 10:46:27" />
     <file relUrl="Include/Image/Web/pdf.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Reportes/rptTema.aspx" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/SysCat/ExcelMaker/xlsMenu.aspx" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Quejas/QueAgregarAutoridadSenalada.aspx" publishTime="07/31/2014 21:32:20" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/eo.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="bin/SIAQ.Web.dll" publishTime="08/06/2014 21:30:43" />
+    <file relUrl="bin/SIAQ.Web.dll" publishTime="08/08/2014 10:46:32" />
     <file relUrl="Application/WebApp/Private/Victimas/VicAgregarDocumento.aspx" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/skins/moono/dialog.css" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/no.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Vectores/BarraTituloDePagina.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/sq.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Operation/opeAsignarVisitador.aspx" publishTime="07/20/2014 20:11:04" />
+    <file relUrl="Include/Components/CKEditor/Core/build-config.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Vectores/Success.png" publishTime="07/27/2014 23:34:32" />
-    <file relUrl="Include/Components/CKEditor/Core/lang/en.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Buttons/Expand_Over.png" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="bin/SIAQ.BusinessProcess.pdb" publishTime="08/06/2014 21:30:39" />
+    <file relUrl="Application/WebApp/Private/Quejas/QueDetalleSolicitudCierre.aspx" publishTime="08/07/2014 15:47:17" />
+    <file relUrl="bin/SIAQ.BusinessProcess.pdb" publishTime="08/08/2014 10:46:28" />
     <file relUrl="Include/Components/CKEditor/Core/samples/sample.css" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/et.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/ja.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/lv.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/tr.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/ru.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Image/Icon/IndicadorIcon.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/tr.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/pt-br.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/lv.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/GCSoft/GCUtility.dll" publishTime="08/06/2014 19:16:22" />
+    <file relUrl="Include/Components/Ajax/System.Web.Extensions.dll" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Icon/AutoridadIcon_Success.png" publishTime="07/27/2014 23:51:16" />
     <file relUrl="Include/Components/CKEditor/Core/samples/api.html" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Image/Icon/ConfirmacionCierreIcon.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Catalog/ExcelMaker/xlsNacionalidad.aspx" publishTime="06/23/2014 11:45:58" />
     <file relUrl="Include/Image/Icon/AutoridadIcon_Pending.png" publishTime="07/27/2014 23:51:19" />
     <file relUrl="Include/Image/Icon/ExcelIcon.png" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/si.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/zh.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Seguimiento/segCierrarExpediente.aspx" publishTime="07/06/2014 20:23:34" />
     <file relUrl="Include/Components/CKEditor/Core/lang/km.js" publishTime="06/23/2014 11:45:59" />
@@ -137,35 +135,39 @@
     <file relUrl="Include/Components/CKEditor/Core/lang/mk.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/it.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Seguimiento/segListadoExpediente.aspx" publishTime="07/06/2014 20:22:50" />
+    <file relUrl="Include/Components/CKEditor/Core/lang/sq.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/hr.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="bin/SIAQ.DataAccess.pdb" publishTime="08/08/2014 10:46:28" />
     <file relUrl="Include/Image/Icon/SeguimientoIcon.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/fo.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/lang/da.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/sv.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/bg.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Application/WebApp/Private/Operation/opeDiligenciaExpediente.aspx" publishTime="07/04/2014 10:40:40" />
     <file relUrl="Include/Image/Icon/IndicadorIcon_Success.png" publishTime="07/31/2014 22:33:22" />
-    <file relUrl="Include/Components/CKEditor/Core/lang/eo.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Quejas/QueAgregarCiudadanos.aspx" publishTime="08/06/2014 17:36:30" />
     <file relUrl="Include/Javascript/ToolTip/ToolTip.css" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/WebUserControls/wucFixedDateTime.ascx" publishTime="07/06/2014 20:29:36" />
     <file relUrl="Include/Image/Icon/BuscarSolicitud.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/skins/moono/editor_gecko.css" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Application/WebApp/Private/Victimas/VicDictamenMedico.aspx" publishTime="07/20/2014 20:11:03" />
+    <file relUrl="Include/Image/Icon/RegistrarVisita.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/en-au.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Icon/PowerPointIcon.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/image/dialogs/image.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/hu.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/th.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Javascript/JQuery/jquery-1.9.1.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/el.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Visitaduria/visAgregarDocumento.aspx" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/skins/moono/dialog_ie8.css" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/th.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/hu.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/CKEditor.NET.dll" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/skins/moono/images/hidpi/lock-open.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/table/dialogs/table.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/gl.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/pt.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/en.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Visitaduria/VisRegistroServidorPublico.aspx" publishTime="08/04/2014 22:28:42" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/de.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/pl.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Application/WebApp/Private/Quejas/QueCalificarSolicitud.aspx" publishTime="07/31/2014 18:26:20" />
     <file relUrl="Include/Components/CKEditor/Core/lang/de.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/sv.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/fr.js" publishTime="06/23/2014 11:45:59" />
@@ -174,21 +176,24 @@
     <file relUrl="Include/Components/CKEditor/Core/skins/moono/images/refresh.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/bg.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Buttons/Collapse_Header.png" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Image/Buttons/Calendar.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/fr-ca.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Image/Icon/DocumentoIcon.png" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/zh-cn.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/about/dialogs/hidpi/logo_ckeditor.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/icons.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Catalog/catFuncionario.aspx" publishTime="06/23/2014 11:45:58" />
     <file relUrl="Include/Image/Icon/CalificarIcon_Pending.png" publishTime="07/27/2014 23:51:49" />
+    <file relUrl="bin/SIAQ.Web.pdb" publishTime="08/08/2014 10:46:32" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/gu.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/styles.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Javascript/ToolTip/ImageError.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Victimas/VicBusquedaAtenciones.aspx" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/ms.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/nb.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/fa.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Application/WebApp/Private/Visitaduria/visComparecencia.aspx" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Quejas/QueAsignarFuncionario.aspx" publishTime="07/30/2014 22:43:12" />
     <file relUrl="Include/Components/CKEditor/Core/samples/appendto.html" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/adapters/jquery.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Icon/CerrarExpedienteIcon.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Operation/opeBusquedaCiudadano.aspx" publishTime="07/06/2014 20:14:00" />
     <file relUrl="App.config" publishTime="08/06/2014 18:53:04" />
@@ -199,11 +204,11 @@
     <file relUrl="Include/Components/CKEditor/Core/lang/sr.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/wsc/dialogs/wsc.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="bin/GCUtility.xml" publishTime="08/06/2014 18:43:38" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/ar.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="bin/CKEditor.NET.dll" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Image/Buttons/FastCatalog_Off.png" publishTime="07/17/2014 13:23:05" />
     <file relUrl="Include/Image/Icon/RecomendacionIcon.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Victimas/vicListadoAtencionAprobacion.aspx" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/pl.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Image/Vectores/CEDH.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Visitaduria/visRecomendacionExpediente.aspx" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/zh.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/WebUserControls/wucBusquedaCiudadano.ascx" publishTime="06/23/2014 11:45:59" />
@@ -217,37 +222,40 @@
     <file relUrl="Include/Image/Buttons/Watch.png" publishTime="07/06/2014 22:11:45" />
     <file relUrl="Include/Image/Web/BannerFill.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Archivo/arcLiberarExpediente.aspx" publishTime="06/23/2014 11:45:58" />
-    <file relUrl="Application/WebApp/Private/Quejas/QueAgregarIndicadores.aspx" publishTime="07/31/2014 11:31:36" />
+    <file relUrl="Application/WebApp/Private/Quejas/QueAgregarIndicadores.aspx" publishTime="08/07/2014 14:07:50" />
     <file relUrl="Include/Components/CKEditor/Core/samples/inlinebycode.html" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/contents.css" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Operation/opeRegistroCiudadano.aspx" publishTime="07/27/2014 17:30:28" />
-    <file relUrl="Include/Image/Buttons/FastCatalog_Off.png" publishTime="07/17/2014 13:23:05" />
     <file relUrl="Include/Components/Syncfusion/Syncfusion.XlsIO.Base.dll" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/samples/inlinetextarea.html" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/fakeobjects/images/spacer.gif" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/fi.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Catalog/catOcupacion.aspx" publishTime="07/07/2014 19:12:14" />
-    <file relUrl="Application/WebApp/Private/Operation/opeListadoSolicitudAprobacion.aspx" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Image/Buttons/AgregarSolicitud.png" publishTime="07/06/2014 12:03:28" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/en-gb.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/GCSoft/GCUtility.xml" publishTime="08/06/2014 18:43:38" />
     <file relUrl="Include/Components/CKEditor/Core/skins/moono/editor_ie.css" publishTime="06/23/2014 11:45:59" />
     <file relUrl="DB.config" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Image/Web/SalirOff.png" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/MasterPage/PopUpTemplate.Master" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Reportes/rptPresentaReporte.aspx" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/Ajax/System.Web.Extensions.Design.dll" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Catalog/catColonia.aspx" publishTime="06/23/2014 11:45:58" />
     <file relUrl="Application/WebApp/Private/SysApp/saChangePassword.aspx" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Quejas/QueCrearExpediente.aspx" publishTime="07/24/2014 20:24:37" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/fa.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/et.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/WebUserControls/wucCalendar.ascx" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/a11yhelp.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/lang/zh.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/fi.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/lang/sr-latn.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Style/MasterPage.css" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Image/Web/imgs.png" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Application/WebApp/Private/Victimas/VicDetalleAtencion.aspx" publishTime="07/20/2014 20:11:03" />
     <file relUrl="Application/WebApp/Private/Catalog/catEstado.aspx" publishTime="06/23/2014 11:45:58" />
     <file relUrl="Include/Components/CKEditor/Core/samples/replacebycode.html" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Buttons/Restore_Over.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Vectores/Exit.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Icon/RechazarCierreIcon.png" publishTime="07/22/2014 23:27:16" />
     <file relUrl="Include/Image/Icon/FotoIcon.png" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Application/WebApp/Private/SysCat/scatRol.aspx" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/samples/plugins/htmlwriter/assets/outputforflash/swfobject.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/samples/readonly.html" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/link/dialogs/anchor.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Icon/CiudadanoIcon_Pending.png" publishTime="07/27/2014 23:53:59" />
@@ -256,21 +264,20 @@
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/mn.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/samples/replacebyclass.html" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Buttons/Search.png" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/about/dialogs/logo_ckeditor.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/pt-br.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Buttons/SelectItem_Null.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Quejas/QueEnviarSolicitud.aspx" publishTime="08/03/2014 20:30:36" />
-    <file relUrl="Include/Components/Ajax/System.Web.Extensions.Design.dll" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/th.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/samples/assets/outputxhtml/outputxhtml.css" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/zh-cn.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/es.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/no.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/samples/sample.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Style/Table.css" publishTime="07/23/2014 18:36:11" />
+    <file relUrl="Include/Style/Table.css" publishTime="08/07/2014 13:59:18" />
     <file relUrl="Application/WebApp/Private/SysCat/ExcelMaker/xlsArea.aspx" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/ca.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="bin/Syncfusion.XlsIO.Base.dll" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/hu.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/sl.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/skins/moono/icons.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/gu.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="bin/Syncfusion.Core.dll" publishTime="06/23/2014 11:45:59" />
@@ -278,16 +285,15 @@
     <file relUrl="Include/Components/CKEditor/Core/lang/vi.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/samples/assets/sample.jpg" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/ckeditor.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Application/WebApp/Private/Visitaduria/visDetalleExpediente.aspx" publishTime="08/05/2014 12:16:53" />
     <file relUrl="Application/WebApp/Private/Reportes/rptEstatusQuejas.aspx" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/hr.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Buttons/FastCatalog_On.png" publishTime="07/17/2014 13:23:00" />
-    <file relUrl="Include/Style/MasterPage.css" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Image/Vectores/Failure.png" publishTime="07/27/2014 23:34:23" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/it.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Index.aspx" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/el.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/hr.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/uk.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/lang/nb.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/ru.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/samples/assets/inlineall/logo.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/samples/assets/sample.css" publishTime="06/23/2014 11:45:59" />
@@ -297,33 +303,30 @@
     <file relUrl="Include/Image/Icon/WordIcon.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Icon/AutoridadIcon.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Web/SetUp.png" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/ku.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Image/Icon/DiligenciaIcon.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/id.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/SysApp/saNotificacion.aspx" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/WebUserControls/wucMenu.ascx" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/lang/af.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Seguimiento/segAsignarDefensor.aspx" publishTime="07/06/2014 20:24:13" />
+    <file relUrl="Application/WebApp/Private/Visitaduria/visEnviarExpediente.aspx" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/lv.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Image/Web/Banner.png" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/es.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/ug.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/Syncfusion/Syncfusion.Core.dll" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Javascript/TinyBox/preload.gif" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/ku.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/skins/moono/images/hidpi/lock.png" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/about/dialogs/about.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Application/WebApp/Private/Victimas/VicDictamenMedico.aspx" publishTime="07/20/2014 20:11:03" />
     <file relUrl="Application/WebApp/Private/SysCat/ExcelMaker/xlsSubMenu.aspx" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Javascript/ToolTip/ImageSuccess.png" publishTime="07/07/2014 16:04:49" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/no.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Quejas/QueBusquedaSolicitudes.aspx" publishTime="08/04/2014 22:50:44" />
     <file relUrl="Include/Image/Icon/DiligenciaIcon_Pending.png" publishTime="07/31/2014 22:30:18" />
     <file relUrl="Include/Components/CKEditor/Core/lang/cy.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/skins/moono/images/lock-open.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/ar.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Icon/ImprimirIcon.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Style/Content.css" publishTime="07/17/2014 20:12:23" />
     <file relUrl="Include/Image/Buttons/AgregarVisita.png" publishTime="07/06/2014 12:03:38" />
-    <file relUrl="Application/WebApp/Private/Visitaduria/visSeguimientoExpediente.aspx" publishTime="07/20/2014 20:11:03" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/sl.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/mk.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Seguimiento/segNotificacion.aspx" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Seguimiento/segSeguimientoRecomendacion.aspx" publishTime="07/20/2014 20:11:03" />
@@ -332,42 +335,43 @@
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/he.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/cs.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/sl.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Image/Buttons/ConsultarCiudadano_Over.png" publishTime="07/06/2014 12:03:52" />
     <file relUrl="Application/WebApp/Private/Operation/opeRegistroSolicitud.aspx" publishTime="08/06/2014 17:29:12" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/pt-br.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/SysCat/ExcelMaker/xlsUsuario.aspx" publishTime="06/23/2014 11:45:59" />
     <file relUrl="bin/FusionCharts.dll" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/fr-ca.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/_translationstatus.txt" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/pl.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/nb.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/MasterPage/NonMenuTemplate.Master" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Web/Registro.jpg" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/samples/ajax.html" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/lang/zh.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/GCSoft/GCUtility.dll" publishTime="08/06/2014 19:16:22" />
     <file relUrl="Include/Javascript/JQuery/V1.10.3/jquery-ui.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Operation/opeDiligencias.aspx" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/skins/moono/images/arrow.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Seguimiento/segBusquedaExpediente.aspx" publishTime="07/06/2014 20:23:59" />
     <file relUrl="Include/Image/Icon/GeneralIcon.png" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Image/Vectores/CEDH.png" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/he.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/ku.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/samples/divreplace.html" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/ko.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/fa.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Image/Buttons/Expand_Header.png" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/config.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/samples/jquery.html" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Handler/ObtenerRepositorio.ashx" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/id.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Image/Web/word.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/specialchar.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/hu.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Buttons/AgregarSolicitud_Over.png" publishTime="07/06/2014 12:03:33" />
     <file relUrl="Application/WebApp/Private/Visitaduria/visImprmirExpediente.aspx" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/samples/plugins/htmlwriter/assets/outputforflash/swfobject.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Handler/ObtenerRepositorio.ashx" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Buttons/Edit.png" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/about/dialogs/logo_ckeditor.png" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Image/Buttons/Expand_Header.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Icon/EnviarIcon.png" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/Ajax/System.Web.Extensions.dll" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/fakeobjects/images/spacer.gif" publishTime="06/23/2014 11:45:59" />
     <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Data.dll" publishTime="06/23/2014 11:45:58" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/wsc/dialogs/tmp.html" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/samples/ajax.html" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/SysCat/scatArea.aspx" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Image/Buttons/ConsultarCiudadano_Over.png" publishTime="07/06/2014 12:03:52" />
+    <file relUrl="Application/WebApp/Private/Quejas/QueListadoSolicitudes.aspx" publishTime="07/31/2014 20:14:40" />
     <file relUrl="Include/Components/CKEditor/Core/skins/moono/icons_hidpi.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/clipboard/dialogs/paste.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/lt.js" publishTime="06/23/2014 11:45:59" />
@@ -375,64 +379,59 @@
     <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/en-gb.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/nl.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Operation/opeRegistroVisita.aspx" publishTime="07/30/2014 16:05:29" />
-    <file relUrl="Include/Components/CKEditor/Core/lang/en-gb.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/ka.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Quejas/QueDetalleSolicitud.aspx" publishTime="08/05/2014 01:39:42" />
     <file relUrl="Include/Image/Icon/IndicadorIcon_Pending.png" publishTime="07/31/2014 22:33:24" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/et.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Application/WebApp/Private/SysCat/scatRol.aspx" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/sr.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Catalog/catMedioComunicacion.aspx" publishTime="06/23/2014 11:45:58" />
-    <file relUrl="Application/WebApp/Private/Visitaduria/VisListadoExpedientes.aspx" publishTime="08/04/2014 21:53:43" />
+    <file relUrl="Include/Components/CKEditor/Core/samples/inlinetextarea.html" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Javascript/ToolTip/ToolTip.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/fr.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/bn.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/wsc/dialogs/wsc.css" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/vi.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/SysCat/scatUsuario.aspx" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Image/Web/imgs.png" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/lang/th.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/samples/tabindex.html" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Web/SalirOn.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Archivo/arcBusquedaExpediente.aspx" publishTime="07/06/2014 20:24:28" />
-    <file relUrl="Include/Components/CKEditor/Core/lang/sq.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/fr-ca.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/hi.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Catalog/catLugarDiligencia.aspx" publishTime="06/23/2014 11:45:58" />
-    <file relUrl="Include/Components/CKEditor/Core/lang/ro.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/ug.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Application/WebApp/Private/SysCat/ExcelMaker/xlsRol.aspx" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Visitaduria/VisListadoExpedientesAprobacion.aspx" publishTime="08/04/2014 22:43:48" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/ar.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Application/WebApp/Private/Seguimiento/segListadoExpedienteAprobacion.aspx" publishTime="07/06/2014 20:22:30" />
     <file relUrl="Include/Image/Web/img_x.jpg" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/image/images/noimage.png" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/MasterPage/PopUpTemplate.Master" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Style/Control.css" publishTime="07/23/2014 18:37:09" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/zh-cn.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Application/WebApp/Private/Seguimiento/segListadoExpedienteAprobacion.aspx" publishTime="07/06/2014 20:22:30" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/ar.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Style/Control.css" publishTime="08/07/2014 14:56:16" />
+    <file relUrl="Include/Components/Syncfusion/Syncfusion.Compression.Base.dll" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Buttons/Delete_Over.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Icon/AgregarInformacionIcon.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Javascript/TinyBox/TinyBox.css" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/build-config.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/fi.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Catalog/catPais.aspx" publishTime="06/23/2014 11:45:58" />
-    <file relUrl="Include/Components/CKEditor/Core/skins/moono/images/lock.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/samples/plugins/htmlwriter/outputhtml.html" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/skins/moono/dialog_ie7.css" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Style/Text.css" publishTime="08/03/2014 20:18:32" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/link/images/anchor.png" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="bin/SIAQ.DataAccess.pdb" publishTime="08/06/2014 21:30:39" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/sv.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/fr-ca.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/si.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/adapters/jquery.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Image/Icon/DiligenciaIcon.png" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Application/WebApp/Private/Visitaduria/visSeguimientoExpediente.aspx" publishTime="07/20/2014 20:11:03" />
     <file relUrl="Application/WebApp/Public/frmLogin.aspx" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/scayt/dialogs/options.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/en.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/pt.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="bin/Microsoft.Practices.ObjectBuilder.dll" publishTime="06/23/2014 11:45:58" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/ro.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Image/Vectores/Failure.png" publishTime="07/27/2014 23:34:23" />
+    <file relUrl="Include/Components/CKEditor/Core/lang/en.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/magicline/images/icon.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/MasterPage/LoginTemplate.Master" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Catalog/catCiudad.aspx" publishTime="06/23/2014 11:45:58" />
     <file relUrl="Include/Components/CKEditor/Core/samples/uilanguages.html" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/samples/plugins/toolbar/toolbar.html" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Icon/ResolucionIcon.png" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Image/Icon/ConfirmacionCierreIcon.png" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/el.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Wait/Background.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Seguimiento/segConfirmarCierreExpediente.aspx" publishTime="07/06/2014 20:23:18" />
     <file relUrl="Include/Image/Vectores/Iconografia Nueva.png" publishTime="07/17/2014 13:22:55" />
@@ -445,11 +444,12 @@
     <file relUrl="Include/Image/Icon/NotificacionIcon.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Buttons/CloseWindow.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/samples/datafiltering.html" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Application/WebApp/Private/Quejas/QueDetalleSolicitudCierre.aspx" publishTime="07/31/2014 21:37:00" />
-    <file relUrl="Application/WebApp/Private/Operation/opeDiligenciaExpediente.aspx" publishTime="07/04/2014 10:40:40" />
-    <file relUrl="Application/WebApp/Private/Visitaduria/visEnviarExpediente.aspx" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Image/Web/Banner.png" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Image/Buttons/Calendar.png" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/about/dialogs/about.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/ar.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/vi.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/gl.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/lang/nb.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/ja.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/km.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/si.js" publishTime="06/23/2014 11:45:59" />
@@ -458,50 +458,49 @@
     <file relUrl="Include/Components/CKEditor/Core/lang/eu.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Operation/opeInicio.aspx" publishTime="07/07/2014 16:12:10" />
     <file relUrl="Include/Image/Icon/AsignarIcon.png" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/samples/assets/uilanguages/languages.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Web.config" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Victimas/vicConfirmarCierreAtencion.aspx" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/cy.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Vectores/Iconografia.png" publishTime="07/07/2014 16:04:52" />
-    <file relUrl="Include/Image/Web/word.png" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/samples/assets/uilanguages/languages.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Seguimiento/segDiligencia.aspx" publishTime="07/20/2014 20:11:03" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/el.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Visitaduria/visListadoExpedienteAprobacion.aspx" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/lang/sr-latn.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/scayt/dialogs/options.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/nl.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/skins/moono/editor_ie8.css" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Application/WebApp/Private/Visitaduria/visDetalleExpediente.aspx" publishTime="08/05/2014 12:16:53" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/pl.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Application/WebApp/Private/SysCat/scatSubMenu.aspx" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/lang/en-ca.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Image/Web/SalirOff.png" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/lang/en-gb.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Quejas/QueAgregrarInformacion.aspx" publishTime="07/30/2014 22:43:42" />
     <file relUrl="Application/WebApp/Private/Quejas/QueListadoSolicitudesAprobacion.aspx" publishTime="07/31/2014 20:13:49" />
-    <file relUrl="Application/WebApp/Private/Catalog/catMotivo.aspx" publishTime="06/23/2014 11:45:58" />
-    <file relUrl="Include/Components/CKEditor/Core/samples/divreplace.html" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/tr.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/vi.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="bin/GCUtility.dll" publishTime="08/06/2014 19:16:22" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/sk.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Icon/CalificarIcon_Success.png" publishTime="07/27/2014 23:52:26" />
     <file relUrl="Include/Image/Web/BarraTitulo.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/WebUserControls/wucFastCatalog.ascx" publishTime="07/17/2014 20:18:05" />
-    <file relUrl="bin/SIAQ.Entity.dll" publishTime="08/06/2014 21:30:39" />
+    <file relUrl="bin/SIAQ.Entity.dll" publishTime="08/08/2014 10:46:27" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/si.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/samples/plugins/enterkey/enterkey.html" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Image/Icon/IndicadorIcon.png" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Application/WebApp/Private/Victimas/VicDetalleAtencion.aspx" publishTime="07/20/2014 20:11:03" />
+    <file relUrl="Include/Components/CKEditor/Core/skins/moono/editor_ie8.css" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/he.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/sk.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Archivo/arcDetalleExpediente.aspx" publishTime="07/20/2014 20:11:04" />
-    <file relUrl="Application/WebApp/Private/SysCat/ExcelMaker/xlsRol.aspx" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Application/WebApp/Private/Quejas/QueImprimirSolicitud.aspx" publishTime="07/31/2014 21:43:37" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/id.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/lang/ro.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/lang/af.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/wsc/dialogs/tmpFrameset.html" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/eo.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/specialchar/dialogs/lang/en.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="bin/SIAQ.Web.pdb" publishTime="08/06/2014 21:30:43" />
+    <file relUrl="Include/Components/CKEditor/Core/plugins/image/images/noimage.png" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Components/CKEditor/Core/skins/moono/images/lock-open.png" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Application/WebApp/Private/Archivo/arcAsignarExpediente.aspx" publishTime="07/20/2014 20:11:04" />
     <file relUrl="Include/Image/Icon/CiudadanoIcon.png" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Image/Buttons/AgregarSolicitud.png" publishTime="07/06/2014 12:03:28" />
+    <file relUrl="Include/Components/CKEditor/Core/lang/eo.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Buttons/Restore.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Icon/AutorizarIcon.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/et.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Application/WebApp/Private/Visitaduria/visComparecencia.aspx" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Include/Image/Icon/DocumentoIcon.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Image/Icon/ComparecenciaIcon.png" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Application/WebApp/Private/Seguimiento/segDetalleExpediente.aspx" publishTime="07/20/2014 20:11:03" />
     <file relUrl="Application/WebApp/Private/Quejas/QueAgregarDocumentos.aspx" publishTime="07/30/2014 22:40:46" />
@@ -509,7 +508,7 @@
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/cs.js" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/samples/plugins/magicline/magicline.html" publishTime="06/23/2014 11:45:59" />
     <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/ku.js" publishTime="06/23/2014 11:45:59" />
-    <file relUrl="Include/Components/CKEditor/Core/plugins/a11yhelp/dialogs/lang/ug.js" publishTime="06/23/2014 11:45:59" />
+    <file relUrl="Application/WebApp/Private/Quejas/QueImprimirSolicitud.aspx" publishTime="08/07/2014 15:53:15" />
     <file relUrl="Include/Image/Buttons/AgregarVisita_Over.png" publishTime="07/06/2014 12:03:43" />
     <file relUrl="Include/Components/CKEditor/Core/lang/gl.js" publishTime="06/23/2014 11:45:59" />
   </publishProfile>

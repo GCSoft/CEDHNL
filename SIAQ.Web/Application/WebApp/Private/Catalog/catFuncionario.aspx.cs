@@ -88,7 +88,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
 
 				// Transacción exitosa
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Funcionario eliminado con éxito!', 'Success', false);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('Funcionario eliminado con éxito!');", true);
 
 				// Actualizar datos
 				SelectFuncionario();
@@ -130,7 +130,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 				SelectFuncionario();
 
 				// Mensaje de usuario
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Funcionario creado con éxtito!', 'Success', false); focusControl('" + this.ddlArea.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('Funcionario creado con éxtito!'); focusControl('" + this.ddlArea.ClientID + "');", true);
 
 			}
 			catch (Exception ex)
@@ -184,7 +184,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 			ENTResponse oENTResponse = new ENTResponse();
 
 			BPFuncionario oBPFuncionario = new BPFuncionario();
-			String sMessage = "tinyboxToolTipMessage_ClearOld();";
+			String sMessage = "";
 
 			try
 			{
@@ -204,7 +204,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
 
 				// Mensaje de la BD
-				if (oENTResponse.sMessage != "") { sMessage = "tinyboxMessage('" + gcJavascript.ClearText(oENTResponse.sMessage) + "', 'Warning', false);"; }
+				if (oENTResponse.sMessage != "") { sMessage = "alert('" + oENTResponse.sMessage + "');"; }
 
 				// Llenado de controles
 				this.gvFuncionario.DataSource = oENTResponse.dsResponse.Tables[1];
@@ -405,7 +405,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 				SelectFuncionario();
 
 				// Mensaje de usuario
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Información actualizada con éxito!', 'Success', false); focusControl('" + this.ddlArea.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('Información actualizada con éxito!'); focusControl('" + this.ddlArea.ClientID + "');", true);
 
 			}
 			catch (Exception ex)
@@ -462,7 +462,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 			}
 			catch (Exception ex)
 			{
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.ddlArea.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlArea.ClientID + "');", true);
 			}
 		}
 
@@ -505,7 +505,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 			}
 			catch (Exception ex)
 			{
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.ddlArea.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlArea.ClientID + "');", true);
 			}
 		}
 
@@ -520,7 +520,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 			}
 			catch (Exception ex)
 			{
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.ddlArea.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlArea.ClientID + "');", true);
 			}
 		}
 
@@ -624,7 +624,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 			}
 			catch (Exception ex)
 			{
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.ddlArea.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlArea.ClientID + "');", true);
 			}
 		}
 
@@ -635,7 +635,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 				gcCommon.SortGridView(ref this.gvFuncionario, ref this.hddSort, e.SortExpression);
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.ddlArea.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlArea.ClientID + "');", true);
 			}
 		}
 
@@ -650,7 +650,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 			}
 			catch (Exception ex)
 			{
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.ddlArea.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlArea.ClientID + "');", true);
 			}
 		}
 

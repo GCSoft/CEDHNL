@@ -51,7 +51,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     ScriptManager.RegisterStartupScript(this.Page
                         , this.GetType()
                         , Convert.ToString(Guid.NewGuid())
-                        , "tinyboxMessage('" + ex.Message + "','Fail',true);"
+						, "alert('" + gcJavascript.ClearText(ex.Message) + "');"
                         , true);
                 }
             }
@@ -70,7 +70,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     ScriptManager.RegisterStartupScript(this.Page
                         , this.GetType()
                         , Convert.ToString(Guid.NewGuid())
-                        , "tinyboxMessage('" + ex.Message + "', 'Fail', true);"
+						, "alert('" + gcJavascript.ClearText(ex.Message) + "');"
                         , true);
                 }
             }
@@ -151,7 +151,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 }
                 catch (Exception ex)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
                 }
             }
 
@@ -202,7 +202,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 					gcCommon.SortGridView(ref this.gvCiudadanos, ref this.hddSort, e.SortExpression);
 
 				}catch (Exception ex){
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
                 }
             }
 
@@ -259,7 +259,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     ScriptManager.RegisterStartupScript(this.Page
                         , this.GetType()
                         , Convert.ToString(Guid.NewGuid())
-                        , "tinyboxMessage('Comentario agregado con éxito','Success', false);"
+						, "alert('Comentario agregado con éxito');"
                         , true);
                 }
                 catch (Exception ex)
@@ -299,7 +299,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     ScriptManager.RegisterStartupScript(this.Page
                         , this.GetType()
                         , Convert.ToString(Guid.NewGuid())
-                        , "tinyboxMessage('Funcionario asignado con éxito','Success', false);"
+						, "alert('Funcionario asignado con éxito');"
                         , true);
 
                 }
@@ -355,7 +355,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     ScriptManager.RegisterStartupScript(this.Page
                         , this.GetType()
                         , Convert.ToString(Guid.NewGuid())
-                        , "tinyboxMessage('Comentario modificado con éxito','Success', false);"
+						, "alert('Comentario modificado con éxito');"
                         , true);
                 }
                 catch (Exception ex)
@@ -506,7 +506,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     ScriptManager.RegisterStartupScript(this.Page
                         , this.GetType()
                         , Convert.ToString(Guid.NewGuid())
-                        , "tinyboxMessage('Comentario modificado con éxito','Success', false);"
+						, "alert('Comentario modificado con éxito');"
                         , true);
                 }
                 catch (Exception ex)
@@ -536,7 +536,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     ComentarioTituloLabel.Text = ExpedienteProcess.ExpedienteEntity.ResultData.Tables[0].Rows.Count.ToString() + " comentarios";
                 }
                 else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ExpedienteProcess.ErrorDescription) + "', 'Fail', true);", true);
+					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ExpedienteProcess.ErrorDescription) + "');", true);
             }
         #endregion
     }

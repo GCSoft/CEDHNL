@@ -287,7 +287,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
 
             }catch (Exception ex){
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
             }
         }
 
@@ -357,25 +357,25 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
 						// Si el expediente está en estatus de espera de confirmación de cierre no se podrá editar
 						if (Int32.Parse(this.hddEstatusId.Value) == 20) {
-							ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('No es posible editar éste expediente de atención a víctimas debido a que está a la espera de confirmación de cierre', 'Warning', false);", true);
+							ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('No es posible editar éste expediente de atención a víctimas debido a que está a la espera de confirmación de cierre');", true);
 							return;
 						}
 
 						// Si el expediente está en estatus cerrado no se podrá editar
 						if (Int32.Parse(this.hddEstatusId.Value) == 21) {
-							ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('No es posible editar éste expediente de atención a víctimas debido a que ya está cerrado', 'Warning', false);", true);
+							ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('No es posible editar éste expediente de atención a víctimas debido a que ya está cerrado');", true);
 							return;
 						}
 
 						// Si no es Doctor no podrá editar
 						if (SessionEntity.idRol != 1 && SessionEntity.idRol != 2 && SessionEntity.idRol != 14) {
-							ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('No cuenta con permisos para realizar ésta opción', 'Warning', false);", true);
+							ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('No cuenta con permisos para realizar ésta opción');", true);
 							return;
 						}
 
 						// Si es Doctor pero el expediente no está asignado a él no lo podrá editar
 						if (SessionEntity.idRol == 14 && Int32.Parse(this.hddFuncionarioId.Value) != SessionEntity.FuncionarioId){
-							ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('No cuenta con permisos para realizar ésta opción', 'Warning', false);", true);
+							ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('No cuenta con permisos para realizar ésta opción');", true);
 							return;
 						}
 
@@ -384,7 +384,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				}
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
 			}
 		}
 
@@ -433,7 +433,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				gcCommon.SortGridView(ref this.gvCiudadano, ref this.hddSort, e.SortExpression);
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
 			}
 		}
 
@@ -471,7 +471,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
                 SelectAtencion();
 
             }catch (Exception ex){
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
             }
         }
 

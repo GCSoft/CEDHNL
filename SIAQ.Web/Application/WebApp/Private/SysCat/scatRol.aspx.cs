@@ -146,7 +146,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
 				SelectRol();
 
 				// Mensaje de usuario
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Rol creado con éxito!', 'Success', false); focusControl('" + this.txtNombre.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('Rol creado con éxito!'); focusControl('" + this.txtNombre.ClientID + "');", true);
 
 			}
 			catch (Exception ex)
@@ -197,7 +197,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
 			ENTResponse oENTResponse = new ENTResponse();
 
 			BPRol oBPRol = new BPRol();
-			String sMessage = "tinyboxToolTipMessage_ClearOld();";
+			String sMessage = "";
 
 			try
 			{
@@ -213,7 +213,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
 				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
 
 				// Mensaje de la BD
-				if (oENTResponse.sMessage != "") { sMessage = "tinyboxMessage('" + gcJavascript.ClearText(oENTResponse.sMessage) + "', 'Warning', false);"; }
+				if (oENTResponse.sMessage != "") { sMessage = "alert('" + gcJavascript.ClearText(oENTResponse.sMessage) + "');"; }
 
 				// Llenado de controles
 				this.gvRol.DataSource = oENTResponse.dsResponse.Tables[1];
@@ -352,7 +352,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
 				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
 
 				// Mensaje de la BD
-				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(oENTResponse.sMessage) + "', 'Warning', false);", true); }
+				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(oENTResponse.sMessage) + "');", true); }
 
 				// Definición del DataTable
 				tblSubMenu = new DataTable("tblSubMenu");
@@ -475,7 +475,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
 				SelectRol();
 
 				// Mensaje de usuario
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Rol actualizado con éxito!', 'Success', false); focusControl('" + this.txtNombre.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('Rol actualizado con éxito!'); focusControl('" + this.txtNombre.ClientID + "');", true);
 
 			}
 			catch (Exception ex)
@@ -571,7 +571,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
 			}
 			catch (Exception ex)
 			{
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.txtNombre.ClientID + "');", true);
 			}
 		}
 
@@ -614,7 +614,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
 			}
 			catch (Exception ex)
 			{
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.txtNombre.ClientID + "');", true);
 			}
 		}
 
@@ -629,7 +629,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
 			}
 			catch (Exception ex)
 			{
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.txtNombre.ClientID + "');", true);
 			}
 		}
 
@@ -644,7 +644,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
 			}
 			catch (Exception ex)
 			{
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.txtNombre.ClientID + "');", true);
 			}
 		}
 
@@ -753,7 +753,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
 			}
 			catch (Exception ex)
 			{
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.txtNombre.ClientID + "');", true);
 			}
 		}
 
@@ -936,7 +936,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
 			}
 			catch (Exception ex)
 			{
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.txtNombre.ClientID + "');", true);
 			}
 		}
 
@@ -947,7 +947,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
 				gcCommon.SortGridView(ref this.gvRol, ref this.hddSort, e.SortExpression);
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.txtNombre.ClientID + "');", true);
 			}
 		}
 
@@ -962,7 +962,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
 			}
 			catch (Exception ex)
 			{
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.txtNombre.ClientID + "');", true);
 			}
 		}
 

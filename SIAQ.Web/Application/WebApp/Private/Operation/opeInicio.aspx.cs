@@ -1,13 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿// Referencias
+using System;
+using System.Data;
+using System.Configuration;
+using System.Collections;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+
+// Referencias manuales
+using SIAQ.BusinessProcess.Page;
+using SIAQ.Entity.Object;
 
 namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
-    public partial class opeInicio : System.Web.UI.Page
+    public partial class opeInicio : BPPage
     {
 
 		// Eventos de la página

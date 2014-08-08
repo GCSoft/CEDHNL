@@ -160,7 +160,6 @@
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsNacionalidad.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeDiligenciaExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeDiligencias.aspx" />
-    <Content Include="Application\WebApp\Private\Operation\opeListadoSolicitudAprobacion.aspx" />
     <Content Include="Application\WebApp\Private\Reportes\rptEstatusExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Reportes\rptEstatusQuejas.aspx" />
     <Content Include="Application\WebApp\Private\Reportes\rptEstatusSolicitud.aspx" />
@@ -740,13 +739,6 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeDiligencias.aspx.designer.cs">
       <DependentUpon>opeDiligencias.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeListadoSolicitudAprobacion.aspx.cs">
-      <DependentUpon>opeListadoSolicitudAprobacion.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeListadoSolicitudAprobacion.aspx.designer.cs">
-      <DependentUpon>opeListadoSolicitudAprobacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Quejas\QueAgregarAutoridadSenalada.aspx.cs">
       <DependentUpon>QueAgregarAutoridadSenalada.aspx</DependentUpon>

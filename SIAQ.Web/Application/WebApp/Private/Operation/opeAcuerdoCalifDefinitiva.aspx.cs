@@ -1,20 +1,25 @@
-﻿using System;
+﻿// Referencias
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
 
-using SIAQ.BusinessProcess.Object;
+// Referencias manuales
+using GCUtility.Function;
 using SIAQ.Entity.Object;
-
+using SIAQ.BusinessProcess.Object;
+using System.Data;
 
 namespace SIAQ.Web.Application.WebApp.Private.Operation
 {
     public partial class opeAcuerdoCalifDefinitiva : System.Web.UI.Page
     {
         bool IsReadOnly = false;
+		// Utilerías
+		GCCommon gcCommon = new GCCommon();
+		GCJavascript gcJavascript = new GCJavascript();
 
         #region Eventos
             protected void cmdGuardar_Click(object sender, EventArgs e)
@@ -34,7 +39,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     ScriptManager.RegisterStartupScript(this.Page
                         , this.GetType()
                         , Convert.ToString(Guid.NewGuid())
-                        , "tinyboxMessage(' " + ex.Message + "', 'Fail', true);"
+						, "alert(' " + gcJavascript.ClearText(ex.Message) + "');"
                         , true);
                 }
             }
@@ -112,7 +117,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                     ScriptManager.RegisterStartupScript(this.Page
                         , this.GetType()
                         , Convert.ToString(Guid.NewGuid())
-                        , "tinyboxMessage('Acuerdo registrado con éxito','Success', false);"
+						, "alert('Acuerdo registrado con éxito');"
                         , true);
                 }
                 catch (Exception ex)

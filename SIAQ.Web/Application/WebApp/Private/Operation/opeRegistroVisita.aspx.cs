@@ -138,7 +138,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
 
 				if (oENTResponse.sMessage != ""){
-			        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(oENTResponse.sMessage) + "', 'Warning', false);", true);
+			        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(oENTResponse.sMessage) + "');", true);
 			        return;
 			    }
 
@@ -146,7 +146,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				Clear();
 
 				//Mensaje de usuario
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Visita registrada con éxito', 'Success', false); focusControl('" + this.ddlArea.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('Visita registrada con éxito'); focusControl('" + this.ddlArea.ClientID + "');", true);
 
 			}catch (Exception ex){
 				throw (ex);
@@ -173,7 +173,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				// Validación
 				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
 				if (oENTResponse.sMessage != "") {
-					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(oENTResponse.sMessage) + "', 'Warning', false); function pageLoad(){ focusControl('" + this.txtCiudadano.ClientID + "'); }", true);
+					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(oENTResponse.sMessage) + "'); function pageLoad(){ focusControl('" + this.txtCiudadano.ClientID + "'); }", true);
 					return;
 				}
 
@@ -182,7 +182,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
 				// Validación de que no se haya agregado el ciudadano
 				if (tblCiudadano.Select("CiudadanoId='" + oENTResponse.dsResponse.Tables[1].Rows[0]["CiudadanoId"].ToString() + "'").Length > 0) {
-					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Ya ha seleccionado éste ciudadano', 'Warning', false); function pageLoad(){ focusControl('" + this.txtCiudadano.ClientID + "'); }", true);
+					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('Ya ha seleccionado éste ciudadano'); function pageLoad(){ focusControl('" + this.txtCiudadano.ClientID + "'); }", true);
 					return;
 				}
 
@@ -217,7 +217,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             ENTResponse oENTResponse = new ENTResponse();
 
             BPArea oBPArea = new BPArea();
-            String sMessage = "tinyboxToolTipMessage_ClearOld();";
+            String sMessage = "";
 
             try
             {
@@ -236,7 +236,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
                 if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
 
                 // Mensaje de la BD
-                if (oENTResponse.sMessage != "") { sMessage = "tinyboxMessage('" + gcJavascript.ClearText(oENTResponse.sMessage) + "', 'Warning', false);"; }
+                if (oENTResponse.sMessage != "") { sMessage = "alert('" + gcJavascript.ClearText(oENTResponse.sMessage) + "');"; }
 
                 // Llenado de controles
                 this.ddlArea.DataValueField = "idArea";
@@ -275,7 +275,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
 				// Errores y Warnings
 				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
-				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + oENTResponse.sMessage + "', 'Warning', false);", true); }
+				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + oENTResponse.sMessage + "');", true); }
 
 				// Llenado de control
 				this.ddlUsuario.DataTextField = "sFullName";
@@ -357,7 +357,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				
             }catch (Exception ex){
 				this.btnGuardar.Visible = false;
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.ddlArea.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlArea.ClientID + "');", true);
             }
 		}
 
@@ -377,7 +377,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				InsertVisitaCiudadano_Local(CiudadanoId, this.txtCiudadano.ClientID);
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); function pageLoad(){ focusControl('" + this.txtCiudadano.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.txtCiudadano.ClientID + "'); }", true);
 			}
 		}
 
@@ -389,7 +389,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				InsertVisita();
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.ddlArea.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlArea.ClientID + "');", true);
             }
         }
 
@@ -438,7 +438,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				}
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.ddlArea.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlArea.ClientID + "');", true);
 			}
         }
 
@@ -490,7 +490,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				gcCommon.SortGridView(ref this.gvCiudadano, ref this.hddSort, e.SortExpression);
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
 			}
 		}
 

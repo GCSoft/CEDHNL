@@ -64,7 +64,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			this.NombreBox.Text = "";
 			this.DescripcionBox.Text = "";
 
-			ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('La información fue guardada con éxito!', 'Success', false); focusControl('" + this.DocumentoFile.ClientID + "');", true);
+			ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('La información fue guardada con éxito!'); focusControl('" + this.DocumentoFile.ClientID + "');", true);
 			
 		}
 
@@ -83,7 +83,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			
 			// Transacción exitosa
 			SelectedExpediente();
-			ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Archivo eliminado con éxito!', 'Success', false); focusControl('" + this.DocumentoFile.ClientID + "');", true);
+			ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('Archivo eliminado con éxito!'); focusControl('" + this.DocumentoFile.ClientID + "');", true);
 
 		}
 
@@ -143,7 +143,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				TipoDocumentoList.Items.Insert(0, new ListItem("-- Seleccione --", "0"));
 			}
 			else
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + TipoDocumentoProcess.ErrorDescription + "', 'Error', true);", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + TipoDocumentoProcess.ErrorDescription + "');", true);
 		}
 
 
@@ -175,7 +175,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.DocumentoFile.ClientID + "');", true);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.DocumentoFile.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.DocumentoFile.ClientID + "');", true);
             }
 		}
 
@@ -190,7 +190,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				SelectedExpediente();
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + gcJavascript.ClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.DocumentoFile.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.DocumentoFile.ClientID + "');", true);
             }
 		}
 

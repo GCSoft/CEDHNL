@@ -20,148 +20,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 		// Utilerías
 		GCJavascript gcJavascript = new GCJavascript();
 
-		
-		// Funciones del programador
-
-		Boolean ValidateForm() {
-			Int16 iTemp;
-
-			// Validaciones
-
-			#region "Información general"
-				
-				if (String.IsNullOrEmpty(this.txtNombre.Text)){
-					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('El campo [Nombre] es requerido'); function pageLoad(){ focusControl('" + this.txtNombre.ClientID + "'); }", true);
-					return false;
-				}
-				if (String.IsNullOrEmpty(this.txtApellidoPaterno.Text)){
-					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('El campo [Apellido Paterno] es requerido'); function pageLoad(){ focusControl('" + this.txtApellidoPaterno.ClientID + "'); }", true);
-					return false;
-				}
-				if (this.ddlSexo.SelectedValue == "0"){
-					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('El campo [Sexo] es requerido'); function pageLoad(){ focusControl('" + this.ddlSexo.ClientID + "'); }", true);
-					return false;
-				}
-				if( this.txtEdad.Text.Trim() == "" ){
-
-					this.txtEdad.Text = "0";
-
-				}else{
-
-					if (Int16.TryParse(this.txtEdad.Text, out iTemp)){
-						this.txtEdad.Text = iTemp.ToString();
-					}else {
-						ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('El campo [Edad] solo acepta datos numéricos'); function pageLoad(){ focusControl('" + this.txtEdad.ClientID + "'); }", true);
-						return false;
-					}
-
-				}
-				if (this.ddlNacionalidad.SelectedValue == "0"){
-					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('El campo [Nacionalidad] es requerido'); function pageLoad(){ focusControl('" + this.ddlNacionalidad.ClientID + "'); }", true);
-					return false;
-				}
-				if (this.ddlOcupacion.SelectedValue == "0"){
-					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('El campo [Ocupación] es requerido'); function pageLoad(){ focusControl('" + this.ddlOcupacion.ClientID + "'); }", true);
-					return false;
-				}
-				if (this.ddlEscolaridad.SelectedValue == "0"){
-					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('El campo [Escolaridad] es requerido'); function pageLoad(){ focusControl('" + this.ddlEscolaridad.ClientID + "'); }", true);
-					return false;
-				}
-				if (this.ddlEstadoCivil.SelectedValue == "0"){
-					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('El campo [Estado Civil] es requerido'); function pageLoad(){ focusControl('" + this.ddlEstadoCivil.ClientID + "'); }", true);
-					return false;
-				}
-				if (String.IsNullOrEmpty(this.txtTelefonoPrincipal.Text)){
-					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('El campo [Teléfono Principal] es requerido'); function pageLoad(){ focusControl('" + this.txtTelefonoPrincipal.ClientID + "'); }", true);
-					return false;
-				}
-				if( this.txtDependientesEconomicos.Text.Trim() == "" ){
-
-					this.txtDependientesEconomicos.Text = "0";
-
-				}else{
-
-					if (Int16.TryParse(this.txtDependientesEconomicos.Text, out iTemp)){
-						this.txtDependientesEconomicos.Text = iTemp.ToString();
-					}else {
-						ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('El campo [Dependientes económicos] solo acepta datos numéricos'); function pageLoad(){ focusControl('" + this.txtDependientesEconomicos.ClientID + "'); }", true);
-						return false;
-					}
-
-				}
-				if (this.ddlFormaEnterarse.SelectedValue == "0"){
-					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('El campo [Forma de Enterarse] es requerido'); function pageLoad(){ focusControl('" + this.ddlFormaEnterarse.ClientID + "'); }", true);
-					return false;
-				}
-				
-			#endregion
-
-			#region "Domicilio"
-
-				if (this.ddlPais.SelectedValue == "0"){
-					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('El campo [País] es requerido'); function pageLoad(){ focusControl('" + this.ddlPais.ClientID + "'); }", true);
-					return false;
-				}
-				if (this.ddlEstado.SelectedValue == "0"){
-					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('El campo [Estado] es requerido'); function pageLoad(){ focusControl('" + this.ddlEstado.ClientID + "'); }", true);
-					return false;
-				}
-				if (this.ddlCiudad.SelectedValue == "0"){
-					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('El campo [Ciudad] es requerido'); function pageLoad(){ focusControl('" + this.ddlCiudad.ClientID + "'); }", true);
-					return false;
-				}
-				if (this.ddlColonia.SelectedValue == "0"){
-					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('El campo [Colonia] es requerido'); function pageLoad(){ focusControl('" + this.ddlColonia.ClientID + "'); }", true);
-					return false;
-				}
-				if (String.IsNullOrEmpty(this.txtNombreCalle.Text)){
-					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('El campo [Nombre Calle] es requerido'); function pageLoad(){ focusControl('" + this.txtNombreCalle.ClientID + "'); }", true);
-					return false;
-				}
-				if( this.txtAniosResidiendo.Text.Trim() == "" ){
-
-					this.txtAniosResidiendo.Text = "0";
-
-				}else{
-
-					if (Int16.TryParse(this.txtAniosResidiendo.Text, out iTemp)){
-						this.txtAniosResidiendo.Text = iTemp.ToString();
-					}else {
-						ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('El campo [Años residiendo en NL] solo acepta datos numéricos'); function pageLoad(){ focusControl('" + this.txtAniosResidiendo.ClientID + "'); }", true);
-						return false;
-					}
-
-				}
-				
-			#endregion
-
-			#region "Información de origen"
-
-				if (this.ddlPaisOrigen.SelectedValue == "0"){
-					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('El campo [País de Origen] es requerido'); function pageLoad(){ focusControl('" + this.ddlPaisOrigen.ClientID + "'); }", true);
-					return false;
-				}
-				if (this.ddlEstadoOrigen.SelectedValue == "0"){
-					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('El campo [Estado de Origen] es requerido'); function pageLoad(){ focusControl('" + this.ddlEstadoOrigen.ClientID + "'); }", true);
-					return false;
-				}
-				if (this.ddlCiudadOrigen.SelectedValue == "0"){
-					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('El campo [Ciudad de origen] es requerido'); function pageLoad(){ focusControl('" + this.ddlCiudadOrigen.ClientID + "'); }", true);
-					return false;
-				}
-
-			#endregion
-
-			// Formulario correcto
-			return true;
-
-		}
-
-
 		// Rutinas del programador
 
-		private void AgregarCiudadano(){
+		void AgregarCiudadano(){
 			BPCiudadano oBPCiudadano = new BPCiudadano();
 			ENTResponse oENTResponse = new ENTResponse();
 			ENTCiudadano oENTCiudadano = new ENTCiudadano();
@@ -172,7 +33,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 			{
 				
 				//Validaciones 
-				if (ValidateForm() == false) { return; }
+				ValidateForm();
 
 				// Obtener fecha de nacimiento del ciudadano
 				dtFechaNacimiento = DateTime.Now;
@@ -193,7 +54,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				oENTCiudadano.TelefonoOtro = txtOtroTelefono.Text;
 				oENTCiudadano.CorreoElectronico = txtCorreoElectronico.Text;
 				oENTCiudadano.DependientesEconomicos = (String.IsNullOrEmpty(txtDependientesEconomicos.Text) ? Convert.ToByte(0) : Convert.ToByte(txtDependientesEconomicos.Text) );
-				oENTCiudadano.MedioComunicacionId = Convert.ToInt32(ddlFormaEnterarse.SelectedValue);
+				oENTCiudadano.MedioComunicacionId = Convert.ToInt32(ddlMedioComunicacion.SelectedValue);
 
 				//Domicilio
 				oENTCiudadano.PaisId = Convert.ToInt32(ddlPais.SelectedValue);
@@ -232,7 +93,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 			}
 		}
 
-		private void ModificarCiudadano(int CiudadanoId){
+		void ModificarCiudadano(int CiudadanoId){
 			BPCiudadano oBPCiudadano = new BPCiudadano();
 			ENTResponse oENTResponse = new ENTResponse();
 			ENTCiudadano oENTCiudadano = new ENTCiudadano();
@@ -243,7 +104,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 			{
 
 				//Validaciones 
-				if (ValidateForm() == false) { return; }
+				ValidateForm();
 
 				// Obtener fecha de nacimiento del ciudadano
 				dtFechaNacimiento = DateTime.Now;
@@ -265,7 +126,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				oENTCiudadano.TelefonoOtro = txtOtroTelefono.Text;
 				oENTCiudadano.CorreoElectronico = txtCorreoElectronico.Text;
 				oENTCiudadano.DependientesEconomicos = (String.IsNullOrEmpty(txtDependientesEconomicos.Text) ? Convert.ToByte(0) : Convert.ToByte(txtDependientesEconomicos.Text));
-				oENTCiudadano.MedioComunicacionId = Convert.ToInt32(ddlFormaEnterarse.SelectedValue);
+				oENTCiudadano.MedioComunicacionId = Convert.ToInt32(ddlMedioComunicacion.SelectedValue);
 
 				//Domicilio
 				oENTCiudadano.PaisId = Convert.ToInt32(ddlPais.SelectedValue);
@@ -292,6 +153,122 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 			}catch (Exception ex){
 				throw (ex);
 			}
+		}
+
+		void SelectMedioComunicacion(){
+			BPMedioComunicacion oBPMedioComunicacion = new BPMedioComunicacion();
+			ENTResponse oENTResponse = new ENTResponse();
+			ENTMedioComunicacion oENTMedioComunicacion = new ENTMedioComunicacion();
+
+			try
+			{
+
+				//Transacción 
+				oENTResponse = oBPMedioComunicacion.searchcatMedioComunicacion(oENTMedioComunicacion);
+
+				//Validación 
+				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+				if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+
+				// Bind
+				this.ddlMedioComunicacion.DataTextField = "Nombre";
+				this.ddlMedioComunicacion.DataValueField = "MedioComunicacionId";
+				this.ddlMedioComunicacion.DataSource = oENTResponse.dsResponse.Tables[1];
+				this.ddlMedioComunicacion.DataBind();
+
+				// Item extra
+				this.ddlMedioComunicacion.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
+
+        }
+
+		void ValidateForm() {
+			Int16 iTemp;
+
+			// Validaciones
+
+			#region "Información general"
+				
+				if (String.IsNullOrEmpty(this.txtNombre.Text)){ throw(new Exception("El campo [Nombre] es requerido")); }
+				if (String.IsNullOrEmpty(this.txtApellidoPaterno.Text)){ throw(new Exception("El campo [Apellido Paterno] es requerido")); }
+				if (this.ddlSexo.SelectedValue == "0"){ throw(new Exception("El campo [Sexo] es requerido")); }
+
+				if( this.txtEdad.Text.Trim() == "" ){
+
+					this.txtEdad.Text = "0";
+
+				}else{
+
+					if (Int16.TryParse(this.txtEdad.Text, out iTemp)){
+						this.txtEdad.Text = iTemp.ToString();
+					}else {
+						throw(new Exception("El campo [Edad] solo acepta datos numéricos"));
+						
+					}
+
+				}
+
+				if (this.ddlNacionalidad.SelectedValue == "0"){ throw(new Exception("El campo [Nacionalidad] es requerido")); }
+				if (this.ddlOcupacion.SelectedValue == "0"){ throw(new Exception("El campo [Ocupación] es requerido")); }
+				if (this.ddlEscolaridad.SelectedValue == "0"){ throw(new Exception("El campo [Escolaridad] es requerido")); }
+				if (this.ddlEstadoCivil.SelectedValue == "0"){ throw(new Exception("El campo [Estado Civil] es requerido")); }
+				if (String.IsNullOrEmpty(this.txtTelefonoPrincipal.Text)){ throw(new Exception("El campo [Teléfono Principal] es requerido")); }
+
+				if( this.txtDependientesEconomicos.Text.Trim() == "" ){
+
+					this.txtDependientesEconomicos.Text = "0";
+
+				}else{
+
+					if (Int16.TryParse(this.txtDependientesEconomicos.Text, out iTemp)){
+						this.txtDependientesEconomicos.Text = iTemp.ToString();
+					}else {
+						throw(new Exception("El campo [Dependientes económicos] solo acepta datos numéricos"));
+						
+					}
+
+				}
+
+				if (this.ddlMedioComunicacion.SelectedValue == "0"){ throw(new Exception("El campo [Forma de Enterarse] es requerido")); }
+				
+			#endregion
+
+			#region "Domicilio"
+
+				if (this.ddlPais.SelectedValue == "0"){ throw(new Exception("El campo [País] es requerido")); }
+				if (this.ddlEstado.SelectedValue == "0"){ throw(new Exception("El campo [Estado] es requerido")); }
+				if (this.ddlCiudad.SelectedValue == "0"){ throw(new Exception("El campo [Ciudad] es requerido")); }
+				if (this.ddlColonia.SelectedValue == "0"){ throw(new Exception("El campo [Colonia] es requerido")); }
+				if (String.IsNullOrEmpty(this.txtNombreCalle.Text)){ throw(new Exception("El campo [Nombre Calle] es requerido")); }
+				
+				if( this.txtAniosResidiendo.Text.Trim() == "" ){
+
+					this.txtAniosResidiendo.Text = "0";
+
+				}else{
+
+					if (Int16.TryParse(this.txtAniosResidiendo.Text, out iTemp)){
+						this.txtAniosResidiendo.Text = iTemp.ToString();
+					}else {
+						throw(new Exception("El campo [Años residiendo en NL] solo acepta datos numéricos"));
+						
+					}
+
+				}
+				
+			#endregion
+
+			#region "Información de origen"
+
+				if (this.ddlPaisOrigen.SelectedValue == "0"){ throw(new Exception("El campo [País de Origen] es requerido")); }
+				if (this.ddlEstadoOrigen.SelectedValue == "0"){ throw(new Exception("El campo [Estado de Origen] es requerido")); }
+				if (this.ddlCiudadOrigen.SelectedValue == "0"){ throw (new Exception("El campo [Ciudad de origen] es requerido")); }
+
+			#endregion
+
 		}
 
 
@@ -329,7 +306,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 			ComboEstadoCivil();
 			ComboSexo();
 			ComboOcupacion();
-			ComboFormaContacto();
+			SelectMedioComunicacion();
 			ComboNacionalidad();
 			ComboPaises();
 			ComboPaisesOrigen();
@@ -988,29 +965,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             }
         }
 
-        private void ComboFormaContacto(){
-			try
-			{
-
-				// Transporte
-				BPFormaContacto BPFormaContacto = new BPFormaContacto();
-
-				// COnfguración del objeto
-				this.ddlFormaEnterarse.DataTextField = "Nombre";
-				this.ddlFormaEnterarse.DataValueField = "FormaContactoId";
-
-				// Transacción
-				this.ddlFormaEnterarse.DataSource = BPFormaContacto.SelectFormaContacto();
-
-				// Bind
-				this.ddlFormaEnterarse.DataBind();
-				this.ddlFormaEnterarse.Items.Insert(0, new ListItem("[Seleccione]", "0"));
-
-			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
-			}
-        }
-
         private void ComboColonia()
         {
             BPCiudadano oBPCiudadano = new BPCiudadano();
@@ -1268,7 +1222,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
             txtOtroTelefono.Text = String.Empty;
             txtCorreoElectronico.Text = String.Empty;
             txtDependientesEconomicos.Text = String.Empty;
-            ddlFormaEnterarse.SelectedIndex = 0;
+            ddlMedioComunicacion.SelectedIndex = 0;
 
             ComboPaises();
             ComboPaisesOrigen();
@@ -1346,7 +1300,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				this.ddlOcupacion.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["OcupacionId"].ToString();
 				this.ddlEscolaridad.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["EscolaridadId"].ToString();
 				this.ddlEstadoCivil.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["EstadoCivilId"].ToString();
-				this.ddlFormaEnterarse.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["MedioComunicacionId"].ToString();
+				this.ddlMedioComunicacion.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["MedioComunicacionId"].ToString();
 
 				this.ddlPais.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["PaisId"].ToString();
 				ComboEstados();

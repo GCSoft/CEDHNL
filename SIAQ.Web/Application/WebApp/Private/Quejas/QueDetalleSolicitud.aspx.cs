@@ -373,10 +373,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 					}
 				}
 
-				// Si la calificación no es Queja ( CalficacionId = 2 ) o Medidas Cautelares ( CalficacionId = 8 ) no puede agregar autoridades y voces
-				if ( this.hddCalificacionId.Value != "2" && this.hddCalificacionId.Value != "8" ) {
-					this.AutoridadPanel.Visible = false;
-				}
+				//// Si la calificación no es Queja ( CalficacionId = 2 ) o Medidas Cautelares ( CalficacionId = 8 ) no puede agregar autoridades y voces
+				//if ( this.hddCalificacionId.Value != "2" && this.hddCalificacionId.Value != "8" ) {
+				//    this.AutoridadPanel.Visible = false;
+				//}
 
 				// El expiente no se podrá operar en los siguientes Estatus (de Solicitud):
 				// 4  - Pendiente de aprobar Queja

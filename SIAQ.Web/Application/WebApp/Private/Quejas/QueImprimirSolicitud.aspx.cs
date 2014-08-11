@@ -194,12 +194,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				}
 
 				// Autoridad y voces señaladas
-				if(this.hddCalificacionId.Value != "2" && this.hddCalificacionId.Value != "8" ){
-					this.pnlAutoridades.Visible = false;
-				}else{
-					this.gvAutoridades.DataSource = oENTResponse.dsResponse.Tables[4];
-					this.gvAutoridades.DataBind();
-				}
+				this.gvAutoridades.DataSource = oENTResponse.dsResponse.Tables[4];
+				this.gvAutoridades.DataBind();
 
 				// Diligencias
 				this.gvDiligencia.DataSource = oENTResponse.dsResponse.Tables[5];
@@ -324,7 +320,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				// Sólo autoridades
 				oPanelDetail = (Panel)e.Row.FindControl("pnlGridDetail");
 
-				if (this.hddCalificacionId.Value == "8" ){
+				if (this.hddCalificacionId.Value != "2" ){
 
 					oPanelDetail.Visible = false;
 				}else{

@@ -146,6 +146,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 			try
             {
 
+				// Validaciones
+				if (this.txtNombre.Text.Trim() == "" && this.TextBoxPaterno.Text.Trim() == "" && this.TextBoxMaterno.Text.Trim() == "") { throw new Exception("Debido a la cantidad de información, es necesario incluir un nombre o algún apellido para poder realizar la consulta"); }
+
 				// Estado inicial del formulario
 				this.gvCiudadano.DataSource = null;
 				this.gvCiudadano.DataBind();

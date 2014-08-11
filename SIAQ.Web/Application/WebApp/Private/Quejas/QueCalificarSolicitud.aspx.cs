@@ -373,13 +373,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
 				// Script de Validación de cambio de estatus (Antes Queja)
 				if (oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionId"].ToString() == "2"){
-					this.btnGuardar.Attributes.Add("onclick", " if ( document.getElementById('" + ddlCalificacion.ClientID + "').options[document.getElementById('" + ddlCalificacion.ClientID + "').selectedIndex].value != 2 ) { return confirm('Al cambiar la calificación se eliminarán todas las capturas de Autoridades y Voces realizadas en la solicitud, ¿Seguro que desea continuar?'); }");
+					this.btnGuardar.Attributes.Add("onclick", " if ( document.getElementById('" + ddlCalificacion.ClientID + "').options[document.getElementById('" + ddlCalificacion.ClientID + "').selectedIndex].value != 2 ) { return confirm('Al cambiar la calificación se eliminarán todas las capturas de Voces realizadas en la solicitud, ¿Seguro que desea continuar?'); }");
 				}
 
-				// Script de Validación de cambio de estatus (Antes Medidas Cautelares)
-				if (oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionId"].ToString() == "8"){
-					this.btnGuardar.Attributes.Add("onclick", " if ( document.getElementById('" + ddlCalificacion.ClientID + "').options[document.getElementById('" + ddlCalificacion.ClientID + "').selectedIndex].value != 2 ) { return confirm('Al cambiar la calificación se eliminarán todas las capturas de Autoridades realizadas en la solicitud, ¿Seguro que desea continuar?'); }");
-				}
+				//// Script de Validación de cambio de estatus (Antes Medidas Cautelares)
+				//if (oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionId"].ToString() == "8"){
+				//    this.btnGuardar.Attributes.Add("onclick", " if ( document.getElementById('" + ddlCalificacion.ClientID + "').options[document.getElementById('" + ddlCalificacion.ClientID + "').selectedIndex].value != 2 ) { return confirm('Al cambiar la calificación se eliminarán todas las capturas de Autoridades realizadas en la solicitud, ¿Seguro que desea continuar?'); }");
+				//}
 
 			}catch (Exception ex){
 				throw (ex);

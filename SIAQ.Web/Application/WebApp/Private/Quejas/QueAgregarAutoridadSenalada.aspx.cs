@@ -43,8 +43,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
                 // Validaciones
                 if (this.ddlActionPrimerNivel.SelectedValue == "0") { throw new Exception("Debe elegir una autoridad de primer nivel"); }
-				if (this.ddlActionSegundoNivel.SelectedValue == "0") { throw new Exception("Debe elegir una autoridad de segundo nivel"); }
-				if (this.ddlActionTercerNivel.SelectedValue == "0") { throw new Exception("Debe elegir una autoridad de tercer nivel"); }
+
+				if (this.hddCalificacionId.Value == "2"){
+					if (this.ddlActionSegundoNivel.SelectedValue == "0") { throw new Exception("Debe elegir una autoridad de segundo nivel"); }
+					if (this.ddlActionTercerNivel.SelectedValue == "0") { throw new Exception("Debe elegir una autoridad de tercer nivel"); }
+				}
+
                 if (String.IsNullOrEmpty(this.tbActionNombreFuncionario.Text)) { throw new Exception("El campo [Nombre] es requerido"); }
 
                 // Determinar la última autoridad seleccionada
@@ -782,7 +786,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
                         break;
 
                     case "SwapGrid": // Expande/Contrae una fila del grid (Aquí el Command Argument contiene el índice de la fila)
-						if (this.hddCalificacionId.Value != "8") { swapGrid(Convert.ToInt32(e.CommandArgument.ToString())); }
+						if (this.hddCalificacionId.Value == "2") { swapGrid(Convert.ToInt32(e.CommandArgument.ToString())); }
                         break;
                 }
 
@@ -821,7 +825,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
                 sAutoridad = gvAutoridades.DataKeys[e.Row.RowIndex]["Nombre"].ToString();
 
                 // Tooltip Agregar Voz
-				if (this.hddCalificacionId.Value == "8" ){
+				if (this.hddCalificacionId.Value != "2" ){
 
 					imgSeleccionar.Visible = false;
 				}else{
@@ -847,7 +851,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
                 // Atributos Over
                 sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png'; ";
                 sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgBorrar.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png'; ";
-				if (this.hddCalificacionId.Value != "8") { sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSeleccionar.ClientID + "').src='../../../../Include/Image/Buttons/AgregarVisita_Over.png'; "; }
+				if (this.hddCalificacionId.Value == "2") { sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSeleccionar.ClientID + "').src='../../../../Include/Image/Buttons/AgregarVisita_Over.png'; "; }
                 sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/Collapse_Over.png'; ";
 
                 //Puntero y Sombra en fila Over
@@ -856,7 +860,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
                 // Atributos Out
                 sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png'; ";
                 sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgBorrar.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png'; ";
-				if (this.hddCalificacionId.Value != "8") { sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSeleccionar.ClientID + "').src='../../../../Include/Image/Buttons/AgregarVisita.png'; "; }
+				if (this.hddCalificacionId.Value == "2") { sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSeleccionar.ClientID + "').src='../../../../Include/Image/Buttons/AgregarVisita.png'; "; }
                 sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/Collapse.png'; ";
 
                 //Puntero y Sombra en fila Out
@@ -871,7 +875,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				// Sólo autoridades
 				oPanelDetail = (Panel)e.Row.FindControl("pnlGridDetail");
 
-				if (this.hddCalificacionId.Value == "8" ){
+				if (this.hddCalificacionId.Value != "2" ){
 
 					oPanelDetail.Visible = false;
 				}else{
@@ -907,7 +911,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
             {
 
 				// Validaciones
-				if (this.hddCalificacionId.Value == "8") { return; }
+				if (this.hddCalificacionId.Value != "2") { return; }
 
                 // Acceso a la imagen
                 imgHeaderSwapGrid = (ImageButton)sender;

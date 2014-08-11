@@ -54,13 +54,13 @@
             <asp:ImageButton ID="ImprimirButton" ImageUrl="~/Include/Image/Icon/ImprimirIcon.png" runat="server" onclick="ImprimirButton_Click"></asp:ImageButton><br />
             Imprimir
         </asp:Panel>
+		<asp:Panel CssClass="IconoPanel" ID="AutoridadPanel" runat="server" Visible="true">
+            <asp:ImageButton ID="AutoridadButton" ImageUrl="~/Include/Image/Icon/AutoridadIcon.png" runat="server" OnClick="AutoridadButton_Click"></asp:ImageButton><br />
+            Agegar autoridades señaladas y voces
+        </asp:Panel>
 		<asp:Panel CssClass="IconoPanel" ID="CalificarPanel" runat="server" Visible="true">
             <asp:ImageButton ID="CalificarButton" ImageUrl="~/Include/Image/Icon/CalificarIcon.png" runat="server" OnClick="CalificarButton_Click"></asp:ImageButton><br />
             Calificar solicitud
-        </asp:Panel>
-        <asp:Panel CssClass="IconoPanel" ID="AutoridadPanel" runat="server" Visible="true">
-            <asp:ImageButton ID="AutoridadButton" ImageUrl="~/Include/Image/Icon/AutoridadIcon.png" runat="server" OnClick="AutoridadButton_Click"></asp:ImageButton><br />
-            Agegar autoridades señaladas y voces
         </asp:Panel>
         <asp:Panel CssClass="IconoPanel" ID="EnviarPanel" runat="server" Visible="true">
             <asp:ImageButton ID="EnviarButton" ImageUrl="~/Include/Image/Icon/EnviarIcon.png" runat="server" OnClick="EnviarButton_Click"></asp:ImageButton><br />

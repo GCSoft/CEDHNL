@@ -89,7 +89,7 @@
                             <td class="Espacio"></td>
                             <td class="Nombre">Forma de enterarse de la CEDH</td>
                             <td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
-                            <td class="Campo"><asp:DropDownList ID="ddlFormaEnterarse" runat="server" CssClass="DropDownList_General" Width="216px" TabIndex="14"></asp:DropDownList></td>
+                            <td class="Campo"><asp:DropDownList ID="ddlMedioComunicacion" runat="server" CssClass="DropDownList_General" Width="216px" TabIndex="14"></asp:DropDownList></td>
                         </tr>
                     </table>
                 </asp:Panel>

@@ -207,12 +207,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				}
 
 				// Autoridad y voces señaladas
-				if(this.hddCalificacionId.Value != "2" && this.hddCalificacionId.Value != "8" ){
-					this.pnlAutoridades.Visible = false;
-				}else{
-					this.gvAutoridades.DataSource = oENTResponse.dsResponse.Tables[4];
-					this.gvAutoridades.DataBind();
-				}
+				this.gvAutoridades.DataSource = oENTResponse.dsResponse.Tables[4];
+				this.gvAutoridades.DataBind();
 
 				// Diligencias
 				this.gvDiligencia.DataSource = oENTResponse.dsResponse.Tables[5];
@@ -650,7 +646,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
             {
 
 				// Validaciones
-				if (this.hddCalificacionId.Value == "8") { return; }
+				if (this.hddCalificacionId.Value != "2") { return; }
 
                 // Acceso a la imagen
                 imgHeaderSwapGrid = (ImageButton)sender;
@@ -689,7 +685,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
                 switch (e.CommandName.ToString()){
                     case "SwapGrid": // Expande/Contrae una fila del grid (Aquí el Command Argument contiene el índice de la fila)
-						if (this.hddCalificacionId.Value != "8") { SwapGrid(Convert.ToInt32(e.CommandArgument.ToString())); }
+						if (this.hddCalificacionId.Value == "2") { SwapGrid(Convert.ToInt32(e.CommandArgument.ToString())); }
                         break;
                 }
 
@@ -743,7 +739,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				// Sólo autoridades
 				oPanelDetail = (Panel)e.Row.FindControl("pnlGridDetail");
 
-				if (this.hddCalificacionId.Value == "8" ){
+				if (this.hddCalificacionId.Value != "2" ){
 
 					oPanelDetail.Visible = false;
 				}else{

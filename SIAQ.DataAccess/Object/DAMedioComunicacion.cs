@@ -49,7 +49,8 @@ namespace SIAQ.DataAccess.Object
             return oENTResponse;
 
         }
-        ///<remarks>
+        
+		///<remarks>
         ///   <name>DAcatMedioComunicacion.insertcatMedioComunicacion</name>
         ///   <create>27/ene/2014</create>
         ///   <author>Generador</author>
@@ -80,6 +81,7 @@ namespace SIAQ.DataAccess.Object
             return oENTResponse;
 
         }
+
         ///<remarks>
         ///   <name>DAcatMedioComunicacion.updatecatMedioComunicacion</name>
         ///   <create>27/ene/2014</create>
@@ -111,37 +113,7 @@ namespace SIAQ.DataAccess.Object
             return oENTResponse;
 
         }
-        ///<remarks>
-        ///   <name>DAcatMedioComunicacion.deletecatMedioComunicacion</name>
-        ///   <create>27/ene/2014</create>
-        ///   <author>Generador</author>
-        ///</remarks>
-        ///<summary>Metodo para eliminar de catMedioComunicacion del sistema</summary>
-        public ENTResponse deletecatMedioComunicacion(ENTMedioComunicacion entMedioComunicacion)
-        {
-            ENTResponse oENTResponse = new ENTResponse();
-            DataSet ds = new DataSet();
-            // Transacción
-            try
-            {
-                dbs.ExecuteDataSet("catMedioComunicacionDel");
-                oENTResponse.dsResponse = ds;
-            }
-            catch (SqlException sqlEx)
-            {
-                oENTResponse.ExceptionRaised(sqlEx.Message);
-            }
-            catch (Exception ex)
-            {
-                oENTResponse.ExceptionRaised(ex.Message);
-            }
-            finally
-            {
-            }
-            // Resultado
-            return oENTResponse;
-
-        }
+       
 
         public DataSet SelectMedioComunicacion(ENTMedioComunicacion ENTMedioComunicacion, string ConnectionString)
         {

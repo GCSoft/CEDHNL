@@ -336,6 +336,10 @@ namespace SIAQ.DataAccess.Object
 			sqlPar.Value = oENTSolicitud.ProblematicaId;
 			sqlCom.Parameters.Add(sqlPar);
 
+			sqlPar = new SqlParameter("DireccionHechos", SqlDbType.VarChar);
+			sqlPar.Value = oENTSolicitud.DireccionHechos;
+			sqlCom.Parameters.Add(sqlPar);
+
 			sqlPar = new SqlParameter("Observaciones", SqlDbType.VarChar);
 			sqlPar.Value = oENTSolicitud.Observaciones;
 			sqlCom.Parameters.Add(sqlPar);

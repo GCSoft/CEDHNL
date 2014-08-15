@@ -124,10 +124,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 			    oENTSolicitud.FuncionarioId = Int32.Parse(this.ddlFuncionario.SelectedValue);
 			    oENTSolicitud.CalificacionId = 1;	// Sin calificar
 			    oENTSolicitud.TipoSolicitudId = 1;	// Individual
-			    oENTSolicitud.LugarHechosId = 5;	// Otro
+				oENTSolicitud.LugarHechosId = (this.ddlLugarHechos.SelectedItem.Value == "0" ? 5 : Int32.Parse(this.ddlLugarHechos.SelectedItem.Value)); // Default -> Otro
 			    oENTSolicitud.EstatusId = (this.ddlFuncionario.SelectedValue == "0" ? 1 : 2);	// Por Asignar o Por Atender
 			    oENTSolicitud.FormaContactoId = Int32.Parse(this.ddlFormaContacto.SelectedItem.Value);
 				oENTSolicitud.ProblematicaId = Int32.Parse(this.ddlProblematica.SelectedItem.Value);
+				oENTSolicitud.DireccionHechos = this.ckeDireccionHechos.Text.Trim();
 			    oENTSolicitud.Observaciones = this.ckeObservaciones.Text.Trim();
 
 			    // Ciudadanoes seleccionadas
@@ -319,6 +320,32 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 			}
 		}
 
+		void SelectLugarHechos() {
+			BPLugarHechos oBPLugarHechos = new BPLugarHechos();
+
+			try {
+
+				// Transacción	
+				oBPLugarHechos.SelectLugarHechos();
+
+				// Validación
+				if (oBPLugarHechos.ErrorId != 0) { throw(new Exception(oBPLugarHechos.ErrorDescription)); }
+
+				// Llenado de combo
+				ddlLugarHechos.DataValueField = "LugarHechosId";
+				ddlLugarHechos.DataTextField = "Nombre";
+
+				ddlLugarHechos.DataSource = oBPLugarHechos.LugarEntity.ResultData.Tables[0];
+				ddlLugarHechos.DataBind();
+
+				// Opción seleccione
+				ddlLugarHechos.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
 		void SelectProblematica(){
 			BPQueja oBPQueja = new BPQueja();
 			ENTQueja oENTQueja = new ENTQueja();
@@ -434,6 +461,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				// Llenado de controles
 				SelectFuncionario();
 				SelectFormaContacto();
+				SelectLugarHechos();
 				SelectProblematica();
 				SelectTipoParticipacion();
 

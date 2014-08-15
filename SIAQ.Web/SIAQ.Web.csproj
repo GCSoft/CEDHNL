@@ -71,6 +71,7 @@
     <Content Include="Application\WebApp\Private\Quejas\QueImprimirSolicitud.aspx" />
     <Content Include="Application\WebApp\Private\Quejas\QueListadoSolicitudes.aspx" />
     <Content Include="Application\WebApp\Private\Quejas\QueListadoSolicitudesAprobacion.aspx" />
+    <Content Include="Application\WebApp\Private\Quejas\QueListadoSolicitudesEnProceso.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segCierrarExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segNotificacion.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\VicAgregarDocumento.aspx" />
@@ -851,6 +852,13 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Quejas\QueListadoSolicitudesAprobacion.aspx.designer.cs">
       <DependentUpon>QueListadoSolicitudesAprobacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Quejas\QueListadoSolicitudesEnProceso.aspx.cs">
+      <DependentUpon>QueListadoSolicitudesEnProceso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Quejas\QueListadoSolicitudesEnProceso.aspx.designer.cs">
+      <DependentUpon>QueListadoSolicitudesEnProceso.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Reportes\DataSet\dsReportes.Designer.cs" />
     <Compile Include="Application\WebApp\Private\Reportes\rptEstatusExpediente.aspx.cs">

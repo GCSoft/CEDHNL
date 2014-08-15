@@ -52,7 +52,7 @@
         </asp:Panel>
         <asp:Panel CssClass="IconoPanel" ID="ImprimirPanel" runat="server" Visible="true">
             <asp:ImageButton ID="ImprimirButton" ImageUrl="~/Include/Image/Icon/ImprimirIcon.png" runat="server" onclick="ImprimirButton_Click"></asp:ImageButton><br />
-            Imprimir
+            Vista Previa
         </asp:Panel>
 		<asp:Panel CssClass="IconoPanel" ID="AutoridadPanel" runat="server" Visible="true">
             <asp:ImageButton ID="AutoridadButton" ImageUrl="~/Include/Image/Icon/AutoridadIcon.png" runat="server" OnClick="AutoridadButton_Click"></asp:ImageButton><br />
@@ -73,92 +73,116 @@
 		<!-- Carátula -->
         <table class="SolicitudTable">
             <tr>
-                <td class="Especial">Solicitud Número</td>
-                <td class="Espacio"></td>
-                <td class="Campo"><asp:Label ID="SolicitudNumero" CssClass="NumeroSolicitudLabel" runat="server" Text="0"></asp:Label></td>
-                <td colspan="4"></td>
-            </tr>
-			<tr>
-				<td class="Especial">Afectado/Quejoso</td>
-				<td class="Espacio"></td>
-				<td class="Campo"><asp:Label ID="AfectadoLabel" CssClass="NumeroSolicitudLabel" runat="server" Text="0"></asp:Label></td>
-				<td colspan="4"></td>
-			</tr>
-            <tr>
-                <td class="Nombre">Calificación</td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta"><asp:Label ID="CalificacionLabel" runat="server" Text=""></asp:Label></td>
-                <td colspan="4"></td>
-            </tr>
-            <tr>
-                <td class="Nombre">Estatus</td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta"><asp:Label ID="EstatusaLabel" runat="server" Text=""></asp:Label></td>
-                <td class="Espacio"></td>
-                <td class="Nombre">Fecha de recepción</td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta"><asp:Label ID="FechaRecepcionLabel" runat="server" Text=""></asp:Label></td>
-            </tr>
-            <tr>
-                <td class="Nombre">Funcionario</td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta"><asp:Label ID="FuncionarioLabel" runat="server" Text=""></asp:Label></td>
-                <td class="Espacio"></td>
-                <td class="Nombre">Fecha de asignación</td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta"><asp:Label ID="FechaAsignacionLabel" runat="server" Text=""></asp:Label></td>
-            </tr>
-            <tr>
-                <td class="Nombre">Forma de contacto</td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta"><asp:Label ID="ContactoLabel" runat="server" Text=""></asp:Label></td>
-                <td class="Espacio"></td>
-                <td class="Nombre">Fecha de inicio gestión</td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta"><asp:Label ID="FechaGestionLabel" runat="server" Text=""></asp:Label></td>
-            </tr>
-            <tr>
-                <td class="Nombre">Tipo de solicitud</td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta"><asp:Label ID="TipoSolicitudLabel" runat="server" Text=""></asp:Label></td>
-                <td class="Espacio"></td>
-                <td class="Nombre">Última modificación</td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta"><asp:Label ID="FechaModificacionLabel" runat="server" Text=""></asp:Label></td>
-            </tr>
-			<tr>
-                <td class="Nombre">Problemática</td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta"><asp:Label ID="ProblematicaLabel" runat="server" Text=""></asp:Label></td>
-                <td class="Espacio"></td>
-                <td class="Nombre">Nivel de Autoridad</td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta"><asp:Label ID="NivelAutoridadLabel" runat="server" Text=""></asp:Label></td>
-            </tr>
-			<tr>
-                <td class="Nombre">Detalle de Problemática</td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta"><asp:Label ID="ProblematicaDetalleLabel" runat="server" Text=""></asp:Label></td>
-                <td class="Espacio"></td>
-                <td class="Nombre">Mecanismo de Apertura</td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta"><asp:Label ID="MecanismoAperturaLabel" runat="server" Text=""></asp:Label></td>
-            </tr>
-            <tr>
-                <td class="Nombre">Lugar de los hechos</td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta" colspan="5"><asp:Label ID="LugarHechosLabel" runat="server"></asp:Label></td>
-            </tr>
-            <tr>
-                <td class="Nombre">Dirección de los hechos</td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta" colspan="5"><asp:Label ID="DireccionHechosLabel" runat="server"></asp:Label></td>
-            </tr>
-			<tr>
-                <td class="Nombre">Observaciones</td>
-                <td class="Espacio"></td>
-                <td class="Observaciones" colspan="5"><asp:Label ID="ObservacionesLabel" runat="server" Text=""></asp:Label></td>
-            </tr>
+					<td class="Especial">Solicitud Número</td>
+					<td class="Espacio"></td>
+					<td class="Campo"><asp:Label ID="SolicitudNumero" CssClass="NumeroSolicitudLabel" runat="server" Text="0"></asp:Label></td>
+					<td colspan="4"></td>
+				</tr>
+				<tr>
+					<td class="Especial">Calificación</td>
+					<td class="Espacio"></td>
+					<td class="Campo"><asp:Label ID="CalificacionLabel" CssClass="NumeroSolicitudLabel" runat="server" Text="0"></asp:Label></td>
+					<td colspan="4"></td>
+				</tr>
+				<tr>
+					<td class="Especial">Afectado/Quejoso</td>
+					<td class="Espacio"></td>
+					<td class="Campo"><asp:Label ID="AfectadoLabel" CssClass="NumeroSolicitudLabel" runat="server" Text="0"></asp:Label></td>
+					<td colspan="4"></td>
+				</tr>
+				<tr>
+					<td class="Nombre">Estatus</td>
+					<td class="Espacio"></td>
+					<td class="Etiqueta"><asp:Label ID="EstatusaLabel" runat="server" Text=""></asp:Label></td>
+					<td class="Espacio"></td>
+					<td class="Nombre">Fecha de recepción</td>
+					<td class="Espacio"></td>
+					<td class="Etiqueta"><asp:Label ID="FechaRecepcionLabel" runat="server" Text=""></asp:Label></td>
+				</tr>
+				<tr>
+					<td class="Nombre">Funcionario</td>
+					<td class="Espacio"></td>
+					<td class="Etiqueta"><asp:Label ID="FuncionarioLabel" runat="server" Text=""></asp:Label></td>
+					<td class="Espacio"></td>
+					<td class="Nombre">Fecha de asignación</td>
+					<td class="Espacio"></td>
+					<td class="Etiqueta"><asp:Label ID="FechaAsignacionLabel" runat="server" Text=""></asp:Label></td>
+				</tr>
+				<tr>
+					<td class="Nombre">Forma de contacto</td>
+					<td class="Espacio"></td>
+					<td class="Etiqueta"><asp:Label ID="ContactoLabel" runat="server" Text=""></asp:Label></td>
+					<td class="Espacio"></td>
+					<td class="Nombre">Fecha de inicio gestión</td>
+					<td class="Espacio"></td>
+					<td class="Etiqueta"><asp:Label ID="FechaGestionLabel" runat="server" Text=""></asp:Label></td>
+				</tr>
+				<tr>
+					<td class="Nombre">Tipo de solicitud</td>
+					<td class="Espacio"></td>
+					<td class="Etiqueta"><asp:Label ID="TipoSolicitudLabel" runat="server" Text=""></asp:Label></td>
+					<td class="Espacio"></td>
+					<td class="Nombre">Última modificación</td>
+					<td class="Espacio"></td>
+					<td class="Etiqueta"><asp:Label ID="FechaModificacionLabel" runat="server" Text=""></asp:Label></td>
+				</tr>
+				<tr>
+					<td class="Nombre">Problemática</td>
+					<td class="Espacio"></td>
+					<td class="Etiqueta"><asp:Label ID="ProblematicaLabel" runat="server" Text=""></asp:Label></td>
+					<td class="Espacio"></td>
+					<td class="Nombre">Nivel de Autoridad</td>
+					<td class="Espacio"></td>
+					<td class="Etiqueta"><asp:Label ID="NivelAutoridadLabel" runat="server" Text=""></asp:Label></td>
+				</tr>
+				<tr>
+					<td class="Nombre">Detalle de Problemática</td>
+					<td class="Espacio"></td>
+					<td class="Etiqueta"><asp:Label ID="ProblematicaDetalleLabel" runat="server" Text=""></asp:Label></td>
+					<td class="Espacio"></td>
+					<td class="Nombre">Mecanismo de Apertura</td>
+					<td class="Espacio"></td>
+					<td class="Etiqueta"><asp:Label ID="MecanismoAperturaLabel" runat="server" Text=""></asp:Label></td>
+				</tr>
+				<tr>
+					<td class="Nombre">Lugar de los hechos</td>
+					<td class="Espacio"></td>
+					<td class="Etiqueta" colspan="5"><asp:Label ID="LugarHechosLabel" runat="server"></asp:Label></td>
+				</tr>
+				<tr>
+					<td class="Nombre">Dirección de los hechos</td>
+					<td class="Espacio"></td>
+					<td class="Etiqueta" colspan="5"><asp:Label ID="DireccionHechosLabel" runat="server"></asp:Label></td>
+				</tr>
+				<tr>
+					<td class="Nombre">Observaciones</td>
+					<td class="Espacio"></td>
+					<td class="Observaciones" colspan="5"><asp:Label ID="ObservacionesLabel" runat="server" Text=""></asp:Label></td>
+				</tr>
+				<tr>
+					<td class="Nombre">Fundamento</td>
+					<td class="Espacio"></td>
+					<td class="Observaciones" colspan="5"><asp:Label ID="FundamentoLabel" runat="server" Text=""></asp:Label></td>
+				</tr>
+				<tr>
+					<td class="Nombre">Cierre de Orientacion</td>
+					<td class="Espacio"></td>
+					<td class="Etiqueta" colspan="5"><asp:Label ID="TipoOrientacionLabel" runat="server"></asp:Label></td>
+				</tr>
+				<tr>
+					<td class="Nombre"><asp:Label ID="CanalizacionesLabel" runat="server" Text="Canalizaciones" Visible="false"></asp:Label></td>
+					<td class="Espacio"></td>
+					<td colspan="5">
+						<asp:GridView ID="grdCanalizacion" runat="server" AllowPaging="false" AllowSorting="false" AutoGenerateColumns="false" CssClass="GridDinamico" ShowHeader="false" Width="100%">
+							<RowStyle CssClass="Grid_Row_Action" />
+							<EditRowStyle Wrap="True" />
+							<Columns>
+								<asp:BoundField DataField="Nombre" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="100%"></asp:BoundField>
+							</Columns>
+						</asp:GridView>
+					</td>
+				</tr>
+				<tr style="height:10px;"><td colspan="7"></td></tr>
         </table>
 
 		<!-- Grid -->

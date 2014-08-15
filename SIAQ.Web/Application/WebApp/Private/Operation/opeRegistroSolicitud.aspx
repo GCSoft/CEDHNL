@@ -31,6 +31,11 @@
 							<td class="Campo"><asp:DropDownList ID="ddlFormaContacto" runat="server" CssClass="DropDownList_General" width="216px" ></asp:DropDownList></td>
 						</tr>
 						<tr>
+							<td class="Etiqueta">Lugar de Los Hechos</td>
+							<td class="Espacio"></td>
+							<td class="Campo"><asp:DropDownList ID="ddlLugarHechos" runat="server" CssClass="DropDownList_General" width="216px" ></asp:DropDownList></td>
+						</tr>
+						<tr>
 							<td class="Etiqueta">Problemática</td>
 							<td class="VinetaObligatorio">*</td>
 							<td class="Campo"><asp:DropDownList ID="ddlProblematica" runat="server" CssClass="DropDownList_General" width="216px" ></asp:DropDownList></td>
@@ -131,19 +136,17 @@
 						</tr>
 					</table>
 					<br />
-					<table border="0" style="width:100%">	
+					<table border="0" width="100%">
 						<tr>
-							<td class="Etiqueta" style="width:180px">Observaciones</td>
-							<td class="VinetaObligatorio">*</td>
-							<td class="Campo"></td>
-							<td></td>
+							<td class="Nombre">Dirección de los hechos</td>
+							<td class="Espacio"></td>
+							<td><CKEditor:CKEditorControl ID="ckeDireccionHechos" BasePath="~/Include/Components/CKEditor/Core/" runat="server" Height="90px" MaxLength="8000"></CKEditor:CKEditorControl></td>
 						</tr>
-					</table>
-					<table border="0" style="width:100%">
+						<tr style="height:5px;"><td></td></tr>
 						<tr>
-							<td colspan="4" style="text-align:left; vertical-align:bottom;">
-								<CKEditor:CKEditorControl ID="ckeObservaciones" BasePath="~/Include/Components/CKEditor/Core/" runat="server" MaxLength="8000"></CKEditor:CKEditorControl>
-							</td>
+							<td class="Nombre">Observaciones</td>
+							<td class="VinetaObligatorio">*</td>
+							<td><CKEditor:CKEditorControl ID="ckeObservaciones" BasePath="~/Include/Components/CKEditor/Core/" runat="server" Height="90px" MaxLength="8000"></CKEditor:CKEditorControl></td>
 						</tr>
 					</table>
 				</asp:Panel>

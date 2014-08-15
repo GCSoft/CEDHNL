@@ -153,10 +153,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
 				// Formulario
 				this.SolicitudNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["SolicitudNumero"].ToString();
+				this.EstatusaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusNombre"].ToString();
 				this.AfectadoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Afectado"].ToString();
 
-				this.CalificacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionNombre"].ToString();
-				this.EstatusaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusNombre"].ToString();
 				this.FuncionarioLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FuncionarioNombre"].ToString();
 				this.ContactoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FormaContactoNombre"].ToString();
 				this.TipoSolicitudLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["TipoSolicitudNombre"].ToString();
@@ -170,9 +169,23 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				this.NivelAutoridadLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NivelAutoridadNombre"].ToString();
 				this.MecanismoAperturaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["MecanismoAperturaNombre"].ToString();
 
+				this.TipoOrientacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["TipoOrientacionNombre"].ToString();
 				this.LugarHechosLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["LugarHechosNombre"].ToString();
 				this.DireccionHechosLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["DireccionHechos"].ToString();
 				this.ObservacionesLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Observaciones"].ToString();
+
+				// Canalizaciones
+				if (oENTResponse.dsResponse.Tables[7].Rows.Count > 0){
+
+					this.CanalizacionesLabel.Visible = true;
+
+					this.grdCanalizacion.DataSource = oENTResponse.dsResponse.Tables[7];
+					this.grdCanalizacion.DataBind();
+				}
+
+				// Calificacion
+				this.CalificacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionNombre"].ToString();
+				this.FundamentoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Fundamento"].ToString();
 
 				// Grid
 				this.gvCiudadano.DataSource = oENTResponse.dsResponse.Tables[2];
@@ -342,8 +355,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 					this.EnviarPanel.Visible = false;
 				}
 
-				// Si no es Secretaria y el expediente ya está asignado a un funcionario no puede agregar información
-				if (idRol != 1 && idRol != 2 && idRol != 4 && Int32.Parse(this.hddFuncionarioId.Value) != 0){
+				// Si no es Secretaria o Director y el expediente ya está asignado a un funcionario no puede agregar información
+				if (idRol != 1 && idRol != 2 && idRol != 4 && idRol != 6 && Int32.Parse(this.hddFuncionarioId.Value) != 0){
 					this.AgregrarInformacionPanel.Visible = false;
 				}
 
@@ -432,6 +445,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
 					case "3": // // Invocado desde [Registrar solicitud ]
 						this.Sender.Value = "../Operation/opeRegistroSolicitud.aspx?key=0|0";
+						break;
+
+					case "4": // // Invocado desde [Solicitudes en Proceso]
+						this.Sender.Value = "QueListadoSolicitudesEnProceso.aspx";
 						break;
 
                     default:

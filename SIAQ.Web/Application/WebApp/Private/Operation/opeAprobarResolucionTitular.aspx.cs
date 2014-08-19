@@ -271,36 +271,36 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         protected void LlenarCiudadanos(string ExpedienteId)
         {
-            ENTExpediente oENTExpediente = new ENTExpediente();
-            BPExpediente oBPExpediente = new BPExpediente();
+			//ENTExpediente oENTExpediente = new ENTExpediente();
+			//BPExpediente oBPExpediente = new BPExpediente();
 
-            if (String.IsNullOrEmpty(ExpedienteId))
-            {
-                ExpedienteId = "0";
-            }
+			//if (String.IsNullOrEmpty(ExpedienteId))
+			//{
+			//    ExpedienteId = "0";
+			//}
 
-            oENTExpediente.ExpedienteId = Convert.ToInt32(ExpedienteId);
+			//oENTExpediente.ExpedienteId = Convert.ToInt32(ExpedienteId);
 
-            oBPExpediente.SelectCiudadanosGrid(oENTExpediente);
+			//oBPExpediente.SelectCiudadanosGrid(oENTExpediente);
 
-            if (oBPExpediente.ErrorId == 0)
-            {
-                if (oENTExpediente.ResultData.Tables[0].Rows.Count > 0)
-                {
-                    gvCiudadanos.DataSource = oENTExpediente.ResultData;
-                    gvCiudadanos.DataBind();
-                }
-                else
-                {
-                    gvCiudadanos.DataSource = null;
-                    gvCiudadanos.DataBind();
-                }
-            }
-            else
-            {
-                gvCiudadanos.DataSource = null;
-                gvCiudadanos.DataBind();
-            }
+			//if (oBPExpediente.ErrorId == 0)
+			//{
+			//    if (oENTExpediente.ResultData.Tables[0].Rows.Count > 0)
+			//    {
+			//        gvCiudadanos.DataSource = oENTExpediente.ResultData;
+			//        gvCiudadanos.DataBind();
+			//    }
+			//    else
+			//    {
+			//        gvCiudadanos.DataSource = null;
+			//        gvCiudadanos.DataBind();
+			//    }
+			//}
+			//else
+			//{
+			//    gvCiudadanos.DataSource = null;
+			//    gvCiudadanos.DataBind();
+			//}
 
         }
 
@@ -326,28 +326,28 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         private void EliminarCiudadano(string ciudadanoId, int expedienteId)
         {
-            ENTExpediente oENTExpediente = new ENTExpediente();
-            ENTResponse oENTResponse = new ENTResponse();
+			//ENTExpediente oENTExpediente = new ENTExpediente();
+			//ENTResponse oENTResponse = new ENTResponse();
 
-            BPExpediente oBPExpediente = new BPExpediente();
+			//BPExpediente oBPExpediente = new BPExpediente();
 
-            try
-            {
-                //Formulario 
-                oENTExpediente.ExpedienteId = expedienteId;
-                oENTExpediente.Ciudadano = ciudadanoId;
+			//try
+			//{
+			//    //Formulario 
+			//    oENTExpediente.ExpedienteId = expedienteId;
+			//    oENTExpediente.Ciudadano = ciudadanoId;
 
-                //Transacción 
-                oENTResponse = oBPExpediente.DeleteCiudadano_Expediente(oENTExpediente);
+			//    //Transacción 
+			//    oENTResponse = oBPExpediente.DeleteCiudadano_Expediente(oENTExpediente);
 
-                //Validaciones 
-                if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
-                if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+			//    //Validaciones 
+			//    if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+			//    if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
 
-                //Actualzar datos 
-                LlenarCiudadanos(expedienteId.ToString());
-            }
-            catch (Exception ex) { throw (ex); }
+			//    //Actualzar datos 
+			//    LlenarCiudadanos(expedienteId.ToString());
+			//}
+			//catch (Exception ex) { throw (ex); }
         }
 
         private void AprobarResolucion(int expedienteId)
@@ -418,160 +418,160 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
         protected void LlenarDetalle(string ExpedienteId, string FuncionarioId)
         {
-            BPExpediente BPExpediente = new BPExpediente();
-            ENTExpediente oENTExpediente = new ENTExpediente();
+			//BPExpediente BPExpediente = new BPExpediente();
+			//ENTExpediente oENTExpediente = new ENTExpediente();
 
-            if (String.IsNullOrEmpty(ExpedienteId))
-            {
-                ExpedienteId = "0";
-            }
-            if (String.IsNullOrEmpty(FuncionarioId))
-            {
-                FuncionarioId = "0";
-            }
+			//if (String.IsNullOrEmpty(ExpedienteId))
+			//{
+			//    ExpedienteId = "0";
+			//}
+			//if (String.IsNullOrEmpty(FuncionarioId))
+			//{
+			//    FuncionarioId = "0";
+			//}
 
-            oENTExpediente.ExpedienteId = Convert.ToInt32(ExpedienteId);
-            oENTExpediente.FuncionarioId = Convert.ToInt32(FuncionarioId);
+			//oENTExpediente.ExpedienteId = Convert.ToInt32(ExpedienteId);
+			//oENTExpediente.FuncionarioId = Convert.ToInt32(FuncionarioId);
 
-            BPExpediente.SelectDetalleExpediente(oENTExpediente);
+			//BPExpediente.SelectDetalleExpediente(oENTExpediente);
 
-            if (BPExpediente.ErrorId == 0)
-            {
-                // Detalle 
-                if (oENTExpediente.ResultData.Tables[0].Rows.Count > 0)
-                {
-                    SolicitudLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Numero"].ToString();
-                    EstatusaLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Estatus"].ToString();
-                    VisitadorLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Visitador"].ToString();
-                    TipoResolucionLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["TipoResolucion"].ToString();
-                    TipoSolicitudLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["TipoSolicitud"].ToString();
-                    ObservacionesLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Observaciones"].ToString();
-                    LugarHechosLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["LugarHechos"].ToString();
-                    DireccionHechos.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["DireccionHechos"].ToString();
+			//if (BPExpediente.ErrorId == 0)
+			//{
+			//    // Detalle 
+			//    if (oENTExpediente.ResultData.Tables[0].Rows.Count > 0)
+			//    {
+			//        SolicitudLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Numero"].ToString();
+			//        EstatusaLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Estatus"].ToString();
+			//        VisitadorLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Visitador"].ToString();
+			//        TipoResolucionLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["TipoResolucion"].ToString();
+			//        TipoSolicitudLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["TipoSolicitud"].ToString();
+			//        ObservacionesLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Observaciones"].ToString();
+			//        LugarHechosLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["LugarHechos"].ToString();
+			//        DireccionHechos.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["DireccionHechos"].ToString();
 
-                }
+			//    }
 
-                //Fechas
-                if (oENTExpediente.ResultData.Tables[1].Rows.Count > 0)
-                {
-                    FechaRecepcionLabel.Text = oENTExpediente.ResultData.Tables[1].Rows[0]["FechaRecepcion"].ToString();
-                    FechaAsignacionLabel.Text = oENTExpediente.ResultData.Tables[1].Rows[0]["FechaAsignacion"].ToString();
-                    FechaInicioGestionLabel.Text = oENTExpediente.ResultData.Tables[1].Rows[0]["FechaInicioGestion"].ToString();
-                    //FechaResolucionLabel.Text = oENTExpediente.ResultData.Tables[1].Rows[0][""].ToString();
-                }
-            }
+			//    //Fechas
+			//    if (oENTExpediente.ResultData.Tables[1].Rows.Count > 0)
+			//    {
+			//        FechaRecepcionLabel.Text = oENTExpediente.ResultData.Tables[1].Rows[0]["FechaRecepcion"].ToString();
+			//        FechaAsignacionLabel.Text = oENTExpediente.ResultData.Tables[1].Rows[0]["FechaAsignacion"].ToString();
+			//        FechaInicioGestionLabel.Text = oENTExpediente.ResultData.Tables[1].Rows[0]["FechaInicioGestion"].ToString();
+			//        //FechaResolucionLabel.Text = oENTExpediente.ResultData.Tables[1].Rows[0][""].ToString();
+			//    }
+			//}
         }
 
         private void AgregarComentario(int ExpedienteId, int idUsuario, string Comentario)
         {
-            BPExpedienteComentario oBPExpedienteComentario = new BPExpedienteComentario();
-            ENTExpedienteComentario oENTExpedienteComentario = new ENTExpedienteComentario();
+			//BPExpedienteComentario oBPExpedienteComentario = new BPExpedienteComentario();
+			//ENTExpedienteComentario oENTExpedienteComentario = new ENTExpedienteComentario();
 
-            ENTResponse oENTResponse = new ENTResponse();
+			//ENTResponse oENTResponse = new ENTResponse();
 
-            try
-            {
-                oENTExpedienteComentario.ExpedienteId = ExpedienteId;
-                oENTExpedienteComentario.idUsuario = idUsuario;
-                oENTExpedienteComentario.Comentario = Comentario;
+			//try
+			//{
+			//    oENTExpedienteComentario.ExpedienteId = ExpedienteId;
+			//    oENTExpedienteComentario.idUsuario = idUsuario;
+			//    oENTExpedienteComentario.Comentario = Comentario;
 
-                oENTResponse = oBPExpedienteComentario.AgregarComentario(oENTExpedienteComentario);
-                if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
-                if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+			//    oENTResponse = oBPExpedienteComentario.AgregarComentario(oENTExpedienteComentario);
+			//    if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+			//    if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
 
-                ScriptManager.RegisterStartupScript(this.Page
-                    , this.GetType()
-                    , Convert.ToString(Guid.NewGuid())
-					, "alert('Comentario agregado con éxito');"
-                    , true);
-            }
-            catch (Exception ex)
-            {
-                throw (ex);
-            }
+			//    ScriptManager.RegisterStartupScript(this.Page
+			//        , this.GetType()
+			//        , Convert.ToString(Guid.NewGuid())
+			//        , "alert('Comentario agregado con éxito');"
+			//        , true);
+			//}
+			//catch (Exception ex)
+			//{
+			//    throw (ex);
+			//}
         }
 
         private void ModificarComentario(int ExpedienteId, int idUsuario, string Comentario, int ComentarioId)
         {
-            BPExpedienteComentario oBPExpedienteComentario = new BPExpedienteComentario();
-            ENTExpedienteComentario oENTExpedienteComentario = new ENTExpedienteComentario();
+			//BPExpedienteComentario oBPExpedienteComentario = new BPExpedienteComentario();
+			//ENTExpedienteComentario oENTExpedienteComentario = new ENTExpedienteComentario();
 
-            ENTResponse oENTResponse = new ENTResponse();
+			//ENTResponse oENTResponse = new ENTResponse();
 
-            try
-            {
-                oENTExpedienteComentario.ExpedienteId = ExpedienteId;
-                oENTExpedienteComentario.idUsuario = idUsuario;
-                oENTExpedienteComentario.Comentario = Comentario;
-                oENTExpedienteComentario.ComentarioId = ComentarioId;
+			//try
+			//{
+			//    oENTExpedienteComentario.ExpedienteId = ExpedienteId;
+			//    oENTExpedienteComentario.idUsuario = idUsuario;
+			//    oENTExpedienteComentario.Comentario = Comentario;
+			//    oENTExpedienteComentario.ComentarioId = ComentarioId;
 
-                oENTResponse = oBPExpedienteComentario.ModificarComentario(oENTExpedienteComentario);
-                if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
-                if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+			//    oENTResponse = oBPExpedienteComentario.ModificarComentario(oENTExpedienteComentario);
+			//    if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+			//    if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
 
-                ScriptManager.RegisterStartupScript(this.Page
-                    , this.GetType()
-                    , Convert.ToString(Guid.NewGuid())
-					, "alert('Comentario modificado con éxito');"
-                    , true);
-            }
-            catch (Exception ex)
-            {
-                throw (ex);
-            }
+			//    ScriptManager.RegisterStartupScript(this.Page
+			//        , this.GetType()
+			//        , Convert.ToString(Guid.NewGuid())
+			//        , "alert('Comentario modificado con éxito');"
+			//        , true);
+			//}
+			//catch (Exception ex)
+			//{
+			//    throw (ex);
+			//}
         }
 
         private void EliminarComentario(int ExpedienteId, int idUsuario, int ComentarioId)
         {
-            BPExpedienteComentario oBPExpedienteComentario = new BPExpedienteComentario();
-            ENTExpedienteComentario oENTExpedienteComentario = new ENTExpedienteComentario();
+			//BPExpedienteComentario oBPExpedienteComentario = new BPExpedienteComentario();
+			//ENTExpedienteComentario oENTExpedienteComentario = new ENTExpedienteComentario();
 
-            ENTResponse oENTResponse = new ENTResponse();
+			//ENTResponse oENTResponse = new ENTResponse();
 
-            try
-            {
-                oENTExpedienteComentario.ExpedienteId = ExpedienteId;
-                oENTExpedienteComentario.idUsuario = idUsuario;
-                oENTExpedienteComentario.ComentarioId = ComentarioId;
+			//try
+			//{
+			//    oENTExpedienteComentario.ExpedienteId = ExpedienteId;
+			//    oENTExpedienteComentario.idUsuario = idUsuario;
+			//    oENTExpedienteComentario.ComentarioId = ComentarioId;
 
-                oENTResponse = oBPExpedienteComentario.EliminarComentario(oENTExpedienteComentario);
-                if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
-                if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+			//    oENTResponse = oBPExpedienteComentario.EliminarComentario(oENTExpedienteComentario);
+			//    if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+			//    if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
 
-                ScriptManager.RegisterStartupScript(this.Page
-                    , this.GetType()
-                    , Convert.ToString(Guid.NewGuid())
-					, "alert('Comentario modificado con éxito');"
-                    , true);
-            }
-            catch (Exception ex)
-            {
-                throw (ex);
-            }
+			//    ScriptManager.RegisterStartupScript(this.Page
+			//        , this.GetType()
+			//        , Convert.ToString(Guid.NewGuid())
+			//        , "alert('Comentario modificado con éxito');"
+			//        , true);
+			//}
+			//catch (Exception ex)
+			//{
+			//    throw (ex);
+			//}
         }
 
         private void SelectComentario(int ExpedienteId)
         {
-            BPExpediente ExpedienteProcess = new BPExpediente();
+			//BPExpediente ExpedienteProcess = new BPExpediente();
 
-            ExpedienteProcess.ExpedienteEntity.ExpedienteId = ExpedienteId;
+			//ExpedienteProcess.ExpedienteEntity.ExpedienteId = ExpedienteId;
 
-            ExpedienteProcess.SelectExpedienteComentario();
+			//ExpedienteProcess.SelectExpedienteComentario();
 
-            if (ExpedienteProcess.ErrorId == 0)
-            {
-                if (ExpedienteProcess.ExpedienteEntity.ResultData.Tables[0].Rows.Count == 0)
-                    SinComentariosLabel.Text = "<br /><br />No hay comentarios para esta solicitud";
-                else
-                    SinComentariosLabel.Text = "";
+			//if (ExpedienteProcess.ErrorId == 0)
+			//{
+			//    if (ExpedienteProcess.ExpedienteEntity.ResultData.Tables[0].Rows.Count == 0)
+			//        SinComentariosLabel.Text = "<br /><br />No hay comentarios para esta solicitud";
+			//    else
+			//        SinComentariosLabel.Text = "";
 
-                ComentarioRepeater.DataSource = ExpedienteProcess.ExpedienteEntity.ResultData.Tables[0];
-                ComentarioRepeater.DataBind();
+			//    ComentarioRepeater.DataSource = ExpedienteProcess.ExpedienteEntity.ResultData.Tables[0];
+			//    ComentarioRepeater.DataBind();
 
-                ComentarioTituloLabel.Text = ExpedienteProcess.ExpedienteEntity.ResultData.Tables[0].Rows.Count.ToString() + " comentarios";
-            }
-            else
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ExpedienteProcess.ErrorDescription) + "');", true);
+			//    ComentarioTituloLabel.Text = ExpedienteProcess.ExpedienteEntity.ResultData.Tables[0].Rows.Count.ToString() + " comentarios";
+			//}
+			//else
+			//    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ExpedienteProcess.ErrorDescription) + "');", true);
         }
 
         #endregion

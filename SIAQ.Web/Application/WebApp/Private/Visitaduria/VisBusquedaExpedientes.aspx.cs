@@ -15,6 +15,7 @@ using System.Web.UI.WebControls;
 
 // Referencias manuales
 using GCUtility.Function;
+using GCUtility.Security;
 using SIAQ.BusinessProcess.Object;
 using SIAQ.BusinessProcess.Page;
 using SIAQ.Entity.Object;
@@ -27,6 +28,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 		
 		// Utilerías
 		GCCommon gcCommon = new GCCommon();
+		GCEncryption gcEncryption = new GCEncryption();
 		GCJavascript gcJavascript = new GCJavascript();
 
 		// Variables publicas
@@ -249,6 +251,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			String ExpedienteId = "";
 			String strCommand = "";
 
+			String sKey = "";
+
 			try
 			{
 
@@ -267,7 +271,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				// Canalizar la página
 				switch (strCommand){
 					case "Editar":
-						this.Response.Redirect("VisDetalleExpediente.aspx?key=" + ExpedienteId + "|2", false);
+
+						// Llave encriptada
+						sKey = ExpedienteId + "|1";
+						sKey = gcEncryption.EncryptString(sKey, true);
+						this.Response.Redirect("VisDetalleExpediente.aspx?key=" + sKey, false);
 						break;
 				}
 

@@ -20,12 +20,17 @@ namespace SIAQ.Entity.Object
 
 		// Definiciones
 		private Int32	_AreaId;			// Identificador único del Área
+		private Int32	_ComentarioId;		// Identificador único del Comentario del Expediente
 		private Int32	_EstatusId;			// Identificador único del Estatus del Expediente
 		private Int32	_ExpedienteId;		// Identificador único del Expediente a consultar
 		private Int32	_FuncionarioId;		// Identificador único del funcionario asociado al Expediente
+		private Int32	_ModuloId;			// Identificador único del Módulo en donde se realiza la transacción
 		private Int32	_UsuarioId;			// Identificador único del Usuario
+		private String	_Acuerdo;			// Acuerdo de calificación definitiva
+		private String	_Comentario;		// Comentarios
 		private String	_FechaDesde;		// Fecha de inicio en una consulta
 		private String	_FechaHasta;		// Fecha final en una consulta
+		private Int16	_MedidaPreventiva;	// Determina si un asunto es una medida preventiva
 		private Int16	_Nivel;				// Nivel de transacción
 		private String	_Nombre;			// Nombre del ciudadano/problematica/entidad
 		private String	_Numero;			// Número del expediente
@@ -36,12 +41,17 @@ namespace SIAQ.Entity.Object
 		public ENTVisitaduria()
 		{
 			_AreaId = 0;
+			_ComentarioId = 0;
 			_EstatusId = 0;
 			_ExpedienteId = 0;
 			_FuncionarioId = 0;
+			_ModuloId = 0;
 			_UsuarioId = 0;
+			_Acuerdo = "";
+			_Comentario = "";
 			_FechaDesde = "";
 			_FechaHasta = "";
+			_MedidaPreventiva = 0;
 			_Nivel = -1;
 			_Nombre = "";
 			_Numero = "";
@@ -60,6 +70,18 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _AreaId; }
 			set { _AreaId = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTVisitaduria.ComentarioId</name>
+		///   <create>04-Agosto-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el identificador único del Comentario del Expediente</summary>
+		public Int32 ComentarioId
+		{
+			get { return _ComentarioId; }
+			set { _ComentarioId = value; }
 		}
 
 		///<remarks>
@@ -99,6 +121,18 @@ namespace SIAQ.Entity.Object
 		}
 
 		///<remarks>
+		///   <name>ENTVisitaduria.ModuloId</name>
+		///   <create>04-Agosto-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el identificador único del Módulo en donde se realiza la transacción</summary>
+		public Int32 ModuloId
+		{
+			get { return _ModuloId; }
+			set { _ModuloId = value; }
+		}
+
+		///<remarks>
 		///   <name>ENTVisitaduria.UsuarioId</name>
 		///   <create>04-Agosto-2014</create>
 		///   <author>Ruben.Cobos</author>
@@ -108,6 +142,30 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _UsuarioId; }
 			set { _UsuarioId = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTVisitaduria.Acuerdo</name>
+		///   <create>18-Agosto-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el acuerdo de calificación definitiva</summary>
+		public String Acuerdo
+		{
+			get { return _Acuerdo; }
+			set { _Acuerdo = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTVisitaduria.Comentario</name>
+		///   <create>18-Agosto-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna los comentarios de un Expediente </summary>
+		public String Comentario
+		{
+			get { return _Comentario; }
+			set { _Comentario = value; }
 		}
 
 		///<remarks>
@@ -132,6 +190,18 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _FechaHasta; }
 			set { _FechaHasta = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTVisitaduria.MedidaPreventiva</name>
+		///   <create>18-Agosto-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna un valor que determina si un asunto es una medida preventiva</summary>
+		public Int16 MedidaPreventiva
+		{
+			get { return _MedidaPreventiva; }
+			set { _MedidaPreventiva = value; }
 		}
 
 		///<remarks>

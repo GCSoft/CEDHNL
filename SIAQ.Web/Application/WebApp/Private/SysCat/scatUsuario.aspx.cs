@@ -157,8 +157,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
 			}
 		}
 
-		private void SelectArea()
-		{
+		private void SelectArea(){
 			ENTArea oENTArea = new ENTArea();
 			ENTResponse oENTResponse = new ENTResponse();
 
@@ -171,7 +170,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
 				oENTArea.sNombre = "";
 				oENTArea.tiActivo = 1;
 				oENTArea.tiVisitaduria = 2;
-				oENTArea.tiVisita = 1;
+				oENTArea.tiVisita = 2;
 
 				// Transacción
 				oENTResponse = oBPArea.SelectArea(oENTArea);
@@ -189,15 +188,12 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
 				// Agregar Item de selección
 				this.ddlArea.Items.Insert(0, new ListItem("[Todas]", "0"));
 
-			}
-			catch (Exception ex)
-			{
+			}catch (Exception ex){
 				throw (ex);
 			}
 		}
 
-		private void SelectArea_Action()
-		{
+		private void SelectArea_Action(){
 			ENTArea oENTArea = new ENTArea();
 			ENTResponse oENTResponse = new ENTResponse();
 
@@ -210,7 +206,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
 				oENTArea.sNombre = "";
 				oENTArea.tiActivo = 1;
 				oENTArea.tiVisitaduria = 2;
-				oENTArea.tiVisita = 1;
+				oENTArea.tiVisita = 2;
 
 				// Transacción
 				oENTResponse = oBPArea.SelectArea(oENTArea);
@@ -228,9 +224,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
 				// Agregar Item de selección
 				this.ddlActionArea.Items.Insert(0, new ListItem("[Seleccione]", "0"));
 
-			}
-			catch (Exception ex)
-			{
+			}catch (Exception ex){
 				throw (ex);
 			}
 		}
@@ -410,8 +404,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
 			}
 		}
 
-		private void SelectUsuario_ForEdit(Int32 idUsuario)
-		{
+		private void SelectUsuario_ForEdit(Int32 idUsuario){
 			ENTUsuario oENTUsuario = new ENTUsuario();
 			ENTResponse oENTResponse = new ENTResponse();
 
@@ -447,9 +440,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
 				this.txtActionDescripcion.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["sDescripcion"].ToString();
 				this.ddlActionStatus.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["tiActivo"].ToString();
 
-			}
-			catch (Exception ex)
-			{
+			}catch (Exception ex){
 				throw (ex);
 			}
 		}

@@ -146,41 +146,41 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
             private void SelectExpediente(int ExpedienteId, int FuncionarioId)
             {
-                BPExpediente BPExpediente = new BPExpediente();
-                ENTExpediente oENTExpediente = new ENTExpediente();
+				//BPExpediente BPExpediente = new BPExpediente();
+				//ENTExpediente oENTExpediente = new ENTExpediente();
 
-                oENTExpediente.ExpedienteId = ExpedienteId;
-                oENTExpediente.FuncionarioId = FuncionarioId;
+				//oENTExpediente.ExpedienteId = ExpedienteId;
+				//oENTExpediente.FuncionarioId = FuncionarioId;
 
-                BPExpediente.SelectDetalleExpediente(oENTExpediente);
+				//BPExpediente.SelectDetalleExpediente(oENTExpediente);
 
-                if (BPExpediente.ErrorId == 0)
-                {
-                    // Detalle 
-                    if (oENTExpediente.ResultData.Tables[0].Rows.Count > 0)
-                    {
-                        ExpedienteIdLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Numero"].ToString();
-                        CalificacionLlabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Calificacion"].ToString();
-                        EstatusaLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Estatus"].ToString();
-                        VisitadorLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Visitador"].ToString();
-                        FormaContactoLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["FormaContacto"].ToString();
-                        TipoSolicitudLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["TipoSolicitud"].ToString();
-                        ObservacionesLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Observaciones"].ToString();
-                        LugarHechosLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["LugarHechos"].ToString();
-                        DireccionHechos.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["DireccionHechos"].ToString();
-                    }
+				//if (BPExpediente.ErrorId == 0)
+				//{
+				//    // Detalle 
+				//    if (oENTExpediente.ResultData.Tables[0].Rows.Count > 0)
+				//    {
+				//        ExpedienteIdLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Numero"].ToString();
+				//        CalificacionLlabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Calificacion"].ToString();
+				//        EstatusaLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Estatus"].ToString();
+				//        VisitadorLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Visitador"].ToString();
+				//        FormaContactoLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["FormaContacto"].ToString();
+				//        TipoSolicitudLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["TipoSolicitud"].ToString();
+				//        ObservacionesLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Observaciones"].ToString();
+				//        LugarHechosLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["LugarHechos"].ToString();
+				//        DireccionHechos.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["DireccionHechos"].ToString();
+				//    }
 
-                    //Fechas
-                    if (oENTExpediente.ResultData.Tables[1].Rows.Count > 0)
-                    {
-                        FechaRecepcionLabel.Text = oENTExpediente.ResultData.Tables[1].Rows[0]["FechaRecepcion"].ToString();
-                        FechaAsignacionLabel.Text = oENTExpediente.ResultData.Tables[1].Rows[0]["FechaAsignacion"].ToString();
-                        FechaGestionLabel.Text = oENTExpediente.ResultData.Tables[1].Rows[0]["FechaInicioGestion"].ToString();
-                        FechaModificacionLabel.Text = oENTExpediente.ResultData.Tables[1].Rows[0]["UltimaModificacion"].ToString();
-                    }
-                }
-                else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(BPExpediente.ErrorDescription) + "');", true);
+				//    //Fechas
+				//    if (oENTExpediente.ResultData.Tables[1].Rows.Count > 0)
+				//    {
+				//        FechaRecepcionLabel.Text = oENTExpediente.ResultData.Tables[1].Rows[0]["FechaRecepcion"].ToString();
+				//        FechaAsignacionLabel.Text = oENTExpediente.ResultData.Tables[1].Rows[0]["FechaAsignacion"].ToString();
+				//        FechaGestionLabel.Text = oENTExpediente.ResultData.Tables[1].Rows[0]["FechaInicioGestion"].ToString();
+				//        FechaModificacionLabel.Text = oENTExpediente.ResultData.Tables[1].Rows[0]["UltimaModificacion"].ToString();
+				//    }
+				//}
+				//else
+				//    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(BPExpediente.ErrorDescription) + "');", true);
             }
 
             private void SelectTipoRecomendacion()

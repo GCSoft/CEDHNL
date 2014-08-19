@@ -29,7 +29,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 		GCJavascript gcJavascript = new GCJavascript();
 
 
-		// Funciones el programador
+		// Rutinas del programador
 
 		void CheckDeleteLinkComentario(){
 			ENTSession SessionEntity = new ENTSession();

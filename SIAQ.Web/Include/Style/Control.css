@@ -576,6 +576,18 @@
 }
 
 
+.Textbox_Disabled{
+	border:1px solid #5E8291;
+	background-color: #EFEFEF;
+	color:#333333;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 12px;
+	font-weight:lighter;
+	height:16px;
+	text-align:left;
+	vertical-align:bottom;
+}
+
 
 /*'---------------------------------------------------------------------------------------------------------------------------------*/
 

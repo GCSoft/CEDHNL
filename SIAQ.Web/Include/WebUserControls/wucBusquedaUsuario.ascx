@@ -34,7 +34,7 @@
                            <td></td>
                         </tr>
                         <tr>
-                           <td style="width:50px;">&nbsp;Nombre</td>
+                           <td style="width:50px; font-size:12px; text-align: left;">&nbsp;Nombre</td>
                            <td>&nbsp;&nbsp;<asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="Button_General" width="92px" onclick="btnBuscar_Click" /></td>
                         </tr>
                      </table>

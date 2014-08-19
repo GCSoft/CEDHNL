@@ -1,12 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="catFuncionario.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Catalog.catFuncionario" %>
 <%@ Register src="../../../../Include/WebUserControls/wucBusquedaUsuario.ascx" tagname="wucBusquedaUsuario" tagprefix="wuc" %>
 <%@ Register src="../../../../Include/WebUserControls/wucCalendar.ascx" tagname="wucCalendar" tagprefix="wuc" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
-   <table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
       <tr>
 			<td class="tdCeldaTituloEncabezado" style="background-image:url('../../../../Include/Image/Web/BarraTitulo.png');">
 				Catálogo de Funcionarios
@@ -106,7 +105,7 @@
       <tr>
          <td>
             <asp:Panel id="pnlAction" runat="server" CssClass="ActionBlock" >
-               <asp:Panel id="pnlActionContent" runat="server" CssClass="ActionContent" style="top:200px;" Height="250px" Width="400px">
+               <asp:Panel id="pnlActionContent" runat="server" CssClass="ActionContent" style="top:200px;" Height="220px" Width="275px">
                   <asp:Panel ID="pnlActionHeader" runat="server" CssClass="ActionHeader">
                      <table border="0" cellpadding="0" cellspacing="0" style="height:100%; width:100%">
 						<tr>
@@ -124,25 +123,19 @@
                            <tr class="trFilaItem">
                               <td class="tdActionCeldaLeyendaItem">&nbsp;Puesto</td>
                               <td style="width:5px;"></td>
-                              <td class="tdCeldaItem"><asp:DropDownList id="ddlActionPuesto" runat="server" CssClass="DropDownList_General" width="316px" ></asp:DropDownList></td>
+                              <td class="tdCeldaItem"><asp:DropDownList id="ddlActionPuesto" runat="server" CssClass="DropDownList_General" width="216px" ></asp:DropDownList></td>
                            </tr>
                            <tr style="height:5px;"><td colspan="3"></td></tr>
                            <tr class="trFilaItem">
                               <td class="tdActionCeldaLeyendaItem">&nbsp;Título</td>
                               <td></td>
-                              <td class="tdCeldaItem"><asp:DropDownList id="ddlActionTitulo" runat="server" CssClass="DropDownList_General" width="316px" ></asp:DropDownList></td>
+                              <td class="tdCeldaItem"><asp:DropDownList id="ddlActionTitulo" runat="server" CssClass="DropDownList_General" width="216px" ></asp:DropDownList></td>
                            </tr>
                            <tr style="height:5px;"><td colspan="3"></td></tr>
                            <tr class="trFilaItem">
 							    <td class="tdActionCeldaLeyendaItem">&nbsp;Usuario</td>
 							    <td></td>
 							    <td><wuc:wucBusquedaUsuario ID="wucBusquedaUsuario" runat="server" /></td>
-						    </tr>
-						    <tr style="height:5px;"><td colspan="3"></td></tr>
-						    <tr class="trFilaItem">
-							    <td class="tdActionCeldaLeyendaItem">&nbsp;Área</td>
-							    <td></td>
-							    <td><asp:TextBox ID="txtActionArea" runat="server" CssClass="Textbox_General" MaxLength="200" ReadOnly="true" width="310px" ></asp:TextBox></td>
 						    </tr>
 						    <tr style="height:5px;"><td colspan="3"></td></tr>
 						    <tr class="trFilaItem">

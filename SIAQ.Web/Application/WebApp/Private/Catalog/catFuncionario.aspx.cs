@@ -40,8 +40,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 
 		// Rutinas del programador
 
-		private void ClearActionPanel()
-		{
+		private void ClearActionPanel(){
 			try
 			{
 
@@ -50,7 +49,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 				this.ddlActionTitulo.SelectedIndex = 0;
 				this.wucBusquedaUsuario.UsuarioID = 0;
 				this.wucBusquedaUsuario.Area = "";
-				this.txtActionArea.Text = "";
 				this.wucCalendar.SetCurrentDate();
 
 				// Estado incial de controles
@@ -60,15 +58,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 				this.lblActionMessage.Text = "";
 				this.hddFuncionario.Value = "";
 
-			}
-			catch (Exception ex)
-			{
+			}catch (Exception ex){
 				throw (ex);
 			}
 		}
 
-		private void DeleteFuncionario(Int32 idFuncionario)
-		{
+		private void DeleteFuncionario(Int32 idFuncionario){
 			ENTFuncionario oENTFuncionario = new ENTFuncionario();
 			ENTResponse oENTResponse = new ENTResponse();
 
@@ -93,15 +88,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 				// Actualizar datos
 				SelectFuncionario();
 
-			}
-			catch (Exception ex)
-			{
+			}catch (Exception ex){
 				throw (ex);
 			}
 		}
 
-		private void InsertFuncionario()
-		{
+		private void InsertFuncionario(){
 			ENTFuncionario oENTFuncionario = new ENTFuncionario();
 			ENTResponse oENTResponse = new ENTResponse();
 
@@ -132,15 +124,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 				// Mensaje de usuario
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('Funcionario creado con éxtito!'); focusControl('" + this.ddlArea.ClientID + "');", true);
 
-			}
-			catch (Exception ex)
-			{
+			}catch (Exception ex){
 				throw (ex);
 			}
 		}
 
-		private void SelectArea()
-		{
+		private void SelectArea(){
 			ENTArea oENTArea = new ENTArea();
 			ENTResponse oENTResponse = new ENTResponse();
 
@@ -171,15 +160,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 				// Agregar Item de selección
 				this.ddlArea.Items.Insert(0, new ListItem("[Todas]", "0"));
 
-			}
-			catch (Exception ex)
-			{
+			}catch (Exception ex){
 				throw (ex);
 			}
 		}
 
-		private void SelectFuncionario()
-		{
+		private void SelectFuncionario(){
 			ENTFuncionario oENTFuncionario = new ENTFuncionario();
 			ENTResponse oENTResponse = new ENTResponse();
 
@@ -213,15 +199,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 				// Mensaje al usuario
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), sMessage, true);
 
-			}
-			catch (Exception ex)
-			{
+			}catch (Exception ex){
 				throw (ex);
 			}
 		}
 
-		private void SelectFuncionario_ForEdit(Int32 idFuncionario)
-		{
+		private void SelectFuncionario_ForEdit(Int32 idFuncionario){
 			ENTFuncionario oENTFuncionario = new ENTFuncionario();
 			ENTResponse oENTResponse = new ENTResponse();
 
@@ -252,18 +235,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 				this.ddlActionTitulo.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["TituloId"].ToString();
 				this.wucBusquedaUsuario.UsuarioID = Int32.Parse(oENTResponse.dsResponse.Tables[1].Rows[0]["idUsuario"].ToString());
 				this.wucBusquedaUsuario.Area = oENTResponse.dsResponse.Tables[1].Rows[0]["sArea"].ToString();
-				this.txtActionArea.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["sArea"].ToString();
 				this.wucCalendar.SetDate = oENTResponse.dsResponse.Tables[1].Rows[0]["dtFechaIngreso"].ToString();
 
-			}
-			catch (Exception ex)
-			{
+			}catch (Exception ex){
 				throw (ex);
 			}
 		}
 
-		private void SelectPuesto()
-		{
+		private void SelectPuesto(){
 			ENTPuesto oENTPuesto = new ENTPuesto();
 			ENTResponse oENTResponse = new ENTResponse();
 
@@ -292,15 +271,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 				// Agregar Item de selección
 				this.ddlActionPuesto.Items.Insert(0, new ListItem("[Seleccione]", "0"));
 
-			}
-			catch (Exception ex)
-			{
+			}catch (Exception ex){
 				throw (ex);
 			}
 		}
 
-		private void SelectTitulo()
-		{
+		private void SelectTitulo(){
 			ENTTitulo oENTTitulo = new ENTTitulo();
 			ENTResponse oENTResponse = new ENTResponse();
 
@@ -329,15 +305,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 				// Agregar Item de selección
 				this.ddlActionTitulo.Items.Insert(0, new ListItem("[Seleccione]", "0"));
 
-			}
-			catch (Exception ex)
-			{
+			}catch (Exception ex){
 				throw (ex);
 			}
 		}
 
-		private void SetPanel(FuncionarioActionTypes FuncionarioActionType, Int32 idItem = 0)
-		{
+		private void SetPanel(FuncionarioActionTypes FuncionarioActionType, Int32 idItem = 0){
 			try
 			{
 
@@ -346,8 +319,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 				this.hddFuncionario.Value = idItem.ToString();
 
 				// Detalle de acción
-				switch (FuncionarioActionType)
-				{
+				switch (FuncionarioActionType){
 					case FuncionarioActionTypes.InsertFuncionario:
 						this.lblActionTitle.Text = "Nuevo Funcionario";
 						this.btnAction.Text = "Crear Funcionario";
@@ -365,17 +337,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 				}
 
 				// Foco
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.wucBusquedaUsuario.CanvasID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlActionPuesto.ClientID + "'); }", true);
 
-			}
-			catch (Exception ex)
-			{
+			}catch (Exception ex){
 				throw (ex);
 			}
 		}
 
-		private void UpdateFuncionario(Int32 idFuncionario)
-		{
+		private void UpdateFuncionario(Int32 idFuncionario){
 			ENTFuncionario oENTFuncionario = new ENTFuncionario();
 			ENTResponse oENTResponse = new ENTResponse();
 
@@ -407,15 +376,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 				// Mensaje de usuario
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('Información actualizada con éxito!'); focusControl('" + this.ddlArea.ClientID + "');", true);
 
-			}
-			catch (Exception ex)
-			{
+			}catch (Exception ex){
 				throw (ex);
 			}
 		}
 
-		private void ValidateActionForm()
-		{
+		private void ValidateActionForm(){
 			try
 			{
 
@@ -428,9 +394,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 				// Usuario
 				if (this.wucBusquedaUsuario.UsuarioID == 0) { throw new Exception("* Es necesario seleccionar un usuario para convertirlo en funcionario"); }
 
-			}
-			catch (Exception ex)
-			{
+			}catch (Exception ex){
 				throw (ex);
 			}
 		}
@@ -438,8 +402,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 
 		// Eventos de la página
 
-		protected void Page_Load(object sender, EventArgs e)
-		{
+		protected void Page_Load(object sender, EventArgs e){
 			// Validación. Solo la primera vez que se ejecuta la página
 			if (this.IsPostBack) { return; }
 
@@ -459,15 +422,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 				// Foco
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlArea.ClientID + "');", true);
 
-			}
-			catch (Exception ex)
-			{
+			}catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlArea.ClientID + "');", true);
 			}
 		}
 
-		protected void btnAction_Click(object sender, EventArgs e)
-		{
+		protected void btnAction_Click(object sender, EventArgs e){
 			try
 			{
 
@@ -475,57 +435,45 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 				ValidateActionForm();
 
 				// Determinar acción
-				if (this.hddFuncionario.Value == "0")
-				{
+				if (this.hddFuncionario.Value == "0"){
 
 					InsertFuncionario();
-				}
-				else
-				{
+				}else{
 
 					UpdateFuncionario(Int32.Parse(this.hddFuncionario.Value));
 				}
 
-			}
-			catch (Exception ex)
-			{
+			}catch (Exception ex){
 				this.lblActionMessage.Text = ex.Message;
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlActionPuesto.ClientID + "');", true);
 			}
 		}
 
-		protected void btnBuscar_Click(object sender, EventArgs e)
-		{
+		protected void btnBuscar_Click(object sender, EventArgs e){
 			try
 			{
 
 				// Filtrar información
 				SelectFuncionario();
 
-			}
-			catch (Exception ex)
-			{
+			}catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlArea.ClientID + "');", true);
 			}
 		}
 
-		protected void btnNuevo_Click(object sender, EventArgs e)
-		{
+		protected void btnNuevo_Click(object sender, EventArgs e){
 			try
 			{
 
 				// Nuevo registro
 				SetPanel(FuncionarioActionTypes.InsertFuncionario);
 
-			}
-			catch (Exception ex)
-			{
+			}catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlArea.ClientID + "');", true);
 			}
 		}
 
-		protected void gvFuncionario_RowDataBound(object sender, GridViewRowEventArgs e)
-		{
+		protected void gvFuncionario_RowDataBound(object sender, GridViewRowEventArgs e){
 			ImageButton imgEdit = null;
 			ImageButton imgAction = null;
 
@@ -578,15 +526,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 				// Puntero y Sombra en fila Out
 				e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
 
-			}
-			catch (Exception ex)
-			{
+			}catch (Exception ex){
 				throw (ex);
 			}
 		}
 
-		protected void gvFuncionario_RowCommand(object sender, GridViewCommandEventArgs e)
-		{
+		protected void gvFuncionario_RowCommand(object sender, GridViewCommandEventArgs e){
 			Int32 idFuncionario = 0;
 
 			String strCommand = "";
@@ -608,8 +553,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 				idFuncionario = Int32.Parse(this.gvFuncionario.DataKeys[intRow]["FuncionarioId"].ToString());
 
 				// Acción
-				switch (strCommand)
-				{
+				switch (strCommand){
 					case "Editar":
 						SetPanel(FuncionarioActionTypes.UpdateFuncionario, idFuncionario);
 						ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tooltip.hide();", true);
@@ -621,9 +565,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 
 				}
 
-			}
-			catch (Exception ex)
-			{
+			}catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlArea.ClientID + "');", true);
 			}
 		}
@@ -639,17 +581,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 			}
 		}
 
-		protected void imgCloseWindow_Click(object sender, ImageClickEventArgs e)
-		{
+		protected void imgCloseWindow_Click(object sender, ImageClickEventArgs e){
 			try
 			{
 
 				// Cancelar transacción
 				ClearActionPanel();
 
-			}
-			catch (Exception ex)
-			{
+			}catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlArea.ClientID + "');", true);
 			}
 		}

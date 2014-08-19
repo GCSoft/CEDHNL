@@ -76,35 +76,6 @@ namespace SIAQ.BusinessProcess.Object
             }
 
             /// <summary>
-            /// Asigna funcionario al expediente
-            /// </summary>
-            public ENTResponse AsignarVisitador_Expediente(ENTExpediente oENTExpediente)
-            {
-                DAExpediente oDAExpediente = new DAExpediente();
-                ENTResponse oENTResponse = new ENTResponse();
-
-                try
-                {
-                    //Transacción
-                    oENTResponse = oDAExpediente.AsignarVisitador_Expediente(oENTExpediente, sConnectionApplication, 0);
-
-                    // Validación error 
-                    if (oENTResponse.GeneratesException) { return oENTResponse; }
-
-                    //Validacion de mensajes de base de datos 
-                    oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-                    if (oENTResponse.sMessage != "") { return oENTResponse; }
-                }
-                catch (Exception ex)
-                {
-                    oENTResponse.ExceptionRaised(ex.Message);
-                }
-
-                //Resultado 
-                return oENTResponse;
-            }
-
-            /// <summary>
             /// Elimina autoridades de un expediente en específico
             /// </summary>
             public ENTResponse DeleteAutoridad_Expediente(ENTExpediente oENTExpediente)
@@ -128,61 +99,6 @@ namespace SIAQ.BusinessProcess.Object
                 catch (Exception ex) { oENTResponse.ExceptionRaised(ex.Message); }
 
                 //Resultado
-                return oENTResponse;
-            }
-
-            /// <summary>
-            /// Elimina ciudadanos de un expediente en específico
-            /// </summary>
-            public ENTResponse DeleteCiudadano_Expediente(ENTExpediente oENTExpediente)
-            {
-                DAExpediente oDAExpediente = new DAExpediente();
-                ENTResponse oENTResponse = new ENTResponse();
-
-                try
-                {
-                    //Transacción en base de datos 
-                    oENTResponse = oDAExpediente.DeleteCiudadano_Expediente(oENTExpediente, sConnectionApplication, 0);
-
-                    // Validación de error en consulta
-                    if (oENTResponse.GeneratesException) { return oENTResponse; }
-
-                    // Validación de mensajes de la BD
-                    oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-                    if (oENTResponse.sMessage != "") { return oENTResponse; }
-                }
-                catch (Exception ex) { oENTResponse.ExceptionRaised(ex.Message); }
-
-                //Resultado 
-                return oENTResponse;
-            }
-
-            /// <summary>
-            /// Agrega el acuerdo de calificación definitiva
-            /// </summary>
-            public ENTResponse InsertAcuerdoCalificacionDefinitiva(ENTExpediente oENTExpediente)
-            {
-                DAExpediente oDAExpediente = new DAExpediente();
-                ENTResponse oENTResponse = new ENTResponse();
-
-                try
-                {
-                    //Transacción
-                    oENTResponse = oDAExpediente.InsertAcuerdoCalificacionDefinitiva(oENTExpediente, sConnectionApplication, 0);
-
-                    // Validación error 
-                    if (oENTResponse.GeneratesException) { return oENTResponse; }
-
-                    //Validacion de mensajes de base de datos 
-                    oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-                    if (oENTResponse.sMessage != "") { return oENTResponse; }
-                }
-                catch (Exception ex)
-                {
-                    oENTResponse.ExceptionRaised(ex.Message);
-                }
-
-                //Resultado 
                 return oENTResponse;
             }
 
@@ -228,95 +144,6 @@ namespace SIAQ.BusinessProcess.Object
                 oENTExpediente.ResultData = DAExpediente.SelectAutoridadesGrid(oENTExpediente, ConnectionString);
                 _ErrorId = DAExpediente.ErrorId;
                 _ErrorDescription = DAExpediente.ErrorDescription;
-            }
-
-            /// <summary>
-            ///     Obtiene los ciudadanos relacionados al expediente 
-            /// </summary>
-            public void SelectCiudadanosGrid(ENTExpediente oENTExpediente)
-            {
-                string ConnectionString = String.Empty;
-                DAExpediente DAExpediente = new DAExpediente();
-
-                ConnectionString = sConnectionApplication;
-
-                oENTExpediente.ResultData = DAExpediente.SelectCiudadanosGrid(oENTExpediente, ConnectionString);
-
-                _ErrorId = DAExpediente.ErrorId;
-                _ErrorDescription = DAExpediente.ErrorDescription;
-            }
-
-            /// <summary>
-            ///     Obtiene el detalle del expediente seleccionado
-            /// </summary>
-            public void SelectDetalleExpediente(ENTExpediente oENTExpediente)
-            {
-                string ConnectionString = String.Empty;
-                DAExpediente DAExpediente = new DAExpediente();
-
-                ConnectionString = sConnectionApplication;
-
-                oENTExpediente.ResultData = DAExpediente.SelectDetalleExpediente(oENTExpediente, ConnectionString);
-
-                _ErrorId = DAExpediente.ErrorId;
-                _ErrorDescription = DAExpediente.ErrorDescription;
-            }
-
-            /// <summary>
-            ///     Busca los comentarios realizados para una solicitud.
-            /// </summary>
-            public void SelectExpedienteComentario()
-            {
-                string ConnectionString = string.Empty;
-                DAExpediente DAExpediente = new DAExpediente();
-
-                ConnectionString = sConnectionApplication;
-
-                _ExpedienteEntity.ResultData = DAExpediente.SelectExpedienteComentario(_ExpedienteEntity, ConnectionString);
-
-                _ErrorId = DAExpediente.ErrorId;
-                _ErrorDescription = DAExpediente.ErrorDescription;
-            }
-
-            /// <summary>
-            ///     Busca la información importante de un expediente para su validación.
-            /// </summary>
-            public void SelectExpedienteEstatus(int ExpedienteId)
-            {
-                DataSet ResultData = new DataSet();
-                DAExpediente DAExpediente = new DAExpediente();
-
-                ResultData = DAExpediente.SelectExpedienteEstatus(ExpedienteId, sConnectionApplication);
-
-                _ErrorId = DAExpediente.ErrorId;
-                _ErrorDescription = DAExpediente.ErrorDescription;
-
-                if (_ErrorId != 0)
-                    return;
-
-                if (ResultData.Tables[0].Rows.Count == 0)
-                    return;
-
-                _ExpedienteEntity.ExpedienteId = ExpedienteId;
-                _ExpedienteEntity.FuncionarioId = int.Parse(ResultData.Tables[0].Rows[0]["FuncionarioId"].ToString());
-                _ExpedienteEntity.EstatusId = int.Parse(ResultData.Tables[0].Rows[0]["EstatusId"].ToString());
-                _ExpedienteEntity.Numero = ResultData.Tables[0].Rows[0]["EstatusId"].ToString();
-            }
-
-            /// <summary>
-            ///     Obtiene los funcionarios a los cuales se podrán asignar a un expediente
-            /// </summary>
-            public void SelectFuncionario_Asignar(ENTExpediente oENTExpediente)
-            {
-
-                string sConnectionString = string.Empty;
-                DAExpediente oDAExpediente = new DAExpediente();
-
-                sConnectionString = sConnectionApplication;
-
-                oENTExpediente.ResultData = oDAExpediente.SelectFuncionario_Asignar(oENTExpediente, sConnectionString);
-                _ErrorId = oDAExpediente.ErrorId;
-                _ErrorDescription = oDAExpediente.ErrorDescription;
             }
 
             /// <summary>

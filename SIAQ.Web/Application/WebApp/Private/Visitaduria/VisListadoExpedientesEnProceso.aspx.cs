@@ -1,7 +1,7 @@
 ﻿/*---------------------------------------------------------------------------------------------------------------------------------
-' Nombre:	    VisListadoExpedientesAprobacion
+' Nombre:	    VisListadoExpedientesEnProceso
 ' Autor:		Ruben.Cobos
-' Fecha:		04-Agosto-2014
+' Fecha:		15-Agosto-2014
 '----------------------------------------------------------------------------------------------------------------------------------*/
 
 // Referencias
@@ -22,7 +22,7 @@ using System.Data;
 
 namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 {
-	public partial class VisListadoExpedientesAprobacion : BPPage
+	public partial class VisListadoExpedientesEnProceso : BPPage
 	{
 		
 		// Utilerías
@@ -54,7 +54,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				// Formulario
 				oENTVisitaduria.AreaId = Int32.Parse(this.ddlArea.SelectedItem.Value);
 				oENTVisitaduria.UsuarioId = oSession.idUsuario;
-				oENTVisitaduria.Nivel = 1;
+				oENTVisitaduria.Nivel = 2;
 
 				// Transacción
 				oENTResponse = oBPVisitaduria.SelectExpediente(oENTVisitaduria);
@@ -140,9 +140,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 					case "Editar":
 
 						// Llave encriptada
-						sKey = ExpedienteId + "|1";
+						sKey = ExpedienteId + "|3";
 						sKey = gcEncryption.EncryptString(sKey, true);
-						this.Response.Redirect("VisDetalleExpedienteCierre.aspx?key=" + sKey, false);
+						this.Response.Redirect("VisDetalleExpediente.aspx?key=" + sKey, false);
 						break;
 				}
 

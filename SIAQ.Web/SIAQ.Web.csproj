@@ -83,10 +83,14 @@
     <Content Include="Application\WebApp\Private\Victimas\VicDictamenMedico.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\vicListadoAtencionAprobacion.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\VicListadoAtenciones.aspx" />
+    <Content Include="Application\WebApp\Private\Visitaduria\visAcuerdoCalificacionDefinitiva.aspx" />
+    <Content Include="Application\WebApp\Private\Visitaduria\visAsignarFuncionario.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\VisBusquedaExpedientes.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\VisDetalleExpedienteCierre.aspx" />
+    <Content Include="Application\WebApp\Private\Visitaduria\visDiligenciaExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\VisListadoExpedientes.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\VisListadoExpedientesAprobacion.aspx" />
+    <Content Include="Application\WebApp\Private\Visitaduria\VisListadoExpedientesEnProceso.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\VisRegistroServidorPublico.aspx" />
     <Content Include="Include\Components\Ajax\System.Web.Extensions.Design.dll" />
     <Content Include="Include\Components\Ajax\System.Web.Extensions.dll" />
@@ -159,8 +163,6 @@
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlscatOcupacion.aspx" />
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsColonia.aspx" />
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsNacionalidad.aspx" />
-    <Content Include="Application\WebApp\Private\Operation\opeDiligenciaExpediente.aspx" />
-    <Content Include="Application\WebApp\Private\Operation\opeDiligencias.aspx" />
     <Content Include="Application\WebApp\Private\Reportes\rptEstatusExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Reportes\rptEstatusQuejas.aspx" />
     <Content Include="Application\WebApp\Private\Reportes\rptEstatusSolicitud.aspx" />
@@ -174,9 +176,7 @@
     <Content Include="Application\WebApp\Private\Seguimiento\segListadoExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segListadoExpedienteAprobacion.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segSeguimientoRecomendacion.aspx" />
-    <Content Include="Application\WebApp\Private\Operation\opeAcuerdoCalifDefinitiva.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeAprobarResolucionTitular.aspx" />
-    <Content Include="Application\WebApp\Private\Operation\opeAsignarVisitador.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeBusquedaCiudadano.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeDetalleCiudadano.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeInicio.aspx" />
@@ -199,7 +199,6 @@
     <Content Include="Application\WebApp\Private\Visitaduria\visDetalleExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\visEnviarExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\visImprmirExpediente.aspx" />
-    <Content Include="Application\WebApp\Private\Visitaduria\visListadoExpedienteAprobacion.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\visRecomendacionExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\visResolucionExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\visSeguimientoExpediente.aspx" />
@@ -727,20 +726,6 @@
     <Compile Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsNacionalidad.aspx.designer.cs">
       <DependentUpon>xlsNacionalidad.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeDiligenciaExpediente.aspx.cs">
-      <DependentUpon>opeDiligenciaExpediente.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeDiligenciaExpediente.aspx.designer.cs">
-      <DependentUpon>opeDiligenciaExpediente.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeDiligencias.aspx.cs">
-      <DependentUpon>opeDiligencias.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeDiligencias.aspx.designer.cs">
-      <DependentUpon>opeDiligencias.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Application\WebApp\Private\Quejas\QueAgregarAutoridadSenalada.aspx.cs">
       <DependentUpon>QueAgregarAutoridadSenalada.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -990,26 +975,12 @@
     <Compile Include="Application\WebApp\Private\Seguimiento\segSeguimientoRecomendacion.aspx.designer.cs">
       <DependentUpon>segSeguimientoRecomendacion.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeAcuerdoCalifDefinitiva.aspx.cs">
-      <DependentUpon>opeAcuerdoCalifDefinitiva.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeAcuerdoCalifDefinitiva.aspx.designer.cs">
-      <DependentUpon>opeAcuerdoCalifDefinitiva.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeAprobarResolucionTitular.aspx.cs">
       <DependentUpon>opeAprobarResolucionTitular.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeAprobarResolucionTitular.aspx.designer.cs">
       <DependentUpon>opeAprobarResolucionTitular.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeAsignarVisitador.aspx.cs">
-      <DependentUpon>opeAsignarVisitador.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeAsignarVisitador.aspx.designer.cs">
-      <DependentUpon>opeAsignarVisitador.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeBusquedaCiudadano.aspx.cs">
       <DependentUpon>opeBusquedaCiudadano.aspx</DependentUpon>
@@ -1193,12 +1164,26 @@
     <Compile Include="Application\WebApp\Private\SysCat\scatUsuario.aspx.designer.cs">
       <DependentUpon>scatUsuario.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Application\WebApp\Private\Visitaduria\visAcuerdoCalificacionDefinitiva.aspx.cs">
+      <DependentUpon>visAcuerdoCalificacionDefinitiva.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Visitaduria\visAcuerdoCalificacionDefinitiva.aspx.designer.cs">
+      <DependentUpon>visAcuerdoCalificacionDefinitiva.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Application\WebApp\Private\Visitaduria\visAgregarDocumento.aspx.cs">
       <DependentUpon>visAgregarDocumento.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\Visitaduria\visAgregarDocumento.aspx.designer.cs">
       <DependentUpon>visAgregarDocumento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Visitaduria\visAsignarFuncionario.aspx.cs">
+      <DependentUpon>visAsignarFuncionario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Visitaduria\visAsignarFuncionario.aspx.designer.cs">
+      <DependentUpon>visAsignarFuncionario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Visitaduria\VisBusquedaExpedientes.aspx.cs">
       <DependentUpon>VisBusquedaExpedientes.aspx</DependentUpon>
@@ -1228,6 +1213,13 @@
     <Compile Include="Application\WebApp\Private\Visitaduria\VisDetalleExpedienteCierre.aspx.designer.cs">
       <DependentUpon>VisDetalleExpedienteCierre.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Application\WebApp\Private\Visitaduria\visDiligenciaExpediente.aspx.cs">
+      <DependentUpon>visDiligenciaExpediente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Visitaduria\visDiligenciaExpediente.aspx.designer.cs">
+      <DependentUpon>visDiligenciaExpediente.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Application\WebApp\Private\Visitaduria\visEnviarExpediente.aspx.cs">
       <DependentUpon>visEnviarExpediente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1242,13 +1234,6 @@
     <Compile Include="Application\WebApp\Private\Visitaduria\visImprmirExpediente.aspx.designer.cs">
       <DependentUpon>visImprmirExpediente.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Visitaduria\visListadoExpedienteAprobacion.aspx.cs">
-      <DependentUpon>visListadoExpedienteAprobacion.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Visitaduria\visListadoExpedienteAprobacion.aspx.designer.cs">
-      <DependentUpon>visListadoExpedienteAprobacion.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Application\WebApp\Private\Visitaduria\VisListadoExpedientes.aspx.cs">
       <DependentUpon>VisListadoExpedientes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1262,6 +1247,13 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Visitaduria\VisListadoExpedientesAprobacion.aspx.designer.cs">
       <DependentUpon>VisListadoExpedientesAprobacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Visitaduria\VisListadoExpedientesEnProceso.aspx.cs">
+      <DependentUpon>VisListadoExpedientesEnProceso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Visitaduria\VisListadoExpedientesEnProceso.aspx.designer.cs">
+      <DependentUpon>VisListadoExpedientesEnProceso.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Visitaduria\visRecomendacionExpediente.aspx.cs">
       <DependentUpon>visRecomendacionExpediente.aspx</DependentUpon>

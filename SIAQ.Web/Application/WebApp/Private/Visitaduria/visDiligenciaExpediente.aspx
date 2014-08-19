@@ -153,53 +153,6 @@
 				</td>
 			</tr>
 			<!-- Fin Carátula -->
-			<tr>
-                <td class="Nombre">Fecha de registro </td>
-                <td class="Espacio"></td>
-                <td colspan="5" style="text-align:left;"><wuc:wucFixedDateTime ID="wucFixedDateTime" runat="server" /></td>
-            </tr>
-			<tr>
-                <td class="Nombre">Funcionario que ejecuta </td>
-                <td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
-                <td colspan="5" style="text-align:left;"><asp:DropDownList ID="ddlFuncionario" runat="server" Width="216px" CssClass="DropDownList_General"></asp:DropDownList></td>
-            </tr>
-			<tr>
-                <td class="Nombre">Fecha de diligencia</td>
-                <td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
-                <td colspan="5" style="text-align:left;"><wuc:wucCalendar ID="calFecha" runat="server" /></td>
-            </tr>
-			<tr>
-                <td class="Nombre">Tipo de diligencia</td>
-                <td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
-                <td colspan="5" style="text-align:left;"><asp:DropDownList ID="ddlTipoDiligencia" runat="server" Width="216px" CssClass="DropDownList_General"></asp:DropDownList></td>
-            </tr>
-			<tr>
-                <td class="Nombre">Lugar de diligencia</td>
-                <td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
-                <td colspan="5" style="text-align:left;"><asp:DropDownList ID="ddlLugarDiligencia" runat="server" Width="216px" CssClass="DropDownList_General"></asp:DropDownList></td>
-            </tr>
-			<tr>
-                <td class="Nombre">Solicitada por</td>
-                <td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
-                <td colspan="5" style="text-align:left;"><asp:TextBox ID="txtSolicitadaPor" runat="server" CssClass="Textbox_General" Width="210px" MaxLength="1000"></asp:TextBox></td>
-            </tr>
-			<tr>
-                <td class="Nombre">Detalle</td>
-                <td class="Espacio"></td>
-                <td colspan="5" ></td>
-            </tr>
-			<tr>
-                <td colspan="7" style="text-align:left;"><CKEditor:CKEditorControl ID="ckeDetalle" BasePath="~/Include/Components/CKEditor/Core/" runat="server" Height="90px" MaxLength="8000"></CKEditor:CKEditorControl></td>
-            </tr>
-			<tr style="height:10px;"><td colspan="7" ></td></tr>
-			<tr>
-                <td class="Nombre">Resultado</td>
-                <td class="Espacio"></td>
-                <td colspan="5" ></td>
-            </tr>
-			<tr>
-                <td colspan="7" style="text-align:left;"><CKEditor:CKEditorControl ID="ckeResultado" BasePath="~/Include/Components/CKEditor/Core/" runat="server" Height="90px" MaxLength="8000"></CKEditor:CKEditorControl></td>
-            </tr>
         </table>
 		<br />
 
@@ -208,7 +161,7 @@
             <tr><td class="tdCeldaMiddleSpace"></td></tr>
             <tr>
                 <td style="text-align: left;">
-					<asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="Button_General" width="125px" onclick="btnGuardar_Click" /> &nbsp;&nbsp;
+					<asp:Button ID="btnNuevo" runat="server" Text="Nuevo" CssClass="Button_General" width="125px" onclick="btnNuevo_Click" /> &nbsp;&nbsp;
 					<asp:Button ID="btnRegresar" runat="server" Text="Regresar" CssClass="Button_General" width="125px" onclick="btnRegresar_Click" />
                 </td>
             </tr>
@@ -270,7 +223,89 @@
             <tr><td class="tdCeldaMiddleSpace"></td></tr>
             <tr><td class="tdCeldaMiddleSpace"></td></tr>
         </table>
-        <br />
+        
+		<!-- PopUp -->
+		<asp:Panel id="pnlAction" runat="server" CssClass="ActionBlock">
+			<asp:Panel id="pnlActionContent" runat="server" CssClass="ActionContent" style="top:100px;" Height="660px" Width="800px">
+				<asp:Panel ID="pnlActionHeader" runat="server" CssClass="ActionHeader">
+					<table border="0" cellpadding="0" cellspacing="0" style="height:100%; width:100%">
+						<tr>
+							<td style="width:10px"></td>
+							<td style="text-align:left;"><asp:Label ID="lblActionTitle" runat="server" CssClass="ActionHeaderTitle"></asp:Label></td>
+							<td style="vertical-align:middle; width:14px;"><asp:ImageButton id="imgCloseWindow" runat="server" ImageUrl="~/Include/Image/Buttons/CloseWindow.png" ToolTip="Cerrar Ventana" OnClick="imgCloseWindow_Click"></asp:ImageButton></td>
+							<td style="width:10px"></td>
+						</tr>
+					</table>
+				</asp:Panel>
+				<asp:Panel ID="pnlActionBody" runat="server" CssClass="ActionBody">
+					<div style="margin:0 auto; width:98%;">
+						<table border="0" cellpadding="0" cellspacing="0" style="height:100%; text-align:left;" width="100%">
+							<tr style="height:20px;"><td colspan="3"></td></tr>
+							<tr class="trFilaItem">
+								<td class="tdActionCeldaLeyendaItem">&nbsp;Fecha de registro</td>
+								<td style="width:5px;"></td>
+								<td><wuc:wucFixedDateTime ID="wucFixedDateTime" runat="server" /></td>
+							</tr>
+							<tr style="height:5px;"><td colspan="3"></td></tr>
+							<tr class="trFilaItem">
+								<td class="tdActionCeldaLeyendaItem">&nbsp;Funcionario que ejecuta</td>
+								<td></td>
+								<td><asp:DropDownList ID="ddlFuncionario" runat="server" Width="216px" CssClass="DropDownList_General"></asp:DropDownList></td>
+							</tr>
+							<tr style="height:5px;"><td colspan="3"></td></tr>
+							<tr class="trFilaItem">
+								<td class="tdActionCeldaLeyendaItem">&nbsp;Fecha de diligencia</td>
+								<td></td>
+								<td><wuc:wucCalendar ID="calFecha" runat="server" /></td>
+							</tr>
+							<tr style="height:5px;"><td colspan="3"></td></tr>
+							<tr class="trFilaItem">
+								<td class="tdActionCeldaLeyendaItem">&nbsp;Tipo de diligencia</td>
+								<td></td>
+								<td class="tdCeldaItem"><asp:DropDownList ID="ddlTipoDiligencia" runat="server" Width="216px" CssClass="DropDownList_General"></asp:DropDownList></td>
+							</tr>
+							<tr style="height:5px;"><td colspan="3"></td></tr>
+							<tr class="trFilaItem">
+								<td class="tdActionCeldaLeyendaItem">&nbsp;Lugar de diligencia</td>
+								<td></td>
+								<td class="tdCeldaItem"><asp:DropDownList ID="ddlLugarDiligencia" runat="server" Width="216px" CssClass="DropDownList_General"></asp:DropDownList></td>
+							</tr>
+							<tr style="height:5px;"><td colspan="3"></td></tr>
+							<tr class="trFilaItem">
+								<td class="tdActionCeldaLeyendaItem">&nbsp;Solicitada por</td>
+								<td></td>
+								<td class="tdCeldaItem"><asp:TextBox ID="txtSolicitadaPor" runat="server" CssClass="Textbox_General" Width="210px" MaxLength="1000"></asp:TextBox></td>
+							</tr>
+							<tr style="height:5px;"><td colspan="3"></td></tr>
+							<tr class="trFilaItem"><td class="tdActionCeldaLeyendaItem" colspan="3">&nbsp;Detalle</td></tr>
+							<tr style="height:155px;">
+								<td colspan="3">
+									<CKEditor:CKEditorControl ID="ckeDetalle" BasePath="~/Include/Components/CKEditor/Core/" runat="server" Height="90px" MaxLength="8000"></CKEditor:CKEditorControl>
+								</td>
+							</tr>
+							<tr style="height:5px;"><td colspan="3"></td></tr>
+							<tr class="trFilaItem"><td class="tdActionCeldaLeyendaItem" colspan="3">&nbsp;Resultado</td></tr>
+							<tr style="height:155px;">
+								<td colspan="3">
+									<CKEditor:CKEditorControl ID="ckeResultado" BasePath="~/Include/Components/CKEditor/Core/" runat="server" Height="90px" MaxLength="8000"></CKEditor:CKEditorControl>
+								</td>
+							</tr>
+							<tr style="height:5px;"><td colspan="3"></td></tr>
+							<tr>
+								<td colspan="3" style="text-align:right;">
+									<asp:Button ID="btnAction" runat="server" Text="" CssClass="Button_General" width="125px" onclick="btnAction_Click" />
+								</td>
+							</tr>
+							<tr>
+								<td colspan="3">
+									<asp:Label ID="lblActionMessage" runat="server" CssClass="ActionContentMessage"></asp:Label>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</asp:Panel>
+			</asp:Panel>
+		</asp:Panel>
 
 	</div>
 

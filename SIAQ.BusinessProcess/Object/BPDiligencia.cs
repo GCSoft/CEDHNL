@@ -358,5 +358,104 @@ namespace SIAQ.BusinessProcess.Object
 
         #endregion
 
+
+		/// <summary>
+		/// Elimina una diligencia para un Expediente
+		/// </summary>
+		public ENTResponse DeleteExpedienteDiligencia(ENTDiligencia oENTDiligencia){
+			DADiligencia oDADiligencia = new DADiligencia();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+				oENTResponse = oDADiligencia.DeleteExpedienteDiligencia(oENTDiligencia, sConnectionApplication, 0);
+
+				if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+				oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+				if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
+
+			//Resultado
+			return oENTResponse;
+		}
+
+		///<remarks>
+		///   <name>BPDiligencia.InsertExpedienteDiligencia</name>
+		///   <create>18/Ago/2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Crea una nueva diligencia para un Expediente</summary>
+		public ENTResponse InsertExpedienteDiligencia(ENTDiligencia oENTDiligencia){
+			DADiligencia oDADiligencia = new DADiligencia();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+				//Transaccion
+				oENTResponse = oDADiligencia.InsertExpedienteDiligencia(oENTDiligencia, sConnectionApplication, 0);
+
+				//Validacion error
+				if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+				// Validación de mensajes de base de datos
+				oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
+
+			//Resultado
+			return oENTResponse;
+		}
+
+		/// <summary>
+		/// Consula la información de una Diligencia en particular asociada a un expediente
+		/// </summary>
+		public DataSet SelectExpedienteDiligencia(){
+			DADiligencia oDADiligencia = new DADiligencia();
+			string ConnectionString = string.Empty;
+
+			ConnectionString = sConnectionApplication;
+
+			_DiligenciaEntity.DataResult = oDADiligencia.SelectExpedienteDiligencia(_DiligenciaEntity, ConnectionString);
+			_ErrorId = oDADiligencia.ErrorId;
+			_ErrorDescription = oDADiligencia.ErrorDescription;
+
+			return _DiligenciaEntity.DataResult;
+		}
+
+		/// <summary>
+		/// Actualiza una diligencia existente para un Expediente
+		/// </summary>
+		public ENTResponse UpdateExpedienteDiligencia(ENTDiligencia oENTDiligencia){
+			DADiligencia oDADiligencia = new DADiligencia();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+				//Transacción 
+				oENTResponse = oDADiligencia.UpdateExpedienteDiligencia(oENTDiligencia, sConnectionApplication, 0);
+
+				//Validación error
+				if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+				//Validacion de mensajes de error de base de datos
+				oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+				if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+
+
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
+
+			//Resultado
+			return oENTResponse;
+		}
+
     }
 }

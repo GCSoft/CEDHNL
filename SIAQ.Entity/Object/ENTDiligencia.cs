@@ -29,6 +29,8 @@ namespace SIAQ.Entity.Object
 
         private DataSet _DataResult;                    // dataset 
 
+		private Int32 _ModuloId;
+
         #endregion
 
         #region Propiedades
@@ -218,6 +220,12 @@ namespace SIAQ.Entity.Object
             get { return _DataResult; }
             set { _DataResult = value; }
         }
+
+		public Int32 ModuloId
+		{
+			get { return _ModuloId; }
+			set { _ModuloId = value; }
+		}
 
         #endregion
 

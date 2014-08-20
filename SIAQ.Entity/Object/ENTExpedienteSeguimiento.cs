@@ -16,6 +16,8 @@ namespace SIAQ.Entity.Object
         private string _Detalle;
         private DataSet _ResultData;
 
+		private Int32 _ModuloId;
+
         public ENTExpedienteSeguimiento()
         {
             _ExpedienteSeguimientoId = 0;
@@ -25,6 +27,7 @@ namespace SIAQ.Entity.Object
             _Fecha = string.Empty;
             _Detalle = string.Empty;
             _ResultData = null;
+			ModuloId = 0;
         }
 
         /// <summary>
@@ -89,5 +92,15 @@ namespace SIAQ.Entity.Object
             get { return _ResultData; }
             set { _ResultData = value; }
         }
+
+
+		/// <summary>
+		///     Identificador del módulo desde donde se realiza la transaccio;n
+		/// </summary>
+		public Int32 ModuloId
+		{
+			get { return _ModuloId; }
+			set { _ModuloId = value; }
+		}
     }
 }

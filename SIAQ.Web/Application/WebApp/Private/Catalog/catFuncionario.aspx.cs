@@ -337,7 +337,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Catalog
 				}
 
 				// Foco
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlActionPuesto.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "WAFocus ('" + this.ddlActionPuesto.ClientID + "'); ", true);
 
 			}catch (Exception ex){
 				throw (ex);

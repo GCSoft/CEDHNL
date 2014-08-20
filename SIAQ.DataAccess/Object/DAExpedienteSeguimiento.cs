@@ -65,6 +65,10 @@ namespace SIAQ.DataAccess.Object
                     Parameter.Value = ExpedienteSeguimientoEntity.ExpedienteId;
                     Command.Parameters.Add(Parameter);
 
+					Parameter = new SqlParameter("ModuloId", SqlDbType.Int);
+					Parameter.Value = ExpedienteSeguimientoEntity.ModuloId;
+					Command.Parameters.Add(Parameter);
+
                     Connection.Open();
                     Command.ExecuteNonQuery();
                     Connection.Close();
@@ -99,6 +103,10 @@ namespace SIAQ.DataAccess.Object
                     Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
                     Parameter.Value = ExpedienteSeguimientoEntity.ExpedienteId;
                     Command.Parameters.Add(Parameter);
+
+					Parameter = new SqlParameter("ModuloId", SqlDbType.Int);
+					Parameter.Value = ExpedienteSeguimientoEntity.ModuloId;
+					Command.Parameters.Add(Parameter);
 
                     Parameter = new SqlParameter("FuncionarioId", SqlDbType.Int);
                     Parameter.Value = ExpedienteSeguimientoEntity.FuncionarioId;
@@ -195,12 +203,16 @@ namespace SIAQ.DataAccess.Object
                     Command.CommandType = CommandType.StoredProcedure;
 
                     Parameter = new SqlParameter("ExpedienteSeguimientoId", SqlDbType.Int);
-                    Parameter.Value = ExpedienteSeguimientoEntity.ExpedienteId;
+					Parameter.Value = ExpedienteSeguimientoEntity.ExpedienteSeguimientoId;
                     Command.Parameters.Add(Parameter);
 
                     Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
                     Parameter.Value = ExpedienteSeguimientoEntity.ExpedienteId;
                     Command.Parameters.Add(Parameter);
+
+					Parameter = new SqlParameter("ModuloId", SqlDbType.Int);
+					Parameter.Value = ExpedienteSeguimientoEntity.ModuloId;
+					Command.Parameters.Add(Parameter);
 
                     Parameter = new SqlParameter("FuncionarioId", SqlDbType.Int);
                     Parameter.Value = ExpedienteSeguimientoEntity.FuncionarioId;

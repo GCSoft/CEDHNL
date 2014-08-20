@@ -1,337 +1,426 @@
-﻿using System;
+﻿/*---------------------------------------------------------------------------------------------------------------------------------
+' Nombre:	visSeguimientoExpediente
+' Autor:	Ruben.Cobos
+' Fecha:	19-Agosto-2014
+'----------------------------------------------------------------------------------------------------------------------------------*/
+
+// Referencias
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+// Referencias manuales
 using GCUtility.Function;
-using SIAQ.BusinessProcess.Object;
+using GCUtility.Security;
 using SIAQ.Entity.Object;
+using SIAQ.BusinessProcess.Object;
+using System.Data;
 
 namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 {
     public partial class visSeguimientoExpediente : System.Web.UI.Page
     {
-        bool IsReadOnly = false;
+        
+		// Utilerías
+		GCCommon gcCommon = new GCCommon();
 		GCJavascript gcJavascript = new GCJavascript();
+		GCEncryption gcEncryption = new GCEncryption();
 
-        #region "Events"
-            protected void GuardarButton_Click(object sender, EventArgs e)
+
+		// Rutinas del programador
+
+		String GetKey(String sKey) {
+			String Response = "";
+
+			try{
+
+				Response = gcEncryption.DecryptString(sKey, true);
+
+			}catch(Exception){
+				Response = "";
+			}
+
+			return Response;
+		}
+
+
+		// Funciones el programador
+
+		void DeleteExpedienteSeguimiento(String ExpedienteSeguimientoId){
+			BPExpedienteSeguimiento ExpedienteSeguimientoProcess = new BPExpedienteSeguimiento();
+
+			// Parámetros
+			ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ExpedienteSeguimientoId = Int32.Parse(ExpedienteSeguimientoId);
+			ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ExpedienteId = Int32.Parse(this.hddExpedienteId.Value);
+			ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ModuloId = 3;
+
+			// Transacción
+			ExpedienteSeguimientoProcess.DeleteExpedienteSeguimiento();
+
+			// Validaciones
+			if (ExpedienteSeguimientoProcess.ErrorId != 0) { throw (new Exception(ExpedienteSeguimientoProcess.ErrorDescription)); }
+
+			// Limpiar el formulario
+			ResetForm();
+
+			// Actualizar la información
+			SelectExpedienteSeguimiento();
+
+		}
+
+		void ResetForm(){
+			this.wucFecha.SetCurrentDate();
+			this.ddlTipoSeguimiento.SelectedIndex = 0;
+			this.ckeSeguimiento.Text = "";
+			this.hddExpedienteSeguimientoId.Value = "0";
+		}
+
+		void SaveExpedienteSeguimiento(){
+			BPExpedienteSeguimiento ExpedienteSeguimientoProcess = new BPExpedienteSeguimiento();
+			ENTSession SessionEntity = new ENTSession();
+
+			// Validaciones
+			if (this.ddlTipoSeguimiento.SelectedIndex == 0) { throw new Exception("El campo [Tipo de seguimiento] es requerido"); }
+			if (this.ckeSeguimiento.Text.Trim() == "") { throw new Exception("El campo [Detalle] es requerido"); }
+
+			// Obtener la sesión
+			SessionEntity = (ENTSession)Session["oENTSession"];
+
+			// Parámetros
+			ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ExpedienteSeguimientoId = Int32.Parse(this.hddExpedienteSeguimientoId.Value);
+			ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ExpedienteId = Int32.Parse(this.hddExpedienteId.Value);
+			ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ModuloId = 3;
+			ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.FuncionarioId = SessionEntity.FuncionarioId;
+			ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.TipoSeguimientoId = Int32.Parse(this.ddlTipoSeguimiento.SelectedItem.Value);
+			ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.Fecha = this.wucFecha.BeginDate;
+			ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.Detalle = this.ckeSeguimiento.Text.Trim();
+
+			// Transacción
+			ExpedienteSeguimientoProcess.SaveExpedienteSeguimiento();
+
+			// Validaciones
+			if (ExpedienteSeguimientoProcess.ErrorId != 0) { throw (new Exception(ExpedienteSeguimientoProcess.ErrorDescription)); }
+
+			// Limpiar el formulario
+			ResetForm();
+
+			// Actualizar la información
+			SelectExpedienteSeguimiento();
+		}
+
+		void SelectExpediente() {
+			BPVisitaduria oBPVisitaduria = new BPVisitaduria();
+			ENTVisitaduria oENTVisitaduria = new ENTVisitaduria();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Formulario
+				oENTVisitaduria.ExpedienteId = Int32.Parse(this.hddExpedienteId.Value);
+
+				// Transacción
+				oENTResponse = oBPVisitaduria.SelectExpediente_Detalle(oENTVisitaduria);
+
+				// Errores y Warnings
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+
+				// Campos ocultos
+				this.hddAreaId.Value = oENTResponse.dsResponse.Tables[1].Rows[0]["AreaId"].ToString();
+				this.hddExpedienteId.Value = oENTResponse.dsResponse.Tables[1].Rows[0]["ExpedienteId"].ToString();
+
+				// Formulario
+				this.ExpedienteNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["ExpedienteNumero"].ToString();
+				this.SolicitudNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["SolicitudNumero"].ToString();
+				this.CalificacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionNombre"].ToString();
+				this.EstatusaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusNombre"].ToString();
+				this.AfectadoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Afectado"].ToString();
+				this.AreaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["AreaNombre"].ToString();
+
+				this.FuncionarioLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FuncionarioNombre"].ToString();
+				this.ContactoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FormaContactoNombre"].ToString();
+				this.TipoSolicitudLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["TipoSolicitudNombre"].ToString();
+				this.ProblematicaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["ProblematicaNombre"].ToString();
+				this.ProblematicaDetalleLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["ProblematicaDetalleNombre"].ToString();
+
+				this.FechaRecepcionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaRecepcion"].ToString();
+				this.FechaAsignacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaAsignacion"].ToString();
+				this.FechaQuejasLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaQuejas"].ToString();
+				this.FechaVisitaduriasLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaVisitadurias"].ToString();
+				this.FechaModificacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaUltimaModificacion"].ToString();
+				this.NivelAutoridadLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NivelAutoridadNombre"].ToString();
+				this.MecanismoAperturaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["MecanismoAperturaNombre"].ToString();
+
+				this.TipoOrientacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["TipoOrientacionNombre"].ToString();
+				this.LugarHechosLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["LugarHechosNombre"].ToString();
+				this.DireccionHechosLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["DireccionHechos"].ToString();
+				this.ObservacionesLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Observaciones"].ToString();
+				this.FundamentoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Fundamento"].ToString();
+
+				// Canalizaciones
+				if (oENTResponse.dsResponse.Tables[2].Rows.Count > 0){
+
+					this.CanalizacionesLabel.Visible = true;
+
+					this.grdCanalizacion.DataSource = oENTResponse.dsResponse.Tables[2];
+					this.grdCanalizacion.DataBind();
+				}
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		void SelectExpedienteSeguimiento(String ExpedienteSeguimientoId){
+			BPExpedienteSeguimiento ExpedienteSeguimientoProcess = new BPExpedienteSeguimiento();
+
+			// Parámetros
+			ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ExpedienteSeguimientoId = Int32.Parse( ExpedienteSeguimientoId );
+			ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ExpedienteId = Int32.Parse( this.hddExpedienteId.Value );
+
+			// Transacción
+			ExpedienteSeguimientoProcess.SelectExpedienteSeguimiento();
+
+			// Validaciones
+			if (ExpedienteSeguimientoProcess.ErrorId != 0) { throw (new Exception(ExpedienteSeguimientoProcess.ErrorDescription)); }
+			if (ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ResultData.Tables[0].Rows.Count == 0) { throw (new Exception("No se encontró información de la gestión para el expediente")); }
+			
+			// Llenado de formulario
+			this.wucFecha.SetDateTime = DateTime.Parse(ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ResultData.Tables[0].Rows[0]["Fecha"].ToString());
+			this.ddlTipoSeguimiento.SelectedValue = ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ResultData.Tables[0].Rows[0]["TipoSeguimientoId"].ToString();
+			this.ckeSeguimiento.Text = ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ResultData.Tables[0].Rows[0]["Detalle"].ToString();
+
+			// Id a trabajar
+			this.hddExpedienteSeguimientoId.Value = ExpedienteSeguimientoId.ToString();
+		}
+
+		void SelectExpedienteSeguimiento(){
+			BPExpedienteSeguimiento ExpedienteSeguimientoProcess = new BPExpedienteSeguimiento();
+
+			// Estado inicial
+			this.gvSeguimiento.DataSource = null;
+			this.gvSeguimiento.DataBind();
+
+			// Parámetros
+			ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ExpedienteId = Int32.Parse(this.hddExpedienteId.Value);
+
+			// Transacción
+			ExpedienteSeguimientoProcess.SelectExpedienteSeguimiento();
+
+			// Validaciones
+			if (ExpedienteSeguimientoProcess.ErrorId != 0) { throw (new Exception(ExpedienteSeguimientoProcess.ErrorDescription)); }
+
+			// Bind
+			this.gvSeguimiento.DataSource = ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ResultData;
+			this.gvSeguimiento.DataBind();
+		}
+
+		void SelectTipoSeguimiento(){
+			ENTTipoSeguimiento oENTTipoSeguimiento = new ENTTipoSeguimiento();
+			ENTResponse oENTResponse = new ENTResponse();
+			BPTipoSeguimiento oBPTipoSeguimiento = new BPTipoSeguimiento();
+
+			try
+			{
+				// Formulario
+				oENTTipoSeguimiento.TipoSeguimientoId = 0;
+				oENTTipoSeguimiento.Nombre = "";
+
+				// Transacción
+				oENTResponse = oBPTipoSeguimiento.SelectTipoSeguimiento(oENTTipoSeguimiento);
+
+				// Validaciones
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+
+				// Mensaje de la BD
+				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(oENTResponse.sMessage) + "');", true); }
+
+				// Llenado de combo
+				this.ddlTipoSeguimiento.DataTextField = "Nombre";
+				this.ddlTipoSeguimiento.DataValueField = "TipoSeguimientoId";
+				this.ddlTipoSeguimiento.DataSource = oENTResponse.dsResponse.Tables[1];
+				this.ddlTipoSeguimiento.DataBind();
+
+				// Agregar Item de selección
+				this.ddlTipoSeguimiento.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+
+		// Eventos de la página
+
+		protected void Page_Load(object sender, EventArgs e){
+			String sKey = "";
+
+			try
             {
-                SaveExpedienteSeguimiento();
-            }
 
-            protected void Page_Load(object sender, EventArgs e)
+				// Validaciones de llamada
+				if (Page.IsPostBack) { return; }
+				if (this.Request.QueryString["key"] == null) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
+
+				// Validaciones de parámetros
+				sKey = GetKey(this.Request.QueryString["key"].ToString());
+				if (sKey == "") { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
+				if (sKey.ToString().Split(new Char[] { '|' }).Length != 2) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
+
+				// Obtener ExpedienteId
+				this.hddExpedienteId.Value = sKey.Split(new Char[] { '|' })[0];
+
+				// Obtener Sender
+				this.SenderId.Value = sKey.Split(new Char[] { '|' })[1];
+
+				// Carátula
+				SelectExpediente();
+
+				// Llenado de controles
+				SelectTipoSeguimiento();
+				SelectExpedienteSeguimiento();
+				
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlTipoSeguimiento.ClientID + "'); }", true);
+
+            }catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.ddlTipoSeguimiento.ClientID + "'); }", true);
+            }
+		}
+
+		protected void btnGuardar_Click(object sender, EventArgs e){
+			try
             {
-                PageLoad();
-            }
 
-            protected void SeguimientoGrid_RowCommand(Object sender, GridViewCommandEventArgs e)
+				// Guardar/Actualizar el seguimiento
+				SaveExpedienteSeguimiento();
+
+            }catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.ddlTipoSeguimiento.ClientID + "'); }", true);
+            }
+		}
+
+		protected void btnRegresar_Click(object sender, EventArgs e){
+			String sKey = "";
+
+			try
             {
-                SeguimientoGridRowCommand(e);
+
+				// Llave encriptada
+				sKey = this.hddExpedienteId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("visDetalleExpediente.aspx?key=" + sKey, false);
+
+            }catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.ddlTipoSeguimiento.ClientID + "'); }", true);
             }
+		}
 
-            protected void SeguimientoGrid_RowDataBound(object sender, GridViewRowEventArgs e)
-            {
-                SeguimientoGridRowDataBound(e);
-            }
-        #endregion
+		protected void gvSeguimiento_RowCommand(object sender, GridViewCommandEventArgs e){
+			String ExpedienteSeguimientoId;
+			String CommandName;
 
-        #region "Methods"
-            private void DeleteExpedienteSeguimiento(int ExpedienteSeguimientoId, int ExpedienteId)
-            {
-                BPExpedienteSeguimiento ExpedienteSeguimientoProcess = new BPExpedienteSeguimiento();
+			Int32 iRow = 0;
 
-                ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ExpedienteSeguimientoId = ExpedienteSeguimientoId;
-                ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ExpedienteId = ExpedienteId;
+			try
+			{
+				
+				// Opción seleccionada
+				CommandName = e.CommandName.ToString();
 
-                ExpedienteSeguimientoProcess.DeleteExpedienteSeguimiento();
+				// Se dispara el evento RowCommand en el ordenamiento
+				if (CommandName == "Sort") { return; }
 
-                if (ExpedienteSeguimientoProcess.ErrorId == 0)
-                {
-                    ResetForm();
-                    SelectExpedienteSeguimiento(ExpedienteId);
-                }
-                else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ExpedienteSeguimientoProcess.ErrorDescription) + "');", true);
-            }
+				// Fila
+				iRow = Convert.ToInt32(e.CommandArgument.ToString());
 
-            private void DisableControls()
-            {
-                GuardarButton.Enabled = false;
-            }
+				// DataKeys
+				ExpedienteSeguimientoId = gvSeguimiento.DataKeys[iRow]["ExpedienteSeguimientoId"].ToString();
 
-            private int GetExpedienteParameter()
-            {
-                try
-                {
-                    return int.Parse(Request.QueryString["expId"].ToString());
-                }
-                catch
-                {
-                    return 0;
-                }
-            }
+				// Acción
+				switch (CommandName){
+					case "Editar":
+						SelectExpedienteSeguimiento(ExpedienteSeguimientoId);
+						break;
 
-            private void PageLoad()
-            {
-                int ExpedienteId = 0;
+					case "Borrar":
+						DeleteExpedienteSeguimiento(ExpedienteSeguimientoId);
+						break;
+				}
 
-                if (Page.IsPostBack)
-                    return;
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.ddlTipoSeguimiento.ClientID + "'); }", true);
+			}
+		}
 
-                ExpedienteId = GetExpedienteParameter();
+		protected void gvSeguimiento_RowDataBound(object sender, GridViewRowEventArgs e){
+			ImageButton imgEdit = null;
+			ImageButton imgDelete = null;
 
-                ValidarExpediente(ExpedienteId);
+			String sImagesAttributes = "";
+			String sToolTip = "";
+			String FechaGestion = "";
 
-                SelectExpediente(ExpedienteId);
-                SelectTipoSeguimiento();
-                SelectExpedienteSeguimiento(ExpedienteId);
+			String sImagesAttributesDelete = "";
+			String sToolTipDelete = "";
 
-                ExpedienteIdHidden.Value = ExpedienteId.ToString();
-            }
+			try
+			{
+				
+				// Validación de que sea fila 
+				if (e.Row.RowType != DataControlRowType.DataRow) { return; }
 
-            private void ResetForm()
-            {
-                FechaBox.SetCurrentDate();
-                TipoSeguimientoIdList.SelectedIndex = 0;
-                SeguimientoBox.Text = "";
-                ExpedienteSeguimientoIdHidden.Value = "0";
-            }
+				// Obtener imagenes
+				imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
+				imgDelete = (ImageButton)e.Row.FindControl("imgDelete");
 
-            private void SaveExpedienteSeguimiento()
-            {
-                int ExpedienteSeguimientoId = 0;
-                int ExpedienteId = 0;
-                int FuncionarioId = 0;
-                int TipoSeguimientoId = 0;
-                string Fecha = string.Empty;
-                string Detalle = string.Empty;
-                ENTSession SessionEntity = new ENTSession();
+				FechaGestion = gvSeguimiento.DataKeys[e.Row.RowIndex]["Fecha"].ToString();
 
-                SessionEntity = (ENTSession)Session["oENTSession"];
+				// Tooltip Edición
+				sToolTip = "Editar gestión con fecha del " + FechaGestion;
+				sToolTipDelete = "Eliminar gestión con fecha del " + FechaGestion;
 
-                ExpedienteSeguimientoId = int.Parse(ExpedienteSeguimientoIdHidden.Value);
-                ExpedienteId = int.Parse(ExpedienteIdHidden.Value);
-                FuncionarioId = SessionEntity.FuncionarioId;
-                TipoSeguimientoId = int.Parse(TipoSeguimientoIdList.SelectedValue);
-                Fecha = FechaBox.DisplayDate;
-                Detalle = SeguimientoBox.Text.Trim();
+				imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
+				imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
+				imgEdit.Attributes.Add("style", "cursor:hand;");
 
-                SaveExpedienteSeguimiento(ExpedienteSeguimientoId, ExpedienteId, FuncionarioId, TipoSeguimientoId, Fecha, Detalle);
-            }
+				imgDelete.Attributes.Add("onmouseover", "tooltip.show('" + sToolTipDelete + "', 'Izq');");
+				imgDelete.Attributes.Add("onmouseout", "tooltip.hide();");
+				imgDelete.Attributes.Add("style", "cursor:hand;");
 
-            private void SaveExpedienteSeguimiento(int ExpedienteSeguimientoId, int ExpedienteId, int FuncionarioId, int TipoSeguimientoId, string Fecha, string Detalle)
-            {
-                BPExpedienteSeguimiento ExpedienteSeguimientoProcess = new BPExpedienteSeguimiento();
+				// Atributos Over
+				sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png';";
+				sImagesAttributesDelete = "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png';";
 
-                ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ExpedienteSeguimientoId = ExpedienteSeguimientoId;
-                ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ExpedienteId = ExpedienteId;
-                ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.FuncionarioId = FuncionarioId;
-                ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.TipoSeguimientoId = TipoSeguimientoId;
-                ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.Fecha = Fecha;
-                ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.Detalle = Detalle;
+				// Puntero y Sombra en fila Over
+				e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes + sImagesAttributesDelete);
 
-                ExpedienteSeguimientoProcess.SaveExpedienteSeguimiento();
+				// Atributos Out
+				sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png';";
+				sImagesAttributesDelete = "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png';";
 
-                if (ExpedienteSeguimientoProcess.ErrorId == 0)
-                {
-                    ResetForm();
-                    SelectExpedienteSeguimiento(ExpedienteId);
-                }
-                else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ExpedienteSeguimientoProcess.ErrorDescription) + "');", true);
-            }
+				// Puntero y Sombra en fila Out
+				e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes + sImagesAttributesDelete);
 
-            private void SeguimientoGridRowCommand(GridViewCommandEventArgs e)
-            {
-                int ExpedienteSeguimientoId = 0;
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
 
-                ExpedienteSeguimientoId = int.Parse(e.CommandArgument.ToString());
+		protected void gvSeguimiento_Sorting(object sender, GridViewSortEventArgs e){
+			try
+			{
 
-                switch (e.CommandName.ToString())
-                {
-                    case "Editar":
-                        SelectExpedienteSeguimiento(ExpedienteSeguimientoId, int.Parse(ExpedienteIdHidden.Value));
-                        break;
+				gcCommon.SortGridView(ref this.gvSeguimiento, ref this.hddSort, e.SortExpression);
 
-                    case "Eliminar":
-                        DeleteExpedienteSeguimiento(ExpedienteSeguimientoId, int.Parse(ExpedienteIdHidden.Value));
-                        break;
-                }
-            }
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.ddlTipoSeguimiento.ClientID + "'); }", true);
+			}
+		}
 
-            private void SeguimientoGridRowDataBound(GridViewRowEventArgs e)
-            {
-                ImageButton EliminarButton;
-
-                //Validación de que sea fila 
-                if (e.Row.RowType != DataControlRowType.DataRow)
-                    return;
-
-                EliminarButton = (ImageButton)e.Row.FindControl("EliminarButton");
-
-                if (EliminarButton == null)
-                    return;
-
-                if (IsReadOnly)
-                    EliminarButton.Enabled = false;
-            }
-
-            private void SelectExpediente(int ExpedienteId)
-            {
-                ENTSession UsuarioEntity = new ENTSession();
-
-                UsuarioEntity = (ENTSession)Session["oENTSession"];
-
-                SelectExpediente(ExpedienteId, UsuarioEntity.FuncionarioId);
-            }
-
-            private void SelectExpediente(int ExpedienteId, int FuncionarioId)
-            {
-				//BPExpediente BPExpediente = new BPExpediente();
-				//ENTExpediente oENTExpediente = new ENTExpediente();
-
-				//oENTExpediente.ExpedienteId = ExpedienteId;
-				//oENTExpediente.FuncionarioId = FuncionarioId;
-
-				//BPExpediente.SelectDetalleExpediente(oENTExpediente);
-
-				//if (BPExpediente.ErrorId == 0)
-				//{
-				//    // Detalle 
-				//    if (oENTExpediente.ResultData.Tables[0].Rows.Count > 0)
-				//    {
-				//        ExpedienteIdLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Numero"].ToString();
-				//        CalificacionLlabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Calificacion"].ToString();
-				//        EstatusaLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Estatus"].ToString();
-				//        VisitadorLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Visitador"].ToString();
-				//        FormaContactoLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["FormaContacto"].ToString();
-				//        TipoSolicitudLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["TipoSolicitud"].ToString();
-				//        ObservacionesLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Observaciones"].ToString();
-				//        LugarHechosLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["LugarHechos"].ToString();
-				//        DireccionHechos.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["DireccionHechos"].ToString();
-				//    }
-
-				//    //Fechas
-				//    if (oENTExpediente.ResultData.Tables[1].Rows.Count > 0)
-				//    {
-				//        FechaRecepcionLabel.Text = oENTExpediente.ResultData.Tables[1].Rows[0]["FechaRecepcion"].ToString();
-				//        FechaAsignacionLabel.Text = oENTExpediente.ResultData.Tables[1].Rows[0]["FechaAsignacion"].ToString();
-				//        FechaGestionLabel.Text = oENTExpediente.ResultData.Tables[1].Rows[0]["FechaInicioGestion"].ToString();
-				//        FechaModificacionLabel.Text = oENTExpediente.ResultData.Tables[1].Rows[0]["UltimaModificacion"].ToString();
-				//    }
-				//}
-				//else
-				//    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(BPExpediente.ErrorDescription) + "');", true);
-            }
-
-            private void SelectExpedienteSeguimiento(int ExpedienteId)
-            {
-                BPExpedienteSeguimiento ExpedienteSeguimientoProcess = new BPExpedienteSeguimiento();
-
-                ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ExpedienteId = ExpedienteId;
-
-                ExpedienteSeguimientoProcess.SelectExpedienteSeguimiento();
-
-                if (ExpedienteSeguimientoProcess.ErrorId == 0)
-                {
-                    SeguimientoGrid.DataSource = ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ResultData;
-                    SeguimientoGrid.DataBind();
-                }
-                else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ExpedienteSeguimientoProcess.ErrorDescription) + "');", true);
-            }
-
-            private void SelectExpedienteSeguimiento(int ExpedienteSeguimientoId, int ExpedienteId)
-            {
-                BPExpedienteSeguimiento ExpedienteSeguimientoProcess = new BPExpedienteSeguimiento();
-
-                ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ExpedienteSeguimientoId = ExpedienteSeguimientoId;
-                ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ExpedienteId = ExpedienteId;
-
-                ExpedienteSeguimientoProcess.SelectExpedienteSeguimiento();
-
-                if (ExpedienteSeguimientoProcess.ErrorId != 0)
-                {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ExpedienteSeguimientoProcess.ErrorDescription) + "');", true);
-                    return;
-                }
-
-                if (ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ResultData.Tables[0].Rows.Count == 0)
-                {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText("No se encontró información de seguimiento para el expediente") + "');", true);
-                    return;
-                }
-
-                //FechaBox.SetDate;
-                TipoSeguimientoIdList.SelectedValue = ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ResultData.Tables[0].Rows[0]["TipoSeguimientoId"].ToString();
-                SeguimientoBox.Text = ExpedienteSeguimientoProcess.ExpedienteSeguimientoEntity.ResultData.Tables[0].Rows[0]["Detalle"].ToString();
-
-                ExpedienteIdHidden.Value = ExpedienteSeguimientoId.ToString();
-                ExpedienteSeguimientoIdHidden.Value = ExpedienteSeguimientoId.ToString();
-            }
-
-            private void SelectTipoSeguimiento()
-            {
-                ENTTipoSeguimiento oENTTipoSeguimiento = new ENTTipoSeguimiento();
-                ENTResponse oENTResponse = new ENTResponse();
-                BPTipoSeguimiento oBPTipoSeguimiento = new BPTipoSeguimiento();
-
-                try
-                {
-                    // Formulario
-                    oENTTipoSeguimiento.TipoSeguimientoId = 0;
-                    oENTTipoSeguimiento.Nombre = "";
-
-                    // Transacción
-                    oENTResponse = oBPTipoSeguimiento.SelectTipoSeguimiento(oENTTipoSeguimiento);
-
-                    // Validaciones
-                    if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
-
-                    // Mensaje de la BD
-                    if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(oENTResponse.sMessage) + "');", true); }
-
-                    // Llenado de combo
-                    TipoSeguimientoIdList.DataTextField = "Nombre";
-                    TipoSeguimientoIdList.DataValueField = "TipoSeguimientoId";
-                    TipoSeguimientoIdList.DataSource = oENTResponse.dsResponse.Tables[1];
-                    TipoSeguimientoIdList.DataBind();
-
-                    // Agregar Item de selección
-                    this.TipoSeguimientoIdList.Items.Insert(0, new ListItem("[Seleccione]", "0"));
-                }
-                catch (Exception ex)
-                {
-                    throw (ex);
-                }
-            }
-
-            private void ValidarExpediente(int ExpedienteId)
-            {
-				//BPExpediente ExpedienteProcess = new BPExpediente();
-
-				//ExpedienteProcess.SelectExpedienteEstatus(ExpedienteId);
-
-				//if (ExpedienteProcess.ErrorId != 0)
-				//{
-				//    IsReadOnly = true;
-				//    DisableControls();
-				//    return;
-				//}
-
-				//if (ExpedienteProcess.ExpedienteEntity.EstatusId != BPExpediente.POR_ASIGNAR_ESTATUS &&
-				//        ExpedienteProcess.ExpedienteEntity.EstatusId != BPExpediente.POR_ATENDER_ESTATUS &&
-				//        ExpedienteProcess.ExpedienteEntity.EstatusId != BPExpediente.EN_PROCESO_ESTATUS &&
-				//        ExpedienteProcess.ExpedienteEntity.EstatusId != BPExpediente.PENDIENTE_APROBAR_ESTATUS)
-				//{
-				//    IsReadOnly = true;
-				//    DisableControls();
-				//    return;
-				//}
-            }
-        #endregion
     }
 }

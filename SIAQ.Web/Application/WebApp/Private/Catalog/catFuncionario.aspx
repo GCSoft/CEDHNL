@@ -3,6 +3,18 @@
 <%@ Register src="../../../../Include/WebUserControls/wucCalendar.ascx" tagname="wucCalendar" tagprefix="wuc" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
+	<script language="javascript" type="text/javascript">
+
+		// Funciones del programador
+
+		function WAFocus(ControlID) {
+			var oControl = document.getElementById(ControlID);
+
+			oControl.focus();
+			if (oControl.type == 'text' || oControl.type == 'password') { oControl.select(); }
+		}
+
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
 	<table border="0" cellpadding="0" cellspacing="0" width="100%">

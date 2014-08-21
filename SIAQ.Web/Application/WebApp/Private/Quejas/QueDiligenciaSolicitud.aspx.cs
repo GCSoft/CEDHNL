@@ -27,8 +27,33 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 		GCCommon gcCommon = new GCCommon();
 		GCJavascript gcJavascript = new GCJavascript();
 
+		// Enumeraciones
+		private enum DiligenciaActionTypes { DeleteDiligencia, InsertDiligencia, ReactivateDiligencia, UpdateDiligencia }
 
-		// Funciones del Programador
+
+		// Rutinas del Programador
+
+		void DeleteDiligencia(string solicitudId, string diligenciaId){
+			ENTResponse oENTResponse = new ENTResponse();
+			ENTDiligencia oENTDiligencia = new ENTDiligencia();
+			BPDiligencia oBPDiligencia = new BPDiligencia();
+
+			try
+			{
+				oENTDiligencia.DiligenciaId = Convert.ToInt32(diligenciaId);
+				oENTDiligencia.SolicitudId = Convert.ToInt32(solicitudId);
+
+				oENTResponse = oBPDiligencia.DeleteDiligenciaSolicitud(oENTDiligencia);
+
+				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+				if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+
+				SelectDiligencia();
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
 
 		void InsertSolicitudDiligencia(){
 			BPDiligencia oBPDiligencia = new BPDiligencia();
@@ -73,8 +98,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
 				if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
 
-				//Mensaje de usuario
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('Diligencia agregada con éxito');", true);
+				// Transacción exitosa
+				ClearActionPanel();
+
+				// Actualizar grid
+				SelectDiligencia();
 
 			}catch (Exception ex){
 				throw (ex);
@@ -203,14 +231,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
 					// Habilitar controles
 					this.chkDiligencias.Checked = true;
-					this.btnGuardar.Enabled = true;
-					this.btnGuardar.CssClass = "Button_General";
+					this.btnNuevo.Enabled = true;
+					this.btnNuevo.CssClass = "Button_General";
 				}else{
 
 					// Inhabilitar controles
 					this.chkDiligencias.Checked = false;
-					this.btnGuardar.Enabled = false;
-					this.btnGuardar.CssClass = "Button_General_Disabled";
+					this.btnNuevo.Enabled = false;
+					this.btnNuevo.CssClass = "Button_General_Disabled";
 				}
 
 			}catch (Exception ex){
@@ -277,7 +305,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
 			try
 			{
-				//Formulario
+				// Formulario
 				oENTDiligencia.DiligenciaId = Convert.ToInt32(diligenciaId);
 				oENTDiligencia.SolicitudId = Convert.ToInt32(this.hddSolicitudId.Value);
 				oENTDiligencia.FuncionarioEjecuta = Convert.ToInt32(ddlFuncionario.SelectedValue);
@@ -288,15 +316,105 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				oENTDiligencia.SolicitadaPor = txtSolicitadaPor.Text;
 				oENTDiligencia.Resultado = ckeResultado.Text;
 
-				//Transacción
+				// Transacción
 				oENTResponse = oBPDiligencia.UpdateDiligenciaSolicitud(oENTDiligencia);
 
-				//Validación
+				// Validación
 				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
 				if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
 
-				//Mensaje usuario
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('Diligencia modificada con éxito');", true);
+				// Transacción exitosa
+				ClearActionPanel();
+
+				// Actualizar grid
+				SelectDiligencia();
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		
+		// Rutinas del PopUp
+
+		void ClearActionPanel(){
+			try
+			{
+
+				// Limpiar formulario
+				this.ddlFuncionario.SelectedIndex = 0;
+				this.calFecha.SetCurrentDate();
+				this.ddlTipoDiligencia.SelectedIndex = 0;
+				this.ddlLugarDiligencia.SelectedIndex = 0;
+				this.txtSolicitadaPor.Text = "";
+				this.ckeDetalle.Text = "";
+				this.ckeResultado.Text = "";
+
+				// Estado incial de controles
+				this.pnlAction.Visible = false;
+				this.lblActionTitle.Text = "";
+				this.btnAction.Text = "";
+				this.lblActionMessage.Text = "";
+				this.hddDiligenciaId.Value = "";
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		void SelectDiligencia_ForEdit(string solicitudId, string diligenciaId){
+			BPDiligencia oBPDiligencia = new BPDiligencia();
+
+			// Formulario
+			oBPDiligencia.DiligenciaEntity.SolicitudId = Convert.ToInt32(solicitudId);
+			oBPDiligencia.DiligenciaEntity.DiligenciaId = Convert.ToInt32(diligenciaId);
+
+			// Transacción
+			oBPDiligencia.SelectDetalleDiligenciaSolicitud();
+
+			// Validaciones
+			if (oBPDiligencia.ErrorId != 0) { throw (new Exception(oBPDiligencia.ErrorDescription)); }
+
+			// Vaciado de datos
+			this.hddDiligenciaId.Value = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["DiligenciaId"].ToString();
+			this.ddlFuncionario.SelectedValue = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["FuncionarioEjecuta"].ToString();
+			this.calFecha.SetDate = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["FechaDiligencia"].ToString();
+			this.ddlTipoDiligencia.SelectedValue = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["TipoDiligencia"].ToString();
+			this.ddlLugarDiligencia.SelectedValue = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["LugarDiligencia"].ToString();
+			this.ckeDetalle.Text = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["Detalle"].ToString();
+			this.txtSolicitadaPor.Text = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["SolicitadaPor"].ToString();
+			this.ckeResultado.Text = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["Resultado"].ToString();
+		}
+
+		void SetPanel(DiligenciaActionTypes DActionType, Int32 idItem){
+			try
+			{
+
+				// Acciones comunes
+				this.pnlAction.Visible = true;
+				this.hddDiligenciaId.Value = idItem.ToString();
+
+				// Detalle de acción
+				switch (DActionType){
+					case DiligenciaActionTypes.InsertDiligencia:
+
+						this.lblActionTitle.Text = "Nueva Diligencia";
+						this.btnAction.Text = "Crear Diligencia";
+						break;
+
+					case DiligenciaActionTypes.UpdateDiligencia:
+
+						this.lblActionTitle.Text = "Edición de Diligencia";
+						this.btnAction.Text = "Actualizar Diligencia";
+						SelectDiligencia_ForEdit( this.hddSolicitudId.Value, idItem.ToString());
+						break;
+
+					default:
+						throw (new Exception("Opción inválida"));
+				}
+
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "WAFocus ('" + this.ddlFuncionario.ClientID + "'); ", true);
 
 			}catch (Exception ex){
 				throw (ex);
@@ -329,6 +447,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
 				// Carátula
 				SelectSolicitud();
+
+				// Estado inicial de la pantalla
+				ClearActionPanel();
 				
 				// Foco
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.chkDiligencias.ClientID + "'); }", true);
@@ -338,25 +459,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
             }
 		}
 
-		protected void btnGuardar_Click(object sender, EventArgs e){
-			String diligenciaId = this.hddDiligenciaId.Value;
-
+		protected void btnNuevo_Click(object sender, EventArgs e){
 			try
 			{
-				
-				if (String.IsNullOrEmpty(diligenciaId))
-				{
-					//Agregar
-					InsertSolicitudDiligencia();
-					SelectDiligencia();
-					LimpiarControles();
-				}else{
 
-					//Modificar
-					UpdateSolicitudDiligencia(diligenciaId);
-					SelectDiligencia();
-					LimpiarControles();
-				}
+				// Nuevo registro
+				SetPanel(DiligenciaActionTypes.InsertDiligencia, 0);
 
 			}catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
@@ -377,16 +485,16 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 					UpdateSolicitudBanderaDiligencia(1);
 
 					// Habilitar controles
-					this.btnGuardar.Enabled = true;
-					this.btnGuardar.CssClass = "Button_General";
+					this.btnNuevo.Enabled = true;
+					this.btnNuevo.CssClass = "Button_General";
 				}else{
 
 					// Marcar las diligencias como no necesarias en la solicitud y eliminar las capturas
 					UpdateSolicitudBanderaDiligencia(0);
 
 					// Inhabilitar controles
-					this.btnGuardar.Enabled = false;
-					this.btnGuardar.CssClass = "Button_General_Disabled";
+					this.btnNuevo.Enabled = false;
+					this.btnNuevo.CssClass = "Button_General_Disabled";
 
 					// Las diligencias se eliminaron en el SP, limpiar el grid
 					this.gvDiligencia.DataSource = null;
@@ -426,11 +534,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				// Acción
 				switch (sCommandName){
 					case "Editar":
-						MostrarDatosEdicion(SolicitudId, DiligenciaId);
+						SetPanel(DiligenciaActionTypes.UpdateDiligencia, Int32.Parse(DiligenciaId));
+						ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tooltip.hide();", true);
 						break;
 
 					case "Borrar":
-						EliminarDiligencia(SolicitudId, DiligenciaId);
+						DeleteDiligencia(SolicitudId, DiligenciaId);
 						break;
 				}
 
@@ -503,73 +612,39 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.chkDiligencias.ClientID + "'); }", true);
 			}
 		}
-		
 
-		#region Funciones
 
-			private void EliminarDiligencia(string solicitudId, string diligenciaId){
-				ENTResponse oENTResponse = new ENTResponse();
-				ENTDiligencia oENTDiligencia = new ENTDiligencia();
-				BPDiligencia oBPDiligencia = new BPDiligencia();
+		// Eventos de PopUp
 
-				try
-				{
-					oENTDiligencia.DiligenciaId = Convert.ToInt32(diligenciaId);
-					oENTDiligencia.SolicitudId = Convert.ToInt32(solicitudId);
-
-					oENTResponse = oBPDiligencia.DeleteDiligenciaSolicitud(oENTDiligencia);
-
-					if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
-					if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
-
-					SelectDiligencia();
-
-				}catch (Exception ex){
-					throw (ex);
-				}
-			}
-
-			private void LimpiarControles()
+		protected void btnAction_Click(object sender, EventArgs e){
+			try
 			{
-				ddlFuncionario.SelectedIndex = 0;
-				calFecha.SetCurrentDate();
-				ddlTipoDiligencia.SelectedIndex = 0;
-				ddlLugarDiligencia.SelectedIndex = 0;
-				ckeDetalle.Text = String.Empty;
-				txtSolicitadaPor.Text = String.Empty;
-				ckeResultado.Text = String.Empty;
-				hddDiligenciaId.Value = String.Empty;
+				
+				if (this.hddDiligenciaId.Value == "0"){
 
-				ddlFuncionario.Focus();
+					InsertSolicitudDiligencia();
+				}else{
 
-			}
-
-			private void MostrarDatosEdicion(string solicitudId, string diligenciaId)
-			{
-				BPDiligencia oBPDiligencia = new BPDiligencia();
-
-				oBPDiligencia.DiligenciaEntity.SolicitudId = Convert.ToInt32(solicitudId);
-				oBPDiligencia.DiligenciaEntity.DiligenciaId = Convert.ToInt32(diligenciaId);
-
-				oBPDiligencia.SelectDetalleDiligenciaSolicitud();
-
-				if (oBPDiligencia.ErrorId == 0)
-				{
-					if (oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows.Count > 0)
-					{
-						hddDiligenciaId.Value = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["DiligenciaId"].ToString();
-						ddlFuncionario.SelectedValue = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["FuncionarioEjecuta"].ToString();
-						calFecha.SetDate = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["FechaDiligencia"].ToString();
-						ddlTipoDiligencia.SelectedValue = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["TipoDiligencia"].ToString();
-						ddlLugarDiligencia.SelectedValue = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["LugarDiligencia"].ToString();
-						ckeDetalle.Text = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["Detalle"].ToString();
-						txtSolicitadaPor.Text = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["SolicitadaPor"].ToString();
-						ckeResultado.Text = oBPDiligencia.DiligenciaEntity.DataResult.Tables[0].Rows[0]["Resultado"].ToString();
-					}
+					UpdateSolicitudDiligencia(this.hddDiligenciaId.Value);
 				}
-			}
 
-		#endregion
+			}catch (Exception ex){
+				this.lblActionMessage.Text = ex.Message;
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlFuncionario.ClientID + "');", true);
+			}
+		}
+
+		protected void imgCloseWindow_Click(object sender, ImageClickEventArgs e){
+			try
+			{
+
+				// Cancelar transacción
+				ClearActionPanel();
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
+		}
 
 	}
 }

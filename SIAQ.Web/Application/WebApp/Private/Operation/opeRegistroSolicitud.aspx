@@ -62,7 +62,10 @@
 									EnableCaching="false"
 									FirstRowSelected="false"
 									MinimumPrefixLength="2"
-									OnClientItemSelected="ClientItemSelected">
+									OnClientItemSelected="ClientItemSelected"
+									CompletionListCssClass="Autocomplete_CompletionListElement"
+									CompletionListItemCssClass="Autocomplete_ListItem"
+									CompletionListHighlightedItemCssClass="Autocomplete_HighLightedListItem">
 								</ajaxToolkit:AutoCompleteExtender>
 							</td>
 						</tr>

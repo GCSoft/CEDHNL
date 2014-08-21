@@ -1,11 +1,17 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="visComparecencia.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Visitaduria.visComparecencia" %>
 <%@ Register src="../../../../Include/WebUserControls/wucCalendar.ascx" tagname="wucCalendar" tagprefix="wuc" %>
+<%@ Register src="../../../../Include/WebUserControls/wucTimer.ascx" tagname="wucTimer" tagprefix="wuc" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
 	<script language="javascript" type="text/javascript">
 
 		// Funciones del programador
+
+		function ClientItemSelected(sender, e) {
+			$get("<%=hddServidorPublicoId.ClientID %>").value = e.get_value();
+		}
 
 		function WAFocus(ControlID) {
 			var oControl = document.getElementById(ControlID);
@@ -179,7 +185,7 @@
 
 		<!-- PopUp -->
 		<asp:Panel id="pnlAction" runat="server" CssClass="ActionBlock" >
-			<asp:Panel id="pnlActionContent" runat="server" CssClass="ActionContent" style="top:200px;" Height="500px" Width="600px">
+			<asp:Panel id="pnlActionContent" runat="server" CssClass="ActionContent" style="top:30px;" Height="780px" Width="800px">
 				<asp:Panel ID="pnlActionHeader" runat="server" CssClass="ActionHeader">
 					<table border="0" cellpadding="0" cellspacing="0" style="height:100%; width:100%">
 						<tr>
@@ -198,6 +204,160 @@
 								<td class="tdActionCeldaLeyendaItem">&nbsp;Funcionario que ejecuta</td>
 								<td style="width:5px;"></td>
 								<td><asp:DropDownList ID="ddlFuncionario" runat="server" Width="216px" CssClass="DropDownList_General"></asp:DropDownList></td>
+							</tr>
+							<tr style="height:5px;"><td colspan="3"></td></tr>
+							<tr class="trFilaItem">
+								<td class="tdActionCeldaLeyendaItem">&nbsp;Fecha</td>
+								<td style="width:5px;"></td>
+								<td><wuc:wucCalendar ID="calFecha" runat="server" /></td>
+							</tr>
+							<tr style="height:5px;"><td colspan="3"></td></tr>
+							<tr class="trFilaItem">
+								<td class="tdActionCeldaLeyendaItem">&nbsp;Hora Inicio</td>
+								<td style="width:5px;"></td>
+								<td>
+									<wuc:wucTimer ID="tmrInicio" runat="server" />
+								</td>
+							</tr>
+							<tr style="height:5px;"><td colspan="3"></td></tr>
+							<tr class="trFilaItem">
+								<td class="tdActionCeldaLeyendaItem">&nbsp;Hora Fin</td>
+								<td style="width:5px;"></td>
+								<td>
+									<wuc:wucTimer ID="tmrFin" runat="server" />
+								</td>
+							</tr>
+							<tr style="height:5px;"><td colspan="3"></td></tr>
+							<tr class="trFilaItem">
+								<td class="tdActionCeldaLeyendaItem">&nbsp;Tipo de comparecencia</td>
+								<td style="width:5px;"></td>
+								<td><asp:DropDownList ID="ddlTipoComparecencia" runat="server" Width="216px" CssClass="DropDownList_General"></asp:DropDownList></td>
+							</tr>
+							<tr style="height:5px;"><td colspan="3"></td></tr>
+							<tr class="trFilaItem">
+								<td class="tdActionCeldaLeyendaItem">&nbsp;Lugar de comparecencia</td>
+								<td style="width:5px;"></td>
+								<td><asp:DropDownList ID="ddlLugarComparecencia" runat="server" Width="216px" CssClass="DropDownList_General"></asp:DropDownList></td>
+							</tr>
+							<tr style="height:20px;"><td colspan="3"></td></tr>
+							<tr class="trFilaItem">
+								<td class="tdActionCeldaLeyendaItem">&nbsp;Ciudadanos a comparecer</td>
+								<td style="width:5px;"></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td colspan="3">
+									<div style="border:1px solid #4B4878; height:90px; overflow-x:hidden; overflow-y:scroll; text-align:left; Width:100%">
+										<asp:GridView ID="gvCiudadano" runat="server" AllowPaging="false" AllowSorting="true" AutoGenerateColumns="False" Width="99%"
+											DataKeyNames="CiudadanoId" 
+											OnRowDataBound="gvCiudadano_RowDataBound"
+											OnSorting="gvCiudadano_Sorting">
+											<HeaderStyle CssClass="Grid_Header_Action" />
+											<RowStyle CssClass="Grid_Row_Action" />
+											<EmptyDataTemplate>
+												<table border="1px" width="100%" cellpadding="0px" cellspacing="0px">
+													<tr class="Grid_Header_Action">
+														<td>Nombre</td>
+														<td style="width:100px;">Tipo</td>
+														<td style="width:90px;">Edad</td>
+														<td style="width:80px;">Sexo</td>
+													</tr>
+													<tr class="Grid_Row">
+														<td colspan="4">No se encontraron Ciudadanos asociados al Expediente</td>
+													</tr>
+												</table>
+											</EmptyDataTemplate>
+											<Columns>
+												<asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="25px">
+													<ItemTemplate>
+														<asp:CheckBox ID="chkCiudadano" runat="server" EnableViewState="true" />
+													</ItemTemplate>
+												</asp:TemplateField>
+												<asp:BoundField HeaderText="Nombre"	ItemStyle-HorizontalAlign="Left"							DataField="NombreCompleto"		SortExpression="NombreCompleto"></asp:BoundField>
+												<asp:BoundField HeaderText="Tipo"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="100px"	DataField="NombreTipoCiudadano"	SortExpression="NombreTipoCiudadano"></asp:BoundField>
+												<asp:BoundField HeaderText="Edad"	ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="90px"	DataField="Edad"				SortExpression="Edad"></asp:BoundField>
+												<asp:BoundField HeaderText="Sexo"	ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="80px"	DataField="NombreSexo"			SortExpression="NombreSexo"></asp:BoundField>
+											</Columns>
+										</asp:GridView>
+									</div>
+								</td>
+							</tr>
+							<tr style="height:20px;"><td colspan="3"></td></tr>
+							<tr class="trFilaItem">
+								<td class="tdActionCeldaLeyendaItem">&nbsp;Servidor público</td>
+								<td style="width:5px;"></td>
+								<td>
+									<asp:TextBox ID="txtServidorPublico" runat="server" CssClass="Textbox_General" MaxLength="1000" Width="400px"></asp:TextBox>
+									<asp:HiddenField ID="hddServidorPublicoId" runat="server" />
+									<ajaxToolkit:AutoCompleteExtender
+										ID="autoCompleteExtender" 
+										runat="server"
+										TargetControlID="txtServidorPublico"
+										ServiceMethod="GetServiceList"
+										CompletionInterval="100"
+										CompletionSetCount="10"
+										EnableCaching="false"
+										FirstRowSelected="false"
+										MinimumPrefixLength="2"
+										OnClientItemSelected="ClientItemSelected"
+										CompletionListCssClass="Autocomplete_CompletionListElement"
+										CompletionListItemCssClass="Autocomplete_ListItem"
+										CompletionListHighlightedItemCssClass="Autocomplete_HighLightedListItem">
+									</ajaxToolkit:AutoCompleteExtender>
+								</td>
+							</tr>
+							<tr style="height:1px;"><td colspan="3"></td></tr>
+							<tr>
+								<td colspan="3" style="text-align:;">
+									<asp:Button ID="btnAgregarFuncionario" runat="server" Text="Agregar Funcionario" CssClass="Button_General" width="125px" /> &nbsp;
+									<asp:Button ID="btnNuevoFuncionario" runat="server" Text="Nuevo Funcionario" CssClass="Button_General" width="125px" />
+								</td>
+							</tr>
+							<tr style="height:1px;"><td colspan="3"></td></tr>
+							<tr>
+								<td colspan="3">
+									<div style="border:1px solid #4B4878; height:90px; overflow-x:hidden; overflow-y:scroll; text-align:left; Width:100%">
+										<asp:GridView ID="gvServidorPublico" runat="server" AllowPaging="false" AllowSorting="true" AutoGenerateColumns="False" Width="99%"
+											DataKeyNames="ServidorPublicoId,ServidorPublicoNombre" 
+											OnRowCommand="gvServidorPublico_RowCommand"
+											OnRowDataBound="gvServidorPublico_RowDataBound"
+											OnSorting="gvServidorPublico_Sorting">
+											<HeaderStyle CssClass="Grid_Header_Action" />
+											<RowStyle CssClass="Grid_Row_Action" />
+											<EmptyDataTemplate>
+												<table border="1px" width="100%" cellpadding="0px" cellspacing="0px">
+													<tr class="Grid_Header_Action">
+														<td style="width:200px;">Dependencia</td>
+														<td>Nombre</td>
+													</tr>
+													<tr class="Grid_Row">
+														<td colspan="2" style="text-align:center;">No se han incluído Servidores Públicos en la Comparecencia</td>
+													</tr>
+												</table>
+											</EmptyDataTemplate>
+											<Columns>
+												<asp:BoundField HeaderText="Dependencia"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="NombreTipoServidorPublico"	SortExpression="NombreTipoServidorPublico"></asp:BoundField>
+												<asp:BoundField HeaderText="Nombre"			ItemStyle-HorizontalAlign="Left"							DataField="ServidorPublicoNombre"		SortExpression="ServidorPublicoNombre"></asp:BoundField>
+												<asp:TemplateField ItemStyle-HorizontalAlign ="Center" ItemStyle-Width="5%">
+													<ItemTemplate>
+														<asp:ImageButton ID="imgDelete" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Eliminar" ImageUrl="~/Include/Image/Buttons/Delete.png" runat="server" />
+													</ItemTemplate>
+												</asp:TemplateField>
+											</Columns>
+										</asp:GridView>
+									</div>
+								</td>
+							</tr>
+							<tr style="height:20px;"><td colspan="3"></td></tr>
+							<tr class="trFilaItem">
+								<td class="tdActionCeldaLeyendaItem">&nbsp;Detalle</td>
+								<td style="width:5px;"></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td colspan="3">
+									<CKEditor:CKEditorControl ID="ckeDetalle" BasePath="~/Include/Components/CKEditor/Core/" runat="server" Height="90px" MaxLength="8000"></CKEditor:CKEditorControl>
+								</td>
 							</tr>
 							<tr style="height:5px;"><td colspan="3"></td></tr>
 							<tr>

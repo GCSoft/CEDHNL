@@ -184,15 +184,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         protected global::System.Web.UI.WebControls.Label ObservacionesLabel;
         
         /// <summary>
-        /// wucFixedDateTime control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::SIAQ.Web.Include.WebUserControls.wucFixedDateTime wucFixedDateTime;
-        
-        /// <summary>
         /// chkDiligencias control.
         /// </summary>
         /// <remarks>
@@ -200,6 +191,96 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkDiligencias;
+        
+        /// <summary>
+        /// btnNuevo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnNuevo;
+        
+        /// <summary>
+        /// btnRegresar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRegresar;
+        
+        /// <summary>
+        /// gvDiligencia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvDiligencia;
+        
+        /// <summary>
+        /// pnlAction control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlAction;
+        
+        /// <summary>
+        /// pnlActionContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlActionContent;
+        
+        /// <summary>
+        /// pnlActionHeader control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlActionHeader;
+        
+        /// <summary>
+        /// lblActionTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblActionTitle;
+        
+        /// <summary>
+        /// imgCloseWindow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton imgCloseWindow;
+        
+        /// <summary>
+        /// pnlActionBody control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlActionBody;
+        
+        /// <summary>
+        /// wucFixedDateTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::SIAQ.Web.Include.WebUserControls.wucFixedDateTime wucFixedDateTime;
         
         /// <summary>
         /// ddlFuncionario control.
@@ -265,31 +346,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         protected global::CKEditor.NET.CKEditorControl ckeResultado;
         
         /// <summary>
-        /// btnGuardar control.
+        /// btnAction control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardar;
+        protected global::System.Web.UI.WebControls.Button btnAction;
         
         /// <summary>
-        /// btnRegresar control.
+        /// lblActionMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRegresar;
-        
-        /// <summary>
-        /// gvDiligencia control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvDiligencia;
+        protected global::System.Web.UI.WebControls.Label lblActionMessage;
         
         /// <summary>
         /// hddSolicitudId control.

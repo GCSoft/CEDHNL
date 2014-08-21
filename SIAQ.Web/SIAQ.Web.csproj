@@ -558,6 +558,7 @@
     <Content Include="Include\WebUserControls\wucBusquedaUsuario.ascx" />
     <Content Include="Include\WebUserControls\wucFastCatalog.ascx" />
     <Content Include="Include\WebUserControls\wucFixedDateTime.ascx" />
+    <Content Include="Include\WebUserControls\wucTimer.ascx" />
     <Content Include="Index.aspx" />
     <Content Include="Application\WebApp\Private\Home\AppIndex.aspx" />
     <Content Include="Application\WebApp\Private\SysApp\saLogout.aspx" />
@@ -1320,6 +1321,13 @@
     </Compile>
     <Compile Include="Include\WebUserControls\wucFixedDateTime.ascx.designer.cs">
       <DependentUpon>wucFixedDateTime.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Include\WebUserControls\wucTimer.ascx.cs">
+      <DependentUpon>wucTimer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Include\WebUserControls\wucTimer.ascx.designer.cs">
+      <DependentUpon>wucTimer.ascx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Index.aspx.cs">

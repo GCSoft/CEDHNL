@@ -177,7 +177,7 @@
 									<td>Domicilio</td>
                                 </tr>
                                 <tr class="Grid_Row">
-                                    <td colspan="6">No se encontraron Ciudadanos registrados en el sistema</td>
+                                    <td colspan="6">No se encontraron Ciudadanos asociados a la Solicitud</td>
                                 </tr>
                             </table>
                         </EmptyDataTemplate>

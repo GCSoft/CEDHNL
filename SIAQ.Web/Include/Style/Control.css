@@ -107,6 +107,32 @@
 	text-decoration: underline;
 }
 
+/*AUTOCOMPLETE*/
+.Autocomplete_CompletionListElement {
+	background-color:inherit; 
+	border:solid 1px gray; 
+	color:black; 
+    cursor:pointer; 
+    font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+    font-size:11px; 
+    list-style-type:none; 
+    margin:0px! important;
+    padding:0;
+    text-align:left;
+	visibility:hidden;
+}
+
+.Autocomplete_HighLightedListItem{
+	background-color:#549CC6;
+	color:#FFFFFF;
+    padding:1px; 
+}
+
+.Autocomplete_ListItem {
+	background-color:#FFFFFF;
+    padding:1px; 
+}
+
 /*BOTONES*/
 .Button_General{
   	font-family: Arial;
@@ -586,6 +612,60 @@
 	height:16px;
 	text-align:left;
 	vertical-align:bottom;
+}
+
+/*TIMER*/
+.Timer_Canvas{
+	background-color:#EFEFEF;
+	border:1px solid #4B4878;
+	color:#666666;
+	cursor:default;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 11px;
+	font-weight:bold;
+	height:20px;
+	line-height:20px;
+	text-align:center;
+	width:80px;
+}
+
+.Timer_Error_Canvas{
+	background-color:#FF9966;
+	border:1px solid #4B4878;
+	color:#666666;
+	cursor:default;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 11px;
+	font-weight:bold;
+	height:20px;
+	line-height:20px;
+	text-align:center;
+	width:80px;
+}
+
+.Timer_Error_Messages{
+	color:red;
+	cursor:default;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 11px;
+	height:20px;
+	line-height:20px;
+	text-align:center;
+	width:80px;
+}
+
+.Timer_Focus_Canvas{
+	background-color:#FFFFFF;
+	border:1px solid #4B4878;
+	color:#666666;
+	cursor:default;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 11px;
+	font-weight:bold;
+	height:20px;
+	line-height:20px;
+	text-align:center;
+	width:80px;
 }
 
 

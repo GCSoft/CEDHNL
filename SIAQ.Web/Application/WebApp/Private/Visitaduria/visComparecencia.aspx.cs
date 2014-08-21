@@ -33,6 +33,45 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 		private enum ComparecenciaActionTypes { Delete, Insert, Reactivate, Update }
 
 
+		// Servicio
+		[System.Web.Script.Services.ScriptMethod()]
+		[System.Web.Services.WebMethod]
+		public static List<string> GetServiceList(string prefixText, int count){
+			BPCiudadano oBPCiudadano = new BPCiudadano();
+			ENTCiudadano oENTCiudadano = new ENTCiudadano();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			List<String> ServiceResponse = new List<String>();
+			String Item;
+
+			try
+			{
+
+				// Formulario
+				oENTCiudadano.Nombre = prefixText;
+
+				// Transacción
+				oENTResponse = oBPCiudadano.searchCiudadano(oENTCiudadano);
+
+				// Validaciones
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+
+				// Configuración de arreglo de respuesta
+				foreach (DataRow rowCiudadano in oENTResponse.dsResponse.Tables[1].Rows){
+					Item = AjaxControlToolkit.AutoCompleteExtender.CreateAutoCompleteItem(rowCiudadano["NombreCiudadano"].ToString(), rowCiudadano["CiudadanoId"].ToString());
+					ServiceResponse.Add(Item);
+				}
+
+			}catch (Exception){
+				// Do Nothing
+			}
+
+			// Regresar listado de Ciudadanos
+			return ServiceResponse;
+		}
+
+
 		// Funciones del programador
 
 		String GetKey(String sKey) {
@@ -115,9 +154,91 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 					this.grdCanalizacion.DataBind();
 				}
 
+				// Ciudadanos
+				this.gvCiudadano.DataSource = oENTResponse.dsResponse.Tables[3];
+				this.gvCiudadano.DataBind();
+
 			}catch (Exception ex){
 				throw (ex);
 			}
+		}
+
+		void SelectFuncionario(){
+			BPFuncionario oBPFuncionario = new BPFuncionario();
+			ENTFuncionario oENTFuncionario = new ENTFuncionario();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Formulario
+				oENTFuncionario.FuncionarioId = 0;
+				oENTFuncionario.idUsuario = 0;
+				oENTFuncionario.idArea = Int32.Parse(this.hddAreaId.Value);	// Área del expediente
+				oENTFuncionario.idRol = 8; // Visitaduría - Visitador
+				oENTFuncionario.TituloId = 0;
+				oENTFuncionario.PuestoId = 0;
+				oENTFuncionario.Nombre = "";
+
+				// Transacción
+				oENTResponse = oBPFuncionario.SelectFuncionario(oENTFuncionario);
+
+				// Errores
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+
+				// Warnings
+				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + oENTResponse.sMessage + "');", true); }
+
+				// Llenado de control
+				this.ddlFuncionario.DataTextField = "sFullName";
+				this.ddlFuncionario.DataValueField = "FuncionarioId";
+				this.ddlFuncionario.DataSource = oENTResponse.dsResponse.Tables[1];
+				this.ddlFuncionario.DataBind();
+
+				// Opción todos
+				this.ddlFuncionario.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		void SelectLugarComparecencia(){
+			BPLugarComparecencia LugarComparecenciaProcess = new BPLugarComparecencia();
+
+			// Transacción
+			LugarComparecenciaProcess.SelectLugarComparecencia();
+
+			// Validaciones
+			if (LugarComparecenciaProcess.ErrorId != 0) { throw (new Exception(LugarComparecenciaProcess.ErrorDescription)); }
+
+			// Llenado del control
+			this.ddlLugarComparecencia.DataTextField = "Nombre";
+			this.ddlLugarComparecencia.DataValueField = "LugarComparecenciaId";
+
+			this.ddlLugarComparecencia.DataSource = LugarComparecenciaProcess.LugarComparecenciaEntity.ResultData.Tables[0];
+			this.ddlLugarComparecencia.DataBind();
+
+			this.ddlLugarComparecencia.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+		}
+
+		void SelectTipoComparecencia(){
+			BPTipoComparecencia TipoComparecenciaProcess = new BPTipoComparecencia();
+
+			// Transacción
+			TipoComparecenciaProcess.SelectTipoComparecencia();
+
+			// Validaciones
+			if (TipoComparecenciaProcess.ErrorId != 0) { throw (new Exception(TipoComparecenciaProcess.ErrorDescription)); }
+
+			// Llenado del control
+			this.ddlTipoComparecencia.DataTextField = "Nombre";
+			this.ddlTipoComparecencia.DataValueField = "TipoComparecenciaId";
+
+			this.ddlTipoComparecencia.DataSource = TipoComparecenciaProcess.TipoComparecenciaEntity.ResultData.Tables[0];
+			this.ddlTipoComparecencia.DataBind();
+
+			this.ddlTipoComparecencia.Items.Insert(0, new ListItem("[Seleccione]", "0"));
 		}
 
 		void UpdateComparecencia(Int32 ComparecenciaId){
@@ -128,11 +249,32 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 		// Rutinas del PopUp
 
 		void ClearActionPanel(){
+			CheckBox oCheckBox;
+
 			try
 			{
 
 				// Limpiar formulario
-				
+				this.ddlFuncionario.SelectedIndex = 0;
+				this.calFecha.SetCurrentDate();
+				this.tmrInicio.DisplayTime = "10:00 a.m.";
+				this.tmrFin.DisplayTime = "10:30 a.m.";
+				this.ddlTipoComparecencia.SelectedIndex = 0;
+				this.ddlLugarComparecencia.SelectedIndex = 0;
+
+				foreach (GridViewRow gvRow in this.gvCiudadano.Rows) {
+
+					oCheckBox = (CheckBox) this.gvCiudadano.Rows[gvRow.RowIndex].FindControl("chkCiudadano");
+					oCheckBox.Checked = false;
+				}
+
+				this.txtServidorPublico.Text = "";
+				this.hddServidorPublicoId.Value = "";
+
+				this.gvServidorPublico.DataSource = null;
+				this.gvServidorPublico.DataBind();
+
+				this.ckeDetalle.Text = "";
 
 				// Estado incial de controles
 				this.pnlAction.Visible = false;
@@ -185,10 +327,28 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 		}
 
 		void ValidateActionForm(){
+			CheckBox oCheckBox;
+			Boolean CheckCiudadano = false;
+
 			try
 			{
 
-				if (this.ddlFuncionario.SelectedIndex == 0) { throw new Exception("* El campo [Funcionario que ejecuta] es requerido"); }
+				if (this.ddlFuncionario.SelectedIndex == 0) { throw new Exception("El campo [Funcionario que ejecuta] es requerido"); }
+				if (this.tmrInicio.DisplayTime == "") { throw new Exception("El campo [Hora Inicio] es requerido"); }
+				if (this.tmrFin.DisplayTime == "") { throw new Exception("El campo [Hora Fin] es requerido"); }
+				if (this.ddlTipoComparecencia.SelectedIndex == 0) { throw new Exception("El campo [Tipo de comparecencia] es requerido"); }
+				if (this.ddlLugarComparecencia.SelectedIndex == 0) { throw new Exception("El campo [Lugar de comparecencia] es requerido"); }
+
+				foreach (GridViewRow gvRow in this.gvCiudadano.Rows) {
+
+					oCheckBox = (CheckBox) this.gvCiudadano.Rows[gvRow.RowIndex].FindControl("chkCiudadano");
+					if (oCheckBox.Checked) { CheckCiudadano = true; }
+				}
+
+				if (!CheckCiudadano) { throw new Exception("Es necesario incluir por lo menos un ciudadano en la comparecencia"); }
+
+				if (this.gvServidorPublico.Rows.Count == 0) { throw new Exception("Debe incluir por lo menos un Servidor Público en la comparecencia"); }
+				if (this.ckeDetalle.Text.Trim() == "") { throw new Exception("El campo [Detalle] es requerido"); }
 
 			}catch (Exception ex){
 				throw (ex);
@@ -221,6 +381,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
 				// Carátula
 				SelectExpediente();
+
+				// Llenado de controles
+				SelectFuncionario();
+				SelectTipoComparecencia();
+				SelectLugarComparecencia();
 
 				// Estado Inicial de la pantalla
 				ClearActionPanel();
@@ -256,6 +421,128 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
             }catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
             }
+		}
+
+		protected void gvCiudadano_RowDataBound(object sender, GridViewRowEventArgs e){
+			try
+			{
+				
+				// Validación de que sea fila 
+				if (e.Row.RowType != DataControlRowType.DataRow) { return; }
+
+				// Atributos Over
+				e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over_Action'; ");
+
+				// Atributos Out
+				e.Row.Attributes.Add("onmouseout", "this.className='Grid_Row_Action'; ");
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		protected void gvCiudadano_Sorting(object sender, GridViewSortEventArgs e){
+			try
+			{
+
+				gcCommon.SortGridView(ref this.gvCiudadano, ref this.hddSort, e.SortExpression);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
+		}
+
+		protected void gvServidorPublico_RowCommand(object sender, GridViewCommandEventArgs e){
+			//DataTable tblCanalizacion = null;
+			//String CanalizacionId;
+
+			//String strCommand = "";
+			//Int32 intRow = 0;
+
+			//try
+			//{
+
+			//    // Opción seleccionada
+			//    strCommand = e.CommandName.ToString();
+
+			//    // Se dispara el evento RowCommand en el ordenamiento
+			//    if (strCommand == "Sort") { return; }
+
+			//    // Fila
+			//    intRow = Int32.Parse(e.CommandArgument.ToString());
+
+			//    // Datakeys
+			//    CanalizacionId = this.grdCanalizacion.DataKeys[intRow]["CanalizacionId"].ToString();
+
+			//    // Acción
+			//    switch (strCommand){
+			//        case "Eliminar":
+
+			//            // Obtener el DataTable del grid
+			//            tblCanalizacion = gcParse.GridViewToDataTable(this.grdCanalizacion, true);
+
+			//            // Eliminar el Item
+			//            tblCanalizacion.Rows.Remove(tblCanalizacion.Select("CanalizacionId=" + CanalizacionId)[0]);
+
+			//            // Refrescar el Grid
+			//            this.grdCanalizacion.DataSource = tblCanalizacion;
+			//            this.grdCanalizacion.DataBind();
+
+			//            break;
+			//    }
+
+			//}catch (Exception ex){
+			//    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.ddlCanalizacion.ClientID + "'); }", true);
+			//}
+		}
+
+		protected void gvServidorPublico_RowDataBound(object sender, GridViewRowEventArgs e){
+			ImageButton imgDelete = null;
+
+			String NombreServidorPublico = "";
+			String sImagesAttributes = "";
+			String sTootlTip = "";
+
+			try
+			{
+
+				// Validación de que sea fila
+				if (e.Row.RowType != DataControlRowType.DataRow) { return; }
+
+				// Obtener imágen
+				imgDelete = (ImageButton)e.Row.FindControl("imgDelete");
+
+				// Datakeys
+				NombreServidorPublico = this.grdCanalizacion.DataKeys[e.Row.RowIndex]["ServidorPublicoNombre"].ToString();
+
+				// Tooltip Edición
+				sTootlTip = "Eliminar [" + NombreServidorPublico + "]";
+				imgDelete.Attributes.Add("onmouseover", "tooltip.show('" + sTootlTip + "', 'Izq');");
+				imgDelete.Attributes.Add("onmouseout", "tooltip.hide();");
+				imgDelete.Attributes.Add("style", "cursor:hand;");
+
+				// Atributos Over
+				sImagesAttributes = " document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png';";
+				e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over_Action'; " + sImagesAttributes);
+
+				// Atributos Out
+				sImagesAttributes = " document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png';";
+				e.Row.Attributes.Add("onmouseout", "this.className='Grid_Row_Action'; " + sImagesAttributes);
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		protected void gvServidorPublico_Sorting(object sender, GridViewSortEventArgs e){
+			try
+			{
+
+				gcCommon.SortGridView(ref this.gvServidorPublico, ref this.hddSort, e.SortExpression);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
 		}
 
 

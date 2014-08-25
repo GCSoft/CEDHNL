@@ -28,7 +28,7 @@
         </asp:Panel>
         <asp:Panel CssClass="IconoPanel" ID="AsignarPanel" runat="server" Visible="true">
             <asp:ImageButton ID="AsignarButton" ImageUrl="~/Include/Image/Icon/AsignarIcon.png" runat="server" OnClick="AsignarButton_Click"></asp:ImageButton><br />
-            Asignar visitador
+            Asignar funcionario
         </asp:Panel>
         <asp:Panel CssClass="IconoPanel" ID="DiligenciaPanel" runat="server" Visible="true">
             <asp:ImageButton ID="DiligenciasButton" ImageUrl="~/Include/Image/Icon/DiligenciaIcon.png" runat="server" OnClick="DiligenciasButton_Click"></asp:ImageButton><br />

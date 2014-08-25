@@ -19,6 +19,12 @@ namespace SIAQ.Entity.Object
         private string _Fecha;
         private DataSet _ResultData;
 
+		private String		_HoraInicio;
+		private String		_HoraFin;
+		private DataTable	_tblCiudadano;
+		private DataTable	_tblServidorPublico;
+
+
         public ENTExpedienteComparecencia()
         {
             _ExpedienteComparecenciaId = 0;
@@ -31,6 +37,11 @@ namespace SIAQ.Entity.Object
             _Detalle = string.Empty;
             _Fecha = string.Empty;
             _ResultData = null;
+
+			_HoraInicio = "";
+			_HoraFin = "";
+			_tblCiudadano = null;
+			_tblServidorPublico = null;
         }
 
         /// <summary>
@@ -122,5 +133,33 @@ namespace SIAQ.Entity.Object
             get { return _ResultData; }
             set { _ResultData = value; }
         }
+
+
+
+		public String HoraInicio
+		{
+			get { return _HoraInicio; }
+			set { _HoraInicio = value; }
+		}
+
+		public String HoraFin
+		{
+			get { return _HoraFin; }
+			set { _HoraFin = value; }
+		}
+
+		public DataTable tblCiudadano
+		{
+			get { return _tblCiudadano; }
+			set { _tblCiudadano = value; }
+		}
+
+		public DataTable tblServidorPublico
+		{
+			get { return _tblServidorPublico; }
+			set { _tblServidorPublico = value; }
+		}
+
+
     }
 }

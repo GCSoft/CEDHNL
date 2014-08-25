@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="QueDiligenciaSolicitud.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Quejas.QueDiligenciaSolicitud" %>
 <%@ Register src="../../../../Include/WebUserControls/wucFixedDateTime.ascx" tagname="wucFixedDateTime" tagprefix="wuc" %>
 <%@ Register src="../../../../Include/WebUserControls/wucCalendar.ascx" tagname="wucCalendar" tagprefix="wuc" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
@@ -205,7 +206,7 @@
         
 		<!-- PopUp -->
 		<asp:Panel id="pnlAction" runat="server" CssClass="ActionBlock">
-			<asp:Panel id="pnlActionContent" runat="server" CssClass="ActionContent" style="top:100px;" Height="660px" Width="800px">
+			<asp:Panel id="pnlActionContent" runat="server" CssClass="ActionContent" style="top:50px;" Height="660px" Width="800px">
 				<asp:Panel ID="pnlActionHeader" runat="server" CssClass="ActionHeader">
 					<table border="0" cellpadding="0" cellspacing="0" style="height:100%; width:100%">
 						<tr>
@@ -284,6 +285,7 @@
 					</div>
 				</asp:Panel>
 			</asp:Panel>
+			<ajaxToolkit:DragPanelExtender id="dragPanelAction" runat="server" TargetControlID="pnlActionContent" DragHandleID="pnlActionHeader"> </ajaxToolkit:DragPanelExtender>
 		</asp:Panel>
 
 	</div>

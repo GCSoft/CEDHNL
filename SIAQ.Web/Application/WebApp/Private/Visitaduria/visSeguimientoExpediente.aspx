@@ -158,7 +158,7 @@
                 <td colspan="5" style="text-align:left;"><wuc:wuccalendar ID="wucFecha" runat="server" /></td>
             </tr>
 			<tr>
-                <td class="Nombre">Tipo de seguimiento</td>
+                <td class="Nombre">Tipo de gestión</td>
                 <td class="Espacio"></td>
                 <td class="Campo" colspan="5"><asp:DropDownList ID="ddlTipoSeguimiento" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
             </tr>

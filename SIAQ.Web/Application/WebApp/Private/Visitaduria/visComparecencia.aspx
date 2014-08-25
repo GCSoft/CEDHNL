@@ -309,8 +309,8 @@
 							<tr style="height:1px;"><td colspan="3"></td></tr>
 							<tr>
 								<td colspan="3" style="text-align:;">
-									<asp:Button ID="btnAgregarFuncionario" runat="server" Text="Agregar Funcionario" CssClass="Button_General" width="125px" /> &nbsp;
-									<asp:Button ID="btnNuevoFuncionario" runat="server" Text="Nuevo Funcionario" CssClass="Button_General" width="125px" />
+									<asp:Button ID="btnAgregarFuncionario" runat="server" Text="Agregar Servidor Público" CssClass="Button_General" width="150px" onclick="btnAgregarFuncionario_Click" /> &nbsp;
+									<asp:Button ID="btnNuevoFuncionario" runat="server" Text="Nuevo Servidor Público" CssClass="Button_General" width="150px" />
 								</td>
 							</tr>
 							<tr style="height:1px;"><td colspan="3"></td></tr>
@@ -318,7 +318,7 @@
 								<td colspan="3">
 									<div style="border:1px solid #4B4878; height:90px; overflow-x:hidden; overflow-y:scroll; text-align:left; Width:100%">
 										<asp:GridView ID="gvServidorPublico" runat="server" AllowPaging="false" AllowSorting="true" AutoGenerateColumns="False" Width="99%"
-											DataKeyNames="ServidorPublicoId,ServidorPublicoNombre" 
+											DataKeyNames="ServidorPublicoId,ServidorPublicoNombreCompleto" 
 											OnRowCommand="gvServidorPublico_RowCommand"
 											OnRowDataBound="gvServidorPublico_RowDataBound"
 											OnSorting="gvServidorPublico_Sorting">
@@ -336,8 +336,13 @@
 												</table>
 											</EmptyDataTemplate>
 											<Columns>
-												<asp:BoundField HeaderText="Dependencia"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="NombreTipoServidorPublico"	SortExpression="NombreTipoServidorPublico"></asp:BoundField>
-												<asp:BoundField HeaderText="Nombre"			ItemStyle-HorizontalAlign="Left"							DataField="ServidorPublicoNombre"		SortExpression="ServidorPublicoNombre"></asp:BoundField>
+												<asp:BoundField HeaderText="Dependencia"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="AutoridadNombre"					SortExpression="AutoridadNombre"></asp:BoundField>
+												<asp:BoundField HeaderText="Nombre"			ItemStyle-HorizontalAlign="Left"							DataField="ServidorPublicoNombreCompleto"	SortExpression="ServidorPublicoNombreCompleto"></asp:BoundField>
+												<asp:TemplateField ItemStyle-HorizontalAlign ="Center" ItemStyle-Width="5%">
+													<ItemTemplate>
+														<asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
+													</ItemTemplate>
+												</asp:TemplateField>
 												<asp:TemplateField ItemStyle-HorizontalAlign ="Center" ItemStyle-Width="5%">
 													<ItemTemplate>
 														<asp:ImageButton ID="imgDelete" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Eliminar" ImageUrl="~/Include/Image/Buttons/Delete.png" runat="server" />
@@ -374,6 +379,7 @@
 					</div>
 				</asp:Panel>
 			</asp:Panel>
+			<ajaxToolkit:DragPanelExtender id="dragPanelAction" runat="server" TargetControlID="pnlActionContent" DragHandleID="pnlActionHeader"> </ajaxToolkit:DragPanelExtender>
 		</asp:Panel>
 
 	</div>

@@ -1,10 +1,10 @@
 ﻿/*---------------------------------------------------------------------------------------------------------------------------------
 ' Clase: BPServidorPublico
 ' Autor: Ruben.Cobos
-' Fecha: 12-Junio-2014
+' Fecha: 25-Agosto-2014
 '
 ' Proposito:
-'          Clase que modela la capa de reglas de negocio de la aplicación con métodos relacionados con el módulo de Archivo
+'          Clase que modela la capa de reglas de negocio de la aplicación con métodos relacionados con los Servidores Públicos
 '----------------------------------------------------------------------------------------------------------------------------------*/
 
 // Referencias

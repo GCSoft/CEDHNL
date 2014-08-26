@@ -1,5 +1,5 @@
 ﻿/*---------------------------------------------------------------------------------------------------------------------------------
-' Nombre:	visAsignarFuncionario
+' Nombre:	visComparecencia
 ' Autor:	Ruben.Cobos
 ' Fecha:	19-Agosto-2014
 '----------------------------------------------------------------------------------------------------------------------------------*/
@@ -89,10 +89,119 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 		}
 
 
+		// Funciones del programador
+
+		String GetStandarTime(String Input){
+			String sTime = "";
+
+			try{
+
+				// Obtener la hora   10:30 a.m.
+				if (Input.Substring(6, 4) == "a.m"){
+
+					sTime = Input.Substring(0, 2);
+				}else {
+					sTime = ( Int32.Parse( Input.Substring(0, 2)) - 12).ToString();
+				}
+
+				// Obtener los minutos
+				sTime = sTime = Input.Substring(2, 3);
+
+				// Hora universal
+				return sTime;
+
+			}catch(Exception ex){
+				throw(ex);
+			}
+		}
+
+
 		// Rutinas del programador
 
-		void InsertComparecencia() { 
+		void DeleteExpedienteComparecencia(Int32 ExpedienteComparecenciaId){
+			ENTResponse oENTResponse = new ENTResponse();
+			ENTExpedienteComparecencia oENTExpedienteComparecencia = new ENTExpedienteComparecencia();
+			BPExpedienteComparecencia oBPExpedienteComparecencia = new BPExpedienteComparecencia();
 
+			try
+			{
+				oENTExpedienteComparecencia.ExpedienteComparecenciaId = ExpedienteComparecenciaId;
+				oENTExpedienteComparecencia.ExpedienteId = Convert.ToInt32(this.hddExpedienteId.Value);
+				oENTExpedienteComparecencia.ModuloId = 3; // Visitadurías
+
+				oENTResponse = oBPExpedienteComparecencia.DeleteExpedienteComparecencia(oENTExpedienteComparecencia);
+
+				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+				if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+
+				SelectExpediente();
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		void InsertComparecencia() { 
+			ENTExpedienteComparecencia oENTExpedienteComparecencia = new ENTExpedienteComparecencia();
+			ENTResponse oENTResponse = new ENTResponse();
+			ENTSession oENTSession;
+
+			BPExpedienteComparecencia oBPExpedienteComparecencia = new BPExpedienteComparecencia();
+
+			DataTable tblCommon = null;
+			DataRow rowCommon;
+
+			try
+			{
+
+				// Obtener Sesion
+				oENTSession = (ENTSession)this.Session["oENTSession"];
+
+				// Validaciones de sesión
+				if (oENTSession.FuncionarioId == 0) { throw new Exception("No cuenta con permisos para crear comparecencias debido a que usted no es un funcionario"); }
+				
+				// Formulario
+				oENTExpedienteComparecencia.ExpedienteId = Int32.Parse(this.hddExpedienteId.Value);
+				oENTExpedienteComparecencia.LugarComparecenciaId = Int32.Parse(this.ddlLugarComparecencia.SelectedItem.Value);
+				oENTExpedienteComparecencia.ModuloId = 3;	// Visitadurías
+				oENTExpedienteComparecencia.TipoComparecenciaId = Int32.Parse(this.ddlTipoComparecencia.SelectedItem.Value);
+				oENTExpedienteComparecencia.FuncionarioAtiende = oENTSession.FuncionarioId;
+				oENTExpedienteComparecencia.FuncionarioEjecuta = Int32.Parse(this.ddlFuncionario.SelectedItem.Value);
+				oENTExpedienteComparecencia.Detalle = this.ckeDetalle.Text.Trim();
+				oENTExpedienteComparecencia.Fecha = this.calFecha.BeginDate;
+				oENTExpedienteComparecencia.HoraInicio = GetStandarTime( this.tmrInicio.DisplayTime );
+				oENTExpedienteComparecencia.HoraFin = GetStandarTime(this.tmrFin.DisplayTime);
+
+				tblCommon = gcParse.GridViewToDataTable(this.gvCiudadano, false);
+				oENTExpedienteComparecencia.tblCiudadano = new DataTable("tblCiudadano");
+				oENTExpedienteComparecencia.tblCiudadano.Columns.Add("CiudadanoId", typeof(Int32));
+				foreach(DataRow oDataRow in tblCommon.Rows){
+
+					rowCommon = oENTExpedienteComparecencia.tblCiudadano.NewRow();
+					rowCommon["CiudadanoId"] = oDataRow["CiudadanoId"];
+					oENTExpedienteComparecencia.tblCiudadano.Rows.Add(rowCommon);
+				}
+
+				tblCommon = gcParse.GridViewToDataTable(this.gvServidorPublico, false);
+				oENTExpedienteComparecencia.tblServidorPublico = new DataTable("tblServidorPublico");
+				oENTExpedienteComparecencia.tblServidorPublico.Columns.Add("ServidorPublicoId", typeof(Int32));
+				foreach(DataRow oDataRow in tblCommon.Rows){
+
+					rowCommon = oENTExpedienteComparecencia.tblServidorPublico.NewRow();
+					rowCommon["ServidorPublicoId"] = oDataRow["ServidorPublicoId"];
+					oENTExpedienteComparecencia.tblServidorPublico.Rows.Add(rowCommon);
+				}
+
+				// Transacción
+				oENTResponse = oBPExpedienteComparecencia.InsertExpedienteComparecencia(oENTExpedienteComparecencia);
+
+				// Errores y Warnings
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+
+			}catch (Exception ex){
+				throw (ex);
+			}
 		}
 
 		void SelectExpediente() {
@@ -157,6 +266,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				// Ciudadanos
 				this.gvCiudadano.DataSource = oENTResponse.dsResponse.Tables[3];
 				this.gvCiudadano.DataBind();
+
+				// Comparecencias
+				this.gvComparecencia.DataSource = oENTResponse.dsResponse.Tables[8];
+				this.gvComparecencia.DataBind();
 
 			}catch (Exception ex){
 				throw (ex);
@@ -242,7 +355,67 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 		}
 
 		void UpdateComparecencia(Int32 ComparecenciaId){
-			
+			ENTExpedienteComparecencia oENTExpedienteComparecencia = new ENTExpedienteComparecencia();
+			ENTResponse oENTResponse = new ENTResponse();
+			ENTSession oENTSession;
+
+			BPExpedienteComparecencia oBPExpedienteComparecencia = new BPExpedienteComparecencia();
+
+			DataTable tblCommon = null;
+			DataRow rowCommon;
+
+			try
+			{
+
+				// Obtener Sesion
+				oENTSession = (ENTSession)this.Session["oENTSession"];
+
+				// Validaciones de sesión
+				if (oENTSession.FuncionarioId == 0) { throw new Exception("No cuenta con permisos para actualizar comparecencias debido a que usted no es un funcionario"); }
+				
+				// Formulario
+				oENTExpedienteComparecencia.ExpedienteComparecenciaId = ComparecenciaId;
+				oENTExpedienteComparecencia.ExpedienteId = Int32.Parse(this.hddExpedienteId.Value);
+				oENTExpedienteComparecencia.LugarComparecenciaId = Int32.Parse(this.ddlLugarComparecencia.SelectedItem.Value);
+				oENTExpedienteComparecencia.ModuloId = 3;	// Visitadurías
+				oENTExpedienteComparecencia.TipoComparecenciaId = Int32.Parse(this.ddlTipoComparecencia.SelectedItem.Value);
+				oENTExpedienteComparecencia.FuncionarioAtiende = oENTSession.FuncionarioId;
+				oENTExpedienteComparecencia.FuncionarioEjecuta = Int32.Parse(this.ddlFuncionario.SelectedItem.Value);
+				oENTExpedienteComparecencia.Detalle = this.ckeDetalle.Text.Trim();
+				oENTExpedienteComparecencia.Fecha = this.calFecha.BeginDate;
+				oENTExpedienteComparecencia.HoraInicio = GetStandarTime( this.tmrInicio.DisplayTime );
+				oENTExpedienteComparecencia.HoraFin = GetStandarTime(this.tmrFin.DisplayTime);
+
+				tblCommon = gcParse.GridViewToDataTable(this.gvCiudadano, false);
+				oENTExpedienteComparecencia.tblCiudadano = new DataTable("tblCiudadano");
+				oENTExpedienteComparecencia.tblCiudadano.Columns.Add("CiudadanoId", typeof(Int32));
+				foreach(DataRow oDataRow in tblCommon.Rows){
+
+					rowCommon = oENTExpedienteComparecencia.tblCiudadano.NewRow();
+					rowCommon["CiudadanoId"] = oDataRow["CiudadanoId"];
+					oENTExpedienteComparecencia.tblCiudadano.Rows.Add(rowCommon);
+				}
+
+				tblCommon = gcParse.GridViewToDataTable(this.gvServidorPublico, false);
+				oENTExpedienteComparecencia.tblServidorPublico = new DataTable("tblServidorPublico");
+				oENTExpedienteComparecencia.tblServidorPublico.Columns.Add("ServidorPublicoId", typeof(Int32));
+				foreach(DataRow oDataRow in tblCommon.Rows){
+
+					rowCommon = oENTExpedienteComparecencia.tblServidorPublico.NewRow();
+					rowCommon["ServidorPublicoId"] = oDataRow["ServidorPublicoId"];
+					oENTExpedienteComparecencia.tblServidorPublico.Rows.Add(rowCommon);
+				}
+
+				// Transacción
+				oENTResponse = oBPExpedienteComparecencia.UpdateExpedienteComparecencia(oENTExpedienteComparecencia);
+
+				// Errores y Warnings
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+
+			}catch (Exception ex){
+				throw (ex);
+			}
 		}
 
 
@@ -349,7 +522,43 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 		}
 
 		void SelectComparecencia_ForEdit(Int32 ComparecenciaId){
+			ENTExpedienteComparecencia oENTExpedienteComparecencia = new ENTExpedienteComparecencia();
+			ENTResponse oENTResponse = new ENTResponse();
 
+			BPExpedienteComparecencia oBPExpedienteComparecencia = new BPExpedienteComparecencia();
+			CheckBox oCheckBox;
+
+			try
+			{
+				
+				// Formulario
+				oENTExpedienteComparecencia.ExpedienteComparecenciaId = ComparecenciaId;
+
+				// Transacción
+				oENTResponse = oBPExpedienteComparecencia.SelectExpedienteComparecenciaByID(oENTExpedienteComparecencia);
+
+				// Errores y Warnings
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+
+				// Vaciar el formulario
+				this.ddlFuncionario.SelectedValue = oENTResponse.dsResponse.Tables[0].Rows[0][""].ToString();
+				this.calFecha.SetDate = oENTResponse.dsResponse.Tables[0].Rows[0][""].ToString();
+				this.tmrInicio.DisplayTime = oENTResponse.dsResponse.Tables[0].Rows[0][""].ToString();
+				this.tmrFin.DisplayTime = oENTResponse.dsResponse.Tables[0].Rows[0][""].ToString();
+				this.ckeDetalle.Text = oENTResponse.dsResponse.Tables[0].Rows[0][""].ToString();
+
+				foreach (GridViewRow gvRow in this.gvCiudadano.Rows) {
+
+					oCheckBox = (CheckBox) this.gvCiudadano.Rows[gvRow.RowIndex].FindControl("chkCiudadano");
+					if (oENTResponse.dsResponse.Tables[1].Select("CiudadanoId=" + this.gvCiudadano.DataKeys[gvRow.RowIndex]["CiudadanoId"].ToString()).Length > 0) { oCheckBox.Checked = true; }
+				}
+
+				this.gvServidorPublico.DataSource = oENTResponse.dsResponse.Tables[2];
+				this.gvServidorPublico.DataBind();
+
+			}catch (Exception ex){
+				throw (ex);
+			}
 		}
 
 		void SetPanel(ComparecenciaActionTypes ComparecenciaActionTypes, Int32 idItem = 0){
@@ -388,7 +597,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
 		void ValidateActionForm(){
 			CheckBox oCheckBox;
+
 			Boolean CheckCiudadano = false;
+			Boolean CheckServidorPublico = false;
 
 			try
 			{
@@ -404,10 +615,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 					oCheckBox = (CheckBox) this.gvCiudadano.Rows[gvRow.RowIndex].FindControl("chkCiudadano");
 					if (oCheckBox.Checked) { CheckCiudadano = true; }
 				}
+				if (this.gvServidorPublico.Rows.Count > 0) { CheckServidorPublico = true; }
 
-				if (!CheckCiudadano) { throw new Exception("Es necesario incluir por lo menos un ciudadano en la comparecencia"); }
-
-				if (this.gvServidorPublico.Rows.Count == 0) { throw new Exception("Debe incluir por lo menos un Servidor Público en la comparecencia"); }
+				if (CheckCiudadano == false && CheckServidorPublico == false ) { throw new Exception("Es necesario incluir por lo menos un Ciudadano o un Servidor Público en la comparecencia"); }
 				if (this.ckeDetalle.Text.Trim() == "") { throw new Exception("El campo [Detalle] es requerido"); }
 
 			}catch (Exception ex){
@@ -622,6 +832,127 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			}
 		}
 
+		protected void gvComparecencia_RowCommand(object sender, GridViewCommandEventArgs e){
+			String CommandName = "";
+			String ComparecenciaId = "";
+
+			Int32 iRow = 0;
+
+			try
+			{
+				
+				// Opción seleccionada
+				CommandName = e.CommandName.ToString();
+
+				// Se dispara el evento RowCommand en el ordenamiento
+				if (CommandName == "Sort") { return; }
+
+				// Fila
+				iRow = Convert.ToInt32(e.CommandArgument.ToString());
+
+				// DataKeys
+				ComparecenciaId = gvComparecencia.DataKeys[iRow]["ComparecenciaId"].ToString();
+
+				// Acción
+				switch (CommandName){
+					case "Editar":
+						SetPanel(ComparecenciaActionTypes.Update, Int32.Parse(ComparecenciaId));
+						ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tooltip.hide();", true);
+						break;
+
+					case "Borrar":
+						DeleteExpedienteComparecencia(Int32.Parse(ComparecenciaId));
+						break;
+				}
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
+		}
+
+		protected void gvComparecencia_RowDataBound(object sender, GridViewRowEventArgs e){
+			ImageButton imgEdit = null;
+			ImageButton imgDelete = null;
+
+			String ModuloId = "";
+			String FechaComparecencia = "";
+
+			String sImagesAttributes = "";
+			String sToolTip = "";
+
+			String sImagesAttributesDelete = "";
+			String sToolTipDelete = "";
+
+			try
+			{
+				
+				// Validación de que sea fila 
+				if (e.Row.RowType != DataControlRowType.DataRow) { return; }
+
+				// Obtener imagenes
+				imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
+				imgDelete = (ImageButton)e.Row.FindControl("imgDelete");
+
+				// Datakeys
+				ModuloId = this.gvComparecencia.DataKeys[e.Row.RowIndex]["ModuloId"].ToString();
+				FechaComparecencia = this.gvComparecencia.DataKeys[e.Row.RowIndex]["FechaComparecenciaCorta"].ToString();
+
+				// Seguridad
+				if( ModuloId != "3"){
+
+					imgEdit.Visible = false;
+					imgDelete.Visible = false;
+
+					// Atributos Over y Out
+					e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; ");
+					e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; ");
+
+				}else{
+
+					// Tooltip Edición
+					sToolTip = "Editar Comparecencia del " + FechaComparecencia;
+					sToolTipDelete = "Eliminar Comparecencia del " + FechaComparecencia;
+
+					imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
+					imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
+					imgEdit.Attributes.Add("style", "cursor:hand;");
+
+					imgDelete.Attributes.Add("onmouseover", "tooltip.show('" + sToolTipDelete + "', 'Izq');");
+					imgDelete.Attributes.Add("onmouseout", "tooltip.hide();");
+					imgDelete.Attributes.Add("style", "cursor:hand;");
+
+					// Atributos Over
+					sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png';";
+					sImagesAttributesDelete = "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png';";
+
+					// Puntero y Sombra en fila Over
+					e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes + sImagesAttributesDelete);
+
+					// Atributos Out
+					sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png';";
+					sImagesAttributesDelete = "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png';";
+
+					// Puntero y Sombra en fila Out
+					e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes + sImagesAttributesDelete);
+
+				}
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		protected void gvComparecencia_Sorting(object sender, GridViewSortEventArgs e){
+			try
+			{
+
+				gcCommon.SortGridView(ref this.gvComparecencia, ref this.hddSort, e.SortExpression);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
+		}
+
 		protected void gvServidorPublico_RowCommand(object sender, GridViewCommandEventArgs e){
 			DataTable tblServidorPublico = null;
 			
@@ -757,6 +1088,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
 					UpdateComparecencia(Int32.Parse(this.hddComparecenciaId.Value));
 				}
+
+				// Actualizar
+				SelectExpediente();
 
 			}catch (Exception ex){
 				this.lblActionMessage.Text = ex.Message;

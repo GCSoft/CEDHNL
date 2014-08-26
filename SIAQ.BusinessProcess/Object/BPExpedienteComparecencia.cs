@@ -1,152 +1,155 @@
-﻿using System;
+﻿/*---------------------------------------------------------------------------------------------------------------------------------
+' Clase: BPExpedienteComparecencia
+' Autor: Ruben.Cobos
+' Fecha: 12-Junio-2014
+'
+' Proposito:
+'          Clase que modela la capa de reglas de negocio de la aplicación con métodos relacionados con las Comparecencias del Expediente
+'----------------------------------------------------------------------------------------------------------------------------------*/
+
+// Referencias
+using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
 using System.Text;
 
+// Referencias manuales
 using SIAQ.DataAccess.Object;
 using SIAQ.Entity.Object;
+using System.Data;
+using System.Web;
 
 namespace SIAQ.BusinessProcess.Object
 {
     public class BPExpedienteComparecencia : BPBase
     {
-        protected int _ErrorId;
-        protected string _ErrorDescription;
-        protected ENTExpedienteComparecencia _ExpedienteComparecenciaEntity;
 
-        /// <summary>
-        ///     Número de error, en caso de que haya ocurrido uno. Cero por default.
-        /// </summary>
-        public int ErrorId
-        {
-            get { return _ErrorId; }
-        }
+		///<remarks>
+		///   <name>BPExpedienteComparecencia.DeleteExpedienteComparecencia</name>
+		///   <create>25-Agosto-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Elimina una Comparecencia</summary>
+		///<param name="oENTExpedienteComparecencia">Entidad de Comparecencia con los parámetros necesarios para realizar la transacción</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse DeleteExpedienteComparecencia(ENTExpedienteComparecencia oENTExpedienteComparecencia){
+			DAExpedienteComparecencia oDAExpedienteComparecencia = new DAExpedienteComparecencia();
+			ENTResponse oENTResponse = new ENTResponse();
 
-        /// <summary>
-        ///     Descripción de error, en caso de que haya ocurrido uno. Empty por default.
-        /// </summary>
-        public string ErrorDescription
-        {
-            get { return _ErrorDescription; }
-        }
+			try
+			{
 
-        /// <summary>
-        ///     Propiedad pública de la entidad de la comparecencia.
-        /// </summary>
-        public ENTExpedienteComparecencia ExpedienteComparecenciaEntity
-        {
-            get { return _ExpedienteComparecenciaEntity; }
-            set { _ExpedienteComparecenciaEntity = value; }
-        }
+				// Transacción en base de datos
+				oENTResponse = oDAExpedienteComparecencia.DeleteExpedienteComparecencia(oENTExpedienteComparecencia, this.sConnectionApplication, 0);
 
-        /// <summary>
-        ///     Constructor de la clase.
-        /// </summary>
-        public BPExpedienteComparecencia()
-        {
-            _ErrorId = 0;
-            _ErrorDescription = string.Empty;
-            _ExpedienteComparecenciaEntity = new ENTExpedienteComparecencia();
-        }
+				// Validación de error en consulta
+				if (oENTResponse.GeneratesException) { return oENTResponse; }
 
-        #region "Methods"
-            public void DeleteExpedienteComparecencia()
-            {
-                DAExpedienteComparecencia ExpedienteComparecenciaAccess = new DAExpedienteComparecencia();
+				// Validación de mensajes de la BD
+				oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+				if (oENTResponse.sMessage != "") { return oENTResponse; }
 
-                ExpedienteComparecenciaAccess.DeleteExpedienteComparecencia(_ExpedienteComparecenciaEntity, sConnectionApplication);
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
 
-                _ErrorId = ExpedienteComparecenciaAccess.ErrorId;
-                _ErrorDescription = ExpedienteComparecenciaAccess.ErrorDescription;
-            }
+			// Resultado
+			return oENTResponse;
+		}
+        
+		///<remarks>
+		///   <name>BPExpedienteComparecencia.InsertExpedienteComparecencia</name>
+		///   <create>25-Agosto-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Inserta una Comparecencia</summary>
+		///<param name="oENTExpedienteComparecencia">Entidad de Comparecencia con los parámetros necesarios para realizar la transacción</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse InsertExpedienteComparecencia(ENTExpedienteComparecencia oENTExpedienteComparecencia){
+			DAExpedienteComparecencia oDAExpedienteComparecencia = new DAExpedienteComparecencia();
+			ENTResponse oENTResponse = new ENTResponse();
 
-            public void SaveExpedienteComparecencia()
-            {
-                DAExpedienteComparecencia ExpedienteComparecenciaAccess = new DAExpedienteComparecencia();
+			try
+			{
 
-                if (!ValidarExpedienteComparecencia())
-                    return;
+				// Transacción en base de datos
+				oENTResponse = oDAExpedienteComparecencia.InsertExpedienteComparecencia(oENTExpedienteComparecencia, this.sConnectionApplication, 0);
 
-                if (_ExpedienteComparecenciaEntity.ExpedienteComparecenciaId == 0)
-                    ExpedienteComparecenciaAccess.InsertExpedienteComparecencia(_ExpedienteComparecenciaEntity, sConnectionApplication);
-                else
-                    ExpedienteComparecenciaAccess.UpdateExpedienteComparecencia(_ExpedienteComparecenciaEntity, sConnectionApplication);
+				// Validación de error en consulta
+				if (oENTResponse.GeneratesException) { return oENTResponse; }
 
-                _ErrorId = ExpedienteComparecenciaAccess.ErrorId;
-                _ErrorDescription = ExpedienteComparecenciaAccess.ErrorDescription;
-            }
+				// Validación de mensajes de la BD
+				oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+				if (oENTResponse.sMessage != "") { return oENTResponse; }
 
-            public void SelectExpedienteComparecencia()
-            {
-                DAExpedienteComparecencia ExpedienteComparecenciaAccess = new DAExpedienteComparecencia();
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
 
-                _ExpedienteComparecenciaEntity.ResultData = ExpedienteComparecenciaAccess.SelectExpedienteComparecencia(_ExpedienteComparecenciaEntity, sConnectionApplication);
+			// Resultado
+			return oENTResponse;
+		}
 
-                _ErrorId = ExpedienteComparecenciaAccess.ErrorId;
-                _ErrorDescription = ExpedienteComparecenciaAccess.ErrorDescription;
-            }
+		///<remarks>
+		///   <name>BPExpedienteComparecencia.SelectExpedienteComparecenciaByID</name>
+		///   <create>25-Agosto-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Consulta una Comparecencia en base a su ID</summary>
+		///<param name="oENTExpedienteComparecencia">Entidad de Comparecencia con los parámetros necesarios para realizar la transacción</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse SelectExpedienteComparecenciaByID(ENTExpedienteComparecencia oENTExpedienteComparecencia){
+			DAExpedienteComparecencia oDAExpedienteComparecencia = new DAExpedienteComparecencia();
+			ENTResponse oENTResponse = new ENTResponse();
 
-            private bool ValidarExpedienteComparecencia()
-            {
-                if (_ExpedienteComparecenciaEntity.ExpedienteId == 0)
-                {
-                    _ErrorId = 50001;
-                    _ErrorDescription = "Se debe proporcionar un número de expediente para la comparecencia";
-                    return false;
-                }
+			try
+			{
 
-                if (_ExpedienteComparecenciaEntity.FuncionarioId == 0)
-                {
-                    _ErrorId = 50002;
-                    _ErrorDescription = "El campo funcionario es obligatorio";
-                    return false;
-                }
+				// Transacción en base de datos
+				oENTResponse = oDAExpedienteComparecencia.SelectExpedienteComparecenciaByID(oENTExpedienteComparecencia, this.sConnectionApplication, 0);
 
-                if (_ExpedienteComparecenciaEntity.CiudadanoId == 0)
-                {
-                   _ErrorId = 50003;
-                   _ErrorDescription = "El campo Ciudadano es obligatorio";
-                   return false;
-                }
+				// Validación de error en consulta
+				if (oENTResponse.GeneratesException) { return oENTResponse; }
 
-                if (_ExpedienteComparecenciaEntity.LugarComparecenciaId == 0)
-                {
-                    _ErrorId = 50003;
-                    _ErrorDescription = "El campo Lugar de comparecencia es obligatorio";
-                    return false;
-                }
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
 
-                if (_ExpedienteComparecenciaEntity.TipoComparecenciaId == 0)
-                {
-                    _ErrorId = 50003;
-                    _ErrorDescription = "El campo Tipo de comparecencia es obligatorio";
-                    return false;
-                }
+			// Resultado
+			return oENTResponse;
+		}
 
-                if (_ExpedienteComparecenciaEntity.Asunto == "")
-                {
-                    _ErrorId = 50005;
-                    _ErrorDescription = "El campo Asunto es obligatorio";
-                    return false;
-                }
+		///<remarks>
+		///   <name>BPExpedienteComparecencia.UpdateExpedienteComparecencia</name>
+		///   <create>25-Agosto-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Actualiza una Comparecencia</summary>
+		///<param name="oENTExpedienteComparecencia">Entidad de Comparecencia con los parámetros necesarios para realizar la transacción</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse UpdateExpedienteComparecencia(ENTExpedienteComparecencia oENTExpedienteComparecencia){
+			DAExpedienteComparecencia oDAExpedienteComparecencia = new DAExpedienteComparecencia();
+			ENTResponse oENTResponse = new ENTResponse();
 
-                if (_ExpedienteComparecenciaEntity.Detalle == "")
-                {
-                   _ErrorId = 50005;
-                   _ErrorDescription = "El campo Detalle es obligatorio";
-                   return false;
-                }
+			try
+			{
 
-                if (_ExpedienteComparecenciaEntity.Fecha == "")
-                {
-                    _ErrorId = 50004;
-                    _ErrorDescription = "El campo Fecha es obligatorio";
-                    return false;
-                }
+				// Transacción en base de datos
+				oENTResponse = oDAExpedienteComparecencia.UpdateExpedienteComparecencia(oENTExpedienteComparecencia, this.sConnectionApplication, 0);
 
-                return true;
-            }
-        #endregion
+				// Validación de error en consulta
+				if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+				// Validación de mensajes de la BD
+				oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+				if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
     }
 }

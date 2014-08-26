@@ -19,6 +19,9 @@ namespace SIAQ.Entity.Object
         private string _Fecha;
         private DataSet _ResultData;
 
+		private Int32		_ModuloId;
+		private Int32		_FuncionarioAtiende;
+		private Int32		_FuncionarioEjecuta;
 		private String		_HoraInicio;
 		private String		_HoraFin;
 		private DataTable	_tblCiudadano;
@@ -135,6 +138,24 @@ namespace SIAQ.Entity.Object
         }
 
 
+
+		public Int32 ModuloId
+		{
+			get { return _ModuloId; }
+			set { _ModuloId = value; }
+		}
+
+		public Int32 FuncionarioAtiende
+		{
+			get { return _FuncionarioAtiende; }
+			set { _FuncionarioAtiende = value; }
+		}
+
+		public Int32 FuncionarioEjecuta
+		{
+			get { return _FuncionarioEjecuta; }
+			set { _FuncionarioEjecuta = value; }
+		}
 
 		public String HoraInicio
 		{

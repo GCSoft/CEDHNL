@@ -1,260 +1,334 @@
-﻿using System;
+﻿/*---------------------------------------------------------------------------------------------------------------------------------
+' Clase: DAExpedienteComparecencia
+' Autor: Ruben.Cobos
+' Fecha: 25-Agosto-2014
+'
+' Proposito:
+'          Clase que modela la capa de capa de acceso a datos de la aplicación con métodos relacionados con las Comparecencias
+'----------------------------------------------------------------------------------------------------------------------------------*/
+
+// Referencias
+using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
 
+// Referencias manuales
+using System.Data;
+using System.Data.SqlClient;
 using SIAQ.Entity.Object;
 
 namespace SIAQ.DataAccess.Object
 {
     public class DAExpedienteComparecencia : DABase
     {
-        protected int _ErrorId;
-        protected string _ErrorDescription;
 
-        /// <summary>
-        ///     Número de error, en caso de que haya ocurrido uno. Cero por default.
-        /// </summary>
-        public int ErrorId
-        {
-            get { return _ErrorId; }
-        }
+		///<remarks>
+		///   <name>DAExpedienteComparecencia.DeleteExpedienteComparecencia</name>
+		///   <create>25-Agosto-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Elimina una Comparecencia</summary>
+		///<param name="oENTExpedienteComparecencia">Entidad de Servidor Publico con los parámetros necesarios realizar la transacción</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse DeleteExpedienteComparecencia(ENTExpedienteComparecencia oENTExpedienteComparecencia, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
 
-        /// <summary>
-        ///     Descripción de error, en caso de que haya ocurrido uno. Empty por default.
-        /// </summary>
-        public string ErrorDescription
-        {
-            get { return _ErrorDescription; }
-        }
+			ENTResponse oENTResponse = new ENTResponse();
 
-        /// <summary>
-        ///     Constructor de la clase.
-        /// </summary>
-        public DAExpedienteComparecencia()
-        {
-            _ErrorId = 0;
-            _ErrorDescription = string.Empty;
-        }
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspExpedienteComparecencia_Del", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
 
-        #region "Method"
-            /// <summary>
-            ///     Elimina un registro de comparecencia del expediente.
-            /// </summary>
-            /// <param name="ExpedienteSeguimientoEntity">Entidad de la comparecencia del expediente.</param>
-            /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
-            public void DeleteExpedienteComparecencia(ENTExpedienteComparecencia ExpedienteComparecenciaEntity, string ConnectionString)
-            {
-                DataSet ResultData = new DataSet();
-                SqlCommand Command;
-                SqlParameter Parameter;
-                SqlConnection Connection = new SqlConnection(ConnectionString);
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
 
-                try
-                {
-                    Command = new SqlCommand("DeleteExpedienteComparecencia", Connection);
-                    Command.CommandType = CommandType.StoredProcedure;
+			// Parametros
+			sqlPar = new SqlParameter("ExpedienteComparecenciaId", SqlDbType.Int);
+			sqlPar.Value = oENTExpedienteComparecencia.ExpedienteComparecenciaId;
+			sqlCom.Parameters.Add(sqlPar);
 
-                    Parameter = new SqlParameter("ExpedienteComparecenciaId", SqlDbType.Int);
-                    Parameter.Value = ExpedienteComparecenciaEntity.ExpedienteComparecenciaId;
-                    Command.Parameters.Add(Parameter);
+			sqlPar = new SqlParameter("ExpedienteId", SqlDbType.Int);
+			sqlPar.Value = oENTExpedienteComparecencia.ExpedienteId;
+			sqlCom.Parameters.Add(sqlPar);
 
-                    Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
-                    Parameter.Value = ExpedienteComparecenciaEntity.ExpedienteId;
-                    Command.Parameters.Add(Parameter);
+			sqlPar = new SqlParameter("ModuloId", SqlDbType.Int);
+			sqlPar.Value = oENTExpedienteComparecencia.ModuloId;
+			sqlCom.Parameters.Add(sqlPar);
 
-                    Connection.Open();
-                    Command.ExecuteNonQuery();
-                    Connection.Close();
-                }
-                catch (SqlException Exception)
-                {
-                    _ErrorId = Exception.Number;
-                    _ErrorDescription = Exception.Message;
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
 
-                    if (Connection.State == ConnectionState.Open)
-                        Connection.Close();
-                }
-            }
+			// Transacción
+			try{
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+			}catch (SqlException sqlEx){
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}finally{
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+			}
 
-            /// <summary>
-            ///     Guarda un registro nuevo de seguimiento del expediente.
-            /// </summary>
-            /// <param name="ExpedienteSeguimientoEntity">Entidad de la comparecencia del expediente.</param>
-            /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
-            public void InsertExpedienteComparecencia(ENTExpedienteComparecencia ExpedienteComparecenciaEntity, string ConnectionString)
-            {
-                DataSet ResultData = new DataSet();
-                SqlCommand Command;
-                SqlParameter Parameter;
-                SqlConnection Connection = new SqlConnection(ConnectionString);
+			// Resultado
+			return oENTResponse;
+		}
+        
+		///<remarks>
+		///   <name>DAExpedienteComparecencia.InsertExpedienteComparecencia</name>
+		///   <create>25-Agosto-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Inserta una Comparecencia</summary>
+		///<param name="oENTExpedienteComparecencia">Entidad de Servidor Publico con los parámetros necesarios realizar la transacción</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse InsertExpedienteComparecencia(ENTExpedienteComparecencia oENTExpedienteComparecencia, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
 
-                try
-                {
-                    Command = new SqlCommand("InsertExpedienteComparecencia", Connection);
-                    Command.CommandType = CommandType.StoredProcedure;
+			ENTResponse oENTResponse = new ENTResponse();
 
-                    Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
-                    Parameter.Value = ExpedienteComparecenciaEntity.ExpedienteId;
-                    Command.Parameters.Add(Parameter);
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspExpedienteComparecencia_Ins", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
 
-                    Parameter = new SqlParameter("FuncionarioId", SqlDbType.Int);
-                    Parameter.Value = ExpedienteComparecenciaEntity.FuncionarioId;
-                    Command.Parameters.Add(Parameter);
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
 
-                    Parameter = new SqlParameter("CiudadanoId", SqlDbType.Int);
-                    Parameter.Value = ExpedienteComparecenciaEntity.CiudadanoId;
-                    Command.Parameters.Add(Parameter);
+			// Parametros
+			sqlPar = new SqlParameter("ExpedienteId", SqlDbType.Int);
+			sqlPar.Value = oENTExpedienteComparecencia.ExpedienteId;
+			sqlCom.Parameters.Add(sqlPar);
 
-                    Parameter = new SqlParameter("LugarComparecenciaId", SqlDbType.Int);
-                    Parameter.Value = ExpedienteComparecenciaEntity.LugarComparecenciaId;
-                    Command.Parameters.Add(Parameter);
+			sqlPar = new SqlParameter("LugarComparecenciaId", SqlDbType.Int);
+			sqlPar.Value = oENTExpedienteComparecencia.LugarComparecenciaId;
+			sqlCom.Parameters.Add(sqlPar);
 
-                    Parameter = new SqlParameter("TipoComparecenciaId", SqlDbType.Int);
-                    Parameter.Value = ExpedienteComparecenciaEntity.TipoComparecenciaId;
-                    Command.Parameters.Add(Parameter);
+			sqlPar = new SqlParameter("ModuloId", SqlDbType.Int);
+			sqlPar.Value = oENTExpedienteComparecencia.ModuloId;
+			sqlCom.Parameters.Add(sqlPar);
 
-                    Parameter = new SqlParameter("Asunto", SqlDbType.VarChar);
-                    Parameter.Value = ExpedienteComparecenciaEntity.Asunto;
-                    Command.Parameters.Add(Parameter);
+			sqlPar = new SqlParameter("TipoComparecenciaId", SqlDbType.Int);
+			sqlPar.Value = oENTExpedienteComparecencia.TipoComparecenciaId;
+			sqlCom.Parameters.Add(sqlPar);
 
-                    Parameter = new SqlParameter("Detalle", SqlDbType.VarChar);
-                    Parameter.Value = ExpedienteComparecenciaEntity.Detalle;
-                    Command.Parameters.Add(Parameter);
+			sqlPar = new SqlParameter("FuncionarioAtiende", SqlDbType.Int);
+			sqlPar.Value = oENTExpedienteComparecencia.FuncionarioAtiende;
+			sqlCom.Parameters.Add(sqlPar);
 
-                    Parameter = new SqlParameter("Fecha", SqlDbType.VarChar);
-                    Parameter.Value = ExpedienteComparecenciaEntity.Fecha;
-                    Command.Parameters.Add(Parameter);
+			sqlPar = new SqlParameter("FuncionarioEjecuta", SqlDbType.Int);
+			sqlPar.Value = oENTExpedienteComparecencia.FuncionarioEjecuta;
+			sqlCom.Parameters.Add(sqlPar);
 
-                    Connection.Open();
-                    Command.ExecuteNonQuery();
-                    Connection.Close();
-                }
-                catch (SqlException Exception)
-                {
-                    _ErrorId = Exception.Number;
-                    _ErrorDescription = Exception.Message;
+			sqlPar = new SqlParameter("Detalle", SqlDbType.VarChar);
+			sqlPar.Value = oENTExpedienteComparecencia.Detalle;
+			sqlCom.Parameters.Add(sqlPar);
 
-                    if (Connection.State == ConnectionState.Open)
-                        Connection.Close();
-                }
-            }
+			sqlPar = new SqlParameter("Fechacomparecencia", SqlDbType.DateTime);
+			sqlPar.Value = oENTExpedienteComparecencia.Fecha;
+			sqlCom.Parameters.Add(sqlPar);
 
-            /// <summary>
-            ///     Realiza una búsqueda de las comparecencias de un expediente.
-            /// </summary>
-            /// <param name="ExpedienteSeguimientoEntity">Entidad de la comparecencia del expediente.</param>
-            /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
-            /// <returns>Resultado de la búsqueda.</returns>
-            public DataSet SelectExpedienteComparecencia(ENTExpedienteComparecencia ExpedienteComparecenciaEntity, string ConnectionString)
-            {
-                DataSet ResultData = new DataSet();
-                SqlConnection Connection = new SqlConnection(ConnectionString);
-                SqlCommand Command;
-                SqlParameter Parameter;
-                SqlDataAdapter DataAdapter;
+			sqlPar = new SqlParameter("HoraInicio", SqlDbType.Time);
+			sqlPar.Value = oENTExpedienteComparecencia.HoraInicio;
+			sqlCom.Parameters.Add(sqlPar);
 
-                try
-                {
-                    Command = new SqlCommand("SelectExpedienteComparecencia", Connection);
-                    Command.CommandType = CommandType.StoredProcedure;
+			sqlPar = new SqlParameter("HoraFin", SqlDbType.Time);
+			sqlPar.Value = oENTExpedienteComparecencia.HoraFin;
+			sqlCom.Parameters.Add(sqlPar);
 
-                    Parameter = new SqlParameter("ExpedienteComparecenciaId", SqlDbType.Int);
-                    Parameter.Value = ExpedienteComparecenciaEntity.ExpedienteComparecenciaId;
-                    Command.Parameters.Add(Parameter);
+			sqlPar = new SqlParameter("tblCiudadano", SqlDbType.Structured);
+			sqlPar.Value = oENTExpedienteComparecencia.tblCiudadano;
+			sqlCom.Parameters.Add(sqlPar);
 
-                    Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
-                    Parameter.Value = ExpedienteComparecenciaEntity.ExpedienteId;
-                    Command.Parameters.Add(Parameter);
+			sqlPar = new SqlParameter("tblServidorPublico", SqlDbType.Structured);
+			sqlPar.Value = oENTExpedienteComparecencia.tblServidorPublico;
+			sqlCom.Parameters.Add(sqlPar);
 
-                    DataAdapter = new SqlDataAdapter(Command);
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
 
-                    Connection.Open();
-                    DataAdapter.Fill(ResultData);
-                    Connection.Close();
+			// Transacción
+			try{
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+			}catch (SqlException sqlEx){
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}finally{
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+			}
 
-                    return ResultData;
-                }
-                catch (SqlException Exception)
-                {
-                    _ErrorId = Exception.Number;
-                    _ErrorDescription = Exception.Message;
+			// Resultado
+			return oENTResponse;
+		}
 
-                    if (Connection.State == ConnectionState.Open)
-                        Connection.Close();
+		///<remarks>
+		///   <name>DAExpedienteComparecencia.SelectExpedienteComparecenciaByID</name>
+		///   <create>25-Agosto-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Consulta una Comparecencia en base a su ID</summary>
+		///<param name="oENTExpedienteComparecencia">Entidad de Servidor Publico con los parámetros necesarios realizar la transacción</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse SelectExpedienteComparecenciaByID(ENTExpedienteComparecencia oENTExpedienteComparecencia, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
 
-                    return ResultData;
-                }
-            }
+			ENTResponse oENTResponse = new ENTResponse();
 
-            /// <summary>
-            ///     Actualiza un registro de un seguimiento del expediente.
-            /// </summary>
-            /// <param name="ExpedienteSeguimientoEntity">Entidad del seguimiento del expediente.</param>
-            /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
-            public void UpdateExpedienteComparecencia(ENTExpedienteComparecencia ExpedienteComparecenciaEntity, string ConnectionString)
-            {
-                DataSet ResultData = new DataSet();
-                SqlCommand Command;
-                SqlParameter Parameter;
-                SqlConnection Connection = new SqlConnection(ConnectionString);
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspExpedienteComparecencia_Sel_ByID", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
 
-                try
-                {
-                    Command = new SqlCommand("UpdateExpedienteComparecencia", Connection);
-                    Command.CommandType = CommandType.StoredProcedure;
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
 
-                    Parameter = new SqlParameter("ExpedienteComparecenciaId", SqlDbType.Int);
-                    Parameter.Value = ExpedienteComparecenciaEntity.ExpedienteComparecenciaId;
-                    Command.Parameters.Add(Parameter);
+			// Parametros
+			sqlPar = new SqlParameter("ExpedienteComparecenciaId", SqlDbType.Int);
+			sqlPar.Value = oENTExpedienteComparecencia.ExpedienteComparecenciaId;
+			sqlCom.Parameters.Add(sqlPar);
 
-                    Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
-                    Parameter.Value = ExpedienteComparecenciaEntity.ExpedienteId;
-                    Command.Parameters.Add(Parameter);
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
 
-                    Parameter = new SqlParameter("FuncionarioId", SqlDbType.Int);
-                    Parameter.Value = ExpedienteComparecenciaEntity.FuncionarioId;
-                    Command.Parameters.Add(Parameter);
+			// Transacción
+			try{
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+			}catch (SqlException sqlEx){
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}finally{
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+			}
 
-                    Parameter = new SqlParameter("CiudadanoId", SqlDbType.Int);
-                    Parameter.Value = ExpedienteComparecenciaEntity.CiudadanoId;
-                    Command.Parameters.Add(Parameter);
+			// Resultado
+			return oENTResponse;
+		}
 
-                    Parameter = new SqlParameter("LugarComparecenciaId", SqlDbType.Int);
-                    Parameter.Value = ExpedienteComparecenciaEntity.LugarComparecenciaId;
-                    Command.Parameters.Add(Parameter);
+		///<remarks>
+		///   <name>DAExpedienteComparecencia.UpdateExpedienteComparecencia</name>
+		///   <create>25-Agosto-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Actualiza una Comparecencia</summary>
+		///<param name="oENTExpedienteComparecencia">Entidad de Servidor Publico con los parámetros necesarios realizar la transacción</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse UpdateExpedienteComparecencia(ENTExpedienteComparecencia oENTExpedienteComparecencia, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
 
-                    Parameter = new SqlParameter("TipoComparecenciaId", SqlDbType.Int);
-                    Parameter.Value = ExpedienteComparecenciaEntity.TipoComparecenciaId;
-                    Command.Parameters.Add(Parameter);
+			ENTResponse oENTResponse = new ENTResponse();
 
-                    Parameter = new SqlParameter("Asunto", SqlDbType.VarChar);
-                    Parameter.Value = ExpedienteComparecenciaEntity.Asunto;
-                    Command.Parameters.Add(Parameter);
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspExpedienteComparecencia_Upd", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
 
-                    Parameter = new SqlParameter("Detalle", SqlDbType.VarChar);
-                    Parameter.Value = ExpedienteComparecenciaEntity.Detalle;
-                    Command.Parameters.Add(Parameter);
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
 
-                    Parameter = new SqlParameter("Fecha", SqlDbType.VarChar);
-                    Parameter.Value = ExpedienteComparecenciaEntity.Fecha;
-                    Command.Parameters.Add(Parameter);
+			// Parametros
+			sqlPar = new SqlParameter("ExpedienteComparecenciaId", SqlDbType.Int);
+			sqlPar.Value = oENTExpedienteComparecencia.ExpedienteComparecenciaId;
+			sqlCom.Parameters.Add(sqlPar);
 
-                    Connection.Open();
-                    Command.ExecuteNonQuery();
-                    Connection.Close();
-                }
-                catch (SqlException Exception)
-                {
-                    _ErrorId = Exception.Number;
-                    _ErrorDescription = Exception.Message;
+			sqlPar = new SqlParameter("ExpedienteId", SqlDbType.Int);
+			sqlPar.Value = oENTExpedienteComparecencia.ExpedienteId;
+			sqlCom.Parameters.Add(sqlPar);
 
-                    if (Connection.State == ConnectionState.Open)
-                        Connection.Close();
-                }
-            }
-        #endregion
+			sqlPar = new SqlParameter("LugarComparecenciaId", SqlDbType.Int);
+			sqlPar.Value = oENTExpedienteComparecencia.LugarComparecenciaId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("ModuloId", SqlDbType.Int);
+			sqlPar.Value = oENTExpedienteComparecencia.ModuloId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("TipoComparecenciaId", SqlDbType.Int);
+			sqlPar.Value = oENTExpedienteComparecencia.TipoComparecenciaId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("FuncionarioAtiende", SqlDbType.Int);
+			sqlPar.Value = oENTExpedienteComparecencia.FuncionarioAtiende;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("FuncionarioEjecuta", SqlDbType.Int);
+			sqlPar.Value = oENTExpedienteComparecencia.FuncionarioEjecuta;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Detalle", SqlDbType.VarChar);
+			sqlPar.Value = oENTExpedienteComparecencia.Detalle;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Fechacomparecencia", SqlDbType.DateTime);
+			sqlPar.Value = oENTExpedienteComparecencia.Fecha;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("HoraInicio", SqlDbType.Time);
+			sqlPar.Value = oENTExpedienteComparecencia.HoraInicio;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("HoraFin", SqlDbType.Time);
+			sqlPar.Value = oENTExpedienteComparecencia.HoraFin;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("tblCiudadano", SqlDbType.Structured);
+			sqlPar.Value = oENTExpedienteComparecencia.tblCiudadano;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("tblServidorPublico", SqlDbType.Structured);
+			sqlPar.Value = oENTExpedienteComparecencia.tblServidorPublico;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try{
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+			}catch (SqlException sqlEx){
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}finally{
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
     }
 }

@@ -310,7 +310,7 @@
 							<tr>
 								<td colspan="3" style="text-align:;">
 									<asp:Button ID="btnAgregarFuncionario" runat="server" Text="Agregar Servidor Público" CssClass="Button_General" width="150px" onclick="btnAgregarFuncionario_Click" /> &nbsp;
-									<asp:Button ID="btnNuevoFuncionario" runat="server" Text="Nuevo Servidor Público" CssClass="Button_General" width="150px" />
+									<asp:Button ID="btnNuevoFuncionario" runat="server" Text="Nuevo Servidor Público" CssClass="Button_General" width="150px" onclick="btnNuevoFuncionario_Click" />
 								</td>
 							</tr>
 							<tr style="height:1px;"><td colspan="3"></td></tr>
@@ -318,7 +318,7 @@
 								<td colspan="3">
 									<div style="border:1px solid #4B4878; height:90px; overflow-x:hidden; overflow-y:scroll; text-align:left; Width:100%">
 										<asp:GridView ID="gvServidorPublico" runat="server" AllowPaging="false" AllowSorting="true" AutoGenerateColumns="False" Width="99%"
-											DataKeyNames="ServidorPublicoId,ServidorPublicoNombreCompleto" 
+											DataKeyNames="ServidorPublicoId,NombreCompleto" 
 											OnRowCommand="gvServidorPublico_RowCommand"
 											OnRowDataBound="gvServidorPublico_RowDataBound"
 											OnSorting="gvServidorPublico_Sorting">
@@ -327,7 +327,7 @@
 											<EmptyDataTemplate>
 												<table border="1px" width="100%" cellpadding="0px" cellspacing="0px">
 													<tr class="Grid_Header_Action">
-														<td style="width:200px;">Dependencia</td>
+														<td style="width:300px;">Dependencia</td>
 														<td>Nombre</td>
 													</tr>
 													<tr class="Grid_Row">
@@ -336,8 +336,8 @@
 												</table>
 											</EmptyDataTemplate>
 											<Columns>
-												<asp:BoundField HeaderText="Dependencia"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="AutoridadNombre"					SortExpression="AutoridadNombre"></asp:BoundField>
-												<asp:BoundField HeaderText="Nombre"			ItemStyle-HorizontalAlign="Left"							DataField="ServidorPublicoNombreCompleto"	SortExpression="ServidorPublicoNombreCompleto"></asp:BoundField>
+												<asp:BoundField HeaderText="Dependencia"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="300px"	DataField="AutoridadNombre"	SortExpression="AutoridadNombre"></asp:BoundField>
+												<asp:BoundField HeaderText="Nombre"			ItemStyle-HorizontalAlign="Left"							DataField="NombreCompleto"	SortExpression="NombreCompleto"></asp:BoundField>
 												<asp:TemplateField ItemStyle-HorizontalAlign ="Center" ItemStyle-Width="5%">
 													<ItemTemplate>
 														<asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />

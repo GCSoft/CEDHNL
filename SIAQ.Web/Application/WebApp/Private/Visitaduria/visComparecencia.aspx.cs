@@ -38,8 +38,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 		[System.Web.Script.Services.ScriptMethod()]
 		[System.Web.Services.WebMethod]
 		public static List<string> GetServiceList(string prefixText, int count){
-			BPCiudadano oBPCiudadano = new BPCiudadano();
-			ENTCiudadano oENTCiudadano = new ENTCiudadano();
+			BPServidorPublico oBPServidorPublico = new BPServidorPublico();
+			ENTServidorPublico oENTServidorPublico = new ENTServidorPublico();
 			ENTResponse oENTResponse = new ENTResponse();
 
 			List<String> ServiceResponse = new List<String>();
@@ -49,18 +49,17 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			{
 
 				// Formulario
-				oENTCiudadano.Nombre = prefixText;
+				oENTServidorPublico.Nombre = prefixText;
 
 				// Transacción
-				oENTResponse = oBPCiudadano.searchCiudadano(oENTCiudadano);
+				oENTResponse = oBPServidorPublico.SelectServidorPublico_ASService(oENTServidorPublico);
 
 				// Validaciones
 				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
-				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
 
 				// Configuración de arreglo de respuesta
-				foreach (DataRow rowCiudadano in oENTResponse.dsResponse.Tables[1].Rows){
-					Item = AjaxControlToolkit.AutoCompleteExtender.CreateAutoCompleteItem(rowCiudadano["NombreCiudadano"].ToString(), rowCiudadano["CiudadanoId"].ToString());
+				foreach (DataRow rowServidorPublico in oENTResponse.dsResponse.Tables[0].Rows){
+					Item = AjaxControlToolkit.AutoCompleteExtender.CreateAutoCompleteItem(rowServidorPublico["NombreCompleto"].ToString(), rowServidorPublico["ServidorPublicoId"].ToString());
 					ServiceResponse.Add(Item);
 				}
 
@@ -68,7 +67,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				// Do Nothing
 			}
 
-			// Regresar listado de Ciudadanos
+			// Regresar listado de ServidorPublicos
 			return ServiceResponse;
 		}
 
@@ -283,6 +282,66 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				this.btnAction.Text = "";
 				this.lblActionMessage.Text = "";
 				this.hddComparecenciaId.Value = "";
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		void InsertServidorPublico_Local(String ServidorPublicoId, String Foco){
+			BPServidorPublico BPServidorPublico = new BPServidorPublico();
+			ENTResponse oENTResponse = new ENTResponse();
+			ENTServidorPublico oENTServidorPublico = new ENTServidorPublico();
+
+			DataTable tblServidorPublico = null;
+			DataRow rowServidorPublico = null;
+
+			try
+			{
+
+				// Formulario
+				oENTServidorPublico.ServidorPublicoId = Int32.Parse(ServidorPublicoId);
+
+				// Transacción
+				oENTResponse = BPServidorPublico.SelectServidorPublicoByID(oENTServidorPublico);
+
+				// Validación
+				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+				if (oENTResponse.sMessage != "") {
+					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(oENTResponse.sMessage) + "'); focusControl('" + this.txtServidorPublico.ClientID + "');", true);
+					return;
+				}
+
+				// Obtener el DataTable del grid
+				tblServidorPublico = gcParse.GridViewToDataTable(this.gvServidorPublico, false);
+
+				// Validación de que no se haya agregado el ServidorPublico
+				if (tblServidorPublico.Select("ServidorPublicoId='" + oENTResponse.dsResponse.Tables[1].Rows[0]["ServidorPublicoId"].ToString() + "'").Length > 0) {
+					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('Ya ha seleccionado éste ServidorPublico'); function pageLoad(){ focusControl('" + this.txtServidorPublico.ClientID + "'); }", true);
+					return;
+				}
+
+				// Nuevo Item
+				rowServidorPublico = tblServidorPublico.NewRow();
+				rowServidorPublico["ServidorPublicoId"] = oENTResponse.dsResponse.Tables[1].Rows[0]["ServidorPublicoId"];
+				rowServidorPublico["NombreCompleto"] = oENTResponse.dsResponse.Tables[1].Rows[0]["NombreCompleto"];
+
+				rowServidorPublico["AutoridadNombre"] = oENTResponse.dsResponse.Tables[1].Rows[0]["AutoridadNivel1Nombre"];
+				if ( oENTResponse.dsResponse.Tables[1].Rows[0]["AutoridadNivel2Id"].ToString() != "0"  ) { rowServidorPublico["AutoridadNombre"] = oENTResponse.dsResponse.Tables[1].Rows[0]["AutoridadNivel2Nombre"]; }
+				if ( oENTResponse.dsResponse.Tables[1].Rows[0]["AutoridadNivel3Id"].ToString() != "0"  ) { rowServidorPublico["AutoridadNombre"] = oENTResponse.dsResponse.Tables[1].Rows[0]["AutoridadNivel3Nombre"]; }
+
+				tblServidorPublico.Rows.Add(rowServidorPublico);
+
+				// Refrescar el Grid
+				this.gvServidorPublico.DataSource = tblServidorPublico;
+				this.gvServidorPublico.DataBind();
+
+				// Estado del atosuggest
+				this.txtServidorPublico.Text = "";
+				this.hddServidorPublicoId.Value = "";
+
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + Foco + "');", true);
 
 			}catch (Exception ex){
 				throw (ex);
@@ -640,7 +699,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				imgDelete = (ImageButton)e.Row.FindControl("imgDelete");
 
 				// Datakeys
-				NombreServidorPublico = this.grdCanalizacion.DataKeys[e.Row.RowIndex]["ServidorPublicoNombreCompleto"].ToString();
+				NombreServidorPublico = this.gvServidorPublico.DataKeys[e.Row.RowIndex]["NombreCompleto"].ToString();
 
 				// Tooltip Edición
 				sTootlTip = "Editar [" + NombreServidorPublico + "]";
@@ -706,6 +765,26 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 		}
 
 		protected void btnAgregarFuncionario_Click(object sender, EventArgs e){
+			String ServidorPublicoId;
+
+			try
+			{
+
+				// Obtener información del ServidorPublico del Autosuggest
+				ServidorPublicoId = this.Request.Form[this.hddServidorPublicoId.UniqueID];
+
+				// Validaciones
+				if (ServidorPublicoId == "" || ServidorPublicoId == "0") { throw(new Exception("Es necesario seleccionar un Servidor Publico válido")); }
+
+				// Transacción
+				InsertServidorPublico_Local(ServidorPublicoId, this.txtServidorPublico.ClientID);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.txtServidorPublico.ClientID + "');", true);
+			}
+		}
+
+		protected void btnNuevoFuncionario_Click(object sender, EventArgs e){
 			String sKey = "";
 
 			try

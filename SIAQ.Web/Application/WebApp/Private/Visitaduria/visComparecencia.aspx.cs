@@ -97,15 +97,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			try{
 
 				// Obtener la hora   10:30 a.m.
-				if (Input.Substring(6, 4) == "a.m"){
+				if (Input.Substring(6, 4) == "a.m."){
 
 					sTime = Input.Substring(0, 2);
 				}else {
-					sTime = ( Int32.Parse( Input.Substring(0, 2)) - 12).ToString();
+					sTime = ( Int32.Parse( Input.Substring(0, 2)) + 12).ToString();
 				}
 
 				// Obtener los minutos
-				sTime = sTime = Input.Substring(2, 3);
+				sTime = sTime + Input.Substring(2, 3);
 
 				// Hora universal
 				return sTime;
@@ -151,6 +151,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			DataTable tblCommon = null;
 			DataRow rowCommon;
 
+			CheckBox oCheckBox;
+
 			try
 			{
 
@@ -172,14 +174,18 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				oENTExpedienteComparecencia.HoraInicio = GetStandarTime( this.tmrInicio.DisplayTime );
 				oENTExpedienteComparecencia.HoraFin = GetStandarTime(this.tmrFin.DisplayTime);
 
-				tblCommon = gcParse.GridViewToDataTable(this.gvCiudadano, false);
 				oENTExpedienteComparecencia.tblCiudadano = new DataTable("tblCiudadano");
 				oENTExpedienteComparecencia.tblCiudadano.Columns.Add("CiudadanoId", typeof(Int32));
-				foreach(DataRow oDataRow in tblCommon.Rows){
+				foreach (GridViewRow gvRow in this.gvCiudadano.Rows) {
 
-					rowCommon = oENTExpedienteComparecencia.tblCiudadano.NewRow();
-					rowCommon["CiudadanoId"] = oDataRow["CiudadanoId"];
-					oENTExpedienteComparecencia.tblCiudadano.Rows.Add(rowCommon);
+					oCheckBox = (CheckBox) this.gvCiudadano.Rows[gvRow.RowIndex].FindControl("chkCiudadano");
+					if (oCheckBox.Checked) {
+
+						rowCommon = oENTExpedienteComparecencia.tblCiudadano.NewRow();
+						rowCommon["CiudadanoId"] = this.gvCiudadano.DataKeys[gvRow.RowIndex]["CiudadanoId"].ToString();
+						oENTExpedienteComparecencia.tblCiudadano.Rows.Add(rowCommon);
+
+					}
 				}
 
 				tblCommon = gcParse.GridViewToDataTable(this.gvServidorPublico, false);
@@ -268,7 +274,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				this.gvCiudadano.DataBind();
 
 				// Comparecencias
-				this.gvComparecencia.DataSource = oENTResponse.dsResponse.Tables[8];
+				this.gvComparecencia.DataSource = oENTResponse.dsResponse.Tables[9];
 				this.gvComparecencia.DataBind();
 
 			}catch (Exception ex){
@@ -364,6 +370,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			DataTable tblCommon = null;
 			DataRow rowCommon;
 
+			CheckBox oCheckBox;
+
 			try
 			{
 
@@ -386,14 +394,18 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				oENTExpedienteComparecencia.HoraInicio = GetStandarTime( this.tmrInicio.DisplayTime );
 				oENTExpedienteComparecencia.HoraFin = GetStandarTime(this.tmrFin.DisplayTime);
 
-				tblCommon = gcParse.GridViewToDataTable(this.gvCiudadano, false);
 				oENTExpedienteComparecencia.tblCiudadano = new DataTable("tblCiudadano");
 				oENTExpedienteComparecencia.tblCiudadano.Columns.Add("CiudadanoId", typeof(Int32));
-				foreach(DataRow oDataRow in tblCommon.Rows){
+				foreach (GridViewRow gvRow in this.gvCiudadano.Rows) {
 
-					rowCommon = oENTExpedienteComparecencia.tblCiudadano.NewRow();
-					rowCommon["CiudadanoId"] = oDataRow["CiudadanoId"];
-					oENTExpedienteComparecencia.tblCiudadano.Rows.Add(rowCommon);
+					oCheckBox = (CheckBox) this.gvCiudadano.Rows[gvRow.RowIndex].FindControl("chkCiudadano");
+					if (oCheckBox.Checked) {
+
+						rowCommon = oENTExpedienteComparecencia.tblCiudadano.NewRow();
+						rowCommon["CiudadanoId"] = this.gvCiudadano.DataKeys[gvRow.RowIndex]["CiudadanoId"].ToString();
+						oENTExpedienteComparecencia.tblCiudadano.Rows.Add(rowCommon);
+
+					}
 				}
 
 				tblCommon = gcParse.GridViewToDataTable(this.gvServidorPublico, false);
@@ -541,11 +553,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
 
 				// Vaciar el formulario
-				this.ddlFuncionario.SelectedValue = oENTResponse.dsResponse.Tables[0].Rows[0][""].ToString();
-				this.calFecha.SetDate = oENTResponse.dsResponse.Tables[0].Rows[0][""].ToString();
-				this.tmrInicio.DisplayTime = oENTResponse.dsResponse.Tables[0].Rows[0][""].ToString();
-				this.tmrFin.DisplayTime = oENTResponse.dsResponse.Tables[0].Rows[0][""].ToString();
-				this.ckeDetalle.Text = oENTResponse.dsResponse.Tables[0].Rows[0][""].ToString();
+				this.ddlFuncionario.SelectedValue = oENTResponse.dsResponse.Tables[0].Rows[0]["FuncionarioEjecutaId"].ToString();
+				this.ddlTipoComparecencia.SelectedValue = oENTResponse.dsResponse.Tables[0].Rows[0]["TipoComparecenciaId"].ToString();
+				this.ddlLugarComparecencia.SelectedValue = oENTResponse.dsResponse.Tables[0].Rows[0]["LugarComparecenciaId"].ToString();
+				this.calFecha.SetDate = oENTResponse.dsResponse.Tables[0].Rows[0]["FechaComparecenciaCorta"].ToString();
+				this.tmrInicio.DisplayTime = oENTResponse.dsResponse.Tables[0].Rows[0]["HoraInicio"].ToString();
+				this.tmrFin.DisplayTime = oENTResponse.dsResponse.Tables[0].Rows[0]["HoraFin"].ToString();
+				this.ckeDetalle.Text = oENTResponse.dsResponse.Tables[0].Rows[0]["Detalle"].ToString();
 
 				foreach (GridViewRow gvRow in this.gvCiudadano.Rows) {
 
@@ -658,12 +672,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				
 
 				// Vaciar formulario
-				this.ddlFuncionario.SelectedItem.Value = oENTExpedienteComparecencia.FuncionarioId.ToString();
+				this.ddlFuncionario.SelectedValue = oENTExpedienteComparecencia.FuncionarioId.ToString();
 				this.calFecha.SetDate = oENTExpedienteComparecencia.Fecha;
 				this.tmrInicio.DisplayTime = oENTExpedienteComparecencia.HoraInicio;
 				this.tmrInicio.DisplayTime = oENTExpedienteComparecencia.HoraFin;
-				this.ddlTipoComparecencia.SelectedItem.Value = oENTExpedienteComparecencia.TipoComparecenciaId.ToString();
-				this.ddlLugarComparecencia.SelectedItem.Value = oENTExpedienteComparecencia.LugarComparecenciaId.ToString();
+				this.ddlTipoComparecencia.SelectedValue = oENTExpedienteComparecencia.TipoComparecenciaId.ToString();
+				this.ddlLugarComparecencia.SelectedValue = oENTExpedienteComparecencia.LugarComparecenciaId.ToString();
 
 				foreach (GridViewRow gvRow in this.gvCiudadano.Rows) {
 
@@ -851,7 +865,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				iRow = Convert.ToInt32(e.CommandArgument.ToString());
 
 				// DataKeys
-				ComparecenciaId = gvComparecencia.DataKeys[iRow]["ComparecenciaId"].ToString();
+				ComparecenciaId = gvComparecencia.DataKeys[iRow]["ExpedienteComparecenciaId"].ToString();
 
 				// Acción
 				switch (CommandName){
@@ -1088,6 +1102,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
 					UpdateComparecencia(Int32.Parse(this.hddComparecenciaId.Value));
 				}
+
+				// Limpiar el panel
+				ClearActionPanel();
 
 				// Actualizar
 				SelectExpediente();

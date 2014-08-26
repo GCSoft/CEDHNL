@@ -561,6 +561,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				if (this.ddlOcupacion.SelectedValue == "0"){ throw(new Exception("El campo [Ocupación] es requerido")); }
 				if (this.ddlEstadoCivil.SelectedValue == "0"){ throw(new Exception("El campo [Estado Civil] es requerido")); }
 				if (String.IsNullOrEmpty(this.txtTelefono.Text)) { throw (new Exception("El campo [Teléfono] es requerido")); }
+
+				if (this.ddlAutoridadNivel1.SelectedValue == "0") { throw (new Exception("Es necesario seleccionar por lo menos el primer nivel de la Autoridad asociada al Servidor Público")); }
 				
 			}catch(Exception ex){ 
 				throw(ex);

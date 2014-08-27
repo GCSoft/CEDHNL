@@ -539,6 +539,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				if (this.ddlEstado.SelectedValue == "0") { throw (new Exception("El campo [Estado] es requerido")); }
 				if (this.ddlCiudad.SelectedValue == "0") { throw (new Exception("El campo [Ciudad] es requerido")); }
 				if (this.ddlColonia.SelectedValue == "0") { throw (new Exception("El campo [Colonia] es requerido")); }
+				if (String.IsNullOrEmpty(this.txtCalle.Text)) { throw (new Exception("El campo [Calle y Número] es requerido")); }
 
 				if( this.txtEdad.Text.Trim() == "" ){
 
@@ -669,9 +670,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 						rowServidorPublico = oENTExpedienteComparecencia.tblServidorPublico.NewRow();
 						rowServidorPublico["ServidorPublicoId"] = this.hddServidorPublicoId.Value;
 						rowServidorPublico["NombreCompleto"] = this.txtNombre.Text + " " + this.txtApellidoPaterno.Text + " " + this.txtApellidoMaterno.Text;
-						rowServidorPublico["AutoridadNombre"] = this.ddlAutoridadNivel1.SelectedItem.Text;
-						if (this.ddlAutoridadNivel2.SelectedIndex > 0) { rowServidorPublico["AutoridadNombre"] = this.ddlAutoridadNivel2.SelectedItem.Text; }
-						if (this.ddlAutoridadNivel3.SelectedIndex > 0) { rowServidorPublico["AutoridadNombre"] = this.ddlAutoridadNivel3.SelectedItem.Text; }
+						rowServidorPublico["AutoridadAgrupada"] = "(N1) - " + this.ddlAutoridadNivel1.SelectedItem.Text;
+						if (this.ddlAutoridadNivel2.SelectedIndex > 0) { rowServidorPublico["AutoridadAgrupada"] = rowServidorPublico["AutoridadAgrupada"].ToString() + "<br />(N2) - " + this.ddlAutoridadNivel2.SelectedItem.Text; }
+						if (this.ddlAutoridadNivel3.SelectedIndex > 0) { rowServidorPublico["AutoridadAgrupada"] = rowServidorPublico["AutoridadAgrupada"].ToString() + "<br />(N3) - " + this.ddlAutoridadNivel3.SelectedItem.Text; }
 						oENTExpedienteComparecencia.tblServidorPublico.Rows.Add(rowServidorPublico);
 
 						// Actualizar la sesión

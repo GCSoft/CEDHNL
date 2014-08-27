@@ -400,6 +400,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         protected global::System.Web.UI.WebControls.TextBox txtServidorPublico;
         
         /// <summary>
+        /// btnAgregarFuncionario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAgregarFuncionario;
+        
+        /// <summary>
         /// hddServidorPublicoId control.
         /// </summary>
         /// <remarks>
@@ -416,15 +425,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.AutoCompleteExtender autoCompleteExtender;
-        
-        /// <summary>
-        /// btnAgregarFuncionario control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAgregarFuncionario;
         
         /// <summary>
         /// btnNuevoFuncionario control.

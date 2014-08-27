@@ -511,9 +511,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				rowServidorPublico["ServidorPublicoId"] = oENTResponse.dsResponse.Tables[1].Rows[0]["ServidorPublicoId"];
 				rowServidorPublico["NombreCompleto"] = oENTResponse.dsResponse.Tables[1].Rows[0]["NombreCompleto"];
 
-				rowServidorPublico["AutoridadNombre"] = oENTResponse.dsResponse.Tables[1].Rows[0]["AutoridadNivel1Nombre"];
-				if ( oENTResponse.dsResponse.Tables[1].Rows[0]["AutoridadNivel2Id"].ToString() != "0"  ) { rowServidorPublico["AutoridadNombre"] = oENTResponse.dsResponse.Tables[1].Rows[0]["AutoridadNivel2Nombre"]; }
-				if ( oENTResponse.dsResponse.Tables[1].Rows[0]["AutoridadNivel3Id"].ToString() != "0"  ) { rowServidorPublico["AutoridadNombre"] = oENTResponse.dsResponse.Tables[1].Rows[0]["AutoridadNivel3Nombre"]; }
+				rowServidorPublico["AutoridadAgrupada"] = oENTResponse.dsResponse.Tables[1].Rows[0]["AutoridadNivel1Nombre"];
+				if ( oENTResponse.dsResponse.Tables[1].Rows[0]["AutoridadNivel2Id"].ToString() != "0"  ) { rowServidorPublico["AutoridadAgrupada"] = oENTResponse.dsResponse.Tables[1].Rows[0]["AutoridadNivel2Nombre"]; }
+				if ( oENTResponse.dsResponse.Tables[1].Rows[0]["AutoridadNivel3Id"].ToString() != "0"  ) { rowServidorPublico["AutoridadAgrupada"] = oENTResponse.dsResponse.Tables[1].Rows[0]["AutoridadNivel3Nombre"]; }
 
 				tblServidorPublico.Rows.Add(rowServidorPublico);
 
@@ -836,10 +836,38 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 		}
 
 		protected void gvCiudadano_Sorting(object sender, GridViewSortEventArgs e){
+			DataTable tblCiudadano;
+			DataRow rowCiudadano;
+
+			CheckBox oCheckBox;
+
 			try
 			{
 
+				// Guardar los ID's checados
+				tblCiudadano = new DataTable("tblCiudadano");
+				tblCiudadano.Columns.Add("CiudadanoId", typeof(Int32));
+				foreach (GridViewRow gvRow in this.gvCiudadano.Rows) {
+
+					oCheckBox = (CheckBox) this.gvCiudadano.Rows[gvRow.RowIndex].FindControl("chkCiudadano");
+					if (oCheckBox.Checked) {
+
+						rowCiudadano = tblCiudadano.NewRow();
+						rowCiudadano["CiudadanoId"] = this.gvCiudadano.DataKeys[gvRow.RowIndex]["CiudadanoId"].ToString();
+						tblCiudadano.Rows.Add(rowCiudadano);
+
+					}
+				}
+
+				// Ordenar el grid
 				gcCommon.SortGridView(ref this.gvCiudadano, ref this.hddSort, e.SortExpression);
+
+				// Marcar ciudadanos checados
+				foreach (GridViewRow gvRow in this.gvCiudadano.Rows) {
+
+					oCheckBox = (CheckBox) this.gvCiudadano.Rows[gvRow.RowIndex].FindControl("chkCiudadano");
+					if (tblCiudadano.Select("CiudadanoId=" + this.gvCiudadano.DataKeys[gvRow.RowIndex]["CiudadanoId"].ToString()).Length > 0) { oCheckBox.Checked = true; }
+				}
 
 			}catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);

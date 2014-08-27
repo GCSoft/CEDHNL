@@ -220,7 +220,7 @@
 							<asp:BoundField HeaderText="Tipo de Comparecencia"		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="150px"	DataField="TipoComparecenciaNombre"							SortExpression="TipoComparecenciaNombre"></asp:BoundField>
 							<asp:BoundField HeaderText="Lugar de Comparecencia"		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="70px"	DataField="LugarComparecenciaNombre"						SortExpression="LugarComparecenciaNombre"></asp:BoundField>
 							<asp:BoundField HeaderText="Funcionario que ejecuta"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="FuncionarioEjecutaNombre"						SortExpression="FuncionarioEjecutaNombre"></asp:BoundField>
-							<asp:BoundField HeaderText="Detalle"					ItemStyle-HorizontalAlign="Left"							DataField="Detalle"						HtmlEncode="false"	SortExpression="Detalle"></asp:BoundField>
+							<asp:BoundField HeaderText="Detalle"					ItemStyle-HorizontalAlign="Left"							DataField="DetalleCorto"				HtmlEncode="false"	SortExpression="DetalleCorto"></asp:BoundField>
                             <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
                                 <ItemTemplate>
                                     <asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
@@ -242,7 +242,7 @@
 
 		<!-- PopUp -->
 		<asp:Panel id="pnlAction" runat="server" CssClass="ActionBlock" >
-			<asp:Panel id="pnlActionContent" runat="server" CssClass="ActionContent" style="top:30px;" Height="780px" Width="800px">
+			<asp:Panel id="pnlActionContent" runat="server" CssClass="ActionContent" style="top:10px;" Height="730px" Width="800px">
 				<asp:Panel ID="pnlActionHeader" runat="server" CssClass="ActionHeader">
 					<table border="0" cellpadding="0" cellspacing="0" style="height:100%; width:100%">
 						<tr>
@@ -270,18 +270,10 @@
 							</tr>
 							<tr style="height:5px;"><td colspan="3"></td></tr>
 							<tr class="trFilaItem">
-								<td class="tdActionCeldaLeyendaItem">&nbsp;Hora Inicio</td>
+								<td class="tdActionCeldaLeyendaItem">&nbsp;Hora Inicio/Fin</td>
 								<td style="width:5px;"></td>
-								<td>
-									<wuc:wucTimer ID="tmrInicio" runat="server" />
-								</td>
-							</tr>
-							<tr style="height:5px;"><td colspan="3"></td></tr>
-							<tr class="trFilaItem">
-								<td class="tdActionCeldaLeyendaItem">&nbsp;Hora Fin</td>
-								<td style="width:5px;"></td>
-								<td>
-									<wuc:wucTimer ID="tmrFin" runat="server" />
+								<td class="tdActionCeldaLeyendaItem">
+									<wuc:wucTimer ID="tmrInicio" runat="server" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<wuc:wucTimer ID="tmrFin" runat="server" />
 								</td>
 							</tr>
 							<tr style="height:5px;"><td colspan="3"></td></tr>
@@ -296,7 +288,7 @@
 								<td style="width:5px;"></td>
 								<td><asp:DropDownList ID="ddlLugarComparecencia" runat="server" Width="216px" CssClass="DropDownList_General"></asp:DropDownList></td>
 							</tr>
-							<tr style="height:20px;"><td colspan="3"></td></tr>
+							<tr style="height:10px;"><td colspan="3"></td></tr>
 							<tr class="trFilaItem">
 								<td class="tdActionCeldaLeyendaItem">&nbsp;Ciudadanos a comparecer</td>
 								<td style="width:5px;"></td>
@@ -339,35 +331,46 @@
 									</div>
 								</td>
 							</tr>
-							<tr style="height:20px;"><td colspan="3"></td></tr>
-							<tr class="trFilaItem">
-								<td class="tdActionCeldaLeyendaItem">&nbsp;Servidor público</td>
-								<td style="width:5px;"></td>
-								<td>
-									<asp:TextBox ID="txtServidorPublico" runat="server" CssClass="Textbox_General" MaxLength="1000" Width="400px"></asp:TextBox>
-									<asp:HiddenField ID="hddServidorPublicoId" runat="server" />
-									<ajaxToolkit:AutoCompleteExtender
-										ID="autoCompleteExtender" 
-										runat="server"
-										TargetControlID="txtServidorPublico"
-										ServiceMethod="GetServiceList"
-										CompletionInterval="100"
-										CompletionSetCount="10"
-										EnableCaching="false"
-										FirstRowSelected="false"
-										MinimumPrefixLength="2"
-										OnClientItemSelected="ClientItemSelected"
-										CompletionListCssClass="Autocomplete_CompletionListElement"
-										CompletionListItemCssClass="Autocomplete_ListItem"
-										CompletionListHighlightedItemCssClass="Autocomplete_HighLightedListItem">
-									</ajaxToolkit:AutoCompleteExtender>
-								</td>
-							</tr>
-							<tr style="height:1px;"><td colspan="3"></td></tr>
+							<tr style="height:10px;"><td colspan="3"></td></tr>
 							<tr>
-								<td colspan="3" style="text-align:;">
-									<asp:Button ID="btnAgregarFuncionario" runat="server" Text="Agregar Servidor Público" CssClass="Button_General" width="150px" onclick="btnAgregarFuncionario_Click" /> &nbsp;
-									<asp:Button ID="btnNuevoFuncionario" runat="server" Text="Nuevo Servidor Público" CssClass="Button_General" width="150px" onclick="btnNuevoFuncionario_Click" />
+								<td colspan="3">
+									<table border="0" cellpadding="0" cellspacing="0">
+										<tr class="trFilaItem">
+											<td class="tdActionCeldaLeyendaItem">&nbsp;Servidor público</td>
+											<td style="width:5px;"></td>
+											<td style="width:405px;">
+												<asp:TextBox ID="txtServidorPublico" runat="server" CssClass="Textbox_General" MaxLength="1000" Width="400px"></asp:TextBox>
+											</td>
+											<td style="text-align:left;">
+												<asp:Button ID="btnAgregarFuncionario" runat="server" Text="Agregar" CssClass="Button_General" width="70px" onclick="btnAgregarFuncionario_Click" />
+											</td>
+										</tr>
+										<tr>
+											<td colspan="4">
+												<asp:HiddenField ID="hddServidorPublicoId" runat="server" />
+												<ajaxToolkit:AutoCompleteExtender
+													ID="autoCompleteExtender" 
+													runat="server"
+													TargetControlID="txtServidorPublico"
+													ServiceMethod="GetServiceList"
+													CompletionInterval="100"
+													CompletionSetCount="10"
+													EnableCaching="false"
+													FirstRowSelected="false"
+													MinimumPrefixLength="2"
+													OnClientItemSelected="ClientItemSelected"
+													CompletionListCssClass="Autocomplete_CompletionListElement"
+													CompletionListItemCssClass="Autocomplete_ListItem"
+													CompletionListHighlightedItemCssClass="Autocomplete_HighLightedListItem">
+												</ajaxToolkit:AutoCompleteExtender>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="4" style="text-align:left;">
+												<asp:Button ID="btnNuevoFuncionario" runat="server" Text="Nuevo Servidor Público" CssClass="Button_General" width="150px" onclick="btnNuevoFuncionario_Click" />
+											</td>
+										</tr>
+									</table>
 								</td>
 							</tr>
 							<tr style="height:1px;"><td colspan="3"></td></tr>
@@ -384,7 +387,7 @@
 											<EmptyDataTemplate>
 												<table border="1px" width="100%" cellpadding="0px" cellspacing="0px">
 													<tr class="Grid_Header_Action">
-														<td style="width:300px;">Dependencia</td>
+														<td style="width:300px;">Autoridad</td>
 														<td>Nombre</td>
 													</tr>
 													<tr class="Grid_Row">
@@ -393,8 +396,8 @@
 												</table>
 											</EmptyDataTemplate>
 											<Columns>
-												<asp:BoundField HeaderText="Dependencia"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="300px"	DataField="AutoridadNombre"	SortExpression="AutoridadNombre"></asp:BoundField>
-												<asp:BoundField HeaderText="Nombre"			ItemStyle-HorizontalAlign="Left"							DataField="NombreCompleto"	SortExpression="NombreCompleto"></asp:BoundField>
+												<asp:BoundField HeaderText="Autoridad"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="300px"	DataField="AutoridadAgrupada"	HtmlEncode="false"	SortExpression="AutoridadAgrupada"></asp:BoundField>
+												<asp:BoundField HeaderText="Nombre"		ItemStyle-HorizontalAlign="Left"							DataField="NombreCompleto"							SortExpression="NombreCompleto"></asp:BoundField>
 												<asp:TemplateField ItemStyle-HorizontalAlign ="Center" ItemStyle-Width="5%">
 													<ItemTemplate>
 														<asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
@@ -410,7 +413,7 @@
 									</div>
 								</td>
 							</tr>
-							<tr style="height:20px;"><td colspan="3"></td></tr>
+							<tr style="height:10px;"><td colspan="3"></td></tr>
 							<tr class="trFilaItem">
 								<td class="tdActionCeldaLeyendaItem">&nbsp;Detalle</td>
 								<td style="width:5px;"></td>
@@ -424,7 +427,7 @@
 							<tr style="height:5px;"><td colspan="3"></td></tr>
 							<tr>
 								<td colspan="3" style="text-align:right;">
-									<asp:Button ID="btnAction" runat="server" Text="" CssClass="Button_General" width="125px" onclick="btnAction_Click" />
+									<asp:Button ID="btnAction" runat="server" Text="" CssClass="Button_General" width="150px" onclick="btnAction_Click" />
 								</td>
 							</tr>
 							<tr>

@@ -120,7 +120,7 @@
 					</tr>
 					<tr>
 						<td class="Nombre">Calle y Número</td>
-						<td class="Espacio"></td>
+						<td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
 						<td class="Campo"><asp:TextBox ID="txtCalle" runat="server" CssClass="Textbox_General" width="210px" MaxLength="1000" TabIndex="8" ></asp:TextBox></td>
 						<td class="Espacio"></td>
 						<td class="Nombre">Correo electrónico</td>

@@ -49,6 +49,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         protected global::System.Web.UI.WebControls.GridView gvExpediente;
         
         /// <summary>
+        /// hddAreaVisible control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hddAreaVisible;
+        
+        /// <summary>
         /// hddSort control.
         /// </summary>
         /// <remarks>

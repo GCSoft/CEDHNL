@@ -69,6 +69,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				this.gvExpediente.DataSource = oENTResponse.dsResponse.Tables[1];
 				this.gvExpediente.DataBind();
 
+				// Si es Director Inhabilitar panel de consulta de Área
+				if ( oSession.idRol == 9) { 
+					this.pnlFormulario.Visible = false;
+					this.hddAreaVisible.Value = "0";
+				}
+
 			}catch (Exception ex){
 				throw (ex);
 			}
@@ -91,10 +97,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				SelectExpediente();
 
 				// Foco
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlArea.ClientID + "'); ", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), (this.hddAreaVisible.Value == "0" ? "" : "focusControl('" + this.ddlArea.ClientID + "'); "), true);
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlArea.ClientID + "'); ", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); " + (this.hddAreaVisible.Value == "0" ? "" : "focusControl('" + this.ddlArea.ClientID + "'); "), true);
 			}
 		}
 
@@ -147,7 +153,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				}
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlArea.ClientID + "'); ", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); " + (this.hddAreaVisible.Value == "0" ? "" : "focusControl('" + this.ddlArea.ClientID + "'); "), true);
 			}
 		}
 
@@ -196,7 +202,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				gcCommon.SortGridView(ref this.gvExpediente, ref this.hddSort, e.SortExpression);
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlArea.ClientID + "'); ", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); " + (this.hddAreaVisible.Value == "0" ? "" : "focusControl('" + this.ddlArea.ClientID + "'); "), true);
 			}
 		}
 

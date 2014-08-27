@@ -69,8 +69,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				this.gvExpediente.DataSource = oENTResponse.dsResponse.Tables[1];
 				this.gvExpediente.DataBind();
 
-				// Si es Funcionario/Visitador Inhabilitar panel de consulta de Área
-				if (oSession.idRol == 8) { 
+				// Si es Funcionario/Visitador o Director Inhabilitar panel de consulta de Área
+				if (oSession.idRol == 8 || oSession.idRol == 9) { 
 					this.pnlFormulario.Visible = false;
 					this.hddAreaVisible.Value = "0";
 				}

@@ -105,6 +105,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
             }
 		}
 
+		void SelectArea() {
+			this.ddlArea.Items.Insert(0, new ListItem("Coordinación Penitenciaria", "10"));
+			this.ddlArea.Items.Insert(0, new ListItem("Tercera Visitaduría", "6"));
+			this.ddlArea.Items.Insert(0, new ListItem("Segunda Visitaduría", "5"));
+			this.ddlArea.Items.Insert(0, new ListItem("Primera Visitaduría", "4"));
+			this.ddlArea.Items.Insert(0, new ListItem("[Todas]", "0"));
+		}
+
 		void SelectEstatus(){
 			BPEstatus oBPEstatus = new BPEstatus();
 
@@ -177,6 +185,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				// Formulario
 				oENTVisitaduria.Numero = this.txtNumeroExpediente.Text.Trim();
 				oENTVisitaduria.Nombre = this.txtCiudadano.Text.Trim();
+				oENTVisitaduria.AreaId = Int32.Parse(this.ddlArea.SelectedValue);
 				oENTVisitaduria.EstatusId = Int32.Parse(this.ddlEstatus.SelectedValue);
 				oENTVisitaduria.FuncionarioId = Int32.Parse(this.ddlFuncionario.SelectedValue);
 				oENTVisitaduria.FechaDesde = (Recovery ? dtBeginDate : this.wucBeginDate.BeginDate);
@@ -212,6 +221,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				if (Page.IsPostBack) { return; }
 
 				// Llenado de controles
+				SelectArea();
 				SelectEstatus();
 				SelectFuncionario();
 

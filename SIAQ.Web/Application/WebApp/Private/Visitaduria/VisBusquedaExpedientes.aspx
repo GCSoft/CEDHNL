@@ -29,6 +29,11 @@
                             <td class="Espacio"></td>
                             <td class="Campo"><asp:TextBox ID="txtCiudadano" runat="server" CssClass="Textbox_General" MaxLength="8000" Width="211px"></asp:TextBox></td>
                         </tr>
+						<tr>
+                            <td class="Etiqueta">Área</td>
+                            <td class="Espacio"></td>
+                            <td class="Campo"><asp:DropDownList ID="ddlArea" runat="server" CssClass="DropDownList_General" Width="216px"></asp:DropDownList></td>
+                        </tr>
                         <tr>
                             <td class="Etiqueta">Estatus</td>
                             <td class="Espacio"></td>
@@ -82,6 +87,7 @@
                             <table border="1px" width="100%" cellpadding="0px" cellspacing="0px">
                                 <tr class="Grid_Header">
                                     <td style="width:80px;">Expediente</td>
+									<td style="width:150px;">Área</td>
 									<td style="width:150px;">Funcionario</td>
                                     <td style="width:150px;">Afectado</td>
 									<td style="width:150px;">Acompañantes</td>
@@ -95,6 +101,7 @@
                         </EmptyDataTemplate>
                         <Columns>
                             <asp:BoundField HeaderText="Expediente"			ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="80px"	DataField="ExpedienteNumero"						SortExpression="ExpedienteNumero"></asp:BoundField>
+							<asp:BoundField HeaderText="Área"				ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="150px"	DataField="AreaNombre"								SortExpression="AreaNombre"></asp:BoundField>
 							<asp:BoundField HeaderText="Funcionario"		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="150px"	DataField="FuncionarioNombre"						SortExpression="FuncionarioNombre"></asp:BoundField>
 							<asp:BoundField HeaderText="Afectado"			ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="150px"	DataField="Afectados"								SortExpression="Afectados"></asp:BoundField>
 							<asp:BoundField HeaderText="Acompañantes"		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="150px"	DataField="Acompanantes"							SortExpression="Acompanantes"></asp:BoundField>

@@ -71,6 +71,7 @@
         <tr class="trFilaFooter"><td></td></tr>
     </table>
 
+	<asp:HiddenField ID="hddAreaVisible" runat="server" Value="1" />
 	<asp:HiddenField ID="hddSort" runat="server" Value="ExpedienteNumero" />
 
 </asp:Content>

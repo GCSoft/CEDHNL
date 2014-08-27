@@ -433,6 +433,10 @@ namespace SIAQ.DataAccess.Object
 			sqlPar.Value = oENTVisitaduria.Numero;
 			sqlCom.Parameters.Add(sqlPar);
 
+			sqlPar = new SqlParameter("AreaId", SqlDbType.Int);
+			sqlPar.Value = oENTVisitaduria.AreaId;
+			sqlCom.Parameters.Add(sqlPar);
+
 			sqlPar = new SqlParameter("EstatusId", SqlDbType.Int);
 			sqlPar.Value = oENTVisitaduria.EstatusId;
 			sqlCom.Parameters.Add(sqlPar);

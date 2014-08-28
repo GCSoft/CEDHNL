@@ -188,7 +188,7 @@
             <tr><td class="tdCeldaMiddleSpace"></td></tr>
             <tr>
                 <td style="text-align: left;">
-                    Comparecencias registradas para esta solicitud
+                    Comparecencias registradas en el Expediente
                 </td>
             </tr>
             <tr>

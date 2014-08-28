@@ -290,7 +290,7 @@
                                     <tr class="trFilaItem">
                                         <td class="tdActionCeldaLeyendaItem" style="vertical-align:top">&nbsp;Comentarios</td>
                                         <td></td>
-                                        <td class="tdCeldaItem"><asp:TextBox ID="tbActionComentarios" runat="server" CssClass="Textarea_General" Width="310px" Height="70px" TextMode="MultiLine"></asp:TextBox></td>
+                                        <td class="tdCeldaItem"><asp:TextBox ID="tbActionComentarios" runat="server" CssClass="Textarea_General" Width="310px" MaxLength="400" Height="70px" TextMode="MultiLine"></asp:TextBox></td>
                                     </tr>
                                     <tr style="height:5px;"><td colspan="3"></td></tr>
                                     <tr>
@@ -391,7 +391,7 @@
                                                                         <th scope="col" style="vertical-align:top;"><asp:DropDownList id="ddlVocesTemporal_Nivel1"	runat="server" AutoPostBack="True"  CssClass="DropDownList_General" Width="140px" OnSelectedIndexChanged="ddlVocesNivel1_SelectedIndexChanged"></asp:DropDownList></th>
                                                                         <th scope="col" style="vertical-align:top;"><asp:DropDownList id="ddlVocesTemporal_Nivel2"	runat="server" AutoPostBack="True"  CssClass="DropDownList_General" Width="140px" OnSelectedIndexChanged="ddlVocesNivel2_SelectedIndexChanged"></asp:DropDownList></th>
                                                                         <th scope="col" style="vertical-align:top;"><asp:DropDownList id="ddlVocesTemporal_Nivel3"	runat="server"                      CssClass="DropDownList_General" Width="140px"></asp:DropDownList></th>
-																		<th scope="col" style="vertical-align:top;"><asp:TextBox id="txtVocesTemporal_Comentarios"	runat="server"                      CssClass="Textarea_General"		Width="240px" Height="40px" TextMode="MultiLine" MaxLength="500"></asp:TextBox></th>
+																		<th scope="col" style="vertical-align:top;"><asp:TextBox id="txtVocesTemporal_Comentarios"	runat="server"                      CssClass="Textarea_General"		Width="240px" Height="40px" TextMode="MultiLine" MaxLength="400"></asp:TextBox></th>
                                                                         <th scope="col" style="vertical-align:top;"><asp:Button ID="btnVocesTemporal_Nuevo"			runat="server"                      CssClass="Button_General"  Text="Agregar" width="90px" onclick="btnVocesTemporal_Nuevo_Click" /></th>
                                                                     </tr>
                                                                 </table>
@@ -450,7 +450,6 @@
     </table>
 
 	<asp:HiddenField ID="hddAutoridadId" runat="server" />
-	<asp:HiddenField ID="HiddenField2" runat="server" />
 	<asp:HiddenField ID="hddCalificacionId" runat="server" />
 	<asp:HiddenField ID="hddSolicitudId" runat="server" Value="0"  />
 	<asp:HiddenField ID="SenderId" runat="server" Value="0"  />

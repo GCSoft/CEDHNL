@@ -19,21 +19,24 @@ namespace SIAQ.Entity.Object
 	{
 
 		// Definiciones
-		private Int32	_AreaId;			// Identificador único del Área
-		private Int32	_ComentarioId;		// Identificador único del Comentario del Expediente
-		private Int32	_EstatusId;			// Identificador único del Estatus del Expediente
-		private Int32	_ExpedienteId;		// Identificador único del Expediente a consultar
-		private Int32	_FuncionarioId;		// Identificador único del funcionario asociado al Expediente
-		private Int32	_ModuloId;			// Identificador único del Módulo en donde se realiza la transacción
-		private Int32	_UsuarioId;			// Identificador único del Usuario
-		private String	_Acuerdo;			// Acuerdo de calificación definitiva
-		private String	_Comentario;		// Comentarios
-		private String	_FechaDesde;		// Fecha de inicio en una consulta
-		private String	_FechaHasta;		// Fecha final en una consulta
-		private Int16	_MedidaPreventiva;	// Determina si un asunto es una medida preventiva
-		private Int16	_Nivel;				// Nivel de transacción
-		private String	_Nombre;			// Nombre del ciudadano/problematica/entidad
-		private String	_Numero;			// Número del expediente
+		private Int32	_AreaId;					// Identificador único del Área
+		private Int32	_AutoridadId;				// Identificador único de la Autoridad
+		private Int32	_CalificacionAutoridadId;	// Identificador único de la Calificación de la Autoridad
+		private Int32	_ComentarioId;				// Identificador único del Comentario del Expediente
+		private Int32	_EstatusId;					// Identificador único del Estatus del Expediente
+		private Int32	_ExpedienteId;				// Identificador único del Expediente a consultar
+		private Int32	_FuncionarioId;				// Identificador único del funcionario asociado al Expediente
+		private Int32	_ModuloId;					// Identificador único del Módulo en donde se realiza la transacción
+		private Int32	_UsuarioId;					// Identificador único del Usuario
+		private String	_Acuerdo;					// Acuerdo de calificación definitiva
+		private String	_Comentario;				// Comentarios
+		private String	_FechaDesde;				// Fecha de inicio en una consulta
+		private String	_FechaHasta;				// Fecha final en una consulta
+		private Int16	_MedidaPreventiva;			// Determina si un asunto es una medida preventiva
+		private Int16	_Nivel;						// Nivel de transacción
+		private String	_Nombre;					// Nombre del ciudadano/problematica/entidad
+		private String	_Numero;					// Número del expediente
+		private String	_Puesto;					// Puesto de una autoridad señalada
 
 
 		 //Constructor
@@ -41,6 +44,8 @@ namespace SIAQ.Entity.Object
 		public ENTVisitaduria()
 		{
 			_AreaId = 0;
+			_AutoridadId = 0;
+			_CalificacionAutoridadId = 0;
 			_ComentarioId = 0;
 			_EstatusId = 0;
 			_ExpedienteId = 0;
@@ -55,6 +60,7 @@ namespace SIAQ.Entity.Object
 			_Nivel = -1;
 			_Nombre = "";
 			_Numero = "";
+			_Puesto = "";
 		}
 
 
@@ -70,6 +76,30 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _AreaId; }
 			set { _AreaId = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTVisitaduria.AutoridadId</name>
+		///   <create>27-Agosto-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el identificador único de la Autoridad</summary>
+		public Int32 AutoridadId
+		{
+			get { return _AutoridadId; }
+			set { _AutoridadId = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTVisitaduria.CalificacionAutoridadId</name>
+		///   <create>27-Agosto-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el identificador único único de la Calificación de la Autoridad/summary>
+		public Int32 CalificacionAutoridadId
+		{
+			get { return _CalificacionAutoridadId; }
+			set { _CalificacionAutoridadId = value; }
 		}
 
 		///<remarks>
@@ -238,6 +268,18 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _Numero; }
 			set { _Numero = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTVisitaduria.Puesto</name>
+		///   <create>27-Agosto-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el Puesto de una autoridad señalada</summary>
+		public String Puesto
+		{
+			get { return _Puesto; }
+			set { _Puesto = value; }
 		}
 
 	}

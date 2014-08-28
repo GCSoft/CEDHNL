@@ -85,6 +85,7 @@
     <Content Include="Application\WebApp\Private\Victimas\VicListadoAtenciones.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\visAcuerdoCalificacionDefinitiva.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\visAsignarFuncionario.aspx" />
+    <Content Include="Application\WebApp\Private\Visitaduria\visAutoridadVoces.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\VisBusquedaExpedientes.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\VisDetalleExpedienteCierre.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\visDiligenciaExpediente.aspx" />
@@ -1185,6 +1186,13 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Visitaduria\visAsignarFuncionario.aspx.designer.cs">
       <DependentUpon>visAsignarFuncionario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Visitaduria\visAutoridadVoces.aspx.cs">
+      <DependentUpon>visAutoridadVoces.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Visitaduria\visAutoridadVoces.aspx.designer.cs">
+      <DependentUpon>visAutoridadVoces.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Visitaduria\VisBusquedaExpedientes.aspx.cs">
       <DependentUpon>VisBusquedaExpedientes.aspx</DependentUpon>

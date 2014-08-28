@@ -284,6 +284,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 						this.DocumentoPanel.Visible = true;
 						this.SeguimientoPanel.Visible = true;
 						this.ComparecenciaPanel.Visible = true;
+						this.AutoridadPanel.Visible = true;
 						this.ResolucionPanel.Visible = true;
 						this.RecomendacionPanel.Visible = true;
 						this.ImprimirPanel.Visible = true;
@@ -298,6 +299,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 						this.DocumentoPanel.Visible = true;
 						this.SeguimientoPanel.Visible = true;
 						this.ComparecenciaPanel.Visible = true;
+						this.AutoridadPanel.Visible = true;
 						this.ResolucionPanel.Visible = true;
 						this.RecomendacionPanel.Visible = true;
 						this.ImprimirPanel.Visible = true;
@@ -312,6 +314,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 						this.DocumentoPanel.Visible = false;
 						this.SeguimientoPanel.Visible = false;
 						this.ComparecenciaPanel.Visible = false;
+						this.AutoridadPanel.Visible = false;
 						this.ResolucionPanel.Visible = false;
 						this.RecomendacionPanel.Visible = false;
 						this.ImprimirPanel.Visible = true;
@@ -326,6 +329,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 						this.DocumentoPanel.Visible = true;
 						this.SeguimientoPanel.Visible = true;
 						this.ComparecenciaPanel.Visible = true;
+						this.AutoridadPanel.Visible = true;
 						this.ResolucionPanel.Visible = true;
 						this.RecomendacionPanel.Visible = true;
 						this.ImprimirPanel.Visible = true;
@@ -340,6 +344,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 						this.DocumentoPanel.Visible = false;
 						this.SeguimientoPanel.Visible = false;
 						this.ComparecenciaPanel.Visible = false;
+						this.AutoridadPanel.Visible = false;
 						this.ResolucionPanel.Visible = false;
 						this.RecomendacionPanel.Visible = false;
 						this.ImprimirPanel.Visible = true;
@@ -354,6 +359,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 						this.DocumentoPanel.Visible = false;
 						this.SeguimientoPanel.Visible = false;
 						this.ComparecenciaPanel.Visible = false;
+						this.AutoridadPanel.Visible = false;
 						this.ResolucionPanel.Visible = false;
 						this.RecomendacionPanel.Visible = false;
 						this.ImprimirPanel.Visible = false;
@@ -379,6 +385,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 					this.DocumentoPanel.Visible = false;
 					this.SeguimientoPanel.Visible = false;
 					this.ComparecenciaPanel.Visible = false;
+					this.AutoridadPanel.Visible = false;
 					this.ResolucionPanel.Visible = false;
 					this.RecomendacionPanel.Visible = false;
 					this.EnviarPanel.Visible = false;
@@ -409,6 +416,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 					this.DocumentoPanel.Visible = false;
 					this.SeguimientoPanel.Visible = false;
 					this.ComparecenciaPanel.Visible = false;
+					this.AutoridadPanel.Visible = false;
 					this.ResolucionPanel.Visible = false;
 					this.RecomendacionPanel.Visible = false;
 					this.EnviarPanel.Visible = false;
@@ -638,6 +646,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				sKey = this.hddExpedienteId.Value + "|" + this.SenderId.Value;
 				sKey = gcEncryption.EncryptString(sKey, true);
 				this.Response.Redirect("visComparecencia.aspx?key=" + sKey, false);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
+		}
+
+		protected void AutoridadButton_Click(object sender, ImageClickEventArgs e){
+			String sKey = "";
+
+			try
+			{
+
+				// Llave encriptada
+				sKey = this.hddExpedienteId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("visAutoridadVoces.aspx?key=" + sKey, false);
 
 			}catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);

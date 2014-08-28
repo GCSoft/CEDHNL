@@ -50,6 +50,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				}
 
                 if (String.IsNullOrEmpty(this.tbActionNombreFuncionario.Text)) { throw new Exception("El campo [Nombre] es requerido"); }
+				if (String.IsNullOrEmpty(this.tbActionPuestoActual.Text)) { throw new Exception("El campo [Puesto Actual] es requerido"); }
+				if (String.IsNullOrEmpty(this.tbActionComentarios.Text)) { throw new Exception("El campo [Comentarios] es requerido"); }
 
                 // Determinar la última autoridad seleccionada
                 AutoridadId = Convert.ToInt32(this.ddlActionPrimerNivel.SelectedValue);

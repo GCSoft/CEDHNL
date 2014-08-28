@@ -268,12 +268,78 @@ namespace SIAQ.DataAccess.Object
 		}
 
 		///<remarks>
+		///   <name>DAVisitaduria.SelectCalificacionAutoridad</name>
+		///   <create>27-Agosto-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene un listado de Calificaciones de Autoridad en base a los parámetros proporcionados</summary>
+		///<param name="oENTVisitaduria">Entidad del Expediente de Visitadurías con los filtros necesarios para la consulta</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+        public ENTResponse SelectCalificacionAutoridad(ENTVisitaduria oENTVisitaduria, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspCalificacionAutoridad_Sel", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("CalificacionAutoridadId", SqlDbType.Int);
+			sqlPar.Value = oENTVisitaduria.CalificacionAutoridadId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Nombre", SqlDbType.VarChar);
+			sqlPar.Value = oENTVisitaduria.Nombre;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try
+			{
+				
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+
+			}catch (SqlException sqlEx){
+
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+
+			}catch (Exception ex){
+
+				oENTResponse.ExceptionRaised(ex.Message);
+
+			}finally{
+
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+
+			}
+
+			// Resultado
+			return oENTResponse;
+
+        }
+
+		///<remarks>
 		///   <name>DAVisitaduria.SelectExpediente</name>
 		///   <create>04-Agosto-2014</create>
 		///   <author>Ruben.Cobos</author>
 		///</remarks>
 		///<summary>Obtiene un listado de Expedientes de Visitadurias en base a los parámetros proporcionados</summary>
-		///<param name="oENTVisitaduria">Entidad de Visitadurías de Visitadurias con los filtros necesarios para la consulta</param>
+		///<param name="oENTVisitaduria">Entidad de Visitadurías con los filtros necesarios para la consulta</param>
 		///<param name="sConnection">Cadena de conexión a la base de datos</param>
 		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
 		///<returns>Una entidad de respuesta</returns>
@@ -338,12 +404,144 @@ namespace SIAQ.DataAccess.Object
         }
 
 		///<remarks>
+		///   <name>DAVisitaduria.SelectExpedienteAutoridad_Detalle</name>
+		///   <create>27-Agosto-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene el detalle de una autoridad asociada a un expediente en base a los parámetros proporcionados</summary>
+		///<param name="oENTVisitaduria">Entidad de Visitadurías con los filtros necesarios para la consulta</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+        public ENTResponse SelectExpedienteAutoridad_Detalle(ENTVisitaduria oENTVisitaduria, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspExpedienteAutoridad_Sel_Detalle", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("ExpedienteId", SqlDbType.Int);
+			sqlPar.Value = oENTVisitaduria.ExpedienteId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("AutoridadId", SqlDbType.Int);
+			sqlPar.Value = oENTVisitaduria.AutoridadId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try
+			{
+				
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+
+			}catch (SqlException sqlEx){
+
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+
+			}catch (Exception ex){
+
+				oENTResponse.ExceptionRaised(ex.Message);
+
+			}finally{
+
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+
+			}
+
+			// Resultado
+			return oENTResponse;
+
+        }
+
+		///<remarks>
+		///   <name>DAVisitaduria.SelectExpedienteAutoridadVoces</name>
+		///   <create>27-Agosto-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene las voces asociadas a una autoridad de un expediente en base a los parámetros proporcionados</summary>
+		///<param name="oENTVisitaduria">Entidad de Visitadurías con los filtros necesarios para la consulta</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+        public ENTResponse SelectExpedienteAutoridadVoces(ENTVisitaduria oENTVisitaduria, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspExpedienteAutoridadVoces_Sel", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("ExpedienteId", SqlDbType.Int);
+			sqlPar.Value = oENTVisitaduria.ExpedienteId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("AutoridadId", SqlDbType.Int);
+			sqlPar.Value = oENTVisitaduria.AutoridadId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try
+			{
+				
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+
+			}catch (SqlException sqlEx){
+
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+
+			}catch (Exception ex){
+
+				oENTResponse.ExceptionRaised(ex.Message);
+
+			}finally{
+
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+
+			}
+
+			// Resultado
+			return oENTResponse;
+
+        }
+
+		///<remarks>
 		///   <name>DAVisitaduria.SelectExpediente_Detalle</name>
 		///   <create>15-Agosto-2014</create>
 		///   <author>Ruben.Cobos</author>
 		///</remarks>
 		///<summary>Obtiene el detalle de un Expedientes de Visitadurias en específico</summary>
-		///<param name="oENTVisitaduria">Entidad de Visitadurías de Visitadurias con los filtros necesarios para la consulta</param>
+		///<param name="oENTVisitaduria">Entidad de Visitadurías con los filtros necesarios para la consulta</param>
 		///<param name="sConnection">Cadena de conexión a la base de datos</param>
 		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
 		///<returns>Una entidad de respuesta</returns>
@@ -451,6 +649,92 @@ namespace SIAQ.DataAccess.Object
 
 			sqlPar = new SqlParameter("FechaHasta", SqlDbType.DateTime);
 			sqlPar.Value = oENTVisitaduria.FechaHasta;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try
+			{
+				
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+
+			}catch (SqlException sqlEx){
+
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+
+			}catch (Exception ex){
+
+				oENTResponse.ExceptionRaised(ex.Message);
+
+			}finally{
+
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+
+			}
+
+			// Resultado
+			return oENTResponse;
+
+        }
+
+		///<remarks>
+		///   <name>DAVisitaduria.UpdateExpedienteAutoridad</name>
+		///   <create>27-Agosto-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Actualiza la información de una Autoridad señalada en particular de un Expediente</summary>
+		///<param name="oENTVisitaduria">Entidad de Visitadurías con los filtros necesarios para la consulta</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+        public ENTResponse UpdateExpedienteAutoridad(ENTVisitaduria oENTVisitaduria, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspExpedienteAutoridad_Upd", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("ExpedienteId", SqlDbType.Int);
+			sqlPar.Value = oENTVisitaduria.ExpedienteId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("AutoridadId", SqlDbType.Int);
+			sqlPar.Value = oENTVisitaduria.AutoridadId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("CalificacionAutoridadId", SqlDbType.Int);
+			sqlPar.Value = oENTVisitaduria.CalificacionAutoridadId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("ModuloId", SqlDbType.Int);
+			sqlPar.Value = oENTVisitaduria.ModuloId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Nombre", SqlDbType.VarChar);
+			sqlPar.Value = oENTVisitaduria.Nombre;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Puesto", SqlDbType.VarChar);
+			sqlPar.Value = oENTVisitaduria.Puesto;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Comentario", SqlDbType.VarChar);
+			sqlPar.Value = oENTVisitaduria.Comentario;
 			sqlCom.Parameters.Add(sqlPar);
 
 			// Inicializaciones

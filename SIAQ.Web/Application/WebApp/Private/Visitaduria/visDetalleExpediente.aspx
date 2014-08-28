@@ -46,6 +46,10 @@
             <asp:ImageButton ID="ComparecenciaButton" ImageUrl="~/Include/Image/Icon/ComparecenciaIcon.png" runat="server" OnClick="ComparecenciaButton_Click"></asp:ImageButton><br />
             Comparecencia
         </asp:Panel>
+		<asp:Panel CssClass="IconoPanel" ID="AutoridadPanel" runat="server" Visible="true">
+            <asp:ImageButton ID="AutoridadButton" ImageUrl="~/Include/Image/Icon/AutoridadIcon.png" runat="server" OnClick="AutoridadButton_Click"></asp:ImageButton><br />
+            Confirmar autoridades señaladas y voces
+        </asp:Panel>
         <asp:Panel CssClass="IconoPanel" ID="ResolucionPanel" runat="server" Visible="true">
             <asp:ImageButton ID="ResolucionButton" ImageUrl="~/Include/Image/Icon/ResolucionIcon.png" runat="server" OnClick="ResolucionButton_Click"></asp:ImageButton><br />
             Resolución

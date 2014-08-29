@@ -185,12 +185,12 @@
                             <table border="1px" cellpadding="0px" cellspacing="0px" width="100%">
                                 <tr class="Grid_Header">
                                     <td style="width:25px;" ></td>
-                                    <td style="width:140px;">Nombre</td>
-                                    <td style="width:140px;">Puesto</td>
-                                    <td style="width:140px;">Autoridad N1</td>
-                                    <td style="width:140px;">Autoridad N2</td>
-                                    <td style="width:140px;">Autoridad N3</td>
 									<td style="width:140px;">Calificación</td>
+                                    <td style="width:140px;">Nombre de Autoridad</td>
+                                    <td style="width:140px;">Puesto</td>
+                                    <td style="width:140px;">Nivel 1 Autoridad</td>
+                                    <td style="width:140px;">Nivel 2 Autoridad</td>
+                                    <td style="width:140px;">Nivel 3 Autoridad</td>
                                     <td>Comentarios</td>
                                 </tr>
                                 <tr class="Grid_Row">
@@ -207,24 +207,29 @@
                                     <asp:ImageButton ID="imgSwapGrid" CommandName="SwapGrid" CommandArgument="<%#Container.DataItemIndex%>" runat="server" ImageUrl="~/Include/Image/Buttons/Expand.png" />
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:BoundField HeaderText="Nombre de Autoridad"    ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="140px" DataField="Nombre"						SortExpression="Nombre"></asp:BoundField>
-                            <asp:BoundField HeaderText="Puesto"                 ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="140px" DataField="Puesto"						SortExpression="Puesto"></asp:BoundField>
-                            <asp:BoundField HeaderText="Nivel 1 Autoridad"      ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="140px" DataField="Nivel1"						SortExpression="Nivel1"></asp:BoundField>
-                            <asp:BoundField HeaderText="Nivel 2 Autoridad"      ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="140px" DataField="Nivel2"						SortExpression="Nivel2"></asp:BoundField>
-                            <asp:BoundField HeaderText="Nivel 3 Autoridad"      ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="140px" DataField="Nivel3"						SortExpression="Nivel3"></asp:BoundField>
-							<asp:BoundField HeaderText="Calificación"           ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="140px" DataField="CalificacionAutoridadNombre"	SortExpression="CalificacionAutoridadNombre"></asp:BoundField>
-                            <asp:BoundField HeaderText="Comentarios"            ItemStyle-HorizontalAlign="Left"                            DataField="Comentarios"					SortExpression="Comentarios"></asp:BoundField>
+							<asp:BoundField HeaderText="Calificación"			ItemStyle-ForeColor="#FF6600"	ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="140px" DataField="CalificacionAutoridadNombre"	SortExpression="CalificacionAutoridadNombre"></asp:BoundField>
+                            <asp:BoundField HeaderText="Nombre de Autoridad"									ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="140px" DataField="Nombre"						SortExpression="Nombre"></asp:BoundField>
+                            <asp:BoundField HeaderText="Puesto"													ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="140px" DataField="Puesto"						SortExpression="Puesto"></asp:BoundField>
+                            <asp:BoundField HeaderText="Nivel 1 Autoridad"										ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="140px" DataField="Nivel1"						SortExpression="Nivel1"></asp:BoundField>
+                            <asp:BoundField HeaderText="Nivel 2 Autoridad"										ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="140px" DataField="Nivel2"						SortExpression="Nivel2"></asp:BoundField>
+                            <asp:BoundField HeaderText="Nivel 3 Autoridad"										ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="140px" DataField="Nivel3"						SortExpression="Nivel3"></asp:BoundField>
+                            <asp:BoundField HeaderText="Comentarios"											ItemStyle-HorizontalAlign="Left"                            DataField="Comentarios"					SortExpression="Comentarios"></asp:BoundField>
                             <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
                                 <ItemTemplate>
                                     <asp:ImageButton ID="EditButton" runat="server" CommandArgument='<%#Eval("AutoridadId")%>' CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" />
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle" ItemStyle-Width="25px">
+							<asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
+                                <ItemTemplate>
+                                    <asp:ImageButton ID="SelectButton" runat="server" CommandArgument='<%#Eval("AutoridadId")%>' CommandName="Seleccionar" ImageUrl="~/Include/Image/Buttons/AgregarVisita.png" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle" ItemStyle-Width="0px">
 								<ItemTemplate>
 									<asp:Panel ID="pnlGridDetail" runat="server">
 										<tr>
 											<td align="center" colspan="100%" style="border:1px solid #C1C1C1">
-                                                <asp:GridView id="gvVocesDetalle" runat="server" AllowPaging="false" AllowSorting="false" AutoGenerateColumns="False" Width="800px"
+                                                <asp:GridView id="gvVocesDetalle" runat="server" AllowPaging="false" AllowSorting="false" AutoGenerateColumns="False" Width="900px"
                                                     DataKeyNames="VozId">
                                                     <alternatingrowstyle cssclass="Grid_Row_Alternating" />
                                                     <headerstyle cssclass="Grid_Header_Action_Alternative" />
@@ -235,7 +240,8 @@
 																<td style="text-align:center; width:180px;">Voz1</td>
 																<td style="text-align:center; width:180px;">Voz2</td>
 																<td style="text-align:center; width:180px;">Voz3</td>
-																<td style="text-align:center; width:260px;">Comentarios</td>
+																<td style="text-align:center;">Comentarios</td>
+																<td style="text-align:center; width:100px;">Calificación</td>
 															</tr>
 															<tr class="Grid_Row">
 																<td colspan="4" style="text-align:center;">No se han agregado voces a la autoridad</td>
@@ -243,10 +249,11 @@
 														</table>
                                                     </EmptyDataTemplate>
                                                     <Columns>
-                                                        <asp:BoundField HeaderText="Voz1" 			ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="180px"	DataField="Voz1"></asp:BoundField>
-                                                        <asp:BoundField HeaderText="Voz2" 			ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="180px"	DataField="Voz2"></asp:BoundField>
-                                                        <asp:BoundField HeaderText="Voz3"			ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="180px"	DataField="Voz3"></asp:BoundField>
-														<asp:BoundField HeaderText="Comentarios"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="260px"	DataField="Comentarios"></asp:BoundField>
+                                                        <asp:BoundField HeaderText="Voz1" 											ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="180px"	DataField="Voz1"></asp:BoundField>
+                                                        <asp:BoundField HeaderText="Voz2" 											ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="180px"	DataField="Voz2"></asp:BoundField>
+                                                        <asp:BoundField HeaderText="Voz3"											ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="180px"	DataField="Voz3"></asp:BoundField>
+														<asp:BoundField HeaderText="Comentarios"									ItemStyle-HorizontalAlign="Left"							DataField="Comentarios"></asp:BoundField>
+														<asp:BoundField HeaderText="Calificación"	ItemStyle-ForeColor="#FF6600"	ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="180px"	DataField="CalificacionAutoridadNombre"></asp:BoundField>
                                                     </Columns>
                                                 </asp:GridView>
 												<br />
@@ -342,6 +349,125 @@
                 </asp:Panel>
             </asp:Panel>
             <ajaxToolkit:DragPanelExtender id="dragPanelAction" runat="server" TargetControlID="pnlActionContent" DragHandleID="pnlActionHeader"> </ajaxToolkit:DragPanelExtender>
+        </asp:Panel>
+
+		<!-- PopUp Voces -->
+		<asp:Panel id="pnlVoces" runat="server" CssClass="ActionBlock" Visible="false" >
+            <asp:Panel ID="pnlVocesContent" runat="server" CssClass="ActionContent" Style="top:150px;" Height="560px" Width="900px">
+                <asp:Panel ID="pnlVocesHeader" runat="server" CssClass="ActionHeader">
+                    <table border="0" cellpadding="0" cellspacing="0" style="height:100%; width:100%">
+                        <tr>
+                            <td style="width: 10px"></td>
+                            <td style="text-align: left;"><asp:Label ID="lblVocesTitle" runat="server" CssClass="ActionHeaderTitle" Text="Agregar voces a autoridad"></asp:Label></td>
+                            <td style="vertical-align: middle; width: 14px;"><asp:ImageButton ID="imgVocesCloseWindow" runat="server" ImageUrl="~/Include/Image/Buttons/CloseWindow.png" ToolTip="Cerrar Ventana" OnClick="imgVocesCloseWindow_Click"></asp:ImageButton></td>
+                            <td style="width: 10px"></td>
+                        </tr>
+                    </table>
+                </asp:Panel>
+                <asp:Panel ID="pnlVocesBody" runat="server" CssClass="ActionBody">
+                    <div style="margin:0 auto; width:98%;">
+                        <table border="0" cellpadding="0" cellspacing="0" style="height:100%; text-align:left;" width="100%">
+                            <tr style="height:20px;"><td colspan="3"></td></tr>
+                            <tr class="trFilaItem">
+                                <td class="tdActionCeldaLeyendaItem">&nbsp;Nombre de Autoridad</td>
+                                <td style="width:5px;"></td>
+                                <td style="background-color:#ededed; font-size:12px; text-align:left;"><asp:Label ID="lblVocesNombre" runat="server"></asp:Label></td>
+                            </tr>
+                            <tr style="height:5px;"><td colspan="3"></td></tr>
+                            <tr class="trFilaItem">
+                                <td class="tdActionCeldaLeyendaItem">&nbsp;Puesto</td>
+                                <td style="width:5px;"></td>
+                                <td style="background-color:#ededed; font-size:12px; text-align:left;"><asp:Label ID="lblVocesPuesto" runat="server"></asp:Label></td>
+                            </tr>
+                            <tr style="height:5px;"><td colspan="3"></td></tr>
+                            <tr class="trFilaItem">
+                                <td class="tdActionCeldaLeyendaItem">&nbsp;Autoridad N1</td>
+                                <td style="width:5px;"></td>
+                                <td style="background-color:#ededed; font-size:12px; text-align:left;"><asp:Label ID="lblVocesNivel1" runat="server"></asp:Label></td>
+                            </tr>
+                            <tr style="height:5px;"><td colspan="3"></td></tr>
+                            <tr class="trFilaItem">
+                                <td class="tdActionCeldaLeyendaItem">&nbsp;Autoridad N2</td>
+                                <td style="width:5px;"></td>
+                                <td style="background-color:#ededed; font-size:12px; text-align:left;"><asp:Label ID="lblVocesNivel2" runat="server"></asp:Label></td>
+                            </tr>
+                            <tr style="height:5px;"><td colspan="3"></td></tr>
+                            <tr class="trFilaItem">
+                                <td class="tdActionCeldaLeyendaItem">&nbsp;Autoridad N3</td>
+                                <td style="width:5px;"></td>
+                                <td style="background-color:#ededed; font-size:12px; text-align:left;"><asp:Label ID="lblVocesNivel3" runat="server"></asp:Label></td>
+                            </tr>
+                            <tr style="height:5px;"><td colspan="3"></td></tr>
+                            <tr class="trFilaItem">
+                                <td class="tdActionCeldaLeyendaItem">&nbsp;Observaciones</td>
+                                <td style="width:5px;"></td>
+                                <td style="background-color:#ededed; font-size:12px; text-align:left;"><asp:Label ID="lblVocesObservaciones" runat="server"></asp:Label></td>
+                            </tr>
+                            <tr style="height:5px;"><td colspan="3"></td></tr>
+                            <tr class="trFilaItem">
+                                <td class="tdActionCeldaLeyendaItem">&nbsp;Voces agregadas</td>
+                                <td style="width:5px;"></td>
+                                <td></td>
+                            </tr>
+                            <tr style="height:5px;"><td colspan="3"></td></tr>
+                            <tr>
+                                <td colspan="3">
+                                    <div style="border:1px solid #4B4878; height:250px; overflow-x:hidden; overflow-y:scroll; text-align:left; Width:100%">
+                                        <asp:GridView id="gvAutoridadVoces" runat="server" AllowPaging="false" AllowSorting="true" AutoGenerateColumns="False" Width="99%"
+                                            DataKeyNames="AutoridadId,ExpedienteId,VozId,CalificacionAutoridadId,Comentarios"
+                                            OnRowDataBound="gvAutoridadVoces_RowDataBound">
+                                            <HeaderStyle CssClass="Grid_Header_Action" />
+											<RowStyle CssClass="Grid_Row_Action" />
+											<EmptyDataTemplate>
+												<table border="1px" width="100%" cellpadding="0px" cellspacing="0px">
+													<tr class="Grid_Header_Action">
+														<td style="width:143px;">Primer nivel</td>
+														<td style="width:143px;">Segundo nivel</td>
+														<td style="width:143px;">Tercer nivel</td>
+														<td>Comentarios</td>
+														<td style="width:160px;">Calificación</td>
+													</tr>
+													<tr class="Grid_Row">
+														<td colspan="4">No se encontraron Ciudadanos asociados al Expediente</td>
+													</tr>
+												</table>
+											</EmptyDataTemplate>
+                                            <Columns>
+                                                <asp:BoundField	HeaderText="Primer nivel"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="143px"	DataField="Voz1"></asp:BoundField>
+                                                <asp:BoundField	HeaderText="Segundo nivel"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="143px"	DataField="Voz2"></asp:BoundField>
+                                                <asp:BoundField	HeaderText="Tercer nivel"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="142px"	DataField="Voz3"></asp:BoundField>
+												<asp:TemplateField HeaderText="Comentarios">
+                                                    <ItemTemplate>
+                                                        <asp:TextBox id="txtComentarioVoz" runat="server" CssClass="Textarea_General" MaxLength="400" TextMode="MultiLine" Width="235px" Height="40px"></asp:TextBox>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Calificación" ItemStyle-Width="160px">
+                                                    <ItemTemplate>
+														<asp:DropDownList id="ddlCalificacionVoz" runat="server" CssClass="DropDownList_General" Width="160px"></asp:DropDownList>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                            </Columns>
+                                        </asp:GridView>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="height:5px;"><td colspan="3"></td></tr>
+                            <tr>
+                                <td colspan="3" style="text-align:right;">
+									<asp:Button ID="btnAutoridadVoces_Editar" runat="server" CssClass="Button_General" Text="Agregar" width="90px" OnClick="btnAutoridadVoces_Editar_Click" />&nbsp;&nbsp;
+                                    <asp:Button ID="btnAutoridadVoces_Regresar" runat="server" Text="Regresar" CssClass="Button_General" Width="125px" OnClick="btnAutoridadVoces_Regresar_Click" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <asp:Label ID="lblAutoridadVoces_Message" runat="server" CssClass="ActionContentMessage"></asp:Label>
+                                </td>
+                            </tr>
+						</table>
+                    </div>
+                </asp:Panel>
+            </asp:Panel>
+            <ajaxToolkit:DragPanelExtender id="dragPanelVoces" runat="server" TargetControlID="pnlVocesContent" DragHandleID="pnlVocesHeader"> </ajaxToolkit:DragPanelExtender>
         </asp:Panel>
 
 	</div>

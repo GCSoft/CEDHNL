@@ -9,7 +9,7 @@
 
 /* Action (Formularios de Edición/Nuevo) */
 .ActionBlock{
-	background: url(../../../../Include/Image/Wait/Background.png) repeat;
+	background: url(/Include/Image/Wait/Background.png) repeat;
 	left: 0px;
 	height: 100%;
 	position:fixed;
@@ -28,23 +28,23 @@
 
 .ActionContent{
 	background-color:#FFFFFF;
-   border:1px solid #4B4878;
-   margin:0px auto;
-   position:relative;
+	border:1px solid #4B4878;
+	margin:0px auto;
+	position:relative;
 	z-index:901;
 }
 
 .ActionContentMessage{
-   border:0px solid red;
-   color:Red;
-   display:block;
-   font-family:Arial, Sans-Serif;
-   font-size:9px;
+	border:0px solid red;
+	color:Red;
+	display:block;
+	font-family:Arial, Sans-Serif;
+	font-size:9px;
 }
 
 .ActionHeader{
 	background-color:#4B4878;
-	/*cursor:move;*/
+	cursor:move;
 	height:30px;
 	text-align:center;
 	vertical-align:middle;

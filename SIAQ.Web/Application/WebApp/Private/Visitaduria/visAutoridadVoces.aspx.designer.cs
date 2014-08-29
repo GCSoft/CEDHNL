@@ -544,13 +544,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         protected global::System.Web.UI.WebControls.Button btnAutoridadVoces_Editar;
         
         /// <summary>
-        /// btnAutoridadVoces_Regresar control.
+        /// btnAutoridadVoces_Cancelar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAutoridadVoces_Regresar;
+        protected global::System.Web.UI.WebControls.Button btnAutoridadVoces_Cancelar;
         
         /// <summary>
         /// lblAutoridadVoces_Message control.

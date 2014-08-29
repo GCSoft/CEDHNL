@@ -350,7 +350,7 @@ namespace SIAQ.BusinessProcess.Object
         ///   <author>Ruben.Cobos</author>
         ///</remarks>
 		///<summary>Actualiza la información de una Autoridad señalada en particular de un Expediente</summary>
-		///<param name="oENTVisitaduria">Entidad de Visitadurías con los filtros necesarios para la consulta</param>
+		///<param name="oENTVisitaduria">Entidad de Visitadurías con los filtros necesarios para realizar la transacción</param>
         ///<returns>Una entidad de respuesta</returns>
         public ENTResponse UpdateExpedienteAutoridad(ENTVisitaduria oENTVisitaduria){
            DAVisitaduria oDAVisitaduria = new DAVisitaduria();
@@ -361,6 +361,39 @@ namespace SIAQ.BusinessProcess.Object
 
               // Transacción en base de datos
 			   oENTResponse = oDAVisitaduria.UpdateExpedienteAutoridad(oENTVisitaduria, this.sConnectionApplication, 0);
+
+              // Validación de error en consulta
+              if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+              // Validación de mensajes de la BD
+              oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+              if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+           }catch (Exception ex){
+              oENTResponse.ExceptionRaised(ex.Message);
+           }
+
+           // Resultado
+           return oENTResponse;
+        }
+
+		///<remarks>
+		///   <name>BPVisitaduria.UpdateExpedienteAutoridadVoces</name>
+		///   <create>28-Agosto-2014</create>
+        ///   <author>Ruben.Cobos</author>
+        ///</remarks>
+		///<summary>Actualiza la información de las Voces de una Autoridad señalada en particular de un Expediente</summary>
+		///<param name="oENTVisitaduria">Entidad de Visitadurías con los filtros necesarios para realizar la transacción</param>
+        ///<returns>Una entidad de respuesta</returns>
+        public ENTResponse UpdateExpedienteAutoridadVoces(ENTVisitaduria oENTVisitaduria){
+           DAVisitaduria oDAVisitaduria = new DAVisitaduria();
+           ENTResponse oENTResponse = new ENTResponse();
+
+           try
+           {
+
+              // Transacción en base de datos
+			   oENTResponse = oDAVisitaduria.UpdateExpedienteAutoridadVoces(oENTVisitaduria, this.sConnectionApplication, 0);
 
               // Validación de error en consulta
               if (oENTResponse.GeneratesException) { return oENTResponse; }

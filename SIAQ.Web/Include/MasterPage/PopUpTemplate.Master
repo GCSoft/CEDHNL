@@ -51,7 +51,7 @@
 				</asp:Panel>
 				<asp:UpdateProgress AssociatedUpdatePanelID="updPopUpTemplate" ID="uprMaster" runat="server">
                <ProgressTemplate>
-                  <div class="LoadingDiv" style="background: url(../../../../Include/Image/Wait/Background.png) repeat;">
+                  <div class="LoadingDiv">
                      <div id="Div1" class="LoadingImageDiv" runat="server">
                         <asp:Image ID="imgWait" AlternateText="Cargando..." ImageUrl="~/Include/Image/Wait/Loading.gif" runat="server" />
                      </div>

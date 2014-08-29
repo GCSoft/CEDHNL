@@ -387,9 +387,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				this.lblActionTitle.Text = "Confirmar voces";
 				this.pnlVoces.Visible = true;
 
-				// Foco
-				//ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlCalificacionAutoridad.ClientID + "');", true);
-
 			}catch (Exception ex){
 				throw (ex);
 			}
@@ -426,10 +423,68 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
 				if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
 
+				// Refrescar pantalla principal
+				SelectExpediente();
+
 				// Transacción exitosa
 				this.pnlAction.Visible = false;
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('Autoridad actualizada con éxito');", true);
 
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		void UpdateExpedienteAutoridadVoces() {
+			BPVisitaduria oBPVisitaduria = new BPVisitaduria();
+			ENTVisitaduria oENTVisitaduria = new ENTVisitaduria();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			DropDownList ddlCalificacionAutoridad = null;
+			TextBox txtComentario = null;
+
+			DataRow rowVoz;
+
+			try
+			{
+
+				// Formulario
+				oENTVisitaduria.ExpedienteId = Int32.Parse(this.hddExpedienteId.Value);
+				oENTVisitaduria.AutoridadId = Int32.Parse(this.hddAutoridadId.Value);
+				oENTVisitaduria.ModuloId = 3; // Visitadurías
+
+				oENTVisitaduria.tblVoz = new DataTable("tblVoz");
+				oENTVisitaduria.tblVoz.Columns.Add("VozId", typeof(Int32));
+				oENTVisitaduria.tblVoz.Columns.Add("CalificacionAutoridadId", typeof(Int32));
+				oENTVisitaduria.tblVoz.Columns.Add("Comentario", typeof(String));
+
+				foreach(GridViewRow gvRow in this.gvAutoridadVoces.Rows){
+
+					// Obtener controles
+					txtComentario = (TextBox)this.gvAutoridadVoces.Rows[gvRow.RowIndex].FindControl("txtComentarioVoz");
+					ddlCalificacionAutoridad = (DropDownList)this.gvAutoridadVoces.Rows[gvRow.RowIndex].FindControl("ddlCalificacionVoz");
+
+					rowVoz = oENTVisitaduria.tblVoz.NewRow();
+					rowVoz["VozId"] = this.gvAutoridadVoces.DataKeys[gvRow.RowIndex]["VozId"].ToString();
+					rowVoz["CalificacionAutoridadId"] = ddlCalificacionAutoridad.SelectedItem.Value;
+					rowVoz["Comentario"] = txtComentario.Text;
+					oENTVisitaduria.tblVoz.Rows.Add(rowVoz);
+
+				}
+
+				// Transacción
+				oENTResponse = oBPVisitaduria.UpdateExpedienteAutoridadVoces(oENTVisitaduria);
+
+				//Validaciones 
+				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+				if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+
+				// Refrescar pantalla principal
+				SelectExpediente();
+
+				// Transacción exitosa
+				this.pnlVoces.Visible = false;
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('Voces actualizadas con éxito');", true);
 
 			}catch (Exception ex){
 				throw (ex);
@@ -859,7 +914,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 		
 		// Eventos del PopUp Voces
 
-		protected void btnAutoridadVoces_Regresar_Click(object sender, EventArgs e){
+		protected void btnAutoridadVoces_Cancelar_Click(object sender, EventArgs e){
             try
             {
 
@@ -872,31 +927,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
         }
 
         protected void btnAutoridadVoces_Editar_Click(object sender, EventArgs e){
-			//String SolicitudId = this.hddSolicitudId.Value;
-			//String AutoridadId = this.hddAutoridadId.Value;
-
             try
             {
 
-				//// Agregar la Voz
-				//AgregarVoz(Convert.ToInt32(SolicitudId), Convert.ToInt32(AutoridadId));
-
-				//// Recargar grid del listado de autoridades asociadas al expediente
-				//LlenarGridAutoridades(Convert.ToInt32(this.hddSolicitudId.Value));
-
-				//// Recacular los combos en cascada
-				//ddlVocesTemporal_Nivel1.SelectedIndex = 0;
-				//ComboVocesTemporalSegundoNivel();
-				//ComboVocesTemporalTercerNivel();
-
-				//// Comentarios
-				//this.txtVocesTemporal_Comentarios.Text = "";
-
-				//// Mensajes de error previos
-				//this.lblAutoridadVoces_Message.Text = "";
-
-				//// Foco
-				//ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlVocesTemporal_Nivel1.ClientID + "');", true);
+				// Actualizar datos de la Autoridad
+				UpdateExpedienteAutoridadVoces();
 
             }catch (Exception ex){
                 this.lblAutoridadVoces_Message.Text = ex.Message;
@@ -939,7 +974,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				ddlCalificacionAutoridad.DataValueField = "CalificacionAutoridadId";
 				ddlCalificacionAutoridad.DataSource = tblCalificacionAutoridad;
 				ddlCalificacionAutoridad.DataBind();
-				ddlCalificacionAutoridad.Items.Insert(0, new ListItem("[Seleccione]", "0"));
 
 				// Llenado de controles
 				txtComentario.Text = this.gvAutoridadVoces.DataKeys[e.Row.RowIndex]["Comentarios"].ToString();

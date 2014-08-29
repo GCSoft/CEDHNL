@@ -414,7 +414,7 @@
                                 <td colspan="3">
                                     <div style="border:1px solid #4B4878; height:250px; overflow-x:hidden; overflow-y:scroll; text-align:left; Width:100%">
                                         <asp:GridView id="gvAutoridadVoces" runat="server" AllowPaging="false" AllowSorting="true" AutoGenerateColumns="False" Width="99%"
-                                            DataKeyNames="AutoridadId,ExpedienteId,VozId,CalificacionAutoridadId,Comentarios"
+                                            DataKeyNames="VozId,CalificacionAutoridadId,Comentarios"
                                             OnRowDataBound="gvAutoridadVoces_RowDataBound">
                                             <HeaderStyle CssClass="Grid_Header_Action" />
 											<RowStyle CssClass="Grid_Row_Action" />
@@ -454,8 +454,8 @@
                             <tr style="height:5px;"><td colspan="3"></td></tr>
                             <tr>
                                 <td colspan="3" style="text-align:right;">
-									<asp:Button ID="btnAutoridadVoces_Editar" runat="server" CssClass="Button_General" Text="Agregar" width="90px" OnClick="btnAutoridadVoces_Editar_Click" />&nbsp;&nbsp;
-                                    <asp:Button ID="btnAutoridadVoces_Regresar" runat="server" Text="Regresar" CssClass="Button_General" Width="125px" OnClick="btnAutoridadVoces_Regresar_Click" />
+									<asp:Button ID="btnAutoridadVoces_Editar" runat="server" CssClass="Button_General" Text="Actualizar Voces" width="125px" OnClick="btnAutoridadVoces_Editar_Click" />&nbsp;&nbsp;
+                                    <asp:Button ID="btnAutoridadVoces_Cancelar" runat="server" Text="Cancelar" CssClass="Button_General" Width="125px" OnClick="btnAutoridadVoces_Cancelar_Click" />
                                 </td>
                             </tr>
                             <tr>

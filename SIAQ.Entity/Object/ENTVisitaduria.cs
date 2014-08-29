@@ -13,6 +13,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+// Referencias manuales
+using System.Data;
+
 namespace SIAQ.Entity.Object
 {
 	public class ENTVisitaduria : ENTBase
@@ -37,6 +40,7 @@ namespace SIAQ.Entity.Object
 		private String	_Nombre;					// Nombre del ciudadano/problematica/entidad
 		private String	_Numero;					// Número del expediente
 		private String	_Puesto;					// Puesto de una autoridad señalada
+		private DataTable _tblVoz;					// Listado de ID's de Voces, calificación y comentarios
 
 
 		 //Constructor
@@ -61,6 +65,7 @@ namespace SIAQ.Entity.Object
 			_Nombre = "";
 			_Numero = "";
 			_Puesto = "";
+			_tblVoz = null;
 		}
 
 
@@ -280,6 +285,18 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _Puesto; }
 			set { _Puesto = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTVisitaduria.tblVoz</name>
+		///   <create>28-Agosto-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna un datatable que contiene el listado de ID's de Voces, calificación y comentarios</summary>
+		public DataTable tblVoz
+		{
+			get { return _tblVoz; }
+			set { _tblVoz = value; }
 		}
 
 	}

@@ -30,9 +30,11 @@ namespace SIAQ.Entity.Object
 		private Int32	_ExpedienteId;				// Identificador único del Expediente a consultar
 		private Int32	_FuncionarioId;				// Identificador único del funcionario asociado al Expediente
 		private Int32	_ModuloId;					// Identificador único del Módulo en donde se realiza la transacción
+		private Int32	_TipoResolucionId;			// Identificador único del Tipo de Resolución
 		private Int32	_UsuarioId;					// Identificador único del Usuario
 		private String	_Acuerdo;					// Acuerdo de calificación definitiva
 		private String	_Comentario;				// Comentarios
+		private String	_Detalle;					// Detalle
 		private String	_FechaDesde;				// Fecha de inicio en una consulta
 		private String	_FechaHasta;				// Fecha final en una consulta
 		private Int16	_MedidaPreventiva;			// Determina si un asunto es una medida preventiva
@@ -55,9 +57,11 @@ namespace SIAQ.Entity.Object
 			_ExpedienteId = 0;
 			_FuncionarioId = 0;
 			_ModuloId = 0;
+			_TipoResolucionId = 0;
 			_UsuarioId = 0;
 			_Acuerdo = "";
 			_Comentario = "";
+			_Detalle = "";
 			_FechaDesde = "";
 			_FechaHasta = "";
 			_MedidaPreventiva = 0;
@@ -168,6 +172,18 @@ namespace SIAQ.Entity.Object
 		}
 
 		///<remarks>
+		///   <name>ENTVisitaduria.TipoResolucionId</name>
+		///   <create>04-Agosto-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el identificador único del Tipo de Resolución</summary>
+		public Int32 TipoResolucionId
+		{
+			get { return _TipoResolucionId; }
+			set { _TipoResolucionId = value; }
+		}
+
+		///<remarks>
 		///   <name>ENTVisitaduria.UsuarioId</name>
 		///   <create>04-Agosto-2014</create>
 		///   <author>Ruben.Cobos</author>
@@ -201,6 +217,18 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _Comentario; }
 			set { _Comentario = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTVisitaduria.Detalle</name>
+		///   <create>18-Agosto-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el detalle de una resolución</summary>
+		public String Detalle
+		{
+			get { return _Detalle; }
+			set { _Detalle = value; }
 		}
 
 		///<remarks>

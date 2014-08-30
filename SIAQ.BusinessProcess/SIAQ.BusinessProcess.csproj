@@ -64,7 +64,6 @@
     <Compile Include="Object\BPEstatus.cs" />
     <Compile Include="Object\BPExpediente.cs" />
     <Compile Include="Object\BPExpedienteComparecencia.cs" />
-    <Compile Include="Object\BPExpedienteResolucion.cs" />
     <Compile Include="Object\BPExpedienteSeguimiento.cs" />
     <Compile Include="Object\BPFormaContacto.cs" />
     <Compile Include="Object\BPFuncionario.cs" />

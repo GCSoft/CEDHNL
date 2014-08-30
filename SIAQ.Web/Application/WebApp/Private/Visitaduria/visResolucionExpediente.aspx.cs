@@ -1,205 +1,258 @@
-﻿using System;
+﻿/*---------------------------------------------------------------------------------------------------------------------------------
+' Nombre:	visResolucionExpediente
+' Autor:	Ruben.Cobos
+' Fecha:	30-Agosto-2014
+'----------------------------------------------------------------------------------------------------------------------------------*/
+
+// Referencias
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+// Referencias manuales
 using GCUtility.Function;
-using SIAQ.BusinessProcess.Object;
+using GCUtility.Security;
 using SIAQ.Entity.Object;
+using SIAQ.BusinessProcess.Object;
+using System.Data;
 
 namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 {
     public partial class visResolucionExpediente : System.Web.UI.Page
     {
-        // Utilerías
+
+		// Utilerías
 		GCJavascript gcJavascript = new GCJavascript();
+		GCEncryption gcEncryption = new GCEncryption();
 
-        #region "Events"
-            protected void GuardarButton_Click(object sender, EventArgs e)
+		// Rutinas del programador
+
+		String GetKey(String sKey) {
+			String Response = "";
+
+			try{
+
+				Response = gcEncryption.DecryptString(sKey, true);
+
+			}catch(Exception){
+				Response = "";
+			}
+
+			return Response;
+		}
+
+
+		// Funciones el programador
+
+		void InsertExpedienteResolucion() {
+			ENTVisitaduria oENTVisitaduria = new ENTVisitaduria();
+			ENTResponse oENTResponse = new ENTResponse();
+			ENTSession SessionEntity = new ENTSession();
+
+			BPVisitaduria oBPVisitaduria = new BPVisitaduria();
+
+			try
+			{
+
+				// Validaciones
+				if (this.ddlTipoResolucion.SelectedIndex == 0) { throw new Exception("El campo [Tipo de Resolución] es requerido"); }
+				if (this.ddlTipoResolucion.SelectedItem.Value == "1") { throw new Exception("Es necesario determinar el Tipo de Resolución"); }
+				if (this.ckeDetalle.Text.Trim() == "") { throw (new Exception("Es necesario ingresar un detalle de la resolución")); }
+
+				// Obtener sesión
+				SessionEntity = (ENTSession)Session["oENTSession"];
+				
+				// Formulario
+				oENTVisitaduria.ExpedienteId = Int32.Parse(this.hddExpedienteId.Value);
+				oENTVisitaduria.FuncionarioId = SessionEntity.FuncionarioId;
+				oENTVisitaduria.TipoResolucionId = Int32.Parse(this.ddlTipoResolucion.SelectedItem.Value);
+				oENTVisitaduria.Detalle = this.ckeDetalle.Text.Trim();
+
+				// Transacción
+				oENTResponse = oBPVisitaduria.InsertExpedienteResolucion(oENTVisitaduria);
+
+				// Errores y Warnings
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		void SelectExpediente() {
+			BPVisitaduria oBPVisitaduria = new BPVisitaduria();
+			ENTVisitaduria oENTVisitaduria = new ENTVisitaduria();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Formulario
+				oENTVisitaduria.ExpedienteId = Int32.Parse(this.hddExpedienteId.Value);
+
+				// Transacción
+				oENTResponse = oBPVisitaduria.SelectExpediente_Detalle(oENTVisitaduria);
+
+				// Errores y Warnings
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+
+				// Formulario
+				this.ExpedienteNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["ExpedienteNumero"].ToString();
+				this.SolicitudNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["SolicitudNumero"].ToString();
+				this.CalificacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionNombre"].ToString();
+				this.EstatusaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusNombre"].ToString();
+				this.AfectadoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Afectado"].ToString();
+				this.AreaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["AreaNombre"].ToString();
+
+				this.FuncionarioLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FuncionarioNombre"].ToString();
+				this.ContactoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FormaContactoNombre"].ToString();
+				this.TipoSolicitudLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["TipoSolicitudNombre"].ToString();
+				this.ProblematicaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["ProblematicaNombre"].ToString();
+				this.ProblematicaDetalleLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["ProblematicaDetalleNombre"].ToString();
+
+				this.FechaRecepcionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaRecepcion"].ToString();
+				this.FechaAsignacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaAsignacion"].ToString();
+				this.FechaQuejasLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaQuejas"].ToString();
+				this.FechaVisitaduriasLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaVisitadurias"].ToString();
+				this.FechaModificacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaUltimaModificacion"].ToString();
+				this.NivelAutoridadLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NivelAutoridadNombre"].ToString();
+				this.MecanismoAperturaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["MecanismoAperturaNombre"].ToString();
+
+				this.TipoOrientacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["TipoOrientacionNombre"].ToString();
+				this.LugarHechosLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["LugarHechosNombre"].ToString();
+				this.DireccionHechosLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["DireccionHechos"].ToString();
+				this.ObservacionesLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Observaciones"].ToString();
+
+				// Canalizaciones
+				if (oENTResponse.dsResponse.Tables[2].Rows.Count > 0){
+
+					this.CanalizacionesLabel.Visible = true;
+
+					this.grdCanalizacion.DataSource = oENTResponse.dsResponse.Tables[2];
+					this.grdCanalizacion.DataBind();
+				}
+
+				// Resolución
+				this.ddlTipoResolucion.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["TipoResolucionId"].ToString();
+				this.ckeDetalle.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["DetalleResolucion"].ToString();
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		void SelectTipoResolucion(){
+			BPTipoResolucion oBPTipoResolucion = new BPTipoResolucion();
+			ENTTipoResolucion oENTTipoResolucion = new ENTTipoResolucion();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Formulario
+				oENTTipoResolucion.TipoResolucionId = 0;
+				oENTTipoResolucion.Nombre = "";
+
+				// Transacción
+				oENTResponse = oBPTipoResolucion.SelectTipoResolucion(oENTTipoResolucion);
+
+				// Errores
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+
+				// Warnings
+				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + oENTResponse.sMessage + "');", true); }
+
+				// Llenado de control
+				this.ddlTipoResolucion.DataTextField = "Nombre";
+				this.ddlTipoResolucion.DataValueField = "TipoResolucionId";
+				this.ddlTipoResolucion.DataSource = oENTResponse.dsResponse.Tables[1];
+				this.ddlTipoResolucion.DataBind();
+
+				// Opción todos
+				this.ddlTipoResolucion.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+
+		// Eventos de la página
+
+		protected void Page_Load(object sender, EventArgs e){
+			String sKey = "";
+
+			try
             {
-                SaveResolucion();
-            }
 
-            protected void Page_Load(object sender, EventArgs e)
+				// Validaciones de llamada
+				if (Page.IsPostBack) { return; }
+				if (this.Request.QueryString["key"] == null) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
+
+				// Validaciones de parámetros
+				sKey = GetKey(this.Request.QueryString["key"].ToString());
+				if (sKey == "") { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
+				if (sKey.ToString().Split(new Char[] { '|' }).Length != 2) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
+
+				// Obtener ExpedienteId
+				this.hddExpedienteId.Value = sKey.Split(new Char[] { '|' })[0];
+
+				// Obtener Sender
+				this.SenderId.Value = sKey.Split(new Char[] { '|' })[1];
+
+				// Llenado de controles
+				SelectTipoResolucion();
+
+				// Carátula
+				SelectExpediente();
+				
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlTipoResolucion.ClientID + "'); }", true);
+
+            }catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.ddlTipoResolucion.ClientID + "'); }", true);
+            }
+		}
+
+		protected void btnGuardar_Click(object sender, EventArgs e){
+			String sKey = "";
+
+			try
             {
-                PageLoad();
-            }
-        #endregion
 
-        #region "Methods"
-            private int GetExpedienteParameter()
+				// Asignar el Defensor
+				InsertExpedienteResolucion();
+
+				// Llave encriptada
+				sKey = this.hddExpedienteId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("visDetalleExpediente.aspx?key=" + sKey, false);
+
+            }catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.ddlTipoResolucion.ClientID + "'); }", true);
+            }
+		}
+
+		protected void btnRegresar_Click(object sender, EventArgs e){
+			String sKey = "";
+
+			try
             {
-                try
-                {
-                    return int.Parse(Request.QueryString["expId"].ToString());
-                }
-                catch
-                {
-                    return 0;
-                }
+
+				// Llave encriptada
+				sKey = this.hddExpedienteId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("visDetalleExpediente.aspx?key=" + sKey, false);
+
+            }catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.ddlTipoResolucion.ClientID + "'); }", true);
             }
+		}
 
-            private void PageLoad()
-            {
-                int ExpedienteId = 0;
-
-                if (Page.IsPostBack)
-                    return;
-
-                ExpedienteId = GetExpedienteParameter();
-
-                SelectExpediente(ExpedienteId);
-                SelectTipoResolucion();
-                SelectExpedienteResolucion(ExpedienteId);
-
-                ExpedienteIdHidden.Value = ExpedienteId.ToString();
-            }
-
-            private void ResetForm()
-            {
-                TipoResolucionIdList.SelectedIndex = 0;
-                DetalleBox.Text = "";
-                ExpedienteResolucionIdHidden.Value = "0";
-            }
-
-            private void SaveResolucion()
-            {
-                int ExpedienteResolucionId = 0;
-                int ExpedienteId = 0;
-                int FuncionarioId = 0;
-                int TipoResolucionId = 0;
-                string Detalle = string.Empty;
-                ENTSession SessionEntity = new ENTSession();
-
-                SessionEntity = (ENTSession)Session["oENTSession"];
-
-                ExpedienteResolucionId = int.Parse(ExpedienteResolucionIdHidden.Value);
-                ExpedienteId = int.Parse(ExpedienteIdHidden.Value);
-                FuncionarioId = SessionEntity.FuncionarioId;
-                TipoResolucionId = int.Parse(TipoResolucionIdList.SelectedValue);
-                Detalle = DetalleBox.Text.Trim();
-
-                SaveResolucion(ExpedienteResolucionId, ExpedienteId, FuncionarioId, TipoResolucionId, Detalle);
-            }
-
-            private void SaveResolucion(int ExpedienteResolucionId, int ExpedienteId, int FuncionarioId, int TipoResolucionId, string Detalle)
-            {
-                BPExpedienteResolucion ExpedienteResolucionProcess = new BPExpedienteResolucion();
-
-                ExpedienteResolucionProcess.ExpedienteResolucionEntity.ExpedienteResolucionId = ExpedienteResolucionId;
-                ExpedienteResolucionProcess.ExpedienteResolucionEntity.ExpedienteId = ExpedienteId;
-                ExpedienteResolucionProcess.ExpedienteResolucionEntity.FuncionarioId = FuncionarioId;
-                ExpedienteResolucionProcess.ExpedienteResolucionEntity.TipoResolucionId = TipoResolucionId;
-                ExpedienteResolucionProcess.ExpedienteResolucionEntity.Detalle = Detalle;
-
-                ExpedienteResolucionProcess.SaveExpedienteResolucion();
-
-                if (ExpedienteResolucionProcess.ErrorId == 0)
-                {
-                    ResetForm();
-                    // Mensaje de que todo se guardó correctamente
-                }
-                else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ExpedienteResolucionProcess.ErrorDescription) + "');", true);
-            }
-
-            private void SelectExpediente(int ExpedienteId)
-            {
-                ENTSession UsuarioEntity = new ENTSession();
-
-                UsuarioEntity = (ENTSession)Session["oENTSession"];
-
-                SelectExpediente(ExpedienteId, UsuarioEntity.FuncionarioId);
-            }
-
-            private void SelectExpediente(int ExpedienteId, int FuncionarioId)
-            {
-				//BPExpediente BPExpediente = new BPExpediente();
-				//ENTExpediente oENTExpediente = new ENTExpediente();
-
-				//oENTExpediente.ExpedienteId = ExpedienteId;
-				//oENTExpediente.FuncionarioId = FuncionarioId;
-
-				//BPExpediente.SelectDetalleExpediente(oENTExpediente);
-
-				//if (BPExpediente.ErrorId == 0)
-				//{
-				//    // Detalle 
-				//    if (oENTExpediente.ResultData.Tables[0].Rows.Count > 0)
-				//    {
-				//        ExpedienteIdLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Numero"].ToString();
-				//        CalificacionLlabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Calificacion"].ToString();
-				//        EstatusaLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Estatus"].ToString();
-				//        VisitadorLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Visitador"].ToString();
-				//        FormaContactoLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["FormaContacto"].ToString();
-				//        TipoSolicitudLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["TipoSolicitud"].ToString();
-				//        ObservacionesLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["Observaciones"].ToString();
-				//        LugarHechosLabel.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["LugarHechos"].ToString();
-				//        DireccionHechos.Text = oENTExpediente.ResultData.Tables[0].Rows[0]["DireccionHechos"].ToString();
-				//    }
-
-				//    //Fechas
-				//    if (oENTExpediente.ResultData.Tables[1].Rows.Count > 0)
-				//    {
-				//        FechaRecepcionLabel.Text = oENTExpediente.ResultData.Tables[1].Rows[0]["FechaRecepcion"].ToString();
-				//        FechaAsignacionLabel.Text = oENTExpediente.ResultData.Tables[1].Rows[0]["FechaAsignacion"].ToString();
-				//        FechaGestionLabel.Text = oENTExpediente.ResultData.Tables[1].Rows[0]["FechaInicioGestion"].ToString();
-				//        FechaModificacionLabel.Text = oENTExpediente.ResultData.Tables[1].Rows[0]["UltimaModificacion"].ToString();
-				//    }
-				//}
-				//else
-				//    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(BPExpediente.ErrorDescription) + "');", true);
-            }
-
-            private void SelectExpedienteResolucion(int ExpedienteId)
-            {
-                BPExpedienteResolucion ExpedienteResolucionProcess = new BPExpedienteResolucion();
-
-                ExpedienteResolucionProcess.ExpedienteResolucionEntity.ExpedienteId = ExpedienteId;
-
-                ExpedienteResolucionProcess.SelectExpedienteResolucion();
-
-                if (ExpedienteResolucionProcess.ErrorId != 0)
-                {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ExpedienteResolucionProcess.ErrorDescription) + "');", true);
-                    return;
-                }
-
-                if (ExpedienteResolucionProcess.ExpedienteResolucionEntity.ResultData.Tables[0].Rows.Count > 0)
-                {
-                    // Se llenan los valores de los controles con los de la base de datos
-                    TipoResolucionIdList.SelectedValue = ExpedienteResolucionProcess.ExpedienteResolucionEntity.ResultData.Tables[0].Rows[0]["TipoResolucionId"].ToString();
-                    DetalleBox.Text = ExpedienteResolucionProcess.ExpedienteResolucionEntity.ResultData.Tables[0].Rows[0]["Detalle"].ToString();
-                    ExpedienteResolucionIdHidden.Value = ExpedienteResolucionProcess.ExpedienteResolucionEntity.ResultData.Tables[0].Rows[0]["ExpedienteResolucionId"].ToString();
-
-                    // Se bloquean los controles porque no se le debe de permitir al funcionario modificar la información
-                    TipoResolucionIdList.Enabled = false;
-                    DetalleBox.Enabled = false;
-                    GuardarButton.Enabled = false;
-                }
-            }
-
-            private void SelectTipoResolucion()
-            {
-                BPTipoResolucion TipoResolucionProcess = new BPTipoResolucion();
-
-                TipoResolucionProcess.SelectTipoResolucion();
-
-                if (TipoResolucionProcess.ErrorId == 0)
-                {
-                    TipoResolucionIdList.DataTextField = "Nombre";
-                    TipoResolucionIdList.DataValueField = "TipoResolucionId";
-
-                    TipoResolucionIdList.DataSource = TipoResolucionProcess.TipoResolucionEntity.ResultData.Tables[0];
-                    TipoResolucionIdList.DataBind();
-
-                    TipoResolucionIdList.Items.Insert(0, new ListItem("[Seleccione]", "0"));
-                }
-                else
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(TipoResolucionProcess.ErrorDescription) + "');", true);
-            }
-        #endregion
     }
 }

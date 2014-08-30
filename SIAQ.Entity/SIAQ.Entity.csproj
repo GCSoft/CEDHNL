@@ -60,7 +60,6 @@
     <Compile Include="Object\ENTExpediente.cs" />
     <Compile Include="Object\ENTExpedienteComentario.cs" />
     <Compile Include="Object\ENTExpedienteComparecencia.cs" />
-    <Compile Include="Object\ENTExpedienteResolucion.cs" />
     <Compile Include="Object\ENTExpedienteSeguimiento.cs" />
     <Compile Include="Object\ENTFormaContacto.cs" />
     <Compile Include="Object\ENTFuncionario.cs" />

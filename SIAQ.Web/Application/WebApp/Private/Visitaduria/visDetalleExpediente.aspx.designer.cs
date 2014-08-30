@@ -643,6 +643,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         protected global::System.Web.UI.WebControls.HiddenField hddFuncionarioId;
         
         /// <summary>
+        /// hddTipoResolucionId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hddTipoResolucionId;
+        
+        /// <summary>
         /// Sender control.
         /// </summary>
         /// <remarks>

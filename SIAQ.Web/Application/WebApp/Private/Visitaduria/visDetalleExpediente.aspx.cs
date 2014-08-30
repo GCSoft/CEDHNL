@@ -181,6 +181,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				// Campos ocultos
 				this.hddEstatusId.Value = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusId"].ToString();
 				this.hddFuncionarioId.Value = oENTResponse.dsResponse.Tables[1].Rows[0]["FuncionarioId"].ToString();
+				this.hddTipoResolucionId.Value = oENTResponse.dsResponse.Tables[1].Rows[0]["TipoResolucionId"].ToString();
 
 				// Formulario
 				this.ExpedienteNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["ExpedienteNumero"].ToString();
@@ -389,6 +390,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 					this.ResolucionPanel.Visible = false;
 					this.RecomendacionPanel.Visible = false;
 					this.EnviarPanel.Visible = false;
+				}
+
+				// Si el Expediente no está marcado como Recomendación ocultar la opción
+				if( this.hddTipoResolucionId.Value != "2" ){
+					this.RecomendacionPanel.Visible = false;
 				}
 
 				// Si es Funcionario y el expediente está asignado a el puede agregar comentarios siempre y cuando no esté en estatus de confirmación de cierre
@@ -669,7 +675,19 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 		}
 
 		protected void ResolucionButton_Click(object sender, ImageClickEventArgs e){
-			Response.Redirect("visResolucionExpediente.aspx?expId=" + this.hddExpedienteId.Value);
+			String sKey = "";
+
+			try
+			{
+
+				// Llave encriptada
+				sKey = this.hddExpedienteId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("visResolucionExpediente.aspx?key=" + sKey, false);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
 		}
 
 		protected void RecomendacionButton_Click(object sender, ImageClickEventArgs e){

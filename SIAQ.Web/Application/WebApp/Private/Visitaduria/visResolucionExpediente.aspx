@@ -10,12 +10,12 @@
         <table class="GeneralTable">
             <tr>
                 <td class="tdCeldaTituloEncabezado" style="background-image: url('../../../../Include/Image/Web/BarraTitulo.png');">
-                    Acuerdo de calificación definitiva
+                    Resolución de Expediente
                 </td>
             </tr>
             <tr>
                 <td class="SubTitulo">
-                    <asp:Label ID="Label1" runat="server" Text="Seleccione el funcionario a asignar a la Expediente."></asp:Label>
+                    <asp:Label ID="Label1" runat="server" Text="Determine la Resolución del Expediente."></asp:Label>
                 </td>
             </tr>
         </table>

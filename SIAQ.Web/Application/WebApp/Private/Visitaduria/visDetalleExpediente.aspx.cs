@@ -691,7 +691,19 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 		}
 
 		protected void RecomendacionButton_Click(object sender, ImageClickEventArgs e){
-			Response.Redirect("visRecomendacionExpediente.aspx?expId=" + this.hddExpedienteId.Value);
+			String sKey = "";
+
+			try
+			{
+
+				// Llave encriptada
+				sKey = this.hddExpedienteId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("visRecomendacionExpediente.aspx?key=" + sKey, false);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
 		}
 
 		protected void ImprimirButton_Click(object sender, ImageClickEventArgs e){

@@ -22,6 +22,7 @@ namespace SIAQ.Entity.Object
         private string _Observaciones;
         private int _Anio;
         private DataSet _ResultData;
+		private Int32 _ModuloId;
 
         #endregion
 
@@ -194,6 +195,13 @@ namespace SIAQ.Entity.Object
             set { _ResultData = value; }
         }
 
+
+		public Int32 ModuloId
+		{
+			get { return _ModuloId; }
+			set { _ModuloId = value; }
+		}
+
         #endregion
 
         #region Funciones
@@ -213,6 +221,7 @@ namespace SIAQ.Entity.Object
             _Observaciones = "";
             _Anio = 0;
             _ResultData = new DataSet();
+			_ModuloId = 0;
         }
         
         #endregion

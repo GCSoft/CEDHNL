@@ -1,87 +1,93 @@
-﻿using System;
+﻿/*---------------------------------------------------------------------------------------------------------------------------------
+' Clase: DATipoRecomendacion
+' Autor: Ruben.Cobos
+' Fecha: 31-Agosto-2014
+'
+' Proposito:
+'          Clase que modela la capa de reglas de negocio de la aplicación con métodos relacionados con los Tipos de Recomendación
+'----------------------------------------------------------------------------------------------------------------------------------*/
+
+// Referencias
+using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
+// Referencias manuales
+using System.Data;
+using System.Data.SqlClient;
 using SIAQ.Entity.Object;
 
 namespace SIAQ.DataAccess.Object
 {
     public class DATipoRecomendacion : DABase
     {
-        protected int _ErrorId;
-        protected string _ErrorDescription;
+        
+		///<remarks>
+		///   <name>DATipoRecomendacion.SelectTipoRecomendacion</name>
+		///   <create>31-Agosto-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene un listado de Tipo de Recomendación en base a los parámetros proporcionados</summary>
+		///<param name="oENTTipoRecomendacion">Entidad de Tipo de Recomendación con los filtros necesarios para la consulta</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+        public ENTResponse SelectTipoRecomendacion( ENTTipoRecomendacion oENTTipoRecomendacion, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
 
-        /// <summary>
-        ///     Número de error, en caso de que haya ocurrido uno. Cero por default.
-        /// </summary>
-        public int ErrorId
-        {
-            get { return _ErrorId; }
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspTipoRecomendacion_Sel", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("TipoRecomendacionId", SqlDbType.Int);
+			sqlPar.Value = oENTTipoRecomendacion.TipoRecomendacionId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Nombre", SqlDbType.VarChar);
+			sqlPar.Value = oENTTipoRecomendacion.Nombre;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try
+			{
+				
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+
+			}catch (SqlException sqlEx){
+
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+
+			}catch (Exception ex){
+
+				oENTResponse.ExceptionRaised(ex.Message);
+
+			}finally{
+
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+
+			}
+
+			// Resultado
+			return oENTResponse;
+
         }
 
-        /// <summary>
-        ///     Descripción de error, en caso de que haya ocurrido uno. Empty por default.
-        /// </summary>
-        public string ErrorDescription
-        {
-            get { return _ErrorDescription; }
-        }
-
-        /// <summary>
-        ///     Constructor de la clase.
-        /// </summary>
-        public DATipoRecomendacion()
-        {
-            _ErrorId = 0;
-            _ErrorDescription = string.Empty;
-        }
-
-        #region "Method"
-            /// <summary>
-            ///     Realiza una búsqueda de los tipos de recomendación.
-            /// </summary>
-            /// <param name="ExpedienteSeguimientoEntity">Entidad del tipo de recomendación.</param>
-            /// <param name="ConnectionString">Cadena de conexión a la base de datos.</param>
-            /// <returns>Resultado de la búsqueda.</returns>
-            public DataSet SelectTipoRecomendacion(ENTTipoRecomendacion TipoRecomendacionEntity, string ConnectionString)
-            {
-                DataSet ResultData = new DataSet();
-                SqlConnection Connection = new SqlConnection(ConnectionString);
-                SqlCommand Command;
-                SqlParameter Parameter;
-                SqlDataAdapter DataAdapter;
-
-                try
-                {
-                    Command = new SqlCommand("SelectTipoRecomendacion", Connection);
-                    Command.CommandType = CommandType.StoredProcedure;
-
-                    Parameter = new SqlParameter("TipoRecomendacionId", SqlDbType.Int);
-                    Parameter.Value = TipoRecomendacionEntity.TipoRecomendacionId;
-                    Command.Parameters.Add(Parameter);
-
-                    DataAdapter = new SqlDataAdapter(Command);
-
-                    Connection.Open();
-                    DataAdapter.Fill(ResultData);
-                    Connection.Close();
-
-                    return ResultData;
-                }
-                catch (SqlException Exception)
-                {
-                    _ErrorId = Exception.Number;
-                    _ErrorDescription = Exception.Message;
-
-                    if (Connection.State == ConnectionState.Open)
-                        Connection.Close();
-
-                    return ResultData;
-                }
-            }
-        #endregion
     }
 }

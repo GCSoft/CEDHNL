@@ -505,6 +505,8 @@
     <Content Include="Include\Image\Icon\CiudadanoIcon_Pending.png" />
     <Content Include="Include\Image\Icon\CiudadanoIcon_Success.png" />
     <Content Include="Include\Image\Icon\ComparecenciaIcon.png" />
+    <Content Include="Include\Image\Icon\ComparecenciaIcon_Pending.png" />
+    <Content Include="Include\Image\Icon\ComparecenciaIcon_Success.png" />
     <Content Include="Include\Image\Icon\ConfirmacionCierreIcon.png" />
     <Content Include="Include\Image\Icon\DiligenciaIcon.png" />
     <Content Include="Include\Image\Icon\DiligenciaIcon_Pending.png" />
@@ -523,10 +525,16 @@
     <Content Include="Include\Image\Icon\PowerPointIcon.png" />
     <Content Include="Include\Image\Icon\RechazarCierreIcon.png" />
     <Content Include="Include\Image\Icon\RecomendacionIcon.png" />
+    <Content Include="Include\Image\Icon\RecomendacionIcon_Pending.png" />
+    <Content Include="Include\Image\Icon\RecomendacionIcon_Success.png" />
     <Content Include="Include\Image\Icon\RegistrarSolicitud.png" />
     <Content Include="Include\Image\Icon\RegistrarVisita.png" />
     <Content Include="Include\Image\Icon\ResolucionIcon.png" />
+    <Content Include="Include\Image\Icon\ResolucionIcon_Pending.png" />
+    <Content Include="Include\Image\Icon\ResolucionIcon_Success.png" />
     <Content Include="Include\Image\Icon\SeguimientoIcon.png" />
+    <Content Include="Include\Image\Icon\SeguimientoIcon_Pending.png" />
+    <Content Include="Include\Image\Icon\SeguimientoIcon_Success.png" />
     <Content Include="Include\Image\Icon\WordIcon.png" />
     <Content Include="Include\Image\Vectores\Banner.png" />
     <Content Include="Include\Image\Vectores\BarraTituloDePagina.png" />

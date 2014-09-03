@@ -50,6 +50,12 @@
 				<td colspan="4"></td>
 			</tr>
 			<tr>
+				<td class="Especial">Resolución</td>
+				<td class="Espacio"></td>
+				<td class="Campo"><asp:Label ID="ResolucionLabel" CssClass="NumeroSolicitudLabel" runat="server" Text="0"></asp:Label></td>
+				<td colspan="4"></td>
+			</tr>
+			<tr>
 				<td class="Nombre">Area</td>
 				<td class="Espacio"></td>
 				<td class="Etiqueta"><asp:Label ID="AreaLabel" runat="server" Text=""></asp:Label></td>
@@ -133,7 +139,7 @@
 				<td class="Observaciones" colspan="5"><asp:Label ID="FundamentoLabel" runat="server" Text=""></asp:Label></td>
 			</tr>
 			<tr>
-				<td class="Nombre">Cierre de Orientacion</td>
+				<td class="Nombre"><asp:Label ID="CierreOrientacionLabel" runat="server" Text="Cierre de Orientación"></asp:Label></td>
 				<td class="Espacio"></td>
 				<td class="Etiqueta" colspan="5"><asp:Label ID="TipoOrientacionLabel" runat="server"></asp:Label></td>
 			</tr>
@@ -229,13 +235,13 @@
 									<asp:Panel ID="pnlGridDetail" runat="server">
 										<tr>
 											<td align="center" colspan="100%" style="border:1px solid #C1C1C1">
-                                                <asp:GridView id="gvVocesDetalle" runat="server" AllowPaging="false" AllowSorting="false" AutoGenerateColumns="False" Width="900px"
+                                                <asp:GridView id="gvVocesDetalle" runat="server" AllowPaging="false" AllowSorting="false" AutoGenerateColumns="False" Width="90%"
                                                     DataKeyNames="VozId">
                                                     <alternatingrowstyle cssclass="Grid_Row_Alternating" />
                                                     <headerstyle cssclass="Grid_Header_Action_Alternative" />
                                                     <rowstyle cssclass="Grid_Row" />
                                                     <EmptyDataTemplate>
-                                                        <table border="1px" cellpadding="0px" cellspacing="0px">
+                                                       <table border="1px" cellpadding="0px" cellspacing="0px" width="100%">
 															<tr class="Grid_Header_Action_Alternative">
 																<td style="text-align:center; width:180px;">Voz1</td>
 																<td style="text-align:center; width:180px;">Voz2</td>
@@ -244,7 +250,7 @@
 																<td style="text-align:center; width:100px;">Calificación</td>
 															</tr>
 															<tr class="Grid_Row">
-																<td colspan="4" style="text-align:center;">No se han agregado voces a la autoridad</td>
+																<td colspan="5" style="text-align:center;">No se han agregado voces a la autoridad</td>
 															</tr>
 														</table>
                                                     </EmptyDataTemplate>

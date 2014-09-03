@@ -58,6 +58,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         protected global::System.Web.UI.WebControls.Label AfectadoLabel;
         
         /// <summary>
+        /// ResolucionLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ResolucionLabel;
+        
+        /// <summary>
         /// AreaLabel control.
         /// </summary>
         /// <remarks>
@@ -218,6 +227,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label FundamentoLabel;
+        
+        /// <summary>
+        /// CierreOrientacionLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label CierreOrientacionLabel;
         
         /// <summary>
         /// TipoOrientacionLabel control.

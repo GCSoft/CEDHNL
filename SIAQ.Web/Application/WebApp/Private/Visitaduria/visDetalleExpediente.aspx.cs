@@ -190,6 +190,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				this.EstatusaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusNombre"].ToString();
 				this.AfectadoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Afectado"].ToString();
 				this.AreaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["AreaNombre"].ToString();
+				this.ResolucionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["TipoResolucionNombre"].ToString();
 
 				this.FuncionarioLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FuncionarioNombre"].ToString();
 				this.ContactoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FormaContactoNombre"].ToString();
@@ -210,6 +211,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				this.DireccionHechosLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["DireccionHechos"].ToString();
 				this.ObservacionesLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Observaciones"].ToString();
 				this.FundamentoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Fundamento"].ToString();
+
+				// Cierre de Orientación
+				if ( oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionId"].ToString() != "3" ){
+					this.CierreOrientacionLabel.Visible = false;
+					this.TipoOrientacionLabel.Visible = false;
+				}
 
 				// Canalizaciones
 				if (oENTResponse.dsResponse.Tables[2].Rows.Count > 0){
@@ -707,7 +714,19 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 		}
 
 		protected void ImprimirButton_Click(object sender, ImageClickEventArgs e){
-			Response.Redirect("visImprmirExpediente.aspx?key=" + this.hddExpedienteId.Value + "|" + this.SenderId.Value);
+			String sKey = "";
+
+			try
+			{
+
+				// Llave encriptada
+				sKey = this.hddExpedienteId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("visImprmirExpediente.aspx?key=" + sKey, false);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
 		}
 
 		protected void EnviarButton_Click(object sender, ImageClickEventArgs e){

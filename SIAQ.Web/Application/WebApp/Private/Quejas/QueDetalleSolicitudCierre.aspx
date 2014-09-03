@@ -128,7 +128,7 @@
                 <td class="Observaciones" colspan="5"><asp:Label ID="FundamentoLabel" runat="server" Text=""></asp:Label></td>
             </tr>
 			<tr>
-                <td class="Nombre">Cierre de Orientacion</td>
+                <td class="Nombre"><asp:Label ID="CierreOrientacionLabel" runat="server" Text="Cierre de Orientación"></asp:Label></td>
                 <td class="Espacio"></td>
                 <td class="Etiqueta" colspan="5"><asp:Label ID="TipoOrientacionLabel" runat="server"></asp:Label></td>
             </tr>

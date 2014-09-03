@@ -96,6 +96,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				this.DireccionHechosLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["DireccionHechos"].ToString();
 				this.ObservacionesLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Observaciones"].ToString();
 
+				// Cierre de Orientación
+				if ( oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionId"].ToString() != "3" ){
+					this.CierreOrientacionLabel.Visible = false;
+					this.TipoOrientacionLabel.Visible = false;
+				}
+
 				// Canalizaciones
 				if (oENTResponse.dsResponse.Tables[7].Rows.Count > 0){
 

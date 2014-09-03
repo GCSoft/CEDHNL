@@ -25,6 +25,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
     {
         
 		// Utilerías
+		GCParse gcParse = new GCParse();
 		GCCommon gcCommon = new GCCommon();
 		GCJavascript gcJavascript = new GCJavascript();
 		GCEncryption gcEncryption = new GCEncryption();
@@ -72,14 +73,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			}
 		}
 
-		void ResetForm(){
-			this.ddlTipoRecomendacion.SelectedIndex = 0;
-			this.ckeDetalle.Text = "";
-			this.hddRecomendacionId.Value = "0";
-
-			ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlTipoRecomendacion.ClientID + "'); }", true);
-		}
-
 		void InsertRecomendacion(){
 			BPRecomendacion oBPRecomendacion = new BPRecomendacion();
 
@@ -87,42 +80,100 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			ENTRecomendacion oENTRecomendacion = new ENTRecomendacion();
 			ENTSession oENTSession;
 
+			String AutoridadId = "";
+			RadioButton oRadioButton;
+
+			DataTable tblCommon = null;
+			DataRow rowCommon;
+
 			try
 			{
 
-				// Validaciones
-				if (this.ddlTipoRecomendacion.SelectedIndex == 0) { throw new Exception("El campo [Tipo de Recomendación] es requerido"); }
-				if (this.ckeDetalle.Text.Trim() == "") { throw new Exception("El campo [Detalle] es requerido"); }
+			   // Obtener Sesion
+			    oENTSession = (ENTSession)this.Session["oENTSession"];
 
-				// Obtener Sesion
-				oENTSession = (ENTSession)this.Session["oENTSession"];
+			    // Validaciones de sesión
+			    if (oENTSession.FuncionarioId == 0) { throw new Exception("No cuenta con permisos para crear Recomendaciones debido a que usted no es un funcionario"); }
 
-				// Validaciones de sesión
-				if (oENTSession.FuncionarioId == 0) { throw new Exception("No cuenta con permisos para crear Recomendaciones debido a que usted no es un funcionario"); }
+				// Obtener la autoridad seleccionada
+				foreach (GridViewRow gvRow in this.gvAutoridad.Rows) {
 
-				//Formulario
+					oRadioButton = (RadioButton)this.gvAutoridad.Rows[gvRow.RowIndex].FindControl("RowSelector");
+					if (oRadioButton.Checked) {
+						AutoridadId = this.gvAutoridad.DataKeys[gvRow.RowIndex]["AutoridadId"].ToString();
+					}
+				}
+
+			    //Formulario
+				oENTRecomendacion.AutoridadId = Convert.ToInt32(AutoridadId);
+			    oENTRecomendacion.EstatusId = 13; // Sin atender
 				oENTRecomendacion.ExpedienteId = Convert.ToInt32(this.hddExpedienteId.Value);
-				oENTRecomendacion.EstatusId = 13; // Sin atender
+			    oENTRecomendacion.ModuloId = 3; // Visitadurías
 				oENTRecomendacion.FuncionarioId = oENTSession.FuncionarioId;
-				oENTRecomendacion.ModuloId = 3; // Visitadurías
-				oENTRecomendacion.TipoRecomendacionId = Int32.Parse(this.ddlTipoRecomendacion.SelectedItem.Value);
-				oENTRecomendacion.Observaciones = this.ckeDetalle.Text.Trim();
 
-				//Transacción
-				oENTResponse = oBPRecomendacion.InsertRecomendacion(oENTRecomendacion);
+				tblCommon = gcParse.GridViewToDataTable(this.gvAutoridadDetalle, false);
+				oENTRecomendacion.tblRecomendacionDetalle = new DataTable("tblRecomendacionDetalle");
+				oENTRecomendacion.tblRecomendacionDetalle.Columns.Add("Detalle", typeof(String));
+				foreach (DataRow oDataRow in tblCommon.Rows){
 
-				//Validación
-				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
-				if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+					rowCommon = oENTRecomendacion.tblRecomendacionDetalle.NewRow();
+					rowCommon["Detalle"] = oDataRow["Apartado"];
+					oENTRecomendacion.tblRecomendacionDetalle.Rows.Add(rowCommon);
+				}
 
-				// Actualizar grid
-				SelectExpediente();
+			    //Transacción
+			    oENTResponse = oBPRecomendacion.InsertRecomendacion(oENTRecomendacion);
 
-				// Limpiar el formulario
-				ResetForm();
+			    //Validación
+			    if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+			    if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+
+			    // Actualizar grid
+			    SelectExpediente();
 
 			}catch (Exception ex){
 			    throw (ex);
+			}
+		}
+
+		void InsertRecomendacion_Local(){
+			DataTable tblAutoridadDetalle = null;
+			DataRow rowAutoridadDetalle = null;
+
+			Int32 Contador = 0;
+
+			try
+			{
+
+				// Obtener el DataTable del grid
+				tblAutoridadDetalle = gcParse.GridViewToDataTable(this.gvAutoridadDetalle, false);
+
+				// Nuevo Item
+				rowAutoridadDetalle = tblAutoridadDetalle.NewRow();
+				rowAutoridadDetalle["RowNumber"] = "0";
+				rowAutoridadDetalle["Apartado"] = this.ckeApartado.Text;
+				tblAutoridadDetalle.Rows.Add(rowAutoridadDetalle);
+
+				// Reorganizar los RowNumber's
+				foreach (DataRow rowReorder in tblAutoridadDetalle.Rows){
+
+					Contador = Contador + 1;
+					rowReorder["RowNumber"] = Contador.ToString();
+				}
+
+				// Refrescar el Grid
+				this.gvAutoridadDetalle.DataSource = tblAutoridadDetalle;
+				this.gvAutoridadDetalle.DataBind();
+
+				// Estado del formulario
+				this.ckeApartado.Text = "";
+				this.lblActionMessage.Text = "";
+
+				// Foco
+				this.ckeApartado.Focus();
+
+			}catch (Exception ex){
+				throw (ex);
 			}
 		}
 
@@ -194,71 +245,107 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			}
 		}
 
+		void SelectExpedienteAutoridad(){
+            BPVisitaduria oBPVisitaduria = new BPVisitaduria();
+			ENTVisitaduria oENTVisitaduria = new ENTVisitaduria();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Formulario
+				oENTVisitaduria.ExpedienteId = Int32.Parse(this.hddExpedienteId.Value);
+				oENTVisitaduria.AutoridadId = 0;
+				oENTVisitaduria.CalificacionAutoridadId = 3; // Si Responsable
+
+				// Consulta de autoridades
+				oENTResponse = oBPVisitaduria.SelectExpedienteAutoridad(oENTVisitaduria);
+
+				// Errores
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + oENTResponse.sMessage + "'); ", true); }
+
+				// Vaciado de datos
+				this.gvAutoridad.DataSource = oENTResponse.dsResponse.Tables[1];
+				this.gvAutoridad.DataBind();
+				
+			}catch (Exception ex){
+				throw (ex);
+			}
+        }
+
+		void SelectRecomendacion_Detalle(ref GridView grdDetalle, Int32 RecomendacionId){
+            BPRecomendacion oBPRecomendacion = new BPRecomendacion();
+			ENTRecomendacion oENTRecomendacion = new ENTRecomendacion();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Formulario
+				oENTRecomendacion.RecomendacionId = RecomendacionId;
+
+				// Transacción
+				oENTResponse = oBPRecomendacion.SelectRecomendacion_ByID(oENTRecomendacion);
+
+				// Errores
+				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+				if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+
+				// Llenado de control
+				grdDetalle.DataSource = oENTResponse.dsResponse.Tables[2];
+				grdDetalle.DataBind();
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+        }
+
 		void SelectRecomendacion_ForEdit(String RecomendacionId){
 			ENTRecomendacion oENTRecomendacion = new ENTRecomendacion();
 			ENTResponse oENTResponse = new ENTResponse();
 			BPRecomendacion oBPRecomendacion = new BPRecomendacion();
 
+			RadioButton oRadioButton;
+
 			try
 			{
-				// Formulario
-				oENTRecomendacion.RecomendacionId = Int32.Parse(RecomendacionId);
+			    // Formulario
+			    oENTRecomendacion.RecomendacionId = Int32.Parse(RecomendacionId);
 
-				// Transacción
-				oENTResponse = oBPRecomendacion.SelectRecomendacion_ByID(oENTRecomendacion);
+			    // Transacción
+			    oENTResponse = oBPRecomendacion.SelectRecomendacion_ByID(oENTRecomendacion);
 
-				// Validaciones
-				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+			    // Validaciones
+			    if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
 
-				// Mensaje de la BD
-				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(oENTResponse.sMessage) + "');", true); }
+			    // Mensaje de la BD
+			    if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(oENTResponse.sMessage) + "');", true); }
 
-				// Llenado de formulario
-				this.ddlTipoRecomendacion.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["TipoRecomendacionId"].ToString();
-				this.ckeDetalle.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Observaciones"].ToString();
+			    // Llenado de formulario
+				foreach (GridViewRow gvRow in this.gvAutoridad.Rows){
 
-				// Id a trabajar
-				this.hddRecomendacionId.Value = RecomendacionId.ToString();
+					oRadioButton = (RadioButton)this.gvAutoridad.Rows[gvRow.RowIndex].FindControl("RowSelector");
+					if (oENTResponse.dsResponse.Tables[1].Rows[0]["AutoridadId"].ToString() == this.gvAutoridad.DataKeys[gvRow.RowIndex]["AutoridadId"].ToString()) { oRadioButton.Checked = true; }
+				}
+
+
+				this.gvAutoridadDetalle.DataSource = oENTResponse.dsResponse.Tables[2];
+				this.gvAutoridadDetalle.DataBind();
+
+			    // Id a trabajar
+			    this.hddRecomendacionId.Value = RecomendacionId.ToString();
+
+				// Estado del formulario
+				this.btnAction.Text = "Modificar recomendación";
+				this.lblActionTitle.Text = "Modificar recomendación";
+				this.pnlAction.Visible = true;
 
 				// Foco
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlTipoRecomendacion.ClientID + "'); }", true);
+				this.ckeApartado.Focus();
 
 			}catch (Exception ex){
-				throw (ex);
-			}
-		}
-
-		void SelectTipoRecomendacion(){
-			ENTTipoRecomendacion oENTTipoRecomendacion = new ENTTipoRecomendacion();
-			ENTResponse oENTResponse = new ENTResponse();
-			BPTipoRecomendacion oBPTipoRecomendacion = new BPTipoRecomendacion();
-
-			try
-			{
-				// Formulario
-				oENTTipoRecomendacion.TipoRecomendacionId = 0;
-				oENTTipoRecomendacion.Nombre = "";
-
-				// Transacción
-				oENTResponse = oBPTipoRecomendacion.SelectTipoRecomendacion(oENTTipoRecomendacion);
-
-				// Validaciones
-				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
-
-				// Mensaje de la BD
-				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(oENTResponse.sMessage) + "');", true); }
-
-				// Llenado de combo
-				this.ddlTipoRecomendacion.DataTextField = "Nombre";
-				this.ddlTipoRecomendacion.DataValueField = "TipoRecomendacionId";
-				this.ddlTipoRecomendacion.DataSource = oENTResponse.dsResponse.Tables[1];
-				this.ddlTipoRecomendacion.DataBind();
-
-				// Agregar Item de selección
-				this.ddlTipoRecomendacion.Items.Insert(0, new ListItem("[Seleccione]", "0"));
-
-			}catch (Exception ex){
-				throw (ex);
+			    throw (ex);
 			}
 		}
 
@@ -269,43 +356,231 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			ENTRecomendacion oENTRecomendacion = new ENTRecomendacion();
 			ENTSession oENTSession;
 
+			String AutoridadId = "";
+			RadioButton oRadioButton;
+
+			DataTable tblCommon = null;
+			DataRow rowCommon;
+
 			try
 			{
 
-				// Validaciones
-				if (this.ddlTipoRecomendacion.SelectedIndex == 0) { throw new Exception("El campo [Tipo de Recomendación] es requerido"); }
-				if (this.ckeDetalle.Text.Trim() == "") { throw new Exception("El campo [Detalle] es requerido"); }
+			   // Obtener Sesion
+			    oENTSession = (ENTSession)this.Session["oENTSession"];
 
-				// Obtener Sesion
-				oENTSession = (ENTSession)this.Session["oENTSession"];
+			    // Validaciones de sesión
+			    if (oENTSession.FuncionarioId == 0) { throw new Exception("No cuenta con permisos para crear Recomendaciones debido a que usted no es un funcionario"); }
 
-				// Validaciones de sesión
-				if (oENTSession.FuncionarioId == 0) { throw new Exception("No cuenta con permisos para crear Recomendaciones debido a que usted no es un funcionario"); }
+				// Obtener la autoridad seleccionada
+				foreach (GridViewRow gvRow in this.gvAutoridad.Rows) {
 
-				//Formulario
+					oRadioButton = (RadioButton)this.gvAutoridad.Rows[gvRow.RowIndex].FindControl("RowSelector");
+					if (oRadioButton.Checked) {
+						AutoridadId = this.gvAutoridad.DataKeys[gvRow.RowIndex]["AutoridadId"].ToString();
+					}
+				}
+
+			    //Formulario
 				oENTRecomendacion.RecomendacionId = Int32.Parse(this.hddRecomendacionId.Value);
+				oENTRecomendacion.AutoridadId = Convert.ToInt32(AutoridadId);
+			    oENTRecomendacion.EstatusId = 13; // Sin atender
 				oENTRecomendacion.ExpedienteId = Convert.ToInt32(this.hddExpedienteId.Value);
-				oENTRecomendacion.EstatusId = 13; // Sin atender
+			    oENTRecomendacion.ModuloId = 3; // Visitadurías
 				oENTRecomendacion.FuncionarioId = oENTSession.FuncionarioId;
-				oENTRecomendacion.ModuloId = 3; // Visitadurías
-				oENTRecomendacion.TipoRecomendacionId = Int32.Parse(this.ddlTipoRecomendacion.SelectedItem.Value);
-				oENTRecomendacion.Observaciones = this.ckeDetalle.Text.Trim();
 
-				//Transacción
+				tblCommon = gcParse.GridViewToDataTable(this.gvAutoridadDetalle, false);
+				oENTRecomendacion.tblRecomendacionDetalle = new DataTable("tblRecomendacionDetalle");
+				oENTRecomendacion.tblRecomendacionDetalle.Columns.Add("Detalle", typeof(String));
+				foreach (DataRow oDataRow in tblCommon.Rows){
+
+					rowCommon = oENTRecomendacion.tblRecomendacionDetalle.NewRow();
+					rowCommon["Detalle"] = oDataRow["Apartado"];
+					oENTRecomendacion.tblRecomendacionDetalle.Rows.Add(rowCommon);
+				}
+
+			    //Transacción
 				oENTResponse = oBPRecomendacion.UpdateRecomendacion(oENTRecomendacion);
 
-				//Validación
-				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
-				if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+			    //Validación
+			    if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+			    if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
 
-				// Actualizar grid
-				SelectExpediente();
-
-				// Limpiar el formulario
-				ResetForm();
+			    // Actualizar grid
+			    SelectExpediente();
 
 			}catch (Exception ex){
 			    throw (ex);
+			}
+		}
+
+		
+		// Rutinas del PopUp
+
+		void ClearActionPanel(String RecomendacionId){
+			RadioButton oRadioButton;
+
+            try
+            {
+
+                // Limpiar formulario de Nueva Autoridad
+				foreach (GridViewRow gvRow in this.gvAutoridad.Rows) {
+
+					oRadioButton = (RadioButton)this.gvAutoridad.Rows[gvRow.RowIndex].FindControl("RowSelector");
+					oRadioButton.Checked = false;
+				}
+				this.ckeApartado.Text = "";
+				
+				this.gvAutoridadDetalle.DataSource = null;
+				this.gvAutoridadDetalle.DataBind();
+
+                // Estado incial de controles
+                this.pnlAction.Visible = false;
+                this.lblActionMessage.Text = "";
+
+                // Autoridad como parámetro
+				this.hddRecomendacionId.Value = RecomendacionId.ToString();
+
+            }catch (Exception ex){
+                throw (ex);
+            }
+        }
+
+		void SwapGrid(int iRow){
+            Panel oPanelDetail = new Panel();
+            ImageButton oImageSwapGrid = new ImageButton();
+
+            ImageButton imgEdit = null;
+			ImageButton imgDelete = null;
+
+            String sImagesAttributes = null;
+
+            try
+            {
+
+                // Acceso al Panel y a la Imagen
+                oPanelDetail = (Panel)this.gvRecomendacion.Rows[iRow].FindControl("pnlGridDetail");
+                oImageSwapGrid = (ImageButton)this.gvRecomendacion.Rows[iRow].FindControl("imgSwapGrid");
+				imgEdit = (ImageButton)this.gvRecomendacion.Rows[iRow].FindControl("imgEdit");
+				imgDelete = (ImageButton)this.gvRecomendacion.Rows[iRow].FindControl("imgDelete");
+
+                // Validaciones
+                if (oPanelDetail == null) { return; }
+                if (oImageSwapGrid == null) { return; }
+
+                // Atributos Over
+                sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png'; ";
+				sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png'; ";
+                sImagesAttributes = sImagesAttributes + "document.getElementById('" + oImageSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/" + (oPanelDetail.Visible ? "Expand_Over" : "Collapse_Over") + ".png'; ";
+                
+
+                //Puntero y Sombra en fila Over
+                this.gvRecomendacion.Rows[iRow].Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
+
+                // Atributos Out
+                sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png'; ";
+				sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png'; ";
+                sImagesAttributes = sImagesAttributes + "document.getElementById('" + oImageSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/" + (oPanelDetail.Visible ? "Expand" : "Collapse") + ".png'; ";
+
+                //Puntero y Sombra en fila Out
+                this.gvRecomendacion.Rows[iRow].Attributes.Add("onmouseout", "this.className='" + ((iRow % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
+                                
+                // Cambiar estados
+                if (oPanelDetail.Visible){
+
+                    oPanelDetail.Visible = false;
+                    oImageSwapGrid.ImageUrl = "~/Include/Image/Buttons/Expand.png";
+                    oImageSwapGrid.Attributes.Add("onmouseover", "tooltip.show('Mostrar el detalle', 'Der');");
+                    oImageSwapGrid.Attributes.Add("onmouseout", "tooltip.hide();");
+                }else{
+
+                    oPanelDetail.Visible = true;
+                    oImageSwapGrid.ImageUrl = "~/Include/Image/Buttons/Collapse.png";
+                    oImageSwapGrid.Attributes.Add("onmouseover", "tooltip.show('Ocultar el detalle', 'Der');");
+                    oImageSwapGrid.Attributes.Add("onmouseout", "tooltip.hide();");
+                }
+
+            }catch (Exception ex){
+                throw (ex);
+            }
+        }
+
+		void SwapGridByHeader(Int32 iRow, Boolean isVisible){
+            ImageButton oImageSwapGrid = null;
+            Panel oPanelDetail = null;
+
+            ImageButton imgEdit = null;
+			ImageButton imgDelete = null;
+
+            String sImagesAttributes = null;
+
+            try
+            {
+
+                // Acceso al Panel y a la Imagen
+                oPanelDetail = (Panel)this.gvRecomendacion.Rows[iRow].FindControl("pnlGridDetail");
+                oImageSwapGrid = (ImageButton)this.gvRecomendacion.Rows[iRow].FindControl("imgSwapGrid");
+				imgEdit = (ImageButton)this.gvRecomendacion.Rows[iRow].FindControl("imgEdit");
+				imgDelete = (ImageButton)this.gvRecomendacion.Rows[iRow].FindControl("imgDelete");
+
+                // Validaciones
+                if (oPanelDetail == null) { return; }
+                if (oImageSwapGrid == null) { return; }
+
+                // Atributos Over
+                sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png'; ";
+				sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png'; ";
+                sImagesAttributes = sImagesAttributes + "document.getElementById('" + oImageSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/" + (isVisible ? "Expand_Over" : "Collapse_Over") + ".png'; ";
+
+
+                //Puntero y Sombra en fila Over
+                this.gvRecomendacion.Rows[iRow].Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
+
+                // Atributos Out
+                sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png'; ";
+				sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png'; ";
+                sImagesAttributes = sImagesAttributes + "document.getElementById('" + oImageSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/" + (isVisible ? "Expand" : "Collapse") + ".png'; ";
+
+                //Puntero y Sombra en fila Out
+                this.gvRecomendacion.Rows[iRow].Attributes.Add("onmouseout", "this.className='" + ((iRow % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
+
+                // Cambiar estados
+                if (isVisible){
+
+                    oPanelDetail.Visible = false;
+                    oImageSwapGrid.ImageUrl = "~/Include/Image/Buttons/Expand.png";
+                    oImageSwapGrid.Attributes.Add("onmouseover", "tooltip.show('Mostrar el detalle', 'Der');");
+                    oImageSwapGrid.Attributes.Add("onmouseout", "tooltip.hide();");
+                }else{
+
+                    oPanelDetail.Visible = true;
+                    oImageSwapGrid.ImageUrl = "~/Include/Image/Buttons/Collapse.png";
+                    oImageSwapGrid.Attributes.Add("onmouseover", "tooltip.show('Ocultar el detalle', 'Der');");
+                    oImageSwapGrid.Attributes.Add("onmouseout", "tooltip.hide();");
+                }
+
+            }catch (Exception ex){
+                throw (ex);
+            }
+        }
+
+		void ValidateActionForm(){
+			RadioButton oRadioButton;
+			Boolean CheckAutoridad = false;
+
+			try
+			{
+
+				foreach (GridViewRow gvRow in this.gvAutoridad.Rows) {
+
+					oRadioButton = (RadioButton)this.gvAutoridad.Rows[gvRow.RowIndex].FindControl("RowSelector");
+					if (oRadioButton.Checked) { CheckAutoridad = true; }
+				}
+				if ( CheckAutoridad == false ) { throw new Exception("Es necesario incluir por lo menos un Autoridad en la recomendación"); }
+
+				if (this.gvAutoridadDetalle.Rows.Count == 0) { throw new Exception("Es necesario incluir por lo menos un Apartado en la recomendación"); }
+
+			}catch (Exception ex){
+				throw (ex);
 			}
 		}
 
@@ -337,28 +612,32 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				SelectExpediente();
 
 				// Llenado de controles
-				SelectTipoRecomendacion();
-				
-				// Foco
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.ddlTipoRecomendacion.ClientID + "'); }", true);
+				SelectExpedienteAutoridad();
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.ddlTipoRecomendacion.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); ", true);
             }
 		}
 
-		protected void btnGuardar_Click(object sender, EventArgs e){
+		protected void btnNuevaRecomendacion_Click(object sender, EventArgs e){
 			try
             {
 
-				// Tipo de Transacción
-				if (this.hddRecomendacionId.Value == "0"){
-					InsertRecomendacion();
-				}else {
-					UpdateRecomendacion();
-				}
+				//Abrir popup
+				ClearActionPanel("0");
+
+				// Leyendas
+				this.btnAction.Text = "Crear recomendación";
+				this.lblActionTitle.Text = "Crear recomendación";
+
+				// Mostrar Panel
+				this.pnlAction.Visible = true;
+
+				// Foco
+				this.ckeApartado.Focus();
+				
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.ddlTipoRecomendacion.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); ", true);
             }
 		}
 
@@ -374,57 +653,49 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				this.Response.Redirect("visDetalleExpediente.aspx?key=" + sKey, false);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.ddlTipoRecomendacion.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); ", true);
             }
 		}
 
 		protected void gvRecomendacion_RowCommand(object sender, GridViewCommandEventArgs e){
-			String RecomendacionId;
-			String CommandName;
-
-			Int32 iRow = 0;
-
 			try
 			{
 				
-				// Opción seleccionada
-				CommandName = e.CommandName.ToString();
-
-				// Se dispara el evento RowCommand en el ordenamiento
-				if (CommandName == "Sort") { return; }
-
-				// Fila
-				iRow = Convert.ToInt32(e.CommandArgument.ToString());
-
-				// DataKeys
-				RecomendacionId = gvRecomendacion.DataKeys[iRow]["RecomendacionId"].ToString();
-
-				// Acción
-				switch (CommandName){
+				
+				switch (e.CommandName.ToString()){
 					case "Editar":
-						SelectRecomendacion_ForEdit(RecomendacionId);
+						ClearActionPanel(e.CommandArgument.ToString());
+						SelectRecomendacion_ForEdit(e.CommandArgument.ToString());
+                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tooltip.hide();", true);
 						break;
 
-					case "Borrar":
-						DeleteRecomendacion(RecomendacionId);
+					case "Eliminar":
+						DeleteRecomendacion(e.CommandArgument.ToString());
+						break;
+
+					case "SwapGrid": // Expande/Contrae una fila del grid (Aquí el Command Argument contiene el índice de la fila)
+						SwapGrid(Convert.ToInt32(e.CommandArgument.ToString()));
 						break;
 				}
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.ddlTipoRecomendacion.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); ", true);
 			}
 		}
 
 		protected void gvRecomendacion_RowDataBound(object sender, GridViewRowEventArgs e){
 			ImageButton imgEdit = null;
 			ImageButton imgDelete = null;
+			ImageButton imgSwapGrid = null;
+
+			Panel oPanelDetail = null;
+			GridView gvRecomendacionDetalle = null;
 
 			String sImagesAttributes = "";
 			String sToolTip = "";
-			String TipoRecomendacionNombre = "";
 
-			String sImagesAttributesDelete = "";
-			String sToolTipDelete = "";
+			String RecomendacionId = "";
+			String NombreAutoridad = "";
 
 			try
 			{
@@ -435,34 +706,50 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				// Obtener imagenes
 				imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
 				imgDelete = (ImageButton)e.Row.FindControl("imgDelete");
+				imgSwapGrid = (ImageButton)e.Row.FindControl("imgSwapGrid");
 
-				TipoRecomendacionNombre = gvRecomendacion.DataKeys[e.Row.RowIndex]["TipoRecomendacionNombre"].ToString();
+				// DataKeys
+				RecomendacionId = gvRecomendacion.DataKeys[e.Row.RowIndex]["RecomendacionId"].ToString();
+				NombreAutoridad = gvRecomendacion.DataKeys[e.Row.RowIndex]["NombreAutoridad"].ToString();
 
 				// Tooltip Edición
-				sToolTip = "Editar gestión [" + TipoRecomendacionNombre + "]";
-				sToolTipDelete = "Eliminar gestión [" + TipoRecomendacionNombre + "]";
-
+				sToolTip = "Editar recomendación [" + NombreAutoridad + "]";
 				imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
 				imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
 				imgEdit.Attributes.Add("style", "cursor:hand;");
 
-				imgDelete.Attributes.Add("onmouseover", "tooltip.show('" + sToolTipDelete + "', 'Izq');");
+				// Tooltip Delete
+				sToolTip = "Eliminar recomendación [" + NombreAutoridad + "]";
+				imgDelete.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
 				imgDelete.Attributes.Add("onmouseout", "tooltip.hide();");
 				imgDelete.Attributes.Add("style", "cursor:hand;");
 
 				// Atributos Over
 				sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png';";
-				sImagesAttributesDelete = "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png';";
-
-				// Puntero y Sombra en fila Over
-				e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes + sImagesAttributesDelete);
+				sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png'; ";
+				sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/Expand_Over.png'; ";
+				e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
 
 				// Atributos Out
 				sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png';";
-				sImagesAttributesDelete = "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png';";
+				sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png'; ";
+				sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/Expand.png'; ";
+				e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
 
-				// Puntero y Sombra en fila Out
-				e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes + sImagesAttributesDelete);
+				// Tooltip Swap
+				sToolTip = "Expander el detalle";
+				imgSwapGrid.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Der');");
+				imgSwapGrid.Attributes.Add("onmouseout", "tooltip.hide();");
+				imgSwapGrid.Attributes.Add("style", "cursor:hand;");
+
+				// Sólo autoridades
+				oPanelDetail = (Panel)e.Row.FindControl("pnlGridDetail");
+
+				// Voces Agregadas
+				gvRecomendacionDetalle = new GridView();
+				gvRecomendacionDetalle = (GridView)e.Row.FindControl("gvRecomendacionDetalle");
+				SelectRecomendacion_Detalle(ref gvRecomendacionDetalle, Int32.Parse(RecomendacionId));
+				oPanelDetail.Visible = false;
 
 			}catch (Exception ex){
 				throw (ex);
@@ -476,9 +763,251 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				gcCommon.SortGridView(ref this.gvRecomendacion, ref this.hddSort, e.SortExpression);
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.ddlTipoRecomendacion.ClientID + "'); }", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); ", true);
 			}
 		}
+
+		protected void imgSwapAll_Click(object sender, ImageClickEventArgs e){
+            ImageButton imgHeaderSwapGrid = null;
+            Boolean isVisible;
+
+            try
+            {
+
+                // Acceso a la imagen
+                imgHeaderSwapGrid = (ImageButton)sender;
+
+                if (imgHeaderSwapGrid.ImageUrl == "~/Include/Image/Buttons/Expand_Header.png"){
+
+                    // Expander todo
+                    isVisible = false;
+                    imgHeaderSwapGrid.ImageUrl = "~/Include/Image/Buttons/Collapse_Header.png";
+                    imgHeaderSwapGrid.Attributes.Add("onmouseover", "tooltip.show('Contraer todos los elementos', 'Der');");
+                    imgHeaderSwapGrid.Attributes.Add("onmouseout", "tooltip.hide();");
+                }else{
+
+                    // Contraer todo
+                    isVisible = true;
+                    imgHeaderSwapGrid.ImageUrl = "~/Include/Image/Buttons/Expand_Header.png";
+                    imgHeaderSwapGrid.Attributes.Add("onmouseover", "tooltip.show('Expandir todos los elementos', 'Der');");
+                    imgHeaderSwapGrid.Attributes.Add("onmouseout", "tooltip.hide();");
+                }
+
+                foreach (GridViewRow rowVozDetalle in this.gvRecomendacion.Rows){
+                    SwapGridByHeader(rowVozDetalle.DataItemIndex, isVisible);
+                }
+
+            }catch (Exception ex){
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+            }
+        }
+
+
+		// Eventos del PopUp
+
+		protected void btnAction_Click(object sender, EventArgs e){
+			try
+            {
+
+				// Validar formulario
+				ValidateActionForm();
+
+				// Determinar acción
+                if (this.hddRecomendacionId.Value == "0"){
+
+					InsertRecomendacion();
+                }else{
+
+					UpdateRecomendacion();
+                }
+
+				// Limpiar el panel
+				ClearActionPanel("0");
+
+				// Actualizar
+				SelectExpediente();
+
+            }catch (Exception ex){
+                this.lblActionMessage.Text = ex.Message;
+				this.ckeApartado.Focus();
+            }
+        }
+
+		protected void btnAgregarApartado_Click(object sender, EventArgs e){
+			try
+			{
+				
+				// Validación
+				if (this.ckeApartado.Text.Trim() == "") { throw new Exception("El campo [Apartado] es requerido"); }
+
+				// Inserción local
+				InsertRecomendacion_Local();
+
+			}catch (Exception ex){
+				this.lblActionMessage.Text = ex.Message;
+				this.ckeApartado.Focus();
+			}
+		}
+
+		protected void gvAutoridad_RowDataBound(object sender, GridViewRowEventArgs e){
+			try
+			{
+				
+				// Validación de que sea fila 
+				if (e.Row.RowType != DataControlRowType.DataRow) { return; }
+
+				// Atributos Over
+				e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over_Action'; ");
+
+				// Atributos Out
+				e.Row.Attributes.Add("onmouseout", "this.className='Grid_Row_Action'; ");
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		protected void gvAutoridad_Sorting(object sender, GridViewSortEventArgs e){
+			String AutoridadId = "";
+			RadioButton oRadioButton;
+
+			try
+			{
+
+				// Obtener la autoridad seleccionada
+				foreach (GridViewRow gvRow in this.gvAutoridad.Rows) {
+
+					oRadioButton = (RadioButton)this.gvAutoridad.Rows[gvRow.RowIndex].FindControl("RowSelector");
+					if (oRadioButton.Checked) {
+						AutoridadId = this.gvAutoridad.DataKeys[gvRow.RowIndex]["AutoridadId"].ToString();
+					}
+				}
+
+				// Ordenar el grid
+				gcCommon.SortGridView(ref this.gvAutoridad, ref this.hddSort, e.SortExpression);
+
+				// Marcar Autoridades seleccionada
+				foreach (GridViewRow gvRow in this.gvAutoridad.Rows) {
+
+					oRadioButton = (RadioButton)this.gvAutoridad.Rows[gvRow.RowIndex].FindControl("RowSelector");
+					if (AutoridadId == this.gvAutoridad.DataKeys[gvRow.RowIndex]["AutoridadId"].ToString()) { oRadioButton.Checked = true; }
+				}
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
+		}
+
+		protected void gvAutoridadDetalle_RowCommand(object sender, GridViewCommandEventArgs e){
+			DataTable tblAutoridadDetalle = null;
+
+			String RowNumber;
+			String strCommand = "";
+
+			Int32 intRow = 0;
+			Int32 Contador = 0;
+
+			try
+			{
+
+				// Opción seleccionada
+				strCommand = e.CommandName.ToString();
+
+				// Se dispara el evento RowCommand en el ordenamiento
+				if (strCommand == "Sort") { return; }
+
+				// Fila
+				intRow = Int32.Parse(e.CommandArgument.ToString());
+
+				// Datakeys
+				RowNumber = this.gvAutoridadDetalle.DataKeys[intRow]["RowNumber"].ToString();
+
+				// Acción
+				switch (strCommand){
+					case "Eliminar":
+
+						// Obtener el DataTable del grid
+						tblAutoridadDetalle = gcParse.GridViewToDataTable(this.gvAutoridadDetalle, true);
+
+						// Eliminar el Item
+						tblAutoridadDetalle.Rows.Remove(tblAutoridadDetalle.Select("RowNumber=" + RowNumber)[0]);
+
+						// Reorganizar los RowNumber's
+						foreach (DataRow rowReorder in tblAutoridadDetalle.Rows){
+
+							Contador = Contador + 1;
+							rowReorder["RowNumber"] = Contador.ToString();
+						}
+
+						// Refrescar el Grid
+						this.gvAutoridadDetalle.DataSource = tblAutoridadDetalle;
+						this.gvAutoridadDetalle.DataBind();
+
+						// Estado del formulario
+						this.ckeApartado.Text = "";
+						this.lblActionMessage.Text = "";
+
+						// Foco
+						this.ckeApartado.Focus();
+
+						break;
+				}
+
+			}catch (Exception ex){
+				this.lblActionMessage.Text = ex.Message;
+				this.ckeApartado.Focus();
+			}
+		}
+
+		protected void gvAutoridadDetalle_RowDataBound(object sender, GridViewRowEventArgs e){
+			ImageButton imgDelete = null;
+
+			String RowNumber = "";
+			String sImagesAttributes = "";
+			String sTootlTip = "";
+
+			try
+			{
+
+				// Validación de que sea fila
+				if (e.Row.RowType != DataControlRowType.DataRow) { return; }
+
+				// Obtener imagenes
+				imgDelete = (ImageButton)e.Row.FindControl("imgDelete");
+
+				// Datakeys
+				RowNumber = this.gvAutoridadDetalle.DataKeys[e.Row.RowIndex]["RowNumber"].ToString();
+
+				// Tooltip Eliminar
+				sTootlTip = "Eliminar apartado [" + RowNumber + "]";
+				imgDelete.Attributes.Add("onmouseover", "tooltip.show('" + sTootlTip + "', 'Izq');");
+				imgDelete.Attributes.Add("onmouseout", "tooltip.hide();");
+				imgDelete.Attributes.Add("style", "cursor:hand;");
+
+				// Atributos Over
+				sImagesAttributes = " document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png'; ";
+				e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over_Action'; " + sImagesAttributes);
+
+				// Atributos Out
+				sImagesAttributes = " document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png'; ";
+				e.Row.Attributes.Add("onmouseout", "this.className='Grid_Row_Action'; " + sImagesAttributes);
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		protected void imgActionCloseWindow_Click(object sender, ImageClickEventArgs e){
+			try
+            {
+
+                // Cerrar el panel
+                this.pnlAction.Visible = false;
+
+            }catch (Exception ex){
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+            }
+        }
 
     }
 }

@@ -23,6 +23,8 @@ namespace SIAQ.Entity.Object
         private int _Anio;
         private DataSet _ResultData;
 		private Int32 _ModuloId;
+		private Int32 _AutoridadId;
+		private DataTable _tblRecomendacionDetalle;
 
         #endregion
 
@@ -202,6 +204,18 @@ namespace SIAQ.Entity.Object
 			set { _ModuloId = value; }
 		}
 
+		public Int32 AutoridadId
+		{
+			get { return _AutoridadId; }
+			set { _AutoridadId = value; }
+		}
+
+		public DataTable tblRecomendacionDetalle
+		{
+			get { return _tblRecomendacionDetalle; }
+			set { _tblRecomendacionDetalle = value; }
+		}
+
         #endregion
 
         #region Funciones
@@ -222,6 +236,8 @@ namespace SIAQ.Entity.Object
             _Anio = 0;
             _ResultData = new DataSet();
 			_ModuloId = 0;
+			_AutoridadId = 0;
+			_tblRecomendacionDetalle = null;
         }
         
         #endregion

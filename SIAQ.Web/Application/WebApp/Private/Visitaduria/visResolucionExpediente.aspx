@@ -152,7 +152,7 @@
 			</tr>
 			<!-- Fin Carátula -->
 			<tr>
-                <td class="Nombre">Asignar a</td>
+                <td class="Nombre">Tipo de Resolución</td>
                 <td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
                 <td colspan="5" style="text-align:left;"><asp:DropDownList ID="ddlTipoResolucion" runat="server" CssClass="DropDownList_General" width="216px" ></asp:DropDownList></td>
             </tr>

@@ -468,6 +468,76 @@ namespace SIAQ.DataAccess.Object
         }
 
 		///<remarks>
+		///   <name>DAVisitaduria.SelectExpedienteAutoridad</name>
+		///   <create>02-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene un listado de autoridades asociadas a un expediente en base a los parámetros proporcionados</summary>
+		///<param name="oENTVisitaduria">Entidad de Visitadurías con los filtros necesarios para la consulta</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+        public ENTResponse SelectExpedienteAutoridad(ENTVisitaduria oENTVisitaduria, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspExpedienteAutoridad_Sel", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("ExpedienteId", SqlDbType.Int);
+			sqlPar.Value = oENTVisitaduria.ExpedienteId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("AutoridadId", SqlDbType.Int);
+			sqlPar.Value = oENTVisitaduria.AutoridadId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("CalificacionAutoridadId", SqlDbType.Int);
+			sqlPar.Value = oENTVisitaduria.CalificacionAutoridadId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try
+			{
+				
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+
+			}catch (SqlException sqlEx){
+
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+
+			}catch (Exception ex){
+
+				oENTResponse.ExceptionRaised(ex.Message);
+
+			}finally{
+
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+
+			}
+
+			// Resultado
+			return oENTResponse;
+
+        }
+
+		///<remarks>
 		///   <name>DAVisitaduria.SelectExpedienteAutoridad_Detalle</name>
 		///   <create>27-Agosto-2014</create>
 		///   <author>Ruben.Cobos</author>

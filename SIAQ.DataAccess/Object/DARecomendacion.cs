@@ -103,28 +103,28 @@ namespace SIAQ.DataAccess.Object
 
 			if (iAlternativeTimeOut > 0) { Command.CommandTimeout = iAlternativeTimeOut; }
 
-			Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
-			Parameter.Value = oENTRecomendacion.ExpedienteId;
+			Parameter = new SqlParameter("AutoridadId", SqlDbType.Int);
+			Parameter.Value = oENTRecomendacion.AutoridadId;
 			Command.Parameters.Add(Parameter);
 
 			Parameter = new SqlParameter("EstatusId", SqlDbType.Int);
 			Parameter.Value = oENTRecomendacion.EstatusId;
 			Command.Parameters.Add(Parameter);
 
-			Parameter = new SqlParameter("FuncionarioId", SqlDbType.Int);
-			Parameter.Value = oENTRecomendacion.FuncionarioId;
+			Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
+			Parameter.Value = oENTRecomendacion.ExpedienteId;
 			Command.Parameters.Add(Parameter);
 
 			Parameter = new SqlParameter("ModuloId", SqlDbType.Int);
 			Parameter.Value = oENTRecomendacion.ModuloId;
 			Command.Parameters.Add(Parameter);
 
-			Parameter = new SqlParameter("TipoRecomendacionId", SqlDbType.Int);
-			Parameter.Value = oENTRecomendacion.TipoRecomendacionId;
+			Parameter = new SqlParameter("VisitadorId", SqlDbType.Int);
+			Parameter.Value = oENTRecomendacion.FuncionarioId;
 			Command.Parameters.Add(Parameter);
 
-			Parameter = new SqlParameter("Observaciones", SqlDbType.VarChar);
-			Parameter.Value = oENTRecomendacion.Observaciones;
+			Parameter = new SqlParameter("tblRecomendacionDetalle", SqlDbType.Structured);
+			Parameter.Value = oENTRecomendacion.tblRecomendacionDetalle;
 			Command.Parameters.Add(Parameter);
 
 			oENTResponse.dsResponse = new DataSet();
@@ -229,28 +229,28 @@ namespace SIAQ.DataAccess.Object
 			Parameter.Value = oENTRecomendacion.RecomendacionId;
 			Command.Parameters.Add(Parameter);
 
-			Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
-			Parameter.Value = oENTRecomendacion.ExpedienteId;
+			Parameter = new SqlParameter("AutoridadId", SqlDbType.Int);
+			Parameter.Value = oENTRecomendacion.AutoridadId;
 			Command.Parameters.Add(Parameter);
 
 			Parameter = new SqlParameter("EstatusId", SqlDbType.Int);
 			Parameter.Value = oENTRecomendacion.EstatusId;
 			Command.Parameters.Add(Parameter);
 
-			Parameter = new SqlParameter("FuncionarioId", SqlDbType.Int);
-			Parameter.Value = oENTRecomendacion.FuncionarioId;
+			Parameter = new SqlParameter("ExpedienteId", SqlDbType.Int);
+			Parameter.Value = oENTRecomendacion.ExpedienteId;
 			Command.Parameters.Add(Parameter);
 
 			Parameter = new SqlParameter("ModuloId", SqlDbType.Int);
 			Parameter.Value = oENTRecomendacion.ModuloId;
 			Command.Parameters.Add(Parameter);
 
-			Parameter = new SqlParameter("TipoRecomendacionId", SqlDbType.Int);
-			Parameter.Value = oENTRecomendacion.TipoRecomendacionId;
+			Parameter = new SqlParameter("VisitadorId", SqlDbType.Int);
+			Parameter.Value = oENTRecomendacion.FuncionarioId;
 			Command.Parameters.Add(Parameter);
 
-			Parameter = new SqlParameter("Observaciones", SqlDbType.VarChar);
-			Parameter.Value = oENTRecomendacion.Observaciones;
+			Parameter = new SqlParameter("tblRecomendacionDetalle", SqlDbType.Structured);
+			Parameter.Value = oENTRecomendacion.tblRecomendacionDetalle;
 			Command.Parameters.Add(Parameter);
 
 			oENTResponse.dsResponse = new DataSet();

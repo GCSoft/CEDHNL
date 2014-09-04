@@ -472,5 +472,38 @@ namespace SIAQ.BusinessProcess.Object
            return oENTResponse;
         }
 
+		///<remarks>
+		///   <name>BPVisitaduria.UpdateExpedienteEstatus</name>
+		///   <create>03-Septiembre-2014</create>
+        ///   <author>Ruben.Cobos</author>
+        ///</remarks>
+		///<summary>Cambia el estatus de un una Expediente de Visitadurias</summary>
+		///<param name="oENTVisitaduria">Entidad de Visitaduria con los parámetros necesarios para realizar la transacción</param>
+        ///<returns>Una entidad de respuesta</returns>
+        public ENTResponse UpdateExpedienteEstatus(ENTVisitaduria oENTVisitaduria){
+           DAVisitaduria oDAVisitaduria = new DAVisitaduria();
+           ENTResponse oENTResponse = new ENTResponse();
+
+           try
+           {
+
+              // Transacción en base de datos
+			   oENTResponse = oDAVisitaduria.UpdateExpedienteEstatus(oENTVisitaduria, this.sConnectionApplication, 0);
+
+              // Validación de error en consulta
+              if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+              // Validación de mensajes de la BD
+              oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+              if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+           }catch (Exception ex){
+              oENTResponse.ExceptionRaised(ex.Message);
+           }
+
+           // Resultado
+           return oENTResponse;
+        }
+
 	}
 }

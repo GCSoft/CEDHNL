@@ -977,5 +977,75 @@ namespace SIAQ.DataAccess.Object
 
         }
 
+		///<remarks>
+		///   <name>DAVisitaduria.UpdateExpedienteEstatus</name>
+		///   <create>03-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Cambia el estatus de un una Expediente de Visitadurias</summary>
+		///<param name="oENTVisitaduria">Entidad de Visitaduria con los parámetros necesarios para realizar la transacción</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+        public ENTResponse UpdateExpedienteEstatus(ENTVisitaduria oENTVisitaduria, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspExpediente_Upd_Estatus", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("ExpedienteId", SqlDbType.Int);
+			sqlPar.Value = oENTVisitaduria.ExpedienteId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("EstatusId", SqlDbType.Int);
+			sqlPar.Value = oENTVisitaduria.EstatusId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("ModuloId", SqlDbType.Int);
+			sqlPar.Value = oENTVisitaduria.ModuloId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try
+			{
+				
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+
+			}catch (SqlException sqlEx){
+
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+
+			}catch (Exception ex){
+
+				oENTResponse.ExceptionRaised(ex.Message);
+
+			}finally{
+
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+
+			}
+
+			// Resultado
+			return oENTResponse;
+
+        }
+
 	}
 }

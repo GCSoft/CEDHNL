@@ -376,6 +376,61 @@
 				</table>
 				<br />
 
+				<!-- Comparecencia-->
+				<table border="0" cellpadding="0" cellspacing="0" width="100%">
+					<tr><td class="tdCeldaMiddleSpace"></td></tr>
+					<tr>
+						<td style="text-align: left;">
+							Comparecencia
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<asp:GridView ID="gvComparecencia" runat="server" AllowPaging="false" AllowSorting="false"  AutoGenerateColumns="False" Width="100%"
+								DataKeyNames="ExpedienteComparecenciaId,ModuloId,FechaComparecenciaCorta">
+								<AlternatingRowStyle CssClass="Grid_Row_Alternating" />
+								<HeaderStyle CssClass="Grid_Header" />
+								<RowStyle CssClass="Grid_Row" />
+								<EmptyDataTemplate>
+									<table border="1px" cellpadding="0px" cellspacing="0px" width="100%">
+										<tr class="Grid_Header">
+											<td style="width:70px;">Fecha</td>
+											<td style="width:150px;">Tipo de Comparecencia</td>
+											<td style="width:150px;">Lugar de Comparecencia</td>
+											<td style="width:200px;">Funcionario que ejecuta</td>
+											<td>Detalle</td>
+										</tr>
+										<tr class="Grid_Row">
+											<td colspan="5">No se encontraron Comparecencias registradas en este expediente</td>
+										</tr>
+									</table>
+								</EmptyDataTemplate>
+								<Columns>
+									<asp:BoundField HeaderText="Fecha"						ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="70px"	DataField="FechaComparecenciaCorta"							SortExpression="FechaComparecenciaCorta"></asp:BoundField>
+									<asp:BoundField HeaderText="Tipo de Comparecencia"		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="150px"	DataField="TipoComparecenciaNombre"							SortExpression="TipoComparecenciaNombre"></asp:BoundField>
+									<asp:BoundField HeaderText="Lugar de Comparecencia"		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="70px"	DataField="LugarComparecenciaNombre"						SortExpression="LugarComparecenciaNombre"></asp:BoundField>
+									<asp:BoundField HeaderText="Funcionario que ejecuta"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="FuncionarioEjecutaNombre"						SortExpression="FuncionarioEjecutaNombre"></asp:BoundField>
+									<asp:BoundField HeaderText="Detalle"					ItemStyle-HorizontalAlign="Left"							DataField="Detalle"						HtmlEncode="false"	SortExpression="Detalle"></asp:BoundField>
+									<asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
+										<ItemTemplate>
+											<asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
+										</ItemTemplate>
+									</asp:TemplateField>
+									<asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
+										<ItemTemplate>
+											<asp:ImageButton ID="imgDelete" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Borrar" ImageUrl="~/Include/Image/Buttons/Delete.png" runat="server" />
+										</ItemTemplate>
+									</asp:TemplateField>
+									<asp:BoundField DataField="SolicitudId" Visible="false" />
+								</Columns>
+							</asp:GridView>
+						</td>
+					</tr>
+					<tr><td class="tdCeldaMiddleSpace"></td></tr>
+					<tr><td class="tdCeldaMiddleSpace"></td></tr>
+				</table>
+				<br />
+
 				<!-- Autoridades y Voces-->
 				<table border="0" cellpadding="0" cellspacing="0" width="100%">
 					<tr><td class="tdCeldaMiddleSpace"></td></tr>

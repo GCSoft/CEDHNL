@@ -153,6 +153,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				this.gvSeguimiento.DataSource = oENTResponse.dsResponse.Tables[12];
 				this.gvSeguimiento.DataBind();
 
+				// Comparecencias
+				this.gvComparecencia.DataSource = oENTResponse.dsResponse.Tables[9];
+				this.gvComparecencia.DataBind();
+
 				// Autoridades y Voces
 				this.gvAutoridades.DataSource = oENTResponse.dsResponse.Tables[10];
 				this.gvAutoridades.DataBind();

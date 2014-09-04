@@ -471,7 +471,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                         break;
 
 					case "2":
-						this.Sender.Value = "VisDetalleExpediente.aspx";
+						this.Sender.Value = "VisListadoExpedientes.aspx";
 						break;
 
 					case "3":
@@ -730,7 +730,19 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 		}
 
 		protected void EnviarButton_Click(object sender, ImageClickEventArgs e){
-			Response.Redirect("visEnviarExpediente.aspx?expId=" + this.hddExpedienteId.Value);
+			String sKey = "";
+
+			try
+			{
+
+				// Llave encriptada
+				sKey = this.hddExpedienteId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("visEnviarExpediente.aspx?key=" + sKey, false);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
 		}
 
 		

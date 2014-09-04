@@ -441,7 +441,7 @@
 					</tr>
 					<tr>
 						<td>
-							<asp:GridView id="gvAutoridades" runat="server" AllowPaging="false" AllowSorting="true" AutoGenerateColumns="False" Width="100%"
+							<asp:GridView id="gvAutoridades" runat="server" AllowPaging="false" AllowSorting="false" AutoGenerateColumns="False" Width="100%"
 								DataKeyNames="AutoridadId,Nombre"
 								OnRowDataBound="gvAutoridades_RowDataBound">
 								<alternatingrowstyle cssclass="Grid_Row_Alternating" />

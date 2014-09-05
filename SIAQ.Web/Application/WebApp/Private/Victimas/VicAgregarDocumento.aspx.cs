@@ -45,7 +45,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			SessionEntity = (ENTSession)Session["oENTSession"];
 
 			// Formulario
-			RepositorioProcess.DocumentoEntity.ModuloId = ModuloId;
+			RepositorioProcess.DocumentoEntity.ModuloId = 5; // Victimas?
 			RepositorioProcess.DocumentoEntity.TipoDocumentoId = this.TipoDocumentoList.SelectedValue;
 			RepositorioProcess.DocumentoEntity.SolicitudId = Int32.Parse(this.SolicitudIdHidden.Value);
 			RepositorioProcess.DocumentoEntity.idUsuarioInsert = SessionEntity.idUsuario;

@@ -14,7 +14,8 @@ namespace SIAQ.BusinessProcess.Object
 {
     public class BPDocumento : BPBase
     {
-        protected int _ErrorId;
+		
+		protected int _ErrorId;
         protected string _ErrorDescription;
         protected ENTDocumento _DocumentoEntity;
 
@@ -122,33 +123,33 @@ namespace SIAQ.BusinessProcess.Object
                 {
                     // .jpg
                     case "81944c0f-8fa6-4e9b-b7b8-74afeccfc54c":
-                        IconoPath = "FotoIcon.png";
+                        IconoPath = "FileIcon_Foto.png";
                         break;
 
                     // .gif
                     case "31bb2d11-2f6f-47be-891b-4ff3113b8b73":
-                        IconoPath = "FotoIcon.png";
+                        IconoPath = "FileIcon_Foto.png";
                         break;
 
                     // .png
                     case "0d4186fa-3b0f-49dc-a55f-a362ad893211":
-                        IconoPath = "FotoIcon.png";
+                        IconoPath = "FileIcon_Foto.png";
                         break;
 
                     // .bmp
                     case "8f455f2a-0492-487c-a729-7b4c4913257d":
-                        IconoPath = "FotoIcon.png";
+                        IconoPath = "FileIcon_Foto.png";
                         break;
 
                     // .doc y .docx
                     case "275ebe4c-d4a8-4f4d-8dda-98f8c9ccfe70":
                     case "96a31530-202c-44ad-ba1e-3e07777a0d7c":
-                        IconoPath = "WordIcon.png";
+                        IconoPath = "FileIcon_Word.png";
                         break;
 
                     // .pdf
                     case "523e371f-07e8-46c7-81f4-a92a843fa1a1":
-                        IconoPath = "PdfIcon.png";
+                        IconoPath = "FileIcon_Pdf.png";
                         break;
 
                     // .ppt y .pptx
@@ -239,5 +240,101 @@ namespace SIAQ.BusinessProcess.Object
                 }
             }
         #endregion
+
+
+		///<remarks>
+		///   <name>BPDocumento.DeleteDocumento</name>
+		///   <create>04-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Elimina un documento en la BD</summary>
+		///<param name="oENTDocumento">Entidad de Documento con los parámetros necesarios para realizar la transacción</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse DeleteDocumento(ENTDocumento oENTDocumento){
+			DADocumento oDADocumento = new DADocumento();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try{
+
+			// Transacción en base de datos
+			oENTResponse = oDADocumento.DeleteDocumento(oENTDocumento, this.sConnectionRepositorio, 0);
+
+			// Validación de error en consulta
+			if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+			// Validación de mensajes de la BD
+			oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+			if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
+
+		///<remarks>
+		///   <name>BPDocumento.InsertDocumento</name>
+		///   <create>04-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Guarda un documento en la BD</summary>
+		///<param name="oENTDocumento">Entidad de Documento con los parámetros necesarios para realizar la transacción</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse InsertDocumento(ENTDocumento oENTDocumento){
+			DADocumento oDADocumento = new DADocumento();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try{
+
+			// Transacción en base de datos
+			oENTResponse = oDADocumento.InsertDocumento(oENTDocumento, this.sConnectionRepositorio, 0);
+
+			// Validación de error en consulta
+			if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+			// Validación de mensajes de la BD
+			oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+			if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
+
+		///<remarks>
+		///   <name>BPDocumento.SelectDocumento</name>
+		///   <create>04-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Consulta un documento en la BD</summary>
+		///<param name="oENTDocumento">Entidad de Documento con los parámetros necesarios para realizar la transacción</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse SelectDocumento(ENTDocumento oENTDocumento){
+			DADocumento oDADocumento = new DADocumento();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try{
+
+				// Transacción en base de datos
+				oENTResponse = oDADocumento.SelectDocumento(oENTDocumento, this.sConnectionRepositorio, 0);
+
+				// Validación de error en consulta
+				if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
     }
 }

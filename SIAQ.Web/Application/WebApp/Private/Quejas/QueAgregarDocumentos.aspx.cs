@@ -216,7 +216,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 		{
 			BPDocumento RepositorioProcess = new BPDocumento();
 
-			RepositorioProcess.DocumentoEntity.ModuloId = ModuloId;
+			RepositorioProcess.DocumentoEntity.ModuloId = 2; // Quejas
 			RepositorioProcess.DocumentoEntity.TipoDocumentoId = TipoDocumentoList.SelectedValue;
 			RepositorioProcess.DocumentoEntity.SolicitudId = SolicitudId;
 			RepositorioProcess.DocumentoEntity.idUsuarioInsert = idUsuarioInsert;

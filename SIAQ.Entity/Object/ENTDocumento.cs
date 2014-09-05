@@ -10,7 +10,7 @@ namespace SIAQ.Entity.Object
     public class ENTDocumento : ENTBase
     {
         private string _RepositorioId;
-        private string _ModuloId;
+		private int _ModuloId;
         private int _SolicitudId;
         private int _ExpedienteId;
         private int _RecomendacionId;
@@ -23,6 +23,8 @@ namespace SIAQ.Entity.Object
         private byte[] _Documento;
         private FileUpload _FileUpload;
         private DataSet _ResultData;
+		private String _Extension;
+		private Int32 _DocumentoId;
 
         public ENTDocumento()
         {
@@ -39,6 +41,8 @@ namespace SIAQ.Entity.Object
             _Documento = new byte[] { 0 };
             _FileUpload = null;
             _ResultData = null;
+			_Extension = "";
+			_DocumentoId = 0;
         }
 
         /// <summary>
@@ -53,7 +57,7 @@ namespace SIAQ.Entity.Object
         /// <summary>
         ///     Módulo desde el que se guardó el documento.
         /// </summary>
-        public string ModuloId
+		public int ModuloId
         {
             get { return _ModuloId; }
             set { _ModuloId = value; }
@@ -166,5 +170,18 @@ namespace SIAQ.Entity.Object
             get { return _ResultData; }
             set { _ResultData = value; }
         }
+
+		public String Extension
+		{
+			get { return _Extension; }
+			set { _Extension = value; }
+		}
+
+		public Int32 DocumentoId
+		{
+			get { return _DocumentoId; }
+			set { _DocumentoId = value; }
+		}
+
     }
 }

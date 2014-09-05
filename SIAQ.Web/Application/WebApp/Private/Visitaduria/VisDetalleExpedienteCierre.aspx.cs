@@ -582,12 +582,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 DataRow = (DataRowView)e.Item.DataItem;
 
                 // Configurar imagen
-                DocumentoLabel.Text = DataRow["NombreDocumento"].ToString();
+				DocumentoLabel.Text = DataRow["NombreDocumentoCorto"].ToString();
 
-                DocumentoImage.ImageUrl = BPDocumento.GetIconoDocumento(DataRow["FormatoDocumentoId"].ToString());
+				DocumentoImage.ImageUrl = "~/Include/Image/Icon/" + DataRow["Icono"].ToString();
+				DocumentoImage.ToolTip = DataRow["NombreDocumento"].ToString();
                 DocumentoImage.Attributes.Add("onmouseover", "this.style.cursor='pointer'");
                 DocumentoImage.Attributes.Add("onmouseout", "this.style.cursor='auto'");
-                DocumentoImage.Attributes.Add("onclick", "window.open('" + System.Configuration.ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.ashx?R=" + DataRow["RepositorioId"].ToString() + "&S=0" + "');");
+				DocumentoImage.Attributes.Add("onclick", "window.open('" + System.Configuration.ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.ashx?DocumentoId=" + DataRow["DocumentoId"].ToString() + "');");
 
             }catch (Exception ex){
                 throw (ex);

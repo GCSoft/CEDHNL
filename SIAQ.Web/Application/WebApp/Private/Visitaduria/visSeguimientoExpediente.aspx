@@ -170,7 +170,7 @@
             </tr>
 			<tr><td class="Nombre" colspan="7" style="text-align:left;">Detalle</td></tr>
             <tr>
-                <td colspan="7"><CKEditor:CKEditorControl ID="ckeSeguimiento" BasePath="~/Include/Components/CKEditor/Core/" runat="server" MaxLength="8000"></CKEditor:CKEditorControl></td>
+                <td colspan="7"><CKEditor:CKEditorControl ID="ckeSeguimiento" runat="server" BasePath="~/Include/Components/CKEditor/Core/" Height="90px" MaxLength="8000"></CKEditor:CKEditorControl></td>
             </tr>
         </table>
 		<br />

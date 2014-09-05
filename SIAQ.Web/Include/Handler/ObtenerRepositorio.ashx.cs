@@ -23,10 +23,20 @@ namespace SIAQ.Web.Include.Handler
 
             try
             {
-                RepositorioId = context.Request.QueryString["R"];
-                SolicitudId = context.Request.QueryString["S"];
 
-                RepositoryEntity = SelectRepository(RepositorioId, int.Parse(SolicitudId));
+				if (context.Request.QueryString["DocumentoId"] == null)
+				{
+
+					RepositorioId = context.Request.QueryString["R"];
+					SolicitudId = context.Request.QueryString["S"];
+
+					RepositoryEntity = SelectRepository(RepositorioId, int.Parse(SolicitudId));
+				}
+				else 
+				{
+
+					RepositoryEntity = SelectRepository_New(Int32.Parse(context.Request.QueryString["DocumentoId"]));
+				}
 
                 context.Response.BinaryWrite(RepositoryEntity.Documento);
             }
@@ -67,5 +77,36 @@ namespace SIAQ.Web.Include.Handler
 
             return RepositoryEntity;
         }
+
+		protected ENTDocumento SelectRepository_New(Int32 DocumentoId){
+			ENTDocumento oENTDocumento = new ENTDocumento();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			BPDocumento oBPDocumento = new BPDocumento();
+
+			try
+			{
+
+			    // Formulario
+				oENTDocumento.DocumentoId = DocumentoId;
+
+			    // Transacción
+				oENTResponse = oBPDocumento.SelectDocumento(oENTDocumento);
+
+			    // Errores y Warnings
+			    if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+			    
+				// Obtener el documento
+				oENTDocumento.Documento = (byte[])oENTResponse.dsResponse.Tables[0].Rows[0]["Archivo"];
+
+			}catch (Exception){
+				
+			}
+
+			// Retornar el documento
+			return oENTDocumento;
+
+		}
+
     }
 }

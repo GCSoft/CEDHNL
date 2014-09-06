@@ -295,6 +295,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 						this.AutoridadPanel.Visible = true;
 						this.ResolucionPanel.Visible = true;
 						this.RecomendacionPanel.Visible = true;
+						this.AcuerdoNoResponsabilidadPanel.Visible = true;
 						this.ImprimirPanel.Visible = true;
 						this.EnviarPanel.Visible = true;
 						break;
@@ -310,6 +311,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 						this.AutoridadPanel.Visible = true;
 						this.ResolucionPanel.Visible = true;
 						this.RecomendacionPanel.Visible = true;
+						this.AcuerdoNoResponsabilidadPanel.Visible = true;
 						this.ImprimirPanel.Visible = true;
 						this.EnviarPanel.Visible = true;
 						break;
@@ -325,6 +327,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 						this.AutoridadPanel.Visible = false;
 						this.ResolucionPanel.Visible = false;
 						this.RecomendacionPanel.Visible = false;
+						this.AcuerdoNoResponsabilidadPanel.Visible = false;
 						this.ImprimirPanel.Visible = true;
 						this.EnviarPanel.Visible = false;
 						break;
@@ -340,6 +343,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 						this.AutoridadPanel.Visible = true;
 						this.ResolucionPanel.Visible = true;
 						this.RecomendacionPanel.Visible = true;
+						this.AcuerdoNoResponsabilidadPanel.Visible = true;
 						this.ImprimirPanel.Visible = true;
 						this.EnviarPanel.Visible = true;
 						break;
@@ -355,6 +359,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 						this.AutoridadPanel.Visible = false;
 						this.ResolucionPanel.Visible = false;
 						this.RecomendacionPanel.Visible = false;
+						this.AcuerdoNoResponsabilidadPanel.Visible = false;
 						this.ImprimirPanel.Visible = true;
 						this.EnviarPanel.Visible = false;
 						break;
@@ -370,6 +375,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 						this.AutoridadPanel.Visible = false;
 						this.ResolucionPanel.Visible = false;
 						this.RecomendacionPanel.Visible = false;
+						this.AcuerdoNoResponsabilidadPanel.Visible = false;
 						this.ImprimirPanel.Visible = false;
 						this.EnviarPanel.Visible = false;
 						break;
@@ -396,12 +402,18 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 					this.AutoridadPanel.Visible = false;
 					this.ResolucionPanel.Visible = false;
 					this.RecomendacionPanel.Visible = false;
+					this.AcuerdoNoResponsabilidadPanel.Visible = false;
 					this.EnviarPanel.Visible = false;
 				}
 
 				// Si el Expediente no está marcado como Recomendación ocultar la opción
 				if( this.hddTipoResolucionId.Value != "2" ){
 					this.RecomendacionPanel.Visible = false;
+				}
+
+				// Si el Expediente no está marcado como Acuerdo de No Responsabilidad ocultar la opción
+				if( this.hddTipoResolucionId.Value != "3" ){
+					this.AcuerdoNoResponsabilidadPanel.Visible = false;
 				}
 
 				// Si es Funcionario y el expediente está asignado a el puede agregar comentarios siempre y cuando no esté en estatus de confirmación de cierre
@@ -432,6 +444,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 					this.AutoridadPanel.Visible = false;
 					this.ResolucionPanel.Visible = false;
 					this.RecomendacionPanel.Visible = false;
+					this.AcuerdoNoResponsabilidadPanel.Visible = false;
 					this.EnviarPanel.Visible = false;
 				}
 
@@ -720,6 +733,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				sKey = this.hddExpedienteId.Value + "|" + this.SenderId.Value;
 				sKey = gcEncryption.EncryptString(sKey, true);
 				this.Response.Redirect("visRecomendacionExpediente.aspx?key=" + sKey, false);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
+		}
+
+		protected void AcuerdoNoResponsabilidadButton_Click(object sender, ImageClickEventArgs e){
+			String sKey = "";
+
+			try
+			{
+
+				// Llave encriptada
+				sKey = this.hddExpedienteId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("VisAcuerdoNoResponsabilidad.aspx?key=" + sKey, false);
 
 			}catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);

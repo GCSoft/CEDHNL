@@ -1,8 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="visRecomendacionExpediente.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Visitaduria.visRecomendacionExpediente" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="VisAcuerdoNoResponsabilidad.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Visitaduria.VisAcuerdoNoResponsabilidad" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 
-<asp:Content ID="HeaderContent" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
 	<script type = "text/javascript">
 
 		function RadioCheck(rb) {
@@ -22,18 +22,18 @@
 
 	</script>
 </asp:Content>
-<asp:Content ID="BodyContent" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
-    
-	<div id="TituloPaginaDiv">
+<asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
+	
+	div id="TituloPaginaDiv">
         <table class="GeneralTable">
             <tr>
                 <td class="tdCeldaTituloEncabezado" style="background-image: url('../../../../Include/Image/Web/BarraTitulo.png');">
-                    Recomendaciones al Expediente
+                    Acuerdos de No Responabilidad del Expediente
                 </td>
             </tr>
             <tr>
                 <td class="SubTitulo">
-                    <asp:Label ID="Label1" runat="server" Text="Agregue las recomendaciones al expediente resuelto como recomendación."></asp:Label>
+                    <asp:Label ID="Label1" runat="server" Text="Agregue los acuerdos de no responsabilidad al expediente."></asp:Label>
                 </td>
             </tr>
         </table>
@@ -182,7 +182,7 @@
             <tr><td class="tdCeldaMiddleSpace"></td></tr>
             <tr>
                 <td style="text-align: left;">
-					<asp:Button ID="btnNuevaRecomendacion" runat="server" Text="Nueva" CssClass="Button_General" width="150px" onclick="btnNuevaRecomendacion_Click" /> &nbsp;&nbsp;
+					<asp:Button ID="btnNuevaAcuerdo" runat="server" Text="Nueva" CssClass="Button_General" width="150px" onclick="btnNuevaAcuerdo_Click" /> &nbsp;&nbsp;
 					<asp:Button ID="btnRegresar" runat="server" Text="Regresar" CssClass="Button_General" width="150px" onclick="btnRegresar_Click" />
                 </td>
             </tr>
@@ -193,16 +193,16 @@
             <tr><td class="tdCeldaMiddleSpace"></td></tr>
             <tr>
                 <td style="text-align: left;">
-                    Recomendaciones registradas para este Expediente
+                    Acuerdo de no responabilidad registrados para este Expediente
                 </td>
             </tr>
             <tr>
                 <td>
-                    <asp:GridView ID="gvRecomendacion" runat="server" AllowPaging="false" AllowSorting="true"  AutoGenerateColumns="False" Width="100%"
+                    <asp:GridView ID="gvAcuerdo" runat="server" AllowPaging="false" AllowSorting="true"  AutoGenerateColumns="False" Width="100%"
 						DataKeyNames="RecomendacionId,NombreAutoridad"
-                        OnRowCommand="gvRecomendacion_RowCommand" 
-                        OnRowDataBound="gvRecomendacion_RowDataBound" 
-                        OnSorting="gvRecomendacion_Sorting">
+                        OnRowCommand="gvAcuerdo_RowCommand" 
+                        OnRowDataBound="gvAcuerdo_RowDataBound" 
+                        OnSorting="gvAcuerdo_Sorting">
                         <AlternatingRowStyle CssClass="Grid_Row_Alternating" />
                         <HeaderStyle CssClass="Grid_Header" />
                         <RowStyle CssClass="Grid_Row" />
@@ -217,7 +217,7 @@
                                     <td style="width:200px;">Nivel 3 Autoridad</td>
                                 </tr>
                                 <tr class="Grid_Row">
-                                    <td colspan="6">No se encontraron Recomendaciones asociadas al Expediente</td>
+                                    <td colspan="6">No se encontraron Acuerdo de no responabilidad asociados al Expediente</td>
                                 </tr>
                             </table>
                         </EmptyDataTemplate>
@@ -250,8 +250,8 @@
 									<asp:Panel ID="pnlGridDetail" runat="server">
 										<tr>
 											<td align="center" colspan="100%" style="border:1px solid #C1C1C1">
-                                                <asp:GridView id="gvRecomendacionDetalle" runat="server" AllowPaging="false" AllowSorting="false" AutoGenerateColumns="False" Width="90%"
-                                                    DataKeyNames="RecomendacionDetalleId">
+                                                <asp:GridView id="gvAcuerdoDetalle" runat="server" AllowPaging="false" AllowSorting="false" AutoGenerateColumns="False" Width="90%"
+                                                    DataKeyNames="AcuerdoDetalleId">
                                                     <alternatingrowstyle cssclass="Grid_Row_Alternating" />
                                                     <headerstyle cssclass="Grid_Header_Action_Alternative" />
                                                     <rowstyle cssclass="Grid_Row" />
@@ -262,7 +262,7 @@
 																<td style="text-align:center;">Detalle</td>
 															</tr>
 															<tr class="Grid_Row">
-																<td colspan="2" style="text-align:center;">No se han agregado detalles de la recomendación</td>
+																<td colspan="2" style="text-align:center;">No se han agregado acuerdos</td>
 															</tr>
 														</table>
                                                     </EmptyDataTemplate>
@@ -302,7 +302,7 @@
                     <div style="margin:0 auto; width:98%;">
                         <table border="0" cellpadding="0" cellspacing="0" style="height:100%; text-align:left;" width="100%">
                             <tr style="height:20px;"><td colspan="3"></td></tr>
-                            <tr class="trFilaItem"><td class="tdActionCeldaLeyendaItem" colspan="3">&nbsp;Autoridades señaladas como SI Responsables</td></tr>
+                            <tr class="trFilaItem"><td class="tdActionCeldaLeyendaItem" colspan="3">&nbsp;Autoridades señaladas como NO Responsables</td></tr>
                             <tr style="height:1px;"><td colspan="3"></td></tr>
                             <tr class="trFilaItem">
                                 <td colspan="3">
@@ -324,7 +324,7 @@
 														<td style="width:200px;">Nivel 3 Autoridad</td>
 													</tr>
 													<tr class="Grid_Row">
-														<td colspan="6">No se encontraron Recomendaciones asociadas al Expediente</td>
+														<td colspan="6">No se encontraron Acuerdos asociadas al Expediente</td>
 													</tr>
 												</table>
 											</EmptyDataTemplate>
@@ -345,7 +345,7 @@
 								</td>
                             </tr>
                             <tr style="height:5px;"><td colspan="3"></td></tr>
-							<tr class="trFilaItem"><td class="tdActionCeldaLeyendaItem" colspan="3">&nbsp;Punto resolutivo</td></tr>
+							<tr class="trFilaItem"><td class="tdActionCeldaLeyendaItem" colspan="3">&nbsp;Acuerdos</td></tr>
                             <tr class="trFilaItem">
 								<td colspan="3">
 									<CKEditor:CKEditorControl ID="ckeApartado" BasePath="~/Include/Components/CKEditor/Core/" runat="server" Height="90px" MaxLength="8000"></CKEditor:CKEditorControl>
@@ -374,7 +374,7 @@
 														<td style="text-align:center;">Apartado</td>
 													</tr>
 													<tr class="Grid_Row">
-														<td colspan="2" style="text-align:center;">No se han incluído puntos resolutivos en la Recomendación</td>
+														<td colspan="2" style="text-align:center;">No se han incluído Acuerdos</td>
 													</tr>
 												</table>
 											</EmptyDataTemplate>
@@ -415,6 +415,6 @@
 	<asp:HiddenField ID="hddExpedienteId" runat="server" Value="0"  />
 	<asp:HiddenField ID="hddRecomendacionId" runat="server" Value="0" />
 	<asp:HiddenField ID="SenderId" runat="server" Value="0"  />
-	<asp:HiddenField ID="hddSort" runat="server" Value="TipoRecomendacionNombre" />
+	<asp:HiddenField ID="hddSort" runat="server" Value="TipoAcuerdoNombre" />
 
 </asp:Content>

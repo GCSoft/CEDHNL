@@ -148,9 +148,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				this.ddlTipoResolucion.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["TipoResolucionId"].ToString();
 				this.ckeDetalle.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["DetalleResolucion"].ToString();
 
-				// Script de Validación de cambio de estatus (Antes Queja)
+				// Script de Validación de cambio de estatus (Antes Recomendacion)
 				if (oENTResponse.dsResponse.Tables[1].Rows[0]["TipoResolucionId"].ToString() == "2"){
 					this.btnGuardar.Attributes.Add("onclick", " if ( document.getElementById('" + this.ddlTipoResolucion.ClientID + "').options[document.getElementById('" + this.ddlTipoResolucion.ClientID + "').selectedIndex].value != 2 ) { return confirm('Al cambiar la resolución se eliminarán todas las capturas de Recomendaciones realizadas en el Expediente, ¿Seguro que desea continuar?'); }");
+				}
+
+				// Script de Validación de cambio de estatus (Antes Acuerdo de No Responsabilidad)
+				if (oENTResponse.dsResponse.Tables[1].Rows[0]["TipoResolucionId"].ToString() == "3"){
+					this.btnGuardar.Attributes.Add("onclick", " if ( document.getElementById('" + this.ddlTipoResolucion.ClientID + "').options[document.getElementById('" + this.ddlTipoResolucion.ClientID + "').selectedIndex].value != 3 ) { return confirm('Al cambiar la resolución se eliminarán todas las capturas de Acuerdos de No Responsabilidad realizadas en el Expediente, ¿Seguro que desea continuar?'); }");
 				}
 
 			}catch (Exception ex){

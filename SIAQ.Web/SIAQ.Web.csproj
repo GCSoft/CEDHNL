@@ -84,6 +84,7 @@
     <Content Include="Application\WebApp\Private\Victimas\vicListadoAtencionAprobacion.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\VicListadoAtenciones.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\visAcuerdoCalificacionDefinitiva.aspx" />
+    <Content Include="Application\WebApp\Private\Visitaduria\VisAcuerdoNoResponsabilidad.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\visAsignarFuncionario.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\visAutoridadVoces.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\VisBusquedaExpedientes.aspx" />
@@ -1181,6 +1182,13 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Visitaduria\visAcuerdoCalificacionDefinitiva.aspx.designer.cs">
       <DependentUpon>visAcuerdoCalificacionDefinitiva.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Visitaduria\VisAcuerdoNoResponsabilidad.aspx.cs">
+      <DependentUpon>VisAcuerdoNoResponsabilidad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Visitaduria\VisAcuerdoNoResponsabilidad.aspx.designer.cs">
+      <DependentUpon>VisAcuerdoNoResponsabilidad.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Visitaduria\visAgregarDocumento.aspx.cs">
       <DependentUpon>visAgregarDocumento.aspx</DependentUpon>

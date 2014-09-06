@@ -1,5 +1,5 @@
 ﻿/*---------------------------------------------------------------------------------------------------------------------------------
-' Nombre:	visRecomendacionExpediente
+' Nombre:	VisAcuerdoNoResponsabilidad
 ' Autor:	Ruben.Cobos
 ' Fecha:	31-Agosto-2014
 '----------------------------------------------------------------------------------------------------------------------------------*/
@@ -19,11 +19,12 @@ using SIAQ.Entity.Object;
 using SIAQ.BusinessProcess.Object;
 using System.Data;
 
+
 namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 {
-    public partial class visRecomendacionExpediente : System.Web.UI.Page
-    {
-        
+	public partial class VisAcuerdoNoResponsabilidad : System.Web.UI.Page
+	{
+		
 		// Utilerías
 		GCParse gcParse = new GCParse();
 		GCCommon gcCommon = new GCCommon();
@@ -50,7 +51,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
 		// Funciones el programador
 
-		void DeleteRecomendacion(String RecomendacionId){
+		void DeleteAcuerdo(String RecomendacionId){
 			ENTResponse oENTResponse = new ENTResponse();
 			ENTRecomendacion oENTRecomendacion = new ENTRecomendacion();
 			BPRecomendacion oBPRecomendacion = new BPRecomendacion();
@@ -73,7 +74,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			}
 		}
 
-		void InsertRecomendacion(){
+		void InsertAcuerdo(){
 			BPRecomendacion oBPRecomendacion = new BPRecomendacion();
 
 			ENTResponse oENTResponse = new ENTResponse();
@@ -93,7 +94,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			    oENTSession = (ENTSession)this.Session["oENTSession"];
 
 			    // Validaciones de sesión
-			    if (oENTSession.FuncionarioId == 0) { throw new Exception("No cuenta con permisos para crear Recomendaciones debido a que usted no es un funcionario"); }
+			    if (oENTSession.FuncionarioId == 0) { throw new Exception("No cuenta con permisos para crear Acuerdos debido a que usted no es un funcionario"); }
 
 				// Obtener la autoridad seleccionada
 				foreach (GridViewRow gvRow in this.gvAutoridad.Rows) {
@@ -110,10 +111,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				oENTRecomendacion.ExpedienteId = Convert.ToInt32(this.hddExpedienteId.Value);
 			    oENTRecomendacion.ModuloId = 3; // Visitadurías
 				oENTRecomendacion.FuncionarioId = oENTSession.FuncionarioId;
-				oENTRecomendacion.AcuerdoNoResponsabilidad = 0;
+				oENTRecomendacion.AcuerdoNoResponsabilidad = 1;
 
 				tblCommon = gcParse.GridViewToDataTable(this.gvAutoridadDetalle, false);
-				oENTRecomendacion.tblRecomendacionDetalle = new DataTable("tblRecomendacionDetalle");
+				oENTRecomendacion.tblRecomendacionDetalle = new DataTable("tblAcuerdoDetalle");
 				oENTRecomendacion.tblRecomendacionDetalle.Columns.Add("Detalle", typeof(String));
 				foreach (DataRow oDataRow in tblCommon.Rows){
 
@@ -123,7 +124,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				}
 
 			    //Transacción
-			    oENTResponse = oBPRecomendacion.InsertRecomendacion(oENTRecomendacion);
+				oENTResponse = oBPRecomendacion.InsertRecomendacion(oENTRecomendacion);
 
 			    //Validación
 			    if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
@@ -137,7 +138,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			}
 		}
 
-		void InsertRecomendacion_Local(){
+		void InsertAcuerdo_Local(){
 			DataTable tblAutoridadDetalle = null;
 			DataRow rowAutoridadDetalle = null;
 
@@ -244,9 +245,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 					this.grdCanalizacion.DataBind();
 				}
 
-				// Recomendaciones
-				this.gvRecomendacion.DataSource = oENTResponse.dsResponse.Tables[11];
-				this.gvRecomendacion.DataBind();
+				// Acuerdos
+				this.gvAcuerdo.DataSource = oENTResponse.dsResponse.Tables[13];
+				this.gvAcuerdo.DataBind();
 
 			}catch (Exception ex){
 				throw (ex);
@@ -282,7 +283,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			}
         }
 
-		void SelectRecomendacion_Detalle(ref GridView grdDetalle, Int32 RecomendacionId){
+		void SelectAcuerdo_Detalle(ref GridView grdDetalle, Int32 RecomendacionId){
             BPRecomendacion oBPRecomendacion = new BPRecomendacion();
 			ENTRecomendacion oENTRecomendacion = new ENTRecomendacion();
 			ENTResponse oENTResponse = new ENTResponse();
@@ -309,7 +310,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			}
         }
 
-		void SelectRecomendacion_ForEdit(String RecomendacionId){
+		void SelectAcuerdo_ForEdit(String RecomendacionId){
 			ENTRecomendacion oENTRecomendacion = new ENTRecomendacion();
 			ENTResponse oENTResponse = new ENTResponse();
 			BPRecomendacion oBPRecomendacion = new BPRecomendacion();
@@ -322,7 +323,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			    oENTRecomendacion.RecomendacionId = Int32.Parse(RecomendacionId);
 
 			    // Transacción
-			    oENTResponse = oBPRecomendacion.SelectRecomendacion_ByID(oENTRecomendacion);
+				oENTResponse = oBPRecomendacion.SelectRecomendacion_ByID(oENTRecomendacion);
 
 			    // Validaciones
 			    if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
@@ -345,8 +346,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			    this.hddRecomendacionId.Value = RecomendacionId.ToString();
 
 				// Estado del formulario
-				this.btnAction.Text = "Modificar recomendación";
-				this.lblActionTitle.Text = "Modificar recomendación";
+				this.btnAction.Text = "Modificar acuerdo";
+				this.lblActionTitle.Text = "Modificar acuerdo";
 				this.pnlAction.Visible = true;
 
 				// Foco
@@ -357,7 +358,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			}
 		}
 
-		void UpdateRecomendacion() { 
+		void UpdateAcuerdo() { 
 			BPRecomendacion oBPRecomendacion = new BPRecomendacion();
 
 			ENTResponse oENTResponse = new ENTResponse();
@@ -377,7 +378,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			    oENTSession = (ENTSession)this.Session["oENTSession"];
 
 			    // Validaciones de sesión
-			    if (oENTSession.FuncionarioId == 0) { throw new Exception("No cuenta con permisos para crear Recomendaciones debido a que usted no es un funcionario"); }
+			    if (oENTSession.FuncionarioId == 0) { throw new Exception("No cuenta con permisos para crear Acuerdos debido a que usted no es un funcionario"); }
 
 				// Obtener la autoridad seleccionada
 				foreach (GridViewRow gvRow in this.gvAutoridad.Rows) {
@@ -397,7 +398,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				oENTRecomendacion.FuncionarioId = oENTSession.FuncionarioId;
 
 				tblCommon = gcParse.GridViewToDataTable(this.gvAutoridadDetalle, false);
-				oENTRecomendacion.tblRecomendacionDetalle = new DataTable("tblRecomendacionDetalle");
+				oENTRecomendacion.tblRecomendacionDetalle = new DataTable("tblAcuerdoDetalle");
 				oENTRecomendacion.tblRecomendacionDetalle.Columns.Add("Detalle", typeof(String));
 				foreach (DataRow oDataRow in tblCommon.Rows){
 
@@ -466,10 +467,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
             {
 
                 // Acceso al Panel y a la Imagen
-                oPanelDetail = (Panel)this.gvRecomendacion.Rows[iRow].FindControl("pnlGridDetail");
-                oImageSwapGrid = (ImageButton)this.gvRecomendacion.Rows[iRow].FindControl("imgSwapGrid");
-				imgEdit = (ImageButton)this.gvRecomendacion.Rows[iRow].FindControl("imgEdit");
-				imgDelete = (ImageButton)this.gvRecomendacion.Rows[iRow].FindControl("imgDelete");
+                oPanelDetail = (Panel)this.gvAcuerdo.Rows[iRow].FindControl("pnlGridDetail");
+                oImageSwapGrid = (ImageButton)this.gvAcuerdo.Rows[iRow].FindControl("imgSwapGrid");
+				imgEdit = (ImageButton)this.gvAcuerdo.Rows[iRow].FindControl("imgEdit");
+				imgDelete = (ImageButton)this.gvAcuerdo.Rows[iRow].FindControl("imgDelete");
 
                 // Validaciones
                 if (oPanelDetail == null) { return; }
@@ -482,7 +483,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 
 
                 //Puntero y Sombra en fila Over
-                this.gvRecomendacion.Rows[iRow].Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
+                this.gvAcuerdo.Rows[iRow].Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
 
                 // Atributos Out
                 sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png'; ";
@@ -490,7 +491,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 sImagesAttributes = sImagesAttributes + "document.getElementById('" + oImageSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/" + (oPanelDetail.Visible ? "Expand" : "Collapse") + ".png'; ";
 
                 //Puntero y Sombra en fila Out
-                this.gvRecomendacion.Rows[iRow].Attributes.Add("onmouseout", "this.className='" + ((iRow % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
+                this.gvAcuerdo.Rows[iRow].Attributes.Add("onmouseout", "this.className='" + ((iRow % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
                                 
                 // Cambiar estados
                 if (oPanelDetail.Visible){
@@ -525,10 +526,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
             {
 
                 // Acceso al Panel y a la Imagen
-                oPanelDetail = (Panel)this.gvRecomendacion.Rows[iRow].FindControl("pnlGridDetail");
-                oImageSwapGrid = (ImageButton)this.gvRecomendacion.Rows[iRow].FindControl("imgSwapGrid");
-				imgEdit = (ImageButton)this.gvRecomendacion.Rows[iRow].FindControl("imgEdit");
-				imgDelete = (ImageButton)this.gvRecomendacion.Rows[iRow].FindControl("imgDelete");
+                oPanelDetail = (Panel)this.gvAcuerdo.Rows[iRow].FindControl("pnlGridDetail");
+                oImageSwapGrid = (ImageButton)this.gvAcuerdo.Rows[iRow].FindControl("imgSwapGrid");
+				imgEdit = (ImageButton)this.gvAcuerdo.Rows[iRow].FindControl("imgEdit");
+				imgDelete = (ImageButton)this.gvAcuerdo.Rows[iRow].FindControl("imgDelete");
 
                 // Validaciones
                 if (oPanelDetail == null) { return; }
@@ -541,7 +542,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
 
                 //Puntero y Sombra en fila Over
-                this.gvRecomendacion.Rows[iRow].Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
+                this.gvAcuerdo.Rows[iRow].Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
 
                 // Atributos Out
                 sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png'; ";
@@ -549,7 +550,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 sImagesAttributes = sImagesAttributes + "document.getElementById('" + oImageSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/" + (isVisible ? "Expand" : "Collapse") + ".png'; ";
 
                 //Puntero y Sombra en fila Out
-                this.gvRecomendacion.Rows[iRow].Attributes.Add("onmouseout", "this.className='" + ((iRow % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
+                this.gvAcuerdo.Rows[iRow].Attributes.Add("onmouseout", "this.className='" + ((iRow % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
 
                 // Cambiar estados
                 if (isVisible){
@@ -583,9 +584,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 					oRadioButton = (RadioButton)this.gvAutoridad.Rows[gvRow.RowIndex].FindControl("RowSelector");
 					if (oRadioButton.Checked) { CheckAutoridad = true; }
 				}
-				if ( CheckAutoridad == false ) { throw new Exception("Es necesario incluir por lo menos un Autoridad en la recomendación"); }
+				if ( CheckAutoridad == false ) { throw new Exception("Es necesario incluir por lo menos un Autoridad en el Acuerdo"); }
 
-				if (this.gvAutoridadDetalle.Rows.Count == 0) { throw new Exception("Es necesario incluir por lo menos un Apartado en la recomendación"); }
+				if (this.gvAutoridadDetalle.Rows.Count == 0) { throw new Exception("Es necesario incluir por lo menos un Apartado en el Acuerdo"); }
 
 			}catch (Exception ex){
 				throw (ex);
@@ -627,7 +628,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
             }
 		}
 
-		protected void btnNuevaRecomendacion_Click(object sender, EventArgs e){
+		protected void btnNuevaAcuerdo_Click(object sender, EventArgs e){
 			try
             {
 
@@ -635,8 +636,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				ClearActionPanel("0");
 
 				// Leyendas
-				this.btnAction.Text = "Crear recomendación";
-				this.lblActionTitle.Text = "Crear recomendación";
+				this.btnAction.Text = "Crear acuerdo";
+				this.lblActionTitle.Text = "Crear acuerdo";
 
 				// Mostrar Panel
 				this.pnlAction.Visible = true;
@@ -665,7 +666,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
             }
 		}
 
-		protected void gvRecomendacion_RowCommand(object sender, GridViewCommandEventArgs e){
+		protected void gvAcuerdo_RowCommand(object sender, GridViewCommandEventArgs e){
 			try
 			{
 				
@@ -673,12 +674,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				switch (e.CommandName.ToString()){
 					case "Editar":
 						ClearActionPanel(e.CommandArgument.ToString());
-						SelectRecomendacion_ForEdit(e.CommandArgument.ToString());
+						SelectAcuerdo_ForEdit(e.CommandArgument.ToString());
                         ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tooltip.hide();", true);
 						break;
 
 					case "Eliminar":
-						DeleteRecomendacion(e.CommandArgument.ToString());
+						DeleteAcuerdo(e.CommandArgument.ToString());
 						break;
 
 					case "SwapGrid": // Expande/Contrae una fila del grid (Aquí el Command Argument contiene el índice de la fila)
@@ -691,13 +692,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			}
 		}
 
-		protected void gvRecomendacion_RowDataBound(object sender, GridViewRowEventArgs e){
+		protected void gvAcuerdo_RowDataBound(object sender, GridViewRowEventArgs e){
 			ImageButton imgEdit = null;
 			ImageButton imgDelete = null;
 			ImageButton imgSwapGrid = null;
 
 			Panel oPanelDetail = null;
-			GridView gvRecomendacionDetalle = null;
+			GridView gvAcuerdoDetalle = null;
 
 			String sImagesAttributes = "";
 			String sToolTip = "";
@@ -717,17 +718,17 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				imgSwapGrid = (ImageButton)e.Row.FindControl("imgSwapGrid");
 
 				// DataKeys
-				RecomendacionId = gvRecomendacion.DataKeys[e.Row.RowIndex]["RecomendacionId"].ToString();
-				NombreAutoridad = gvRecomendacion.DataKeys[e.Row.RowIndex]["NombreAutoridad"].ToString();
+				RecomendacionId = gvAcuerdo.DataKeys[e.Row.RowIndex]["RecomendacionId"].ToString();
+				NombreAutoridad = gvAcuerdo.DataKeys[e.Row.RowIndex]["NombreAutoridad"].ToString();
 
 				// Tooltip Edición
-				sToolTip = "Editar recomendación [" + NombreAutoridad + "]";
+				sToolTip = "Editar acuerdo [" + NombreAutoridad + "]";
 				imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
 				imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
 				imgEdit.Attributes.Add("style", "cursor:hand;");
 
 				// Tooltip Delete
-				sToolTip = "Eliminar recomendación [" + NombreAutoridad + "]";
+				sToolTip = "Eliminar acuerdo [" + NombreAutoridad + "]";
 				imgDelete.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
 				imgDelete.Attributes.Add("onmouseout", "tooltip.hide();");
 				imgDelete.Attributes.Add("style", "cursor:hand;");
@@ -754,9 +755,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				oPanelDetail = (Panel)e.Row.FindControl("pnlGridDetail");
 
 				// Voces Agregadas
-				gvRecomendacionDetalle = new GridView();
-				gvRecomendacionDetalle = (GridView)e.Row.FindControl("gvRecomendacionDetalle");
-				SelectRecomendacion_Detalle(ref gvRecomendacionDetalle, Int32.Parse(RecomendacionId));
+				gvAcuerdoDetalle = new GridView();
+				gvAcuerdoDetalle = (GridView)e.Row.FindControl("gvAcuerdoDetalle");
+				SelectAcuerdo_Detalle(ref gvAcuerdoDetalle, Int32.Parse(RecomendacionId));
 				oPanelDetail.Visible = false;
 
 			}catch (Exception ex){
@@ -764,11 +765,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			}
 		}
 
-		protected void gvRecomendacion_Sorting(object sender, GridViewSortEventArgs e){
+		protected void gvAcuerdo_Sorting(object sender, GridViewSortEventArgs e){
 			try
 			{
 
-				gcCommon.SortGridView(ref this.gvRecomendacion, ref this.hddSort, e.SortExpression);
+				gcCommon.SortGridView(ref this.gvAcuerdo, ref this.hddSort, e.SortExpression);
 
 			}catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); ", true);
@@ -801,7 +802,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                     imgHeaderSwapGrid.Attributes.Add("onmouseout", "tooltip.hide();");
                 }
 
-                foreach (GridViewRow rowVozDetalle in this.gvRecomendacion.Rows){
+                foreach (GridViewRow rowVozDetalle in this.gvAcuerdo.Rows){
                     SwapGridByHeader(rowVozDetalle.DataItemIndex, isVisible);
                 }
 
@@ -823,10 +824,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				// Determinar acción
                 if (this.hddRecomendacionId.Value == "0"){
 
-					InsertRecomendacion();
+					InsertAcuerdo();
                 }else{
 
-					UpdateRecomendacion();
+					UpdateAcuerdo();
                 }
 
 				// Limpiar el panel
@@ -849,7 +850,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				if (this.ckeApartado.Text.Trim() == "") { throw new Exception("El campo [Apartado] es requerido"); }
 
 				// Inserción local
-				InsertRecomendacion_Local();
+				InsertAcuerdo_Local();
 
 			}catch (Exception ex){
 				this.lblActionMessage.Text = ex.Message;
@@ -1017,5 +1018,5 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
             }
         }
 
-    }
+	}
 }

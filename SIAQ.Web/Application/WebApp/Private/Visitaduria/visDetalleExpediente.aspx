@@ -58,6 +58,10 @@
             <asp:ImageButton ID="RecomendacionButton" ImageUrl="~/Include/Image/Icon/RecomendacionIcon.png" runat="server" OnClick="RecomendacionButton_Click"></asp:ImageButton><br />
             Recomendaciones
         </asp:Panel>
+		<asp:Panel CssClass="IconoPanel" ID="AcuerdoNoResponsabilidadPanel" runat="server" Visible="true">
+            <asp:ImageButton ID="AcuerdoNoResponsabilidadButton" ImageUrl="~/Include/Image/Icon/RecomendacionIcon.png" runat="server" OnClick="AcuerdoNoResponsabilidadButton_Click"></asp:ImageButton><br />
+            Acuerdo de No Responsabilidad
+        </asp:Panel>
         <asp:Panel CssClass="IconoPanel" ID="ImprimirPanel" runat="server" Visible="true">
             <asp:ImageButton ID="ImprimirButton" ImageUrl="~/Include/Image/Icon/ImprimirIcon.png" runat="server" OnClick="ImprimirButton_Click"></asp:ImageButton><br />
             Vista previa

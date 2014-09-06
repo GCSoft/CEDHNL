@@ -123,6 +123,10 @@ namespace SIAQ.DataAccess.Object
 			Parameter.Value = oENTRecomendacion.FuncionarioId;
 			Command.Parameters.Add(Parameter);
 
+			Parameter = new SqlParameter("AcuerdoNoResponsabilidad", SqlDbType.TinyInt);
+			Parameter.Value = oENTRecomendacion.AcuerdoNoResponsabilidad;
+			Command.Parameters.Add(Parameter);
+
 			Parameter = new SqlParameter("tblRecomendacionDetalle", SqlDbType.Structured);
 			Parameter.Value = oENTRecomendacion.tblRecomendacionDetalle;
 			Command.Parameters.Add(Parameter);

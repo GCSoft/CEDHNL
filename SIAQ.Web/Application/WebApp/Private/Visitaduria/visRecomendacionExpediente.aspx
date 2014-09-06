@@ -323,8 +323,8 @@
 														<td style="width:200px;">Nivel 2 Autoridad</td>
 														<td style="width:200px;">Nivel 3 Autoridad</td>
 													</tr>
-													<tr class="Grid_Row">
-														<td colspan="6">No se encontraron Recomendaciones asociadas al Expediente</td>
+													<tr class="Grid_Row" style="text-align:center;">
+														<td colspan="6">No se encontraron autoridades SI responsables asociadas al Expediente</td>
 													</tr>
 												</table>
 											</EmptyDataTemplate>

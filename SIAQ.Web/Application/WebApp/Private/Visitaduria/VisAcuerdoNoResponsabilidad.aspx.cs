@@ -265,7 +265,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				// Formulario
 				oENTVisitaduria.ExpedienteId = Int32.Parse(this.hddExpedienteId.Value);
 				oENTVisitaduria.AutoridadId = 0;
-				oENTVisitaduria.CalificacionAutoridadId = 3; // Si Responsable
+				oENTVisitaduria.CalificacionAutoridadId = 2; // No Responsable
 
 				// Consulta de autoridades
 				oENTResponse = oBPVisitaduria.SelectExpedienteAutoridad(oENTVisitaduria);

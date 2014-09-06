@@ -24,7 +24,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
 	
-	div id="TituloPaginaDiv">
+	<div id="TituloPaginaDiv">
         <table class="GeneralTable">
             <tr>
                 <td class="tdCeldaTituloEncabezado" style="background-image: url('../../../../Include/Image/Web/BarraTitulo.png');">
@@ -193,7 +193,7 @@
             <tr><td class="tdCeldaMiddleSpace"></td></tr>
             <tr>
                 <td style="text-align: left;">
-                    Acuerdo de no responabilidad registrados para este Expediente
+                    Acuerdos de no responabilidad registrados para este Expediente
                 </td>
             </tr>
             <tr>
@@ -251,7 +251,7 @@
 										<tr>
 											<td align="center" colspan="100%" style="border:1px solid #C1C1C1">
                                                 <asp:GridView id="gvAcuerdoDetalle" runat="server" AllowPaging="false" AllowSorting="false" AutoGenerateColumns="False" Width="90%"
-                                                    DataKeyNames="AcuerdoDetalleId">
+                                                    DataKeyNames="RecomendacionId">
                                                     <alternatingrowstyle cssclass="Grid_Row_Alternating" />
                                                     <headerstyle cssclass="Grid_Header_Action_Alternative" />
                                                     <rowstyle cssclass="Grid_Row" />
@@ -323,8 +323,8 @@
 														<td style="width:200px;">Nivel 2 Autoridad</td>
 														<td style="width:200px;">Nivel 3 Autoridad</td>
 													</tr>
-													<tr class="Grid_Row">
-														<td colspan="6">No se encontraron Acuerdos asociadas al Expediente</td>
+													<tr class="Grid_Row" style="text-align:center;">
+														<td colspan="6">No se encontraron autoridades NO responsables asociadas al Expediente</td>
 													</tr>
 												</table>
 											</EmptyDataTemplate>

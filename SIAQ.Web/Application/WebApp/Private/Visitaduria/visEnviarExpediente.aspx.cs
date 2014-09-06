@@ -253,6 +253,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
 				}
 
+				// Acuerdo de No Responsabilidad
+				if (oENTResponse.dsResponse.Tables[1].Rows[0]["TipoResolucionId"].ToString() == "3"){
+					
+					if (oENTResponse.dsResponse.Tables[13].Rows.Count == 0){
+						this.imgAcuerdoNoResponsabilidad.ImageUrl = "~/Include/Image/Icon/RecomendacionIcon_Pending.png";
+						this.imgAcuerdoNoResponsabilidad.ToolTip = "No se han asociado Acuerdo de No Responsabilidad en el Expediente";
+						this.btnEnviar.Enabled = false;
+						this.btnEnviar.CssClass = "Button_General_Disabled";
+					}
+
+				}else{
+
+					this.pnlAcuerdoNoResponsabilidad.Visible = false;
+
+				}
+
 				//// Asuntos
 				//this.lblAsuntos.Text = "Asuntos capturados: " + oBPExpediente.ExpedienteEntity.ResultData.Tables[1].Rows[0]["Asuntos"].ToString(); 
 				//if (oBPExpediente.ExpedienteEntity.ResultData.Tables[1].Rows[0]["Asuntos"].ToString() == "0"){

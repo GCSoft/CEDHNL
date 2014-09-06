@@ -373,6 +373,24 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         protected global::System.Web.UI.WebControls.Image imgRecomendacion;
         
         /// <summary>
+        /// pnlAcuerdoNoResponsabilidad control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlAcuerdoNoResponsabilidad;
+        
+        /// <summary>
+        /// imgAcuerdoNoResponsabilidad control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgAcuerdoNoResponsabilidad;
+        
+        /// <summary>
         /// hddExpedienteId control.
         /// </summary>
         /// <remarks>

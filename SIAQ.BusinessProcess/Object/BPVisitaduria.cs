@@ -23,6 +23,39 @@ namespace SIAQ.BusinessProcess.Object
 	{
 
 		///<remarks>
+		///   <name>BPVisitaduria.DeleteExpedienteAutoridad</name>
+		///   <create>27-Agosto-2014</create>
+        ///   <author>Ruben.Cobos</author>
+        ///</remarks>
+		///<summary>Elimina una Autoridad señalada en particular junto con sus voces</summary>
+		///<param name="oENTVisitaduria">Entidad de Visitadurías con los filtros necesarios para realizar la transacción</param>
+        ///<returns>Una entidad de respuesta</returns>
+        public ENTResponse DeleteExpedienteAutoridad(ENTVisitaduria oENTVisitaduria){
+           DAVisitaduria oDAVisitaduria = new DAVisitaduria();
+           ENTResponse oENTResponse = new ENTResponse();
+
+           try
+           {
+
+              // Transacción en base de datos
+			   oENTResponse = oDAVisitaduria.DeleteExpedienteAutoridad(oENTVisitaduria, this.sConnectionApplication, 0);
+
+              // Validación de error en consulta
+              if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+              // Validación de mensajes de la BD
+              oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+              if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+           }catch (Exception ex){
+              oENTResponse.ExceptionRaised(ex.Message);
+           }
+
+           // Resultado
+           return oENTResponse;
+        }
+
+		///<remarks>
 		///   <name>BPVisitaduria.DeleteExpedienteComentario</name>
 		///   <create>17-Agosto-2014</create>
 		///   <author>Ruben.Cobos</author>
@@ -54,6 +87,39 @@ namespace SIAQ.BusinessProcess.Object
 			// Resultado
 			return oENTResponse;
 		}
+
+		///<remarks>
+		///   <name>BPVisitaduria.InsertExpedienteAutoridad</name>
+		///   <create>27-Agosto-2014</create>
+        ///   <author>Ruben.Cobos</author>
+        ///</remarks>
+		///<summary>Crea una nueva Autoridad señalada en particular de un Expediente</summary>
+		///<param name="oENTVisitaduria">Entidad de Visitadurías con los filtros necesarios para realizar la transacción</param>
+        ///<returns>Una entidad de respuesta</returns>
+        public ENTResponse InsertExpedienteAutoridad(ENTVisitaduria oENTVisitaduria){
+           DAVisitaduria oDAVisitaduria = new DAVisitaduria();
+           ENTResponse oENTResponse = new ENTResponse();
+
+           try
+           {
+
+              // Transacción en base de datos
+			   oENTResponse = oDAVisitaduria.InsertExpedienteAutoridad(oENTVisitaduria, this.sConnectionApplication, 0);
+
+              // Validación de error en consulta
+              if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+              // Validación de mensajes de la BD
+              oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+              if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+           }catch (Exception ex){
+              oENTResponse.ExceptionRaised(ex.Message);
+           }
+
+           // Resultado
+           return oENTResponse;
+        }
 
 		///<remarks>
 		///   <name>BPVisitaduria.InsertExpedienteCalificacionDefinitiva</name>

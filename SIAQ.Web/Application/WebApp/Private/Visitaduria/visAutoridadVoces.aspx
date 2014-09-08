@@ -163,9 +163,9 @@
         <table border="0" cellpadding="0" cellspacing="0" width="100%">
             <tr><td class="tdCeldaMiddleSpace"></td></tr>
             <tr>
-                <td style="text-align: left;">
-					<asp:Button ID="btnRegresar" runat="server" Text="Regresar" CssClass="Button_General" width="125px" onclick="btnRegresar_Click" />
-                </td>
+                <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="btnAgregarAutoridad" runat="server" Text="Agregar autoridad" CssClass="Button_General" width="125px" onclick="btnAgregarAutoridad_Click" /></td>
+                <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="btnRegresar" runat="server" Text="Regresar" CssClass="Button_General" width="125px" onclick="btnRegresar_Click" /></td>
+				<td style="height:24px;">&nbsp;</td>
             </tr>
         </table>
 
@@ -180,7 +180,7 @@
             <tr>
                 <td>
                     <asp:GridView id="gvAutoridades" runat="server" AllowPaging="false" AllowSorting="true" AutoGenerateColumns="False" Width="100%"
-                        DataKeyNames="AutoridadId,Nombre"
+                        DataKeyNames="AutoridadId,ModuloId,Nombre"
                         OnRowCommand="gvAutoridades_RowCommand"
                         OnRowDataBound="gvAutoridades_RowDataBound"
                         OnSorting="gvAutoridades_Sorting">
@@ -228,6 +228,11 @@
 							<asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
                                 <ItemTemplate>
                                     <asp:ImageButton ID="SelectButton" runat="server" CommandArgument='<%#Eval("AutoridadId")%>' CommandName="Seleccionar" ImageUrl="~/Include/Image/Buttons/AgregarVisita.png" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+							<asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
+                                <ItemTemplate>
+                                    <asp:ImageButton ID="DeleteButton" runat="server" CommandArgument='<%#Eval("AutoridadId")%>' CommandName="Borrar" ImageUrl="~/Include/Image/Buttons/Delete.png" OnClientClick="return confirm('¿Seguro que desea eliminar esta autoridad junto con sus voces?');" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle" ItemStyle-Width="0px">
@@ -296,13 +301,13 @@
                             <tr class="trFilaItem">
                                 <td class="tdActionCeldaLeyendaItem" style="width:80px;">&nbsp;Primer nivel</td>
                                 <td style="width:5px;"></td>
-                                <td><asp:DropDownList ID="ddlAutoridadNivel1" runat="server" CssClass="DropDownList_General" Width="316px"></asp:DropDownList></td>
+                                <td><asp:DropDownList ID="ddlAutoridadNivel1" runat="server" CssClass="DropDownList_General" Width="316px" AutoPostBack="True" OnSelectedIndexChanged="ddlAutoridadNivel1_SelectedIndexChanged"></asp:DropDownList></td>
                             </tr>
                             <tr style="height:5px;"><td colspan="3"></td></tr>
                             <tr class="trFilaItem">
                                 <td class="tdActionCeldaLeyendaItem">&nbsp;Segundo nivel</td>
                                 <td></td>
-                                <td><asp:DropDownList ID="ddlAutoridadNivel2" runat="server" CssClass="DropDownList_General"  Width="316px"></asp:DropDownList></td>
+                                <td><asp:DropDownList ID="ddlAutoridadNivel2" runat="server" CssClass="DropDownList_General"  Width="316px" AutoPostBack="True" OnSelectedIndexChanged="ddlAutoridadNivel2_SelectedIndexChanged"></asp:DropDownList></td>
                             </tr>
                             <tr style="height:5px;"><td colspan="3"></td></tr>
                             <tr class="trFilaItem">
@@ -434,7 +439,7 @@
 														<td style="width:160px;">Calificación</td>
 													</tr>
 													<tr class="Grid_Row">
-														<td colspan="4">No se encontraron Ciudadanos asociados al Expediente</td>
+														<td colspan="5" style="text-align:center;">No se encontraron Voces asociadas a la Autoridad</td>
 													</tr>
 												</table>
 											</EmptyDataTemplate>

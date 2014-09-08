@@ -54,6 +54,87 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
 		// Rutinas del programador
 
+		void DeleteExpedienteAutoridad(Int32 AutoridadId){
+            BPVisitaduria oBPVisitaduria = new BPVisitaduria();
+			ENTVisitaduria oENTVisitaduria = new ENTVisitaduria();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Formulario
+				oENTVisitaduria.ExpedienteId = Int32.Parse(this.hddExpedienteId.Value);
+				oENTVisitaduria.AutoridadId = AutoridadId;
+				oENTVisitaduria.ModuloId = 3; // Visitadurías
+
+				// Transacción
+				oENTResponse = oBPVisitaduria.DeleteExpedienteAutoridad(oENTVisitaduria);
+
+				//Validaciones 
+				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+				if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+
+				// Refrescar pantalla principal
+				SelectExpediente();
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+        }
+
+		void InsertExpedienteAutoridad(){
+            BPVisitaduria oBPVisitaduria = new BPVisitaduria();
+			ENTVisitaduria oENTVisitaduria = new ENTVisitaduria();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			Int32 AutoridadId = 0;
+
+			try
+			{
+
+				// Validaciones
+				if (this.ddlAutoridadNivel1.SelectedValue == "0") { throw new Exception("Debe elegir una autoridad de primer nivel"); }
+				if (this.ddlAutoridadNivel2.SelectedValue == "0") { throw new Exception("Debe elegir una autoridad de segundo nivel"); }
+				if (this.ddlAutoridadNivel3.SelectedValue == "0") { throw new Exception("Debe elegir una autoridad de tercer nivel"); }
+				if (this.ddlCalificacionAutoridad.SelectedValue == "0") { throw new Exception("Debe seleccionar una calificación para la autoridad"); }
+				if (this.ddlCalificacionAutoridad.SelectedValue == "1") { throw new Exception("Debe seleccionar una calificación para la autoridad"); }
+                if (String.IsNullOrEmpty(this.tbActionNombreFuncionario.Text)) { throw new Exception("El campo [Nombre] es requerido"); }
+				if (String.IsNullOrEmpty(this.tbActionPuestoActual.Text)) { throw new Exception("El campo [Puesto Actual] es requerido"); }
+				if (String.IsNullOrEmpty(this.tbActionComentarios.Text)) { throw new Exception("El campo [Comentarios] es requerido"); }
+
+				// Determinar la última autoridad seleccionada
+				AutoridadId = Convert.ToInt32(this.ddlAutoridadNivel1.SelectedValue);
+				if (this.ddlAutoridadNivel2.SelectedIndex > 0) { AutoridadId = Convert.ToInt32(this.ddlAutoridadNivel2.SelectedValue); }
+				if (this.ddlAutoridadNivel3.SelectedIndex > 0) { AutoridadId = Convert.ToInt32(this.ddlAutoridadNivel3.SelectedValue); }
+
+				// Formulario
+				oENTVisitaduria.ExpedienteId = Int32.Parse(this.hddExpedienteId.Value);
+				oENTVisitaduria.AutoridadId = AutoridadId;
+				oENTVisitaduria.CalificacionAutoridadId = Int32.Parse(this.ddlCalificacionAutoridad.SelectedItem.Value);
+				oENTVisitaduria.ModuloId = 3; // Visitadurías
+				oENTVisitaduria.Nombre = tbActionNombreFuncionario.Text;
+				oENTVisitaduria.Puesto = tbActionPuestoActual.Text;
+				oENTVisitaduria.Comentario = tbActionComentarios.Text;
+
+				// Transacción
+				oENTResponse = oBPVisitaduria.InsertExpedienteAutoridad(oENTVisitaduria);
+
+				//Validaciones 
+				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
+				if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
+
+				// Refrescar pantalla principal
+				SelectExpediente();
+
+				// Transacción exitosa
+				this.pnlAction.Visible = false;
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('Autoridad creada con éxito');", true);
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+        }
+
 		void SelectAutoridad_ForEdit(){
 			BPVisitaduria oBPVisitaduria = new BPVisitaduria();
 			ENTVisitaduria oENTVisitaduria = new ENTVisitaduria();
@@ -536,8 +617,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
             ImageButton oImageSwapGrid = new ImageButton();
 
             ImageButton imgEdit = null;
+			ImageButton imgDelete = null;
 			ImageButton imgSeleccionar = null;
 
+			String ModuloId = "";
             String sImagesAttributes = null;
 
             try
@@ -547,28 +630,32 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 oPanelDetail = (Panel)this.gvAutoridades.Rows[iRow].FindControl("pnlGridDetail");
                 oImageSwapGrid = (ImageButton)this.gvAutoridades.Rows[iRow].FindControl("imgSwapGrid");
                 imgEdit = (ImageButton)this.gvAutoridades.Rows[iRow].FindControl("EditButton");
+				imgDelete = (ImageButton)this.gvAutoridades.Rows[iRow].FindControl("DeleteButton");
 				imgSeleccionar = (ImageButton)this.gvAutoridades.Rows[iRow].FindControl("SelectButton");
 
                 // Validaciones
                 if (oPanelDetail == null) { return; }
                 if (oImageSwapGrid == null) { return; }
 
+				// DataKeys
+				ModuloId = gvAutoridades.DataKeys[iRow]["ModuloId"].ToString();
+
                 // Atributos Over
                 sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png'; ";
 				sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSeleccionar.ClientID + "').src='../../../../Include/Image/Buttons/AgregarVisita_Over.png'; ";
+				if (ModuloId == "3") { sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png'; "; }
                 sImagesAttributes = sImagesAttributes + "document.getElementById('" + oImageSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/" + (oPanelDetail.Visible ? "Expand_Over" : "Collapse_Over") + ".png'; ";
-                
-
-                //Puntero y Sombra en fila Over
                 this.gvAutoridades.Rows[iRow].Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
 
                 // Atributos Out
                 sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png'; ";
 				sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSeleccionar.ClientID + "').src='../../../../Include/Image/Buttons/AgregarVisita.png'; ";
+				if (ModuloId == "3") { sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png'; "; }
                 sImagesAttributes = sImagesAttributes + "document.getElementById('" + oImageSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/" + (oPanelDetail.Visible ? "Expand" : "Collapse") + ".png'; ";
-
-                //Puntero y Sombra en fila Out
                 this.gvAutoridades.Rows[iRow].Attributes.Add("onmouseout", "this.className='" + ((iRow % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
+
+				// Seguridad
+				if (ModuloId != "3") { imgDelete.Visible = false; }
                                 
                 // Cambiar estados
                 if (oPanelDetail.Visible){
@@ -715,6 +802,28 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
             }
 		}
 
+		protected void btnAgregarAutoridad_Click(object sender, EventArgs e){
+            try
+            {
+
+                //Abrir popup
+                ClearActionPanel(true, 0);
+                
+                // Leyendas
+				this.btnActionAutoridad.Text = "Agregar autoridad";
+                this.lblActionTitle.Text = "Agregar autoridad";
+
+                // Mostrar Panel
+                this.pnlAction.Visible = true;
+
+                // Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlAutoridadNivel1.ClientID + "');", true);
+
+            }catch (Exception ex){
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+            }
+        }
+
 		protected void btnRegresar_Click(object sender, EventArgs e){
 			String sKey = "";
 
@@ -748,6 +857,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 						ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tooltip.hide();", true);
 						break;
 
+					case "Borrar": // Eliminar Autoridad con voces
+						DeleteExpedienteAutoridad(Convert.ToInt32(e.CommandArgument.ToString()));
+						ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tooltip.hide();", true);
+						break;
+
                     case "SwapGrid": // Expande/Contrae una fila del grid (Aquí el Command Argument contiene el índice de la fila)
 						SwapGrid(Convert.ToInt32(e.CommandArgument.ToString()));
                         break;
@@ -760,9 +874,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
         protected void gvAutoridades_RowDataBound(object sender, GridViewRowEventArgs e){
             ImageButton imgEdit = null;
+			ImageButton imgDelete = null;
 			ImageButton imgSeleccionar = null;
 
             String AutoridadId = "";
+			String ModuloId = "";
             String sAutoridad = "";
             String sImagesAttributes = "";
             String sToolTip = "";
@@ -778,11 +894,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
                 // Obtener imagenes
                 imgEdit = (ImageButton)e.Row.FindControl("EditButton");
+				imgDelete = (ImageButton)e.Row.FindControl("DeleteButton");
 				imgSeleccionar = (ImageButton)e.Row.FindControl("SelectButton");
                 imgSwapGrid = (ImageButton)e.Row.FindControl("imgSwapGrid");
 
                 // DataKeys
                 AutoridadId = gvAutoridades.DataKeys[e.Row.RowIndex]["AutoridadId"].ToString();
+				ModuloId = gvAutoridades.DataKeys[e.Row.RowIndex]["ModuloId"].ToString();
                 sAutoridad = gvAutoridades.DataKeys[e.Row.RowIndex]["Nombre"].ToString();
 
 				// Tooltip Editar Voz
@@ -797,21 +915,28 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
                 imgEdit.Attributes.Add("style", "curosr:hand;");
 
+				// Tooltip Editar Autoridad
+				sToolTip = "Eliminar autoridad [" + sAutoridad + "] y sus voces";
+				imgDelete.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
+				imgDelete.Attributes.Add("onmouseout", "tooltip.hide();");
+				imgDelete.Attributes.Add("style", "curosr:hand;");
+
                 // Atributos Over
                 sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png'; ";
 				sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSeleccionar.ClientID + "').src='../../../../Include/Image/Buttons/AgregarVisita_Over.png'; ";
+				if (ModuloId == "3") { sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png'; "; }
                 sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/Expand_Over.png'; ";
-
-                //Puntero y Sombra en fila Over
                 e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
 
                 // Atributos Out
                 sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png'; ";
 				sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSeleccionar.ClientID + "').src='../../../../Include/Image/Buttons/AgregarVisita.png'; ";
+				if (ModuloId == "3") { sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png'; "; }
 				sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/Expand.png'; ";
-
-                //Puntero y Sombra en fila Out
                 e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
+
+				// Seguridad
+				if (ModuloId != "3"){ imgDelete.Visible = false; }
 
                 // Tooltip Swap (por default está expandida)
                 sToolTip = "Expander el detalle";
@@ -886,8 +1011,16 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			try
 			{
 
-				// Actualizar datos de la Autoridad
-				UpdateExpedienteAutoridad();
+				// Tipo de transacción
+                if (this.hddAutoridadId.Value == "0"){
+
+					InsertExpedienteAutoridad();
+
+                }else{
+
+					UpdateExpedienteAutoridad();
+
+                }
 
 			}catch (Exception ex){
 				this.lblActionMessage.Text = ex.Message;
@@ -942,6 +1075,37 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
             }catch (Exception ex){
                 this.lblAutoridadVoces_Message.Text = ex.Message;
+            }
+        }
+
+		protected void ddlAutoridadNivel1_SelectedIndexChanged(object sender, EventArgs e){
+            try
+            {
+
+                // Consulta de combo en cascada
+				SelectAutoridadNivel2();
+				SelectAutoridadNivel3();
+
+                // Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlAutoridadNivel2.ClientID + "');", true);
+
+            }catch (Exception ex){
+                this.lblActionMessage.Text = ex.Message;
+            }
+        }
+
+        protected void ddlAutoridadNivel2_SelectedIndexChanged(object sender, EventArgs e){
+            try
+            {
+
+                // Consulta de combo en cascada
+				SelectAutoridadNivel3();
+
+                // Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlAutoridadNivel3.ClientID + "');", true);
+
+            }catch (Exception ex){
+                this.lblActionMessage.Text = ex.Message;
             }
         }
 

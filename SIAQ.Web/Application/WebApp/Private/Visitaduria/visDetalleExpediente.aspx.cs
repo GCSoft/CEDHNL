@@ -288,6 +288,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 						this.InformacionPanel.Visible = true;
 						this.AsignarPanel.Visible = true;
 						//this.AcuerdoPanel.Visible = true;
+						this.CiudadanoPanel.Visible = true;
 						this.DiligenciaPanel.Visible = true;
 						this.DocumentoPanel.Visible = true;
 						this.SeguimientoPanel.Visible = true;
@@ -304,6 +305,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 						this.InformacionPanel.Visible = true;
 						this.AsignarPanel.Visible = true;
 						//this.AcuerdoPanel.Visible = true;
+						this.CiudadanoPanel.Visible = true;
 						this.DiligenciaPanel.Visible = true;
 						this.DocumentoPanel.Visible = true;
 						this.SeguimientoPanel.Visible = true;
@@ -320,6 +322,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 						this.InformacionPanel.Visible = true;
 						this.AsignarPanel.Visible = true;
 						//this.AcuerdoPanel.Visible = false;
+						this.CiudadanoPanel.Visible = false;
 						this.DiligenciaPanel.Visible = false;
 						this.DocumentoPanel.Visible = false;
 						this.SeguimientoPanel.Visible = false;
@@ -336,6 +339,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 						this.InformacionPanel.Visible = true;
 						this.AsignarPanel.Visible = false;
 						//this.AcuerdoPanel.Visible = true;
+						this.CiudadanoPanel.Visible = true;
 						this.DiligenciaPanel.Visible = true;
 						this.DocumentoPanel.Visible = true;
 						this.SeguimientoPanel.Visible = true;
@@ -352,6 +356,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 						this.InformacionPanel.Visible = true;
 						this.AsignarPanel.Visible = true;
 						//this.AcuerdoPanel.Visible = false;
+						this.CiudadanoPanel.Visible = false;
 						this.DiligenciaPanel.Visible = false;
 						this.DocumentoPanel.Visible = false;
 						this.SeguimientoPanel.Visible = false;
@@ -368,6 +373,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 						this.InformacionPanel.Visible = false;
 						this.AsignarPanel.Visible = false;
 						//this.AcuerdoPanel.Visible = false;
+						this.CiudadanoPanel.Visible = false;
 						this.DiligenciaPanel.Visible = false;
 						this.DocumentoPanel.Visible = false;
 						this.SeguimientoPanel.Visible = false;
@@ -395,6 +401,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				// Si es Funcionario pero el expediente no está asignado a él no lo podrá operar
 				if (idRol == 8 && Int32.Parse(this.hddFuncionarioId.Value) != FuncionarioId) {
 					//this.AcuerdoPanel.Visible = false;
+					this.CiudadanoPanel.Visible = false;
 					this.DiligenciaPanel.Visible = false;
 					this.DocumentoPanel.Visible = false;
 					this.SeguimientoPanel.Visible = false;
@@ -437,6 +444,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				// 23 - Proyecto Aprobado
 				if ( Int32.Parse(this.hddEstatusId.Value) == 16 || Int32.Parse(this.hddEstatusId.Value) == 23 ){
 					//this.AcuerdoPanel.Visible = false;
+					this.CiudadanoPanel.Visible = false;
 					this.DiligenciaPanel.Visible = false;
 					this.DocumentoPanel.Visible = false;
 					this.SeguimientoPanel.Visible = false;
@@ -621,6 +629,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				sKey = this.hddExpedienteId.Value + "|" + this.SenderId.Value;
 				sKey = gcEncryption.EncryptString(sKey, true);
 				this.Response.Redirect("visAsignarFuncionario.aspx?key=" + sKey, false);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
+		}
+
+		protected void CiudadanoButton_Click(object sender, ImageClickEventArgs e){
+			String sKey = "";
+
+			try
+			{
+
+				// Llave encriptada
+				sKey = this.hddExpedienteId.Value + "|" + this.SenderId.Value + "|0";
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("visAgregarCiudadano.aspx?key=" + sKey, false);
 
 			}catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);

@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 
 // Referencias manuales
 using GCUtility.Function;
+using GCUtility.Security;
 using SIAQ.BusinessProcess.Object;
 using SIAQ.BusinessProcess.Page;
 using SIAQ.Entity.Object;
@@ -18,6 +19,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
     {
 
 		// Utilerías
+		GCEncryption gcEncryption = new GCEncryption();
 		GCJavascript gcJavascript = new GCJavascript();
 
 		// Rutinas del programador
@@ -78,14 +80,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 				if (oENTResponse.GeneratesException) { throw new Exception(oENTResponse.sErrorMessage); }
 				if (oENTResponse.sMessage != "") { throw new Exception(oENTResponse.sMessage); }
 
-				// Si la pantalla fue invocada desde la pantalla de agregar ciudadanos a la solicitud (../Quejas/QueAgregarCiudadanos.aspx) regresar pasándo el CiudadanoId generado
+				// Determinar de donde fue enviada la petición
 				if (this.hddSolicitudId.Value != ""){
 
 					Response.Redirect("../Quejas/QueAgregarCiudadanos.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value + "|" + oENTResponse.dsResponse.Tables[1].Rows[0]["CiudadanoId"].ToString(), false);
 				}else{
 
-					Limpiar();
-					ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('Ciudadano agregado con éxito');", true);
+					if (this.hddExpedienteId.Value != ""){
+
+						RedirectVisitadurias(oENTResponse.dsResponse.Tables[1].Rows[0]["CiudadanoId"].ToString());
+					}else {
+
+						Limpiar();
+						ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('Ciudadano agregado con éxito');", true);
+
+					}
+
 				}
 
 			}catch (Exception ex){
@@ -152,6 +162,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
 			}catch (Exception ex){
 				throw (ex);
+			}
+		}
+
+		void RedirectVisitadurias(String CiudadanoId){
+			String sKey = "";
+
+			try
+			{
+
+				// Llave encriptada
+				sKey = this.hddExpedienteId.Value + "|" + this.SenderId.Value + "|" + CiudadanoId;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("../Visitaduria/visAgregarCiudadano.aspx?key=" + sKey, false);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
 			}
 		}
 
@@ -282,6 +308,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
 			// Valores por default
 			this.hdnCiudadanoId.Value = String.Empty;
+			this.hddExpedienteId.Value = "";
 			this.hddSolicitudId.Value = "";
 
 			// Determinar de donde viene la página
@@ -298,6 +325,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 
 				// Obtener Sender
 				this.SenderId.Value = this.Request.QueryString["key"].ToString().ToString().Split(new Char[] { '|' })[1];
+			}
+
+			if (Request.QueryString["visKey"] != null){
+
+				// Obtener ExpedienteId
+				this.hddExpedienteId.Value = this.Request.QueryString["visKey"].ToString().Split(new Char[] { '|' })[0];
+
+				// Obtener Sender
+				this.SenderId.Value = this.Request.QueryString["visKey"].ToString().ToString().Split(new Char[] { '|' })[1];
 			}
             
 
@@ -358,7 +394,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 						Response.Redirect("../Quejas/QueAgregarCiudadanos.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value + "|0", false);
 					}else{
 
-						Response.Redirect("opeBusquedaCiudadano.aspx");
+						if (this.hddExpedienteId.Value != ""){
+
+							RedirectVisitadurias("0");
+						}else{
+				
+							Response.Redirect("opeBusquedaCiudadano.aspx");
+						}
 					}
 
 				}
@@ -369,12 +411,39 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 		}
 
 		protected void btnRegresar_Click(object sender, EventArgs e){
-			if (this.hddSolicitudId.Value != ""){
+			ENTSession oENTSession;
 
-				Response.Redirect("../Quejas/QueAgregarCiudadanos.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value + "|0", false);
-			}else{
+			try
+			{
 
-				Response.Redirect("opeBusquedaCiudadano.aspx");
+				// Obtener Sesion
+				oENTSession = (ENTSession)this.Session["oENTSession"];
+
+				if (this.hddSolicitudId.Value != ""){
+
+					Response.Redirect("../Quejas/QueAgregarCiudadanos.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value + "|0", false);
+				}else{
+
+					if (this.hddExpedienteId.Value != ""){
+
+						RedirectVisitadurias("0");
+					}else{
+
+
+						// Validación de Roles diferente de Recepción
+						if (oENTSession.idRol == 3){
+
+							Response.Redirect("opeBusquedaCiudadano.aspx");
+						}else{
+
+							Response.Redirect("../Home/AppIndex.aspx");
+						}
+
+					}
+				}
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.txtNombre.ClientID + "'); }", true);
 			}
 		}
 

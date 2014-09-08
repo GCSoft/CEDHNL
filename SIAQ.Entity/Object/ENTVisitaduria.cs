@@ -25,16 +25,20 @@ namespace SIAQ.Entity.Object
 		private Int32	_AreaId;					// Identificador único del Área
 		private Int32	_AutoridadId;				// Identificador único de la Autoridad
 		private Int32	_CalificacionAutoridadId;	// Identificador único de la Calificación de la Autoridad
+		private Int32	_CiudadanoId;				// Identificador único del Ciudadano asociado al Expediente
 		private Int32	_ComentarioId;				// Identificador único del Comentario del Expediente
 		private Int32	_EstatusId;					// Identificador único del Estatus del Expediente
 		private Int32	_ExpedienteId;				// Identificador único del Expediente a consultar
 		private Int32	_FuncionarioId;				// Identificador único del funcionario asociado al Expediente
 		private Int32	_ModuloId;					// Identificador único del Módulo en donde se realiza la transacción
+		private Int32	_TipoParticipacionId;		// Identificador único del tipo de participación de un ciudadano asociado a un Expediente
 		private Int32	_TipoResolucionId;			// Identificador único del Tipo de Resolución
 		private Int32	_UsuarioId;					// Identificador único del Usuario
 		private Int32	_VozId;						// Identificador único de la Voz señalatoria de una Autoridad
 		private String	_Acuerdo;					// Acuerdo de calificación definitiva
 		private String	_Comentario;				// Comentarios
+		private Int16	_Check;						// Determina con un 0 si es necesario hacer una revisión del ID del ciudadano por su nombre o con 1 en el caso contrario.
+		private String	_CheckNombre;				// Nombre a validar cuando se especifica la opción Check igual a uno
 		private String	_Detalle;					// Detalle
 		private String	_FechaDesde;				// Fecha de inicio en una consulta
 		private String	_FechaHasta;				// Fecha final en una consulta
@@ -42,6 +46,7 @@ namespace SIAQ.Entity.Object
 		private Int16	_Nivel;						// Nivel de transacción
 		private String	_Nombre;					// Nombre del ciudadano/problematica/entidad
 		private String	_Numero;					// Número del expediente
+		private Int16	_Presente;					// Determina con un 1 si el ciudadano estuvo presente al momento del levantamientio del registro
 		private String	_Puesto;					// Puesto de una autoridad señalada
 		private DataTable _tblVoz;					// Listado de ID's de Voces, calificación y comentarios
 
@@ -53,16 +58,20 @@ namespace SIAQ.Entity.Object
 			_AreaId = 0;
 			_AutoridadId = 0;
 			_CalificacionAutoridadId = 0;
+			_CiudadanoId = 0;
 			_ComentarioId = 0;
 			_EstatusId = 0;
 			_ExpedienteId = 0;
 			_FuncionarioId = 0;
 			_ModuloId = 0;
+			_TipoParticipacionId = 0;
 			_TipoResolucionId = 0;
 			_UsuarioId = 0;
 			_VozId = 0;
 			_Acuerdo = "";
 			_Comentario = "";
+			_Check = 0;
+			_CheckNombre = "";
 			_Detalle = "";
 			_FechaDesde = "";
 			_FechaHasta = "";
@@ -70,6 +79,7 @@ namespace SIAQ.Entity.Object
 			_Nivel = -1;
 			_Nombre = "";
 			_Numero = "";
+			_Presente = 0;
 			_Puesto = "";
 			_tblVoz = null;
 		}
@@ -111,6 +121,18 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _CalificacionAutoridadId; }
 			set { _CalificacionAutoridadId = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTVisitaduria.CiudadanoId</name>
+		///   <create>08-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el identificador único del Ciudadano asociado al Expediente</summary>
+		public Int32 CiudadanoId
+		{
+			get { return _CiudadanoId; }
+			set { _CiudadanoId = value; }
 		}
 
 		///<remarks>
@@ -174,6 +196,18 @@ namespace SIAQ.Entity.Object
 		}
 
 		///<remarks>
+		///   <name>ENTVisitaduria.TipoParticipacionId</name>
+		///   <create>08-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el identificador único del tipo de participación de un ciudadano asociado a un Expediente</summary>
+		public Int32 TipoParticipacionId
+		{
+			get { return _TipoParticipacionId; }
+			set { _TipoParticipacionId = value; }
+		}
+
+		///<remarks>
 		///   <name>ENTVisitaduria.TipoResolucionId</name>
 		///   <create>04-Agosto-2014</create>
 		///   <author>Ruben.Cobos</author>
@@ -231,6 +265,30 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _Comentario; }
 			set { _Comentario = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTVisitaduria.Check</name>
+		///   <create>08-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna un valor que determina con un 0 si es necesario hacer una revisión del ID del ciudadano por su nombre o con 1 en el caso contrario</summary>
+		public Int16 Check
+		{
+			get { return _Check; }
+			set { _Check = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTVisitaduria.CheckNombre</name>
+		///   <create>08-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el nombre a validar cuando se especifica la opción Check igual a uno</summary>
+		public String CheckNombre
+		{
+			get { return _CheckNombre; }
+			set { _CheckNombre = value; }
 		}
 
 		///<remarks>
@@ -315,6 +373,18 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _Numero; }
 			set { _Numero = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTVisitaduria.Presente</name>
+		///   <create>08-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna un valor el cual determina con un 1 si el ciudadano estuvo presente al momento del registro</summary>
+		public Int16 Presente
+		{
+			get { return _Presente; }
+			set { _Presente = value; }
 		}
 
 		///<remarks>

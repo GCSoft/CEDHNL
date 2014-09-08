@@ -415,7 +415,7 @@
 																		<asp:BoundField		ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="246px"	DataField="Comentarios"></asp:BoundField>
                                                                         <asp:TemplateField	ItemStyle-HorizontalAlign ="Center">
                                                                             <ItemTemplate>
-                                                                                <asp:ImageButton ID="imgEliminar" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Eliminar" ImageUrl="~/Include/Image/Buttons/Delete.png" ToolTip="Eliminar VocesTemporal" runat="server" />
+                                                                                <asp:ImageButton ID="imgEliminar" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Eliminar" ImageUrl="~/Include/Image/Buttons/Delete.png" ToolTip="Eliminar Voz" runat="server" />
                                                                             </ItemTemplate>
                                                                         </asp:TemplateField>
                                                                     </Columns>

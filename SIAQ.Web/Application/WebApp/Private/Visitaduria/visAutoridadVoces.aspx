@@ -364,7 +364,7 @@
 
 		<!-- PopUp Voces -->
 		<asp:Panel id="pnlVoces" runat="server" CssClass="ActionBlock" Visible="false" >
-            <asp:Panel ID="pnlVocesContent" runat="server" CssClass="ActionContent" Style="top:150px;" Height="560px" Width="900px">
+            <asp:Panel ID="pnlVocesContent" runat="server" CssClass="ActionContent" Style="top:50px;" Height="630px" Width="1000px">
                 <asp:Panel ID="pnlVocesHeader" runat="server" CssClass="ActionHeader">
                     <table border="0" cellpadding="0" cellspacing="0" style="height:100%; width:100%">
                         <tr>
@@ -423,43 +423,66 @@
                             <tr style="height:5px;"><td colspan="3"></td></tr>
                             <tr>
                                 <td colspan="3">
-                                    <div style="border:1px solid #4B4878; height:250px; overflow-x:hidden; overflow-y:scroll; text-align:left; Width:100%">
-                                        <asp:GridView id="gvAutoridadVoces" runat="server" AllowPaging="false" AllowSorting="true" AutoGenerateColumns="False" Width="99%"
-                                            DataKeyNames="VozId,CalificacionAutoridadId,Comentarios"
-                                            OnRowDataBound="gvAutoridadVoces_RowDataBound">
-                                            <HeaderStyle CssClass="Grid_Header_Action" />
-											<RowStyle CssClass="Grid_Row_Action" />
-											<EmptyDataTemplate>
-												<table border="1px" width="100%" cellpadding="0px" cellspacing="0px">
-													<tr class="Grid_Header_Action">
-														<td style="width:143px;">Primer nivel</td>
-														<td style="width:143px;">Segundo nivel</td>
-														<td style="width:143px;">Tercer nivel</td>
-														<td>Comentarios</td>
-														<td style="width:160px;">Calificación</td>
-													</tr>
-													<tr class="Grid_Row">
-														<td colspan="5" style="text-align:center;">No se encontraron Voces asociadas a la Autoridad</td>
-													</tr>
-												</table>
-											</EmptyDataTemplate>
-                                            <Columns>
-                                                <asp:BoundField	HeaderText="Primer nivel"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="143px"	DataField="Voz1"></asp:BoundField>
-                                                <asp:BoundField	HeaderText="Segundo nivel"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="143px"	DataField="Voz2"></asp:BoundField>
-                                                <asp:BoundField	HeaderText="Tercer nivel"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="142px"	DataField="Voz3"></asp:BoundField>
-												<asp:TemplateField HeaderText="Comentarios">
-                                                    <ItemTemplate>
-                                                        <asp:TextBox id="txtComentarioVoz" runat="server" CssClass="Textarea_General" MaxLength="400" TextMode="MultiLine" Width="235px" Height="40px"></asp:TextBox>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Calificación" ItemStyle-Width="160px">
-                                                    <ItemTemplate>
-														<asp:DropDownList id="ddlCalificacionVoz" runat="server" CssClass="DropDownList_General" Width="160px"></asp:DropDownList>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                            </Columns>
-                                        </asp:GridView>
-                                    </div>
+									<table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tr>
+                                            <td colspan="2">
+                                                <div id="tblHeader_Voces" style="border:0px solid #000000; clear:both; position:relative; width:100%;">
+                                                    <table cellspacing="0" rules="all" border="1" style="border-collapse:collapse; width:100%;">
+                                                        <tr class="Grid_Header_Action">
+                                                            <th scope="col" style="width:154px;">Primer nivel</th>
+                                                            <th scope="col" style="width:154px;">Segundo nivel</th>
+                                                            <th scope="col" style="width:154px;">Tercer nivel</th>
+															<th scope="col" style="width:250px;">Comentarios</th>
+															<th scope="col" style="width:168px;">Calificación</th>
+                                                            <th scope="col"></th>
+                                                        </tr>
+                                                        <tr class="Grid_Header_Action">
+                                                            <th scope="col" style="vertical-align:top;"><asp:DropDownList id="ddlVocesTemporal_Nivel1"	runat="server" AutoPostBack="True"  CssClass="DropDownList_General" Width="148px" OnSelectedIndexChanged="ddlVocesNivel1_SelectedIndexChanged"></asp:DropDownList></th>
+                                                            <th scope="col" style="vertical-align:top;"><asp:DropDownList id="ddlVocesTemporal_Nivel2"	runat="server" AutoPostBack="True"  CssClass="DropDownList_General" Width="148px" OnSelectedIndexChanged="ddlVocesNivel2_SelectedIndexChanged"></asp:DropDownList></th>
+                                                            <th scope="col" style="vertical-align:top;"><asp:DropDownList id="ddlVocesTemporal_Nivel3"	runat="server"                      CssClass="DropDownList_General" Width="148px"></asp:DropDownList></th>
+															<th scope="col" style="vertical-align:top;"><asp:TextBox id="txtVocesTemporal_Comentarios"	runat="server"                      CssClass="Textarea_General"		Width="240px" Height="40px" TextMode="MultiLine" MaxLength="400"></asp:TextBox></th>
+															<th scope="col" style="vertical-align:top;"><asp:DropDownList id="ddlCalificacionVoces"		runat="server"                      CssClass="DropDownList_General" Width="160px"></asp:DropDownList></th>
+                                                            <th scope="col" style="vertical-align:top;"><asp:Button ID="btnVocesTemporal_Nuevo"			runat="server"                      CssClass="Button_General"  Text="Agregar" width="70px" onclick="btnVocesTemporal_Nuevo_Click" /></th>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+												<div style="border:1px solid #4B4878; height:250px; overflow-x:hidden; overflow-y:scroll; text-align:left; Width:100%">
+													<asp:GridView id="gvAutoridadVoces" runat="server" border="0" AllowPaging="false" AllowSorting="false" AutoGenerateColumns="False" ShowHeader="false" Width="99%"
+														DataKeyNames="VozId,CalificacionAutoridadId,ModuloId,Comentarios"
+														OnRowCommand="gvAutoridadVoces_RowCommand"
+														OnRowDataBound="gvAutoridadVoces_RowDataBound">
+														<HeaderStyle CssClass="Grid_Header_Action" />
+														<RowStyle CssClass="Grid_Row_Action" />
+														<EmptyDataTemplate>
+															<div class="Grid_Row" style="border:0px; clear:both; left:-1px; position:relative; text-align:center; top:-2px; width:100%;">
+                                                                No se encontraron Voces asociadas a la Autoridad
+                                                            </div>
+														</EmptyDataTemplate>
+														<Columns>
+															<asp:BoundField	HeaderText="Primer nivel"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="153px"	DataField="Voz1"></asp:BoundField>
+															<asp:BoundField	HeaderText="Segundo nivel"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="154px"	DataField="Voz2"></asp:BoundField>
+															<asp:BoundField	HeaderText="Tercer nivel"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="154px"	DataField="Voz3"></asp:BoundField>
+															<asp:TemplateField HeaderText="Comentarios" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="250px">
+																<ItemTemplate>
+																	<asp:TextBox id="txtComentarioVoz" runat="server" CssClass="Textarea_General" MaxLength="400" TextMode="MultiLine" Width="240px" Height="40px"></asp:TextBox>
+																</ItemTemplate>
+															</asp:TemplateField>
+															<asp:TemplateField HeaderText="Calificación" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="168px">
+																<ItemTemplate>
+																	<asp:DropDownList id="ddlCalificacionVoz" runat="server" CssClass="DropDownList_General" Width="160px"></asp:DropDownList>
+																</ItemTemplate>
+															</asp:TemplateField>
+															<asp:TemplateField	ItemStyle-HorizontalAlign ="Center">
+                                                                <ItemTemplate>
+                                                                    <asp:ImageButton ID="imgEliminar" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Eliminar" ImageUrl="~/Include/Image/Buttons/Delete.png" ToolTip="Eliminar Voz" runat="server" />
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+														</Columns>
+													</asp:GridView>
+												</div>
+											</td>
+                                        </tr>
+                                    </table>
                                 </td>
                             </tr>
                             <tr style="height:5px;"><td colspan="3"></td></tr>

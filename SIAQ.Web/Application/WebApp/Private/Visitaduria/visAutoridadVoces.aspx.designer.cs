@@ -553,6 +553,60 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         protected global::System.Web.UI.WebControls.Label lblVocesObservaciones;
         
         /// <summary>
+        /// ddlVocesTemporal_Nivel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlVocesTemporal_Nivel1;
+        
+        /// <summary>
+        /// ddlVocesTemporal_Nivel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlVocesTemporal_Nivel2;
+        
+        /// <summary>
+        /// ddlVocesTemporal_Nivel3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlVocesTemporal_Nivel3;
+        
+        /// <summary>
+        /// txtVocesTemporal_Comentarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtVocesTemporal_Comentarios;
+        
+        /// <summary>
+        /// ddlCalificacionVoces control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCalificacionVoces;
+        
+        /// <summary>
+        /// btnVocesTemporal_Nuevo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnVocesTemporal_Nuevo;
+        
+        /// <summary>
         /// gvAutoridadVoces control.
         /// </summary>
         /// <remarks>

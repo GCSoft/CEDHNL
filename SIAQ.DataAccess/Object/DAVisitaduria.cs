@@ -240,6 +240,88 @@ namespace SIAQ.DataAccess.Object
         }
 
 		///<remarks>
+		///   <name>DAVisitaduria.InsertExpedienteAutoridadVoces</name>
+		///   <create>08-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Crea una nueva Voz a Autoridad señalada en particular de un Expediente</summary>
+		///<param name="oENTVisitaduria">Entidad de Visitadurías con los filtros necesarios para realizar la transacción</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+        public ENTResponse InsertExpedienteAutoridadVoces(ENTVisitaduria oENTVisitaduria, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspExpedienteAutoridadVoces_Ins", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("ExpedienteId", SqlDbType.Int);
+			sqlPar.Value = oENTVisitaduria.ExpedienteId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("AutoridadId", SqlDbType.Int);
+			sqlPar.Value = oENTVisitaduria.AutoridadId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("VozId", SqlDbType.Int);
+			sqlPar.Value = oENTVisitaduria.VozId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("CalificacionAutoridadId", SqlDbType.Int);
+			sqlPar.Value = oENTVisitaduria.CalificacionAutoridadId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("ModuloId", SqlDbType.Int);
+			sqlPar.Value = oENTVisitaduria.ModuloId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Comentario", SqlDbType.VarChar);
+			sqlPar.Value = oENTVisitaduria.Comentario;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try
+			{
+				
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+
+			}catch (SqlException sqlEx){
+
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+
+			}catch (Exception ex){
+
+				oENTResponse.ExceptionRaised(ex.Message);
+
+			}finally{
+
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+
+			}
+
+			// Resultado
+			return oENTResponse;
+
+        }
+
+		///<remarks>
 		///   <name>DAVisitaduria.InsertExpedienteCalificacionDefinitiva</name>
 		///   <create>17-Agosto-2014</create>
 		///   <author>Ruben.Cobos</author>

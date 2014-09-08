@@ -32,6 +32,7 @@ namespace SIAQ.Entity.Object
 		private Int32	_ModuloId;					// Identificador único del Módulo en donde se realiza la transacción
 		private Int32	_TipoResolucionId;			// Identificador único del Tipo de Resolución
 		private Int32	_UsuarioId;					// Identificador único del Usuario
+		private Int32	_VozId;						// Identificador único de la Voz señalatoria de una Autoridad
 		private String	_Acuerdo;					// Acuerdo de calificación definitiva
 		private String	_Comentario;				// Comentarios
 		private String	_Detalle;					// Detalle
@@ -59,6 +60,7 @@ namespace SIAQ.Entity.Object
 			_ModuloId = 0;
 			_TipoResolucionId = 0;
 			_UsuarioId = 0;
+			_VozId = 0;
 			_Acuerdo = "";
 			_Comentario = "";
 			_Detalle = "";
@@ -193,6 +195,18 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _UsuarioId; }
 			set { _UsuarioId = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTVisitaduria.VozId</name>
+		///   <create>08-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el identificador único de la Voz señalatoria de una Autoridad</summary>
+		public Int32 VozId
+		{
+			get { return _VozId; }
+			set { _VozId = value; }
 		}
 
 		///<remarks>

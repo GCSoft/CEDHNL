@@ -19,6 +19,9 @@ using SIAQ.Entity.Object;
 using SIAQ.BusinessProcess.Object;
 using System.Data;
 using System.IO;
+using System.Collections;
+using System.Net;
+using System.Diagnostics;
 
 
 namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
@@ -48,10 +51,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			return Response;
 		}
 
-
 		// Funciones el programador
 
-		void DeleteDocumento(Int32 DocumentoId) {
+        void DeleteDocumento(Int32 DocumentoId, string DocumentoNombre, string DocumentoNumero)
+        {
 			ENTDocumento oENTDocumento = new ENTDocumento();
 			ENTResponse oENTResponse = new ENTResponse();
 
@@ -65,6 +68,17 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
 			    // Transacción
 				oENTResponse = oBPDocumento.DeleteDocumento(oENTDocumento);
+
+                // Rutina para eliminar físicamente un archivo
+                Boolean fileOK = false;
+                String path = Server.MapPath("~/Files/" + DocumentoNumero + "/");
+
+                // Revisa existencia de archivo
+                if (File.Exists(path + DocumentoNombre))
+                {
+                    // Elimina archivo
+                    System.IO.File.Delete(path + DocumentoNombre);
+                }
 
 			    // Errores y Warnings
 			    if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
@@ -84,7 +98,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			}
 		}
 
-		void InsertDocumento() {
+		void InsertDocumentox() {
 			ENTDocumento oENTDocumento = new ENTDocumento();
 			ENTResponse oENTResponse = new ENTResponse();
 			ENTSession oENTSession;
@@ -215,6 +229,120 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			}
 		}
 
+        void InsertDocumento()
+        {
+            ENTDocumento oENTDocumento = new ENTDocumento();
+            ENTResponse oENTResponse = new ENTResponse();
+            ENTSession oENTSession;
+
+            BPDocumento oBPDocumento = new BPDocumento();
+
+            Stream streamDocumento;
+            Byte[] byteDocumento;
+            Int32 lengthDocumento = 0;
+
+            try
+            {
+                // Rutina necesaria para la carga de archivos
+                Boolean fileOK = false;
+                String path = Server.MapPath("~/Files/");
+                String NumeroDeExpediente = ExpedienteNumero.Text + "/";
+
+                // Validaciones
+                if (this.fupArchivo.PostedFile == null) { throw (new Exception("Es necesario seleccionar un Documento")); }
+                if (this.fupArchivo.PostedFile.ContentLength == 0) { throw (new Exception("Es necesario seleccionar un Documento")); }
+
+                // Obtener Sesion
+                oENTSession = (ENTSession)this.Session["oENTSession"];
+
+                // Formulario
+                oENTDocumento.SolicitudId = 0;
+                oENTDocumento.ExpedienteId = Int32.Parse(this.hddExpedienteId.Value);
+                oENTDocumento.ModuloId = 3; // Visitadurías
+                oENTDocumento.idUsuarioInsert = oENTSession.idUsuario;
+                oENTDocumento.Extension = Path.GetExtension(this.fupArchivo.PostedFile.FileName);
+                oENTDocumento.Nombre = this.fupArchivo.FileName;
+                oENTDocumento.Descripcion = this.ckeDescripcion.Text.Trim();
+
+                streamDocumento = this.fupArchivo.PostedFile.InputStream;
+                lengthDocumento = this.fupArchivo.PostedFile.ContentLength;
+                byteDocumento = new Byte[lengthDocumento];
+                streamDocumento.Read(byteDocumento, 0, lengthDocumento);
+                oENTDocumento.Documento = byteDocumento;
+                
+                if (fupArchivo.HasFile)
+                {
+                    String fileExtension =
+                        System.IO.Path.GetExtension(fupArchivo.FileName).ToLower();
+                    String[] allowedExtensions = { ".gif", ".png", ".jpeg", ".jpg", ".doc", ".docx", ".xls", ".xlsx", ".pdf" };
+                    for (int i = 0; i < allowedExtensions.Length; i++)
+                    {
+                        if (fileExtension == allowedExtensions[i])
+                        {
+                            fileOK = true;
+                        }
+                    }
+
+                    if (fileOK)
+                    {
+                        try
+                        {
+                            // Revisa existencia de archivo
+                            if (!File.Exists(path + fupArchivo.FileName))
+                            {
+                                // Revisa existencia de carpeta, de no existir la crea
+                                if (!File.Exists(path))
+                                {
+                                    System.IO.Directory.CreateDirectory(path);
+                                }
+                                
+                                if (!File.Exists(path))
+                                {
+                                    System.IO.Directory.CreateDirectory(path + NumeroDeExpediente);
+                                }
+
+                                fupArchivo.PostedFile.SaveAs(path + NumeroDeExpediente + fupArchivo.FileName);
+                                Label1.Text = "File uploaded!";
+
+                                // Transacción
+                                oENTResponse = oBPDocumento.InsertDocumento(oENTDocumento);
+                            }
+                            else
+                            {
+                                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText("Archivo ya existente") + "'); function pageLoad(){ focusControl('" + this.fupArchivo.ClientID + "'); }", true);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Label1.Text = "File could not be uploaded.";
+                        }
+                    }
+                    else
+                    {
+                        Label1.Text = "Cannot accept files of this type.";
+                    }
+
+                }
+
+                // Errores y Warnings
+                if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+                if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+
+                // Estado inicial del formulario
+                this.ckeDescripcion.Text = "";
+
+                // Refrescar el formulario
+                SelectExpediente();
+
+                // Foco
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.fupArchivo.ClientID + "'); }", true);
+
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+        }
 
 		// Eventos de la página
 
@@ -241,7 +369,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
 				// Carátula
 				SelectExpediente();
-				
+
 				// Foco
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.fupArchivo.ClientID + "'); }", true);
 
@@ -253,8 +381,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 		protected void btnAgregar_Click(object sender, EventArgs e){
 			try
             {
-
-				InsertDocumento();
+                InsertDocumento();
 
             }catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.fupArchivo.ClientID + "'); }", true);
@@ -280,38 +407,43 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 		protected void gvDocumento_RowCommand(object sender, GridViewCommandEventArgs e){
 			String CommandName = "";
 			String DocumentoId = "";
+            String DocumentoNombre = "";
+            String DocumentoNumero = ExpedienteNumero.Text;
 
 			Int32 iRow = 0;
 
-			try
-			{
-				
-				// Opción seleccionada
-				CommandName = e.CommandName.ToString();
+            try
+            {
+                // Opción seleccionada
+                CommandName = e.CommandName.ToString();
 
-				// Se dispara el evento RowCommand en el ordenamiento
-				if (CommandName == "Sort") { return; }
+                // Se dispara el evento RowCommand en el ordenamiento
+                if (CommandName == "Sort") { return; }
 
-				// Fila
-				iRow = Convert.ToInt32(e.CommandArgument.ToString());
+                // Fila
+                iRow = Convert.ToInt32(e.CommandArgument.ToString());
 
-				// DataKeys
-				DocumentoId = gvDocumento.DataKeys[iRow]["DocumentoId"].ToString();
+                // DataKeys
+                DocumentoId = gvDocumento.DataKeys[iRow]["DocumentoId"].ToString();
+                DocumentoNombre = gvDocumento.DataKeys[iRow]["NombreDocumento"].ToString();
 
-				// Acción
-				switch (CommandName){
-					case "Visualizar":
-						ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "window.open('" + System.Configuration.ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.ashx?DocumentoId=" + DocumentoId + "');", true);
-						break;
+                // Acción
+                switch (CommandName)
+                {
+                    case "Visualizar":
+                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "window.open('" + System.Configuration.ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.ashx?DocumentoId=" + DocumentoId + "&DocumentoNombre=" + DocumentoNombre + "&DocumentoNumero=" + DocumentoNumero + "');", true);
+                        break;
 
-					case "Borrar":
-						DeleteDocumento(Int32.Parse(DocumentoId));
-						break;
-				}
+                    case "Borrar":
+                        DeleteDocumento(Int32.Parse(DocumentoId), DocumentoNombre, DocumentoNumero);
+                        break;
+                }
 
-			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
-			}
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+            }
 		}
 
 		protected void gvDocumento_RowDataBound(object sender, GridViewRowEventArgs e){

@@ -6,6 +6,12 @@ using System.Web;
 using SIAQ.BusinessProcess.Object;
 using SIAQ.Entity.Object;
 
+using System.IO;
+using System.Collections;
+using System.Net;
+using System.Diagnostics;
+
+
 namespace SIAQ.Web.Include.Handler
 {
     /// <summary>
@@ -18,27 +24,46 @@ namespace SIAQ.Web.Include.Handler
         {
             string RepositorioId = string.Empty;
             string SolicitudId = string.Empty;
+
             byte[] File = new byte[] { 0 };
             ENTDocumento RepositoryEntity = new ENTDocumento();
 
+            string DocumentoNombre = "";
+            string DocumentoNumero = "";
+
             try
             {
+                DocumentoNombre = context.Request.QueryString["DocumentoNombre"];
+                DocumentoNumero = context.Request.QueryString["DocumentoNumero"];
 
-				if (context.Request.QueryString["DocumentoId"] == null)
-				{
 
-					RepositorioId = context.Request.QueryString["R"];
-					SolicitudId = context.Request.QueryString["S"];
+                //MuestraDocumento(context, DocumentoNombre, DocumentoNumero);
 
-					RepositoryEntity = SelectRepository(RepositorioId, int.Parse(SolicitudId));
-				}
-				else 
-				{
+                if (context.Request.QueryString["DocumentoId"] == null)
+                {
 
-					RepositoryEntity = SelectRepository_New(Int32.Parse(context.Request.QueryString["DocumentoId"]));
-				}
+                    RepositorioId = context.Request.QueryString["R"];
+                    SolicitudId = context.Request.QueryString["S"];
+                }
 
-                context.Response.BinaryWrite(RepositoryEntity.Documento);
+                // Variables para manejo de archivos
+                string path = AppDomain.CurrentDomain.BaseDirectory.ToString() + "Files\\" + DocumentoNumero + "\\" + DocumentoNombre;
+                System.IO.FileStream fs = new System.IO.FileStream(path, System.IO.FileMode.Open, System.IO.FileAccess.Read);
+                byte[] bt = new byte[fs.Length];
+                fs.Read(bt, 0, (int)fs.Length);
+                fs.Close();
+
+                context.Response.ContentType = "application/x-unknown/octet-stream";
+                context.Response.AppendHeader("Content-Disposition", "attachment; filename=\"" + DocumentoNombre + "\"");
+
+                //AbrirArchivo(DocumentoNombre);
+                if (bt != null)
+                {
+                    System.IO.MemoryStream stream1 = new System.IO.MemoryStream(bt, true);
+                    stream1.Write(bt, 0, bt.Length);
+                    context.Response.BinaryWrite(bt);
+                    context.Response.Flush();
+                }
             }
 
             catch
@@ -46,6 +71,8 @@ namespace SIAQ.Web.Include.Handler
                 context.Response.ContentType = "image/png";
                 context.Response.BinaryWrite(File);
             }
+            finally
+            { context.Response.End(); }
         }
 
         public bool IsReusable

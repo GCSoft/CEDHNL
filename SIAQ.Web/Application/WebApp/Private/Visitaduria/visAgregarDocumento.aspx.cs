@@ -28,7 +28,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 {
     public partial class visAgregarDocumento : System.Web.UI.Page
     {
-        
+         
 		// Utilerías
 		GCCommon gcCommon = new GCCommon();
 		GCJavascript gcJavascript = new GCJavascript();
@@ -79,63 +79,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                     // Elimina archivo
                     System.IO.File.Delete(path + DocumentoNombre);
                 }
-
-			    // Errores y Warnings
-			    if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
-			    if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
-
-				// Estado inicial del formulario
-				this.ckeDescripcion.Text = "";
-
-				// Refrescar el formulario
-				SelectExpediente();
-
-				// Foco
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.fupArchivo.ClientID + "'); }", true);
-
-			}catch (Exception ex){
-			    throw (ex);
-			}
-		}
-
-		void InsertDocumentox() {
-			ENTDocumento oENTDocumento = new ENTDocumento();
-			ENTResponse oENTResponse = new ENTResponse();
-			ENTSession oENTSession;
-
-			BPDocumento oBPDocumento = new BPDocumento();
-
-			Stream streamDocumento;
-			Byte[] byteDocumento;
-			Int32 lengthDocumento = 0;
-
-			try
-			{
-
-			    // Validaciones
-				if (this.fupArchivo.PostedFile == null) { throw (new Exception("Es necesario seleccionar un Documento")); }
-				if (this.fupArchivo.PostedFile.ContentLength == 0 ) { throw (new Exception("Es necesario seleccionar un Documento")); }
-
-				// Obtener Sesion
-				oENTSession = (ENTSession)this.Session["oENTSession"];
-				
-			    // Formulario
-				oENTDocumento.SolicitudId = 0;
-			    oENTDocumento.ExpedienteId = Int32.Parse(this.hddExpedienteId.Value);
-				oENTDocumento.ModuloId = 3; // Visitadurías
-				oENTDocumento.idUsuarioInsert = oENTSession.idUsuario;
-				oENTDocumento.Extension = Path.GetExtension(this.fupArchivo.PostedFile.FileName);
-				oENTDocumento.Nombre = this.fupArchivo.PostedFile.FileName;
-				oENTDocumento.Descripcion = this.ckeDescripcion.Text.Trim();
-
-				streamDocumento = this.fupArchivo.PostedFile.InputStream;
-				lengthDocumento = this.fupArchivo.PostedFile.ContentLength;
-				byteDocumento = new Byte[lengthDocumento];
-				streamDocumento.Read(byteDocumento, 0, lengthDocumento);
-				oENTDocumento.Documento = byteDocumento;
-
-			    // Transacción
-				oENTResponse = oBPDocumento.InsertDocumento(oENTDocumento);
 
 			    // Errores y Warnings
 			    if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }

@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="QueAgregarDocumentos.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Quejas.QueAgregarDocumentos" %>
+<%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
 	
@@ -7,26 +8,27 @@
 	
 	<asp:UpdatePanel ID="DocumentUpdate" runat="server">
         <ContentTemplate>
-            <div id="TituloPaginaDiv">
-                <table class="GeneralTable">
-                    <tr>
-                        <td class="tdCeldaTituloEncabezado" style="background-image: url('../../../../Include/Image/Web/BarraTitulo.png');">
-                            Agregar documentos a la solicitud
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="SubTitulo">
-                            <asp:Label ID="Label2" runat="server" Text="Agregue aquellos documentos que sirvan para complementar la información de la solicitud."></asp:Label>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+	
+			<div id="TituloPaginaDiv">
+				<table class="GeneralTable">
+					<tr>
+						<td class="tdCeldaTituloEncabezado" style="background-image: url('../../../../Include/Image/Web/BarraTitulo.png');">
+							Agregar documentos a la solicitud
+						</td>
+					</tr>
+					<tr>
+						<td class="SubTitulo">
+							<asp:Label ID="Label1" runat="server" Text="Agregue aquellos documentos que sirvan para complementar la información de la solicitud."></asp:Label>
+						</td>
+					</tr>
+				</table>
+			</div>
 
-            <div id="InformacionDiv">
-				
-				<!-- Carátula -->
-                <table class="SolicitudTable">
-                    <tr>
+			<div id="InformacionDiv">
+		
+				<table class="SolicitudTable">
+					<!-- Carátula -->
+					<tr>
 						<td class="Especial">Solicitud Número</td>
 						<td class="Espacio"></td>
 						<td class="Campo"><asp:Label ID="SolicitudNumero" CssClass="NumeroSolicitudLabel" runat="server" Text="0"></asp:Label></td>
@@ -113,83 +115,93 @@
 						<td class="Espacio"></td>
 						<td class="Observaciones" colspan="5"><asp:Label ID="ObservacionesLabel" runat="server" Text=""></asp:Label></td>
 					</tr>
-					<!-- Fin de Carátula -->
-                    <tr>
-                        <td class="Nombre">Archivo</td>
-                        <td class="Espacio"></td>
-                        <td class="Campo" coslpan="5"><asp:FileUpload ID="DocumentoFile" runat="server" Width="210px" /></td>
-                    </tr>
-                    <tr>
-                        <td class="Nombre">Tipo de documento</td>
-                        <td class="Espacio"></td>
-                        <td class="Campo" coslpan="5"><asp:DropDownList ID="TipoDocumentoList" runat="server" CssClass="DropDownList_General" Width="198px"></asp:DropDownList></td>
-                    </tr>
-                    <tr>
-                        <td class="Nombre">Nombre</td>
-                        <td class="Espacio"></td>
-                        <td class="Campo" coslpan="5"><asp:TextBox ID="NombreBox" runat="server" CssClass="Textbox_General" width="210px" ></asp:TextBox></td>
-                    </tr>
-                    <tr>
-                        <td class="Nombre">Descripción</td>
-                        <td class="Espacio"></td>
-                        <td class="Campo" coslpan="5"><asp:TextBox ID="DescripcionBox" runat="server" CssClass="Textbox_General" TextMode="MultiLine" Height="100px" width="360px" ></asp:TextBox></td>
-                    </tr>
-                    <tr>
-                        <td class="Botones" colspan="7">
-                            <br />
-                            <asp:Button ID="GuardarButton" runat="server" Text="Agregar" CssClass="Button_General" width="125px" onclick="GuardarButton_Click"/>
-                            <asp:Button ID="btnRegresar" runat="server" Text="Regresar" CssClass="Button_General" width="125px" onclick="btnRegresar_Click"/>
-                        </td>
-                    </tr>
-                </table>
+					<!-- Fin Carátula -->
+					<tr>
+						<td class="Nombre">Archivo</td>
+						<td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
+						<td colspan="5" style="text-align:left;">
+							<asp:FileUpload ID="fupArchivo" runat="server" Width="210px" />
 
-                <br /><br />
-                <div>
-                    <asp:GridView AutoGenerateColumns="False" ID="DocumentoGrid" OnRowCommand="DocumentoGrid_RowCommand"
-                        OnRowDataBound="DocumentoGrid_RowDataBound" PageSize="10" runat="server" Style="text-align: center" Width="100%">
-                        <RowStyle CssClass="Grid_Row" />
-                        <EditRowStyle Wrap="True" />
-                        <HeaderStyle CssClass="Grid_Header" ForeColor="#E3EBF5" />
-                        <AlternatingRowStyle CssClass="Grid_Row_Alternating" />
-                        <EmptyDataTemplate>
-                            <table border="1px" width="100%" cellpadding="0px" cellspacing="0px">
-                                <tr class="Grid_Header">
-                                    <td>Nombre</td>
-                                    <td style="width: 150px;">Tipo</td>
-                                    <td style="width: 75px;"></td>
-                                    <td style="width: 50px;"></td>
-                                </tr>
-                                <tr class="Grid_Row">
-                                    <td colspan="4">No se encontraron documentos relacionados al expediente</td>
-                                </tr>
-                            </table>
-                        </EmptyDataTemplate>
-                        <Columns>
-                            <asp:BoundField DataField="NombreDocumento" HeaderText="Nombre" ItemStyle-HorizontalAlign="Left"></asp:BoundField>
-                            <asp:BoundField DataField="Descripcion" HeaderText="Descripción"></asp:BoundField>
-                            <asp:TemplateField HeaderText="Ver">
-                                <ItemTemplate>
-                                    <asp:HyperLink ID="DocumentoLink" runat="server" Target="_blank" Text=""><asp:Image ID="DocumentoImage" runat="server" /></asp:HyperLink>
-                                </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" Width="75px" />
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Borrar">
-                                <ItemTemplate>
-                                    <asp:ImageButton ID="EliminarButton" CommandArgument='<%#Eval("RepositorioId")%>' CommandName="Eliminar" ImageUrl="~/Include/Image/Buttons/Delete.png" OnClientClick="return confirm('¿En realidad desea eliminar el documento?');" runat="server" />
-                                </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" Width="50px" />
-                            </asp:TemplateField>
-                        </Columns>
-                    </asp:GridView>
-                </div>
+						</td>
+					</tr>
+					<tr><td class="Nombre" colspan="7" style="text-align:left;">Descripción</td></tr>
+					<tr>
+						<td colspan="7"><CKEditor:CKEditorControl ID="ckeDescripcion" runat="server" BasePath="~/Include/Components/CKEditor/Core/" Height="90px" MaxLength="8000"></CKEditor:CKEditorControl></td>
+					</tr>
+				</table>
+				<br />
 
-            <asp:HiddenField ID="hddSolicitudId" runat="server" Value="0"  />
+				<!-- Botones Pie de Página -->
+				<table border="0" cellpadding="0" cellspacing="0" width="100%">
+					<tr><td class="tdCeldaMiddleSpace"></td></tr>
+					<tr>
+						<td style="text-align: left;">
+							<asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="Button_General" width="125px" onclick="btnAgregar_Click" /> &nbsp;&nbsp;
+							<asp:Button ID="btnRegresar" runat="server" Text="Regresar" CssClass="Button_General" width="125px" onclick="btnRegresar_Click" />
+						</td>
+					</tr>
+				</table>
+				
+				<!-- Grid -->
+				<table border="0" cellpadding="0" cellspacing="0" width="100%">
+					<tr><td class="tdCeldaMiddleSpace"></td></tr>
+					<tr>
+						<td style="text-align: left;">
+							Documentos asociados al Expediente
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<asp:GridView ID="gvDocumento" runat="server" AllowPaging="false" AllowSorting="true"  AutoGenerateColumns="False" Width="100%"
+								DataKeyNames="DocumentoId,ModuloId,NombreDocumento,Icono"
+								OnRowCommand="gvDocumento_RowCommand" 
+								OnRowDataBound="gvDocumento_RowDataBound" 
+								OnSorting="gvDocumento_Sorting">
+								<AlternatingRowStyle CssClass="Grid_Row_Alternating" />
+								<HeaderStyle CssClass="Grid_Header" />
+								<RowStyle CssClass="Grid_Row" />
+								<EmptyDataTemplate>
+									<table border="1px" cellpadding="0px" cellspacing="0px" width="100%">
+										<tr class="Grid_Header">
+											<td style="width:200px;">Nombre</td>
+											<td>Descripción</td>
+										</tr>
+										<tr class="Grid_Row">
+											<td colspan="2">No se encontraron Documentos asociados al Expediente</td>
+										</tr>
+									</table>
+								</EmptyDataTemplate>
+								<Columns>
+									<asp:BoundField HeaderText="Nombre"			ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="NombreDocumento"						SortExpression="NombreDocumento"></asp:BoundField>
+									<asp:BoundField HeaderText="Descripción"	ItemStyle-HorizontalAlign="Left"							DataField="Descripcion"		HtmlEncode="false"	SortExpression="Descripcion"></asp:BoundField>
+									<asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
+										<ItemTemplate>
+											<asp:ImageButton ID="imgView" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Visualizar" runat="server" />
+										</ItemTemplate>
+									</asp:TemplateField>
+									<asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
+										<ItemTemplate>
+											<asp:ImageButton ID="imgDelete" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Borrar" ImageUrl="~/Include/Image/Buttons/Delete.png" runat="server" />
+										</ItemTemplate>
+									</asp:TemplateField>
+								</Columns>
+							</asp:GridView>
+						</td>
+					</tr>
+					<tr><td class="tdCeldaMiddleSpace"></td></tr>
+					<tr><td class="tdCeldaMiddleSpace"></td></tr>
+				</table>
+				
+			</div>
+
+			<asp:HiddenField ID="hddSolicitudId" runat="server" Value="0"  />
 			<asp:HiddenField ID="SenderId" runat="server" Value="0"  />
-
-        </ContentTemplate>
-        <Triggers>
-            <asp:PostBackTrigger ControlID="GuardarButton" />
-        </Triggers>
-    </asp:UpdatePanel>
+			<asp:HiddenField ID="hddSort" runat="server" Value="NombreDocumento"  />
+	
+		</ContentTemplate>
+		<Triggers>
+			<asp:PostBackTrigger ControlID="btnAgregar" />
+		</Triggers>
+	</asp:UpdatePanel>
 
 </asp:Content>

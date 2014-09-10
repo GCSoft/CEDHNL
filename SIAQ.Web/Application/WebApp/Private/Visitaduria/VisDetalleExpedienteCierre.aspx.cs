@@ -570,6 +570,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
             Image DocumentoImage;
             DataRowView DataRow;
 
+			String DocumentoId = "";
+			String sKey = "";
+
             try
             {
 
@@ -581,6 +584,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 DocumentoLabel = (Label)e.Item.FindControl("DocumentoLabel");
                 DataRow = (DataRowView)e.Item.DataItem;
 
+				// Id del documento
+				DocumentoId = DataRow["DocumentoId"].ToString();
+				sKey = gcEncryption.EncryptString(DocumentoId, true);
+
                 // Configurar imagen
 				DocumentoLabel.Text = DataRow["NombreDocumentoCorto"].ToString();
 
@@ -588,7 +595,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				DocumentoImage.ToolTip = DataRow["NombreDocumento"].ToString();
                 DocumentoImage.Attributes.Add("onmouseover", "this.style.cursor='pointer'");
                 DocumentoImage.Attributes.Add("onmouseout", "this.style.cursor='auto'");
-				DocumentoImage.Attributes.Add("onclick", "window.open('" + System.Configuration.ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.ashx?DocumentoId=" + DataRow["DocumentoId"].ToString() + "');");
+				DocumentoImage.Attributes.Add("onclick", "window.open('" + System.Configuration.ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.ashx?key=" + sKey + "');");
 
             }catch (Exception ex){
                 throw (ex);

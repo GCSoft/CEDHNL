@@ -62,7 +62,6 @@
     <Compile Include="Object\BPEscolaridad.cs" />
     <Compile Include="Object\BPEstado.cs" />
     <Compile Include="Object\BPEstatus.cs" />
-    <Compile Include="Object\BPExpediente.cs" />
     <Compile Include="Object\BPExpedienteComparecencia.cs" />
     <Compile Include="Object\BPExpedienteSeguimiento.cs" />
     <Compile Include="Object\BPFormaContacto.cs" />

@@ -25,6 +25,7 @@ namespace SIAQ.Entity.Object
         private DataSet _ResultData;
 		private String _Extension;
 		private Int32 _DocumentoId;
+		private String _Ruta;
 
         public ENTDocumento()
         {
@@ -181,6 +182,12 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _DocumentoId; }
 			set { _DocumentoId = value; }
+		}
+
+		public String Ruta
+		{
+			get { return _Ruta; }
+			set { _Ruta = value; }
 		}
 
     }

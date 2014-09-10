@@ -179,7 +179,6 @@
     <Content Include="Application\WebApp\Private\Seguimiento\segListadoExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segListadoExpedienteAprobacion.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segSeguimientoRecomendacion.aspx" />
-    <Content Include="Application\WebApp\Private\Operation\opeAprobarResolucionTitular.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeBusquedaCiudadano.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeDetalleCiudadano.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeInicio.aspx" />
@@ -987,13 +986,6 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Seguimiento\segSeguimientoRecomendacion.aspx.designer.cs">
       <DependentUpon>segSeguimientoRecomendacion.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeAprobarResolucionTitular.aspx.cs">
-      <DependentUpon>opeAprobarResolucionTitular.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Operation\opeAprobarResolucionTitular.aspx.designer.cs">
-      <DependentUpon>opeAprobarResolucionTitular.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeBusquedaCiudadano.aspx.cs">
       <DependentUpon>opeBusquedaCiudadano.aspx</DependentUpon>

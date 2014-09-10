@@ -14,6 +14,7 @@ using System.Web.UI.WebControls;
 
 // Referencias manuales
 using GCUtility.Function;
+using GCUtility.Security;
 using SIAQ.Entity.Object;
 using SIAQ.BusinessProcess.Object;
 using System.Data;
@@ -25,7 +26,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 		
 
 		// Utilerías
+
 		GCCommon gcCommon = new GCCommon();
+		GCEncryption gcEncryption = new GCEncryption();
 		GCJavascript gcJavascript = new GCJavascript();
 
 
@@ -482,9 +485,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
         }
 
 		protected void dlstDocumentoList_ItemDataBound(Object sender, DataListItemEventArgs e){
-            Label DocumentoLabel;
+			Label DocumentoLabel;
             Image DocumentoImage;
             DataRowView DataRow;
+
+			String DocumentoId = "";
+			String sKey = "";
 
             try
             {
@@ -497,13 +503,18 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
                 DocumentoLabel = (Label)e.Item.FindControl("DocumentoLabel");
                 DataRow = (DataRowView)e.Item.DataItem;
 
-                // Configurar imagen
-                DocumentoLabel.Text = DataRow["NombreDocumento"].ToString();
+				// Id del documento
+				DocumentoId = DataRow["DocumentoId"].ToString();
+				sKey = gcEncryption.EncryptString(DocumentoId, true);
 
-                DocumentoImage.ImageUrl = BPDocumento.GetIconoDocumento(DataRow["FormatoDocumentoId"].ToString());
+                // Configurar imagen
+				DocumentoLabel.Text = DataRow["NombreDocumentoCorto"].ToString();
+
+				DocumentoImage.ImageUrl = "~/Include/Image/Icon/" + DataRow["Icono"].ToString();
+				DocumentoImage.ToolTip = DataRow["NombreDocumento"].ToString();
                 DocumentoImage.Attributes.Add("onmouseover", "this.style.cursor='pointer'");
                 DocumentoImage.Attributes.Add("onmouseout", "this.style.cursor='auto'");
-                DocumentoImage.Attributes.Add("onclick", "window.open('" + System.Configuration.ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.ashx?R=" + DataRow["RepositorioId"].ToString() + "&S=0" + "');");
+				DocumentoImage.Attributes.Add("onclick", "window.open('" + System.Configuration.ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.ashx?key=" + sKey + "');");
 
             }catch (Exception ex){
                 throw (ex);

@@ -22,13 +22,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         protected global::System.Web.UI.UpdatePanel DocumentUpdate;
         
         /// <summary>
-        /// Label2 control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
         /// SolicitudNumero control.
@@ -193,49 +193,31 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         protected global::System.Web.UI.WebControls.Label ObservacionesLabel;
         
         /// <summary>
-        /// DocumentoFile control.
+        /// fupArchivo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload DocumentoFile;
+        protected global::System.Web.UI.WebControls.FileUpload fupArchivo;
         
         /// <summary>
-        /// TipoDocumentoList control.
+        /// ckeDescripcion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList TipoDocumentoList;
+        protected global::CKEditor.NET.CKEditorControl ckeDescripcion;
         
         /// <summary>
-        /// NombreBox control.
+        /// btnAgregar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox NombreBox;
-        
-        /// <summary>
-        /// DescripcionBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox DescripcionBox;
-        
-        /// <summary>
-        /// GuardarButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button GuardarButton;
+        protected global::System.Web.UI.WebControls.Button btnAgregar;
         
         /// <summary>
         /// btnRegresar control.
@@ -247,13 +229,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         protected global::System.Web.UI.WebControls.Button btnRegresar;
         
         /// <summary>
-        /// DocumentoGrid control.
+        /// gvDocumento control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView DocumentoGrid;
+        protected global::System.Web.UI.WebControls.GridView gvDocumento;
         
         /// <summary>
         /// hddSolicitudId control.
@@ -272,5 +254,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField SenderId;
+        
+        /// <summary>
+        /// hddSort control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hddSort;
     }
 }

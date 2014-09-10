@@ -293,32 +293,32 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		}
 
 		protected void dlstDocumentoList_ItemDataBound(Object sender, DataListItemEventArgs e){
-			Label DocumentoLabel;
-			Image DocumentoImage;
-			DataRowView DataRow;
+			//Label DocumentoLabel;
+			//Image DocumentoImage;
+			//DataRowView DataRow;
 
-			try
-			{
+			//try
+			//{
 
-				// Validación de que sea Item 
-				if (e.Item.ItemType != ListItemType.Item && e.Item.ItemType != ListItemType.AlternatingItem) { return; }
+			//    // Validación de que sea Item 
+			//    if (e.Item.ItemType != ListItemType.Item && e.Item.ItemType != ListItemType.AlternatingItem) { return; }
 
-				// Obtener controles
-				DocumentoImage = (Image)e.Item.FindControl("DocumentoImage");
-				DocumentoLabel = (Label)e.Item.FindControl("DocumentoLabel");
-				DataRow = (DataRowView)e.Item.DataItem;
+			//    // Obtener controles
+			//    DocumentoImage = (Image)e.Item.FindControl("DocumentoImage");
+			//    DocumentoLabel = (Label)e.Item.FindControl("DocumentoLabel");
+			//    DataRow = (DataRowView)e.Item.DataItem;
 
-				// Configurar imagen
-				DocumentoLabel.Text = DataRow["NombreDocumento"].ToString();
+			//    // Configurar imagen
+			//    DocumentoLabel.Text = DataRow["NombreDocumento"].ToString();
 
-				DocumentoImage.ImageUrl = BPDocumento.GetIconoDocumento(DataRow["FormatoDocumentoId"].ToString());
-				DocumentoImage.Attributes.Add("onmouseover", "this.style.cursor='pointer'");
-				DocumentoImage.Attributes.Add("onmouseout", "this.style.cursor='auto'");
-				DocumentoImage.Attributes.Add("onclick", "window.open('" + System.Configuration.ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.ashx?R=" + DataRow["RepositorioId"].ToString() + "&S=0" + "');");
+			//    DocumentoImage.ImageUrl = BPDocumento.GetIconoDocumento(DataRow["FormatoDocumentoId"].ToString());
+			//    DocumentoImage.Attributes.Add("onmouseover", "this.style.cursor='pointer'");
+			//    DocumentoImage.Attributes.Add("onmouseout", "this.style.cursor='auto'");
+			//    DocumentoImage.Attributes.Add("onclick", "window.open('" + System.Configuration.ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.ashx?R=" + DataRow["RepositorioId"].ToString() + "&S=0" + "');");
 
-			}catch (Exception ex){
-				throw (ex);
-			}
+			//}catch (Exception ex){
+			//    throw (ex);
+			//}
 		}
 
 		protected void gvRecomendacion_RowCommand(object sender, GridViewCommandEventArgs e){

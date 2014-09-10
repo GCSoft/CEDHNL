@@ -33,57 +33,57 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		// Rutinas del programador
 
 		void AdjuntarDocumento() {
-			ENTSession SessionEntity = new ENTSession();
-			BPDocumento RepositorioProcess = new BPDocumento();
+			//ENTSession SessionEntity = new ENTSession();
+			//BPDocumento RepositorioProcess = new BPDocumento();
 
-			// Validaciones
-			// if (this.DocumentoFile.HasFile == false ) { throw (new Exception("Es necesario seleccionar un archivo")); }
-			if (this.TipoDocumentoList.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar un Tipo de Documento")); }
-			if (this.NombreBox.Text.Trim() == "") { throw (new Exception("Es necesario ingresar un nombre del documento")); }
+			//// Validaciones
+			//// if (this.DocumentoFile.HasFile == false ) { throw (new Exception("Es necesario seleccionar un archivo")); }
+			//if (this.TipoDocumentoList.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar un Tipo de Documento")); }
+			//if (this.NombreBox.Text.Trim() == "") { throw (new Exception("Es necesario ingresar un nombre del documento")); }
 
-			// Obtener sesión
-			SessionEntity = (ENTSession)Session["oENTSession"];
+			//// Obtener sesión
+			//SessionEntity = (ENTSession)Session["oENTSession"];
 
-			// Formulario
-			RepositorioProcess.DocumentoEntity.ModuloId = 5; // Victimas?
-			RepositorioProcess.DocumentoEntity.TipoDocumentoId = this.TipoDocumentoList.SelectedValue;
-			RepositorioProcess.DocumentoEntity.SolicitudId = Int32.Parse(this.SolicitudIdHidden.Value);
-			RepositorioProcess.DocumentoEntity.idUsuarioInsert = SessionEntity.idUsuario;
-			RepositorioProcess.DocumentoEntity.Nombre = this.NombreBox.Text.Trim();
-			RepositorioProcess.DocumentoEntity.Descripcion = this.DescripcionBox.Text.Trim();
-			RepositorioProcess.DocumentoEntity.FileUpload = this.DocumentoFile;
+			//// Formulario
+			//RepositorioProcess.DocumentoEntity.ModuloId = 5; // Victimas?
+			//RepositorioProcess.DocumentoEntity.TipoDocumentoId = this.TipoDocumentoList.SelectedValue;
+			//RepositorioProcess.DocumentoEntity.SolicitudId = Int32.Parse(this.SolicitudIdHidden.Value);
+			//RepositorioProcess.DocumentoEntity.idUsuarioInsert = SessionEntity.idUsuario;
+			//RepositorioProcess.DocumentoEntity.Nombre = this.NombreBox.Text.Trim();
+			//RepositorioProcess.DocumentoEntity.Descripcion = this.DescripcionBox.Text.Trim();
+			//RepositorioProcess.DocumentoEntity.FileUpload = this.DocumentoFile;
 
-			// Transacción
-			RepositorioProcess.SaveRepositorioSE();
+			//// Transacción
+			//RepositorioProcess.SaveRepositorioSE();
 
-			// Manejo de errores
-			if (RepositorioProcess.ErrorId != 0) { throw(new Exception(RepositorioProcess.ErrorDescription)); }
+			//// Manejo de errores
+			//if (RepositorioProcess.ErrorId != 0) { throw(new Exception(RepositorioProcess.ErrorDescription)); }
 
-			// Transacción exitosa
-			this.TipoDocumentoList.SelectedIndex = 0;
-			this.NombreBox.Text = "";
-			this.DescripcionBox.Text = "";
+			//// Transacción exitosa
+			//this.TipoDocumentoList.SelectedIndex = 0;
+			//this.NombreBox.Text = "";
+			//this.DescripcionBox.Text = "";
 
-			ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('La información fue guardada con éxito!'); focusControl('" + this.DocumentoFile.ClientID + "');", true);
+			//ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('La información fue guardada con éxito!'); focusControl('" + this.DocumentoFile.ClientID + "');", true);
 			
 		}
 
 		void DeleteRepositorio(string RepositorioId){
-			BPDocumento DocumentoProcess = new BPDocumento();
+			//BPDocumento DocumentoProcess = new BPDocumento();
 
-			// Formulario
-			DocumentoProcess.DocumentoEntity.RepositorioId = RepositorioId;
-			DocumentoProcess.DocumentoEntity.SolicitudId = Int32.Parse(SolicitudIdHidden.Value);
+			//// Formulario
+			//DocumentoProcess.DocumentoEntity.RepositorioId = RepositorioId;
+			//DocumentoProcess.DocumentoEntity.SolicitudId = Int32.Parse(SolicitudIdHidden.Value);
 
-			// Transacción
-			DocumentoProcess.DeleteRepositorioSE();
+			//// Transacción
+			//DocumentoProcess.DeleteRepositorioSE();
 
-			// Manejor de errores
-			if (DocumentoProcess.ErrorId != 0) { throw (new Exception(DocumentoProcess.ErrorDescription)); }
+			//// Manejor de errores
+			//if (DocumentoProcess.ErrorId != 0) { throw (new Exception(DocumentoProcess.ErrorDescription)); }
 			
-			// Transacción exitosa
-			SelectAtencion();
-			ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('Archivo eliminado con éxito!'); focusControl('" + this.DocumentoFile.ClientID + "');", true);
+			//// Transacción exitosa
+			//SelectAtencion();
+			//ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('Archivo eliminado con éxito!'); focusControl('" + this.DocumentoFile.ClientID + "');", true);
 
 		}
 
@@ -211,21 +211,21 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		}
 
 		protected void grdDocumento_RowDataBound(object sender,GridViewRowEventArgs e){
-			HyperLink DocumentoLink;
-			Image DocumentoImage;
-			DataRowView DataRow;
+			//HyperLink DocumentoLink;
+			//Image DocumentoImage;
+			//DataRowView DataRow;
 
-			//Validación de que sea fila 
-			if (e.Row.RowType != DataControlRowType.DataRow)
-				return;
+			////Validación de que sea fila 
+			//if (e.Row.RowType != DataControlRowType.DataRow)
+			//    return;
 
-			DocumentoImage = (Image)e.Row.FindControl("DocumentoImage");
-			DocumentoLink = (HyperLink)e.Row.FindControl("DocumentoLink");
+			//DocumentoImage = (Image)e.Row.FindControl("DocumentoImage");
+			//DocumentoLink = (HyperLink)e.Row.FindControl("DocumentoLink");
 
-			DataRow = (DataRowView)e.Row.DataItem;
+			//DataRow = (DataRowView)e.Row.DataItem;
 
-			DocumentoImage.ImageUrl = BPDocumento.GetIconoDocumento(DataRow["FormatoDocumentoId"].ToString());
-			DocumentoLink.NavigateUrl = System.Configuration.ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.ashx?R=" + DataRow["RepositorioId"].ToString() + "&S=" + DataRow["SolicitudId"].ToString();
+			//DocumentoImage.ImageUrl = BPDocumento.GetIconoDocumento(DataRow["FormatoDocumentoId"].ToString());
+			//DocumentoLink.NavigateUrl = System.Configuration.ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.ashx?R=" + DataRow["RepositorioId"].ToString() + "&S=" + DataRow["SolicitudId"].ToString();
 		}
 
 	}

@@ -52,13 +52,13 @@ namespace SIAQ.BusinessProcess.Object
         #region "Method"
             public void SelectTipoDocumento()
             {
-                string ConnectionString = string.Empty;
-                DATipoDocumento TipoDocumentoAccess = new DATipoDocumento();
+				//string ConnectionString = string.Empty;
+				//DATipoDocumento TipoDocumentoAccess = new DATipoDocumento();
 
-                _TipoDocumentoEntity.ResultData = TipoDocumentoAccess.SelectTipoDocumento(_TipoDocumentoEntity, sConnectionRepositorio);
+				//_TipoDocumentoEntity.ResultData = TipoDocumentoAccess.SelectTipoDocumento(_TipoDocumentoEntity, sConnectionRepositorio);
 
-                _ErrorId = TipoDocumentoAccess.ErrorId;
-                _ErrorDescription = TipoDocumentoAccess.ErrorDescription;
+				//_ErrorId = TipoDocumentoAccess.ErrorId;
+				//_ErrorDescription = TipoDocumentoAccess.ErrorDescription;
             }
         #endregion
     }

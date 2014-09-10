@@ -66,7 +66,6 @@
     <Compile Include="Object\DAEscolaridad.cs" />
     <Compile Include="Object\DAEstado.cs" />
     <Compile Include="Object\DAEstatus.cs" />
-    <Compile Include="Object\DAExpediente.cs" />
     <Compile Include="Object\DAExpedienteComparecencia.cs" />
     <Compile Include="Object\DAExpedienteSeguimiento.cs" />
     <Compile Include="Object\DAFormaContacto.cs" />

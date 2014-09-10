@@ -14,6 +14,7 @@ using System.Web.UI.WebControls;
 
 // Referencias manuales
 using GCUtility.Function;
+using GCUtility.Security;
 using SIAQ.Entity.Object;
 using SIAQ.BusinessProcess.Object;
 using System.Data;
@@ -26,6 +27,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 
 		// Utilerías
 		GCCommon gcCommon = new GCCommon();
+		GCEncryption gcEncryption = new GCEncryption();
 		GCJavascript gcJavascript = new GCJavascript();
 
 
@@ -190,31 +192,39 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 
 		protected void dlstDocumentoList_ItemDataBound(Object sender, DataListItemEventArgs e){
 			Label DocumentoLabel;
-			Image DocumentoImage;
-			DataRowView DataRow;
+            Image DocumentoImage;
+            DataRowView DataRow;
 
-			try
-			{
+			String DocumentoId = "";
+			String sKey = "";
 
-				// Validación de que sea Item 
-				if (e.Item.ItemType != ListItemType.Item && e.Item.ItemType != ListItemType.AlternatingItem) { return; }
+            try
+            {
 
-				// Obtener controles
-				DocumentoImage = (Image)e.Item.FindControl("DocumentoImage");
-				DocumentoLabel = (Label)e.Item.FindControl("DocumentoLabel");
-				DataRow = (DataRowView)e.Item.DataItem;
+                // Validación de que sea Item 
+                if (e.Item.ItemType != ListItemType.Item && e.Item.ItemType != ListItemType.AlternatingItem) { return; }
 
-				// Configurar imagen
-				DocumentoLabel.Text = DataRow["NombreDocumento"].ToString();
+                // Obtener controles
+                DocumentoImage = (Image)e.Item.FindControl("DocumentoImage");
+                DocumentoLabel = (Label)e.Item.FindControl("DocumentoLabel");
+                DataRow = (DataRowView)e.Item.DataItem;
 
-				DocumentoImage.ImageUrl = BPDocumento.GetIconoDocumento(DataRow["FormatoDocumentoId"].ToString());
-				DocumentoImage.Attributes.Add("onmouseover", "this.style.cursor='pointer'");
-				DocumentoImage.Attributes.Add("onmouseout", "this.style.cursor='auto'");
-				DocumentoImage.Attributes.Add("onclick", "window.open('" + System.Configuration.ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.ashx?R=" + DataRow["RepositorioId"].ToString() + "&S=0" + "');");
+				// Id del documento
+				DocumentoId = DataRow["DocumentoId"].ToString();
+				sKey = gcEncryption.EncryptString(DocumentoId, true);
 
-			}catch (Exception ex){
-				throw (ex);
-			}
+                // Configurar imagen
+				DocumentoLabel.Text = DataRow["NombreDocumentoCorto"].ToString();
+
+				DocumentoImage.ImageUrl = "~/Include/Image/Icon/" + DataRow["Icono"].ToString();
+				DocumentoImage.ToolTip = DataRow["NombreDocumento"].ToString();
+                DocumentoImage.Attributes.Add("onmouseover", "this.style.cursor='pointer'");
+                DocumentoImage.Attributes.Add("onmouseout", "this.style.cursor='auto'");
+				DocumentoImage.Attributes.Add("onclick", "window.open('" + System.Configuration.ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.ashx?key=" + sKey + "');");
+
+            }catch (Exception ex){
+                throw (ex);
+            }
 		}
 
 		protected void gvCiudadano_RowDataBound(object sender, GridViewRowEventArgs e){

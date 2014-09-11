@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="visDiligenciaExpediente.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Visitaduria.visDiligenciaExpediente" %>
 <%@ Register src="../../../../Include/WebUserControls/wucFixedDateTime.ascx" tagname="wucFixedDateTime" tagprefix="wuc" %>
 <%@ Register src="../../../../Include/WebUserControls/wucCalendar.ascx" tagname="wucCalendar" tagprefix="wuc" %>
+<%@ Register src="../../../../Include/WebUserControls/wucTimer.ascx" tagname="wucTimer" tagprefix="wuc" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 
@@ -223,6 +224,11 @@
 							<asp:BoundField HeaderText="Tipo de Diligencia"			ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="150px"	DataField="Tipo"										SortExpression="Tipo"></asp:BoundField>
 							<asp:BoundField HeaderText="Funcionario que ejecuta"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="NombreVisitadorEjecuta"						SortExpression="NombreVisitadorEjecuta"></asp:BoundField>
 							<asp:BoundField HeaderText="Detalle"					ItemStyle-HorizontalAlign="Left"							DataField="Detalle"					HtmlEncode="false"	SortExpression="Detalle"></asp:BoundField>
+							<asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
+                                <ItemTemplate>
+                                    <asp:ImageButton ID="imgDetail" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Detalle" ImageUrl="~/Include/Image/Buttons/ConsultarCiudadano.png" runat="server" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
                                 <ItemTemplate>
                                     <asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
@@ -244,7 +250,7 @@
         
 		<!-- PopUp -->
 		<asp:Panel id="pnlAction" runat="server" CssClass="ActionBlock">
-			<asp:Panel id="pnlActionContent" runat="server" CssClass="ActionContent" style="top:50px;" Height="660px" Width="800px">
+			<asp:Panel id="pnlActionContent" runat="server" CssClass="ActionContent" style="top:10px;" Height="680px" Width="800px">
 				<asp:Panel ID="pnlActionHeader" runat="server" CssClass="ActionHeader">
 					<table border="0" cellpadding="0" cellspacing="0" style="height:100%; width:100%">
 						<tr>
@@ -275,6 +281,14 @@
 								<td class="tdActionCeldaLeyendaItem">&nbsp;Fecha de diligencia</td>
 								<td></td>
 								<td><wuc:wucCalendar ID="calFecha" runat="server" /></td>
+							</tr>
+							<tr style="height:5px;"><td colspan="3"></td></tr>
+							<tr class="trFilaItem">
+								<td class="tdActionCeldaLeyendaItem">&nbsp;Hora Inicio/Fin</td>
+								<td style="width:5px;"></td>
+								<td class="tdActionCeldaLeyendaItem">
+									<wuc:wucTimer ID="tmrInicio" runat="server" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<wuc:wucTimer ID="tmrFin" runat="server" />
+								</td>
 							</tr>
 							<tr style="height:5px;"><td colspan="3"></td></tr>
 							<tr class="trFilaItem">

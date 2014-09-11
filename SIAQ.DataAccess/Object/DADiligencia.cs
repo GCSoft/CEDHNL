@@ -848,6 +848,14 @@ namespace SIAQ.DataAccess.Object
 			Parameter.Value = oENTDiligencia.FechaDiligencia;
 			Command.Parameters.Add(Parameter);
 
+			Parameter = new SqlParameter("HoraInicio", SqlDbType.Time);
+			Parameter.Value = oENTDiligencia.HoraInicio;
+			Command.Parameters.Add(Parameter);
+
+			Parameter = new SqlParameter("HoraFin", SqlDbType.Time);
+			Parameter.Value = oENTDiligencia.HoraFin;
+			Command.Parameters.Add(Parameter);
+
 			Parameter = new SqlParameter("TipoDiligencia", SqlDbType.Int);
 			Parameter.Value = oENTDiligencia.TipoDiligencia;
 			Command.Parameters.Add(Parameter);
@@ -972,6 +980,14 @@ namespace SIAQ.DataAccess.Object
 
 			Parameter = new SqlParameter("FechaDiligencia", SqlDbType.DateTime);
 			Parameter.Value = oENTDiligencia.FechaDiligencia;
+			Command.Parameters.Add(Parameter);
+
+			Parameter = new SqlParameter("HoraInicio", SqlDbType.Time);
+			Parameter.Value = oENTDiligencia.HoraInicio;
+			Command.Parameters.Add(Parameter);
+
+			Parameter = new SqlParameter("HoraFin", SqlDbType.Time);
+			Parameter.Value = oENTDiligencia.HoraFin;
 			Command.Parameters.Add(Parameter);
 
 			Parameter = new SqlParameter("TipoDiligencia", SqlDbType.Int);

@@ -663,6 +663,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 						oENTSession = (ENTSession)this.Session["oENTSession"];
 						oENTExpedienteComparecencia = (ENTExpedienteComparecencia)oENTSession.Entity;
 
+						// Si no hay registros en el servidor publico definir la tabla
+						if( oENTExpedienteComparecencia.tblServidorPublico.Rows.Count == 0 ){
+							oENTExpedienteComparecencia.tblServidorPublico = new DataTable("tblServidorPublico");
+							oENTExpedienteComparecencia.tblServidorPublico.Columns.Add("ServidorPublicoId", typeof(Int32));
+							oENTExpedienteComparecencia.tblServidorPublico.Columns.Add("NombreCompleto", typeof(String));
+							oENTExpedienteComparecencia.tblServidorPublico.Columns.Add("AutoridadAgrupada", typeof(String));
+						}
+
 						// Registrar los cambios
 						if ( oENTExpedienteComparecencia.tblServidorPublico.Select("ServidorPublicoId=" + this.hddServidorPublicoId.Value).Length > 0 ){
 							oENTExpedienteComparecencia.tblServidorPublico.Rows.Remove(oENTExpedienteComparecencia.tblServidorPublico.Select("ServidorPublicoId=" + this.hddServidorPublicoId.Value)[0]);

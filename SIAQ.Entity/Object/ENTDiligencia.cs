@@ -30,6 +30,8 @@ namespace SIAQ.Entity.Object
         private DataSet _DataResult;                    // dataset 
 
 		private Int32 _ModuloId;
+		private String _HoraInicio;
+		private String _HoraFin;
 
         #endregion
 
@@ -225,6 +227,18 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _ModuloId; }
 			set { _ModuloId = value; }
+		}
+
+		public String HoraInicio
+		{
+			get { return _HoraInicio; }
+			set { _HoraInicio = value; }
+		}
+
+		public String HoraFin
+		{
+			get { return _HoraFin; }
+			set { _HoraFin = value; }
 		}
 
         #endregion

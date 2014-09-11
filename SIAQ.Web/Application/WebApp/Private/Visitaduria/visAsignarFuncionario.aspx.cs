@@ -87,11 +87,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				// Formulario
 				oENTFuncionario.FuncionarioId = 0;
 				oENTFuncionario.idUsuario = 0;
-				oENTFuncionario.idArea = Int32.Parse(this.hddAreaId.Value);	// Área del expediente
 				oENTFuncionario.idRol = 8; // Visitaduría - Visitador
 				oENTFuncionario.TituloId = 0;
 				oENTFuncionario.PuestoId = 0;
 				oENTFuncionario.Nombre = "";
+
+				// Si el área es coordinaci;on penitenciaria, se muestras los funcionarios de la tercer visitaduría
+				oENTFuncionario.idArea = (this.hddAreaId.Value == "10" ? 6 : Int32.Parse(this.hddAreaId.Value));
 
 				// Transacción
 				oENTResponse = oBPFuncionario.SelectFuncionario(oENTFuncionario);

@@ -373,6 +373,24 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         protected global::SIAQ.Web.Include.WebUserControls.wucCalendar calFecha;
         
         /// <summary>
+        /// tmrInicio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::SIAQ.Web.Include.WebUserControls.wucTimer tmrInicio;
+        
+        /// <summary>
+        /// tmrFin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::SIAQ.Web.Include.WebUserControls.wucTimer tmrFin;
+        
+        /// <summary>
         /// ddlTipoDiligencia control.
         /// </summary>
         /// <remarks>

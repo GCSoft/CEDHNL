@@ -30,7 +30,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 		GCEncryption gcEncryption = new GCEncryption();
 
 		// Enumeraciones
-		private enum DiligenciaActionTypes { DeleteDiligencia, InsertDiligencia, ReactivateDiligencia, UpdateDiligencia }
+		private enum DiligenciaActionTypes { DeleteDiligencia, InsertDiligencia, ReactivateDiligencia, SelectDiligencia, UpdateDiligencia }
 
 
 		// Funciones del programador
@@ -47,6 +47,30 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			}
 
 			return Response;
+		}
+
+		String GetStandarTime(String Input){
+			String sTime = "";
+
+			try{
+
+				// Obtener la hora   10:30 a.m.
+				if (Input.Substring(6, 4) == "a.m."){
+
+					sTime = Input.Substring(0, 2);
+				}else {
+					sTime = ( Int32.Parse( Input.Substring(0, 2)) + 12).ToString();
+				}
+
+				// Obtener los minutos
+				sTime = sTime + Input.Substring(2, 3);
+
+				// Hora universal
+				return sTime;
+
+			}catch(Exception ex){
+				throw(ex);
+			}
 		}
 
 
@@ -88,6 +112,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				// Validaciones
 				if (this.ddlFuncionario.SelectedIndex == 0) { throw new Exception("El campo [Funcionario que ejecuta] es requerido"); }
 				if (String.IsNullOrEmpty(this.calFecha.DisplayDate)) { throw new Exception("El campo [Fecha de la diligencia] es requerido"); }
+				if (this.tmrInicio.DisplayTime == "") { throw new Exception("El campo [Hora Inicio] es requerido"); }
+				if (this.tmrFin.DisplayTime == "") { throw new Exception("El campo [Hora Fin] es requerido"); }
 				if (this.ddlTipoDiligencia.SelectedIndex == 0) { throw new Exception("El campo [Tipo de diligencia] es requerido"); }
 				if (this.ddlLugarDiligencia.SelectedIndex == 0) { throw new Exception("El campo [Lugar de diligencia] es requerido"); }
 				if (this.txtSolicitadaPor.Text.Trim() == "") { throw new Exception("El campo [Solicitada por] es requerido"); }
@@ -106,6 +132,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				oENTDiligencia.FuncionarioAtiendeId = oENTSession.FuncionarioId;
 				oENTDiligencia.FuncionarioEjecuta = Convert.ToInt32(this.ddlFuncionario.SelectedValue);
 				oENTDiligencia.FechaDiligencia = this.calFecha.BeginDate;
+				oENTDiligencia.HoraInicio = GetStandarTime(this.tmrInicio.DisplayTime);
+				oENTDiligencia.HoraFin = GetStandarTime(this.tmrFin.DisplayTime);
 				oENTDiligencia.TipoDiligencia = Convert.ToInt32(this.ddlTipoDiligencia.SelectedValue);
 				oENTDiligencia.LugarDiligenciaId = Convert.ToInt32(this.ddlLugarDiligencia.SelectedValue);
 				oENTDiligencia.SolicitadaPor = this.txtSolicitadaPor.Text;
@@ -297,6 +325,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				// Validaciones
 				if (ddlFuncionario.SelectedValue == "0") { throw new Exception("* El campo [Visitador que ejecuta] es requerido"); }
 				if (String.IsNullOrEmpty(calFecha.DisplayDate)) { throw new Exception("* El campo [Fecha de la diligencia] es requerido"); }
+				if (this.tmrInicio.DisplayTime == "") { throw new Exception("El campo [Hora Inicio] es requerido"); }
+				if (this.tmrFin.DisplayTime == "") { throw new Exception("El campo [Hora Fin] es requerido"); }
 				if (ddlTipoDiligencia.SelectedValue == "0") { throw new Exception("* El campo [Tipo de diligencia] es requerido"); }
 				if (ddlLugarDiligencia.SelectedValue == "0") { throw new Exception("* El campo [Lugar de diligencia] es requerido"); }
 				if (String.IsNullOrEmpty(ckeDetalle.Text)) { throw new Exception("* El campo [Detalle] es requerido"); }
@@ -316,6 +346,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				oENTDiligencia.FuncionarioAtiendeId = oENTSession.FuncionarioId;
 			    oENTDiligencia.FuncionarioEjecuta = Convert.ToInt32(ddlFuncionario.SelectedValue);
 			    oENTDiligencia.FechaDiligencia = calFecha.BeginDate;
+				oENTDiligencia.HoraInicio = GetStandarTime(this.tmrInicio.DisplayTime);
+				oENTDiligencia.HoraFin = GetStandarTime(this.tmrFin.DisplayTime);
 			    oENTDiligencia.TipoDiligencia = Convert.ToInt32(ddlTipoDiligencia.SelectedValue);
 			    oENTDiligencia.LugarDiligenciaId = Convert.ToInt32(ddlLugarDiligencia.SelectedValue);
 			    oENTDiligencia.Detalle = ckeDetalle.Text;
@@ -350,6 +382,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				// Limpiar formulario
 				this.ddlFuncionario.SelectedIndex = 0;
 				this.calFecha.SetCurrentDate();
+				this.tmrInicio.DisplayTime = "10:00 a.m.";
+				this.tmrFin.DisplayTime = "10:30 a.m.";
 				this.ddlTipoDiligencia.SelectedIndex = 0;
 				this.ddlLugarDiligencia.SelectedIndex = 0;
 				this.txtSolicitadaPor.Text = "";
@@ -368,7 +402,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			}
 		}
 
-		void SelectDiligencia_ForEdit(String DiligenciaId){
+		void SelectDiligencia_ForEdit(String DiligenciaId, Boolean Consulta){
 			BPDiligencia oBPDiligencia = new BPDiligencia();
 
 			// Formulario
@@ -382,13 +416,30 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
 			// Vaciado de datos
 			this.hddDiligenciaId.Value = oBPDiligencia.DiligenciaEntity.DataResult.Tables[1].Rows[0]["DiligenciaId"].ToString();
-			this.ddlFuncionario.SelectedValue = oBPDiligencia.DiligenciaEntity.DataResult.Tables[1].Rows[0]["FuncionarioEjecuta"].ToString();
 			this.calFecha.SetDate = oBPDiligencia.DiligenciaEntity.DataResult.Tables[1].Rows[0]["FechaDiligencia"].ToString();
+			this.tmrInicio.DisplayTime = oBPDiligencia.DiligenciaEntity.DataResult.Tables[1].Rows[0]["HoraInicio"].ToString();
+			this.tmrFin.DisplayTime = oBPDiligencia.DiligenciaEntity.DataResult.Tables[1].Rows[0]["HoraFin"].ToString();
 			this.ddlTipoDiligencia.SelectedValue = oBPDiligencia.DiligenciaEntity.DataResult.Tables[1].Rows[0]["TipoDiligencia"].ToString();
 			this.ddlLugarDiligencia.SelectedValue = oBPDiligencia.DiligenciaEntity.DataResult.Tables[1].Rows[0]["LugarDiligencia"].ToString();
 			this.ckeDetalle.Text = oBPDiligencia.DiligenciaEntity.DataResult.Tables[1].Rows[0]["Detalle"].ToString();
 			this.txtSolicitadaPor.Text = oBPDiligencia.DiligenciaEntity.DataResult.Tables[1].Rows[0]["SolicitadaPor"].ToString();
 			this.ckeResultado.Text = oBPDiligencia.DiligenciaEntity.DataResult.Tables[1].Rows[0]["Resultado"].ToString();
+
+
+			// Determinar si es consultä
+			if (Consulta){
+
+				this.ddlFuncionario.SelectedIndex = 0;
+				this.ddlFuncionario.SelectedItem.Text = oBPDiligencia.DiligenciaEntity.DataResult.Tables[1].Rows[0]["NombreVisitadorEjecuta"].ToString();
+				this.ddlFuncionario.Enabled = false;
+			}else{
+
+				this.ddlFuncionario.SelectedIndex = 0;
+				this.ddlFuncionario.SelectedItem.Text = "[Seleccione]";
+				this.ddlFuncionario.Enabled = true;
+				this.ddlFuncionario.SelectedValue = oBPDiligencia.DiligenciaEntity.DataResult.Tables[1].Rows[0]["FuncionarioEjecuta"].ToString();
+			}
+
 		}
 
 		void SetPanel(DiligenciaActionTypes DActionType, Int32 idItem){
@@ -405,13 +456,21 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
 						this.lblActionTitle.Text = "Nueva Diligencia";
 						this.btnAction.Text = "Crear Diligencia";
+						this.btnAction.Visible = true;
+						break;
+
+					case DiligenciaActionTypes.SelectDiligencia:
+						this.lblActionTitle.Text = "Consulta de Diligencia";
+						this.btnAction.Visible = false;
+						SelectDiligencia_ForEdit(idItem.ToString(), true);
 						break;
 
 					case DiligenciaActionTypes.UpdateDiligencia:
 
 						this.lblActionTitle.Text = "Edición de Diligencia";
 						this.btnAction.Text = "Actualizar Diligencia";
-						SelectDiligencia_ForEdit(idItem.ToString());
+						this.btnAction.Visible = true;
+						SelectDiligencia_ForEdit(idItem.ToString(), false);
 						break;
 
 					default:
@@ -517,6 +576,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
 				// Acción
 				switch (CommandName){
+					case "Detalle":
+						SetPanel(DiligenciaActionTypes.SelectDiligencia, Int32.Parse(DiligenciaId));
+						ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tooltip.hide();", true);
+						break;
+
 					case "Editar":
 						SetPanel(DiligenciaActionTypes.UpdateDiligencia, Int32.Parse(DiligenciaId));
 						ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tooltip.hide();", true);
@@ -533,6 +597,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 		}
 
 		protected void gvDiligencia_RowDataBound(object sender, GridViewRowEventArgs e){
+			ImageButton imgDetail = null;
 			ImageButton imgEdit = null;
 			ImageButton imgDelete = null;
 
@@ -542,9 +607,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			String sImagesAttributes = "";
 			String sToolTip = "";
 
-			String sImagesAttributesDelete = "";
-			String sToolTipDelete = "";
-
 			try
 			{
 				
@@ -552,6 +614,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				if (e.Row.RowType != DataControlRowType.DataRow) { return; }
 
 				// Obtener imagenes
+				imgDetail = (ImageButton)e.Row.FindControl("imgDetail");
 				imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
 				imgDelete = (ImageButton)e.Row.FindControl("imgDelete");
 
@@ -565,37 +628,51 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 					imgEdit.Visible = false;
 					imgDelete.Visible = false;
 
-					// Atributos Over y Out
-					e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; ");
-					e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; ");
+					// Tooltip Detalle
+					sToolTip = "Detalle de diligencia del " + FechaDiligencia;
+					imgDetail.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
+					imgDetail.Attributes.Add("onmouseout", "tooltip.hide();");
+					imgDetail.Attributes.Add("style", "cursor:hand;");
+
+					// Atributos Over
+					sImagesAttributes = "document.getElementById('" + imgDetail.ClientID + "').src='../../../../Include/Image/Buttons/ConsultarCiudadano_Over.png'; ";
+					e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
+
+					// Atributos Out
+					sImagesAttributes = "document.getElementById('" + imgDetail.ClientID + "').src='../../../../Include/Image/Buttons/ConsultarCiudadano.png';";
+					e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
 
 				}else{
 
+					// Tooltip Detalle
+					sToolTip = "Detalle de diligencia del " + FechaDiligencia;
+					imgDetail.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
+					imgDetail.Attributes.Add("onmouseout", "tooltip.hide();");
+					imgDetail.Attributes.Add("style", "cursor:hand;");
+
 					// Tooltip Edición
 					sToolTip = "Editar diligencia del " + FechaDiligencia;
-					sToolTipDelete = "Eliminar diligencia del " + FechaDiligencia;
-
 					imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
 					imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
 					imgEdit.Attributes.Add("style", "cursor:hand;");
 
-					imgDelete.Attributes.Add("onmouseover", "tooltip.show('" + sToolTipDelete + "', 'Izq');");
+					// Tooltip Eliminar
+					sToolTip = "Eliminar diligencia del " + FechaDiligencia;
+					imgDelete.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
 					imgDelete.Attributes.Add("onmouseout", "tooltip.hide();");
 					imgDelete.Attributes.Add("style", "cursor:hand;");
 
 					// Atributos Over
-					sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png';";
-					sImagesAttributesDelete = "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png';";
-
-					// Puntero y Sombra en fila Over
-					e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes + sImagesAttributesDelete);
+					sImagesAttributes = "document.getElementById('" + imgDetail.ClientID + "').src='../../../../Include/Image/Buttons/ConsultarCiudadano_Over.png'; ";
+					sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png'; ";
+					sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png';";
+					e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
 
 					// Atributos Out
-					sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png';";
-					sImagesAttributesDelete = "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png';";
-
-					// Puntero y Sombra en fila Out
-					e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes + sImagesAttributesDelete);
+					sImagesAttributes = "document.getElementById('" + imgDetail.ClientID + "').src='../../../../Include/Image/Buttons/ConsultarCiudadano.png';";
+					sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png';";
+					sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png';";
+					e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
 
 				}
 

@@ -88,13 +88,13 @@ namespace SIAQ.BusinessProcess.Object
 			///   <author>Ruben.Cobos</author>
 			///</remarks>
 			///<summary>Inserta un registro de seguimiento asociándolo a un Funcionario y estableciéndolo como el último (cerrando los anteriores). También cambia el estatus del expediente.</summary>
-			public void InsertSeguimientoRecomendacion(){
+			public void InsertRecomendacionSeguimiento(){
 				string ConnectionString = String.Empty;
 				DASeguimientoRecomendacion DASeguimientoRecomendacion = new DASeguimientoRecomendacion();
 
 				ConnectionString = sConnectionApplication;
 
-				_SeguimientoRecomendacionEntity.ResultData = DASeguimientoRecomendacion.InsertSeguimientoRecomendacion(_SeguimientoRecomendacionEntity, ConnectionString);
+				_SeguimientoRecomendacionEntity.ResultData = DASeguimientoRecomendacion.InsertRecomendacionSeguimiento(_SeguimientoRecomendacionEntity, ConnectionString);
 				_ErrorId = DASeguimientoRecomendacion.ErrorId;
 				_ErrorString = DASeguimientoRecomendacion.ErrorDescription;
 
@@ -106,13 +106,13 @@ namespace SIAQ.BusinessProcess.Object
 			///   <author>Ruben.Cobos</author>
 			///</remarks>
 			///<summary>Inserta un comentario en el seguimiento</summary>
-			public void InsertSegSeguimiento(){
+			public void InsertRecomendacionGestion(){
 				string ConnectionString = String.Empty;
 				DASeguimientoRecomendacion DASeguimientoRecomendacion = new DASeguimientoRecomendacion();
 
 				ConnectionString = sConnectionApplication;
 
-				_SeguimientoRecomendacionEntity.ResultData = DASeguimientoRecomendacion.InsertSegSeguimiento(_SeguimientoRecomendacionEntity, ConnectionString);
+				_SeguimientoRecomendacionEntity.ResultData = DASeguimientoRecomendacion.InsertRecomendacionGestion(_SeguimientoRecomendacionEntity, ConnectionString);
 				_ErrorId = DASeguimientoRecomendacion.ErrorId;
 				_ErrorString = DASeguimientoRecomendacion.ErrorDescription;
 
@@ -136,41 +136,7 @@ namespace SIAQ.BusinessProcess.Object
 
 			}
 
-			///<remarks>
-			///   <name>BPSeguimientoRecomendacion.SelectRecomendacionesSeguimientos</name>
-			///   <create>30-May-2014</create>
-			///   <author>Ruben.Cobos</author>
-			///</remarks>
-			///<summary>Obtiene un listado de Expedientes en fase de seguimientos con base a los parámetros proporcionados integrando la seguridad del usuario</summary>
-			public void SelectRecomendacionesSeguimientos(){
-				string ConnectionString = String.Empty;
-				DASeguimientoRecomendacion DASeguimientoRecomendacion = new DASeguimientoRecomendacion();
-
-				ConnectionString = sConnectionApplication;
-
-				_SeguimientoRecomendacionEntity.ResultData = DASeguimientoRecomendacion.SelectRecomendacionesSeguimientos(_SeguimientoRecomendacionEntity, ConnectionString);
-				_ErrorId = DASeguimientoRecomendacion.ErrorId;
-				_ErrorString = DASeguimientoRecomendacion.ErrorDescription;
-
-			}
-
-			///<remarks>
-			///   <name>BPSeguimientoRecomendacion.SelectRecomendacionesSeguimientos_Filtro</name>
-			///   <create>02-Junio-2014</create>
-			///   <author>Ruben.Cobos</author>
-			///</remarks>
-			///<summary>Obtiene un listado de Expedientes en fase de seguimientos con base a los parámetros proporcionados utilizada en el filtro de búsqueda</summary>
-			public void SelectRecomendacionesSeguimientos_Filtro(){
-				string ConnectionString = String.Empty;
-				DASeguimientoRecomendacion DASeguimientoRecomendacion = new DASeguimientoRecomendacion();
-
-				ConnectionString = sConnectionApplication;
-
-				_SeguimientoRecomendacionEntity.ResultData = DASeguimientoRecomendacion.SelectRecomendacionesSeguimientos_Filtro(_SeguimientoRecomendacionEntity, ConnectionString);
-				_ErrorId = DASeguimientoRecomendacion.ErrorId;
-				_ErrorString = DASeguimientoRecomendacion.ErrorDescription;
-
-			}
+			
 
         #endregion
 

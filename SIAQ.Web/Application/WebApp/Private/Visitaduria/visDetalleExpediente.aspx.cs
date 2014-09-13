@@ -443,6 +443,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				// 16 - Pendiente de aprobar cierre
 				// 23 - Proyecto Aprobado
 				if ( Int32.Parse(this.hddEstatusId.Value) == 16 || Int32.Parse(this.hddEstatusId.Value) == 23 ){
+					this.AsignarPanel.Visible = false;
 					//this.AcuerdoPanel.Visible = false;
 					this.CiudadanoPanel.Visible = false;
 					this.DiligenciaPanel.Visible = false;

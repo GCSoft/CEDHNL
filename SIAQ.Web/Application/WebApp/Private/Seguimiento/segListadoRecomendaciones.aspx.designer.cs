@@ -10,7 +10,7 @@
 namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
     
     
-    public partial class segListadoExpediente {
+    public partial class segListadoRecomendaciones {
         
         /// <summary>
         /// pnlGrid control.
@@ -22,13 +22,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         protected global::System.Web.UI.WebControls.Panel pnlGrid;
         
         /// <summary>
-        /// gvExpediente control.
+        /// gvRecomendacion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvExpediente;
+        protected global::System.Web.UI.WebControls.GridView gvRecomendacion;
         
         /// <summary>
         /// hddSort control.

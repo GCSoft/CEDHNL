@@ -1,7 +1,7 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="wucMenu.ascx.cs" Inherits="SIAQ.Web.Include.WebUserControls.wucMenu" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
-<table border="0" cellpadding="0" cellspacing="0" style="width:224px">
+<table border="0" cellpadding="0" cellspacing="0" style="width:244px">
 	<tr><td style="height:96px;"></td></tr>
 	<tr>
 		<td>

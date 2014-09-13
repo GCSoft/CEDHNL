@@ -62,7 +62,7 @@
 				<asp:Panel ID="pnlPrivateTemplateCanvas" CssClass="Canvas" runat="server">
 					<table style="border:0px solid RED; border-spacing:0px; height:100%; padding:0px; width:100%">
 						<tr>
-							<td style="text-align:left; vertical-align:top; width:224px">
+							<td style="text-align:left; vertical-align:top; width:244px">
 								<asp:Panel ID="pnlPrivateTemplateMenu" CssClass="Menu" runat="server">
 									<wuc:wucMenu ID="wucMenuPrincipal" runat="server"></wuc:wucMenu>
 								</asp:Panel>

@@ -107,7 +107,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
 			    //Formulario
 				oENTRecomendacion.AutoridadId = Convert.ToInt32(AutoridadId);
-			    oENTRecomendacion.EstatusId = 13; // Sin atender
+				oENTRecomendacion.EstatusId = 9; // Por asignar a defensor de Seguimientos
 				oENTRecomendacion.ExpedienteId = Convert.ToInt32(this.hddExpedienteId.Value);
 			    oENTRecomendacion.ModuloId = 3; // Visitadurías
 				oENTRecomendacion.FuncionarioId = oENTSession.FuncionarioId;
@@ -392,7 +392,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			    //Formulario
 				oENTRecomendacion.RecomendacionId = Int32.Parse(this.hddRecomendacionId.Value);
 				oENTRecomendacion.AutoridadId = Convert.ToInt32(AutoridadId);
-			    oENTRecomendacion.EstatusId = 13; // Sin atender
+				oENTRecomendacion.EstatusId = 9; // Por asignar a defensor de Seguimientos
 				oENTRecomendacion.ExpedienteId = Convert.ToInt32(this.hddExpedienteId.Value);
 			    oENTRecomendacion.ModuloId = 3; // Visitadurías
 				oENTRecomendacion.FuncionarioId = oENTSession.FuncionarioId;

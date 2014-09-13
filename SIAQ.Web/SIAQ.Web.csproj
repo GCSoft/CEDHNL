@@ -72,7 +72,13 @@
     <Content Include="Application\WebApp\Private\Quejas\QueListadoSolicitudes.aspx" />
     <Content Include="Application\WebApp\Private\Quejas\QueListadoSolicitudesAprobacion.aspx" />
     <Content Include="Application\WebApp\Private\Quejas\QueListadoSolicitudesEnProceso.aspx" />
+    <Content Include="Application\WebApp\Private\Seguimiento\segBusquedaRecomendacion.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segCierrarExpediente.aspx" />
+    <Content Include="Application\WebApp\Private\Seguimiento\segDetalleRecomendacion.aspx" />
+    <Content Include="Application\WebApp\Private\Seguimiento\segDetalleRecomendacionCierre.aspx" />
+    <Content Include="Application\WebApp\Private\Seguimiento\segListadoRecomendaciones.aspx" />
+    <Content Include="Application\WebApp\Private\Seguimiento\segListadoRecomendacionesAprobacion.aspx" />
+    <Content Include="Application\WebApp\Private\Seguimiento\segListadoRecomendacionesEnProceso.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segNotificacion.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\VicAgregarDocumento.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\vicAsignarDoctor.aspx" />
@@ -172,12 +178,9 @@
     <Content Include="Application\WebApp\Private\Reportes\rptPresentaReporte.aspx" />
     <Content Include="Application\WebApp\Private\Reportes\rptTema.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segAsignarDefensor.aspx" />
-    <Content Include="Application\WebApp\Private\Seguimiento\segBusquedaExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segConfirmarCierreExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segDetalleExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segDiligencia.aspx" />
-    <Content Include="Application\WebApp\Private\Seguimiento\segListadoExpediente.aspx" />
-    <Content Include="Application\WebApp\Private\Seguimiento\segListadoExpedienteAprobacion.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segSeguimientoRecomendacion.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeBusquedaCiudadano.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeDetalleCiudadano.aspx" />
@@ -924,12 +927,12 @@
     <Compile Include="Application\WebApp\Private\Seguimiento\segAsignarDefensor.aspx.designer.cs">
       <DependentUpon>segAsignarDefensor.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\segBusquedaExpediente.aspx.cs">
-      <DependentUpon>segBusquedaExpediente.aspx</DependentUpon>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segBusquedaRecomendacion.aspx.cs">
+      <DependentUpon>segBusquedaRecomendacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\segBusquedaExpediente.aspx.designer.cs">
-      <DependentUpon>segBusquedaExpediente.aspx</DependentUpon>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segBusquedaRecomendacion.aspx.designer.cs">
+      <DependentUpon>segBusquedaRecomendacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Seguimiento\segCierrarExpediente.aspx.cs">
       <DependentUpon>segCierrarExpediente.aspx</DependentUpon>
@@ -952,6 +955,20 @@
     <Compile Include="Application\WebApp\Private\Seguimiento\segDetalleExpediente.aspx.designer.cs">
       <DependentUpon>segDetalleExpediente.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segDetalleRecomendacion.aspx.cs">
+      <DependentUpon>segDetalleRecomendacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segDetalleRecomendacion.aspx.designer.cs">
+      <DependentUpon>segDetalleRecomendacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segDetalleRecomendacionCierre.aspx.cs">
+      <DependentUpon>segDetalleRecomendacionCierre.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segDetalleRecomendacionCierre.aspx.designer.cs">
+      <DependentUpon>segDetalleRecomendacionCierre.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Application\WebApp\Private\Seguimiento\segDiligencia.aspx.cs">
       <DependentUpon>segDiligencia.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -959,19 +976,26 @@
     <Compile Include="Application\WebApp\Private\Seguimiento\segDiligencia.aspx.designer.cs">
       <DependentUpon>segDiligencia.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\segListadoExpediente.aspx.cs">
-      <DependentUpon>segListadoExpediente.aspx</DependentUpon>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segListadoRecomendaciones.aspx.cs">
+      <DependentUpon>segListadoRecomendaciones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\segListadoExpediente.aspx.designer.cs">
-      <DependentUpon>segListadoExpediente.aspx</DependentUpon>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segListadoRecomendaciones.aspx.designer.cs">
+      <DependentUpon>segListadoRecomendaciones.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\segListadoExpedienteAprobacion.aspx.cs">
-      <DependentUpon>segListadoExpedienteAprobacion.aspx</DependentUpon>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segListadoRecomendacionesAprobacion.aspx.cs">
+      <DependentUpon>segListadoRecomendacionesAprobacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\segListadoExpedienteAprobacion.aspx.designer.cs">
-      <DependentUpon>segListadoExpedienteAprobacion.aspx</DependentUpon>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segListadoRecomendacionesAprobacion.aspx.designer.cs">
+      <DependentUpon>segListadoRecomendacionesAprobacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segListadoRecomendacionesEnProceso.aspx.cs">
+      <DependentUpon>segListadoRecomendacionesEnProceso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segListadoRecomendacionesEnProceso.aspx.designer.cs">
+      <DependentUpon>segListadoRecomendacionesEnProceso.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Seguimiento\segNotificacion.aspx.cs">
       <DependentUpon>segNotificacion.aspx</DependentUpon>

@@ -168,6 +168,46 @@ namespace SIAQ.BusinessProcess.Object
         }
 
 		///<remarks>
+		///   <name>selectEstatusAtencionVictimas</name>
+		///   <create>25/MAR/2014</create>
+		///   <author>Jose.Gomez</author>
+		///</remarks>
+		///<summary>Metodo para obtener los estatus de Atencion a Victimas de catEstatus del sistema</summary>
+		public void selectEstatusAtencionVictimas()
+		{
+			_EstatusEntity = new ENTEstatus();
+
+			string ConnectionString = string.Empty;
+			DAEstatus DAEstatus = new DAEstatus();
+
+			ConnectionString = sConnectionApplication;
+
+			_EstatusEntity.ResultData = DAEstatus.selectEstatusAtencionVictimas(ConnectionString);
+			_ErrorId = DAEstatus.ErrorId;
+			_ErrorDescription = DAEstatus.ErrorDescription;
+		}
+
+		///<remarks>
+		///   <name>selectEstatusSeguimientos</name>
+		///   <create>25/MAR/2014</create>
+		///   <author>Jose.Gomez</author>
+		///</remarks>
+		///<summary>Metodo para obtener los estatus de Seguimientos de catEstatus del sistema</summary>
+		public void selectEstatusSeguimientos()
+		{
+			_EstatusEntity = new ENTEstatus();
+
+			string ConnectionString = string.Empty;
+			DAEstatus DAEstatus = new DAEstatus();
+
+			ConnectionString = sConnectionApplication;
+
+			_EstatusEntity.ResultData = DAEstatus.selectEstatusSeguimientos(ConnectionString);
+			_ErrorId = DAEstatus.ErrorId;
+			_ErrorDescription = DAEstatus.ErrorDescription;
+		}
+
+		///<remarks>
 		///   <name>BPcatEstatus.searchcatEstatus</name>
 		///   <create>27/ene/2014</create>
 		///   <author>Generador</author>

@@ -10,7 +10,7 @@
         <table class="GeneralTable">
             <tr>
                 <td class="tdCeldaTituloEncabezado" style="background-image: url('../../../../Include/Image/Web/BarraTitulo.png');">
-                    Seguimiento de recomendaciones
+                    Gestión de recomendación
                 </td>
             </tr>
             <tr>

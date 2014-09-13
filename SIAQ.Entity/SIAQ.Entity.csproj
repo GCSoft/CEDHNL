@@ -76,6 +76,7 @@
     <Compile Include="Object\ENTQueja.cs" />
     <Compile Include="Object\ENTRecomendacion.cs" />
     <Compile Include="Object\ENTRecomendacionAutoridad.cs" />
+    <Compile Include="Object\ENTSeguimiento.cs" />
     <Compile Include="Object\ENTSeguimientoRecomendacion.cs" />
     <Compile Include="Object\ENTServidorPublico.cs" />
     <Compile Include="Object\ENTSolicitud.cs" />

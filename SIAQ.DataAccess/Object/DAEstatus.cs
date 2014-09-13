@@ -197,6 +197,86 @@ namespace SIAQ.DataAccess.Object
         }
 
 		///<remarks>
+		///   <name>DAcatEstatus.selectEstatusAtencionVictimas</name>
+		///   <create>25/MAR/2014</create>
+		///   <author>Jose.Gomez</author>
+		///</remarks>
+		///<summary>Metodo para obtener los estatus de atención a victimas de catEstatus del sistema</summary>
+		public DataSet selectEstatusAtencionVictimas(string sConnectionString)
+		{
+			DataSet ds = new DataSet();
+			SqlConnection con = new SqlConnection(sConnectionString);
+			SqlCommand Command;
+			SqlDataAdapter DataAdapter;
+
+			try
+			{
+				Command = new SqlCommand("catEstatusSelAtencionVictimas", con);
+				Command.CommandType = CommandType.StoredProcedure;
+
+				DataAdapter = new SqlDataAdapter(Command);
+
+				con.Open();
+				DataAdapter.Fill(ds);
+				con.Close();
+
+				return ds;
+			}
+			catch (SqlException ex)
+			{
+				_ErrorId = ex.Number;
+				_ErrorDescription = ex.Message;
+
+				if (con.State == ConnectionState.Open)
+				{
+					con.Close();
+				}
+
+				return ds;
+			}
+		}
+
+		///<remarks>
+		///   <name>DAcatEstatus.selectEstatusSeguimientos</name>
+		///   <create>25/MAR/2014</create>
+		///   <author>Jose.Gomez</author>
+		///</remarks>
+		///<summary>Metodo para obtener los estatus de Seguimientos de catEstatus del sistema</summary>
+		public DataSet selectEstatusSeguimientos(string sConnectionString)
+		{
+			DataSet ds = new DataSet();
+			SqlConnection con = new SqlConnection(sConnectionString);
+			SqlCommand Command;
+			SqlDataAdapter DataAdapter;
+
+			try
+			{
+				Command = new SqlCommand("catEstatusSelSeguimientos", con);
+				Command.CommandType = CommandType.StoredProcedure;
+
+				DataAdapter = new SqlDataAdapter(Command);
+
+				con.Open();
+				DataAdapter.Fill(ds);
+				con.Close();
+
+				return ds;
+			}
+			catch (SqlException ex)
+			{
+				_ErrorId = ex.Number;
+				_ErrorDescription = ex.Message;
+
+				if (con.State == ConnectionState.Open)
+				{
+					con.Close();
+				}
+
+				return ds;
+			}
+		}
+
+		///<remarks>
 		///   <name>DAcatEstatus.searchcatEstatus</name>
 		///   <create>27/ene/2014</create>
 		///   <author>Generador</author>

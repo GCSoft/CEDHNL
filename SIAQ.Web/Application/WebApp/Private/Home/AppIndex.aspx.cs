@@ -72,15 +72,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Home
 					break;
 
 				case 10: // Seguimiento - Secretaria
-					this.Response.Redirect("../Seguimiento/segListadoExpediente.aspx", false);
+					this.Response.Redirect("../Seguimiento/segListadoRecomendaciones.aspx", false);
 					break;
 
 				case 11: // Seguimiento - Defensor
-					this.Response.Redirect("../Seguimiento/segListadoExpediente.aspx", false);
+					this.Response.Redirect("../Seguimiento/segListadoRecomendaciones.aspx", false);
 					break;
 
 				case 12: // Seguimiento - Director
-					this.Response.Redirect("../Seguimiento/segListadoExpediente.aspx", false);
+					this.Response.Redirect("../Seguimiento/segListadoRecomendaciones.aspx", false);
 					break;
 
 				case 13: // Atención a Víctimas - Secretaria

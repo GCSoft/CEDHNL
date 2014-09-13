@@ -41,7 +41,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.FuncionarioId = Int32.Parse(this.ddlFuncionario.SelectedItem.Value);
 
 			// Transacción
-			BPSeguimientoRecomendacion.InsertSeguimientoRecomendacion();
+			BPSeguimientoRecomendacion.InsertRecomendacionSeguimiento();
 
 			// Errores
 			if (BPSeguimientoRecomendacion.ErrorId != 0) { throw (new Exception(BPSeguimientoRecomendacion.ErrorString)); }

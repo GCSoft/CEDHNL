@@ -30,7 +30,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
 		// Rutinas del programador
 
-		void InsertSeguimientoRecomendacion() {
+		void InsertRecomendacionGestion() {
 			ENTSession SessionEntity = new ENTSession();
 			BPSeguimientoRecomendacion BPSeguimientoRecomendacion = new BPSeguimientoRecomendacion();
 
@@ -50,7 +50,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
 
 			// Transacción
-			BPSeguimientoRecomendacion.InsertSegSeguimiento();
+			BPSeguimientoRecomendacion.InsertRecomendacionGestion();
 
 			// Errores
 			if (BPSeguimientoRecomendacion.ErrorId != 0) { throw (new Exception(BPSeguimientoRecomendacion.ErrorString)); }
@@ -179,7 +179,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
             {
 
                 // Obtener Expedientes
-				InsertSeguimientoRecomendacion();
+				InsertRecomendacionGestion();
 
 				// Refrescar Formulario
 				SelectedExpediente();

@@ -72,6 +72,7 @@
     <Content Include="Application\WebApp\Private\Quejas\QueListadoSolicitudes.aspx" />
     <Content Include="Application\WebApp\Private\Quejas\QueListadoSolicitudesAprobacion.aspx" />
     <Content Include="Application\WebApp\Private\Quejas\QueListadoSolicitudesEnProceso.aspx" />
+    <Content Include="Application\WebApp\Private\Seguimiento\segAgregrarInformacion.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segBusquedaRecomendacion.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segCierrarExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segDetalleRecomendacion.aspx" />
@@ -179,7 +180,6 @@
     <Content Include="Application\WebApp\Private\Reportes\rptTema.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segAsignarDefensor.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segConfirmarCierreExpediente.aspx" />
-    <Content Include="Application\WebApp\Private\Seguimiento\segDetalleExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segDiligencia.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segSeguimientoRecomendacion.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeBusquedaCiudadano.aspx" />
@@ -920,6 +920,13 @@
       <DependentUpon>rptTema.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segAgregrarInformacion.aspx.cs">
+      <DependentUpon>segAgregrarInformacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segAgregrarInformacion.aspx.designer.cs">
+      <DependentUpon>segAgregrarInformacion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Application\WebApp\Private\Seguimiento\segAsignarDefensor.aspx.cs">
       <DependentUpon>segAsignarDefensor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -947,13 +954,6 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Seguimiento\segConfirmarCierreExpediente.aspx.designer.cs">
       <DependentUpon>segConfirmarCierreExpediente.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\segDetalleExpediente.aspx.cs">
-      <DependentUpon>segDetalleExpediente.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\segDetalleExpediente.aspx.designer.cs">
-      <DependentUpon>segDetalleExpediente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Seguimiento\segDetalleRecomendacion.aspx.cs">
       <DependentUpon>segDetalleRecomendacion.aspx</DependentUpon>

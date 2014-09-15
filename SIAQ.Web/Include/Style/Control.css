@@ -533,6 +533,19 @@
 	font:11px Tahoma;
 	font-weight:normal;
 	padding:2px;
+}
+
+/*GRIDVIEW DETALLE*/
+.Grid_Row_Detail {
+	background-color: #EDEDED;
+	border-bottom: 1px solid #EDEDED;
+	border-left: 1px solid #EDEDED;
+	border-right: 1px solid #EDEDED;
+	border-top: 5px solid #FFFFFF;
+	color: #4B4878;
+	font:11px Tahoma;
+	font-weight:normal;
+	height:15px;
 } 
 
 /* GRIDVIEW OPCIONES DINÁMICAS */
@@ -562,6 +575,7 @@
 	font-weight: normal;
 	height: 22px;
 }
+
 
 /*TEXTAREA*/
 .Textarea_General{

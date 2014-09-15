@@ -232,7 +232,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				this.gvCiudadano.DataBind();
 
 				// Documentos
-				if (oENTResponse.dsResponse.Tables[3].Rows.Count == 0){
+				if (oENTResponse.dsResponse.Tables[4].Rows.Count == 0){
 
 					this.SinDocumentoLabel.Text = "<br /><br />No hay documentos anexados al Expediente";
 				}else{

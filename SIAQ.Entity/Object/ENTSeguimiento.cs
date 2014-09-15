@@ -23,6 +23,7 @@ namespace SIAQ.Entity.Object
 
 
 		// Definiciones
+		private Int32	_ComentarioId;				// Identificador único del comentario
 		private Int32	_EstatusId;					// Identificador único del Estatus de la recomendación
 		private Int32	_ExpedienteId;				// Identificador único del Expediente a consultar
 		private Int32	_FuncionarioId;				// Identificador único del funcionario asociada la recomendación
@@ -30,7 +31,9 @@ namespace SIAQ.Entity.Object
 		private Int32	_RecomendacionId;			// Identificador único de la recomendación
 		private Int32	_UsuarioId;					// Identificador único del Usuario
 		private Int16	_AcuerdoNoResponsabilidad;	// Determina con un 0 si es Recomendación, un 1 si es acuerdo o un 2 para ambos casos
+		private Int16	_MedidaPreventiva;			// Determina con un 1 si es una Medida Preventina o un 0 si es un Asunto
 		private Int16	_Nivel;						// Nivel de transacción
+		private String	_Comentario;				// Comentario en un Asunto o Medida Preventiva
 		private String	_ExpedienteNumero;			// Número de expediente a consultar
 		private String	_FechaDesde;				// Fecha inicial de la consulta
 		private String	_FechaHasta;				// Fecha final de la consulta
@@ -43,6 +46,7 @@ namespace SIAQ.Entity.Object
 
 		public ENTSeguimiento()
 		{
+			_ComentarioId = 0;
 			_EstatusId = 0;
 			_ExpedienteId = 0;
 			_FuncionarioId = 0;
@@ -50,7 +54,9 @@ namespace SIAQ.Entity.Object
 			_RecomendacionId = 0;
 			_UsuarioId = 0;
 			_AcuerdoNoResponsabilidad = 2;
+			_MedidaPreventiva = -1;
 			_Nivel = -1;
+			_Comentario = "";
 			_ExpedienteNumero = "";
 			_FechaDesde = "";
 			_FechaHasta = "";
@@ -61,6 +67,18 @@ namespace SIAQ.Entity.Object
 
 
 		// Propiedades
+
+		///<remarks>
+		///   <name>ENTSeguimiento.ComentarioId</name>
+		///   <create>11-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el identificador único del Comentario de la recomendación</summary>
+		public Int32 ComentarioId
+		{
+			get { return _ComentarioId; }
+			set { _ComentarioId = value; }
+		}
 
 		///<remarks>
 		///   <name>ENTSeguimiento.EstatusId</name>
@@ -147,6 +165,18 @@ namespace SIAQ.Entity.Object
 		}
 
 		///<remarks>
+		///   <name>ENTSeguimiento.MedidaPreventiva</name>
+		///   <create>11-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna unvalor que determina con un 1 si es una Medida Preventina o un 0 si es un Asunto</summary>
+		public Int16 MedidaPreventiva
+		{
+			get { return _MedidaPreventiva; }
+			set { _MedidaPreventiva = value; }
+		}
+
+		///<remarks>
 		///   <name>ENTSeguimiento.Nivel</name>
 		///   <create>11-Septiembre-2014</create>
 		///   <author>Ruben.Cobos</author>
@@ -156,6 +186,18 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _Nivel; }
 			set { _Nivel = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTSeguimiento.Comentario</name>
+		///   <create>11-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna un comentario en un Asunto o Medida Preventiva</summary>
+		public String Comentario
+		{
+			get { return _Comentario; }
+			set { _Comentario = value; }
 		}
 
 		///<remarks>

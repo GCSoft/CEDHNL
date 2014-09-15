@@ -205,7 +205,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ExpedienteId = Int32.Parse(this.ExpedienteIdHidden.Value );
 
 			// Transacción
-			BPSeguimientoRecomendacion.SelectExpediente_DetalleSeguimientos();
+			//BPSeguimientoRecomendacion.SelectExpediente_DetalleSeguimientos();
 
 			// Errores
 			if (BPSeguimientoRecomendacion.ErrorId != 0) { throw (new Exception(BPSeguimientoRecomendacion.ErrorString)); }

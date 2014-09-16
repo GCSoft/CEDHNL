@@ -67,10 +67,10 @@
                                     <td style="width:100px;">Número de Atención</td>
 									<td style="width:100px;">Número de Expediente</td>
 									<td style="width:100px;">Número de Solicitud</td>
+									<td>Ciudadanos</td>
 									<td style="width:150px;">Estatus</td>
 									<td style="width:75px;">Fecha</td>
 									<td style="width:150px;">Doctor</td>
-									<td>Observaciones</td>
 									<td style="width:25px;"></td>
 								</tr>
 								<tr class="Grid_Row">
@@ -82,10 +82,10 @@
 							<asp:BoundField HeaderText="Número de Atención"		ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="100px" DataField="AtencionNumero"		SortExpression="AtencionNumero"></asp:BoundField>
 							<asp:BoundField HeaderText="Número de Expediente"	ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="100px"	DataField="ExpedienteNumero"	SortExpression="ExpedienteNumero"></asp:BoundField>
                             <asp:BoundField HeaderText="Número de Solicitud"	ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100px"	DataField="SolicitudNumero"		SortExpression="SolicitudNumero"></asp:BoundField>
+							<asp:BoundField HeaderText="Ciudadanos"				ItemStyle-HorizontalAlign="Left"							DataField="Ciudadanos"			SortExpression="Ciudadanos"></asp:BoundField>
 							<asp:BoundField HeaderText="Estatus"				ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="150px"	DataField="EstatusNombre"		SortExpression="EstatusNombre"></asp:BoundField>
 							<asp:BoundField HeaderText="Fecha"					ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="75px"	DataField="FechaAtencion"		SortExpression="FechaAtencion"></asp:BoundField>
 							<asp:BoundField HeaderText="Doctor"					ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="150px"	DataField="FuncionarioNombre"	SortExpression="FuncionarioNombre"></asp:BoundField>
-							<asp:BoundField HeaderText="Observaciones"			ItemStyle-HorizontalAlign="Left"							DataField="Observaciones"		SortExpression="Observaciones"></asp:BoundField>
 							<asp:TemplateField ItemStyle-HorizontalAlign ="Center" ItemStyle-Width="20px">
 								<ItemTemplate>
 									<asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />

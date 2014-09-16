@@ -14,9 +14,11 @@ using System.Web.UI.WebControls;
 
 // Referencias manuales
 using GCUtility.Function;
-using SIAQ.Entity.Object;
+using GCUtility.Security;
 using SIAQ.BusinessProcess.Object;
+using SIAQ.Entity.Object;
 using System.Data;
+
 
 namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 {
@@ -25,7 +27,25 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
 		// Utilerías
 		GCCommon gcCommon = new GCCommon();
+		GCEncryption gcEncryption = new GCEncryption();
 		GCJavascript gcJavascript = new GCJavascript();
+
+
+		// Funciones del programador
+
+		String GetKey(String sKey) {
+			String Response = "";
+
+			try{
+
+				Response = gcEncryption.DecryptString(sKey, true);
+
+			}catch(Exception){
+				Response = "";
+			}
+
+			return Response;
+		}
 
 		
 		// Rutinas del programador
@@ -87,12 +107,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
 				// Formulario
 				this.AtencionNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["AtencionNumero"].ToString();
+				this.AfectadoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Ciudadanos"].ToString();
 				this.ExpedienteNumeroLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["ExpedienteNumero"].ToString();
 				this.SolicitudNumeroLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["SolicitudNumero"].ToString();
 				this.EstatusLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusNombre"].ToString();
 				this.DoctorLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FuncionarioNombre"].ToString();
 				this.FechaAtencionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaAtencion"].ToString();
-				this.ObservacionesLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Observaciones"].ToString();
 
 
 				// Grid
@@ -242,20 +262,25 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
         protected void Page_Load(object sender, EventArgs e){
             ENTSession SessionEntity = new ENTSession();
+			String sKey;
 
             try
             {
 
-                // Validaciones
-                if (Page.IsPostBack) { return; }
-                if (this.Request.QueryString["key"] == null) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
-                if (this.Request.QueryString["key"].ToString().Split(new Char[] { '|' }).Length != 2) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
+				// Validaciones de llamada
+				if (Page.IsPostBack) { return; }
+				if (this.Request.QueryString["key"] == null) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
+
+				// Validaciones de parámetros
+				sKey = GetKey(this.Request.QueryString["key"].ToString());
+				if (sKey == "") { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
+				if (sKey.ToString().Split(new Char[] { '|' }).Length != 2) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
 
 				// Obtener AtencionId
-				this.hddAtencionId.Value = this.Request.QueryString["key"].ToString().Split(new Char[] { '|' })[0];
+				this.hddAtencionId.Value = sKey.ToString().Split(new Char[] { '|' })[0];
 
                 // Obtener Sender
-                this.SenderId.Value = this.Request.QueryString["key"].ToString().ToString().Split(new Char[] { '|' })[1];
+				this.SenderId.Value = sKey.ToString().Split(new Char[] { '|' })[1];
 
                 switch (this.SenderId.Value){
                     case "1": // Invocado desde [Listado de Atenciones]

@@ -7,6 +7,7 @@
 // Referencias
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -14,9 +15,10 @@ using System.Web.UI.WebControls;
 
 // Referencias manuales
 using GCUtility.Function;
-using SIAQ.Entity.Object;
-using SIAQ.BusinessProcess.Page;
+using GCUtility.Security;
 using SIAQ.BusinessProcess.Object;
+using SIAQ.BusinessProcess.Page;
+using SIAQ.Entity.Object;
 using System.Data;
 
 namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
@@ -26,6 +28,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
 		// Utilerías
 		GCCommon gcCommon = new GCCommon();
+		GCEncryption gcEncryption = new GCEncryption();
 		GCJavascript gcJavascript = new GCJavascript();
 
 
@@ -104,6 +107,67 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		}
 
 
+		// Rutinas de recuperación del estado del formulario
+
+		void RecoveryForm(){
+			ENTSession oENTSession = new ENTSession();
+			ENTAtencion oENTAtencion;
+
+            try
+            {
+
+				// Obtener la sesion
+				oENTSession = (ENTSession)this.Session["oENTSession"];
+
+				// Validaciones
+				if (oENTSession.Entity == null) { return; }
+				if (oENTSession.Entity.GetType().Name != "ENTAtencion") { return; }
+
+                // Obtener Formulario
+				oENTAtencion = (ENTAtencion)oENTSession.Entity;
+
+				// Vaciar formulario
+				this.txtAtencionNumero.Text = oENTAtencion.Numero;
+				this.txtQuejoso.Text = oENTAtencion.Quejoso;
+				this.ddlDoctor.SelectedValue = oENTAtencion.FuncionarioId.ToString();
+				
+				// Liberar el formulario en la sesión
+				oENTSession.Entity = null;
+				this.Session["oENTSession"] = oENTSession;
+
+				// Realcular
+				SelectAtencion();
+
+            }catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('No fue posible recuperar el formulario: " + gcJavascript.ClearText(ex.Message) + "');", true);
+            }
+		}
+
+		void SaveForm(){
+			ENTSession oENTSession = new ENTSession();
+			ENTAtencion oENTAtencion = new ENTAtencion();
+
+            try
+            {
+
+                // Formulario
+				oENTAtencion.Numero = this.txtAtencionNumero.Text.Trim();
+				oENTAtencion.Quejoso = this.txtQuejoso.Text.Trim();
+				oENTAtencion.FuncionarioId = Int32.Parse(this.ddlDoctor.SelectedItem.Value);
+
+				// Obtener la sesion
+				oENTSession = (ENTSession)this.Session["oENTSession"];
+
+                // Guardar el formulario en la sesión
+				oENTSession.Entity = oENTAtencion;
+				this.Session["oENTSession"] = oENTSession;
+
+            }catch (Exception ex){
+                throw (ex);
+            }
+		}
+
+
 		// Eventos de la página
 
         protected void Page_Load(object sender, EventArgs e){
@@ -144,10 +208,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		}
 
 		protected void gvAtencion_RowCommand(object sender, GridViewCommandEventArgs e){
-			string AtencionId;
-
-			string strCommand = "";
+			String AtencionId;
+			String strCommand = "";
 			Int32 intRow = 0;
+
+			String sKey = "";
 
 			try
 			{
@@ -167,7 +232,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				// Acción
 				switch (strCommand){
 					case "Editar":
-						this.Response.Redirect("VicDetalleAtencion.aspx?key=" + AtencionId + "|2", false);
+
+						// Llave encriptada
+						sKey = AtencionId + "|1";
+						sKey = gcEncryption.EncryptString(sKey, true);
+						this.Response.Redirect("VicDetalleAtencion.aspx?key=" + sKey, false);
 						break;
 				}
 

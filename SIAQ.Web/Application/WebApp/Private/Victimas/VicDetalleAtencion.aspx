@@ -59,6 +59,12 @@
 				<td colspan="4"></td>
 			</tr>
 			<tr>
+				<td class="Especial">Afectado</td>
+				<td class="Espacio"></td>
+				<td class="Campo"><asp:Label ID="AfectadoLabel" CssClass="NumeroSolicitudLabel" runat="server" Text="0"></asp:Label></td>
+				<td colspan="4"></td>
+			</tr>
+			<tr>
 				<td class="Nombre">Expediente número</td>
 				<td class="Espacio"></td>
 				<td class="Etiqueta"><asp:Label ID="ExpedienteNumeroLabel" runat="server" Text=""></asp:Label></td>
@@ -72,33 +78,34 @@
 				<td class="Espacio"></td>
 				<td class="Etiqueta"><asp:Label ID="SolicitudNumeroLabel" runat="server" Text=""></asp:Label></td>
 				<td class="Espacio"></td>
-				<td class="Nombre"></td>
+				<td class="Nombre">Fecha de Atención</td>
 				<td class="Espacio"></td>
-				<td class="Etiqueta"></td>
+				<td class="Etiqueta"><asp:Label ID="FechaAtencionLabel" runat="server" Text=""></asp:Label></td>
 			</tr>
 			<tr>
 				<td class="Nombre">Estatus</td>
 				<td class="Espacio"></td>
 				<td class="Etiqueta"><asp:Label ID="EstatusLabel" runat="server" Text=""></asp:Label></td>
 				<td class="Espacio"></td>
-				<td class="Nombre"></td>
+				<td class="Nombre">Fecha de Asignación</td>
 				<td class="Espacio"></td>
-				<td class="Etiqueta"></td>
+				<td class="Etiqueta"><asp:Label ID="FechaAsignacionLabel" runat="server" Text=""></asp:Label></td>
 			</tr>
 			<tr>
                 <td class="Nombre">Doctor</td>
                 <td class="Espacio"></td>
                 <td class="Etiqueta"><asp:Label ID="DoctorLabel" runat="server" Text=""></asp:Label></td>
                 <td class="Espacio"></td>
-                <td class="Nombre">Fecha de Atención</td>
+                <td class="Nombre">Ultima Modificación</td>
                 <td class="Espacio"></td>
-                <td class="Etiqueta"><asp:Label ID="FechaAtencionLabel" runat="server" Text=""></asp:Label></td>
+                <td class="Etiqueta"><asp:Label ID="UltimaModificacionLabel" runat="server" Text=""></asp:Label></td>
             </tr>
-            <tr>
-                <td class="Nombre">Observaciones</td>
-                <td class="Espacio"></td>
-                <td class="Observaciones" colspan="5"><asp:Label ID="ObservacionesLabel" runat="server" Text=""></asp:Label></td>
-            </tr>
+			<tr>
+				<td class="Nombre"></td>
+				<td class="Espacio"></td>
+				<td class="Etiqueta" colspan="5">&nbsp;</td>
+			</tr>
+			<tr style="height:10px;"><td colspan="7"></td></tr>
         </table>
         
 		<!-- Grid -->
@@ -106,7 +113,7 @@
             <tr><td class="tdCeldaMiddleSpace"></td></tr>
             <tr>
                 <td style="text-align: left;">
-                    Ciudadanos
+                    Detalle
                 </td>
             </tr>
             <tr>

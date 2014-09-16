@@ -381,7 +381,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				if (sKey == "") { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
 				if (sKey.ToString().Split(new Char[] { '|' }).Length != 2) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
 
-				// Obtener AtencionId
+				// Obtener RecomendacionId
 				this.hddRecomendacionId.Value = sKey.ToString().Split(new Char[] { '|' })[0];
 
                 // Obtener Sender

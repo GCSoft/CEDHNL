@@ -10,7 +10,7 @@
 namespace SIAQ.Web.Application.WebApp.Private.Victimas {
     
     
-    public partial class vicListadoAtencionAprobacion {
+    public partial class VicListadoAtencionesAprobacion {
         
         /// <summary>
         /// pnlGrid control.

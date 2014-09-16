@@ -155,12 +155,12 @@ namespace SIAQ.DataAccess.Object
 			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
 
 			// Parametros
-			sqlPar = new SqlParameter("Aprobar", SqlDbType.Int);
-			sqlPar.Value = entAtencion.Aprobar;
-			sqlCom.Parameters.Add(sqlPar);
-
 			sqlPar = new SqlParameter("UsuarioId", SqlDbType.Int);
 			sqlPar.Value = entAtencion.IdUsuario;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Nivel", SqlDbType.TinyInt);
+			sqlPar.Value = entAtencion.Nivel;
 			sqlCom.Parameters.Add(sqlPar);
 
 			// Inicializaciones

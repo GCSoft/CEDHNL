@@ -1,7 +1,7 @@
 ﻿/*---------------------------------------------------------------------------------------------------------------------------------
-' Nombre:	vicListadoAtencionAprobacion
-' Autor:	Ruben.Cobos
-' Fecha:	16-Junio-2014
+' Nombre:	    VicListadoAtencionesEnProceso
+' Autor:		Ruben.Cobos
+' Fecha:		15-Septiembre-2014
 '----------------------------------------------------------------------------------------------------------------------------------*/
 
 // Referencias
@@ -14,6 +14,7 @@ using System.Web.UI.WebControls;
 
 // Referencias manuales
 using GCUtility.Function;
+using GCUtility.Security;
 using SIAQ.Entity.Object;
 using SIAQ.BusinessProcess.Page;
 using SIAQ.BusinessProcess.Object;
@@ -21,12 +22,12 @@ using System.Data;
 
 namespace SIAQ.Web.Application.WebApp.Private.Victimas
 {
-	public partial class vicListadoAtencionAprobacion : BPPage
+	public partial class VicListadoAtencionesEnProceso : System.Web.UI.Page
 	{
 		
-
 		// Utilerías
 		GCCommon gcCommon = new GCCommon();
+		GCEncryption gcEncryption = new GCEncryption();
 		GCJavascript gcJavascript = new GCJavascript();
 
 		
@@ -44,7 +45,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Victimas
 
 				// Formulario
 				oENTAtencion.IdUsuario = oSession.idUsuario;
-				oENTAtencion.Aprobar = 1;
+				oENTAtencion.Nivel = 2;
 
 				// Transacción
 				oENTResponse = oBPAtencion.SelectAtencion(oENTAtencion);
@@ -88,6 +89,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Victimas
 			String strCommand = "";
 			Int32 intRow = 0;
 
+			String sKey = "";
+
 			try
 			{
 
@@ -106,7 +109,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Victimas
 				// Acción
 				switch (strCommand){
 					case "Editar":
-						this.Response.Redirect("VicDetalleAtencion.aspx?key=" + AtencionId + "|3", false);
+
+						// Llave encriptada
+						sKey = AtencionId + "|3";
+						sKey = gcEncryption.EncryptString(sKey, true);
+						this.Response.Redirect("VicDetalleAtencion.aspx?key=" + sKey, false);
 						break;
 				}
 
@@ -163,7 +170,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Victimas
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
 			}
 		}
-
 
 	}
 }

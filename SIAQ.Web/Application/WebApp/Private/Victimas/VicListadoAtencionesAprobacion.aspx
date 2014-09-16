@@ -1,12 +1,13 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="VicListadoAtenciones.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Seguimiento.VicListadoAtenciones" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="VicListadoAtencionesAprobacion.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Victimas.VicListadoAtencionesAprobacion" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
+	
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
-    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
         <tr>
             <td class="tdCeldaTituloEncabezado" style="background-image:url('../../../../Include/Image/Web/BarraTitulo.png');">
-                Listado de Atenciones
+                Listado de Atenciones pendientes por aprobar su cierre
             </td>
         </tr>
         <tr><td class="tdCeldaMiddleSpace"></td></tr>
@@ -30,20 +31,22 @@
 									<td>Ciudadanos</td>
 									<td style="width:150px;">Estatus</td>
 									<td style="width:75px;">Fecha</td>
+									<td style="width:150px;">Doctor</td>
 									<td style="width:25px;"></td>
 								</tr>
 								<tr class="Grid_Row">
-									<td colspan="7">No se encontraron Atenciones</td>
+									<td colspan="8">No se encontraron Atenciones pendientes por aprobar su cierre</td>
 								</tr>
 							</table>
 						</EmptyDataTemplate>
 						<Columns>
-							<asp:BoundField HeaderText="Número de Atención"		ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="100px" DataField="AtencionNumero"							SortExpression="AtencionNumero"></asp:BoundField>
-							<asp:BoundField HeaderText="Número de Expediente"	ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="100px"	DataField="ExpedienteNumero"						SortExpression="ExpedienteNumero"></asp:BoundField>
-                            <asp:BoundField HeaderText="Número de Solicitud"	ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100px"	DataField="SolicitudNumero"							SortExpression="SolicitudNumero"></asp:BoundField>
-							<asp:BoundField HeaderText="Ciudadanos"				ItemStyle-HorizontalAlign="Left"							DataField="Ciudadanos"			HtmlEncode="false"	SortExpression="Ciudadanos"></asp:BoundField>
-							<asp:BoundField HeaderText="Estatus"				ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="150px"	DataField="EstatusNombre"							SortExpression="EstatusNombre"></asp:BoundField>
-							<asp:BoundField HeaderText="Fecha"					ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="75px"	DataField="FechaAtencion"							SortExpression="FechaAtencion"></asp:BoundField>
+							<asp:BoundField HeaderText="Número de Atención"		ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="100px" DataField="AtencionNumero"		SortExpression="AtencionNumero"></asp:BoundField>
+							<asp:BoundField HeaderText="Número de Expediente"	ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="100px"	DataField="ExpedienteNumero"	SortExpression="ExpedienteNumero"></asp:BoundField>
+                            <asp:BoundField HeaderText="Número de Solicitud"	ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100px"	DataField="SolicitudNumero"		SortExpression="SolicitudNumero"></asp:BoundField>
+							<asp:BoundField HeaderText="Ciudadanos"				ItemStyle-HorizontalAlign="Left"							DataField="Ciudadanos"			SortExpression="Ciudadanos"></asp:BoundField>
+							<asp:BoundField HeaderText="Estatus"				ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="150px"	DataField="EstatusNombre"		SortExpression="EstatusNombre"></asp:BoundField>
+							<asp:BoundField HeaderText="Fecha"					ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="75px"	DataField="FechaAtencion"		SortExpression="FechaAtencion"></asp:BoundField>
+							<asp:BoundField HeaderText="Doctor"					ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="150px"	DataField="FuncionarioNombre"	SortExpression="FuncionarioNombre"></asp:BoundField>
 							<asp:TemplateField ItemStyle-HorizontalAlign ="Center" ItemStyle-Width="20px">
 								<ItemTemplate>
 									<asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />

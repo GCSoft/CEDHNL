@@ -1,5 +1,5 @@
 ﻿/*---------------------------------------------------------------------------------------------------------------------------------
-' Nombre:	    VicListadoAtenciones
+' Nombre:	    VicListadoAtencionesAprobacion
 ' Autor:		Ruben.Cobos
 ' Fecha:		15-Septiembre-2014
 '----------------------------------------------------------------------------------------------------------------------------------*/
@@ -20,11 +20,11 @@ using SIAQ.BusinessProcess.Page;
 using SIAQ.BusinessProcess.Object;
 using System.Data;
 
-
-namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
+namespace SIAQ.Web.Application.WebApp.Private.Victimas
 {
-	public partial class VicListadoAtenciones : BPPage
+	public partial class VicListadoAtencionesAprobacion : System.Web.UI.Page
 	{
+		
 
 		// Utilerías
 		GCCommon gcCommon = new GCCommon();
@@ -46,7 +46,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
 				// Formulario
 				oENTAtencion.IdUsuario = oSession.idUsuario;
-				oENTAtencion.Nivel = 0;
+				oENTAtencion.Nivel = 1;
 
 				// Transacción
 				oENTResponse = oBPAtencion.SelectAtencion(oENTAtencion);
@@ -112,9 +112,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 					case "Editar":
 
 						// Llave encriptada
-						sKey = AtencionId + "|2";
+						sKey = AtencionId + "|1";
 						sKey = gcEncryption.EncryptString(sKey, true);
-						this.Response.Redirect("VicDetalleAtencion.aspx?key=" + sKey, false);
+						this.Response.Redirect("VicDetalleAtencionCierre.aspx?key=" + sKey, false);
 						break;
 				}
 
@@ -173,5 +173,5 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		}
 
 
-    }
+	}
 }

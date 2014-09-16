@@ -247,6 +247,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 						this.AgregrarInformacionPanel.Visible = true;
 						this.AsignarPanel.Visible = true;
 						this.CiudadanoPanel.Visible = true;
+						this.AtencionVictimasPanel.Visible = true;
 						this.CalificarPanel.Visible = true;
 						this.AutoridadPanel.Visible = true;
 						this.DiligenciasPanel.Visible = true;
@@ -261,6 +262,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 						this.AgregrarInformacionPanel.Visible = true;
 						this.AsignarPanel.Visible = true;
 						this.CiudadanoPanel.Visible = true;
+						this.AtencionVictimasPanel.Visible = true;
 						this.CalificarPanel.Visible = true;
 						this.AutoridadPanel.Visible = true;
 						this.DiligenciasPanel.Visible = true;
@@ -275,6 +277,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 						this.AgregrarInformacionPanel.Visible = true;
 						this.AsignarPanel.Visible = true;
 						this.CiudadanoPanel.Visible = true;
+						this.AtencionVictimasPanel.Visible = false;
 						this.CalificarPanel.Visible = false;
 						this.AutoridadPanel.Visible = false;
 						this.DiligenciasPanel.Visible = false;
@@ -289,6 +292,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 						this.AgregrarInformacionPanel.Visible = true;
 						this.AsignarPanel.Visible = true;
 						this.CiudadanoPanel.Visible = true;
+						this.AtencionVictimasPanel.Visible = false;
 						this.CalificarPanel.Visible = false;
 						this.AutoridadPanel.Visible = false;
 						this.DiligenciasPanel.Visible = false;
@@ -303,6 +307,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 						this.AgregrarInformacionPanel.Visible = false;
 						this.AsignarPanel.Visible = false;
 						this.CiudadanoPanel.Visible = true;
+						this.AtencionVictimasPanel.Visible = true;
 						this.CalificarPanel.Visible = true;
 						this.AutoridadPanel.Visible = true;
 						this.DiligenciasPanel.Visible = true;
@@ -317,6 +322,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 						this.AgregrarInformacionPanel.Visible = true;
 						this.AsignarPanel.Visible = true;
 						this.CiudadanoPanel.Visible = false;
+						this.AtencionVictimasPanel.Visible = false;
 						this.CalificarPanel.Visible = false;
 						this.AutoridadPanel.Visible = false;
 						this.DiligenciasPanel.Visible = false;
@@ -331,6 +337,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 						this.AgregrarInformacionPanel.Visible = false;
 						this.AsignarPanel.Visible = false;
 						this.CiudadanoPanel.Visible = false;
+						this.AtencionVictimasPanel.Visible = false;
 						this.CalificarPanel.Visible = false;
 						this.AutoridadPanel.Visible = false;
 						this.DiligenciasPanel.Visible = false;
@@ -356,6 +363,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				if (idRol == 5 && Int32.Parse(this.hddFuncionarioId.Value) != FuncionarioId) {
 					this.AgregrarInformacionPanel.Visible = false;
 					this.CiudadanoPanel.Visible = false;
+					this.AtencionVictimasPanel.Visible = false;
 					this.CalificarPanel.Visible = false;
 					this.AutoridadPanel.Visible = false;
 					this.DiligenciasPanel.Visible = false;
@@ -410,6 +418,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 					this.AgregrarInformacionPanel.Visible = false;
 					this.AsignarPanel.Visible = false;
 					this.CiudadanoPanel.Visible = false;
+					this.AtencionVictimasPanel.Visible = false;
 					this.CalificarPanel.Visible = false;
 					this.AutoridadPanel.Visible = false;
 					this.DiligenciasPanel.Visible = false;
@@ -597,6 +606,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
 		protected void CiudadanoButton_Click(object sender, ImageClickEventArgs e){
 			Response.Redirect("QueAgregarCiudadanos.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value + "|0");
+		}
+
+		protected void AtencionVictimasButton_Click(object sender, ImageClickEventArgs e){
+			Response.Redirect("QueAtencionVictimas.aspx?key=" + this.hddSolicitudId.Value + "|" + this.SenderId.Value);
 		}
 
 		protected void CalificarButton_Click(object sender, ImageClickEventArgs e){

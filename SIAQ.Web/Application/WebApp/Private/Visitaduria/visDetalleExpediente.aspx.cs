@@ -289,6 +289,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 						this.AsignarPanel.Visible = true;
 						//this.AcuerdoPanel.Visible = true;
 						this.CiudadanoPanel.Visible = true;
+						this.AtencionVictimasPanel.Visible = true;
 						this.DiligenciaPanel.Visible = true;
 						this.DocumentoPanel.Visible = true;
 						this.SeguimientoPanel.Visible = true;
@@ -306,6 +307,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 						this.AsignarPanel.Visible = true;
 						//this.AcuerdoPanel.Visible = true;
 						this.CiudadanoPanel.Visible = true;
+						this.AtencionVictimasPanel.Visible = true;
 						this.DiligenciaPanel.Visible = true;
 						this.DocumentoPanel.Visible = true;
 						this.SeguimientoPanel.Visible = true;
@@ -323,6 +325,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 						this.AsignarPanel.Visible = true;
 						//this.AcuerdoPanel.Visible = false;
 						this.CiudadanoPanel.Visible = false;
+						this.AtencionVictimasPanel.Visible = false;
 						this.DiligenciaPanel.Visible = false;
 						this.DocumentoPanel.Visible = false;
 						this.SeguimientoPanel.Visible = false;
@@ -340,6 +343,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 						this.AsignarPanel.Visible = false;
 						//this.AcuerdoPanel.Visible = true;
 						this.CiudadanoPanel.Visible = true;
+						this.AtencionVictimasPanel.Visible = true;
 						this.DiligenciaPanel.Visible = true;
 						this.DocumentoPanel.Visible = true;
 						this.SeguimientoPanel.Visible = true;
@@ -357,6 +361,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 						this.AsignarPanel.Visible = true;
 						//this.AcuerdoPanel.Visible = false;
 						this.CiudadanoPanel.Visible = false;
+						this.AtencionVictimasPanel.Visible = false;
 						this.DiligenciaPanel.Visible = false;
 						this.DocumentoPanel.Visible = false;
 						this.SeguimientoPanel.Visible = false;
@@ -374,6 +379,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 						this.AsignarPanel.Visible = false;
 						//this.AcuerdoPanel.Visible = false;
 						this.CiudadanoPanel.Visible = false;
+						this.AtencionVictimasPanel.Visible = false;
 						this.DiligenciaPanel.Visible = false;
 						this.DocumentoPanel.Visible = false;
 						this.SeguimientoPanel.Visible = false;
@@ -402,6 +408,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				if (idRol == 8 && Int32.Parse(this.hddFuncionarioId.Value) != FuncionarioId) {
 					//this.AcuerdoPanel.Visible = false;
 					this.CiudadanoPanel.Visible = false;
+					this.AtencionVictimasPanel.Visible = false;
 					this.DiligenciaPanel.Visible = false;
 					this.DocumentoPanel.Visible = false;
 					this.SeguimientoPanel.Visible = false;
@@ -446,6 +453,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 					this.AsignarPanel.Visible = false;
 					//this.AcuerdoPanel.Visible = false;
 					this.CiudadanoPanel.Visible = false;
+					this.AtencionVictimasPanel.Visible = false;
 					this.DiligenciaPanel.Visible = false;
 					this.DocumentoPanel.Visible = false;
 					this.SeguimientoPanel.Visible = false;
@@ -653,6 +661,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				sKey = this.hddExpedienteId.Value + "|" + this.SenderId.Value + "|0";
 				sKey = gcEncryption.EncryptString(sKey, true);
 				this.Response.Redirect("visAgregarCiudadano.aspx?key=" + sKey, false);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
+		}
+
+		protected void AtencionVictimasButton_Click(object sender, ImageClickEventArgs e){
+			String sKey = "";
+
+			try
+			{
+
+				// Llave encriptada
+				sKey = this.hddExpedienteId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("visAtencionVictimas.aspx?key=" + sKey, false);
 
 			}catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);

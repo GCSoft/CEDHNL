@@ -38,6 +38,10 @@
             <asp:ImageButton ID="CiudadanoButton" ImageUrl="~/Include/Image/Icon/CiudadanoIcon.png" runat="server" OnClick="CiudadanoButton_Click"></asp:ImageButton><br />
             Agregar ciudadanos
         </asp:Panel>
+		<asp:Panel CssClass="IconoPanel" ID="AtencionVictimasPanel" runat="server" Visible="true">
+            <asp:ImageButton ID="AtencionVictimasButton" ImageUrl="~/Include/Image/Icon/AtencionVictimasIcon.png" runat="server" OnClick="AtencionVictimasButton_Click"></asp:ImageButton><br />
+            Registrar Atención a Víctimas
+        </asp:Panel>
         <asp:Panel CssClass="IconoPanel" ID="DiligenciasPanel" runat="server" Visible="true">
             <asp:ImageButton ID="DiligenciaPanel" ImageUrl="~/Include/Image/Icon/DiligenciaIcon.png" runat="server" OnClick="DiligenciaPanel_Click"></asp:ImageButton><br />
             Diligencias

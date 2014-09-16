@@ -61,6 +61,7 @@
     <Content Include="Application\WebApp\Private\Quejas\QueAgregarIndicadores.aspx" />
     <Content Include="Application\WebApp\Private\Quejas\QueAgregrarInformacion.aspx" />
     <Content Include="Application\WebApp\Private\Quejas\QueAsignarFuncionario.aspx" />
+    <Content Include="Application\WebApp\Private\Quejas\QueAtencionVictimas.aspx" />
     <Content Include="Application\WebApp\Private\Quejas\QueBusquedaSolicitudes.aspx" />
     <Content Include="Application\WebApp\Private\Quejas\QueCalificarSolicitud.aspx" />
     <Content Include="Application\WebApp\Private\Quejas\QueCrearExpediente.aspx" />
@@ -87,13 +88,16 @@
     <Content Include="Application\WebApp\Private\Victimas\vicCerrarAtencion.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\vicConfirmarCierreAtencion.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\VicDetalleAtencion.aspx" />
+    <Content Include="Application\WebApp\Private\Victimas\VicDetalleAtencionCierre.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\VicDictamenMedico.aspx" />
-    <Content Include="Application\WebApp\Private\Victimas\vicListadoAtencionAprobacion.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\VicListadoAtenciones.aspx" />
+    <Content Include="Application\WebApp\Private\Victimas\VicListadoAtencionesAprobacion.aspx" />
+    <Content Include="Application\WebApp\Private\Victimas\VicListadoAtencionesEnProceso.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\visAcuerdoCalificacionDefinitiva.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\VisAcuerdoNoResponsabilidad.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\visAgregarCiudadano.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\visAsignarFuncionario.aspx" />
+    <Content Include="Application\WebApp\Private\Visitaduria\visAtencionVictimas.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\visAutoridadVoces.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\VisBusquedaExpedientes.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\VisDetalleExpedienteCierre.aspx" />
@@ -496,6 +500,7 @@
     <Content Include="Include\Image\Icon\AcuerdoIcon.png" />
     <Content Include="Include\Image\Icon\AgregarInformacionIcon.png" />
     <Content Include="Include\Image\Icon\AsignarIcon.png" />
+    <Content Include="Include\Image\Icon\AtencionVictimasIcon.png" />
     <Content Include="Include\Image\Icon\AutoridadIcon.png" />
     <Content Include="Include\Image\Icon\AutoridadIcon_Pending.png" />
     <Content Include="Include\Image\Icon\AutoridadIcon_Success.png" />
@@ -783,6 +788,13 @@
     <Compile Include="Application\WebApp\Private\Quejas\QueAsignarFuncionario.aspx.designer.cs">
       <DependentUpon>QueAsignarFuncionario.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Application\WebApp\Private\Quejas\QueAtencionVictimas.aspx.cs">
+      <DependentUpon>QueAtencionVictimas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Quejas\QueAtencionVictimas.aspx.designer.cs">
+      <DependentUpon>QueAtencionVictimas.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Application\WebApp\Private\Quejas\QueBusquedaSolicitudes.aspx.cs">
       <DependentUpon>QueBusquedaSolicitudes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1060,19 +1072,19 @@
     <Compile Include="Application\WebApp\Private\Victimas\VicDetalleAtencion.aspx.designer.cs">
       <DependentUpon>VicDetalleAtencion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Application\WebApp\Private\Victimas\VicDetalleAtencionCierre.aspx.cs">
+      <DependentUpon>VicDetalleAtencionCierre.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Victimas\VicDetalleAtencionCierre.aspx.designer.cs">
+      <DependentUpon>VicDetalleAtencionCierre.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Application\WebApp\Private\Victimas\VicDictamenMedico.aspx.cs">
       <DependentUpon>VicDictamenMedico.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\Victimas\VicDictamenMedico.aspx.designer.cs">
       <DependentUpon>VicDictamenMedico.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Victimas\vicListadoAtencionAprobacion.aspx.cs">
-      <DependentUpon>vicListadoAtencionAprobacion.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Victimas\vicListadoAtencionAprobacion.aspx.designer.cs">
-      <DependentUpon>vicListadoAtencionAprobacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Victimas\VicListadoAtenciones.aspx.cs">
       <DependentUpon>VicListadoAtenciones.aspx</DependentUpon>
@@ -1193,6 +1205,20 @@
     <Compile Include="Application\WebApp\Private\SysCat\scatUsuario.aspx.designer.cs">
       <DependentUpon>scatUsuario.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Application\WebApp\Private\Victimas\VicListadoAtencionesAprobacion.aspx.cs">
+      <DependentUpon>VicListadoAtencionesAprobacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Victimas\VicListadoAtencionesAprobacion.aspx.designer.cs">
+      <DependentUpon>VicListadoAtencionesAprobacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Victimas\VicListadoAtencionesEnProceso.aspx.cs">
+      <DependentUpon>VicListadoAtencionesEnProceso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Victimas\VicListadoAtencionesEnProceso.aspx.designer.cs">
+      <DependentUpon>VicListadoAtencionesEnProceso.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Application\WebApp\Private\Visitaduria\visAcuerdoCalificacionDefinitiva.aspx.cs">
       <DependentUpon>visAcuerdoCalificacionDefinitiva.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1227,6 +1253,13 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Visitaduria\visAsignarFuncionario.aspx.designer.cs">
       <DependentUpon>visAsignarFuncionario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Visitaduria\visAtencionVictimas.aspx.cs">
+      <DependentUpon>visAtencionVictimas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Visitaduria\visAtencionVictimas.aspx.designer.cs">
+      <DependentUpon>visAtencionVictimas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Visitaduria\visAutoridadVoces.aspx.cs">
       <DependentUpon>visAutoridadVoces.aspx</DependentUpon>

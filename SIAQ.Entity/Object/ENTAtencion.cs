@@ -16,12 +16,12 @@ namespace SIAQ.Entity.Object
         private int _IdUsuario; // Usuario
         private int _ErrorId;
         private string _ErrorString;
-        private int _Aprobar; // Aprobar o no aprobar atención
         private string _NombreCiudadano; // Nombre del ciudadano
         private int _DoctorId; // Identificador del doctor
 
 
 		private Int32	_FuncionarioId;		// Identificador del funcionario que tiene asignado el caso
+		private Int16	_Nivel;				// Nivel de transacción
 		private String	_Comentario;		// Comentario en el expediente de Atención a Víctimas
 		private String	_Quejoso;			// Nombre del quejoso que levanta la denuncia
 
@@ -37,11 +37,11 @@ namespace SIAQ.Entity.Object
             _IdUsuario = 0;
             _ErrorId = 0;
             _ErrorString = "";
-            _Aprobar = 0;
             _NombreCiudadano = "";
             _DoctorId = 0;
 
 			_FuncionarioId = 0;
+			_Nivel = 0;
 			_Comentario = "";
 			_Quejoso = "";
         }
@@ -159,15 +159,15 @@ namespace SIAQ.Entity.Object
         }
         ///<remarks>
         ///   <name>Atencion.Aprobar</name>
-        ///   <create>04/jun/2014</create>
-        ///   <author>JJ</author>
-        ///</remarks>
-        ///<summary>Obtiene/Asigna Idde Usuario</summary>
-        public int Aprobar
-        {
-            get { return _Aprobar; }
-            set { _Aprobar = value; }
-        }
+		///   <create>04-Agosto-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el nivel de la transacción</summary>
+		public Int16 Nivel
+		{
+			get { return _Nivel; }
+			set { _Nivel = value; }
+		}
         ///<remarks>
         ///   <name>Atencion.NombreCiudadano</name>
         ///   <create>04/jun/2014</create>

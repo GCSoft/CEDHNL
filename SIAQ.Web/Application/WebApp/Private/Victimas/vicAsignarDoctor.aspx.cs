@@ -14,6 +14,7 @@ using System.Web.UI.WebControls;
 
 // Referencias manuales
 using GCUtility.Function;
+using GCUtility.Security;
 using SIAQ.Entity.Object;
 using SIAQ.BusinessProcess.Object;
 using System.Data;
@@ -22,13 +23,31 @@ namespace SIAQ.Web.Application.WebApp.Private.Victimas
 {
 	public partial class vicAsignarDoctor : System.Web.UI.Page
 	{
-		
+
 
 		// Utilerías
 		GCJavascript gcJavascript = new GCJavascript();
+		GCEncryption gcEncryption = new GCEncryption();
 
 
 		// Rutinas del programador
+
+		String GetKey(String sKey) {
+			String Response = "";
+
+			try{
+
+				Response = gcEncryption.DecryptString(sKey, true);
+
+			}catch(Exception){
+				Response = "";
+			}
+
+			return Response;
+		}
+
+
+		// Funciones el programador
 
 		void InsertAtencionDoctor() {
 			ENTAtencion oENTAtencion = new ENTAtencion();
@@ -78,13 +97,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Victimas
 
 				// Formulario
 				this.AtencionNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["AtencionNumero"].ToString();
+				this.AfectadoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Ciudadanos"].ToString();
 				this.ExpedienteNumeroLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["ExpedienteNumero"].ToString();
 				this.SolicitudNumeroLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["SolicitudNumero"].ToString();
 				this.EstatusLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusNombre"].ToString();
 				this.DoctorLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FuncionarioNombre"].ToString();
-				this.FechaAtencionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaAtencion"].ToString();
-				this.ObservacionesLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Observaciones"].ToString();
 
+				this.FechaAtencionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaAtencion"].ToString();
+				this.FechaAsignacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaAsignacion"].ToString();
+				this.UltimaModificacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaUltimaModificacion"].ToString();
 
 			}catch (Exception ex){
 				throw (ex);
@@ -135,22 +156,30 @@ namespace SIAQ.Web.Application.WebApp.Private.Victimas
 		// Eventos de la página
 
 		protected void Page_Load(object sender, EventArgs e){
+			String sKey = "";
+
 			try
             {
 
-				// Validaciones
+				// Validaciones de llamada
 				if (Page.IsPostBack) { return; }
 				if (this.Request.QueryString["key"] == null) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
-				if (this.Request.QueryString["key"].ToString().Split(new Char[] { '|' }).Length != 2) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
 
-				// Obtener ExpedienteId
-				this.hddAtencionId.Value = this.Request.QueryString["key"].ToString().Split(new Char[] { '|' })[0];
+				// Validaciones de parámetros
+				sKey = GetKey(this.Request.QueryString["key"].ToString());
+				if (sKey == "") { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
+				if (sKey.ToString().Split(new Char[] { '|' }).Length != 2) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
+
+				// Obtener AtencionId
+				this.hddAtencionId.Value = sKey.Split(new Char[] { '|' })[0];
 
 				// Obtener Sender
-				this.SenderId.Value = this.Request.QueryString["key"].ToString().ToString().Split(new Char[] { '|' })[1];
+				this.SenderId.Value = sKey.Split(new Char[] { '|' })[1];
 
-				// Llenado de controles
+				// Carátula
 				SelectAtencion();
+				
+				// Llenado de controles
 				SelectDoctor();
 				
 				// Foco
@@ -162,14 +191,18 @@ namespace SIAQ.Web.Application.WebApp.Private.Victimas
 		}
 
 		protected void btnGuardar_Click(object sender, EventArgs e){
+			String sKey = "";
+
 			try
             {
 
                 // Asignar el Defensor
 				InsertAtencionDoctor();
 
-				// Regresar al detalle del formulario
-				Response.Redirect("VicDetalleAtencion.aspx?key=" + this.hddAtencionId.Value + "|" + this.SenderId.Value, false);
+				// Llave encriptada
+				sKey = this.hddAtencionId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("VicDetalleAtencion.aspx?key=" + sKey, false);
 
             }catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlDoctor.ClientID + "');", true);
@@ -177,7 +210,19 @@ namespace SIAQ.Web.Application.WebApp.Private.Victimas
 		}
 
 		protected void btnRegresar_Click(object sender, EventArgs e){
-			Response.Redirect("VicDetalleAtencion.aspx?key=" + this.hddAtencionId.Value + "|" + this.SenderId.Value, false);
+			String sKey = "";
+
+			try
+            {
+
+				// Llave encriptada
+				sKey = this.hddAtencionId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("VicDetalleAtencion.aspx?key=" + sKey, false);
+
+            }catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlDoctor.ClientID + "');", true);
+            }
 		}
 
 	}

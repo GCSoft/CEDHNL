@@ -31,6 +31,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         protected global::System.Web.UI.WebControls.Label AtencionNumero;
         
         /// <summary>
+        /// AfectadoLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label AfectadoLabel;
+        
+        /// <summary>
         /// ExpedienteNumeroLabel control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         protected global::System.Web.UI.WebControls.Label SolicitudNumeroLabel;
         
         /// <summary>
+        /// FechaAtencionLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label FechaAtencionLabel;
+        
+        /// <summary>
         /// EstatusLabel control.
         /// </summary>
         /// <remarks>
@@ -56,6 +74,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label EstatusLabel;
+        
+        /// <summary>
+        /// FechaAsignacionLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label FechaAsignacionLabel;
         
         /// <summary>
         /// DoctorLabel control.
@@ -67,31 +94,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         protected global::System.Web.UI.WebControls.Label DoctorLabel;
         
         /// <summary>
-        /// FechaAtencionLabel control.
+        /// UltimaModificacionLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label FechaAtencionLabel;
-        
-        /// <summary>
-        /// ObservacionesLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ObservacionesLabel;
-        
-        /// <summary>
-        /// ddlCiudadano control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCiudadano;
+        protected global::System.Web.UI.WebControls.Label UltimaModificacionLabel;
         
         /// <summary>
         /// ddlTipoDictamen control.

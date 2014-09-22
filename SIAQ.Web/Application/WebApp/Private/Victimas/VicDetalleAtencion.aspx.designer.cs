@@ -130,13 +130,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         protected global::System.Web.UI.WebControls.ImageButton ConfirmarCierreExpedienteButton;
         
         /// <summary>
-        /// AtencionNumero control.
+        /// AtencionNumeroFolio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label AtencionNumero;
+        protected global::System.Web.UI.WebControls.Label AtencionNumeroFolio;
         
         /// <summary>
         /// AfectadoLabel control.
@@ -146,6 +146,24 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label AfectadoLabel;
+        
+        /// <summary>
+        /// AtencionNumeroOficio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label AtencionNumeroOficio;
+        
+        /// <summary>
+        /// AreaLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label AreaLabel;
         
         /// <summary>
         /// ExpedienteNumeroLabel control.
@@ -209,6 +227,24 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label UltimaModificacionLabel;
+        
+        /// <summary>
+        /// DictamenMedicoLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label DictamenMedicoLabel;
+        
+        /// <summary>
+        /// LugarRevisionLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LugarRevisionLabel;
         
         /// <summary>
         /// gvAtencionDetalle control.

@@ -41,7 +41,7 @@ namespace SIAQ.DataAccess.Object
 			ENTResponse oENTResponse = new ENTResponse();
 
 			// Configuración de objetos
-			sqlCom = new SqlCommand("uspDictamen_Ins", sqlCnn);
+			sqlCom = new SqlCommand("uspAtencionDictamen_Ins", sqlCnn);
 			sqlCom.CommandType = CommandType.StoredProcedure;
 
 			// Timeout alternativo en caso de ser solicitado
@@ -56,72 +56,12 @@ namespace SIAQ.DataAccess.Object
 			sqlPar.Value = oENTDictamen.FuncionarioId;
 			sqlCom.Parameters.Add(sqlPar);
 
-			sqlPar = new SqlParameter("CiudadanoId", SqlDbType.Int);
-			sqlPar.Value = oENTDictamen.CiudadanoId;
-			sqlCom.Parameters.Add(sqlPar);
-
-			sqlPar = new SqlParameter("TipoDictamenId", SqlDbType.Int);
-			sqlPar.Value = oENTDictamen.TipoDictamenId;
-			sqlCom.Parameters.Add(sqlPar);
-
-			sqlPar = new SqlParameter("LugarAtencionId", SqlDbType.Int);
-			sqlPar.Value = oENTDictamen.LugarAtencionId;
+			sqlPar = new SqlParameter("ResolucionDictamenId", SqlDbType.Int);
+			sqlPar.Value = oENTDictamen.ResolucionDictamenId;
 			sqlCom.Parameters.Add(sqlPar);
 
 			sqlPar = new SqlParameter("Dictamen", SqlDbType.VarChar);
 			sqlPar.Value = oENTDictamen.Dictamen;
-			sqlCom.Parameters.Add(sqlPar);
-
-			// Inicializaciones
-			oENTResponse.dsResponse = new DataSet();
-			sqlDA = new SqlDataAdapter(sqlCom);
-
-			// Transacción
-			try{
-				sqlCnn.Open();
-				sqlDA.Fill(oENTResponse.dsResponse);
-				sqlCnn.Close();
-			}catch (SqlException sqlEx){
-				oENTResponse.ExceptionRaised(sqlEx.Message);
-			}catch (Exception ex){
-				oENTResponse.ExceptionRaised(ex.Message);
-			}finally{
-				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
-				sqlCnn.Dispose();
-			}
-
-			// Resultado
-			return oENTResponse;
-		}
-
-		///<remarks>
-		///   <name>DADictamen.SelectDictamen</name>
-		///   <create>20-Junio-2014</create>
-		///   <author>Ruben.Cobos</author>
-		///</remarks>
-		///<summary>Obtiene el listado de Dictámenes asociados a una atención a Víctimas</summary>
-		///<param name="oENTTipoDictamen">Entidad de Dictamen con los filtros necesarios para la consulta</param>
-		///<param name="sConnection">Cadena de conexión a la base de datos</param>
-		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
-		///<returns>Una entidad de respuesta</returns>
-		public ENTResponse SelectDictamen(ENTDictamen oENTDictamen, String sConnection, Int32 iAlternateDBTimeout){
-			SqlConnection sqlCnn = new SqlConnection(sConnection);
-			SqlCommand sqlCom;
-			SqlParameter sqlPar;
-			SqlDataAdapter sqlDA;
-
-			ENTResponse oENTResponse = new ENTResponse();
-
-			// Configuración de objetos
-			sqlCom = new SqlCommand("uspDictamen_Sel", sqlCnn);
-			sqlCom.CommandType = CommandType.StoredProcedure;
-
-			// Timeout alternativo en caso de ser solicitado
-			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
-
-			// Parametros
-			sqlPar = new SqlParameter("AtencionId", SqlDbType.Int);
-			sqlPar.Value = oENTDictamen.AtencionId;
 			sqlCom.Parameters.Add(sqlPar);
 
 			// Inicializaciones
@@ -201,6 +141,62 @@ namespace SIAQ.DataAccess.Object
 			// Resultado
 			return oENTResponse;
 		}
+
+		///<remarks>
+		///   <name>DADictamen.SelectResolucionDictamen</name>
+		///   <create>20-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene un listado de Tipos de Dictámenes en base a los parámetros proporcionados</summary>
+		///<param name="oENTDictamen">Entidad de Dictamen con los parámetros necesarios para consultar la información</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse SelectResolucionDictamen(ENTDictamen oENTDictamen, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspResolucionDictamen_Sel", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("ResolucionDictamenId", SqlDbType.Int);
+			sqlPar.Value = oENTDictamen.ResolucionDictamenId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Nombre", SqlDbType.VarChar);
+			sqlPar.Value = oENTDictamen.Nombre;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try{
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+			}catch (SqlException sqlEx){
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}finally{
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
         
 		///<remarks>
 		///   <name>DADictamen.SelectTipoDictamen</name>
@@ -234,6 +230,74 @@ namespace SIAQ.DataAccess.Object
 
 			sqlPar = new SqlParameter("Nombre", SqlDbType.VarChar);
 			sqlPar.Value = oENTDictamen.Nombre;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try{
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+			}catch (SqlException sqlEx){
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}finally{
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
+		///<remarks>
+		///   <name>DADictamen.UpdateDictamen</name>
+		///   <create>20-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Actualiza el dictamen a un ciudadano en el modulo de atención a víctimas</summary>
+		///<param name="oENTTipoDictamen">Entidad de Dictamen con los parámetros necesarios para realizar la transacción</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse UpdateDictamen(ENTDictamen oENTDictamen, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspAtencionDictamen_Upd", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("AtencionDictamenId", SqlDbType.Int);
+			sqlPar.Value = oENTDictamen.DictamenId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("AtencionId", SqlDbType.Int);
+			sqlPar.Value = oENTDictamen.AtencionId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("FuncionarioId", SqlDbType.Int);
+			sqlPar.Value = oENTDictamen.FuncionarioId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("ResolucionDictamenId", SqlDbType.Int);
+			sqlPar.Value = oENTDictamen.ResolucionDictamenId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Dictamen", SqlDbType.VarChar);
+			sqlPar.Value = oENTDictamen.Dictamen;
 			sqlCom.Parameters.Add(sqlPar);
 
 			// Inicializaciones

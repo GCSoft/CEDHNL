@@ -56,21 +56,21 @@ namespace SIAQ.BusinessProcess.Object
 		}
 
 		///<remarks>
-		///   <name>BPTipoDictamen.SelectDictamen</name>
+		///   <name>BPTipoDictamen.SelectLugarAtencion</name>
 		///   <create>20-Junio-2014</create>
 		///   <author>Ruben.Cobos</author>
 		///</remarks>
-		///<summary>Obtiene el listado de Dictámenes asociados a una atención a Víctimas</summary>
+		///<summary>Obtiene un listado de Lugares de Atención del dictamen en base a los parámetros proporcionados</summary>
 		///<param name="oENTTipoDictamen">Entidad de Dictamen con los filtros necesarios para la consulta</param>
 		///<returns>Una entidad de respuesta</returns>
-		public ENTResponse SelectDictamen(ENTDictamen oENTDictamen){
+		public ENTResponse SelectLugarAtencion(ENTDictamen oENTDictamen){
 			DADictamen oDADictamen = new DADictamen();
 			ENTResponse oENTResponse = new ENTResponse();
 
 			try{
 
 			// Transacción en base de datos
-			oENTResponse = oDADictamen.SelectDictamen(oENTDictamen, this.sConnectionApplication, 0);
+			oENTResponse = oDADictamen.SelectLugarAtencion(oENTDictamen, this.sConnectionApplication, 0);
 
 			// Validación de error en consulta
 			if (oENTResponse.GeneratesException) { return oENTResponse; }
@@ -88,21 +88,21 @@ namespace SIAQ.BusinessProcess.Object
 		}
 
 		///<remarks>
-		///   <name>BPTipoDictamen.SelectLugarAtencion</name>
+		///   <name>BPResolucionDictamen.SelectResolucionDictamen</name>
 		///   <create>20-Junio-2014</create>
 		///   <author>Ruben.Cobos</author>
 		///</remarks>
-		///<summary>Obtiene un listado de Lugares de Atención del dictamen en base a los parámetros proporcionados</summary>
-		///<param name="oENTTipoDictamen">Entidad de Dictamen con los filtros necesarios para la consulta</param>
+		///<summary>Obtiene un listado de Tipos de Dictámenes en base a los parámetros proporcionados</summary>
+		///<param name="oENTResolucionDictamen">Entidad de Dictamen con los filtros necesarios para la consulta</param>
 		///<returns>Una entidad de respuesta</returns>
-		public ENTResponse SelectLugarAtencion(ENTDictamen oENTDictamen){
+		public ENTResponse SelectResolucionDictamen(ENTDictamen oENTDictamen){
 			DADictamen oDADictamen = new DADictamen();
 			ENTResponse oENTResponse = new ENTResponse();
 
 			try{
 
 			// Transacción en base de datos
-			oENTResponse = oDADictamen.SelectLugarAtencion(oENTDictamen, this.sConnectionApplication, 0);
+			oENTResponse = oDADictamen.SelectResolucionDictamen(oENTDictamen, this.sConnectionApplication, 0);
 
 			// Validación de error en consulta
 			if (oENTResponse.GeneratesException) { return oENTResponse; }
@@ -135,6 +135,38 @@ namespace SIAQ.BusinessProcess.Object
 
 			// Transacción en base de datos
 			oENTResponse = oDADictamen.SelectTipoDictamen(oENTDictamen, this.sConnectionApplication, 0);
+
+			// Validación de error en consulta
+			if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+			// Validación de mensajes de la BD
+			oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+			if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
+		///<remarks>
+		///   <name>BPTipoDictamen.UpdateDictamen</name>
+		///   <create>20-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Actualiza el dictamen a un ciudadano en el modulo de atención a víctimas</summary>
+		///<param name="oENTTipoDictamen">Entidad de Dictamen con los parámetros necesarios para realizar la transacción</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse UpdateDictamen(ENTDictamen oENTDictamen){
+			DADictamen oDADictamen = new DADictamen();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try{
+
+			// Transacción en base de datos
+			oENTResponse = oDADictamen.UpdateDictamen(oENTDictamen, this.sConnectionApplication, 0);
 
 			// Validación de error en consulta
 			if (oENTResponse.GeneratesException) { return oENTResponse; }

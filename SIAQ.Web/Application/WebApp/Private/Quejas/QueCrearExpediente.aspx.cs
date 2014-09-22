@@ -62,10 +62,19 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
 					case "7": // Solicitud de gestión
 
+						// DORQ
 						if(this.ddlVisitaduria.SelectedItem.Value == "3"){
-							oENTQueja.TipoFolio = 3; // Folio de GestionQuejas
-						}else{
-							oENTQueja.TipoFolio = 4; // Folio de GestionPenitenciaria
+							oENTQueja.TipoFolio = 3;
+						}
+
+						// Primera Visitaduría (igual que DORQ)
+						if(this.ddlVisitaduria.SelectedItem.Value == "4"){
+							oENTQueja.TipoFolio = 3;
+						}
+
+						// Coordinación Penitenciaria
+						if(this.ddlVisitaduria.SelectedItem.Value == "10"){
+							oENTQueja.TipoFolio = 4;
 						}
 						
 						break;
@@ -178,6 +187,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 
 					case "7": // Solicitud de gestión
 
+						this.ddlVisitaduria.Items.Insert(0, new ListItem("Primera Visitaduría", "4"));
 						this.ddlVisitaduria.Items.Insert(0, new ListItem("Dirección de Orientación y Recepción de Quejas", "3"));
 						this.ddlVisitaduria.Items.Insert(0, new ListItem("Coordinación Penitenciaria", "10"));
 						this.ddlVisitaduria.Items.Insert(0, new ListItem("[Seleccione]", "0"));

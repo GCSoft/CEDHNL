@@ -140,7 +140,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
 
 				// DataKeys
-				sNumero = gvAtencion.DataKeys[e.Row.RowIndex]["AtencionNumero"].ToString();
+				sNumero = gvAtencion.DataKeys[e.Row.RowIndex]["AtencionNumeroFolio"].ToString();
 
 				// Tooltip Editar Expediente
 				sToolTip = "Detalle de atención [" + sNumero + "]";

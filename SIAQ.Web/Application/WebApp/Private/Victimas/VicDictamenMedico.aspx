@@ -10,12 +10,12 @@
         <table class="GeneralTable">
             <tr>
                 <td class="tdCeldaTituloEncabezado" style="background-image: url('../../../../Include/Image/Web/BarraTitulo.png');">
-                    Seguimiento de recomendaciones
+                    Dictámen
                 </td>
             </tr>
             <tr>
                 <td class="SubTitulo">
-                    <asp:Label ID="Label1" runat="server" Text="En esta sección puede registrar el seguimiento de las recomendaciones."></asp:Label>
+                    <asp:Label ID="Label1" runat="server" Text="En esta sección puede emitir el dictámen a la solicitud de atención a víctimas."></asp:Label>
                 </td>
             </tr>
         </table>
@@ -26,9 +26,9 @@
 		<!-- Carátula -->
 		<table class="SolicitudTable">
 			<tr>
-				<td class="Especial">Atención número</td>
+				<td class="Especial">Folio</td>
 				<td class="Espacio"></td>
-				<td class="Campo"><asp:Label ID="AtencionNumero" CssClass="NumeroSolicitudLabel" runat="server" Text="0"></asp:Label></td>
+				<td class="Campo"><asp:Label ID="AtencionNumeroFolio" CssClass="NumeroSolicitudLabel" runat="server" Text="0"></asp:Label></td>
 				<td colspan="4"></td>
 			</tr>
 			<tr>
@@ -38,13 +38,22 @@
 				<td colspan="4"></td>
 			</tr>
 			<tr>
+				<td class="Nombre">No. Oficio</td>
+				<td class="Espacio"></td>
+				<td class="Etiqueta"><asp:Label ID="AtencionNumeroOficio" runat="server" Text=""></asp:Label></td>
+				<td colspan="4"></td>
+			</tr>
+			<tr>
+				<td class="Nombre">Área</td>
+				<td class="Espacio"></td>
+				<td class="Etiqueta"><asp:Label ID="AreaLabel" runat="server" Text=""></asp:Label></td>
+				<td colspan="4"></td>
+			</tr>
+			<tr>
 				<td class="Nombre">Expediente número</td>
 				<td class="Espacio"></td>
 				<td class="Etiqueta"><asp:Label ID="ExpedienteNumeroLabel" runat="server" Text=""></asp:Label></td>
-				<td class="Espacio"></td>
-				<td class="Nombre"></td>
-				<td class="Espacio"></td>
-				<td class="Etiqueta"></td>
+				<td colspan="4"></td>
 			</tr>
 			<tr>
 				<td class="Nombre">Solicitud número</td>
@@ -65,7 +74,7 @@
 				<td class="Etiqueta"><asp:Label ID="FechaAsignacionLabel" runat="server" Text=""></asp:Label></td>
 			</tr>
 			<tr>
-                <td class="Nombre">Doctor</td>
+                <td class="Nombre">Médico</td>
                 <td class="Espacio"></td>
                 <td class="Etiqueta"><asp:Label ID="DoctorLabel" runat="server" Text=""></asp:Label></td>
                 <td class="Espacio"></td>
@@ -74,21 +83,21 @@
                 <td class="Etiqueta"><asp:Label ID="UltimaModificacionLabel" runat="server" Text=""></asp:Label></td>
             </tr>
 			<tr>
-				<td class="Nombre"></td>
+				<td class="Nombre">Dictámen Médico</td>
 				<td class="Espacio"></td>
-				<td class="Etiqueta" colspan="5">&nbsp;</td>
+				<td class="Etiqueta" colspan="5"><asp:Label ID="DictamenMedicoLabel" runat="server" Text=""></asp:Label></td>
+			</tr>
+			<tr>
+				<td class="Nombre">Lugar de Revisión</td>
+				<td class="Espacio"></td>
+				<td class="Etiqueta" colspan="5"><asp:Label ID="LugarRevisionLabel" runat="server" Text=""></asp:Label></td>
 			</tr>
 			<tr style="height:10px;"><td colspan="7"></td></tr>
 			<!-- Fin de carátula -->
 			<tr>
-                <td class="Nombre">Tipo de dictamen</td>
+                <td class="Nombre">Resolución de dictamen</td>
                 <td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
-                <td colspan="5" style="text-align:left;"><asp:DropDownList id="ddlTipoDictamen" runat="server" CssClass="DropDownList_General" width="216px" ></asp:DropDownList></td>
-            </tr>
-			<tr>
-                <td class="Nombre">Lugar de atención</td>
-                <td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
-                <td colspan="5" style="text-align:left;"><asp:DropDownList id="ddlLugarAtencion" runat="server" CssClass="DropDownList_General" width="216px" ></asp:DropDownList></td>
+                <td colspan="5" style="text-align:left;"><asp:DropDownList id="ddlResolucionDictamen" runat="server" CssClass="DropDownList_General" width="216px" ></asp:DropDownList></td>
             </tr>
 			<tr>
                 <td class="Nombre">Dictamen</td>
@@ -112,57 +121,10 @@
         </table>
 		<br />
         
-		<!-- Grid -->
-		<table border="0" cellpadding="0" cellspacing="0" width="100%">
-            <tr><td class="tdCeldaMiddleSpace"></td></tr>
-            <tr>
-                <td style="text-align: left;">
-                    Dictámenes
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:GridView id="gvDictamen" runat="server" AllowPaging="false" AllowSorting="true"  AutoGenerateColumns="False" Width="100%"
-						DataKeyNames="DictamenId" 
-						OnRowDataBound="gvDictamen_RowDataBound"
-						OnSorting="gvDictamen_Sorting">
-						<alternatingrowstyle cssclass="Grid_Row_Alternating" />
-						<headerstyle cssclass="Grid_Header" />
-						<rowstyle cssclass="Grid_Row" />
-						<EmptyDataTemplate>
-							<table border="1px" cellpadding="0px" cellspacing="0px" width="100%">
-								<tr class="Grid_Header">
-									<td style="width:75px;">Fecha</td>
-									<td style="width:120px;">Tipo de Dictamen</td>
-									<td style="width:120px;">Lugar de Atención</td>
-									<td style="width:200px;">Doctor que Atendió</td>
-									<td style="width:200px;">Ciudadano</td>
-									<td>Dictamen</td>
-								</tr>
-								<tr class="Grid_Row">
-									<td colspan="6">No se encontraron dictámenes médicos de ciudadanos</td>
-								</tr>
-							</table>
-						</EmptyDataTemplate>
-						<Columns>
-							<asp:BoundField HeaderText="Fecha"				ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="75px"	DataField="Fecha"										SortExpression="Fecha"></asp:BoundField>
-							<asp:BoundField HeaderText="Tipo de Dictamen"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="120px"	DataField="TipoDictamenNombre"							SortExpression="TipoDictamenNombre"></asp:BoundField>
-							<asp:BoundField HeaderText="Lugar de Atención"	ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="120px"	DataField="LugarAtencionNombre"							SortExpression="LugarAtencionNombre"></asp:BoundField>
-							<asp:BoundField HeaderText="Doctor que Atendió"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="FuncionarioNombre"							SortExpression="FuncionarioNombre"></asp:BoundField>
-							<asp:BoundField HeaderText="Ciudadano"			ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="CiudadanoNombre"								SortExpression="CiudadanoNombre"></asp:BoundField>
-							<asp:BoundField HeaderText="Dictamen"			ItemStyle-HorizontalAlign="Left"							DataField="Dictamen"				HtmlEncode="false"	SortExpression="Dictamen"></asp:BoundField>
-						</Columns>
-					</asp:GridView>
-                </td>
-            </tr>
-            <tr><td class="tdCeldaMiddleSpace"></td></tr>
-            <tr><td class="tdCeldaMiddleSpace"></td></tr>
-        </table>
-        <br />
-
     </div>
 
     <asp:HiddenField ID="hddAtencionId" runat="server" Value="0"  />
+	<asp:HiddenField ID="hddAtencionDictamenId" runat="server" Value="0"  />
 	<asp:HiddenField ID="SenderId" runat="server" Value="0"  />
 	<asp:HiddenField ID="hddSort" runat="server" Value="Fecha" />
 

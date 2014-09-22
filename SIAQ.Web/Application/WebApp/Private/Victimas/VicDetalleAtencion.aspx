@@ -28,15 +28,15 @@
         </asp:Panel>
 		 <asp:Panel CssClass="IconoPanel" ID="AsignarPanel" runat="server" Visible="true">
             <asp:ImageButton ID="AsignarButton" ImageUrl="~/Include/Image/Icon/AsignarIcon.png" runat="server" OnClick="AsignarButton_Click"></asp:ImageButton><br />
-            Asignar doctor
+            Asignar médico
         </asp:Panel>
         <asp:Panel CssClass="IconoPanel" ID="pnlDictamenMedico" runat="server" Visible="true">
             <asp:ImageButton ID="DictamenMedicoButton" ImageUrl="~/Include/Image/Icon/AsignarIcon.png" runat="server" OnClick="DictamenMedicoButton_Click"></asp:ImageButton><br />
             Dictámen Médico
         </asp:Panel>
         <asp:Panel CssClass="IconoPanel" ID="pnlAgregarDocumento" runat="server" Visible="true">
-            <asp:ImageButton ID="AgregarDocumentoButton" ImageUrl="~/Include/Image/Icon/SeguimientoIcon.png" runat="server" OnClick="AgregarDocumentoButton_Click"></asp:ImageButton><br />
-            Agregar Documento
+            <asp:ImageButton ID="AgregarDocumentoButton" ImageUrl="~/Include/Image/Icon/DocumentoIcon.png" runat="server" OnClick="AgregarDocumentoButton_Click"></asp:ImageButton><br />
+            Agregar Documentos
         </asp:Panel>
 		<asp:Panel CssClass="IconoPanel" ID="CerrarExpedientePanel" runat="server" Visible="true">
             <asp:ImageButton ID="CerrarExpedienteButton" ImageUrl="~/Include/Image/Icon/CerrarExpedienteIcon.png" runat="server" OnClick="CerrarExpedienteButton_Click"></asp:ImageButton><br />
@@ -53,9 +53,9 @@
 		<!-- Carátula -->
 		<table class="SolicitudTable">
 			<tr>
-				<td class="Especial">Atención número</td>
+				<td class="Especial">Folio</td>
 				<td class="Espacio"></td>
-				<td class="Campo"><asp:Label ID="AtencionNumero" CssClass="NumeroSolicitudLabel" runat="server" Text="0"></asp:Label></td>
+				<td class="Campo"><asp:Label ID="AtencionNumeroFolio" CssClass="NumeroSolicitudLabel" runat="server" Text="0"></asp:Label></td>
 				<td colspan="4"></td>
 			</tr>
 			<tr>
@@ -65,13 +65,22 @@
 				<td colspan="4"></td>
 			</tr>
 			<tr>
+				<td class="Nombre">No. Oficio</td>
+				<td class="Espacio"></td>
+				<td class="Etiqueta"><asp:Label ID="AtencionNumeroOficio" runat="server" Text=""></asp:Label></td>
+				<td colspan="4"></td>
+			</tr>
+			<tr>
+				<td class="Nombre">Área</td>
+				<td class="Espacio"></td>
+				<td class="Etiqueta"><asp:Label ID="AreaLabel" runat="server" Text=""></asp:Label></td>
+				<td colspan="4"></td>
+			</tr>
+			<tr>
 				<td class="Nombre">Expediente número</td>
 				<td class="Espacio"></td>
 				<td class="Etiqueta"><asp:Label ID="ExpedienteNumeroLabel" runat="server" Text=""></asp:Label></td>
-				<td class="Espacio"></td>
-				<td class="Nombre"></td>
-				<td class="Espacio"></td>
-				<td class="Etiqueta"></td>
+				<td colspan="4"></td>
 			</tr>
 			<tr>
 				<td class="Nombre">Solicitud número</td>
@@ -92,7 +101,7 @@
 				<td class="Etiqueta"><asp:Label ID="FechaAsignacionLabel" runat="server" Text=""></asp:Label></td>
 			</tr>
 			<tr>
-                <td class="Nombre">Doctor</td>
+                <td class="Nombre">Médico</td>
                 <td class="Espacio"></td>
                 <td class="Etiqueta"><asp:Label ID="DoctorLabel" runat="server" Text=""></asp:Label></td>
                 <td class="Espacio"></td>
@@ -101,9 +110,14 @@
                 <td class="Etiqueta"><asp:Label ID="UltimaModificacionLabel" runat="server" Text=""></asp:Label></td>
             </tr>
 			<tr>
-				<td class="Nombre"></td>
+				<td class="Nombre">Dictámen Médico</td>
 				<td class="Espacio"></td>
-				<td class="Etiqueta" colspan="5">&nbsp;</td>
+				<td class="Etiqueta" colspan="5"><asp:Label ID="DictamenMedicoLabel" runat="server" Text=""></asp:Label></td>
+			</tr>
+			<tr>
+				<td class="Nombre">Lugar de Revisión</td>
+				<td class="Espacio"></td>
+				<td class="Etiqueta" colspan="5"><asp:Label ID="LugarRevisionLabel" runat="server" Text=""></asp:Label></td>
 			</tr>
 			<tr style="height:10px;"><td colspan="7"></td></tr>
         </table>

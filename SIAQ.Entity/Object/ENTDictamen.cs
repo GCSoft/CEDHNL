@@ -14,6 +14,7 @@ namespace SIAQ.Entity.Object
         private string _Fecha; // Valor de Fecha
         private string _Dictamen; // Valor de Dictamen
 		private string _Nombre; // Valor de Nombre
+		private int _ResolucionDictamenId;
 
         public ENTDictamen()
         {
@@ -26,6 +27,7 @@ namespace SIAQ.Entity.Object
             _Fecha = "";
             _Dictamen = "";
 			_Nombre = "";
+			_ResolucionDictamenId = 0;
         }
         ///<remarks>
         ///   <name>Dictamen.DictamenId</name>
@@ -126,5 +128,12 @@ namespace SIAQ.Entity.Object
 			get { return _Nombre; }
 			set { _Nombre = value; }
 		}
+
+		public int ResolucionDictamenId
+		{
+			get { return _ResolucionDictamenId; }
+			set { _ResolucionDictamenId = value; }
+		}
+
     }
 }

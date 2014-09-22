@@ -73,8 +73,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				this.hddFuncionarioId.Value = oENTResponse.dsResponse.Tables[1].Rows[0]["FuncionarioId"].ToString();
 
 				// Formulario
-				this.AtencionNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["AtencionNumero"].ToString();
+				this.AtencionNumeroFolio.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["AtencionNumeroFolio"].ToString();
 				this.AfectadoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Ciudadanos"].ToString();
+				this.AtencionNumeroOficio.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["AtencionNumeroOficio"].ToString();
+				this.AreaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Area"].ToString();
 				this.ExpedienteNumeroLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["ExpedienteNumero"].ToString();
 				this.SolicitudNumeroLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["SolicitudNumero"].ToString();
 				this.EstatusLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusNombre"].ToString();
@@ -84,6 +86,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				this.FechaAsignacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaAsignacion"].ToString();
 				this.UltimaModificacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaUltimaModificacion"].ToString();
 
+				this.DictamenMedicoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["TipoDictamenNombre"].ToString();
+				this.LugarRevisionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["LugarAtencionNombre"].ToString();
 
 				// Grid
 				this.gvAtencionDetalle.DataSource = oENTResponse.dsResponse.Tables[2];
@@ -92,7 +96,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				// Documentos
 				if (oENTResponse.dsResponse.Tables[3].Rows.Count == 0){
 
-					this.SinDocumentoLabel.Text = "<br /><br />No hay documentos anexados a la solicitud";
+					this.SinDocumentoLabel.Text = "<br /><br />No hay documentos anexados al Dictámen";
 				}else{
 
 					this.SinDocumentoLabel.Text = "";
@@ -390,7 +394,19 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
         }
 
 		protected void AgregarDocumentoButton_Click(object sender, ImageClickEventArgs e){
-			Response.Redirect("VicAgregarDocumento.aspx?key=" + this.hddAtencionId.Value.ToString() + "|" + this.SenderId.Value.ToString());
+			String sKey = "";
+
+			try
+			{
+
+				// Llave encriptada
+				sKey = this.hddAtencionId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("VicAgregarDocumento.aspx?key=" + sKey, false);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
 		}
 
 		protected void CerrarExpedienteButton_Click(object sender, ImageClickEventArgs e){

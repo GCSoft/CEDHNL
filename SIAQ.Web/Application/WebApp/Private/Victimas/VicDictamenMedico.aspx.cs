@@ -60,20 +60,19 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			{
 
 				// Validaciones
-				//if (this.ddlCiudadano.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar un Ciudadano")); }
-				if (this.ddlTipoDictamen.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar un Tipo de Dictamen")); }
-				if (this.ddlLugarAtencion.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar un Lugar de Atención")); }
+				if (this.ddlResolucionDictamen.Enabled) { if (this.ddlResolucionDictamen.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar una Resolución de Dictamen")); } }
 				if (this.ckeDictamen.Text.Trim() == "") { throw (new Exception("Es necesario ingresar un detalle del dictamen")); }
 
 				// Obtener sesión
 				SessionEntity = (ENTSession)Session["oENTSession"];
 
+				// Validaciones de sesión
+				if (SessionEntity.FuncionarioId == 0) { throw new Exception("No cuenta con permisos para crear diligencias debido a que usted no es un funcionario"); }
+
 				// Formulario
 				oENTDictamen.AtencionId = Int32.Parse(this.hddAtencionId.Value);
 				oENTDictamen.FuncionarioId = SessionEntity.FuncionarioId;
-				//oENTDictamen.CiudadanoId = Int32.Parse(this.ddlCiudadano.SelectedItem.Value);
-				oENTDictamen.TipoDictamenId = Int32.Parse(this.ddlTipoDictamen.SelectedItem.Value);
-				oENTDictamen.LugarAtencionId = Int32.Parse(this.ddlLugarAtencion.SelectedItem.Value);
+				oENTDictamen.ResolucionDictamenId = ( this.ddlResolucionDictamen.Enabled ? Int32.Parse(this.ddlResolucionDictamen.SelectedValue) : 0 );
 				oENTDictamen.Dictamen = this.ckeDictamen.Text.Trim();
 
 				// Transacción
@@ -107,8 +106,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
 
 				// Formulario
-				this.AtencionNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["AtencionNumero"].ToString();
+				this.AtencionNumeroFolio.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["AtencionNumeroFolio"].ToString();
 				this.AfectadoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Ciudadanos"].ToString();
+				this.AtencionNumeroOficio.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["AtencionNumeroOficio"].ToString();
+				this.AreaLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Area"].ToString();
 				this.ExpedienteNumeroLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["ExpedienteNumero"].ToString();
 				this.SolicitudNumeroLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["SolicitudNumero"].ToString();
 				this.EstatusLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusNombre"].ToString();
@@ -118,12 +119,32 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				this.FechaAsignacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaAsignacion"].ToString();
 				this.UltimaModificacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaUltimaModificacion"].ToString();
 
+				this.DictamenMedicoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["TipoDictamenNombre"].ToString();
+				this.LugarRevisionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["LugarAtencionNombre"].ToString();
+
+				// Control de resolución de dictamen
+				if ( oENTResponse.dsResponse.Tables[1].Rows[0]["TipoDictamenId"].ToString() != "1" ){
+
+					this.ddlResolucionDictamen.Items.Clear();
+					this.ddlResolucionDictamen.Enabled = false;
+				}else{
+
+					this.ddlResolucionDictamen.SelectedValue = oENTResponse.dsResponse.Tables[4].Rows[0]["ResolucionDictamenId"].ToString();
+				}
+
+				// Detalle de resolución
+				if ( oENTResponse.dsResponse.Tables[4].Rows.Count > 0 ){
+
+					this.hddAtencionDictamenId.Value = oENTResponse.dsResponse.Tables[4].Rows[0]["AtencionDictamenId"].ToString();
+					this.ckeDictamen.Text = oENTResponse.dsResponse.Tables[4].Rows[0]["Dictamen"].ToString();
+				}
+
 			}catch (Exception ex){
 				throw (ex);
 			}
 		}
 
-		void SelecDictamen(){
+		void SelectResolucionDictamen(){
 			ENTDictamen oENTDictamen = new ENTDictamen();
 			ENTResponse oENTResponse = new ENTResponse();
 
@@ -133,89 +154,65 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			{
 
 				// Formulario
+				oENTDictamen.ResolucionDictamenId = 0;
+				oENTDictamen.Nombre = "";
+
+				// Transacción
+				oENTResponse = oBPDictamen.SelectResolucionDictamen(oENTDictamen);
+
+				// Validaciones
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+
+				// Mensaje de la BD
+				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(oENTResponse.sMessage) + "');", true); }
+
+				// Llenado de combo
+				this.ddlResolucionDictamen.DataTextField = "Nombre";
+				this.ddlResolucionDictamen.DataValueField = "ResolucionDictamenId";
+				this.ddlResolucionDictamen.DataSource = oENTResponse.dsResponse.Tables[1];
+				this.ddlResolucionDictamen.DataBind();
+
+				// Agregar Item de selección
+				this.ddlResolucionDictamen.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		void UpdateDictamen() {
+			ENTDictamen oENTDictamen = new ENTDictamen();
+			ENTResponse oENTResponse = new ENTResponse();
+			ENTSession SessionEntity = new ENTSession();
+
+			BPDictamen oBPDictamen = new BPDictamen();
+
+			try
+			{
+
+				// Validaciones
+				if (this.ddlResolucionDictamen.Enabled) { if (this.ddlResolucionDictamen.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar una Resolución de Dictamen")); } }
+				if (this.ckeDictamen.Text.Trim() == "") { throw (new Exception("Es necesario ingresar un detalle del dictamen")); }
+
+				// Obtener sesión
+				SessionEntity = (ENTSession)Session["oENTSession"];
+
+				// Validaciones de sesión
+				if (SessionEntity.FuncionarioId == 0) { throw new Exception("No cuenta con permisos para crear diligencias debido a que usted no es un funcionario"); }
+
+				// Formulario
+				oENTDictamen.DictamenId = Int32.Parse( this.hddAtencionDictamenId.Value );
 				oENTDictamen.AtencionId = Int32.Parse(this.hddAtencionId.Value);
+				oENTDictamen.FuncionarioId = SessionEntity.FuncionarioId;
+				oENTDictamen.ResolucionDictamenId = ( this.ddlResolucionDictamen.Enabled ? Int32.Parse(this.ddlResolucionDictamen.SelectedValue) : 0 );
+				oENTDictamen.Dictamen = this.ckeDictamen.Text.Trim();
 
 				// Transacción
-				oENTResponse = oBPDictamen.SelectDictamen(oENTDictamen);
+				oENTResponse = oBPDictamen.UpdateDictamen(oENTDictamen);
 
-				// Validaciones
+				// Errores y Warnings
 				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
-
-				// Llenado Grid
-				this.gvDictamen.DataSource = oENTResponse.dsResponse.Tables[1];
-				this.gvDictamen.DataBind();
-
-			}catch (Exception ex){
-				throw (ex);
-			}
-		}
-
-		void SelectLugarAtencion(){
-			ENTDictamen oENTDictamen = new ENTDictamen();
-			ENTResponse oENTResponse = new ENTResponse();
-
-			BPDictamen oBPDictamen = new BPDictamen();
-
-			try
-			{
-
-				// Formulario
-				oENTDictamen.LugarAtencionId = 0;
-				oENTDictamen.Nombre = "";
-
-				// Transacción
-				oENTResponse = oBPDictamen.SelectLugarAtencion(oENTDictamen);
-
-				// Validaciones
-				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
-
-				// Mensaje de la BD
-				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(oENTResponse.sMessage) + "');", true); }
-
-				// Llenado de combo
-				this.ddlLugarAtencion.DataTextField = "Nombre";
-				this.ddlLugarAtencion.DataValueField = "LugarAtencionId";
-				this.ddlLugarAtencion.DataSource = oENTResponse.dsResponse.Tables[1];
-				this.ddlLugarAtencion.DataBind();
-
-				// Agregar Item de selección
-				this.ddlLugarAtencion.Items.Insert(0, new ListItem("[Seleccione]", "0"));
-
-			}catch (Exception ex){
-				throw (ex);
-			}
-		}
-
-		void SelectTipoDictamen(){
-			ENTDictamen oENTDictamen = new ENTDictamen();
-			ENTResponse oENTResponse = new ENTResponse();
-
-			BPDictamen oBPDictamen = new BPDictamen();
-
-			try
-			{
-
-				// Formulario
-				oENTDictamen.TipoDictamenId = 0;
-				oENTDictamen.Nombre = "";
-
-				// Transacción
-				oENTResponse = oBPDictamen.SelectTipoDictamen(oENTDictamen);
-
-				// Validaciones
-				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
-
-				// Mensaje de la BD
-				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(oENTResponse.sMessage) + "');", true); }
-
-				// Llenado de combo
-				this.ddlTipoDictamen.DataTextField = "Nombre";
-				this.ddlTipoDictamen.DataValueField = "TipoDictamenId";
-				this.ddlTipoDictamen.DataSource = oENTResponse.dsResponse.Tables[1];
-				this.ddlTipoDictamen.DataBind();
-
-				// Agregar Item de selección
-				this.ddlTipoDictamen.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
 
 			}catch (Exception ex){
 				throw (ex);
@@ -246,42 +243,45 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				// Obtener Sender
 				this.SenderId.Value = sKey.Split(new Char[] { '|' })[1];
 
+				// Controles del formulario
+				SelectResolucionDictamen();
+
 				// Carátula
 				SelectAtencion();
 
-				// Llenado de controles
-				SelectTipoDictamen();
-				SelectLugarAtencion();
-				SelecDictamen();
-
 				// Foco
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlTipoDictamen.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), (this.ddlResolucionDictamen.Enabled ? "focusControl('" + this.ddlResolucionDictamen.ClientID + "');" : ""), true);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlTipoDictamen.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); " + (this.ddlResolucionDictamen.Enabled ? "focusControl('" + this.ddlResolucionDictamen.ClientID + "');" : ""), true);
             }
 		}
 
 		protected void btnGuardar_Click(object sender, EventArgs e){
+			String sKey = "";
+
 			try
             {
 
-                // Obtener Expedientes
-				InsertDictamen();
+                // Tipo de transacción
+				if( this.hddAtencionDictamenId.Value == "0" ){
 
-				// Refrescar Dictámenes
-				SelecDictamen();
+					InsertDictamen();
+	
+				}else{
 
-				// Estado inicial del formulario
-				this.ddlTipoDictamen.SelectedIndex = 0;
-				this.ddlLugarAtencion.SelectedIndex = 0;
-				this.ckeDictamen.Text = "";
+					UpdateDictamen();
 
-				// Foco
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlTipoDictamen.ClientID + "');", true);
+				}
+
+				// Regresar
+				sKey = this.hddAtencionId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("VicDetalleAtencion.aspx?key=" + sKey, false);
+
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlTipoDictamen.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); " + (this.ddlResolucionDictamen.Enabled ? "focusControl('" + this.ddlResolucionDictamen.ClientID + "');" : ""), true); ;
             }
 		}
 
@@ -297,37 +297,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				this.Response.Redirect("VicDetalleAtencion.aspx?key=" + sKey, false);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlTipoDictamen.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); " + (this.ddlResolucionDictamen.Enabled ? "focusControl('" + this.ddlResolucionDictamen.ClientID + "');" : ""), true);
             }
-		}
-
-		protected void gvDictamen_RowDataBound(object sender, GridViewRowEventArgs e){
-			try
-			{
-				
-				// Validación de que sea fila 
-				if (e.Row.RowType != DataControlRowType.DataRow) { return; }
-
-				// Atributos Over
-				e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; ");
-
-				// Atributos Out
-				e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; ");
-
-			}catch (Exception ex){
-				throw (ex);
-			}
-		}
-
-		protected void gvDictamen_Sorting(object sender, GridViewSortEventArgs e){
-			try
-			{
-
-				gcCommon.SortGridView(ref this.gvDictamen, ref this.hddSort, e.SortExpression);
-
-			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlTipoDictamen.ClientID + "');", true);
-			}
 		}
 
 	}

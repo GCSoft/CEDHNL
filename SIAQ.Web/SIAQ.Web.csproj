@@ -33,12 +33,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="Application\WebApp\Private\Reportes\DataSet\dsReportes.xsc">
-      <DependentUpon>dsReportes.xsd</DependentUpon>
+    <None Include="Application\WebApp\Private\Reportes\DataSet\dsVisGeneral.xsc">
+      <DependentUpon>dsVisGeneral.xsd</DependentUpon>
     </None>
-    <None Include="Application\WebApp\Private\Reportes\DataSet\dsReportes.xsd" />
-    <None Include="Application\WebApp\Private\Reportes\DataSet\dsReportes.xss">
-      <DependentUpon>dsReportes.xsd</DependentUpon>
+    <None Include="Application\WebApp\Private\Reportes\DataSet\dsVisGeneral.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsVisGeneral.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Application\WebApp\Private\Reportes\DataSet\dsVisGeneral.xss">
+      <DependentUpon>dsVisGeneral.xsd</DependentUpon>
     </None>
     <None Include="Include\Components\CKEditor\Core\CHANGES.md" />
     <None Include="Include\Components\CKEditor\Core\LICENSE.md" />
@@ -73,6 +77,7 @@
     <Content Include="Application\WebApp\Private\Quejas\QueListadoSolicitudes.aspx" />
     <Content Include="Application\WebApp\Private\Quejas\QueListadoSolicitudesAprobacion.aspx" />
     <Content Include="Application\WebApp\Private\Quejas\QueListadoSolicitudesEnProceso.aspx" />
+    <Content Include="Application\WebApp\Private\Reportes\rptVisGeneral.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segAgregrarInformacion.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segBusquedaRecomendacion.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segCierrarExpediente.aspx" />
@@ -85,11 +90,11 @@
     <Content Include="Application\WebApp\Private\Victimas\VicAgregarDocumento.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\vicAsignarDoctor.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\VicBusquedaAtenciones.aspx" />
-    <Content Include="Application\WebApp\Private\Victimas\vicCerrarAtencion.aspx" />
-    <Content Include="Application\WebApp\Private\Victimas\vicConfirmarCierreAtencion.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\VicDetalleAtencion.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\VicDetalleAtencionCierre.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\VicDictamenMedico.aspx" />
+    <Content Include="Application\WebApp\Private\Victimas\vicEnviarAtencion.aspx" />
+    <Content Include="Application\WebApp\Private\Victimas\vicImprimirAtencion.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\VicListadoAtenciones.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\VicListadoAtencionesAprobacion.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\VicListadoAtencionesEnProceso.aspx" />
@@ -177,11 +182,6 @@
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlscatOcupacion.aspx" />
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsColonia.aspx" />
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsNacionalidad.aspx" />
-    <Content Include="Application\WebApp\Private\Reportes\rptEstatusExpediente.aspx" />
-    <Content Include="Application\WebApp\Private\Reportes\rptEstatusQuejas.aspx" />
-    <Content Include="Application\WebApp\Private\Reportes\rptEstatusSolicitud.aspx" />
-    <Content Include="Application\WebApp\Private\Reportes\rptPresentaReporte.aspx" />
-    <Content Include="Application\WebApp\Private\Reportes\rptTema.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segAsignarDefensor.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segConfirmarCierreExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segDiligencia.aspx" />
@@ -500,6 +500,8 @@
     <Content Include="Include\Image\Icon\AcuerdoIcon.png" />
     <Content Include="Include\Image\Icon\AgregarInformacionIcon.png" />
     <Content Include="Include\Image\Icon\AsignarIcon.png" />
+    <Content Include="Include\Image\Icon\AsignarIcon_Pending.png" />
+    <Content Include="Include\Image\Icon\AsignarIcon_Success.png" />
     <Content Include="Include\Image\Icon\AtencionVictimasIcon.png" />
     <Content Include="Include\Image\Icon\AutoridadIcon.png" />
     <Content Include="Include\Image\Icon\AutoridadIcon_Pending.png" />
@@ -872,64 +874,22 @@
     <Compile Include="Application\WebApp\Private\Quejas\QueListadoSolicitudesEnProceso.aspx.designer.cs">
       <DependentUpon>QueListadoSolicitudesEnProceso.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Reportes\DataSet\dsReportes.Designer.cs" />
-    <Compile Include="Application\WebApp\Private\Reportes\rptEstatusExpediente.aspx.cs">
-      <DependentUpon>rptEstatusExpediente.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Reportes\rptEstatusExpediente.aspx.designer.cs">
-      <DependentUpon>rptEstatusExpediente.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Reportes\rptEstatusExpediente.cs">
+    <Compile Include="Application\WebApp\Private\Reportes\DataSet\dsVisGeneral.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>rptEstatusExpediente.rpt</DependentUpon>
-      <SubType>Component</SubType>
+      <DependentUpon>dsVisGeneral.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Reportes\rptEstatusQuejas.aspx.cs">
-      <DependentUpon>rptEstatusQuejas.aspx</DependentUpon>
+    <Compile Include="Application\WebApp\Private\Reportes\rptVisGeneral.aspx.cs">
+      <DependentUpon>rptVisGeneral.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Reportes\rptEstatusQuejas.aspx.designer.cs">
-      <DependentUpon>rptEstatusQuejas.aspx</DependentUpon>
+    <Compile Include="Application\WebApp\Private\Reportes\rptVisGeneral.aspx.designer.cs">
+      <DependentUpon>rptVisGeneral.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Reportes\rptEstatusQuejas.cs">
+    <Compile Include="Application\WebApp\Private\Reportes\rptVisGeneral.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>rptEstatusQuejas.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Reportes\rptEstatusSolicitud.aspx.cs">
-      <DependentUpon>rptEstatusSolicitud.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Reportes\rptEstatusSolicitud.aspx.designer.cs">
-      <DependentUpon>rptEstatusSolicitud.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Reportes\rptEstatusSolicitud.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>rptEstatusSolicitud.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Reportes\rptPresentaReporte.aspx.cs">
-      <DependentUpon>rptPresentaReporte.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Reportes\rptPresentaReporte.aspx.designer.cs">
-      <DependentUpon>rptPresentaReporte.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Reportes\rptTema.aspx.cs">
-      <DependentUpon>rptTema.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Reportes\rptTema.aspx.designer.cs">
-      <DependentUpon>rptTema.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Reportes\rptTema.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>rptTema.rpt</DependentUpon>
+      <DependentUpon>rptVisGeneral.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\Seguimiento\segAgregrarInformacion.aspx.cs">
@@ -1051,20 +1011,6 @@
     <Compile Include="Application\WebApp\Private\Victimas\VicBusquedaAtenciones.aspx.designer.cs">
       <DependentUpon>VicBusquedaAtenciones.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Victimas\vicCerrarAtencion.aspx.cs">
-      <DependentUpon>vicCerrarAtencion.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Victimas\vicCerrarAtencion.aspx.designer.cs">
-      <DependentUpon>vicCerrarAtencion.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Victimas\vicConfirmarCierreAtencion.aspx.cs">
-      <DependentUpon>vicConfirmarCierreAtencion.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Victimas\vicConfirmarCierreAtencion.aspx.designer.cs">
-      <DependentUpon>vicConfirmarCierreAtencion.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Application\WebApp\Private\Victimas\VicDetalleAtencion.aspx.cs">
       <DependentUpon>VicDetalleAtencion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1085,6 +1031,20 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Victimas\VicDictamenMedico.aspx.designer.cs">
       <DependentUpon>VicDictamenMedico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Victimas\vicEnviarAtencion.aspx.cs">
+      <DependentUpon>vicEnviarAtencion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Victimas\vicEnviarAtencion.aspx.designer.cs">
+      <DependentUpon>vicEnviarAtencion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Victimas\vicImprimirAtencion.aspx.cs">
+      <DependentUpon>vicImprimirAtencion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Victimas\vicImprimirAtencion.aspx.designer.cs">
+      <DependentUpon>vicImprimirAtencion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Victimas\VicListadoAtenciones.aspx.cs">
       <DependentUpon>VicListadoAtenciones.aspx</DependentUpon>
@@ -1504,21 +1464,9 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Application\WebApp\Private\Reportes\rptEstatusExpediente.rpt">
+    <EmbeddedResource Include="Application\WebApp\Private\Reportes\rptVisGeneral.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>rptEstatusExpediente.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Application\WebApp\Private\Reportes\rptEstatusQuejas.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>rptEstatusQuejas.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Application\WebApp\Private\Reportes\rptEstatusSolicitud.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>rptEstatusSolicitud.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Application\WebApp\Private\Reportes\rptTema.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>rptTema.cs</LastGenOutput>
+      <LastGenOutput>rptVisGeneral.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

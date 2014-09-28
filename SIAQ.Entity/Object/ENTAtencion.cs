@@ -24,6 +24,7 @@ namespace SIAQ.Entity.Object
 		private Int16	_Nivel;				// Nivel de transacción
 		private String	_Comentario;		// Comentario en el expediente de Atención a Víctimas
 		private String	_Quejoso;			// Nombre del quejoso que levanta la denuncia
+		private Int32	_ModuloId;
 
 
         public ENTAtencion(){
@@ -44,6 +45,7 @@ namespace SIAQ.Entity.Object
 			_Nivel = 0;
 			_Comentario = "";
 			_Quejoso = "";
+			_ModuloId = 0;
         }
 
 
@@ -227,6 +229,12 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _Quejoso; }
 			set { _Quejoso = value; }
+		}
+
+		public Int32 ModuloId
+		{
+			get { return _ModuloId; }
+			set { _ModuloId = value; }
 		}
 
     }

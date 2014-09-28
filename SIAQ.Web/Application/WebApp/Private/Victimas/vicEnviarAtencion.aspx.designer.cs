@@ -10,7 +10,7 @@
 namespace SIAQ.Web.Application.WebApp.Private.Victimas {
     
     
-    public partial class vicCerrarAtencion {
+    public partial class vicEnviarAtencion {
         
         /// <summary>
         /// Label1 control.
@@ -22,13 +22,40 @@ namespace SIAQ.Web.Application.WebApp.Private.Victimas {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// AtencionNumero control.
+        /// AtencionNumeroFolio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label AtencionNumero;
+        protected global::System.Web.UI.WebControls.Label AtencionNumeroFolio;
+        
+        /// <summary>
+        /// AfectadoLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label AfectadoLabel;
+        
+        /// <summary>
+        /// AtencionNumeroOficio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label AtencionNumeroOficio;
+        
+        /// <summary>
+        /// AreaLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label AreaLabel;
         
         /// <summary>
         /// ExpedienteNumeroLabel control.
@@ -49,6 +76,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Victimas {
         protected global::System.Web.UI.WebControls.Label SolicitudNumeroLabel;
         
         /// <summary>
+        /// FechaAtencionLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label FechaAtencionLabel;
+        
+        /// <summary>
         /// EstatusLabel control.
         /// </summary>
         /// <remarks>
@@ -56,6 +92,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Victimas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label EstatusLabel;
+        
+        /// <summary>
+        /// FechaAsignacionLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label FechaAsignacionLabel;
         
         /// <summary>
         /// DoctorLabel control.
@@ -67,31 +112,40 @@ namespace SIAQ.Web.Application.WebApp.Private.Victimas {
         protected global::System.Web.UI.WebControls.Label DoctorLabel;
         
         /// <summary>
-        /// FechaAtencionLabel control.
+        /// UltimaModificacionLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label FechaAtencionLabel;
+        protected global::System.Web.UI.WebControls.Label UltimaModificacionLabel;
         
         /// <summary>
-        /// ObservacionesLabel control.
+        /// DictamenMedicoLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ObservacionesLabel;
+        protected global::System.Web.UI.WebControls.Label DictamenMedicoLabel;
         
         /// <summary>
-        /// btnCerrar control.
+        /// LugarRevisionLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCerrar;
+        protected global::System.Web.UI.WebControls.Label LugarRevisionLabel;
+        
+        /// <summary>
+        /// btnEnviar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEnviar;
         
         /// <summary>
         /// btnRegresar control.
@@ -101,6 +155,24 @@ namespace SIAQ.Web.Application.WebApp.Private.Victimas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnRegresar;
+        
+        /// <summary>
+        /// pnlDictamen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlDictamen;
+        
+        /// <summary>
+        /// imgDictamen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgDictamen;
         
         /// <summary>
         /// hddAtencionId control.

@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="VicDetalleAtencion.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Seguimiento.VicDetalleAtencion" %>
-<%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
 	
@@ -26,7 +25,7 @@
             <asp:ImageButton ID="InformacionGeneralButton" ImageUrl="~/Include/Image/Icon/GeneralIcon.png" runat="server" OnClick="InformacionGeneralButton_Click"></asp:ImageButton><br />
             Información general
         </asp:Panel>
-		 <asp:Panel CssClass="IconoPanel" ID="AsignarPanel" runat="server" Visible="true">
+		 <asp:Panel CssClass="IconoPanel" ID="pnlAsignarDoctor" runat="server" Visible="true">
             <asp:ImageButton ID="AsignarButton" ImageUrl="~/Include/Image/Icon/AsignarIcon.png" runat="server" OnClick="AsignarButton_Click"></asp:ImageButton><br />
             Asignar médico
         </asp:Panel>
@@ -38,13 +37,13 @@
             <asp:ImageButton ID="AgregarDocumentoButton" ImageUrl="~/Include/Image/Icon/DocumentoIcon.png" runat="server" OnClick="AgregarDocumentoButton_Click"></asp:ImageButton><br />
             Agregar Documentos
         </asp:Panel>
-		<asp:Panel CssClass="IconoPanel" ID="CerrarExpedientePanel" runat="server" Visible="true">
-            <asp:ImageButton ID="CerrarExpedienteButton" ImageUrl="~/Include/Image/Icon/CerrarExpedienteIcon.png" runat="server" OnClick="CerrarExpedienteButton_Click"></asp:ImageButton><br />
-            Cerrar Expediente de Atención
+		<asp:Panel CssClass="IconoPanel" ID="pnlVistaPrevia" runat="server" Visible="true">
+            <asp:ImageButton ID="ImprimirButton" ImageUrl="~/Include/Image/Icon/ImprimirIcon.png" runat="server" OnClick="ImprimirButton_Click"></asp:ImageButton><br />
+            Vista previa
         </asp:Panel>
-        <asp:Panel CssClass="IconoPanel" ID="ConfirmarCierreExpedientePanel" runat="server" Visible="true">
-            <asp:ImageButton ID="ConfirmarCierreExpedienteButton" ImageUrl="~/Include/Image/Icon/ConfirmacionCierreIcon.png" runat="server" OnClick="ConfirmarCierreExpedienteButton_Click"></asp:ImageButton><br />
-            Confirmar Cierre de Expediente de Atención
+		<asp:Panel CssClass="IconoPanel" ID="pnlEnviarAtencion" runat="server" Visible="true">
+            <asp:ImageButton ID="EnviarButton" ImageUrl="~/Include/Image/Icon/EnviarIcon.png" runat="server" OnClick="EnviarButton_Click"></asp:ImageButton><br />
+            Enviar expediente
         </asp:Panel>
     </div>
 

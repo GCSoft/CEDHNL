@@ -14,7 +14,7 @@
             </tr>
             <tr>
                 <td class="SubTitulo">
-                    <asp:Label ID="Label2" runat="server" Text="Seleccione las opciones disponibles para capturar la información del expediente."></asp:Label>
+                    <asp:Label ID="Label2" runat="server" Text="Confirme o Deniegue la solicitud de cierre del expediente."></asp:Label>
                 </td>
             </tr>
         </table>

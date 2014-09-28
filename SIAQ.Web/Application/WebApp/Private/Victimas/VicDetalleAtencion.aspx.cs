@@ -118,56 +118,56 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
 					case 1:	// System Administrator
 						this.pnlInformacion.Visible = true;
-						this.AsignarPanel.Visible = true;
+						this.pnlAsignarDoctor.Visible = true;
 						this.pnlDictamenMedico.Visible = true;
 						this.pnlAgregarDocumento.Visible = true;
-						this.CerrarExpedientePanel.Visible = true;
-						this.ConfirmarCierreExpedientePanel.Visible = true;
+						this.pnlVistaPrevia.Visible = true;
+						this.pnlEnviarAtencion.Visible = true;
 						break;
 
 					case 2:	// Administrador
 						this.pnlInformacion.Visible = true;
-						this.AsignarPanel.Visible = true;
+						this.pnlAsignarDoctor.Visible = true;
 						this.pnlDictamenMedico.Visible = true;
 						this.pnlAgregarDocumento.Visible = true;
-						this.CerrarExpedientePanel.Visible = true;
-						this.ConfirmarCierreExpedientePanel.Visible = true;
+						this.pnlVistaPrevia.Visible = true;
+						this.pnlEnviarAtencion.Visible = true;
 						break;
 
 					case 13:	// Atención a Víctimas - Secretaria
 						this.pnlInformacion.Visible = true;
-						this.AsignarPanel.Visible = true;
+						this.pnlAsignarDoctor.Visible = true;
 						this.pnlDictamenMedico.Visible = false;
 						this.pnlAgregarDocumento.Visible = false;
-						this.CerrarExpedientePanel.Visible = false;
-						this.ConfirmarCierreExpedientePanel.Visible = false;
+						this.pnlVistaPrevia.Visible = true;
+						this.pnlEnviarAtencion.Visible = false;
 						break;
 
 					case 14:	// Atención a Víctimas - Doctor
 						this.pnlInformacion.Visible = true;
-						this.AsignarPanel.Visible = false;
+						this.pnlAsignarDoctor.Visible = false;
 						this.pnlDictamenMedico.Visible = true;
 						this.pnlAgregarDocumento.Visible = true;
-						this.CerrarExpedientePanel.Visible = true;
-						this.ConfirmarCierreExpedientePanel.Visible = false;
+						this.pnlVistaPrevia.Visible = true;
+						this.pnlEnviarAtencion.Visible = true;
 						break;
 
 					case 15:	// Atención a Víctimas - Director
 						this.pnlInformacion.Visible = true;
-						this.AsignarPanel.Visible = true;
+						this.pnlAsignarDoctor.Visible = true;
 						this.pnlDictamenMedico.Visible = false;
 						this.pnlAgregarDocumento.Visible = false;
-						this.CerrarExpedientePanel.Visible = false;
-						this.ConfirmarCierreExpedientePanel.Visible = true;
+						this.pnlVistaPrevia.Visible = true;
+						this.pnlEnviarAtencion.Visible = false;
 						break;
 
 					default:
 						this.pnlInformacion.Visible = false;
-						this.AsignarPanel.Visible = false;
+						this.pnlAsignarDoctor.Visible = false;
 						this.pnlDictamenMedico.Visible = false;
 						this.pnlAgregarDocumento.Visible = false;
-						this.CerrarExpedientePanel.Visible = false;
-						this.ConfirmarCierreExpedientePanel.Visible = false;
+						this.pnlVistaPrevia.Visible = false;
+						this.pnlEnviarAtencion.Visible = false;
 						break;
 
 				}
@@ -186,30 +186,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				if (idRol == 14 && Int32.Parse(this.hddFuncionarioId.Value) != FuncionarioId) {
 					this.pnlDictamenMedico.Visible = false;
 					this.pnlAgregarDocumento.Visible = false;
-					this.CerrarExpedientePanel.Visible = false;
-				}
-
-				// Si es Director y el expediente no está en estatus de confirmación de cierre ocultar dicha opción
-				if (idRol == 15 && Int32.Parse(this.hddEstatusId.Value) != 20) {
-					this.ConfirmarCierreExpedientePanel.Visible = false;
-				}
-
-				// Si es System Administrator y el expediente no está en estatus de confirmación de cierre ocultar dicha opción
-				if (idRol == 1 && Int32.Parse(this.hddEstatusId.Value) != 20) {
-					this.ConfirmarCierreExpedientePanel.Visible = false;
-				}
-
-				// Si es Administrador y el expediente no está en estatus de confirmación de cierre ocultar dicha opción
-				if (idRol == 2 && Int32.Parse(this.hddEstatusId.Value) != 20) {
-					this.ConfirmarCierreExpedientePanel.Visible = false;
+					this.pnlEnviarAtencion.Visible = false;
 				}
 
 				// Si el expediente está en estatus de confirmación de cierre no se podrá operar
 				if ( Int32.Parse(this.hddEstatusId.Value) == 20 ){
-					this.AsignarPanel.Visible = false;
+					this.pnlAsignarDoctor.Visible = false;
 					this.pnlDictamenMedico.Visible = false;
 					this.pnlAgregarDocumento.Visible = false;
-					this.CerrarExpedientePanel.Visible = false;
+					this.pnlEnviarAtencion.Visible = false;
 				}
 
             }catch (Exception ex){
@@ -409,12 +394,36 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			}
 		}
 
-		protected void CerrarExpedienteButton_Click(object sender, ImageClickEventArgs e){
-			Response.Redirect("vicCerrarAtencion.aspx?key=" + this.hddAtencionId.Value.ToString() + "|" + this.SenderId.Value.ToString());
+		protected void ImprimirButton_Click(object sender, ImageClickEventArgs e){
+			String sKey = "";
+
+			try
+			{
+
+				// Llave encriptada
+				sKey = this.hddAtencionId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("vicImprimirAtencion.aspx?key=" + sKey, false);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
 		}
 
-		protected void ConfirmarCierreExpedienteButton_Click(object sender, ImageClickEventArgs e){
-			Response.Redirect("vicConfirmarCierreAtencion.aspx?key=" + this.hddAtencionId.Value.ToString() + "|" + this.SenderId.Value.ToString());
+		protected void EnviarButton_Click(object sender, ImageClickEventArgs e){
+			String sKey = "";
+
+			try
+			{
+
+				// Llave encriptada
+				sKey = this.hddAtencionId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("vicEnviarAtencion.aspx?key=" + sKey, false);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
 		}
 
     }

@@ -40,13 +40,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         protected global::System.Web.UI.WebControls.ImageButton InformacionGeneralButton;
         
         /// <summary>
-        /// AsignarPanel control.
+        /// pnlAsignarDoctor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel AsignarPanel;
+        protected global::System.Web.UI.WebControls.Panel pnlAsignarDoctor;
         
         /// <summary>
         /// AsignarButton control.
@@ -94,40 +94,40 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         protected global::System.Web.UI.WebControls.ImageButton AgregarDocumentoButton;
         
         /// <summary>
-        /// CerrarExpedientePanel control.
+        /// pnlVistaPrevia control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel CerrarExpedientePanel;
+        protected global::System.Web.UI.WebControls.Panel pnlVistaPrevia;
         
         /// <summary>
-        /// CerrarExpedienteButton control.
+        /// ImprimirButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton CerrarExpedienteButton;
+        protected global::System.Web.UI.WebControls.ImageButton ImprimirButton;
         
         /// <summary>
-        /// ConfirmarCierreExpedientePanel control.
+        /// pnlEnviarAtencion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel ConfirmarCierreExpedientePanel;
+        protected global::System.Web.UI.WebControls.Panel pnlEnviarAtencion;
         
         /// <summary>
-        /// ConfirmarCierreExpedienteButton control.
+        /// EnviarButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ConfirmarCierreExpedienteButton;
+        protected global::System.Web.UI.WebControls.ImageButton EnviarButton;
         
         /// <summary>
         /// AtencionNumeroFolio control.

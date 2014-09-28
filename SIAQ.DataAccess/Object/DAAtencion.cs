@@ -361,6 +361,10 @@ namespace SIAQ.DataAccess.Object
 			sqlPar.Value = oENTAtencion.EstatusId;
 			sqlCom.Parameters.Add(sqlPar);
 
+			sqlPar = new SqlParameter("ModuloId", SqlDbType.Int);
+			sqlPar.Value = oENTAtencion.ModuloId;
+			sqlCom.Parameters.Add(sqlPar);
+
 			// Inicializaciones
 			oENTResponse.dsResponse = new DataSet();
 			sqlDA = new SqlDataAdapter(sqlCom);

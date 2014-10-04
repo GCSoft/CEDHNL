@@ -129,7 +129,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 					this.ddlResolucionDictamen.Enabled = false;
 				}else{
 
-					this.ddlResolucionDictamen.SelectedValue = oENTResponse.dsResponse.Tables[4].Rows[0]["ResolucionDictamenId"].ToString();
+
+					if (oENTResponse.dsResponse.Tables[4].Rows.Count > 0){
+
+						this.ddlResolucionDictamen.SelectedValue = oENTResponse.dsResponse.Tables[4].Rows[0]["ResolucionDictamenId"].ToString();
+					}
+
 				}
 
 				// Detalle de resolución

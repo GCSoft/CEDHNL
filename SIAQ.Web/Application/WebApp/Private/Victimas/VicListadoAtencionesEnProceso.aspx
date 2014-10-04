@@ -7,7 +7,7 @@
 	<table border="0" cellpadding="0" cellspacing="0" width="100%">
         <tr>
             <td class="tdCeldaTituloEncabezado" style="background-image:url('../../../../Include/Image/Web/BarraTitulo.png');">
-                Listado de Atenciones pendientes por aprobar su cierre
+                Listado de Atenciones en proceso
             </td>
         </tr>
         <tr><td class="tdCeldaMiddleSpace"></td></tr>

@@ -876,8 +876,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				// Seguridad
 				if (Dictamen == "1"){
 
+					e.Row.Cells[0].BackColor = ColorTranslator.FromHtml("#FCAAAA");
 					e.Row.Cells[1].BackColor = ColorTranslator.FromHtml("#FCAAAA");
-					e.Row.Cells[2].BackColor = ColorTranslator.FromHtml("#FCAAAA");
 				}
 
             }catch (Exception ex){

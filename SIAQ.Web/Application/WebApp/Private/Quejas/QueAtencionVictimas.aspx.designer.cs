@@ -184,22 +184,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         protected global::System.Web.UI.WebControls.Label ObservacionesLabel;
         
         /// <summary>
-        /// btnAgregarAtencion control.
+        /// btnNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAgregarAtencion;
-        
-        /// <summary>
-        /// gvAtencionVictimas control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvAtencionVictimas;
+        protected global::System.Web.UI.WebControls.Button btnNuevo;
         
         /// <summary>
         /// btnRegresar control.
@@ -209,6 +200,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnRegresar;
+        
+        /// <summary>
+        /// gvAtencion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvAtencion;
         
         /// <summary>
         /// pnlAction control.
@@ -274,49 +274,49 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         protected global::SIAQ.Web.Include.WebUserControls.wucFixedDateTime wucFixedDateTime;
         
         /// <summary>
-        /// calFecha control.
+        /// txtNumeroOficio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::SIAQ.Web.Include.WebUserControls.wucCalendar calFecha;
+        protected global::System.Web.UI.WebControls.TextBox txtNumeroOficio;
         
         /// <summary>
-        /// ddlTipoDiligencia control.
+        /// ddlTipoDictamen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTipoDiligencia;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTipoDictamen;
         
         /// <summary>
-        /// ddlLugarDiligencia control.
+        /// ddlLugarAtencion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlLugarDiligencia;
+        protected global::System.Web.UI.WebControls.DropDownList ddlLugarAtencion;
         
         /// <summary>
-        /// txtSolicitadaPor control.
+        /// gvCiudadano control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSolicitadaPor;
+        protected global::System.Web.UI.WebControls.GridView gvCiudadano;
         
         /// <summary>
-        /// ckeMotivoAtencion control.
+        /// ckeDetalle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::CKEditor.NET.CKEditorControl ckeMotivoAtencion;
+        protected global::CKEditor.NET.CKEditorControl ckeDetalle;
         
         /// <summary>
         /// btnAction control.
@@ -344,6 +344,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.DragPanelExtender dragPanelAction;
+        
+        /// <summary>
+        /// hddAtencionId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hddAtencionId;
         
         /// <summary>
         /// hddSolicitudId control.

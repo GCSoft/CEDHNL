@@ -89,8 +89,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Victimas
 				this.gvAtencionDetalle.DataBind();
 
 				// Dictámen
-				this.gvAtencionDetalle.DataSource = oENTResponse.dsResponse.Tables[4];
-				this.gvAtencionDetalle.DataBind();
+				this.gvDictamen.DataSource = oENTResponse.dsResponse.Tables[4];
+				this.gvDictamen.DataBind();
 
 			}catch (Exception ex){
 				throw (ex);

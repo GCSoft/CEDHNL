@@ -58,6 +58,24 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         protected global::System.Web.UI.WebControls.DropDownList ddlDoctor;
         
         /// <summary>
+        /// wucBeginDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::SIAQ.Web.Include.WebUserControls.wucCalendar wucBeginDate;
+        
+        /// <summary>
+        /// wucEndDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::SIAQ.Web.Include.WebUserControls.wucCalendar wucEndDate;
+        
+        /// <summary>
         /// Panel2 control.
         /// </summary>
         /// <remarks>

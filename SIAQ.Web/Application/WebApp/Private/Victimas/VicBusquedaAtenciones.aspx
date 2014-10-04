@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="VicBusquedaAtenciones.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Seguimiento.VicBusquedaAtenciones" %>
+<%@ Register src="../../../../Include/WebUserControls/wucCalendar.ascx" tagname="wucCalendar" tagprefix="wuc" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
+	
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
 	<table class="GeneralTable">
@@ -29,6 +32,16 @@
                             <td class="Etiqueta">Doctor</td>
                             <td class="Espacio"></td>
                             <td class="Campo"><asp:DropDownList ID="ddlDoctor" runat="server" CssClass="DropDownList_General" Width="216px" ></asp:DropDownList></td>
+                        </tr>
+						 <tr>
+                            <td class="Etiqueta">Fecha inicio</td>
+                            <td class="Espacio"></td>
+                            <td class="Campo"><wuc:wucCalendar ID="wucBeginDate" runat="server" /></td>
+                        </tr>
+                        <tr>
+                            <td class="Etiqueta">Fecha fin</td>
+                            <td class="Espacio"></td>
+                            <td class="Campo"><wuc:wucCalendar ID="wucEndDate" runat="server" /></td>
                         </tr>
                     </table>
                 </asp:Panel>

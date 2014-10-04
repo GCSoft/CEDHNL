@@ -25,7 +25,13 @@ namespace SIAQ.Entity.Object
 		private String	_Comentario;		// Comentario en el expediente de Atención a Víctimas
 		private String	_Quejoso;			// Nombre del quejoso que levanta la denuncia
 		private Int32	_ModuloId;
-
+		private String	_FechaDesde;
+		private String	_FechaHasta;
+		private Int32	_LugarAtencionId;
+		private Int32	_TipoDictamenId;
+		private Int32	_CiudadanoId;
+		private String	_Detalle;
+		private String	_NumeroOficio;
 
         public ENTAtencion(){
             _AtencionId = 0;
@@ -46,6 +52,13 @@ namespace SIAQ.Entity.Object
 			_Comentario = "";
 			_Quejoso = "";
 			_ModuloId = 0;
+			_FechaDesde = "";
+			_FechaHasta = "";
+			_LugarAtencionId = 0;
+			_TipoDictamenId = 0;
+			_CiudadanoId = 0;
+			_Detalle = "";
+			_NumeroOficio = "";
         }
 
 
@@ -235,6 +248,48 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _ModuloId; }
 			set { _ModuloId = value; }
+		}
+
+		public String FechaDesde
+		{
+			get { return _FechaDesde; }
+			set { _FechaDesde = value; }
+		}
+
+		public String FechaHasta
+		{
+			get { return _FechaHasta; }
+			set { _FechaHasta = value; }
+		}
+
+		public Int32 LugarAtencionId
+		{
+			get { return _LugarAtencionId; }
+			set { _LugarAtencionId = value; }
+		}
+
+		public Int32 TipoDictamenId
+		{
+			get { return _TipoDictamenId; }
+			set { _TipoDictamenId = value; }
+		}
+
+		public Int32 CiudadanoId
+		{
+			get { return _CiudadanoId; }
+			set { _CiudadanoId = value; }
+		}
+
+		public String Detalle
+		{
+			get { return _Detalle; }
+			set { _Detalle = value; }
+		}
+
+		public String NumeroOficio
+		{
+			get { return _NumeroOficio; }
+			set { _NumeroOficio = value; }
 		}
 
     }

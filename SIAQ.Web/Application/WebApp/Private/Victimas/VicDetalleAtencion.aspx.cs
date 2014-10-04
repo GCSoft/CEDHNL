@@ -189,8 +189,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 					this.pnlEnviarAtencion.Visible = false;
 				}
 
-				// Si el expediente está en estatus de confirmación de cierre no se podrá operar
-				if ( Int32.Parse(this.hddEstatusId.Value) == 20 ){
+				// Si el expediente está en estatus de confirmación de cierre o cerrado no se podrá operar
+				if ( Int32.Parse(this.hddEstatusId.Value) == 20 || Int32.Parse(this.hddEstatusId.Value) == 21 ){
 					this.pnlAsignarDoctor.Visible = false;
 					this.pnlDictamenMedico.Visible = false;
 					this.pnlAgregarDocumento.Visible = false;

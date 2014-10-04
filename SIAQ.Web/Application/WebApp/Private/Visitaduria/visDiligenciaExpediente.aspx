@@ -191,7 +191,7 @@
             <tr><td class="tdCeldaMiddleSpace"></td></tr>
             <tr>
                 <td style="text-align: left;">
-                    Diligencias registradas para esta solicitud
+                    Diligencias registradas para este expediente
                 </td>
             </tr>
             <tr>

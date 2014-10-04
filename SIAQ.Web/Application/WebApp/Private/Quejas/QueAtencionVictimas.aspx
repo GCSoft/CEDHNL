@@ -1,11 +1,36 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="QueAtencionVictimas.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Quejas.QueAtencionVictimas" %>
 <%@ Register src="../../../../Include/WebUserControls/wucFixedDateTime.ascx" tagname="wucFixedDateTime" tagprefix="wuc" %>
-<%@ Register src="../../../../Include/WebUserControls/wucCalendar.ascx" tagname="wucCalendar" tagprefix="wuc" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
-	
+	 <script language="javascript" type="text/javascript">
+
+	 	// Funciones del programador
+
+	 	function RadioCheck(rb) {
+	 		var gv = document.getElementById("<%=gvCiudadano.ClientID%>");
+	 		var rbs = gv.getElementsByTagName("input");
+
+	 		var row = rb.parentNode.parentNode;
+	 		for (var i = 0; i < rbs.length; i++) {
+	 			if (rbs[i].type == "radio") {
+	 				if (rbs[i].checked && rbs[i] != rb) {
+	 					rbs[i].checked = false;
+	 					break;
+	 				}
+	 			}
+	 		}
+	 	}    
+
+	 	function WAFocus(ControlID) {
+	 		var oControl = document.getElementById(ControlID);
+
+	 		oControl.focus();
+	 		if (oControl.type == 'text' || oControl.type == 'password') { oControl.select(); }
+	 	}
+
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
 	
@@ -115,108 +140,125 @@
                 <td class="Espacio"></td>
                 <td class="Observaciones" colspan="5"><asp:Label ID="ObservacionesLabel" runat="server" Text=""></asp:Label></td>
             </tr>
-            <tr>
-                <td colspan="7" style="text-align:left; vertical-align:bottom;">
-					<asp:Button ID="btnAgregarAtencion" runat="server" Text="Agregar" CssClass="Button_General" onclick="btnAgregarAtencion_Click" Width="125px" />
-				</td>
-            </tr>
         </table>
 
-        <!-- Grid -->
-		<table border="0" cellpadding="0" cellspacing="0" width="100%">
-            <tr><td class="tdCeldaMiddleSpace"></td></tr>
-            <tr>
-                <td>
-					<asp:GridView ID="gvAtencionVictimas" runat="server" AllowSorting="True" 
-                        AutoGenerateColumns="False" Width="100%"
-						DataKeyNames="AtencionDetalleId,AtencionId,AfectadoId" 
-						OnRowDataBound="gvAtencionVictimas_RowDataBound"
-						OnRowCommand="gvAtencionVictimas_RowCommand"
-                        OnSorting="gvAtencionVictimas_Sorting">
-                        <RowStyle CssClass="Grid_Row" />
-                        <EditRowStyle Wrap="True" />
-                        <HeaderStyle CssClass="Grid_Header" ForeColor="#E3EBF5" />
-                        <AlternatingRowStyle CssClass="Grid_Row_Alternating" />
-                        <EmptyDataTemplate>
-                            <table border="1px" width="100%" cellpadding="0px" cellspacing="0px">
-                                <tr class="Grid_Header">
-									<td style="width:100px;">Tipo</td>
-									<td style="width:80px;">Presente</td>
-									<td style="width:250px;">Nombre</td>
-									<td style="width:90px;">Edad</td>
-									<td style="width:80px;">Sexo</td>
-                                    <td style="width:100px;">Telefono</td>
-									<td>Domicilio</td>
-                                </tr>
-                                <tr class="Grid_Row">
-                                    <td colspan="7" style="text-align:center;">No se encontraron Ciudadanos asociados a la Solicitud</td>
-                                </tr>
-                            </table>
-                        </EmptyDataTemplate>
-                        <Columns>
-							<asp:BoundField HeaderText="Número"		
-                                ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="100px"	
-                                DataField="AtencionDetalleId"		SortExpression="AtencionDetalleId">
-<ItemStyle HorizontalAlign="Left" Width="100px"></ItemStyle>
-                            </asp:BoundField>
-							<asp:BoundField HeaderText="AtencionId"	ItemStyle-HorizontalAlign="Center"	
-                                ItemStyle-Width="80px"	DataField="AtencionId"				SortExpression="AtencionId" 
-                                Visible="False">
-<ItemStyle HorizontalAlign="Center" Width="0px"></ItemStyle>
-                            </asp:BoundField>
-							<asp:BoundField DataField="AfectadoId" HeaderText="Afectado" 
-                                SortExpression="AfectadoId">
-                            <ItemStyle Width="200px" />
-                            </asp:BoundField>
-							<asp:BoundField HeaderText="Estatus"		
-                                ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="250px"	
-                                DataField="EstatusAtencionId"			SortExpression="EstatusAtencionId">
-<ItemStyle HorizontalAlign="Left" Width="100px"></ItemStyle>
-                            </asp:BoundField>
-							<asp:BoundField HeaderText="FechaModificacion"		
-                                ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="90px"	
-                                DataField="FechaModificacion"					SortExpression="FechaModificacion" 
-                                Visible="False">
-<ItemStyle HorizontalAlign="Center" Width="0px"></ItemStyle>
-                            </asp:BoundField>
-							<asp:BoundField HeaderText="Detalle"		ItemStyle-HorizontalAlign="Center"	
-                                ItemStyle-Width="80px"	DataField="Detalle"				SortExpression="Detalle">
-<ItemStyle HorizontalAlign="Center" Width="450px"></ItemStyle>
-                            </asp:BoundField>
-							<asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="25px">
-                                <ItemTemplate>
-                                    <asp:ImageButton ID="imgEdit" runat="server" CommandArgument='<%#Eval("CiudadanoId")%>' CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" />
-                                </ItemTemplate>
-
-<ItemStyle HorizontalAlign="Center" Width="25px"></ItemStyle>
-                            </asp:TemplateField>
-							<asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="25px">
-                                <ItemTemplate>
-                                    <asp:ImageButton ID="imgDelete" runat="server" CommandArgument='<%#Eval("CiudadanoId")%>' CommandName="Eliminar" ImageUrl="~/Include/Image/Buttons/Delete.png" />
-                                </ItemTemplate>
-
-<ItemStyle HorizontalAlign="Center" Width="25px"></ItemStyle>
-                            </asp:TemplateField>
-                        </Columns>
-                    </asp:GridView>
-                </td>
-            </tr>
-        </table>
-
-        <!-- Botones Pie de Página -->
+        <!-- Botones -->
         <table border="0" cellpadding="0" cellspacing="0" width="100%">
             <tr><td class="tdCeldaMiddleSpace"></td></tr>
             <tr>
                 <td style="text-align: left;">
-					<asp:Button ID="btnRegresar" runat="server" Text="Regresar" CssClass="Button_General" width="125px" onclick="btnRegresar_Click"/>
+					<asp:Button ID="btnNuevo" runat="server" Text="Nuevo" CssClass="Button_General" Width="125px" OnClick="btnNuevo_Click" /> &nbsp;&nbsp;
+					<asp:Button ID="btnRegresar" runat="server" Text="Regresar" CssClass="Button_General" Width="125px" OnClick="btnRegresar_Click" />
                 </td>
             </tr>
         </table>
-		<br />
+		
+		<!-- Grid -->
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr><td class="tdCeldaMiddleSpace"></td></tr>
+            <tr>
+                <td style="text-align: left;">
+                    Solicitudes de atención a víctimas registradas para esta solicitud
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <asp:GridView ID="gvAtencion" runat="server" AllowPaging="false" AllowSorting="true"  AutoGenerateColumns="False" Width="100%"
+						DataKeyNames="AtencionId,EstatusId,NumeroOficioAtencion" 
+                        OnRowCommand="gvAtencion_RowCommand" 
+                        OnRowDataBound="gvAtencion_RowDataBound" 
+                        OnSorting="gvAtencion_Sorting">
+                        <AlternatingRowStyle CssClass="Grid_Row_Alternating" />
+                        <HeaderStyle CssClass="Grid_Header" />
+                        <RowStyle CssClass="Grid_Row" />
+                        <EmptyDataTemplate>
+                            <table border="1px" cellpadding="0px" cellspacing="0px" width="100%">
+                                <tr class="Grid_Header">
+									<td style="width:25px;" ></td>
+                                    <td style="width:120px;">Fecha</td>
+									<td style="width:100px;">No. Oficio</td>
+									<td style="width:100px;">No. Folio</td>
+                                    <td style="width:150px;">Estatus</td>
+									<td style="width:150px;">Tipo de Dictamen</td>
+									<td style="width:150px;">Lugar de Atención</td>
+                                    <td>Ciudadano</td>
+									<td></td>
+                                </tr>
+                                <tr class="Grid_Row">
+                                    <td colspan="9">No se encontraron solicitudes de atención a víctimas registradas para esta solicitud</td>
+                                </tr>
+                            </table>
+                        </EmptyDataTemplate>
+                        <Columns>
+							<asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle" ItemStyle-Width="25px">
+                                <HeaderTemplate>
+                                    <asp:ImageButton ID="imgSwapAll" runat="server" CommandName="SwapGridHeader" CommandArgument="-1" ImageUrl="~/Include/Image/Buttons/Expand_Header.png" OnClick="imgSwapAll_Click" onmouseover="tooltip.show('Mostrar todos los elementos', 'Der');" onmouseout="tooltip.hide();" />
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <asp:ImageButton ID="imgSwapGrid" CommandName="SwapGrid" CommandArgument="<%#Container.DataItemIndex%>" runat="server" ImageUrl="~/Include/Image/Buttons/Expand.png" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+							<asp:BoundField HeaderText="Fecha"				ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="120px"	DataField="FechaAtencion"			SortExpression="FechaAtencion"></asp:BoundField>
+							<asp:BoundField HeaderText="No. Oficio"			ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="100px"	DataField="NumeroOficioAtencion"	SortExpression="NumeroOficioAtencion"></asp:BoundField>
+							<asp:BoundField HeaderText="No. Folio"			ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="100px"	DataField="NumeroFolioAtencion"		SortExpression="NumeroFolioAtencion"></asp:BoundField>
+							<asp:BoundField HeaderText="Estatus"			ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="150px"	DataField="EstatusNombre"			SortExpression="EstatusNombre"></asp:BoundField>
+							<asp:BoundField HeaderText="Tipo de Dictamen"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="150px"	DataField="TipoDictamenNombre"		SortExpression="TipoDictamenNombre"></asp:BoundField>
+							<asp:BoundField HeaderText="Lugar de Atención"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="150px"	DataField="LugarAtencionNombre"		SortExpression="LugarAtencionNombre"></asp:BoundField>
+							<asp:BoundField HeaderText="Ciudadano"			ItemStyle-HorizontalAlign="Left"							DataField="CiudadanoAtencion"		SortExpression="CiudadanoAtencion"></asp:BoundField>
+                            <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
+                                <ItemTemplate>
+                                    <asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
+                                <ItemTemplate>
+                                    <asp:ImageButton ID="imgDelete" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Borrar" ImageUrl="~/Include/Image/Buttons/Delete.png" runat="server" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+							<asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle" ItemStyle-Width="25px">
+								<ItemTemplate>
+									<asp:Panel ID="pnlGridDetail" runat="server">
+										<tr>
+											<td align="center" colspan="100%" style="border:1px solid #C1C1C1">
+                                                <asp:GridView id="gvAtencionDetalle" runat="server" AllowPaging="false" AllowSorting="false" AutoGenerateColumns="False" Width="90%"
+                                                    DataKeyNames="Dictamen"
+													OnRowDataBound="gvAtencionDetalle_RowDataBound" >
+                                                    <alternatingrowstyle cssclass="Grid_Row_Alternating" />
+                                                    <headerstyle cssclass="Grid_Header_Action_Alternative" />
+                                                    <rowstyle cssclass="Grid_Row" />
+                                                    <EmptyDataTemplate>
+                                                        <table border="1px" cellpadding="0px" cellspacing="0px" width="100%">
+															<tr class="Grid_Header_Action_Alternative">
+																<td style="text-align:center; width:120px;">Fecha</td>
+																<td style="text-align:left;">Comentarios</td>
+															</tr>
+															<tr class="Grid_Row">
+																<td colspan="2" style="text-align:center;">No se ha registrado el detalle de la solicitud de atención a víctimas</td>
+															</tr>
+														</table>
+                                                    </EmptyDataTemplate>
+                                                    <Columns>
+                                                        <asp:BoundField HeaderText="Fecha"		ItemStyle-HorizontalAlign="center"	ItemStyle-Width="120px"						DataField="Fecha"></asp:BoundField>
+														<asp:BoundField HeaderText="Detalle"	ItemStyle-HorizontalAlign="Left"							HtmlEncode="false"	DataField="Detalle"></asp:BoundField>
+                                                    </Columns>
+                                                </asp:GridView>
+												<br />
+											</td>
+										</tr>
+									</asp:Panel>
+								</ItemTemplate>
+							</asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+                </td>
+            </tr>
+            <tr><td class="tdCeldaMiddleSpace"></td></tr>
+            <tr><td class="tdCeldaMiddleSpace"></td></tr>
+        </table>
 
-        <!-- PopUp -->
+		<!-- PopUp -->
 		<asp:Panel id="pnlAction" runat="server" CssClass="ActionBlock">
-			<asp:Panel id="pnlActionContent" runat="server" CssClass="ActionContent" style="top:50px;" Height="660px" Width="800px">
+			<asp:Panel id="pnlActionContent" runat="server" CssClass="ActionContent" style="top:50px;" Height="570px" Width="800px">
 				<asp:Panel ID="pnlActionHeader" runat="server" CssClass="ActionHeader">
 					<table border="0" cellpadding="0" cellspacing="0" style="height:100%; width:100%">
 						<tr>
@@ -233,45 +275,81 @@
 							<tr style="height:20px;"><td colspan="3"></td></tr>
 							<tr class="trFilaItem">
 								<td class="tdActionCeldaLeyendaItem">&nbsp;Fecha de registro</td>
+								<td></td>
+								<td class="tdCeldaItem"><wuc:wucFixedDateTime ID="wucFixedDateTime" runat="server" /></td>
+							</tr>
+							<tr style="height:5px;"><td colspan="3"></td></tr>
+							<tr class="trFilaItem">
+								<td class="tdActionCeldaLeyendaItem">&nbsp;No. Oficio</td>
+								<td></td>
+								<td class="tdCeldaItem"><asp:TextBox ID="txtNumeroOficio" runat="server" CssClass="Textbox_General" Width="210px" MaxLength="50"></asp:TextBox></td>
+							</tr>
+							<tr style="height:5px;"><td colspan="3"></td></tr>
+							<tr class="trFilaItem">
+								<td class="tdActionCeldaLeyendaItem">&nbsp;Dictamen</td>
+								<td></td>
+								<td class="tdCeldaItem"><asp:DropDownList ID="ddlTipoDictamen" runat="server" Width="216px" CssClass="DropDownList_General"></asp:DropDownList></td>
+							</tr>
+							<tr style="height:5px;"><td colspan="3"></td></tr>
+							<tr class="trFilaItem">
+								<td class="tdActionCeldaLeyendaItem">&nbsp;Lugar de Atención</td>
+								<td></td>
+								<td class="tdCeldaItem"><asp:DropDownList ID="ddlLugarAtencion" runat="server" Width="216px" CssClass="DropDownList_General"></asp:DropDownList></td>
+							</tr>
+							<tr style="height:10px;"><td colspan="3"></td></tr>
+							<tr class="trFilaItem">
+								<td class="tdActionCeldaLeyendaItem">&nbsp;Ciudadano</td>
 								<td style="width:5px;"></td>
-								<td><wuc:wucFixedDateTime ID="wucFixedDateTime" runat="server" /></td>
-							</tr>
-							<tr style="height:5px;"><td colspan="3"></td></tr>
-							<tr style="height:5px;"><td colspan="3"></td></tr>
-							<tr class="trFilaItem">
-								<td class="tdActionCeldaLeyendaItem">&nbsp;Fecha de atención</td>
 								<td></td>
-								<td><wuc:wucCalendar ID="calFecha" runat="server" /></td>
+							</tr>
+							<tr>
+								<td colspan="3">
+									<div style="border:1px solid #4B4878; height:120px; overflow-x:hidden; overflow-y:scroll; text-align:left; Width:100%">
+										<asp:GridView ID="gvCiudadano" runat="server" AllowPaging="false" AllowSorting="true" AutoGenerateColumns="False" Width="99%"
+											DataKeyNames="CiudadanoId" 
+											OnRowDataBound="gvCiudadano_RowDataBound"
+											OnSorting="gvCiudadano_Sorting">
+											<HeaderStyle CssClass="Grid_Header_Action" />
+											<RowStyle CssClass="Grid_Row_Action" />
+											<EmptyDataTemplate>
+												<table border="1px" width="100%" cellpadding="0px" cellspacing="0px">
+													<tr class="Grid_Header_Action">
+														<td>Nombre</td>
+														<td style="width:100px;">Tipo</td>
+														<td style="width:90px;">Edad</td>
+														<td style="width:80px;">Sexo</td>
+													</tr>
+													<tr class="Grid_Row">
+														<td colspan="4">No se encontraron Ciudadanos asociados a la Solicitud</td>
+													</tr>
+												</table>
+											</EmptyDataTemplate>
+											<Columns>
+												<asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="25px">
+													<ItemTemplate>
+														<asp:RadioButton ID="RowSelector" runat="server" onclick="RadioCheck(this);" />
+													</ItemTemplate>
+												</asp:TemplateField>
+												<asp:BoundField HeaderText="Nombre"	ItemStyle-HorizontalAlign="Left"							DataField="NombreCompleto"		SortExpression="NombreCompleto"></asp:BoundField>
+												<asp:BoundField HeaderText="Tipo"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="100px"	DataField="NombreTipoCiudadano"	SortExpression="NombreTipoCiudadano"></asp:BoundField>
+												<asp:BoundField HeaderText="Edad"	ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="90px"	DataField="Edad"				SortExpression="Edad"></asp:BoundField>
+												<asp:BoundField HeaderText="Sexo"	ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="80px"	DataField="NombreSexo"			SortExpression="NombreSexo"></asp:BoundField>
+											</Columns>
+										</asp:GridView>
+									</div>
+								</td>
 							</tr>
 							<tr style="height:5px;"><td colspan="3"></td></tr>
-							<tr class="trFilaItem">
-								<td class="tdActionCeldaLeyendaItem">&nbsp;Tipo de atención</td>
-								<td></td>
-								<td class="tdCeldaItem"><asp:DropDownList ID="ddlTipoDiligencia" runat="server" Width="216px" CssClass="DropDownList_General"></asp:DropDownList></td>
-							</tr>
-							<tr style="height:5px;"><td colspan="3"></td></tr>
-							<tr class="trFilaItem">
-								<td class="tdActionCeldaLeyendaItem">&nbsp;Lugar de atención</td>
-								<td></td>
-								<td class="tdCeldaItem"><asp:DropDownList ID="ddlLugarDiligencia" runat="server" Width="216px" CssClass="DropDownList_General"></asp:DropDownList></td>
-							</tr>
-							<tr style="height:5px;"><td colspan="3"></td></tr>
-							<tr class="trFilaItem">
-								<td class="tdActionCeldaLeyendaItem">&nbsp;Solicitada por</td>
-								<td></td>
-								<td class="tdCeldaItem"><asp:TextBox ID="txtSolicitadaPor" runat="server" CssClass="Textbox_General" Width="210px" MaxLength="1000"></asp:TextBox></td>
-							</tr>
-							<tr style="height:5px;"><td colspan="3"></td></tr>
-							<tr class="trFilaItem"><td class="tdActionCeldaLeyendaItem" colspan="3">&nbsp;Motivo de la atención</td></tr>
+							<tr class="trFilaItem"><td class="tdActionCeldaLeyendaItem" colspan="3">&nbsp;Detalle</td></tr>
 							<tr style="height:155px;">
 								<td colspan="3">
-									<CKEditor:CKEditorControl ID="ckeMotivoAtencion" BasePath="~/Include/Components/CKEditor/Core/" runat="server" Height="90px" MaxLength="8000"></CKEditor:CKEditorControl>
+									<CKEditor:CKEditorControl ID="ckeDetalle" BasePath="~/Include/Components/CKEditor/Core/" runat="server" Height="90px" MaxLength="8000"></CKEditor:CKEditorControl>
 								</td>
 							</tr>
 							<tr style="height:5px;"><td colspan="3"></td></tr>
 							<tr>
 								<td colspan="3" style="text-align:right;">
-									<asp:Button ID="btnAction" runat="server" Text="" CssClass="Button_General" width="125px" onclick="btnAction_Click" />
+									<asp:Button ID="btnAction" runat="server" Text="" CssClass="Button_General" width="180px" onclick="btnAction_Click" />
 								</td>
 							</tr>
 							<tr>
@@ -285,10 +363,12 @@
 			</asp:Panel>
 			<ajaxToolkit:DragPanelExtender id="dragPanelAction" runat="server" TargetControlID="pnlActionContent" DragHandleID="pnlActionHeader"> </ajaxToolkit:DragPanelExtender>
 		</asp:Panel>
+
     </div>
 
+	<asp:HiddenField ID="hddAtencionId" runat="server" Value="0" />
     <asp:HiddenField ID="hddSolicitudId" runat="server" Value="0" />
 	<asp:HiddenField ID="SenderId" runat="server" Value="0"  />
-    <asp:HiddenField ID="hddSort" runat="server" value="NombreCiudadano" />
+	<asp:HiddenField ID="hddSort" runat="server" Value="" />
 
 </asp:Content>

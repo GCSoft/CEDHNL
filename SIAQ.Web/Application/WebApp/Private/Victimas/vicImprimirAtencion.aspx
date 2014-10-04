@@ -166,7 +166,7 @@
 									</table>
 								</EmptyDataTemplate>
 								<Columns>
-									<asp:BoundField ItemStyle-HorizontalAlign="Left" DataField="Detalle" HtmlEncode="false"></asp:BoundField>
+									<asp:BoundField ItemStyle-HorizontalAlign="Left" DataField="Dictamen" HtmlEncode="false"></asp:BoundField>
 								</Columns>
 							</asp:GridView>
 						</td>

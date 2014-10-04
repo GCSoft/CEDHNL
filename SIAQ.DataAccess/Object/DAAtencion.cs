@@ -14,6 +14,142 @@ namespace SIAQ.DataAccess.Object
     {
 
 		///<remarks>
+		///   <name>DAAtencion.DeleteAtencion</name>
+		///   <create>29-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Elimina una solicitud de Atención a Víctimas existente</summary>
+		///<param name="oENTAtencion">Entidad de Atención a Víctimas con los parámetros necesarios para crear el comentario</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse DeleteAtencion(ENTAtencion oENTAtencion, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspAtencion_Del", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("AtencionId", SqlDbType.Int);
+			sqlPar.Value = oENTAtencion.AtencionId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try{
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+			}catch (SqlException sqlEx){
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}finally{
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
+		///<remarks>
+		///   <name>DAAtencion.InsertAtencion</name>
+		///   <create>29-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Inserta una nueva solicitud de Atención a Víctimas</summary>
+		///<param name="oENTAtencion">Entidad de Atención a Víctimas con los parámetros necesarios para crear el comentario</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse InsertAtencion(ENTAtencion oENTAtencion, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspAtencion_Ins", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("SolicitudId", SqlDbType.Int);
+			sqlPar.Value = oENTAtencion.SolicitudId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("ExpedienteId", SqlDbType.Int);
+			sqlPar.Value = oENTAtencion.ExpedienteId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("LugarAtencionId", SqlDbType.Int);
+			sqlPar.Value = oENTAtencion.LugarAtencionId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("ModuloId", SqlDbType.Int);
+			sqlPar.Value = oENTAtencion.ModuloId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("TipoDictamenId", SqlDbType.Int);
+			sqlPar.Value = oENTAtencion.TipoDictamenId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("CiudadanoId", SqlDbType.Int);
+			sqlPar.Value = oENTAtencion.CiudadanoId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("UsuarioId", SqlDbType.Int);
+			sqlPar.Value = oENTAtencion.IdUsuario;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("NumeroOficio", SqlDbType.VarChar);
+			sqlPar.Value = oENTAtencion.NumeroOficio;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Detalle", SqlDbType.VarChar);
+			sqlPar.Value = oENTAtencion.Detalle;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try{
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+			}catch (SqlException sqlEx){
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}finally{
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
+		///<remarks>
 		///   <name>DAAtencion.InsertAtencionComentario</name>
 		///   <create>19-Junio-2014</create>
 		///   <author>Ruben.Cobos</author>
@@ -258,6 +394,68 @@ namespace SIAQ.DataAccess.Object
         }
 
 		///<remarks>
+		///   <name>DAAtencion.SelectAtencion_Detalle_ById</name>
+		///   <create>19-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene el detalle de una solicitud de atención a víctimas</summary>
+		///<param name="entAtencion">Entidad del Expediente de Atención a Víctimas con los filtros necesarios para la consulta</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+        public ENTResponse SelectAtencion_Detalle_ById(ENTAtencion entAtencion, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspAtencion_Sel_Detalle_ById", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("AtencionId", SqlDbType.Int);
+			sqlPar.Value = entAtencion.AtencionId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try
+			{
+				
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+
+			}catch (SqlException sqlEx){
+
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+
+			}catch (Exception ex){
+
+				oENTResponse.ExceptionRaised(ex.Message);
+
+			}finally{
+
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+
+			}
+
+			// Resultado
+			return oENTResponse;
+
+        }
+
+		///<remarks>
 		///   <name>DAAtencion.SelectAtencion_Filtro</name>
 		///   <create>17-Junio-2014</create>
 		///   <author>Ruben.Cobos</author>
@@ -295,6 +493,14 @@ namespace SIAQ.DataAccess.Object
 			sqlPar.Value = entAtencion.Quejoso;
 			sqlCom.Parameters.Add(sqlPar);
 
+			sqlPar = new SqlParameter("FechaDesde", SqlDbType.DateTime);
+			sqlPar.Value = entAtencion.FechaDesde;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("FechaHasta", SqlDbType.DateTime);
+			sqlPar.Value = entAtencion.FechaHasta;
+			sqlCom.Parameters.Add(sqlPar);
+
 			// Inicializaciones
 			oENTResponse.dsResponse = new DataSet();
 			sqlDA = new SqlDataAdapter(sqlCom);
@@ -326,6 +532,94 @@ namespace SIAQ.DataAccess.Object
 			return oENTResponse;
 
         }
+
+		///<remarks>
+		///   <name>DAAtencion.UpdateAtencion</name>
+		///   <create>29-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Actualiza una solicitud de Atención a Víctimas existente</summary>
+		///<param name="oENTAtencion">Entidad de Atención a Víctimas con los parámetros necesarios para crear el comentario</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse UpdateAtencion(ENTAtencion oENTAtencion, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspAtencion_Upd", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("AtencionId", SqlDbType.Int);
+			sqlPar.Value = oENTAtencion.AtencionId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("SolicitudId", SqlDbType.Int);
+			sqlPar.Value = oENTAtencion.SolicitudId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("ExpedienteId", SqlDbType.Int);
+			sqlPar.Value = oENTAtencion.ExpedienteId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("LugarAtencionId", SqlDbType.Int);
+			sqlPar.Value = oENTAtencion.LugarAtencionId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("ModuloId", SqlDbType.Int);
+			sqlPar.Value = oENTAtencion.ModuloId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("TipoDictamenId", SqlDbType.Int);
+			sqlPar.Value = oENTAtencion.TipoDictamenId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("CiudadanoId", SqlDbType.Int);
+			sqlPar.Value = oENTAtencion.CiudadanoId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("UsuarioId", SqlDbType.Int);
+			sqlPar.Value = oENTAtencion.IdUsuario;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("NumeroOficio", SqlDbType.VarChar);
+			sqlPar.Value = oENTAtencion.NumeroOficio;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Detalle", SqlDbType.VarChar);
+			sqlPar.Value = oENTAtencion.Detalle;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try{
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+			}catch (SqlException sqlEx){
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}finally{
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
 
 		///<remarks>
 		///   <name>DAAtencion.UpdateAtencion_Estatus</name>

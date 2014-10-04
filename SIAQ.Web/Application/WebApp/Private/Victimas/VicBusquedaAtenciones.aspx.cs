@@ -31,10 +31,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		GCEncryption gcEncryption = new GCEncryption();
 		GCJavascript gcJavascript = new GCJavascript();
 
+		// Variables publicas
+		String dtBeginDate;
+		String dtEndDate;
+
 
 		// Rutinas del programador
 
-		private void SelectAtencion(){
+		private void SelectAtencion(Boolean Recovery){
 			BPAtencion oBPAtencion = new BPAtencion();
 			ENTAtencion oENTAtencion = new ENTAtencion();
 			ENTResponse oENTResponse = new ENTResponse();
@@ -46,6 +50,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				oENTAtencion.Numero = this.txtAtencionNumero.Text.Trim();
 				oENTAtencion.Quejoso = this.txtQuejoso.Text.Trim();
 				oENTAtencion.FuncionarioId = Int32.Parse(this.ddlDoctor.SelectedItem.Value);
+				oENTAtencion.FechaDesde = (Recovery ? dtBeginDate : this.wucBeginDate.BeginDate);
+				oENTAtencion.FechaHasta = (Recovery ? dtEndDate : this.wucEndDate.EndDate);
 
 				// Transacción
 				oENTResponse = oBPAtencion.SelectAtencion_Filtro(oENTAtencion);
@@ -130,16 +136,21 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				this.txtAtencionNumero.Text = oENTAtencion.Numero;
 				this.txtQuejoso.Text = oENTAtencion.Quejoso;
 				this.ddlDoctor.SelectedValue = oENTAtencion.FuncionarioId.ToString();
+				this.wucBeginDate.SetDateTime = Convert.ToDateTime( oENTAtencion.FechaDesde);
+				this.wucEndDate.SetDateTime = Convert.ToDateTime(oENTAtencion.FechaHasta);
+
+				dtBeginDate = oENTAtencion.FechaDesde.ToString();
+				dtEndDate = oENTAtencion.FechaHasta.ToString();
 				
 				// Liberar el formulario en la sesión
 				oENTSession.Entity = null;
 				this.Session["oENTSession"] = oENTSession;
 
 				// Realcular
-				SelectAtencion();
+				SelectAtencion(true);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('No fue posible recuperar el formulario: " + gcJavascript.ClearText(ex.Message) + "');", true);
+				throw (new Exception("No fue posible recuperar el formulario: " + ex.Message));
             }
 		}
 
@@ -154,6 +165,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				oENTAtencion.Numero = this.txtAtencionNumero.Text.Trim();
 				oENTAtencion.Quejoso = this.txtQuejoso.Text.Trim();
 				oENTAtencion.FuncionarioId = Int32.Parse(this.ddlDoctor.SelectedItem.Value);
+				oENTAtencion.FechaDesde = this.wucBeginDate.BeginDate;
+				oENTAtencion.FechaHasta = this.wucEndDate.EndDate;
 
 				// Obtener la sesion
 				oENTSession = (ENTSession)this.Session["oENTSession"];
@@ -184,11 +197,19 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				this.gvAtencion.DataSource = null;
 				this.gvAtencion.DataBind();
 
+				DateTime dtDesde = new DateTime(DateTime.Now.Year, 1, 1, 0, 0, 0);
+				DateTime dtHasta = new DateTime(DateTime.Now.Year, 12, DateTime.DaysInMonth(DateTime.Now.Year, 12), 23, 59, 59);
+				this.wucBeginDate.SetDate = dtDesde.ToString();
+				this.wucEndDate.SetDate = dtHasta.ToString();
+
+				// Recuperar el formulario
+				RecoveryForm();
+
 				// Foco
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtAtencionNumero.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.txtAtencionNumero.ClientID + "'); }", true);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.txtAtencionNumero.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.txtAtencionNumero.ClientID + "'); }", true);
             }
 		}
 
@@ -197,13 +218,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			{
 
 				// Obtener Atenciones
-				SelectAtencion();
+				SelectAtencion(false);
 
 				// Foco
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtAtencionNumero.ClientID + "');", true);
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.txtAtencionNumero.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.txtAtencionNumero.ClientID + "'); }", true);
 			}
 		}
 
@@ -229,6 +250,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				// Datakeys
 				AtencionId = this.gvAtencion.DataKeys[intRow]["AtencionId"].ToString();
 
+				// Guardar formulario
+				SaveForm();
+
 				// Acción
 				switch (strCommand){
 					case "Editar":
@@ -241,7 +265,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				}
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.txtAtencionNumero.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.txtAtencionNumero.ClientID + "'); }", true);
 			}
 		}
 
@@ -290,7 +314,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				gcCommon.SortGridView(ref this.gvAtencion, ref this.hddSort, e.SortExpression);
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.txtAtencionNumero.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.txtAtencionNumero.ClientID + "'); }", true);
 			}
 		}
 

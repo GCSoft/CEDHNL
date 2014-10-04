@@ -115,6 +115,24 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				if (oBPSolicitud.ErrorId != 0) { throw (new Exception(oBPSolicitud.ErrorDescription)); }
 				if (oBPSolicitud.SolicitudEntity.ResultData.Tables[0].Rows.Count == 0) { throw new Exception("No se ha encontrado información de la solicitud"); }
 
+				// Atención a victimas (No impide el envío)
+				switch( oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["AtencionVictimas"].ToString() ){
+					case"0":
+
+						this.AtencionPanel.Visible = false;
+						break;
+
+					case "1":
+
+						this.imgAtencion.ImageUrl = "~/Include/Image/Icon/AtencionVictimasIcon_Warning.png";
+						this.imgAtencion.ToolTip = "Existen atenciones a víctimas asociadas a la solicitud sin cerrar";
+						break;
+
+					default:
+						// Do Nothing
+						break;
+				}
+
 				// Validación de ciudadanos
 				if (oBPSolicitud.SolicitudEntity.ResultData.Tables[1].Rows[0]["Ciudadanos"].ToString() == "0"){
 					this.imgCiudadanos.ImageUrl = "~/Include/Image/Icon/CiudadanoIcon_Pending.png";

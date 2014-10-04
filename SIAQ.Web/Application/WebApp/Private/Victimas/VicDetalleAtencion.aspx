@@ -25,6 +25,10 @@
             <asp:ImageButton ID="InformacionGeneralButton" ImageUrl="~/Include/Image/Icon/GeneralIcon.png" runat="server" OnClick="InformacionGeneralButton_Click"></asp:ImageButton><br />
             Información general
         </asp:Panel>
+		<%--<asp:Panel CssClass="IconoPanel" ID="pnlInformacionGeneral" runat="server" Visible="true">
+            <asp:ImageButton ID="AgregrarInformacionButton" ImageUrl="~/Include/Image/Icon/AgregarInformacionIcon.png" runat="server" OnClick="AgregrarInformacionButton_Click"></asp:ImageButton><br />
+            Agregar Información
+        </asp:Panel>--%>
 		 <asp:Panel CssClass="IconoPanel" ID="pnlAsignarDoctor" runat="server" Visible="true">
             <asp:ImageButton ID="AsignarButton" ImageUrl="~/Include/Image/Icon/AsignarIcon.png" runat="server" OnClick="AsignarButton_Click"></asp:ImageButton><br />
             Asignar médico

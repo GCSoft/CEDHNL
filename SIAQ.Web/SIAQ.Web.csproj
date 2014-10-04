@@ -88,6 +88,7 @@
     <Content Include="Application\WebApp\Private\Seguimiento\segListadoRecomendacionesEnProceso.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segNotificacion.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\VicAgregarDocumento.aspx" />
+    <Content Include="Application\WebApp\Private\Victimas\vicAgregrarInformacion.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\vicAsignarDoctor.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\VicBusquedaAtenciones.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\VicDetalleAtencion.aspx" />
@@ -503,6 +504,8 @@
     <Content Include="Include\Image\Icon\AsignarIcon_Pending.png" />
     <Content Include="Include\Image\Icon\AsignarIcon_Success.png" />
     <Content Include="Include\Image\Icon\AtencionVictimasIcon.png" />
+    <Content Include="Include\Image\Icon\AtencionVictimasIcon_Success.png" />
+    <Content Include="Include\Image\Icon\AtencionVictimasIcon_Warning.png" />
     <Content Include="Include\Image\Icon\AutoridadIcon.png" />
     <Content Include="Include\Image\Icon\AutoridadIcon_Pending.png" />
     <Content Include="Include\Image\Icon\AutoridadIcon_Success.png" />
@@ -996,6 +999,13 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Victimas\VicAgregarDocumento.aspx.designer.cs">
       <DependentUpon>VicAgregarDocumento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Victimas\vicAgregrarInformacion.aspx.cs">
+      <DependentUpon>vicAgregrarInformacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Victimas\vicAgregrarInformacion.aspx.designer.cs">
+      <DependentUpon>vicAgregrarInformacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Victimas\vicAsignarDoctor.aspx.cs">
       <DependentUpon>vicAsignarDoctor.aspx</DependentUpon>

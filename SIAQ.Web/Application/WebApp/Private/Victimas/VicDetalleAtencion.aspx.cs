@@ -346,6 +346,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
             }
         }
 
+		//protected void AgregrarInformacionButton_Click(object sender, ImageClickEventArgs e){
+		//    String sKey = "";
+
+		//    try
+		//    {
+
+		//        // Llave encriptada
+		//        sKey = this.hddAtencionId.Value + "|" + this.SenderId.Value;
+		//        sKey = gcEncryption.EncryptString(sKey, true);
+		//        this.Response.Redirect("vicAgregrarInformacion.aspx?key=" + sKey, false);
+
+		//    }catch (Exception ex){
+		//        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+		//    }
+		//}
+
 		protected void AsignarButton_Click(object sender, ImageClickEventArgs e){
 			String sKey = "";
 

@@ -32,6 +32,7 @@ namespace SIAQ.Entity.Object
 		private Int32	_CiudadanoId;
 		private String	_Detalle;
 		private String	_NumeroOficio;
+		private String	_NumeroFolio;
 
         public ENTAtencion(){
             _AtencionId = 0;
@@ -59,6 +60,7 @@ namespace SIAQ.Entity.Object
 			_CiudadanoId = 0;
 			_Detalle = "";
 			_NumeroOficio = "";
+			_NumeroFolio = "";
         }
 
 
@@ -290,6 +292,12 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _NumeroOficio; }
 			set { _NumeroOficio = value; }
+		}
+
+		public String NumeroFolio
+		{
+			get { return _NumeroFolio; }
+			set { _NumeroFolio = value; }
 		}
 
     }

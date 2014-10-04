@@ -147,7 +147,11 @@
 		<asp:Panel CssClass="IconoPanel" ID="AutoridadPanel" runat="server" Visible="true">
 			<asp:Image ID="imgAutoridad" runat="server" ImageUrl="~/Include/Image/Icon/AutoridadIcon_Success.png"  /><br />
             Agegar autoridades señaladas y voces
-        </asp:Panel>		
+        </asp:Panel>
+		<asp:Panel CssClass="IconoPanel" ID="AtencionPanel" runat="server" Visible="true">
+			<asp:Image ID="imgAtencion" runat="server" ImageUrl="~/Include/Image/Icon/AtencionVictimasIcon_Success.png"  /><br />
+            Atención a víctimas
+        </asp:Panel>
 		 <div id="Asuntos" style="clear:both; text-align:left;">
 			<br />
 			 <asp:Label ID="lblAsuntos" runat="server" CssClass="Asunto_Success"></asp:Label>

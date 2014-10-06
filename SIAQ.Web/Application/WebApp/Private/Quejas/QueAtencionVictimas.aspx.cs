@@ -481,9 +481,16 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				// Seguridad
 				if (EstatusId != "17"){
 
-					// Atributos Over y Out
-					this.gvAtencion.Rows[iRow].Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; ");
-					this.gvAtencion.Rows[iRow].Attributes.Add("onmouseout", "this.className='" + ((iRow % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; ");
+					imgEdit.Visible = false;
+					imgBorrar.Visible = false;
+
+					// Atributos Over
+					sImagesAttributes = "document.getElementById('" + oImageSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/" + (oPanelDetail.Visible ? "Expand_Over" : "Collapse_Over") + ".png'; ";
+					this.gvAtencion.Rows[iRow].Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
+
+					// Atributos Out
+					sImagesAttributes = "document.getElementById('" + oImageSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/" + (oPanelDetail.Visible ? "Expand" : "Collapse") + ".png'; ";
+					this.gvAtencion.Rows[iRow].Attributes.Add("onmouseout", "this.className='" + ((iRow % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
 
 				}else{
 
@@ -528,6 +535,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
             ImageButton imgEdit = null;
             ImageButton imgBorrar = null;
 
+			String EstatusId = "";
             String sImagesAttributes = null;
 
             try
@@ -543,22 +551,38 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
                 if (oPanelDetail == null) { return; }
                 if (oImageSwapGrid == null) { return; }
 
-                // Atributos Over
-                sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png'; ";
-                sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgBorrar.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png'; ";
-                sImagesAttributes = sImagesAttributes + "document.getElementById('" + oImageSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/" + (isVisible ? "Expand_Over" : "Collapse_Over") + ".png'; ";
+				// DataKeys
+				EstatusId = this.gvAtencion.DataKeys[iRow]["EstatusId"].ToString();
 
+				// Seguridad
+				if (EstatusId != "17"){
 
-                //Puntero y Sombra en fila Over
-                this.gvAtencion.Rows[iRow].Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
+					imgEdit.Visible = false;
+					imgBorrar.Visible = false;
 
-                // Atributos Out
-                sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png'; ";
-                sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgBorrar.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png'; ";
-                sImagesAttributes = sImagesAttributes + "document.getElementById('" + oImageSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/" + (isVisible ? "Expand" : "Collapse") + ".png'; ";
+					// Atributos Over
+					sImagesAttributes = "document.getElementById('" + oImageSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/" + (isVisible ? "Expand_Over" : "Collapse_Over") + ".png'; ";
+					this.gvAtencion.Rows[iRow].Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
 
-                //Puntero y Sombra en fila Out
-                this.gvAtencion.Rows[iRow].Attributes.Add("onmouseout", "this.className='" + ((iRow % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
+					// Atributos Out
+					sImagesAttributes = "document.getElementById('" + oImageSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/" + (isVisible ? "Expand" : "Collapse") + ".png'; ";
+					this.gvAtencion.Rows[iRow].Attributes.Add("onmouseout", "this.className='" + ((iRow % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);	
+
+				}else{
+
+					// Atributos Over
+					sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png'; ";
+					sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgBorrar.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png'; ";
+					sImagesAttributes = sImagesAttributes + "document.getElementById('" + oImageSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/" + (isVisible ? "Expand_Over" : "Collapse_Over") + ".png'; ";
+					this.gvAtencion.Rows[iRow].Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
+
+					// Atributos Out
+					sImagesAttributes = "document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png'; ";
+					sImagesAttributes = sImagesAttributes + "document.getElementById('" + imgBorrar.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png'; ";
+					sImagesAttributes = sImagesAttributes + "document.getElementById('" + oImageSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/" + (isVisible ? "Expand" : "Collapse") + ".png'; ";
+					this.gvAtencion.Rows[iRow].Attributes.Add("onmouseout", "this.className='" + ((iRow % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);	
+
+				}
 
                 // Cambiar estados
                 if (isVisible){
@@ -705,9 +729,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 					imgEdit.Visible = false;
 					imgBorrar.Visible = false;
 
-					// Atributos Over y Out
-					e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; ");
-					e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; ");
+					// Atributos Over
+					sImagesAttributes = "document.getElementById('" + imgSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/Expand_Over.png'; ";
+					e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
+
+					// Atributos Out
+					sImagesAttributes = "document.getElementById('" + imgSwapGrid.ClientID + "').src='../../../../Include/Image/Buttons/Expand.png'; ";
+					e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
 
 				}else{
 

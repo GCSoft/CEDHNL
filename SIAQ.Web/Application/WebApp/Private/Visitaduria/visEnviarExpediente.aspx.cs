@@ -181,6 +181,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			ENTVisitaduria oENTVisitaduria = new ENTVisitaduria();
 			ENTResponse oENTResponse = new ENTResponse();
 
+			String AtencionVictimas = "0";
+
 			try
 			{
 
@@ -193,6 +195,35 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				// Errores y Warnings
 				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
 				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+
+				// Atención a victimas (No impide el envío)
+				if ( oENTResponse.dsResponse.Tables[14].Rows.Count > 0 ){
+
+					if ( oENTResponse.dsResponse.Tables[14].Select("EstatusId <> 21").Length == 0 ){
+						
+						AtencionVictimas = "2";
+					}else{
+
+						AtencionVictimas = "1";
+					}
+				}
+
+				switch( AtencionVictimas ){
+					case"0":
+
+						this.AtencionPanel.Visible = false;
+						break;
+
+					case "1":
+
+						this.imgAtencion.ImageUrl = "~/Include/Image/Icon/AtencionVictimasIcon_Warning.png";
+						this.imgAtencion.ToolTip = "Existen atenciones a víctimas asociadas a la solicitud sin cerrar";
+						break;
+
+					default:
+						// Do Nothing
+						break;
+				}
 
 				// Gestiones
 				if (oENTResponse.dsResponse.Tables[12].Rows.Count == 0){

@@ -197,6 +197,10 @@
 			<asp:Image ID="imgAcuerdoNoResponsabilidad" runat="server" ImageUrl="~/Include/Image/Icon/RecomendacionIcon_Success.png" /><br />
             Acuerdo de No Responsabilidad
         </asp:Panel>
+		<asp:Panel CssClass="IconoPanel" ID="AtencionPanel" runat="server" Visible="true">
+			<asp:Image ID="imgAtencion" runat="server" ImageUrl="~/Include/Image/Icon/AtencionVictimasIcon_Success.png"  /><br />
+            Atención a víctimas
+        </asp:Panel>
 		 <%--<div id="Asuntos" style="clear:both; text-align:left;">
 			<br />
 			 <asp:Label ID="lblAsuntos" runat="server" CssClass="Asunto_Success"></asp:Label>

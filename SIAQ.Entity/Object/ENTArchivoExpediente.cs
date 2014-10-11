@@ -20,6 +20,7 @@ namespace SIAQ.Entity.Object
 	{
 
 		// Definiciones
+		private Int32	_ArchivoId;				// Identificador único del Archivo a consultar
 		private Int32	_ExpedienteId;			// Identificador único del Expediente a consultar
 		private Int32	_idUsuario;				// Identificador único del Usuario que tiene asignado el Expediente
 		private Int32	_idUsuario_Presta;		// Identificador único del Usuario que asigna el Expediente
@@ -27,14 +28,17 @@ namespace SIAQ.Entity.Object
 		private Int32	_UbicacionExpedienteId;	// Identificador único de la Ubicacion del Expediente a consultar
 		private String  _Comentario;			// Comentario en el expediente dentro del módulo de archivo
 		private String	_Nombre;				// Nombre a filtrar
-		private String	_Numero;				// Número de expediente a filtrar
+		private String	_ExpedienteNumero;		// Número de expediente a filtrar
+		private String	_SolicitudNumero;		// Número de solicitud a filtrar
 		private String	_Quejoso;				// Nombre del quejoso que levanta la denuncia
+		private Int16	_Ubicacion;				
 
 		
 		 //Constructor
 
 		public ENTArchivoExpediente()
 		{
+			_ArchivoId = 0;
 			_ExpedienteId = 0;
 			_idUsuario = 0;
 			_idUsuario_Presta = 0;
@@ -42,12 +46,26 @@ namespace SIAQ.Entity.Object
 			_UbicacionExpedienteId = 0;
 			_Comentario = "";
 			_Nombre = "";
-			_Numero = "";
+			_ExpedienteNumero = "";
+			_SolicitudNumero = "";
 			_Quejoso = "";
+			_Ubicacion = 0;
 		}
 
 
 		// Propiedades
+
+		///<remarks>
+		///   <name>ENTArchivoExpediente.ArchivoId</name>
+		///   <create>12-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el identificador único del Archivo a consultar</summary>
+		public Int32 ArchivoId
+		{
+			get { return _ArchivoId; }
+			set { _ArchivoId = value; }
+		}
 
 		///<remarks>
 		///   <name>ENTArchivoExpediente.ExpedienteId</name>
@@ -134,15 +152,27 @@ namespace SIAQ.Entity.Object
 		}
 
 		///<remarks>
-		///   <name>ENTArchivoExpediente.Numero</name>
+		///   <name>ENTArchivoExpediente.ExpedienteNumero</name>
 		///   <create>11-Junio-2014</create>
 		///   <author>Ruben.Cobos</author>
 		///</remarks>
 		///<summary>Obtiene/Asigna el número de expediente a filtrar</summary>
-		public String Numero
+		public String ExpedienteNumero
 		{
-			get { return _Numero; }
-			set { _Numero = value; }
+			get { return _ExpedienteNumero; }
+			set { _ExpedienteNumero = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTArchivoExpediente.SolicitudNumero</name>
+		///   <create>11-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el número de solicitud a filtrar</summary>
+		public String SolicitudNumero
+		{
+			get { return _SolicitudNumero; }
+			set { _SolicitudNumero = value; }
 		}
 
 		///<remarks>
@@ -155,6 +185,12 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _Quejoso; }
 			set { _Quejoso = value; }
+		}
+
+		public Int16 Ubicacion
+		{
+			get { return _Ubicacion; }
+			set { _Ubicacion = value; }
 		}
 		
 

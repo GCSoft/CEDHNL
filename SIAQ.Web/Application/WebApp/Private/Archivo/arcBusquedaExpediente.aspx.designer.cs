@@ -31,22 +31,31 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo {
         protected global::System.Web.UI.WebControls.Panel pnlFormulario;
         
         /// <summary>
-        /// txtExpediente control.
+        /// txtSolicitudNumero control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtExpediente;
+        protected global::System.Web.UI.WebControls.TextBox txtSolicitudNumero;
         
         /// <summary>
-        /// txtQuejoso control.
+        /// txtExpedienteNumero control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtQuejoso;
+        protected global::System.Web.UI.WebControls.TextBox txtExpedienteNumero;
+        
+        /// <summary>
+        /// ddlUbicacionExpediente control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlUbicacionExpediente;
         
         /// <summary>
         /// ddlUsuario control.
@@ -85,13 +94,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo {
         protected global::System.Web.UI.WebControls.Panel pnlGrid;
         
         /// <summary>
-        /// gvExpediente control.
+        /// gvArchivo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvExpediente;
+        protected global::System.Web.UI.WebControls.GridView gvArchivo;
         
         /// <summary>
         /// hddSort control.

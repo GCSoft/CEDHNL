@@ -31,28 +31,25 @@
                 <td class="Campo"><asp:Label CssClass="NumeroSolicitudLabel" ID="ExpedienteNumeroLabel" runat="server" Text="0"></asp:Label></td>
                 <td colspan="4"></td>
             </tr>
+			<tr>
+				<td class="Especial">Solicitud número</td>
+                <td class="Espacio"></td>
+                <td class="Campo"><asp:Label CssClass="NumeroSolicitudLabel" ID="SolicitudNumeroLabel" runat="server" Text="0"></asp:Label></td>
+                <td colspan="4"></td>
+            </tr>
             <tr>
+                <td class="Nombre">Area</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta"><asp:Label ID="AreaNombreLabel" runat="server"></asp:Label></td>
+                <td class="Espacio"></td>
+                <td class="Nombre"></td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta"></td>
+            </tr>
+			<tr>
                 <td class="Nombre">Calificación</td>
                 <td class="Espacio"></td>
                 <td class="Etiqueta"><asp:Label ID="CalificacionLabel" runat="server" Text=""></asp:Label></td>
-                <td class="Espacio"></td>
-                <td class="Nombre"></td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta"></td>
-            </tr>
-            <tr>
-                <td class="Nombre">Estatus Archivo</td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta"><asp:Label ID="EstatusLabel" runat="server"></asp:Label></td>
-                <td class="Espacio"></td>
-                <td class="Nombre"></td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta"></td>
-            </tr>
-            <tr>
-                <td class="Nombre">Usuario con el Expediente</td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta"><asp:Label ID="UsuarioNombreRecibeLabel" runat="server"></asp:Label></td>
                 <td class="Espacio"></td>
                 <td class="Nombre"></td>
                 <td class="Espacio"></td>
@@ -63,20 +60,16 @@
                 <td class="Espacio"></td>
                 <td class="Etiqueta"><asp:Label ID="UbicacionLabel" runat="server"></asp:Label></td>
                 <td class="Espacio"></td>
-                <td class="Nombre">Fecha de préstamo</td>
+                <td class="Nombre">Fecha de recepción</td>
                 <td class="Espacio"></td>
-                <td class="Etiqueta"><asp:Label ID="FechaPrestamoLabel" runat="server" Text=""></asp:Label></td>
+                <td class="Etiqueta"><asp:Label ID="FechaRecepcionLabel" runat="server" Text=""></asp:Label></td>
             </tr>
             <tr>
-                <td class="Nombre">Comentarios</td>
+                <td class="Nombre">Estatus</td>
                 <td class="Espacio"></td>
-                <td class="Etiqueta" colspan="5"><asp:Label ID="ComentariosLabel" runat="server"></asp:Label></td>
+                <td class="Etiqueta" colspan="5"><asp:Label ID="EstatusLabel" runat="server" Text=""></asp:Label></td>
             </tr>
-			<tr>
-                <td class="Nombre">Nueva Ubicación</td>
-                <td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
-                <td colspan="5" style="text-align:left;"><asp:DropDownList id="ddlUbicacionExpediente" runat="server" AutoPostBack="true" CssClass="DropDownList_General" width="216px" onselectedindexchanged="ddlUbicacionExpediente_SelectedIndexChanged" ></asp:DropDownList></td>
-            </tr>
+			<!-- Fin Carátula -->
 			<tr>
                 <td class="Nombre">Usuario a Asignar</td>
                 <td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
@@ -106,7 +99,7 @@
 
     </div>
 
-    <asp:HiddenField ID="ExpedienteIdHidden" runat="server" Value="0"  />
+    <asp:HiddenField ID="hddArchivoId" runat="server" Value="0"  />
 	<asp:HiddenField ID="SenderId" runat="server" Value="0"  />
 
 </asp:Content>

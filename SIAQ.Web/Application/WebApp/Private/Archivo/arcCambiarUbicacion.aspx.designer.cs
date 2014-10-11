@@ -10,7 +10,7 @@
 namespace SIAQ.Web.Application.WebApp.Private.Archivo {
     
     
-    public partial class arcLiberarExpediente {
+    public partial class arcCambiarUbicacion {
         
         /// <summary>
         /// Label1 control.
@@ -31,6 +31,24 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo {
         protected global::System.Web.UI.WebControls.Label ExpedienteNumeroLabel;
         
         /// <summary>
+        /// SolicitudNumeroLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SolicitudNumeroLabel;
+        
+        /// <summary>
+        /// AreaNombreLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label AreaNombreLabel;
+        
+        /// <summary>
         /// CalificacionLabel control.
         /// </summary>
         /// <remarks>
@@ -38,24 +56,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label CalificacionLabel;
-        
-        /// <summary>
-        /// EstatusLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label EstatusLabel;
-        
-        /// <summary>
-        /// UsuarioNombreRecibeLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label UsuarioNombreRecibeLabel;
         
         /// <summary>
         /// UbicacionLabel control.
@@ -67,31 +67,49 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo {
         protected global::System.Web.UI.WebControls.Label UbicacionLabel;
         
         /// <summary>
-        /// FechaPrestamoLabel control.
+        /// FechaRecepcionLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label FechaPrestamoLabel;
+        protected global::System.Web.UI.WebControls.Label FechaRecepcionLabel;
         
         /// <summary>
-        /// ComentariosLabel control.
+        /// EstatusLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ComentariosLabel;
+        protected global::System.Web.UI.WebControls.Label EstatusLabel;
         
         /// <summary>
-        /// btnLiberar control.
+        /// ddlUbicacionExpediente control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLiberar;
+        protected global::System.Web.UI.WebControls.DropDownList ddlUbicacionExpediente;
+        
+        /// <summary>
+        /// ckeComentarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::CKEditor.NET.CKEditorControl ckeComentarios;
+        
+        /// <summary>
+        /// btnCambiarUbicacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCambiarUbicacion;
         
         /// <summary>
         /// btnRegresar control.
@@ -103,13 +121,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo {
         protected global::System.Web.UI.WebControls.Button btnRegresar;
         
         /// <summary>
-        /// ExpedienteIdHidden control.
+        /// hddArchivoId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField ExpedienteIdHidden;
+        protected global::System.Web.UI.WebControls.HiddenField hddArchivoId;
         
         /// <summary>
         /// SenderId control.

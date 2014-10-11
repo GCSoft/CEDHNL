@@ -96,7 +96,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Home
 					break;
 
 				case 16: // Archivo
-					this.Response.Redirect("../Archivo/arcBusquedaExpediente.aspx", false);
+					this.Response.Redirect("../Archivo/arcListadoExpediente.aspx", false);
 					break;
 
 				default:

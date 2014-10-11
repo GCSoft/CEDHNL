@@ -1,5 +1,5 @@
 ﻿/*---------------------------------------------------------------------------------------------------------------------------------
-' Nombre:	arcAsignarExpediente
+' Nombre:	arcCambiarUbicacion
 ' Autor:	Ruben.Cobos
 ' Fecha:	12-Junio-2014
 '----------------------------------------------------------------------------------------------------------------------------------*/
@@ -21,7 +21,7 @@ using System.Data;
 
 namespace SIAQ.Web.Application.WebApp.Private.Archivo
 {
-	public partial class arcAsignarExpediente : System.Web.UI.Page
+	public partial class arcCambiarUbicacion : System.Web.UI.Page
 	{
 		
 		// Utilerías
@@ -59,16 +59,16 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 			{
 
 				// Validaciones
-				if (this.ddlUsuario_Recibe.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar un Usuario para asignarle el Expediente")); }
+				if (this.ddlUbicacionExpediente.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar una nueva ubicación asignada al Expediente")); }
 
 				// Obtener sesión
 				SessionEntity = (ENTSession)Session["oENTSession"];
 				
 				// Formulario
 				oENTArchivoExpediente.ArchivoId = Int32.Parse(this.hddArchivoId.Value);
-				oENTArchivoExpediente.UbicacionExpedienteId = 4; // Prestado
+				oENTArchivoExpediente.UbicacionExpedienteId = Int32.Parse(this.ddlUbicacionExpediente.SelectedItem.Value);
 				oENTArchivoExpediente.idUsuario_Presta = SessionEntity.idUsuario;
-				oENTArchivoExpediente.idUsuario_Recibe = Int32.Parse(this.ddlUsuario_Recibe.SelectedItem.Value);
+				oENTArchivoExpediente.idUsuario_Recibe = SessionEntity.idUsuario;
 				oENTArchivoExpediente.Comentario = this.ckeComentarios.Text.Trim();
 
 				// Transacción
@@ -117,40 +117,37 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 			}
 		}
 
-		void SelectUsuarioRecibe() { 
-			ENTUsuario oENTUsuario = new ENTUsuario();
-			ENTResponse oENTResponse = new ENTResponse();
+		void SelectUbicacionExpediente(){
+			BPArchivoExpediente oBPArchivoExpediente = new BPArchivoExpediente();
 
-			BPUsuario oBPUsuario = new BPUsuario();
+			ENTArchivoExpediente oENTArchivoExpediente = new ENTArchivoExpediente();
+			ENTResponse oENTResponse = new ENTResponse();
 
 			try
 			{
 
 				// Formulario
-				oENTUsuario.idRol = 0;
-				oENTUsuario.idArea = 0;
-				oENTUsuario.sEmail = "";
-				oENTUsuario.sNombre = "";
-				oENTUsuario.tiActivo = 1;
+				oENTArchivoExpediente.UbicacionExpedienteId = 0;
+				oENTArchivoExpediente.Nombre = "";
+				oENTArchivoExpediente.Ubicacion = 1; // Sólo ubicaciones
 
 				// Transacción
-				oENTResponse = oBPUsuario.SelectUsuario(oENTUsuario);
+				oENTResponse = oBPArchivoExpediente.SelectUbicacionExpediente(oENTArchivoExpediente);
 
 				// Errores y Warnings
 				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
-				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + oENTResponse.sMessage + "');", true); }
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
 
-				// Llenado de control
-				this.ddlUsuario_Recibe.DataTextField = "sFullName";
-				this.ddlUsuario_Recibe.DataValueField = "idUsuario";
-				this.ddlUsuario_Recibe.DataSource = oENTResponse.dsResponse.Tables[3];
-				this.ddlUsuario_Recibe.DataBind();
+				// Llenado de combo
+				this.ddlUbicacionExpediente.DataTextField = "Nombre";
+				this.ddlUbicacionExpediente.DataValueField = "UbicacionExpedienteId";
+				this.ddlUbicacionExpediente.DataSource = oENTResponse.dsResponse.Tables[1];
+				this.ddlUbicacionExpediente.DataBind();
 
-				// Opción todos
-				this.ddlUsuario_Recibe.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+				// Agregar Item de selección
+				this.ddlUbicacionExpediente.Items.Insert(0, new ListItem("[Seleccione]", "0"));
 
 			}catch (Exception ex){
-				this.btnAsignar.Visible = false;
 				throw (ex);
 			}
 		}
@@ -180,17 +177,17 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 
 				// Llenado de controles
 				SelectArchivo();
-				SelectUsuarioRecibe();
+				SelectUbicacionExpediente();
 
 				// Foco
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlUsuario_Recibe.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlUbicacionExpediente.ClientID + "');", true);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlUsuario_Recibe.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlUbicacionExpediente.ClientID + "');", true);
             }
 		}
 
-		protected void btnAsignar_Click(object sender, EventArgs e){
+		protected void btnCambiarUbicacion_Click(object sender, EventArgs e){
 			String sKey = "";
 
 			try
@@ -205,7 +202,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 				this.Response.Redirect("arcDetalleExpediente.aspx?key=" + sKey, false);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlUsuario_Recibe.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlUbicacionExpediente.ClientID + "');", true);
             }
 		}
 
@@ -221,9 +218,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 				this.Response.Redirect("arcDetalleExpediente.aspx?key=" + sKey, false);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlUsuario_Recibe.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlUbicacionExpediente.ClientID + "');", true);
             }
 		}
+
 
 	}
 }

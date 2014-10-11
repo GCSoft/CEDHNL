@@ -14,6 +14,7 @@ using System.Web.UI.WebControls;
 
 // Referencias manuales
 using GCUtility.Function;
+using GCUtility.Security;
 using SIAQ.Entity.Object;
 using SIAQ.BusinessProcess.Page;
 using SIAQ.BusinessProcess.Object;
@@ -23,17 +24,85 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 {
 	public partial class arcBusquedaExpediente : BPPage
 	{
-		
+
 
 		// Utilerías
-
 		GCCommon gcCommon = new GCCommon();
+		GCEncryption gcEncryption = new GCEncryption();
 		GCJavascript gcJavascript = new GCJavascript();
 
 
 		// Rutinas del programador
 
-		private void SelectUsuario(){
+		void SelectArchivo(){
+			BPArchivoExpediente oBPArchivoExpediente = new BPArchivoExpediente();
+
+			ENTArchivoExpediente oENTArchivoExpediente = new ENTArchivoExpediente();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Formulario
+				oENTArchivoExpediente.SolicitudNumero = this.txtSolicitudNumero.Text.Trim();
+				oENTArchivoExpediente.ExpedienteNumero = this.txtExpedienteNumero.Text.Trim();
+				oENTArchivoExpediente.idUsuario = Int32.Parse(this.ddlUsuario.SelectedItem.Value);
+				oENTArchivoExpediente.UbicacionExpedienteId = Int32.Parse(this.ddlUbicacionExpediente.SelectedItem.Value);
+
+				// Transacción
+				oENTResponse = oBPArchivoExpediente.SelectArchivo_Filtro(oENTArchivoExpediente);
+
+				// Errores
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+
+				// Warnings
+				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + oENTResponse.sMessage + "');", true); }
+
+				// Llenado de control
+				this.gvArchivo.DataSource = oENTResponse.dsResponse.Tables[1];
+				this.gvArchivo.DataBind();
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		void SelectUbicacionExpediente(){
+			BPArchivoExpediente oBPArchivoExpediente = new BPArchivoExpediente();
+
+			ENTArchivoExpediente oENTArchivoExpediente = new ENTArchivoExpediente();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Formulario
+				oENTArchivoExpediente.UbicacionExpedienteId = 0;
+				oENTArchivoExpediente.Nombre = "";
+				oENTArchivoExpediente.Ubicacion = 1; // Sólo ubicaciones
+
+				// Transacción
+				oENTResponse = oBPArchivoExpediente.SelectUbicacionExpediente(oENTArchivoExpediente);
+
+				// Errores y Warnings
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+
+				// Llenado de combo
+				this.ddlUbicacionExpediente.DataTextField = "Nombre";
+				this.ddlUbicacionExpediente.DataValueField = "UbicacionExpedienteId";
+				this.ddlUbicacionExpediente.DataSource = oENTResponse.dsResponse.Tables[1];
+				this.ddlUbicacionExpediente.DataBind();
+
+				// Agregar Item de selección
+				this.ddlUbicacionExpediente.Items.Insert(0, new ListItem("[Todas]", "0"));
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		void SelectUsuario(){
 			ENTUsuario oENTUsuario = new ENTUsuario();
 			ENTResponse oENTResponse = new ENTResponse();
 
@@ -70,38 +139,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 			}
 		}
 
-		private void SelectExpedienteArchivo(){
-			BPArchivoExpediente oBPArchivoExpediente = new BPArchivoExpediente();
-
-			ENTArchivoExpediente oENTArchivoExpediente = new ENTArchivoExpediente();
-			ENTResponse oENTResponse = new ENTResponse();
-
-			try
-			{
-
-				// Formulario
-				oENTArchivoExpediente.idUsuario = Int32.Parse(this.ddlUsuario.SelectedItem.Value);
-				oENTArchivoExpediente.Numero = this.txtExpediente.Text.Trim();
-				oENTArchivoExpediente.Quejoso = this.txtQuejoso.Text.Trim();
-
-				// Transacción
-				oENTResponse = oBPArchivoExpediente.SelectArchivoExpedienteFiltro(oENTArchivoExpediente);
-
-				// Errores
-				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
-
-				// Warnings
-				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + oENTResponse.sMessage + "');", true); }
-
-				// Llenado de control
-				this.gvExpediente.DataSource = oENTResponse.dsResponse.Tables[1];
-				this.gvExpediente.DataBind();
-
-			}catch (Exception ex){
-				throw (ex);
-			}
-		}
-
 
 		// Eventos de la página
 
@@ -114,16 +151,17 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 
 				// Llenado de controles
 				SelectUsuario();
+				SelectUbicacionExpediente();
 
                 // Estado inicial
-				this.gvExpediente.DataSource = null;
-				this.gvExpediente.DataBind();
+				this.gvArchivo.DataSource = null;
+				this.gvArchivo.DataBind();
 
 				// Foco
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtExpediente.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtSolicitudNumero.ClientID + "');", true);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.txtExpediente.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.txtSolicitudNumero.ClientID + "');", true);
             }
 		}
 
@@ -132,21 +170,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
             {
 
                 // Obtener Expedientes
-				SelectExpedienteArchivo();
+				SelectArchivo();
 
 				// Foco
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtExpediente.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtSolicitudNumero.ClientID + "');", true);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.txtExpediente.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.txtSolicitudNumero.ClientID + "');", true);
             }
 		}
 
-		protected void gvExpediente_RowCommand(object sender, GridViewCommandEventArgs e){
-			String ExpedienteId;
-
+		protected void gvArchivo_RowCommand(object sender, GridViewCommandEventArgs e){
+			String ArchivoId;
 			String strCommand = "";
 			Int32 intRow = 0;
+
+			String sKey = "";
 
 			try
 			{
@@ -161,24 +200,28 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 				intRow = Int32.Parse(e.CommandArgument.ToString());
 
 				// Datakeys
-				ExpedienteId = this.gvExpediente.DataKeys[intRow]["ExpedienteId"].ToString();
+				ArchivoId = this.gvArchivo.DataKeys[intRow]["ArchivoId"].ToString();
 
 				// Acción
 				switch (strCommand){
 					case "Editar":
-						this.Response.Redirect("arcDetalleExpediente.aspx?key=" + ExpedienteId + "|1", false);
+						
+						// Llave encriptada
+						sKey = ArchivoId + "|1";
+						sKey = gcEncryption.EncryptString(sKey, true);
+						this.Response.Redirect("arcDetalleExpediente.aspx?key=" + sKey, false);
 						break;
 				}
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.txtExpediente.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.txtSolicitudNumero.ClientID + "');", true);
 			}
 		}
 
-		protected void gvExpediente_RowDataBound(object sender, GridViewRowEventArgs e){
+		protected void gvArchivo_RowDataBound(object sender, GridViewRowEventArgs e){
 			ImageButton imgEdit = null;
 
-			String sNumero = "";
+			String ExpedienteNumero = "";
 			String sImagesAttributes = "";
 			String sToolTip = "";
 
@@ -192,10 +235,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 				imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
 
 				// DataKeys
-				sNumero = gvExpediente.DataKeys[e.Row.RowIndex]["Numero"].ToString();
+				ExpedienteNumero = gvArchivo.DataKeys[e.Row.RowIndex]["ExpedienteNumero"].ToString();
 
 				// Tooltip Editar Expediente
-				sToolTip = "Detalle de expediente [" + sNumero + "]";
+				sToolTip = "Detalle de archivo [" + ExpedienteNumero + "]";
 				imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
 				imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
 				imgEdit.Attributes.Add("style", "curosr:hand;");
@@ -213,14 +256,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 			}
 		}
 
-		protected void gvExpediente_Sorting(object sender, GridViewSortEventArgs e){
+		protected void gvArchivo_Sorting(object sender, GridViewSortEventArgs e){
 			try
             {
 
-				gcCommon.SortGridView(ref this.gvExpediente, ref this.hddSort, e.SortExpression);
+				gcCommon.SortGridView(ref this.gvArchivo, ref this.hddSort, e.SortExpression);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.txtExpediente.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.txtSolicitudNumero.ClientID + "');", true);
 			}
 		}
 

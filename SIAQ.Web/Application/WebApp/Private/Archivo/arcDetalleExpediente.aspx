@@ -26,13 +26,21 @@
             <asp:ImageButton ID="InformacionGeneralButton" ImageUrl="~/Include/Image/Icon/GeneralIcon.png" runat="server" OnClick="InformacionGeneralButton_Click"></asp:ImageButton><br />
             Información general
         </asp:Panel>
-        <asp:Panel CssClass="IconoPanel" ID="AsignarPanel" runat="server" Visible="true">
+		<asp:Panel CssClass="IconoPanel" ID="RecibirPanel" runat="server" Visible="true">
+            <asp:ImageButton ID="RecibirExpedienteButton" ImageUrl="~/Include/Image/Icon/EnviarIcon.png" runat="server" OnClick="RecibirExpedienteButton_Click" OnClientClick="return confirm('¿Confirma la recepción del Archivo?');" ></asp:ImageButton><br />
+            Recibir Expediente
+        </asp:Panel>
+		<asp:Panel CssClass="IconoPanel" ID="AsignarPanel" runat="server" Visible="true">
             <asp:ImageButton ID="AsignarButton" ImageUrl="~/Include/Image/Icon/AsignarIcon.png" runat="server" OnClick="AsignarButton_Click"></asp:ImageButton><br />
             Asignar expediente
         </asp:Panel>
-        <asp:Panel CssClass="IconoPanel" ID="LiberarPanel" runat="server" Visible="true">
-            <asp:ImageButton ID="LiberarButton" ImageUrl="~/Include/Image/Icon/AcuerdoIcon.png" runat="server" OnClick="LiberarButton_Click"></asp:ImageButton><br />
+		<asp:Panel CssClass="IconoPanel" ID="LiberarPanel" runat="server" Visible="true">
+            <asp:ImageButton ID="LiberarButton" ImageUrl="~/Include/Image/Icon/AsignarIcon_Success.png" runat="server" OnClick="LiberarButton_Click" OnClientClick="return confirm('¿Confirma la liberación del Archivo?');"></asp:ImageButton><br />
             Liberar expediente
+        </asp:Panel>
+        <asp:Panel CssClass="IconoPanel" ID="CambiarUbicacionPanel" runat="server" Visible="true">
+            <asp:ImageButton ID="CambiarButton" ImageUrl="~/Include/Image/Icon/CalificarIcon.png" runat="server" OnClick="CambiarButton_Click"></asp:ImageButton><br />
+            Cambiar de ubicación
         </asp:Panel>
     </div>
 
@@ -46,28 +54,25 @@
                 <td class="Campo"><asp:Label CssClass="NumeroSolicitudLabel" ID="ExpedienteNumeroLabel" runat="server" Text="0"></asp:Label></td>
                 <td colspan="4"></td>
             </tr>
+			<tr>
+				<td class="Especial">Solicitud número</td>
+                <td class="Espacio"></td>
+                <td class="Campo"><asp:Label CssClass="NumeroSolicitudLabel" ID="SolicitudNumeroLabel" runat="server" Text="0"></asp:Label></td>
+                <td colspan="4"></td>
+            </tr>
             <tr>
+                <td class="Nombre">Area</td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta"><asp:Label ID="AreaNombreLabel" runat="server"></asp:Label></td>
+                <td class="Espacio"></td>
+                <td class="Nombre"></td>
+                <td class="Espacio"></td>
+                <td class="Etiqueta"></td>
+            </tr>
+			<tr>
                 <td class="Nombre">Calificación</td>
                 <td class="Espacio"></td>
                 <td class="Etiqueta"><asp:Label ID="CalificacionLabel" runat="server" Text=""></asp:Label></td>
-                <td class="Espacio"></td>
-                <td class="Nombre"></td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta"></td>
-            </tr>
-            <tr>
-                <td class="Nombre">Estatus Archivo</td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta"><asp:Label ID="EstatusLabel" runat="server"></asp:Label></td>
-                <td class="Espacio"></td>
-                <td class="Nombre"></td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta"></td>
-            </tr>
-            <tr>
-                <td class="Nombre">Usuario con el Expediente</td>
-                <td class="Espacio"></td>
-                <td class="Etiqueta"><asp:Label ID="UsuarioNombreRecibeLabel" runat="server"></asp:Label></td>
                 <td class="Espacio"></td>
                 <td class="Nombre"></td>
                 <td class="Espacio"></td>
@@ -78,14 +83,14 @@
                 <td class="Espacio"></td>
                 <td class="Etiqueta"><asp:Label ID="UbicacionLabel" runat="server"></asp:Label></td>
                 <td class="Espacio"></td>
-                <td class="Nombre">Fecha de préstamo</td>
+                <td class="Nombre">Fecha de recepción</td>
                 <td class="Espacio"></td>
-                <td class="Etiqueta"><asp:Label ID="FechaPrestamoLabel" runat="server" Text=""></asp:Label></td>
+                <td class="Etiqueta"><asp:Label ID="FechaRecepcionLabel" runat="server" Text=""></asp:Label></td>
             </tr>
             <tr>
-                <td class="Nombre">Comentarios</td>
+                <td class="Nombre">Estatus</td>
                 <td class="Espacio"></td>
-                <td class="Etiqueta" colspan="5"><asp:Label ID="ComentariosLabel" runat="server"></asp:Label></td>
+                <td class="Etiqueta" colspan="5"><asp:Label ID="EstatusLabel" runat="server" Text=""></asp:Label></td>
             </tr>
         </table>
         
@@ -94,14 +99,14 @@
             <tr><td class="tdCeldaMiddleSpace"></td></tr>
             <tr>
                 <td style="text-align: left;">
-                    Ciudadanos
+                    Historial
                 </td>
             </tr>
             <tr>
                 <td>
-                    <asp:GridView ID="gvCiudadano" runat="server" AllowPaging="false" AllowSorting="true" AutoGenerateColumns="False" Width="100%"
-							OnRowDataBound="gvCiudadano_RowDataBound"
-                            OnSorting="gvCiudadano_Sorting">
+                    <asp:GridView ID="gvHistorial" runat="server" AllowPaging="false" AllowSorting="true" AutoGenerateColumns="False" Width="100%"
+							OnRowDataBound="gvHistorial_RowDataBound"
+                            OnSorting="gvHistorial_Sorting">
                             <RowStyle CssClass="Grid_Row" />
                             <EditRowStyle Wrap="True" />
                             <HeaderStyle CssClass="Grid_Header" ForeColor="#E3EBF5" />
@@ -109,25 +114,25 @@
                             <EmptyDataTemplate>
                                 <table border="1px" width="100%" cellpadding="0px" cellspacing="0px">
                                     <tr class="Grid_Header">
-										<td style="width:100px;">Tipo</td>
-										<td style="width:250px;">Nombre</td>
-										<td style="width:90px;">Nacimiento</td>
-										<td style="width:80px;">Sexo</td>
-                                        <td style="width:100px;">Telefono</td>
-										<td>Domicilio</td>
+										<td style="width:150px;">Tipo</td>
+										<td style="width:250px;">Nombre Presta</td>
+										<td style="width:120px;">Fecha Prestamo</td>
+										<td style="width:250px;">Nombre Recibe</td>
+										<td style="width:120px;">Fecha Regreso</td>
+										<td>Comentarios</td>
                                     </tr>
                                     <tr class="Grid_Row">
-                                        <td colspan="7">No se encontraron Ciudadanos registrados en el sistema</td>
+                                        <td colspan="6">El Archivo no tiene historial registrado</td>
                                     </tr>
                                 </table>
                             </EmptyDataTemplate>
                             <Columns>
-								<asp:BoundField HeaderText="Tipo"		ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="100px"	DataField="NombreTipoCiudadano"		SortExpression="NombreTipoCiudadano"></asp:BoundField>
-								<asp:BoundField HeaderText="Nombre"		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="250px"	DataField="NombreCompleto"			SortExpression="NombreCompleto"></asp:BoundField>
-								<asp:BoundField HeaderText="Nacimiento"	ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="90px"	DataField="FechaNacimientoCorta"	SortExpression="FechaNacimientoCorta"></asp:BoundField>
-								<asp:BoundField HeaderText="Sexo"		ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="80px"	DataField="NombreSexo"				SortExpression="NombreSexo"></asp:BoundField>
-								<asp:BoundField HeaderText="Telefono"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="100px"	DataField="TelefonoPrincipal"		SortExpression="TelefonoPrincipal"></asp:BoundField>
-								<asp:BoundField HeaderText="Domicilio"	ItemStyle-HorizontalAlign="Left"							DataField="Domicilio"				SortExpression="Domicilio"></asp:BoundField>
+								<asp:BoundField HeaderText="Tipo"			ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="150px"	DataField="Transaccion"								SortExpression="Transaccion"></asp:BoundField>
+								<asp:BoundField HeaderText="Nombre Presta"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="250px"	DataField="UsuarioNombrePresta"						SortExpression="UsuarioNombrePresta"></asp:BoundField>
+								<asp:BoundField HeaderText="Fecha Prestamo"	ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="120px"	DataField="FechaPrestamo"							SortExpression="FechaPrestamo"></asp:BoundField>
+								<asp:BoundField HeaderText="Nombre Recibe"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="250px"	DataField="UsuarioNombreRecibe"						SortExpression="UsuarioNombreRecibe"></asp:BoundField>
+								<asp:BoundField HeaderText="Fecha Regreso"	ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="120px"	DataField="FechaRegreso"							SortExpression="FechaRegreso"></asp:BoundField>
+								<asp:BoundField HeaderText="Comentarios"	ItemStyle-HorizontalAlign="Left"							DataField="Comentarios"			HtmlEncode="false"	SortExpression="Comentarios"></asp:BoundField>
                             </Columns>
                         </asp:GridView>
                 </td>
@@ -137,25 +142,10 @@
         </table>
         <br />
 
-		<!-- Documentos -->
-        <div style="text-align: left;">Documentos anexos</div>
-        <div class="DocumentoListDiv">
-            <asp:DataList ID="dlstDocumentoList" runat="server" CellPadding="5" CellSpacing="5" HorizontalAlign="Left" RepeatDirection="Horizontal" RepeatLayout="Table" OnItemDataBound="dlstDocumentoList_ItemDataBound" >
-                <ItemTemplate>
-                    <div class="Item">
-                        <asp:Image ID="DocumentoImage" runat="server" />
-                        <br />
-                        <asp:Label CssClass="Texto" ID="DocumentoLabel" runat="server" Text="Nombre del documento"></asp:Label>
-                    </div>
-                </ItemTemplate>
-            </asp:DataList>
-            <asp:Label CssClass="Texto" ID="SinDocumentoLabel" runat="server" Text=""></asp:Label>
-        </div>
-
 		<!-- Comentarios -->
         <div class="SolicitudComentarioDiv">
             <div style="text-align: left;">
-                Asuntos &nbsp;&nbsp;
+                Comentarios &nbsp;&nbsp;
                 <asp:LinkButton ID="lnkAgregarComentario" runat="server" CssClass="LinkButton_Regular" Text="Agregar comentario" OnClick="lnkAgregarComentario_Click"></asp:LinkButton>
             </div>
             <div class="TituloDiv"><asp:Label ID="ComentarioTituloLabel" runat="server" Text=""></asp:Label></div>
@@ -244,8 +234,8 @@
         </asp:Panel>
     </asp:Panel>
 
-	<asp:HiddenField ID="ExpedienteIdHidden" runat="server" Value="0"  />
-	<asp:HiddenField ID="ExpedientePrestado" runat="server" Value="0"  />
+	<asp:HiddenField ID="hddArchivoId" runat="server" Value="0"  />
+	<asp:HiddenField ID="hddUbicacionExpedienteId" runat="server" Value="0"  />
 	<asp:HiddenField ID="Sender" runat="server" Value=""  />
 	<asp:HiddenField ID="SenderId" runat="server" Value="0"  />
 	<asp:HiddenField ID="hddSort" runat="server" Value="Numero" />

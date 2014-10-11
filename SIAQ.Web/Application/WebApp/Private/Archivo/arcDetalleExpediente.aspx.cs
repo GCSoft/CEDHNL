@@ -31,6 +31,23 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 		GCJavascript gcJavascript = new GCJavascript();
 
 
+		// Funciones del programador
+
+		String GetKey(String sKey) {
+			String Response = "";
+
+			try{
+
+				Response = gcEncryption.DecryptString(sKey, true);
+
+			}catch(Exception){
+				Response = "";
+			}
+
+			return Response;
+		}
+
+
 		// Rutinas del programador
 
 		void InsertArchivoComentario() {
@@ -50,7 +67,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 				SessionEntity = (ENTSession)Session["oENTSession"];
 				
 				// Formulario
-				oENTArchivoExpediente.ExpedienteId = Int32.Parse(this.ExpedienteIdHidden.Value);
+				oENTArchivoExpediente.ArchivoId = Int32.Parse(this.hddArchivoId.Value);
 				oENTArchivoExpediente.idUsuario = SessionEntity.idUsuario;
 				oENTArchivoExpediente.Comentario = this.ckeComentario.Text.Trim();
 
@@ -66,7 +83,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 			}
 		}
 
-		void SelectedExpediente() {
+		void SelectArchivo() {
 			BPArchivoExpediente oBPArchivoExpediente = new BPArchivoExpediente();
 
 			ENTArchivoExpediente oENTArchivoExpediente = new ENTArchivoExpediente();
@@ -76,53 +93,42 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 			{
 
 				// Formulario
-				oENTArchivoExpediente.ExpedienteId = Int32.Parse(this.ExpedienteIdHidden.Value);
+				oENTArchivoExpediente.ArchivoId = Int32.Parse(this.hddArchivoId.Value);
 
 				// Transacción
-				oENTResponse = oBPArchivoExpediente.SelectArchivoExpedienteDetalle(oENTArchivoExpediente);
+				oENTResponse = oBPArchivoExpediente.SelectArchivo_Detalle(oENTArchivoExpediente);
 
 				// Errores y Warnings
 				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
 				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
 
 				// Campos ocultos
-				this.ExpedientePrestado.Value = oENTResponse.dsResponse.Tables[1].Rows[0]["ArchivoExpedienteId"].ToString();
+				this.hddUbicacionExpedienteId.Value = oENTResponse.dsResponse.Tables[1].Rows[0]["UbicacionExpedienteId"].ToString();
 
 				// Formulario
 				this.ExpedienteNumeroLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["ExpedienteNumero"].ToString();
+				this.SolicitudNumeroLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["SolicitudNumero"].ToString();
+				this.AreaNombreLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["AreaNombre"].ToString();
 				this.CalificacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["CalificacionNombre"].ToString();
-				this.EstatusLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusArchivoNombre"].ToString();
-				this.UsuarioNombreRecibeLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["UsuarioNombreRecibe"].ToString();
-				this.UbicacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Ubicacion"].ToString();
-				this.ComentariosLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Comentarios"].ToString();
+				this.UbicacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["UbicacionExpedienteNombre"].ToString();
 
-				this.FechaPrestamoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaPrestamo"].ToString();
+				this.FechaRecepcionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaRecepcion"].ToString();
+				this.EstatusLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusArchivo"].ToString();
 
 				// Grid
-				this.gvCiudadano.DataSource = oENTResponse.dsResponse.Tables[2];
-				this.gvCiudadano.DataBind();
-
-				// Documentos
-				if (oENTResponse.dsResponse.Tables[3].Rows.Count == 0){
-
-					this.SinDocumentoLabel.Text = "<br /><br />No hay documentos anexados a la solicitud";
-				}else{
-
-					this.SinDocumentoLabel.Text = "";
-					this.dlstDocumentoList.DataSource = oENTResponse.dsResponse.Tables[3];
-					this.dlstDocumentoList.DataBind();
-				}
+				this.gvHistorial.DataSource = oENTResponse.dsResponse.Tables[2];
+				this.gvHistorial.DataBind();
 
 				// Comentarios
-				if (oENTResponse.dsResponse.Tables[4].Rows.Count == 0){
+				if (oENTResponse.dsResponse.Tables[3].Rows.Count == 0){
 
-					this.SinComentariosLabel.Text = "<br /><br />No hay comentarios para esta solicitud";
+					this.SinComentariosLabel.Text = "<br /><br />No hay comentarios relacionados al Archivo";
 				}else{
 
 					this.SinComentariosLabel.Text = "";
-					this.repComentarios.DataSource = oENTResponse.dsResponse.Tables[4];
+					this.repComentarios.DataSource = oENTResponse.dsResponse.Tables[3];
 					this.repComentarios.DataBind();
-					this.ComentarioTituloLabel.Text = oENTResponse.dsResponse.Tables[4].Rows.Count.ToString() + " comentarios";
+					this.ComentarioTituloLabel.Text = oENTResponse.dsResponse.Tables[3].Rows.Count.ToString() + " comentarios";
 				}
 
 			}catch (Exception ex){
@@ -134,37 +140,122 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 			try
             {
 
-				// Opciones visibles
-				this.InformacionPanel.Visible = true;
-				this.AsignarPanel.Visible = (this.ExpedientePrestado.Value == "0" ? true : false);
-				this.LiberarPanel.Visible = (this.ExpedientePrestado.Value == "0" ? false : true);
+				switch(this.hddUbicacionExpedienteId.Value){
+					case "0":
+						
+						this.RecibirPanel.Visible = true;
+						this.AsignarPanel.Visible = false;
+						this.LiberarPanel.Visible = false;
+						this.CambiarUbicacionPanel.Visible = false;
+						break;
+
+					case "4":
+
+						this.RecibirPanel.Visible = false;
+						this.AsignarPanel.Visible = false;
+						this.LiberarPanel.Visible = true;
+						this.CambiarUbicacionPanel.Visible = false;
+						break;
+
+					default:
+
+						this.RecibirPanel.Visible = false;
+						this.AsignarPanel.Visible = true;
+						this.LiberarPanel.Visible = false;
+						this.CambiarUbicacionPanel.Visible = true;
+						break;
+				}
 
             }catch (Exception ex){
 				throw(ex);
             }
 		}
 
+		void UpdateArchivo_Liberar() {
+			BPArchivoExpediente oBPArchivoExpediente = new BPArchivoExpediente();
+
+			ENTArchivoExpediente oENTArchivoExpediente = new ENTArchivoExpediente();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+				
+				// Formulario
+				oENTArchivoExpediente.ArchivoId = Int32.Parse(this.hddArchivoId.Value);
+
+				// Transacción
+				oENTResponse = oBPArchivoExpediente.UpdateArchivo_Liberar(oENTArchivoExpediente);
+
+				// Errores y Warnings
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }	
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		void UpdateArchivo_Recibir() {
+			BPArchivoExpediente oBPArchivoExpediente = new BPArchivoExpediente();
+
+			ENTArchivoExpediente oENTArchivoExpediente = new ENTArchivoExpediente();
+			ENTResponse oENTResponse = new ENTResponse();
+			ENTSession SessionEntity = new ENTSession();
+
+			try
+			{
+
+				// Obtener sesión
+				SessionEntity = (ENTSession)Session["oENTSession"];
+				
+				// Formulario
+				oENTArchivoExpediente.ArchivoId = Int32.Parse(this.hddArchivoId.Value);
+				oENTArchivoExpediente.idUsuario_Recibe = SessionEntity.idUsuario;
+
+				// Transacción
+				oENTResponse = oBPArchivoExpediente.UpdateArchivo_Recibir(oENTArchivoExpediente);
+
+				// Errores y Warnings
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }	
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+
 
 		// Eventos de la página
 
 		protected void Page_Load(object sender, EventArgs e){
+			String sKey;
+
 			try
             {
 
-				// Validaciones
+				// Validaciones de llamada
 				if (Page.IsPostBack) { return; }
 				if (this.Request.QueryString["key"] == null) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
-				if (this.Request.QueryString["key"].ToString().Split(new Char[] { '|' }).Length != 2) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
+
+				// Validaciones de parámetros
+				sKey = GetKey(this.Request.QueryString["key"].ToString());
+				if (sKey == "") { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
+				if (sKey.ToString().Split(new Char[] { '|' }).Length != 2) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
 
 				// Obtener ExpedienteId
-				this.ExpedienteIdHidden.Value = this.Request.QueryString["key"].ToString().Split(new Char[] { '|' })[0];
+				this.hddArchivoId.Value = sKey.Split(new Char[] { '|' })[0];
 
 				// Obtener Sender
-				this.SenderId.Value = this.Request.QueryString["key"].ToString().ToString().Split(new Char[] { '|' })[1];
+				this.SenderId.Value = sKey.Split(new Char[] { '|' })[1];
 
 				switch (this.SenderId.Value){
-					case "1": // Invocado desde [Búsqueda de Expedientes]
+					case "1":
 						this.Sender.Value = "arcBusquedaExpediente.aspx";
+						break;
+
+					case "2":
+						this.Sender.Value = "arcListadoExpediente.aspx";
 						break;
 
 					default:
@@ -172,16 +263,17 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 						return;
 				}
 
-				// Consultar detalle de expediente
-				SelectedExpediente();
+				// Consultar detalle de archivo
+				SelectArchivo();
 
 				// Seguridad
 				SetPermisos();
 
-
             }catch (Exception ex){
+				this.RecibirPanel.Visible = false;
 				this.AsignarPanel.Visible = false;
 				this.LiberarPanel.Visible = false;
+				this.CambiarUbicacionPanel.Visible = false;
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
             }
 		}
@@ -190,44 +282,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 			Response.Redirect(this.Sender.Value);
 		}
 
-		protected void dlstDocumentoList_ItemDataBound(Object sender, DataListItemEventArgs e){
-			Label DocumentoLabel;
-            Image DocumentoImage;
-            DataRowView DataRow;
-
-			String DocumentoId = "";
-			String sKey = "";
-
-            try
-            {
-
-                // Validación de que sea Item 
-                if (e.Item.ItemType != ListItemType.Item && e.Item.ItemType != ListItemType.AlternatingItem) { return; }
-
-                // Obtener controles
-                DocumentoImage = (Image)e.Item.FindControl("DocumentoImage");
-                DocumentoLabel = (Label)e.Item.FindControl("DocumentoLabel");
-                DataRow = (DataRowView)e.Item.DataItem;
-
-				// Id del documento
-				DocumentoId = DataRow["DocumentoId"].ToString();
-				sKey = gcEncryption.EncryptString(DocumentoId, true);
-
-                // Configurar imagen
-				DocumentoLabel.Text = DataRow["NombreDocumentoCorto"].ToString();
-
-				DocumentoImage.ImageUrl = "~/Include/Image/Icon/" + DataRow["Icono"].ToString();
-				DocumentoImage.ToolTip = DataRow["NombreDocumento"].ToString();
-                DocumentoImage.Attributes.Add("onmouseover", "this.style.cursor='pointer'");
-                DocumentoImage.Attributes.Add("onmouseout", "this.style.cursor='auto'");
-				DocumentoImage.Attributes.Add("onclick", "window.open('" + System.Configuration.ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.ashx?key=" + sKey + "');");
-
-            }catch (Exception ex){
-                throw (ex);
-            }
-		}
-
-		protected void gvCiudadano_RowDataBound(object sender, GridViewRowEventArgs e){
+		protected void gvHistorial_RowDataBound(object sender, GridViewRowEventArgs e){
 			try
 			{
 				
@@ -245,11 +300,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 			}
 		}
 
-		protected void gvCiudadano_Sorting(object sender, GridViewSortEventArgs e){
+		protected void gvHistorial_Sorting(object sender, GridViewSortEventArgs e){
 			try
             {
 
-				gcCommon.SortGridView(ref this.gvCiudadano, ref this.hddSort, e.SortExpression);
+				gcCommon.SortGridView(ref this.gvHistorial, ref this.hddSort, e.SortExpression);
 
             }catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
@@ -264,26 +319,85 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 		}
 
 
-		// Opciones de Menu
-
-		protected void AsignarButton_Click(object sender, ImageClickEventArgs e){
-			Response.Redirect("arcAsignarExpediente.aspx?key=" + this.ExpedienteIdHidden.Value.ToString() + "|" + this.SenderId.Value.ToString());
-		}
-
-		protected void LiberarButton_Click(object sender, ImageClickEventArgs e){
-			Response.Redirect("arcLiberarExpediente.aspx?key=" + this.ExpedienteIdHidden.Value.ToString() + "|" + this.SenderId.Value.ToString());
-		}
+		// Opciones de Menu ( en orden de aparación )
 
 		protected void InformacionGeneralButton_Click(object sender, ImageClickEventArgs e){
 			try {
 
 				// Actualizar el expediente
-				SelectedExpediente();
+				SelectArchivo();
 
 			}catch (Exception ex) {
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
 			}
 		}
+
+		protected void RecibirExpedienteButton_Click(object sender, ImageClickEventArgs e){
+			try {
+
+				// Recibir el archivo
+				UpdateArchivo_Recibir();
+
+				// Actualizar detalle de Archivo
+				SelectArchivo();
+
+				// Actualizar la seguridad
+				SetPermisos();
+
+			}catch (Exception ex) {
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
+		}
+
+		protected void AsignarButton_Click(object sender, ImageClickEventArgs e){
+			String sKey = "";
+
+			try
+			{
+
+				// Llave encriptada
+				sKey = this.hddArchivoId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("arcAsignarExpediente.aspx?key=" + sKey, false);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
+		}
+
+		protected void LiberarButton_Click(object sender, ImageClickEventArgs e){
+			try {
+
+				// Liberar el archivo
+				UpdateArchivo_Liberar();
+
+				// Actualizar detalle de Archivo
+				SelectArchivo();
+
+				// Actualizar la seguridad
+				SetPermisos();
+
+			}catch (Exception ex) {
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
+		}
+
+		protected void CambiarButton_Click(object sender, ImageClickEventArgs e){
+			String sKey = "";
+
+			try
+			{
+
+				// Llave encriptada
+				sKey = this.hddArchivoId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("arcCambiarUbicacion.aspx?key=" + sKey, false);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
+		}
+
 
 		
 		// Eventos del panel Action (Agregar comentarios)
@@ -295,7 +409,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 				InsertArchivoComentario();
 
 				// Actualizar el expediente
-				SelectedExpediente();
+				SelectArchivo();
 
 				// Ocultar el panel
 				this.pnlAction.Visible = false;

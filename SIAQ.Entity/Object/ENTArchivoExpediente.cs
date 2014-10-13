@@ -32,6 +32,8 @@ namespace SIAQ.Entity.Object
 		private String	_SolicitudNumero;		// Número de solicitud a filtrar
 		private String	_Quejoso;				// Nombre del quejoso que levanta la denuncia
 		private Int16	_Ubicacion;				
+		private String	_FechaDesde;
+		private String	_FechaHasta;
 
 		
 		 //Constructor
@@ -50,6 +52,8 @@ namespace SIAQ.Entity.Object
 			_SolicitudNumero = "";
 			_Quejoso = "";
 			_Ubicacion = 0;
+			_FechaDesde = "";
+			_FechaHasta = "";
 		}
 
 
@@ -191,6 +195,18 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _Ubicacion; }
 			set { _Ubicacion = value; }
+		}
+
+		public String FechaDesde
+		{
+			get { return _FechaDesde; }
+			set { _FechaDesde = value; }
+		}
+
+		public String FechaHasta
+		{
+			get { return _FechaHasta; }
+			set { _FechaHasta = value; }
 		}
 		
 

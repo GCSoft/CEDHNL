@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="arcBusquedaExpediente.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Archivo.arcBusquedaExpediente" %>
+<%@ Register src="../../../../Include/WebUserControls/wucCalendar.ascx" tagname="wucCalendar" tagprefix="wuc" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
 	
@@ -36,6 +37,16 @@
                             <td class="Etiqueta">Usuario con el Expediente</td>
                             <td class="Espacio"></td>
                             <td class="Campo"><asp:DropDownList ID="ddlUsuario" runat="server" CssClass="DropDownList_General" Width="216px" ></asp:DropDownList></td>
+                        </tr>
+						<tr>
+                            <td class="Etiqueta">Fecha inicio</td>
+                            <td class="Espacio"></td>
+                            <td class="Campo"><wuc:wucCalendar ID="wucBeginDate" runat="server" /></td>
+                        </tr>
+                        <tr>
+                            <td class="Etiqueta">Fecha fin</td>
+                            <td class="Espacio"></td>
+                            <td class="Campo"><wuc:wucCalendar ID="wucEndDate" runat="server" /></td>
                         </tr>
                     </table>
                 </asp:Panel>

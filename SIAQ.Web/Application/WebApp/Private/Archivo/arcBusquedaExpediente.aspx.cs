@@ -48,6 +48,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 				oENTArchivoExpediente.ExpedienteNumero = this.txtExpedienteNumero.Text.Trim();
 				oENTArchivoExpediente.idUsuario = Int32.Parse(this.ddlUsuario.SelectedItem.Value);
 				oENTArchivoExpediente.UbicacionExpedienteId = Int32.Parse(this.ddlUbicacionExpediente.SelectedItem.Value);
+				oENTArchivoExpediente.FechaDesde = this.wucBeginDate.BeginDate;
+				oENTArchivoExpediente.FechaHasta = this.wucEndDate.EndDate;
 
 				// Transacción
 				oENTResponse = oBPArchivoExpediente.SelectArchivo_Filtro(oENTArchivoExpediente);
@@ -157,11 +159,16 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 				this.gvArchivo.DataSource = null;
 				this.gvArchivo.DataBind();
 
+				DateTime dtDesde = new DateTime(DateTime.Now.Year, 1, 1, 0, 0, 0);
+				DateTime dtHasta = new DateTime(DateTime.Now.Year, 12, DateTime.DaysInMonth(DateTime.Now.Year, 12), 23, 59, 59);
+				this.wucBeginDate.SetDate = dtDesde.ToString();
+				this.wucEndDate.SetDate = dtHasta.ToString();
+
 				// Foco
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtSolicitudNumero.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.txtSolicitudNumero.ClientID + "'); }", true);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.txtSolicitudNumero.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.txtSolicitudNumero.ClientID + "'); }", true);
             }
 		}
 
@@ -173,10 +180,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 				SelectArchivo();
 
 				// Foco
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.txtSolicitudNumero.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.txtSolicitudNumero.ClientID + "'); }", true);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.txtSolicitudNumero.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.txtSolicitudNumero.ClientID + "'); }", true);
             }
 		}
 
@@ -214,7 +221,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 				}
 
 			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.txtSolicitudNumero.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.txtSolicitudNumero.ClientID + "'); }", true);
 			}
 		}
 
@@ -263,7 +270,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Archivo
 				gcCommon.SortGridView(ref this.gvArchivo, ref this.hddSort, e.SortExpression);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.txtSolicitudNumero.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.txtSolicitudNumero.ClientID + "'); }", true);
 			}
 		}
 

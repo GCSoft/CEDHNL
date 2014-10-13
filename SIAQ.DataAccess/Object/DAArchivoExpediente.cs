@@ -291,6 +291,14 @@ namespace SIAQ.DataAccess.Object
 			sqlPar.Value = oENTArchivoExpediente.UbicacionExpedienteId;
 			sqlCom.Parameters.Add(sqlPar);
 
+			sqlPar = new SqlParameter("FechaDesde", SqlDbType.DateTime);
+			sqlPar.Value = oENTArchivoExpediente.FechaDesde;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("FechaHasta", SqlDbType.DateTime);
+			sqlPar.Value = oENTArchivoExpediente.FechaHasta;
+			sqlCom.Parameters.Add(sqlPar);
+
 			// Inicializaciones
 			oENTResponse.dsResponse = new DataSet();
 			sqlDA = new SqlDataAdapter(sqlCom);

@@ -119,6 +119,38 @@ namespace SIAQ.BusinessProcess.Object
 		}
 
 		///<remarks>
+		///   <name>BPSeguimiento.InsertRecomendacionGestion</name>
+		///   <create>11-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Crea un nuevo registro de gestión sobre un Seguimiento de un punto resolutivo</summary>
+		///<param name="oENTSeguimiento">Entidad de Seguimiento con los parámetros necesarios para realizar la transacción</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse InsertRecomendacionGestion(ENTSeguimiento oENTSeguimiento){
+			DASeguimiento oDAExpediente = new DASeguimiento();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Transacción en base de datos
+				oENTResponse = oDAExpediente.InsertRecomendacionGestion(oENTSeguimiento, this.sConnectionApplication, 0);
+
+				// Validación de error en consulta
+				if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+				// Validación de mensajes de la BD
+				oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
+		///<remarks>
 		///   <name>BPSeguimiento.SelectRecomendacion</name>
 		///   <create>11-Septiembre-2014</create>
         ///   <author>Ruben.Cobos</author>

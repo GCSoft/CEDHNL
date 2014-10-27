@@ -260,7 +260,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			            this.SeguimientoPanel.Visible = true;
 			            this.DocumentoPanel.Visible = true;
 			            this.DiligenciaPanel.Visible = true;
-			            this.CerrarExpedientePanel.Visible = true;
+			            this.pnlEnviarAtencion.Visible = true;
 			            break;
 
 			        case 2:	// Administrador
@@ -270,7 +270,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			            this.SeguimientoPanel.Visible = true;
 			            this.DocumentoPanel.Visible = true;
 			            this.DiligenciaPanel.Visible = true;
-			            this.CerrarExpedientePanel.Visible = true;
+			            this.pnlEnviarAtencion.Visible = true;
 			            break;
 
 			        case 10:	// Seguimiento - Secretaria
@@ -280,7 +280,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			            this.SeguimientoPanel.Visible = false;
 			            this.DocumentoPanel.Visible = false;
 			            this.DiligenciaPanel.Visible = false;
-			            this.CerrarExpedientePanel.Visible = false;
+			            this.pnlEnviarAtencion.Visible = false;
 			            break;
 
 			        case 11:	// Seguimiento - Defensor
@@ -290,7 +290,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			            this.SeguimientoPanel.Visible = true;
 			            this.DocumentoPanel.Visible = true;
 			            this.DiligenciaPanel.Visible = true;
-			            this.CerrarExpedientePanel.Visible = true;
+			            this.pnlEnviarAtencion.Visible = true;
 			            break;
 
 			        case 12:	// Seguimiento - Director
@@ -300,7 +300,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			            this.SeguimientoPanel.Visible = false;
 			            this.DocumentoPanel.Visible = false;
 			            this.DiligenciaPanel.Visible = false;
-			            this.CerrarExpedientePanel.Visible = false;
+			            this.pnlEnviarAtencion.Visible = false;
 			            break;
 
 			        default:
@@ -310,7 +310,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			            this.SeguimientoPanel.Visible = false;
 			            this.DocumentoPanel.Visible = false;
 			            this.DiligenciaPanel.Visible = false;
-			            this.CerrarExpedientePanel.Visible = false;
+			            this.pnlEnviarAtencion.Visible = false;
 			            break;
 
 			    }
@@ -330,7 +330,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			        this.SeguimientoPanel.Visible = false;
 			        this.DocumentoPanel.Visible = false;
 			        this.DiligenciaPanel.Visible = false;
-			        this.CerrarExpedientePanel.Visible = false;
+			        this.pnlEnviarAtencion.Visible = false;
 			    }
 
 				// Si aun no se ha agregado un número de recomendación no se puede operar
@@ -339,7 +339,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 					this.SeguimientoPanel.Visible = false;
 					this.DocumentoPanel.Visible = false;
 					this.DiligenciaPanel.Visible = false;
-					this.CerrarExpedientePanel.Visible = false;
+					this.pnlEnviarAtencion.Visible = false;
 				}
 
 				// Si ya se asignó un funcionario ya no podrá agregar el número de recomendación
@@ -354,7 +354,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			        this.SeguimientoPanel.Visible = false;
 			        this.DocumentoPanel.Visible = false;
 			        this.DiligenciaPanel.Visible = false;
-			        this.CerrarExpedientePanel.Visible = false;
+			        this.pnlEnviarAtencion.Visible = false;
 			    }
 
 			}catch (Exception ex){
@@ -583,7 +583,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				// Llave encriptada
 				sKey = this.hddRecomendacionId.Value + "|" + this.SenderId.Value;
 				sKey = gcEncryption.EncryptString(sKey, true);
-				this.Response.Redirect("segNotificacion.aspx?key=" + sKey, false);
+				this.Response.Redirect("segAgregarDocumento.aspx?key=" + sKey, false);
 
 			}catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
@@ -591,11 +591,35 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		}
 
 		protected void DiligenciasButton_Click(object sender, ImageClickEventArgs e){
+			String sKey = "";
 
+			try
+			{
+
+				// Llave encriptada
+				sKey = this.hddRecomendacionId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("segDiligenciaSeguimiento.aspx?key=" + sKey, false);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
 		}
 
-		protected void CerrarExpedienteButton_Click(object sender, ImageClickEventArgs e){
-			
+		protected void EnviarButton_Click(object sender, ImageClickEventArgs e){
+			String sKey = "";
+
+			try
+			{
+
+				// Llave encriptada
+				sKey = this.hddRecomendacionId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("segEnviarRecomendacion.aspx?key=" + sKey, false);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
 		}
 
 

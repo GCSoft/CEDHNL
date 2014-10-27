@@ -50,30 +50,39 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		// Rutinas el programador
 
 		void InsertRecomendacionGestion() {
+			BPSeguimiento oBPSeguimiento = new BPSeguimiento();
+			ENTSeguimiento oENTSeguimiento = new ENTSeguimiento();
+
 			ENTSession SessionEntity = new ENTSession();
-			BPSeguimientoRecomendacion BPSeguimientoRecomendacion = new BPSeguimientoRecomendacion();
+			ENTResponse oENTResponse = new ENTResponse();
 
-			// Validaciones
-			if (this.ddlRecomendacion.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar una Recomendación")); }
-			if (this.ddlTipoSeguimiento.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar un Tipo de Seguimiento")); }
-			if (this.ckeSeguimiento.Text.Trim() == "") { throw (new Exception("Es necesario ingresar un detalle del seguimiento")); }
+			try
+			{
 
-			// Obtener sesión
-			SessionEntity = (ENTSession)Session["oENTSession"];
+				// Validaciones
+				if (this.ddlRecomendacion.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar una Recomendación")); }
+				if (this.ddlTipoSeguimiento.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar un Tipo de Seguimiento")); }
+				if (this.ckeSeguimiento.Text.Trim() == "") { throw (new Exception("Es necesario ingresar un detalle del seguimiento")); }
 
-			// Parámetros
-			BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.RecomendacionId = Int32.Parse(this.ddlRecomendacion.SelectedItem.Value);
-			BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.TipoSeguimientoId = Int32.Parse(this.ddlTipoSeguimiento.SelectedItem.Value);
-			BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.FuncionarioId = SessionEntity.FuncionarioId;
-			BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.Comentario = this.ckeSeguimiento.Text.Trim();
+				// Obtener sesión
+				SessionEntity = (ENTSession)Session["oENTSession"];
 
+				// Formulario
+				oENTSeguimiento.RecomendacionId = Int32.Parse(this.hddRecomendacionId.Value);
+				//oENTSeguimiento.TipoSeguimientoId = Int32.Parse(this.ddlTipoSeguimiento.SelectedItem.Value);
+				oENTSeguimiento.FuncionarioId = SessionEntity.FuncionarioId;
+				oENTSeguimiento.Comentario = this.ckeSeguimiento.Text.Trim();
 
-			// Transacción
-			BPSeguimientoRecomendacion.InsertRecomendacionGestion();
+				// Transacción
+				oENTResponse = oBPSeguimiento.InsertRecomendacionGestion(oENTSeguimiento);
 
-			// Errores
-			if (BPSeguimientoRecomendacion.ErrorId != 0) { throw (new Exception(BPSeguimientoRecomendacion.ErrorString)); }
-
+				// Errores y Warnings
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+				
+			}catch (Exception ex){
+				throw (ex);
+			}
 		}
 
 		void SelectRecomendacion() {

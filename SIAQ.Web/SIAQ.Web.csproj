@@ -79,15 +79,16 @@
     <Content Include="Application\WebApp\Private\Quejas\QueListadoSolicitudesAprobacion.aspx" />
     <Content Include="Application\WebApp\Private\Quejas\QueListadoSolicitudesEnProceso.aspx" />
     <Content Include="Application\WebApp\Private\Reportes\rptVisGeneral.aspx" />
+    <Content Include="Application\WebApp\Private\Seguimiento\segAgregarDocumento.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segAgregrarInformacion.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segBusquedaRecomendacion.aspx" />
-    <Content Include="Application\WebApp\Private\Seguimiento\segCierrarExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segDetalleRecomendacion.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segDetalleRecomendacionCierre.aspx" />
+    <Content Include="Application\WebApp\Private\Seguimiento\segDiligenciaSeguimiento.aspx" />
+    <Content Include="Application\WebApp\Private\Seguimiento\segEnviarRecomendacion.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segListadoRecomendaciones.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segListadoRecomendacionesAprobacion.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segListadoRecomendacionesEnProceso.aspx" />
-    <Content Include="Application\WebApp\Private\Seguimiento\segNotificacion.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\VicAgregarDocumento.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\vicAgregrarInformacion.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\vicAsignarDoctor.aspx" />
@@ -186,7 +187,6 @@
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsNacionalidad.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segAsignarDefensor.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segConfirmarCierreExpediente.aspx" />
-    <Content Include="Application\WebApp\Private\Seguimiento\segDiligencia.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segSeguimientoRecomendacion.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeBusquedaCiudadano.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeDetalleCiudadano.aspx" />
@@ -903,6 +903,13 @@
       <DependentUpon>rptVisGeneral.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segAgregarDocumento.aspx.cs">
+      <DependentUpon>segAgregarDocumento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segAgregarDocumento.aspx.designer.cs">
+      <DependentUpon>segAgregarDocumento.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Application\WebApp\Private\Seguimiento\segAgregrarInformacion.aspx.cs">
       <DependentUpon>segAgregrarInformacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -923,13 +930,6 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Seguimiento\segBusquedaRecomendacion.aspx.designer.cs">
       <DependentUpon>segBusquedaRecomendacion.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\segCierrarExpediente.aspx.cs">
-      <DependentUpon>segCierrarExpediente.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\segCierrarExpediente.aspx.designer.cs">
-      <DependentUpon>segCierrarExpediente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Seguimiento\segConfirmarCierreExpediente.aspx.cs">
       <DependentUpon>segConfirmarCierreExpediente.aspx</DependentUpon>
@@ -952,12 +952,19 @@
     <Compile Include="Application\WebApp\Private\Seguimiento\segDetalleRecomendacionCierre.aspx.designer.cs">
       <DependentUpon>segDetalleRecomendacionCierre.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\segDiligencia.aspx.cs">
-      <DependentUpon>segDiligencia.aspx</DependentUpon>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segDiligenciaSeguimiento.aspx.cs">
+      <DependentUpon>segDiligenciaSeguimiento.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\segDiligencia.aspx.designer.cs">
-      <DependentUpon>segDiligencia.aspx</DependentUpon>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segDiligenciaSeguimiento.aspx.designer.cs">
+      <DependentUpon>segDiligenciaSeguimiento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segEnviarRecomendacion.aspx.cs">
+      <DependentUpon>segEnviarRecomendacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segEnviarRecomendacion.aspx.designer.cs">
+      <DependentUpon>segEnviarRecomendacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Seguimiento\segListadoRecomendaciones.aspx.cs">
       <DependentUpon>segListadoRecomendaciones.aspx</DependentUpon>
@@ -979,13 +986,6 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Seguimiento\segListadoRecomendacionesEnProceso.aspx.designer.cs">
       <DependentUpon>segListadoRecomendacionesEnProceso.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\segNotificacion.aspx.cs">
-      <DependentUpon>segNotificacion.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\segNotificacion.aspx.designer.cs">
-      <DependentUpon>segNotificacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Seguimiento\segSeguimientoRecomendacion.aspx.cs">
       <DependentUpon>segSeguimientoRecomendacion.aspx</DependentUpon>
@@ -1495,7 +1495,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>47379</DevelopmentServerPort>
+          <DevelopmentServerPort>32791</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

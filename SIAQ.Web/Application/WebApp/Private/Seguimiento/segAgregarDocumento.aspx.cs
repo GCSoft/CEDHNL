@@ -22,9 +22,10 @@ using System.IO;
 using System.Collections;
 using System.Net;
 using System.Diagnostics;
+
 namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 {
-	public partial class segNotificacion : System.Web.UI.Page
+	public partial class segAgregarDocumento : System.Web.UI.Page
 	{
 		
 		// Utilerías

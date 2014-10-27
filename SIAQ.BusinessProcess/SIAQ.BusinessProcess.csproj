@@ -79,7 +79,6 @@
     <Compile Include="Object\BPQueja.cs" />
     <Compile Include="Object\BPRecomendacion.cs" />
     <Compile Include="Object\BPSeguimiento.cs" />
-    <Compile Include="Object\BPSeguimientoRecomendacion.cs" />
     <Compile Include="Object\BPServidorPublico.cs" />
     <Compile Include="Object\BPSolicitud.cs" />
     <Compile Include="Object\BPSolicitudCiudadano.cs" />

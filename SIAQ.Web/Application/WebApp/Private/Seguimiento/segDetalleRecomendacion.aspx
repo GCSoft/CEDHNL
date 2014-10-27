@@ -46,9 +46,9 @@
             <asp:ImageButton ID="DiligenciasButton" ImageUrl="~/Include/Image/Icon/DiligenciaIcon.png" runat="server" OnClick="DiligenciasButton_Click"></asp:ImageButton><br />
             Diligencias
         </asp:Panel>
-        <asp:Panel CssClass="IconoPanel" ID="CerrarExpedientePanel" runat="server" Visible="true">
-            <asp:ImageButton ID="CerrarExpedienteButton" ImageUrl="~/Include/Image/Icon/CerrarExpedienteIcon.png" runat="server" OnClick="CerrarExpedienteButton_Click"></asp:ImageButton><br />
-            Cerrar Expediente
+        <asp:Panel CssClass="IconoPanel" ID="pnlEnviarAtencion" runat="server" Visible="true">
+            <asp:ImageButton ID="EnviarButton" ImageUrl="~/Include/Image/Icon/EnviarIcon.png" runat="server" OnClick="EnviarButton_Click"></asp:ImageButton><br />
+            Enviar Expediente
         </asp:Panel>
     </div>
 

@@ -83,7 +83,6 @@
     <Compile Include="Object\DAQueja.cs" />
     <Compile Include="Object\DARecomendacion.cs" />
     <Compile Include="Object\DASeguimiento.cs" />
-    <Compile Include="Object\DASeguimientoRecomendacion.cs" />
     <Compile Include="Object\DAServidorPublico.cs" />
     <Compile Include="Object\DASolicitud.cs" />
     <Compile Include="Object\DASolicitudCiudadano.cs" />

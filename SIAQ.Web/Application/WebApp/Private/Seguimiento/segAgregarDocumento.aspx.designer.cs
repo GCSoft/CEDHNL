@@ -10,7 +10,25 @@
 namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
     
     
-    public partial class segCierrarExpediente {
+    public partial class segAgregarDocumento {
+        
+        /// <summary>
+        /// DocumentUpdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel DocumentUpdate;
+        
+        /// <summary>
+        /// lblEncabezado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEncabezado;
         
         /// <summary>
         /// Label1 control.
@@ -22,22 +40,31 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// ExpedienteNumeroLabel control.
+        /// RecomendacionNumero control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ExpedienteNumeroLabel;
+        protected global::System.Web.UI.WebControls.Label RecomendacionNumero;
         
         /// <summary>
-        /// CalificacionLabel control.
+        /// ExpedienteNumero control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CalificacionLabel;
+        protected global::System.Web.UI.WebControls.Label ExpedienteNumero;
+        
+        /// <summary>
+        /// TipoLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label TipoLabel;
         
         /// <summary>
         /// FechaRecepcionLabel control.
@@ -58,6 +85,42 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         protected global::System.Web.UI.WebControls.Label EstatusLabel;
         
         /// <summary>
+        /// FechaQuejasLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label FechaQuejasLabel;
+        
+        /// <summary>
+        /// FuncionarioLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label FuncionarioLabel;
+        
+        /// <summary>
+        /// FechaVisitaduriasLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label FechaVisitaduriasLabel;
+        
+        /// <summary>
+        /// NombreAutoridadLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label NombreAutoridadLabel;
+        
+        /// <summary>
         /// FechaAsignacionLabel control.
         /// </summary>
         /// <remarks>
@@ -67,85 +130,58 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         protected global::System.Web.UI.WebControls.Label FechaAsignacionLabel;
         
         /// <summary>
-        /// TipoSolicitudLabel control.
+        /// PuestoAutoridadLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label TipoSolicitudLabel;
+        protected global::System.Web.UI.WebControls.Label PuestoAutoridadLabel;
         
         /// <summary>
-        /// FechaInicioLabel control.
+        /// FechaModificacionLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label FechaInicioLabel;
+        protected global::System.Web.UI.WebControls.Label FechaModificacionLabel;
         
         /// <summary>
-        /// DefensorLabel control.
+        /// NivelesAutoridadLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label DefensorLabel;
+        protected global::System.Web.UI.WebControls.Label NivelesAutoridadLabel;
         
         /// <summary>
-        /// FechaUltimaLabel control.
+        /// fupArchivo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label FechaUltimaLabel;
+        protected global::System.Web.UI.WebControls.FileUpload fupArchivo;
         
         /// <summary>
-        /// ObservacionesLabel control.
+        /// ckeDescripcion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ObservacionesLabel;
+        protected global::CKEditor.NET.CKEditorControl ckeDescripcion;
         
         /// <summary>
-        /// LugarHechosLabel control.
+        /// btnAgregar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LugarHechosLabel;
-        
-        /// <summary>
-        /// DireccionHechosLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label DireccionHechosLabel;
-        
-        /// <summary>
-        /// gvRecomendacion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvRecomendacion;
-        
-        /// <summary>
-        /// btnCerrar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCerrar;
+        protected global::System.Web.UI.WebControls.Button btnAgregar;
         
         /// <summary>
         /// btnRegresar control.
@@ -157,13 +193,40 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         protected global::System.Web.UI.WebControls.Button btnRegresar;
         
         /// <summary>
-        /// ExpedienteIdHidden control.
+        /// gvDocumento control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField ExpedienteIdHidden;
+        protected global::System.Web.UI.WebControls.GridView gvDocumento;
+        
+        /// <summary>
+        /// hddRecomendacionId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hddRecomendacionId;
+        
+        /// <summary>
+        /// hddExpedienteId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hddExpedienteId;
+        
+        /// <summary>
+        /// hddSolicitudId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hddSolicitudId;
         
         /// <summary>
         /// SenderId control.

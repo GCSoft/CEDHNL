@@ -126,23 +126,6 @@ namespace SIAQ.BusinessProcess.Object
         /// <summary>
         /// Muestra los datos de la diligencia seleccionada
         /// </summary>
-        public DataSet SelectDetalleDiligenciaExpediente()
-        {
-            DADiligencia oDADiligencia = new DADiligencia();
-            string ConnectionString = string.Empty;
-
-            ConnectionString = sConnectionApplication;
-
-            _DiligenciaEntity.DataResult = oDADiligencia.SelectDetalleDiligenciaExpediente(_DiligenciaEntity, ConnectionString);
-            _ErrorId = oDADiligencia.ErrorId;
-            _ErrorDescription = oDADiligencia.ErrorDescription;
-
-            return _DiligenciaEntity.DataResult;
-        }
-
-        /// <summary>
-        /// Muestra los datos de la diligencia seleccionada
-        /// </summary>
         public DataSet SelectDetalleDiligenciaSolicitud()
         {
             DADiligencia oDADiligencia = new DADiligencia();
@@ -157,26 +140,9 @@ namespace SIAQ.BusinessProcess.Object
             return _DiligenciaEntity.DataResult;
         }
 
-        /// <summary>
-        /// Muestra los datos de la diligencia seleccionada
-        /// </summary>
-        public DataSet SelectDetalleDiligenciaRecomendacion()
-        {
-            DADiligencia oDADiligencia = new DADiligencia();
-            string ConnectionString = string.Empty;
-
-            ConnectionString = sConnectionApplication;
-
-            _DiligenciaEntity.DataResult = oDADiligencia.SelectDetalleDiligenciaRecomendacion(_DiligenciaEntity, ConnectionString);
-            _ErrorId = oDADiligencia.ErrorId;
-            _ErrorDescription = oDADiligencia.ErrorDescription;
-
-            return _DiligenciaEntity.DataResult;
-        }
+       
 
         //Insertar
-
-        
 
         /// <summary>
         /// Crea una nueva diligencia para una solicitud

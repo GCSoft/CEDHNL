@@ -1,41 +1,49 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="segNotificacion.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Seguimiento.segNotificacion" %>
+<%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
 
 </asp:Content>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="cntPrivateTemplateBody" runat="server">
+	
 	<asp:UpdatePanel ID="DocumentUpdate" runat="server">
         <ContentTemplate>
-			
+	
 			<div id="TituloPaginaDiv">
 				<table class="GeneralTable">
 					<tr>
 						<td class="tdCeldaTituloEncabezado" style="background-image: url('../../../../Include/Image/Web/BarraTitulo.png');">
-							Notificación de recomendaciones
+							<asp:Label ID="lblEncabezado" runat="server" ></asp:Label>
 						</td>
 					</tr>
 					<tr>
 						<td class="SubTitulo">
-							<asp:Label ID="Label1" runat="server" Text="Agregue los documentos de notificación en el seguimiento del expediente."></asp:Label>
+							<asp:Label ID="Label1" runat="server" Text="Agregue aquellos documentos que sirvan para complementar la información del Recomendacion."></asp:Label>
 						</td>
 					</tr>
 				</table>
 			</div>
 
 			<div id="InformacionDiv">
-		
+				
 				<!-- Carátula -->
 				<table class="SolicitudTable">
 					<tr>
-						<td class="Especial">Expediente número</td>
+						<td class="Especial">Recomendación Número</td>
 						<td class="Espacio"></td>
-						<td class="Campo"><asp:Label CssClass="NumeroSolicitudLabel" ID="ExpedienteNumeroLabel" runat="server" Text="0"></asp:Label></td>
+						<td class="Campo"><asp:Label ID="RecomendacionNumero" CssClass="NumeroSolicitudLabel" runat="server" Text="0"></asp:Label></td>
 						<td colspan="4"></td>
 					</tr>
 					<tr>
-						<td class="Nombre">Calificación</td>
+						<td class="Especial">Expediente Número</td>
 						<td class="Espacio"></td>
-						<td class="Etiqueta"><asp:Label ID="CalificacionLabel" runat="server" Text=""></asp:Label></td>
+						<td class="Campo"><asp:Label ID="ExpedienteNumero" CssClass="NumeroSolicitudLabel" runat="server" Text="0"></asp:Label></td>
+						<td colspan="4"></td>
+					</tr>
+					<tr>
+						<td class="Nombre">Tipo</td>
+						<td class="Espacio"></td>
+						<td class="Etiqueta"><asp:Label ID="TipoLabel" runat="server" Text=""></asp:Label></td>
 						<td class="Espacio"></td>
 						<td class="Nombre">Fecha de recepción</td>
 						<td class="Espacio"></td>
@@ -44,68 +52,62 @@
 					<tr>
 						<td class="Nombre">Estatus</td>
 						<td class="Espacio"></td>
-						<td class="Etiqueta"><asp:Label ID="EstatusLabel" runat="server"></asp:Label></td>
+						<td class="Etiqueta"><asp:Label ID="EstatusLabel" runat="server" Text=""></asp:Label></td>
+						<td class="Espacio"></td>
+						<td class="Nombre">Fecha de inicio en quejas</td>
+						<td class="Espacio"></td>
+						<td class="Etiqueta"><asp:Label ID="FechaQuejasLabel" runat="server" Text=""></asp:Label></td>
+					</tr>
+					<tr>
+						<td class="Nombre">Funcionario</td>
+						<td class="Espacio"></td>
+						<td class="Etiqueta"><asp:Label ID="FuncionarioLabel" runat="server" Text=""></asp:Label></td>
+						<td class="Espacio"></td>
+						<td class="Nombre">Fecha de inicio en visitadurías</td>
+						<td class="Espacio"></td>
+						<td class="Etiqueta"><asp:Label ID="FechaVisitaduriasLabel" runat="server" Text=""></asp:Label></td>
+					</tr>
+					<tr>
+						<td class="Nombre">Nombre Autoridad</td>
+						<td class="Espacio"></td>
+						<td class="Etiqueta"><asp:Label ID="NombreAutoridadLabel" runat="server" Text=""></asp:Label></td>
 						<td class="Espacio"></td>
 						<td class="Nombre">Fecha de asignación</td>
 						<td class="Espacio"></td>
 						<td class="Etiqueta"><asp:Label ID="FechaAsignacionLabel" runat="server" Text=""></asp:Label></td>
 					</tr>
 					<tr>
-						<td class="Nombre">Tipo de solicitud</td>
+						<td class="Nombre">Puesto</td>
 						<td class="Espacio"></td>
-						<td class="Etiqueta"><asp:Label ID="TipoSolicitudLabel" runat="server"></asp:Label></td>
-						<td class="Espacio"></td>
-						<td class="Nombre">Fecha de inicio gestión</td>
-						<td class="Espacio"></td>
-						<td class="Etiqueta"><asp:Label ID="FechaInicioLabel" runat="server" Text=""></asp:Label></td>
-					</tr>
-					<tr>
-						<td class="Nombre">Defensor</td>
-						<td class="Espacio"></td>
-						<td class="Etiqueta"><asp:Label ID="DefensorLabel" runat="server"></asp:Label></td>
+						<td class="Etiqueta"><asp:Label ID="PuestoAutoridadLabel" runat="server" Text=""></asp:Label></td>
 						<td class="Espacio"></td>
 						<td class="Nombre">Última modificación</td>
 						<td class="Espacio"></td>
-						<td class="Etiqueta"><asp:Label ID="FechaUltimaLabel" runat="server" Text=""></asp:Label></td>
+						<td class="Etiqueta"><asp:Label ID="FechaModificacionLabel" runat="server" Text=""></asp:Label></td>
 					</tr>
 					<tr>
-						<td class="Nombre">Observaciones</td>
+						<td class="Nombre">Niveles de Autoridad</td>
 						<td class="Espacio"></td>
-						<td class="Observaciones" colspan="5"><asp:Label ID="ObservacionesLabel" runat="server" Text=""></asp:Label></td>
+						<td class="Etiqueta" colspan="5"><asp:Label ID="NivelesAutoridadLabel" runat="server"></asp:Label></td>
 					</tr>
+					<tr style="height:10px;"><td colspan="7"></td></tr>
+					<!-- Fin Carátula -->
 					<tr>
-						<td class="Nombre">Lugar de los hechos</td>
-						<td class="Espacio"></td>
-						<td class="Etiqueta" colspan="5"><asp:Label ID="LugarHechosLabel" runat="server"></asp:Label></td>
-					</tr>
-					<tr>
-						<td class="Nombre">Dirección de los hechos</td>
-						<td class="Espacio"></td>
-						<td class="Etiqueta" colspan="5"><asp:Label ID="DireccionHechosLabel" runat="server"></asp:Label></td>
-					</tr>
-					<tr>
-						<td class="Nombre">Recomendación</td>
+						<td class="Nombre">Archivo</td>
 						<td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
-						<td class="Campo" colspan="5"><asp:FileUpload ID="DocumentoFile" runat="server" Width="300px" /></td>
+						<td colspan="5" style="text-align:left;">
+							<asp:FileUpload ID="fupArchivo" runat="server" Width="210px" />
+
+						</td>
 					</tr>
+					<tr><td class="Nombre" colspan="7" style="text-align:left;">Descripción</td></tr>
 					<tr>
-						<td class="Nombre">Tipo de documento</td>
-						<td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
-						<td class="Campo" colspan="5"><asp:DropDownList ID="TipoDocumentoList" runat="server" CssClass="DropDownList_General" Width="205px"></asp:DropDownList></td>
-					</tr>
-					<tr>
-						<td class="Nombre">Nombre</td>
-						<td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
-						<td class="Campo" colspan="5"><asp:TextBox ID="NombreBox" runat="server" CssClass="Textbox_General" width="200px" ></asp:TextBox></td>
-					</tr>
-					<tr>
-						<td class="Nombre">Descripción</td>
-						<td class="Espacio"></td>
-						<td class="Campo" colspan="5"><asp:TextBox ID="DescripcionBox" runat="server" CssClass="Textbox_General" TextMode="MultiLine" Height="100px" width="360px" ></asp:TextBox></td>
+						<td colspan="7"><CKEditor:CKEditorControl ID="ckeDescripcion" runat="server" BasePath="~/Include/Components/CKEditor/Core/" Height="90px" MaxLength="8000"></CKEditor:CKEditorControl></td>
 					</tr>
 				</table>
+				<br />
 
-				<!-- Botones -->
+				<!-- Botones Pie de Página -->
 				<table border="0" cellpadding="0" cellspacing="0" width="100%">
 					<tr><td class="tdCeldaMiddleSpace"></td></tr>
 					<tr>
@@ -115,52 +117,48 @@
 						</td>
 					</tr>
 				</table>
-				<br />
-        
+				
 				<!-- Grid -->
 				<table border="0" cellpadding="0" cellspacing="0" width="100%">
 					<tr><td class="tdCeldaMiddleSpace"></td></tr>
 					<tr>
 						<td style="text-align: left;">
-							Notificaciones adjuntadas
+							Documentos asociados al Recomendacion
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<asp:GridView AutoGenerateColumns="False" ID="grdDocumento" runat="server" Style="text-align: center" Width="100%"
-								OnRowCommand="grdDocumento_RowCommand"
-								OnRowDataBound="grdDocumento_RowDataBound">
-								<RowStyle CssClass="Grid_Row" />
-								<EditRowStyle Wrap="True" />
-								<HeaderStyle CssClass="Grid_Header" ForeColor="#E3EBF5" />
+							<asp:GridView ID="gvDocumento" runat="server" AllowPaging="false" AllowSorting="true"  AutoGenerateColumns="False" Width="100%"
+								DataKeyNames="DocumentoId,ModuloId,NombreDocumento,Icono"
+								OnRowCommand="gvDocumento_RowCommand" 
+								OnRowDataBound="gvDocumento_RowDataBound" 
+								OnSorting="gvDocumento_Sorting">
 								<AlternatingRowStyle CssClass="Grid_Row_Alternating" />
+								<HeaderStyle CssClass="Grid_Header" />
+								<RowStyle CssClass="Grid_Row" />
 								<EmptyDataTemplate>
-									<table border="1px" width="100%" cellpadding="0px" cellspacing="0px">
+									<table border="1px" cellpadding="0px" cellspacing="0px" width="100%">
 										<tr class="Grid_Header">
-											<td>Nombre</td>
-											<td style="width: 150px;">Tipo</td>
-											<td style="width: 75px;"></td>
-											<td style="width: 50px;"></td>
+											<td style="width:200px;">Nombre</td>
+											<td>Descripción</td>
 										</tr>
 										<tr class="Grid_Row">
-											<td colspan="4">No se encontraron documentos de notificación relacionados al expediente</td>
+											<td colspan="2">No se encontraron Documentos asociados al Recomendacion</td>
 										</tr>
 									</table>
 								</EmptyDataTemplate>
 								<Columns>
-									<asp:BoundField DataField="NombreDocumento" HeaderText="Nombre" ItemStyle-HorizontalAlign="Left"></asp:BoundField>
-									<asp:BoundField DataField="Descripcion" HeaderText="Descripción"></asp:BoundField>
-									<asp:TemplateField HeaderText="Ver">
+									<asp:BoundField HeaderText="Nombre"			ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="NombreDocumento"						SortExpression="NombreDocumento"></asp:BoundField>
+									<asp:BoundField HeaderText="Descripción"	ItemStyle-HorizontalAlign="Left"							DataField="Descripcion"		HtmlEncode="false"	SortExpression="Descripcion"></asp:BoundField>
+									<asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
 										<ItemTemplate>
-											<asp:HyperLink ID="DocumentoLink" runat="server" Target="_blank" Text=""><asp:Image ID="DocumentoImage" runat="server" /></asp:HyperLink>
+											<asp:ImageButton ID="imgView" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Visualizar" runat="server" />
 										</ItemTemplate>
-										<ItemStyle HorizontalAlign="Center" Width="75px" />
 									</asp:TemplateField>
-									<asp:TemplateField HeaderText="Borrar">
+									<asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
 										<ItemTemplate>
-											<asp:ImageButton ID="EliminarButton" CommandArgument='<%#Eval("RepositorioId")%>' CommandName="Eliminar" ImageUrl="~/Include/Image/Buttons/Delete.png" OnClientClick="return confirm('¿En realidad desea eliminar el documento?');" runat="server" />
+											<asp:ImageButton ID="imgDelete" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Borrar" ImageUrl="~/Include/Image/Buttons/Delete.png" runat="server" />
 										</ItemTemplate>
-										<ItemStyle HorizontalAlign="Center" Width="50px" />
 									</asp:TemplateField>
 								</Columns>
 							</asp:GridView>
@@ -169,18 +167,19 @@
 					<tr><td class="tdCeldaMiddleSpace"></td></tr>
 					<tr><td class="tdCeldaMiddleSpace"></td></tr>
 				</table>
-				<br />
-
+				
 			</div>
 
-			<asp:HiddenField ID="ExpedienteIdHidden" runat="server" Value="0"  />
-			<asp:HiddenField ID="SolicitudIdHidden" runat="server" Value="0"  />
+			<asp:HiddenField ID="hddRecomendacionId" runat="server" Value="0"  />
+			<asp:HiddenField ID="hddExpedienteId" runat="server" Value="0"  />
+			<asp:HiddenField ID="hddSolicitudId" runat="server" Value="0"  />
 			<asp:HiddenField ID="SenderId" runat="server" Value="0"  />
-			<asp:HiddenField ID="hddSort" runat="server" Value="Numero" />
+			<asp:HiddenField ID="hddSort" runat="server" Value="NombreDocumento"  />
+	
+		</ContentTemplate>
+		<Triggers>
+			<asp:PostBackTrigger ControlID="btnAgregar" />
+		</Triggers>
+	</asp:UpdatePanel>
 
-		 </ContentTemplate>
-        <Triggers>
-            <asp:PostBackTrigger ControlID="btnAgregar" />
-        </Triggers>
-    </asp:UpdatePanel>
 </asp:Content>

@@ -14,6 +14,7 @@ using System.Web.UI.WebControls;
 
 // Referencias manuales
 using GCUtility.Function;
+using GCUtility.Security;
 using SIAQ.Entity.Object;
 using SIAQ.BusinessProcess.Object;
 using System.Data;
@@ -24,68 +25,102 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 	{
 
 		// Utilerías
-		GCCommon gcCommon = new GCCommon();
 		GCJavascript gcJavascript = new GCJavascript();
+		GCEncryption gcEncryption = new GCEncryption();
 
 
 		// Rutinas del programador
 
-		void InsertSeguimientoRecomendacion() {
-			BPSeguimientoRecomendacion BPSeguimientoRecomendacion = new BPSeguimientoRecomendacion();
+		String GetKey(String sKey) {
+			String Response = "";
 
-			// Validaciones
-			if (this.ddlFuncionario.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar un funcionario")); }
+			try{
 
-			// Parámetros
-			BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ExpedienteId = Int32.Parse(this.ExpedienteIdHidden.Value.Trim());
-			BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.FuncionarioId = Int32.Parse(this.ddlFuncionario.SelectedItem.Value);
+				Response = gcEncryption.DecryptString(sKey, true);
 
-			// Transacción
-			BPSeguimientoRecomendacion.InsertRecomendacionSeguimiento();
+			}catch(Exception){
+				Response = "";
+			}
 
-			// Errores
-			if (BPSeguimientoRecomendacion.ErrorId != 0) { throw (new Exception(BPSeguimientoRecomendacion.ErrorString)); }
-
+			return Response;
 		}
 
-		void SelectedExpediente() {
-			BPSeguimientoRecomendacion BPSeguimientoRecomendacion = new BPSeguimientoRecomendacion();
 
-			// Parámetros
-			BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ExpedienteId = Int32.Parse(this.ExpedienteIdHidden.Value );
+		// Funciones el programador
 
-			// Transacción
-			//BPSeguimientoRecomendacion.SelectExpediente_DetalleSeguimientos();
+		void InsertRecomendacionFuncionario() {
+			ENTSeguimiento oENTSeguimiento = new ENTSeguimiento();
+			ENTResponse oENTResponse = new ENTResponse();
 
-			// Errores
-			if (BPSeguimientoRecomendacion.ErrorId != 0) { throw (new Exception(BPSeguimientoRecomendacion.ErrorString)); }
+			BPSeguimiento oBPSeguimiento = new BPSeguimiento();
 
-			// No se encontró el expediente
-			if (BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows.Count == 0){ throw (new Exception("No se encontro el expediente")); }
+			try
+			{
 
-			// Formulario
-			this.ExpedienteNumeroLabel.Text = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows[0]["ExpedienteNumero"].ToString();
-			this.CalificacionLabel.Text = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows[0]["CalificacionNombre"].ToString();
-			this.EstatusLabel.Text = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows[0]["EstatusNombre"].ToString();
-			this.TipoSolicitudLabel.Text = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows[0]["TipoSolicitudNombre"].ToString();
-			this.DefensorLabel.Text = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows[0]["DefensorNombre"].ToString();
+				// Validaciones
+				if (this.ddlFuncionario.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar un Funcionario")); }
+				
+				// Formulario
+				oENTSeguimiento.RecomendacionId = Int32.Parse(this.hddRecomendacionId.Value);
+				oENTSeguimiento.FuncionarioId = Int32.Parse(this.ddlFuncionario.SelectedItem.Value);
 
-			this.FechaRecepcionLabel.Text = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows[0]["FechaRecepcion"].ToString();
-			this.FechaAsignacionLabel.Text = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows[0]["FechaAsignacion"].ToString();
-			this.FechaInicioLabel.Text = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows[0]["FechaInicioGestion"].ToString();
-			this.FechaUltimaLabel.Text = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows[0]["FechaUltimaModificacion"].ToString();
+				// Transacción
+				oENTResponse = oBPSeguimiento.InsertRecomendacionFuncionario(oENTSeguimiento);
 
-			this.ObservacionesLabel.Text = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows[0]["Observaciones"].ToString();
-			this.LugarHechosLabel.Text = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows[0]["LugarHechosNombre"].ToString();
-			this.DireccionHechosLabel.Text = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows[0]["DireccionHechos"].ToString();
+				// Errores y Warnings
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }	
 
-			// Grid
-			this.gvRecomendacion.DataSource = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[1];
-			this.gvRecomendacion.DataBind();
-
+			}catch (Exception ex){
+				throw (ex);
+			}
 		}
 
-		void SelectedFuncionario(){
+		void SelectRecomendacion() {
+			BPSeguimiento oBPSeguimiento = new BPSeguimiento();
+			ENTSeguimiento oENTSeguimiento = new ENTSeguimiento();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Formulario
+				oENTSeguimiento.RecomendacionId = Int32.Parse(this.hddRecomendacionId.Value);
+
+				// Transacción
+				oENTResponse = oBPSeguimiento.SelectRecomendacion_Detalle(oENTSeguimiento);
+
+				// Errores y Warnings
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+
+				// Encabezado
+				this.lblEncabezado.Text = "Asignar defensor " + (oENTResponse.dsResponse.Tables[1].Rows[0]["AcuerdoNoResponsabilidad"].ToString() == "0" ? "a la recomendación" : "al acuerdo de no responsabilidad");
+
+				// Formulario
+				this.RecomendacionNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["RecomendacionNumero"].ToString();
+				this.ExpedienteNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["ExpedienteNumero"].ToString();
+
+				this.TipoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Tipo"].ToString();
+				this.EstatusLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusNombre"].ToString();
+				this.FuncionarioLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FuncionarioNombre"].ToString();
+				this.NombreAutoridadLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NombreAutoridad"].ToString();
+				this.PuestoAutoridadLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["PuestoAutoridad"].ToString();
+
+				this.FechaRecepcionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaRecepcion"].ToString();
+				this.FechaQuejasLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaQuejas"].ToString();
+				this.FechaVisitaduriasLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaVisitadurias"].ToString();
+				this.FechaAsignacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaAsignacion"].ToString();
+				this.FechaModificacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaUltimaModificacion"].ToString();
+
+				this.NivelesAutoridadLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Autoridades"].ToString();
+				
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		void SelectFuncionario(){
 			ENTFuncionario oENTFuncionario = new ENTFuncionario();
 			ENTResponse oENTResponse = new ENTResponse();
 
@@ -98,7 +133,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				oENTFuncionario.FuncionarioId = 0;
 				oENTFuncionario.idUsuario = 0;
 				oENTFuncionario.idArea = 0;
-				oENTFuncionario.idRol = 11;			// Seguimiento - Defensor
+				oENTFuncionario.idRol = 11;	// Seguimiento - Defensor
 				oENTFuncionario.TituloId = 0;
 				oENTFuncionario.PuestoId = 0;
 				oENTFuncionario.Nombre = "";
@@ -130,23 +165,31 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		// Eventos de la página
 
 		protected void Page_Load(object sender, EventArgs e){
+			String sKey = "";
+
 			try
             {
 
-				// Validaciones
+				// Validaciones de llamada
 				if (Page.IsPostBack) { return; }
 				if (this.Request.QueryString["key"] == null) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
-				if (this.Request.QueryString["key"].ToString().Split(new Char[] { '|' }).Length != 2) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
 
-				// Obtener ExpedienteId
-				this.ExpedienteIdHidden.Value = this.Request.QueryString["key"].ToString().Split(new Char[] { '|' })[0];
+				// Validaciones de parámetros
+				sKey = GetKey(this.Request.QueryString["key"].ToString());
+				if (sKey == "") { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
+				if (sKey.ToString().Split(new Char[] { '|' }).Length != 2) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
+
+				// Obtener RecomendacionId
+				this.hddRecomendacionId.Value = sKey.Split(new Char[] { '|' })[0];
 
 				// Obtener Sender
-				this.SenderId.Value = this.Request.QueryString["key"].ToString().ToString().Split(new Char[] { '|' })[1];
+				this.SenderId.Value = sKey.Split(new Char[] { '|' })[1];
 
+				// Carátula
+				SelectRecomendacion();
+				
 				// Llenado de controles
-				SelectedExpediente();
-				SelectedFuncionario();
+				SelectFuncionario();
 				
 				// Foco
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlFuncionario.ClientID + "');", true);
@@ -157,14 +200,18 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		}
 
 		protected void btnGuardar_Click(object sender, EventArgs e){
+			String sKey = "";
+
 			try
             {
 
                 // Asignar el Defensor
-				InsertSeguimientoRecomendacion();
+				InsertRecomendacionFuncionario();
 
-				// Regresar al detalle del formulario
-				Response.Redirect("segDetalleExpediente.aspx?key=" + this.ExpedienteIdHidden.Value + "|" + this.SenderId.Value, false);
+				// Llave encriptada
+				sKey = this.hddRecomendacionId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("segDetalleRecomendacion.aspx?key=" + sKey, false);
 
             }catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlFuncionario.ClientID + "');", true);
@@ -172,36 +219,19 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		}
 
 		protected void btnRegresar_Click(object sender, EventArgs e){
-			Response.Redirect("segDetalleExpediente.aspx?key=" + this.ExpedienteIdHidden.Value + "|" + this.SenderId.Value, false);
-		}
+			String sKey = "";
 
-		protected void gvRecomendacion_RowDataBound(object sender, GridViewRowEventArgs e){
 			try
-			{
-				
-				// Validación de que sea fila 
-				if (e.Row.RowType != DataControlRowType.DataRow) { return; }
+            {
 
-				// Atributos Over
-				e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; ");
+				// Llave encriptada
+				sKey = this.hddRecomendacionId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("segDetalleRecomendacion.aspx?key=" + sKey, false);
 
-				// Atributos Out
-				e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; ");
-
-			}catch (Exception ex){
-				throw (ex);
-			}
-		}
-
-		protected void gvRecomendacion_Sorting(object sender, GridViewSortEventArgs e){
-			try
-			{
-
-				gcCommon.SortGridView(ref this.gvRecomendacion, ref this.hddSort, e.SortExpression);
-
-			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
-			}
+            }catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlFuncionario.ClientID + "');", true);
+            }
 		}
 
 	}

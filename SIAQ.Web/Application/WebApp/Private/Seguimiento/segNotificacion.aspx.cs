@@ -14,219 +14,368 @@ using System.Web.UI.WebControls;
 
 // Referencias manuales
 using GCUtility.Function;
+using GCUtility.Security;
 using SIAQ.Entity.Object;
 using SIAQ.BusinessProcess.Object;
 using System.Data;
-
+using System.IO;
+using System.Collections;
+using System.Net;
+using System.Diagnostics;
 namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 {
 	public partial class segNotificacion : System.Web.UI.Page
 	{
 		
-		// Constantes
-		const string ModuloId = "10c75a08-3ad4-4c44-a809-f3958e0f02b1";
-
 		// Utilerías
+		GCCommon gcCommon = new GCCommon();
 		GCJavascript gcJavascript = new GCJavascript();
+		GCEncryption gcEncryption = new GCEncryption();
 
 
-		// Rutinas del programador
+		// Funciones del programador
 
-		void AdjuntarDocumento() {
-			//ENTSession SessionEntity = new ENTSession();
-			//BPDocumento RepositorioProcess = new BPDocumento();
+		String GetKey(String sKey) {
+			String Response = "";
 
-			//// Validaciones
-			//// if (this.DocumentoFile.HasFile == false ) { throw (new Exception("Es necesario seleccionar un archivo")); }
-			//if (this.TipoDocumentoList.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar un Tipo de Documento")); }
-			//if (this.NombreBox.Text.Trim() == "") { throw (new Exception("Es necesario ingresar un nombre del documento")); }
+			try{
 
-			//// Obtener sesión
-			//SessionEntity = (ENTSession)Session["oENTSession"];
+				Response = gcEncryption.DecryptString(sKey, true);
 
-			//// Formulario
-			//RepositorioProcess.DocumentoEntity.ModuloId = 4; // Seguimiento
-			//RepositorioProcess.DocumentoEntity.TipoDocumentoId = this.TipoDocumentoList.SelectedValue;
-			//RepositorioProcess.DocumentoEntity.SolicitudId = Int32.Parse(this.SolicitudIdHidden.Value);
-			//RepositorioProcess.DocumentoEntity.idUsuarioInsert = SessionEntity.idUsuario;
-			//RepositorioProcess.DocumentoEntity.Nombre = this.NombreBox.Text.Trim();
-			//RepositorioProcess.DocumentoEntity.Descripcion = this.DescripcionBox.Text.Trim();
-			//RepositorioProcess.DocumentoEntity.FileUpload = this.DocumentoFile;
-
-			//// Transacción
-			//RepositorioProcess.SaveRepositorioSE();
-
-			//// Manejo de errores
-			//if (RepositorioProcess.ErrorId != 0) { throw(new Exception(RepositorioProcess.ErrorDescription)); }
-
-			//// Transacción exitosa
-			//this.TipoDocumentoList.SelectedIndex = 0;
-			//this.NombreBox.Text = "";
-			//this.DescripcionBox.Text = "";
-
-			//ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('La información fue guardada con éxito!'); focusControl('" + this.DocumentoFile.ClientID + "');", true);
-			
-		}
-
-		void DeleteRepositorio(string RepositorioId){
-			//BPDocumento DocumentoProcess = new BPDocumento();
-
-			//// Formulario
-			//DocumentoProcess.DocumentoEntity.RepositorioId = RepositorioId;
-			//DocumentoProcess.DocumentoEntity.SolicitudId = Int32.Parse(SolicitudIdHidden.Value);
-
-			//// Transacción
-			//DocumentoProcess.DeleteRepositorioSE();
-
-			//// Manejor de errores
-			//if (DocumentoProcess.ErrorId != 0) { throw (new Exception(DocumentoProcess.ErrorDescription)); }
-			
-			//// Transacción exitosa
-			//SelectedExpediente();
-			//ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('Archivo eliminado con éxito!'); focusControl('" + this.DocumentoFile.ClientID + "');", true);
-
-		}
-
-		void SelectedExpediente() {
-			BPSeguimientoRecomendacion BPSeguimientoRecomendacion = new BPSeguimientoRecomendacion();
-
-			// Parámetros
-			BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ExpedienteId = Int32.Parse(this.ExpedienteIdHidden.Value );
-
-			// Transacción
-			//BPSeguimientoRecomendacion.SelectExpediente_DetalleSeguimientos();
-
-			// Errores
-			if (BPSeguimientoRecomendacion.ErrorId != 0) { throw (new Exception(BPSeguimientoRecomendacion.ErrorString)); }
-
-			// No se encontró el expediente
-			if (BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows.Count == 0){ throw (new Exception("No se encontro el expediente")); }
-
-			// Formulario
-			this.ExpedienteNumeroLabel.Text = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows[0]["ExpedienteNumero"].ToString();
-			this.CalificacionLabel.Text = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows[0]["CalificacionNombre"].ToString();
-			this.EstatusLabel.Text = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows[0]["EstatusNombre"].ToString();
-			this.TipoSolicitudLabel.Text = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows[0]["TipoSolicitudNombre"].ToString();
-			this.DefensorLabel.Text = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows[0]["DefensorNombre"].ToString();
-
-			this.FechaRecepcionLabel.Text = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows[0]["FechaRecepcion"].ToString();
-			this.FechaAsignacionLabel.Text = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows[0]["FechaAsignacion"].ToString();
-			this.FechaInicioLabel.Text = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows[0]["FechaInicioGestion"].ToString();
-			this.FechaUltimaLabel.Text = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows[0]["FechaUltimaModificacion"].ToString();
-
-			this.ObservacionesLabel.Text = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows[0]["Observaciones"].ToString();
-			this.LugarHechosLabel.Text = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows[0]["LugarHechosNombre"].ToString();
-			this.DireccionHechosLabel.Text = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows[0]["DireccionHechos"].ToString();
-
-			// Campos ocultos
-			this.SolicitudIdHidden.Value = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[0].Rows[0]["SolicitudId"].ToString();
-
-			// Grid
-			this.grdDocumento.DataSource = BPSeguimientoRecomendacion.SeguimientoRecomendacionEntity.ResultData.Tables[5];
-			this.grdDocumento.DataBind();
-
-		}
-
-		void SelectedTipoDocumento(){
-			BPTipoDocumento TipoDocumentoProcess = new BPTipoDocumento();
-
-			TipoDocumentoProcess.SelectTipoDocumento();
-
-			if (TipoDocumentoProcess.ErrorId == 0)
-			{
-				TipoDocumentoList.DataValueField = "TipoDocumentoId";
-				TipoDocumentoList.DataTextField = "Nombre";
-
-				TipoDocumentoList.DataSource = TipoDocumentoProcess.TipoDocumentoEntity.ResultData;
-				TipoDocumentoList.DataBind();
-
-				TipoDocumentoList.Items.Insert(0, new ListItem("-- Seleccione --", "0"));
+			}catch(Exception){
+				Response = "";
 			}
-			else
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + TipoDocumentoProcess.ErrorDescription + "');", true);
+
+			return Response;
+		}
+
+		
+		// Rutinas el programador
+
+        void DeleteDocumento(Int32 DocumentoId){
+			ENTDocumento oENTDocumento = new ENTDocumento();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			BPDocumento oBPDocumento = new BPDocumento();
+
+			try
+			{
+
+				// Formulario
+				oENTDocumento.DocumentoId = DocumentoId;
+
+				// Consultar información del archivo
+				oENTResponse = oBPDocumento.SelectDocumento_Path(oENTDocumento);
+
+				// Errores y Warnings
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+
+				// Eliminar físicamente el archivo
+				if (File.Exists(oENTResponse.dsResponse.Tables[1].Rows[0]["Ruta"].ToString())) { File.Delete(oENTResponse.dsResponse.Tables[1].Rows[0]["Ruta"].ToString()); }
+
+				// Eliminar la referencia del archivo en la base de datos
+				oENTResponse = oBPDocumento.DeleteDocumento(oENTDocumento);
+
+				// Errores y Warnings
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+
+				// Estado inicial del formulario
+				this.ckeDescripcion.Text = "";
+
+				// Refrescar el formulario
+				SelectRecomendacion();
+
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.fupArchivo.ClientID + "'); }", true);
+
+			}catch ( IOException ioEx){
+
+				throw (ioEx);
+			}catch (Exception ex){
+
+				throw (ex);
+			}
+		}
+
+		void InsertDocumento(){
+            ENTDocumento oENTDocumento = new ENTDocumento();
+            ENTResponse oENTResponse = new ENTResponse();
+            ENTSession oENTSession;
+
+            BPDocumento oBPDocumento = new BPDocumento();
+
+            try
+            {
+
+                // Validaciones
+                if (this.fupArchivo.PostedFile == null) { throw (new Exception("Es necesario seleccionar un Documento")); }
+				if (!this.fupArchivo.HasFile) { throw (new Exception("Es necesario seleccionar un Documento")); }
+                if (this.fupArchivo.PostedFile.ContentLength == 0) { throw (new Exception("Es necesario seleccionar un Documento")); }
+
+                // Obtener Sesion
+                oENTSession = (ENTSession)this.Session["oENTSession"];
+
+                // Formulario
+				oENTDocumento.SolicitudId = Int32.Parse(this.hddSolicitudId.Value);
+				oENTDocumento.RecomendacionId = Int32.Parse(this.hddExpedienteId.Value);
+				oENTDocumento.ModuloId = 4; // Seguimientos
+                oENTDocumento.idUsuarioInsert = oENTSession.idUsuario;
+                oENTDocumento.Extension = Path.GetExtension(this.fupArchivo.PostedFile.FileName);
+                oENTDocumento.Nombre = this.fupArchivo.FileName;
+                oENTDocumento.Descripcion = this.ckeDescripcion.Text.Trim();
+				oENTDocumento.Ruta = oBPDocumento.UploadFile(this.fupArchivo.PostedFile, this.hddRecomendacionId.Value, BPDocumento.RepositoryTypes.Recomendacion );
+
+				// Transacción
+				oENTResponse = oBPDocumento.InsertDocumento(oENTDocumento);
+
+                // Errores y Warnings
+                if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+                if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+
+                // Estado inicial del formulario
+                this.ckeDescripcion.Text = "";
+
+                // Refrescar el formulario
+                SelectRecomendacion();
+
+                // Foco
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.fupArchivo.ClientID + "'); }", true);
+
+            }catch (Exception ex){
+                throw (ex);
+            }
+        }
+
+		void SelectRecomendacion() {
+			BPSeguimiento oBPSeguimiento = new BPSeguimiento();
+			ENTSeguimiento oENTSeguimiento = new ENTSeguimiento();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Formulario
+				oENTSeguimiento.RecomendacionId = Int32.Parse(this.hddRecomendacionId.Value);
+
+				// Transacción
+				oENTResponse = oBPSeguimiento.SelectRecomendacion_Detalle(oENTSeguimiento);
+
+				// Errores y Warnings
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+
+				// Campos ocultos
+				this.hddSolicitudId.Value = oENTResponse.dsResponse.Tables[1].Rows[0]["SolicitudId"].ToString();
+				this.hddExpedienteId.Value = oENTResponse.dsResponse.Tables[1].Rows[0]["ExpedienteId"].ToString();
+
+				// Encabezado
+				this.lblEncabezado.Text = "Agregar documento " + (oENTResponse.dsResponse.Tables[1].Rows[0]["AcuerdoNoResponsabilidad"].ToString() == "0" ? "a la recomendación" : "al acuerdo de no responsabilidad");
+
+				// Formulario
+				this.RecomendacionNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["RecomendacionNumero"].ToString();
+				this.ExpedienteNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["ExpedienteNumero"].ToString();
+
+				this.TipoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Tipo"].ToString();
+				this.EstatusLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusNombre"].ToString();
+				this.FuncionarioLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FuncionarioNombre"].ToString();
+				this.NombreAutoridadLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NombreAutoridad"].ToString();
+				this.PuestoAutoridadLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["PuestoAutoridad"].ToString();
+
+				this.FechaRecepcionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaRecepcion"].ToString();
+				this.FechaQuejasLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaQuejas"].ToString();
+				this.FechaVisitaduriasLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaVisitadurias"].ToString();
+				this.FechaAsignacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaAsignacion"].ToString();
+				this.FechaModificacionLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FechaUltimaModificacion"].ToString();
+
+				this.NivelesAutoridadLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Autoridades"].ToString();
+
+				// Documentos
+				this.gvDocumento.DataSource = oENTResponse.dsResponse.Tables[3];
+				this.gvDocumento.DataBind();
+				
+			}catch (Exception ex){
+				throw (ex);
+			}
 		}
 
 
 		// Eventos de la página
 
 		protected void Page_Load(object sender, EventArgs e){
+			String sKey = "";
+
 			try
             {
 
-				// Se le agrega una propiedad al formulario de la página para poder subir archivos
-				this.Form.Enctype = "multipart/form-data";
-
-				// Validaciones
+				// Validaciones de llamada
 				if (Page.IsPostBack) { return; }
 				if (this.Request.QueryString["key"] == null) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
-				if (this.Request.QueryString["key"].ToString().Split(new Char[] { '|' }).Length != 2) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
 
-				// Obtener ExpedienteId
-				this.ExpedienteIdHidden.Value = this.Request.QueryString["key"].ToString().Split(new Char[] { '|' })[0];
+				// Validaciones de parámetros
+				sKey = GetKey(this.Request.QueryString["key"].ToString());
+				if (sKey == "") { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
+				if (sKey.ToString().Split(new Char[] { '|' }).Length != 2) { this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx", false); return; }
+
+				// Obtener RecomendacionId
+				this.hddRecomendacionId.Value = sKey.Split(new Char[] { '|' })[0];
 
 				// Obtener Sender
-				this.SenderId.Value = this.Request.QueryString["key"].ToString().ToString().Split(new Char[] { '|' })[1];
+				this.SenderId.Value = sKey.Split(new Char[] { '|' })[1];
 
-				// Llenado de controles
-				SelectedExpediente();
-				SelectedTipoDocumento();
+				// Carátula
+				SelectRecomendacion();
 
 				// Foco
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.DocumentoFile.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.fupArchivo.ClientID + "'); }", true);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.DocumentoFile.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.fupArchivo.ClientID + "'); }", true);
             }
 		}
 
 		protected void btnAgregar_Click(object sender, EventArgs e){
 			try
             {
-
-                // Agregar el documento
-				AdjuntarDocumento();
-
-				// Refrescar Formulario
-				SelectedExpediente();
+                InsertDocumento();
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.DocumentoFile.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.fupArchivo.ClientID + "'); }", true);
             }
 		}
 
 		protected void btnRegresar_Click(object sender, EventArgs e){
-			Response.Redirect("segDetalleExpediente.aspx?key=" + this.ExpedienteIdHidden.Value + "|" + this.SenderId.Value, false);
+			String sKey = "";
+
+			try
+            {
+
+				// Llave encriptada
+				sKey = this.hddRecomendacionId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("segDetalleRecomendacion.aspx?key=" + sKey, false);
+
+            }catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); function pageLoad(){ focusControl('" + this.fupArchivo.ClientID + "'); }", true);
+            }
 		}
 
-		protected void grdDocumento_RowCommand(object sender, GridViewCommandEventArgs e){
-			string RepositorioId = string.Empty;
+		protected void gvDocumento_RowCommand(object sender, GridViewCommandEventArgs e){
+			String CommandName = "";
+			String DocumentoId = "";
+			String sKey = "";
 
-			RepositorioId = e.CommandArgument.ToString();
+			Int32 iRow = 0;
 
-			switch (e.CommandName.ToString())
+            try
+            {
+                // Opción seleccionada
+                CommandName = e.CommandName.ToString();
+
+                // Se dispara el evento RowCommand en el ordenamiento
+                if (CommandName == "Sort") { return; }
+
+                // Fila
+                iRow = Convert.ToInt32(e.CommandArgument.ToString());
+
+                // DataKeys
+                DocumentoId = gvDocumento.DataKeys[iRow]["DocumentoId"].ToString();
+
+                // Acción
+                switch (CommandName){
+                    case "Visualizar":
+
+						sKey = gcEncryption.EncryptString(DocumentoId, true);
+						ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "window.open('" + System.Configuration.ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.ashx?key=" + sKey + "');", true);
+                        break;
+
+                    case "Borrar":
+                        DeleteDocumento(Int32.Parse(DocumentoId));
+                        break;
+                }
+
+            }catch (Exception ex){
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+            }
+		}
+
+		protected void gvDocumento_RowDataBound(object sender, GridViewRowEventArgs e){
+			ImageButton imgView = null;
+			ImageButton imgDelete = null;
+
+			String DocumentoId = "";
+			String NombreDocumento = "";
+			String ModuloId = "";
+			String Icono = "";
+
+			String sImagesAttributes = "";
+			String sToolTip = "";
+
+			try
 			{
-				case "Eliminar":
-					DeleteRepositorio(RepositorioId);
-					break;
+				
+				// Validación de que sea fila 
+				if (e.Row.RowType != DataControlRowType.DataRow) { return; }
+
+				// Obtener objetos
+				imgView = (ImageButton)e.Row.FindControl("imgView");
+				imgDelete = (ImageButton)e.Row.FindControl("imgDelete");
+
+				// Datakeys
+				DocumentoId = this.gvDocumento.DataKeys[e.Row.RowIndex]["DocumentoId"].ToString();
+				Icono = this.gvDocumento.DataKeys[e.Row.RowIndex]["Icono"].ToString();
+				ModuloId = this.gvDocumento.DataKeys[e.Row.RowIndex]["ModuloId"].ToString();
+				NombreDocumento = this.gvDocumento.DataKeys[e.Row.RowIndex]["NombreDocumento"].ToString();
+
+				// Configuración del Icono
+				sToolTip = "Visualizar [" + NombreDocumento + "]";
+				imgView.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
+				imgView.Attributes.Add("onmouseout", "tooltip.hide();");
+				imgView.Attributes.Add("style", "cursor:hand;");
+				imgView.ImageUrl = "~/Include/Image/Icon/" + Icono;
+
+				// Seguridad
+				if( ModuloId != "4"){
+
+					imgDelete.Visible = false;
+
+					// Atributos Over y Out
+					e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; ");
+					e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; ");
+
+				}else{
+
+					// Tooltip
+					sToolTip = "Eliminar [" + NombreDocumento + "]";
+					imgDelete.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
+					imgDelete.Attributes.Add("onmouseout", "tooltip.hide();");
+					imgDelete.Attributes.Add("style", "cursor:hand;");
+
+					// Atributos Over
+					sImagesAttributes = "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete_Over.png';";
+					e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
+
+					// Atributos Out
+					sImagesAttributes = "document.getElementById('" + imgDelete.ClientID + "').src='../../../../Include/Image/Buttons/Delete.png';";
+					e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
+
+				}
+
+			}catch (Exception ex){
+				throw (ex);
 			}
 		}
 
-		protected void grdDocumento_RowDataBound(object sender,GridViewRowEventArgs e){
-			//HyperLink DocumentoLink;
-			//Image DocumentoImage;
-			//DataRowView DataRow;
+		protected void gvDocumento_Sorting(object sender, GridViewSortEventArgs e){
+			try
+			{
 
-			////Validación de que sea fila 
-			//if (e.Row.RowType != DataControlRowType.DataRow)
-			//    return;
+				gcCommon.SortGridView(ref this.gvDocumento, ref this.hddSort, e.SortExpression);
 
-			//DocumentoImage = (Image)e.Row.FindControl("DocumentoImage");
-			//DocumentoLink = (HyperLink)e.Row.FindControl("DocumentoLink");
-
-			//DataRow = (DataRowView)e.Row.DataItem;
-
-			//DocumentoImage.ImageUrl = BPDocumento.GetIconoDocumento(DataRow["FormatoDocumentoId"].ToString());
-			//DocumentoLink.NavigateUrl = System.Configuration.ConfigurationManager.AppSettings["Application.Url.Handler"].ToString() + "ObtenerRepositorio.ashx?R=" + DataRow["RepositorioId"].ToString() + "&S=" + DataRow["SolicitudId"].ToString();
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
 		}
 
 	}

@@ -47,24 +47,8 @@ namespace SIAQ.BusinessProcess.Object
 			}
 
 		
-
-			///<remarks>
-			///   <name>BPSeguimientoRecomendacion.InsertSeguimientoRecomendacion</name>
-			///   <create>06-Jun-2014</create>
-			///   <author>Ruben.Cobos</author>
-			///</remarks>
-			///<summary>Inserta un registro de seguimiento asociándolo a un Funcionario y estableciéndolo como el último (cerrando los anteriores). También cambia el estatus del expediente.</summary>
-			public void InsertRecomendacionSeguimiento(){
-				string ConnectionString = String.Empty;
-				DASeguimientoRecomendacion DASeguimientoRecomendacion = new DASeguimientoRecomendacion();
-
-				ConnectionString = sConnectionApplication;
-
-				_SeguimientoRecomendacionEntity.ResultData = DASeguimientoRecomendacion.InsertRecomendacionSeguimiento(_SeguimientoRecomendacionEntity, ConnectionString);
-				_ErrorId = DASeguimientoRecomendacion.ErrorId;
-				_ErrorString = DASeguimientoRecomendacion.ErrorDescription;
-
-			}
+			// ESTE SE VA JUNTO CON LA ENTIDAD
+		
 
 			///<remarks>
 			///   <name>BPSeguimientoRecomendacion.InsertSegSeguimiento</name>

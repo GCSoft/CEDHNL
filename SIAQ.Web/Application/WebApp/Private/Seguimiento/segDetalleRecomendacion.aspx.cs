@@ -247,119 +247,119 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		}
 
 		void SetPermisosGenerales(Int32 idRol) {
-			//try
-			//{
+			try
+			{
 
-			//    // Permisos por rol
-			//    switch (idRol){
+			    // Permisos por rol
+			    switch (idRol){
 
-			//        case 1:	// System Administrator
-			//            this.InformacionPanel.Visible = true;
-			//            this.AsignarPanel.Visible = true;
-			//            this.SeguimientoPanel.Visible = true;
-			//            this.NotificacionesPanel.Visible = true;
-			//            this.DiligenciaPanel.Visible = true;
-			//            this.CerrarExpedientePanel.Visible = true;
-			//            this.ConfirmarCierreExpedientePanel.Visible = true;
-			//            break;
+			        case 1:	// System Administrator
+			            this.InformacionPanel.Visible = true;
+						this.AgregrarInformacionPanel.Visible = true;
+			            this.AsignarPanel.Visible = true;
+			            this.SeguimientoPanel.Visible = true;
+			            this.DocumentoPanel.Visible = true;
+			            this.DiligenciaPanel.Visible = true;
+			            this.CerrarExpedientePanel.Visible = true;
+			            break;
 
-			//        case 2:	// Administrador
-			//            this.InformacionPanel.Visible = true;
-			//            this.AsignarPanel.Visible = true;
-			//            this.SeguimientoPanel.Visible = true;
-			//            this.NotificacionesPanel.Visible = true;
-			//            this.DiligenciaPanel.Visible = true;
-			//            this.CerrarExpedientePanel.Visible = true;
-			//            this.ConfirmarCierreExpedientePanel.Visible = true;
-			//            break;
+			        case 2:	// Administrador
+			            this.InformacionPanel.Visible = true;
+						this.AgregrarInformacionPanel.Visible = true;
+			            this.AsignarPanel.Visible = true;
+			            this.SeguimientoPanel.Visible = true;
+			            this.DocumentoPanel.Visible = true;
+			            this.DiligenciaPanel.Visible = true;
+			            this.CerrarExpedientePanel.Visible = true;
+			            break;
 
-			//        case 10:	// Seguimiento - Secretaria
-			//            this.InformacionPanel.Visible = true;
-			//            this.AsignarPanel.Visible = true;
-			//            this.SeguimientoPanel.Visible = false;
-			//            this.NotificacionesPanel.Visible = false;
-			//            this.DiligenciaPanel.Visible = false;
-			//            this.CerrarExpedientePanel.Visible = false;
-			//            this.ConfirmarCierreExpedientePanel.Visible = false;
-			//            break;
+			        case 10:	// Seguimiento - Secretaria
+			            this.InformacionPanel.Visible = true;
+						this.AgregrarInformacionPanel.Visible = true;
+			            this.AsignarPanel.Visible = true;
+			            this.SeguimientoPanel.Visible = false;
+			            this.DocumentoPanel.Visible = false;
+			            this.DiligenciaPanel.Visible = false;
+			            this.CerrarExpedientePanel.Visible = false;
+			            break;
 
-			//        case 11:	// Seguimiento - Defensor
-			//            this.InformacionPanel.Visible = true;
-			//            this.AsignarPanel.Visible = false;
-			//            this.SeguimientoPanel.Visible = true;
-			//            this.NotificacionesPanel.Visible = true;
-			//            this.DiligenciaPanel.Visible = true;
-			//            this.CerrarExpedientePanel.Visible = true;
-			//            this.ConfirmarCierreExpedientePanel.Visible = false;
-			//            break;
+			        case 11:	// Seguimiento - Defensor
+			            this.InformacionPanel.Visible = true;
+						this.AgregrarInformacionPanel.Visible = false;
+			            this.AsignarPanel.Visible = false;
+			            this.SeguimientoPanel.Visible = true;
+			            this.DocumentoPanel.Visible = true;
+			            this.DiligenciaPanel.Visible = true;
+			            this.CerrarExpedientePanel.Visible = true;
+			            break;
 
-			//        case 12:	// Seguimiento - Director
-			//            this.InformacionPanel.Visible = true;
-			//            this.AsignarPanel.Visible = true;
-			//            this.SeguimientoPanel.Visible = false;
-			//            this.NotificacionesPanel.Visible = false;
-			//            this.DiligenciaPanel.Visible = false;
-			//            this.CerrarExpedientePanel.Visible = false;
-			//            this.ConfirmarCierreExpedientePanel.Visible = true;
-			//            break;
+			        case 12:	// Seguimiento - Director
+			            this.InformacionPanel.Visible = true;
+						this.AgregrarInformacionPanel.Visible = true;
+			            this.AsignarPanel.Visible = true;
+			            this.SeguimientoPanel.Visible = false;
+			            this.DocumentoPanel.Visible = false;
+			            this.DiligenciaPanel.Visible = false;
+			            this.CerrarExpedientePanel.Visible = false;
+			            break;
 
-			//        default:
-			//            this.InformacionPanel.Visible = false;
-			//            this.AsignarPanel.Visible = false;
-			//            this.SeguimientoPanel.Visible = false;
-			//            this.NotificacionesPanel.Visible = false;
-			//            this.DiligenciaPanel.Visible = false;
-			//            this.CerrarExpedientePanel.Visible = false;
-			//            this.ConfirmarCierreExpedientePanel.Visible = false;
-			//            break;
+			        default:
+			            this.InformacionPanel.Visible = false;
+						this.AgregrarInformacionPanel.Visible = false;
+			            this.AsignarPanel.Visible = false;
+			            this.SeguimientoPanel.Visible = false;
+			            this.DocumentoPanel.Visible = false;
+			            this.DiligenciaPanel.Visible = false;
+			            this.CerrarExpedientePanel.Visible = false;
+			            break;
 
-			//    }
+			    }
 	
 
-			//}catch (Exception ex){
-			//    throw(ex);
-			//}
+			}catch (Exception ex){
+			    throw(ex);
+			}
 		}
 
 		void SetPermisosParticulares(Int32 idRol, Int32 FuncionarioId) {
-			//try
-			//{
+			try
+			{
 
-			//    // Si es Defensor pero el expediente no está asignado a él no lo podrá operar
-			//    if (idRol == 11 && Int32.Parse(this.FuncionarioIdHidden.Value) != FuncionarioId) {
-			//        this.SeguimientoPanel.Visible = false;
-			//        this.NotificacionesPanel.Visible = false;
-			//        this.DiligenciaPanel.Visible = false;
-			//        this.CerrarExpedientePanel.Visible = false;
-			//    }
+			    // Si es Defensor pero el expediente no está asignado a él no lo podrá operar
+			    if (idRol == 11 && Int32.Parse(this.hddFuncionarioId.Value) != FuncionarioId) {
+			        this.SeguimientoPanel.Visible = false;
+			        this.DocumentoPanel.Visible = false;
+			        this.DiligenciaPanel.Visible = false;
+			        this.CerrarExpedientePanel.Visible = false;
+			    }
 
-			//    // Si es Director y el expediente no está en estatus de confirmación de cierre ocultar dicha opción
-			//    if (idRol == 12 && Int32.Parse(this.EstatusIdHidden.Value) != 8) {
-			//        this.ConfirmarCierreExpedientePanel.Visible = false;
-			//    }
+				// Si aun no se ha agregado un número de recomendación no se puede operar
+				if ( this.RecomendacionNumero.Text.Trim() == "" ){
+					this.AsignarPanel.Visible = false;
+					this.SeguimientoPanel.Visible = false;
+					this.DocumentoPanel.Visible = false;
+					this.DiligenciaPanel.Visible = false;
+					this.CerrarExpedientePanel.Visible = false;
+				}
 
-			//    // Si es System Administrator y el expediente no está en estatus de confirmación de cierre ocultar dicha opción
-			//    if (idRol == 1 && Int32.Parse(this.EstatusIdHidden.Value) != 8) {
-			//        this.ConfirmarCierreExpedientePanel.Visible = false;
-			//    }
+				// Si ya se asignó un funcionario ya no podrá agregar el número de recomendación
+				if( Int32.Parse(this.hddFuncionarioId.Value) != 0 ){
+					this.AgregrarInformacionPanel.Visible = false;
+				}
 
-			//    // Si es Administrador y el expediente no está en estatus de confirmación de cierre ocultar dicha opción
-			//    if (idRol == 2 && Int32.Parse(this.EstatusIdHidden.Value) != 8) {
-			//        this.ConfirmarCierreExpedientePanel.Visible = false;
-			//    }
+			    // Si el expediente está en estatus de confirmación de cierre no se podrá operar
+			    if ( Int32.Parse(this.hddEstatusId.Value) == 8 ){
+					this.AgregrarInformacionPanel.Visible = false;
+			        this.AsignarPanel.Visible = false;
+			        this.SeguimientoPanel.Visible = false;
+			        this.DocumentoPanel.Visible = false;
+			        this.DiligenciaPanel.Visible = false;
+			        this.CerrarExpedientePanel.Visible = false;
+			    }
 
-			//    // Si el expediente está en estatus de confirmación de cierre no se podrá operar
-			//    if ( Int32.Parse(this.EstatusIdHidden.Value) == 8 ){
-			//        this.AsignarPanel.Visible = false;
-			//        this.SeguimientoPanel.Visible = false;
-			//        this.NotificacionesPanel.Visible = false;
-			//        this.DiligenciaPanel.Visible = false;
-			//        this.CerrarExpedientePanel.Visible = false;
-			//    }
-
-			//}catch (Exception ex){
-			//    throw(ex);
-			//}
+			}catch (Exception ex){
+			    throw(ex);
+			}
 		}
 
 
@@ -543,15 +543,51 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		}
 
 		protected void AsignarButton_Click(object sender, ImageClickEventArgs e){
-			
+			String sKey = "";
+
+			try
+			{
+
+				// Llave encriptada
+				sKey = this.hddRecomendacionId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("segAsignarDefensor.aspx?key=" + sKey, false);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
 		}
 
 		protected void SeguimientoButton_Click(object sender, ImageClickEventArgs e){
+			String sKey = "";
 
+			try
+			{
+
+				// Llave encriptada
+				sKey = this.hddRecomendacionId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("segSeguimientoRecomendacion.aspx?key=" + sKey, false);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
 		}
 
-		protected void NotificacionesButton_Click(object sender, ImageClickEventArgs e){
+		protected void DocumentoButton_Click(object sender, ImageClickEventArgs e){
+			String sKey = "";
 
+			try
+			{
+
+				// Llave encriptada
+				sKey = this.hddRecomendacionId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("segNotificacion.aspx?key=" + sKey, false);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
 		}
 
 		protected void DiligenciasButton_Click(object sender, ImageClickEventArgs e){
@@ -559,10 +595,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		}
 
 		protected void CerrarExpedienteButton_Click(object sender, ImageClickEventArgs e){
-			
-		}
-
-		protected void ConfirmarCierreExpedienteButton_Click(object sender, ImageClickEventArgs e){
 			
 		}
 

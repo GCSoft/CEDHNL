@@ -26,6 +26,7 @@ namespace SIAQ.Entity.Object
 		private Int32 _AutoridadId;
 		private DataTable _tblRecomendacionDetalle;
 		private Int16 _AcuerdoNoResponsabilidad;
+		private String _NumeroRecomendacion;
 
         #endregion
 
@@ -223,6 +224,12 @@ namespace SIAQ.Entity.Object
 			set { _AcuerdoNoResponsabilidad = value; }
 		}
 
+		public String NumeroRecomendacion
+		{
+			get { return _NumeroRecomendacion; }
+			set { _NumeroRecomendacion = value; }
+		}
+
         #endregion
 
         #region Funciones
@@ -246,6 +253,7 @@ namespace SIAQ.Entity.Object
 			_AutoridadId = 0;
 			_tblRecomendacionDetalle = null;
 			_AcuerdoNoResponsabilidad = 0;
+			_NumeroRecomendacion = "";
         }
         
         #endregion

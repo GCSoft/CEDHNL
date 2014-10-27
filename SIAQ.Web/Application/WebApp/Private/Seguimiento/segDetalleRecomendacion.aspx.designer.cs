@@ -103,22 +103,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         protected global::System.Web.UI.WebControls.ImageButton SeguimientoButton;
         
         /// <summary>
-        /// NotificacionesPanel control.
+        /// DocumentoPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel NotificacionesPanel;
+        protected global::System.Web.UI.WebControls.Panel DocumentoPanel;
         
         /// <summary>
-        /// NotificacionesButton control.
+        /// DocumentoButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton NotificacionesButton;
+        protected global::System.Web.UI.WebControls.ImageButton DocumentoButton;
         
         /// <summary>
         /// DiligenciaPanel control.
@@ -155,24 +155,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton CerrarExpedienteButton;
-        
-        /// <summary>
-        /// ConfirmarCierreExpedientePanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel ConfirmarCierreExpedientePanel;
-        
-        /// <summary>
-        /// ConfirmarCierreExpedienteButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ConfirmarCierreExpedienteButton;
         
         /// <summary>
         /// RecomendacionNumero control.

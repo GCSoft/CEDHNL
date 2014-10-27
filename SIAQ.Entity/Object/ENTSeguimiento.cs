@@ -38,6 +38,7 @@ namespace SIAQ.Entity.Object
 		private String	_FechaDesde;				// Fecha inicial de la consulta
 		private String	_FechaHasta;				// Fecha final de la consulta
 		private String	_NombreAutoridad;			// Nombre de la autoridad a filtrar
+		private String	_NumeroRecomendacion;		//
 		private String	_PuestoAutoridad;			// Puesto de la autoridad a filtrar
 		private String	_RecomendacionNumero;		// Número de recomendación a consultar
 
@@ -61,6 +62,7 @@ namespace SIAQ.Entity.Object
 			_FechaDesde = "";
 			_FechaHasta = "";
 			_NombreAutoridad = "";
+			_NumeroRecomendacion = "";
 			_PuestoAutoridad = "";
 			_RecomendacionNumero = "";
 		}
@@ -246,6 +248,18 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _NombreAutoridad; }
 			set { _NombreAutoridad = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTSeguimiento.NumeroRecomendacion</name>
+		///   <create>11-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el número de la recomendación</summary>
+		public String NumeroRecomendacion
+		{
+			get { return _NumeroRecomendacion; }
+			set { _NumeroRecomendacion = value; }
 		}
 
 		///<remarks>

@@ -45,7 +45,6 @@ namespace SIAQ.BusinessProcess.Object
 
 				// Validación de mensajes de la BD
 				oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-				if (oENTResponse.sMessage != "") { return oENTResponse; }
 
 			}catch (Exception ex){
 				oENTResponse.ExceptionRaised(ex.Message);
@@ -78,7 +77,38 @@ namespace SIAQ.BusinessProcess.Object
 
 				// Validación de mensajes de la BD
 				oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-				if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
+		///<remarks>
+		///   <name>BPSeguimiento.InsertRecomendacionFuncionario</name>
+		///   <create>11-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Crea una nueva asignación de un funcionario a un Expediente de Seguimiento</summary>
+		///<param name="oENTSeguimiento">Entidad de Seguimiento con los parámetros necesarios para realizar la transacción</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse InsertRecomendacionFuncionario(ENTSeguimiento oENTSeguimiento){
+			DASeguimiento oDAExpediente = new DASeguimiento();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Transacción en base de datos
+				oENTResponse = oDAExpediente.InsertRecomendacionFuncionario(oENTSeguimiento, this.sConnectionApplication, 0);
+
+				// Validación de error en consulta
+				if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+				// Validación de mensajes de la BD
+				oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
 
 			}catch (Exception ex){
 				oENTResponse.ExceptionRaised(ex.Message);
@@ -111,7 +141,6 @@ namespace SIAQ.BusinessProcess.Object
 
               // Validación de mensajes de la BD
               oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-              if (oENTResponse.sMessage != "") { return oENTResponse; }
 
            }catch (Exception ex){
               oENTResponse.ExceptionRaised(ex.Message);
@@ -144,7 +173,6 @@ namespace SIAQ.BusinessProcess.Object
 
               // Validación de mensajes de la BD
               oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-              if (oENTResponse.sMessage != "") { return oENTResponse; }
 
            }catch (Exception ex){
               oENTResponse.ExceptionRaised(ex.Message);
@@ -177,7 +205,38 @@ namespace SIAQ.BusinessProcess.Object
 
               // Validación de mensajes de la BD
               oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
-              if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+           }catch (Exception ex){
+              oENTResponse.ExceptionRaised(ex.Message);
+           }
+
+           // Resultado
+           return oENTResponse;
+        }
+
+		///<remarks>
+		///   <name>BPSeguimiento.UpdateRecomendacion_Numero</name>
+		///   <create>12-Septiembre-2014</create>
+        ///   <author>Ruben.Cobos</author>
+        ///</remarks>
+		///<summary>Actualiza el número de una recomendación</summary>
+		///<param name="oENTSeguimiento">Entidad de Seguimientos con los filtros necesarios para la consulta</param>
+        ///<returns>Una entidad de respuesta</returns>
+        public ENTResponse UpdateRecomendacion_Numero(ENTSeguimiento oENTSeguimiento){
+           DASeguimiento oDASeguimiento = new DASeguimiento();
+           ENTResponse oENTResponse = new ENTResponse();
+
+           try
+           {
+
+              // Transacción en base de datos
+			   oENTResponse = oDASeguimiento.UpdateRecomendacion_Numero(oENTSeguimiento, this.sConnectionApplication, 0);
+
+              // Validación de error en consulta
+              if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+              // Validación de mensajes de la BD
+              oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
 
            }catch (Exception ex){
               oENTResponse.ExceptionRaised(ex.Message);

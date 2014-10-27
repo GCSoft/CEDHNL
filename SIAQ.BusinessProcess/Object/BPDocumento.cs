@@ -26,7 +26,7 @@ namespace SIAQ.BusinessProcess.Object
     {
 
 		// Enumeraciones
-		public enum RepositoryTypes { Expediente, Solicitud }
+		public enum RepositoryTypes { Expediente, Solicitud, Recomendacion }
 
 		///<remarks>
 		///   <name>BPDocumento.UploadFile</name>
@@ -55,6 +55,10 @@ namespace SIAQ.BusinessProcess.Object
 
 					case RepositoryTypes.Solicitud:
 						Path = ConfigurationManager.AppSettings["Application.Repository"].ToString() + "S" + Seed + Convert.ToChar(92);
+						break;
+
+					case RepositoryTypes.Recomendacion:
+						Path = ConfigurationManager.AppSettings["Application.Repository"].ToString() + "R" + Seed + Convert.ToChar(92);
 						break;
 
 					default:

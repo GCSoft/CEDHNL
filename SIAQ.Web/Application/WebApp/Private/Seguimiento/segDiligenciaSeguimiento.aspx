@@ -41,7 +41,7 @@
 		<!-- Carátula -->
 		<table class="SolicitudTable">
 			<tr>
-				<td class="Especial">Recomendación Número</td>
+				<td class="Especial"><asp:Label ID="lblNumero" runat="server" ></asp:Label></td>
 				<td class="Espacio"></td>
 				<td class="Campo"><asp:Label ID="RecomendacionNumero" CssClass="NumeroSolicitudLabel" runat="server" Text="0"></asp:Label></td>
 				<td colspan="4"></td>

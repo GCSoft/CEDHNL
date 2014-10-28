@@ -31,6 +31,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
+        /// lblNumero control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNumero;
+        
+        /// <summary>
         /// RecomendacionNumero control.
         /// </summary>
         /// <remarks>
@@ -146,6 +155,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label NivelesAutoridadLabel;
+        
+        /// <summary>
+        /// lblNumeroFormulario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNumeroFormulario;
         
         /// <summary>
         /// txtNumeroRecomendacion control.

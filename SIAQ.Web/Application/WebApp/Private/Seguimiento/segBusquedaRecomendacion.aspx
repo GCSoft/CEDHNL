@@ -9,7 +9,7 @@
 	<table class="GeneralTable">
 		<tr>
 			<td class="tdCeldaTituloEncabezado" style="background-image: url('../../../../Include/Image/Web/BarraTitulo.png');">
-				Búsqueda de Recomendacion
+				Búsqueda de Documentos
 			</td>
 		</tr>
         <tr>

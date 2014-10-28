@@ -157,6 +157,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         protected global::System.Web.UI.WebControls.ImageButton EnviarButton;
         
         /// <summary>
+        /// lblNumero control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNumero;
+        
+        /// <summary>
         /// RecomendacionNumero control.
         /// </summary>
         /// <remarks>

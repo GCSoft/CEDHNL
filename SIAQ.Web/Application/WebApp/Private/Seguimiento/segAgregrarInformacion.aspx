@@ -25,7 +25,7 @@
 		<!-- Carátula -->
 		<table class="SolicitudTable">
 			<tr>
-				<td class="Especial">Recomendación Número</td>
+				<td class="Especial"><asp:Label ID="lblNumero" runat="server" ></asp:Label></td>
 				<td class="Espacio"></td>
 				<td class="Campo"><asp:Label ID="RecomendacionNumero" CssClass="NumeroSolicitudLabel" runat="server" Text="0"></asp:Label></td>
 				<td colspan="4"></td>
@@ -89,7 +89,7 @@
 			<tr style="height:10px;"><td colspan="7"></td></tr>
 			<!-- Fin de carátula -->
 			<tr>
-                <td class="Nombre">Número de Recomendación</td>
+                <td class="Nombre"><asp:Label ID="lblNumeroFormulario" runat="server" ></asp:Label></td>
                 <td class="Espacio"><font class="MarcadorObligatorio">&nbsp;*</font></td>
                 <td colspan="5" style="text-align:left;"><asp:TextBox ID="txtNumeroRecomendacion" runat="server" CssClass="Textbox_General" MaxLength="10" Width="211px"></asp:TextBox></td>
             </tr>

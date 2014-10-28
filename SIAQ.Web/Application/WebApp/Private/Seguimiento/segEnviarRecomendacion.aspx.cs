@@ -95,6 +95,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
 				// Encabezado
 				this.lblEncabezado.Text = "Agregar información " + (oENTResponse.dsResponse.Tables[1].Rows[0]["AcuerdoNoResponsabilidad"].ToString() == "0" ? "a la recomendación" : "al acuerdo de no responsabilidad");
+				this.lblNumero.Text = (oENTResponse.dsResponse.Tables[1].Rows[0]["AcuerdoNoResponsabilidad"].ToString() == "0" ? "Recomendación" : "Acuerdo") + " Número";
 
 				// Formulario
 				this.RecomendacionNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["RecomendacionNumero"].ToString();

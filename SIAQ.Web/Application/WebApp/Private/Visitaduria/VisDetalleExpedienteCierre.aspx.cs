@@ -54,6 +54,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			ENTResponse oENTResponse = new ENTResponse();
 			ENTVisitaduria oENTVisitaduria = new ENTVisitaduria();
 
+			ENTSession SessionEntity = new ENTSession();
+
 			try
 			{
 
@@ -61,6 +63,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				oENTVisitaduria.ExpedienteId = Int32.Parse(this.hddExpedienteId.Value);
 				oENTVisitaduria.EstatusId = 23; // Proyecto Aprobado
 				oENTVisitaduria.ModuloId = 3; // Visitadurías
+				oENTVisitaduria.UsuarioId = SessionEntity.idUsuario;
 
 				//Transacción
 				oENTResponse = oBPVisitaduria.UpdateExpedienteEstatus(oENTVisitaduria);

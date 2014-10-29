@@ -101,7 +101,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				this.RecomendacionNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["RecomendacionNumero"].ToString();
 				this.ExpedienteNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["ExpedienteNumero"].ToString();
 
-				this.TipoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Tipo"].ToString();
+				this.TipoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusSeguimientoNombre"].ToString();
 				this.EstatusLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusNombre"].ToString();
 				this.FuncionarioLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FuncionarioNombre"].ToString();
 				this.NombreAutoridadLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NombreAutoridad"].ToString();
@@ -121,40 +121,40 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		}
 
 		void SetCheckList() {
-			//BPAtencion oBPAtencion = new BPAtencion();
-			//ENTAtencion oENTAtencion = new ENTAtencion();
-			//ENTResponse oENTResponse = new ENTResponse();
+			BPSeguimiento oBPSeguimiento = new BPSeguimiento();
+			ENTSeguimiento oENTSeguimiento = new ENTSeguimiento();
+			ENTResponse oENTResponse = new ENTResponse();
 
-			//try
-			//{
+			try
+			{
 
-			//    // Formulario
-			//    oENTAtencion.AtencionId = Int32.Parse(this.hddRecomendacionId.Value);
+				// Formulario
+				oENTSeguimiento.RecomendacionId = Int32.Parse(this.hddRecomendacionId.Value);
 
-			//    // Transacción
-			//    oENTResponse = oBPAtencion.SelectAtencion_Detalle(oENTAtencion);
+				// Transacción
+				oENTResponse = oBPSeguimiento.SelectRecomendacion_Detalle(oENTSeguimiento);
 
-			//    // Errores y Warnings
-			//    if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
-			//    if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+				// Errores y Warnings
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
 
-			//    // Gestiones
-			//    if (oENTResponse.dsResponse.Tables[4].Rows.Count == 0){
-			//        this.imgSeguimiento.ImageUrl = "~/Include/Image/Icon/SeguimientoIcon_Pending.png";
-			//        this.imgSeguimiento.ToolTip = "No se ha emitido el dictamen del expediente de atención a víctimas";
-			//        this.btnEnviar.Enabled = false;
-			//        this.btnEnviar.CssClass = "Button_General_Disabled";
-			//    }
+				// Enviar a autoridad
+				if ( Int32.Parse( oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusSeguimientoId"].ToString() ) < 4 ){
+					this.imgSeguimiento.ImageUrl = "~/Include/Image/Icon/NotificacionIcon_Pending.png";
+					this.imgSeguimiento.ToolTip = "No se ha enviado el documento a la autoridad";
+					this.btnEnviar.Enabled = false;
+					this.btnEnviar.CssClass = "Button_General_Disabled";
+				}
 
-			//}catch (Exception ex){
-			//    throw (ex);
-			//}
-
-			this.imgSeguimiento.ImageUrl = "~/Include/Image/Icon/SeguimientoIcon_Pending.png";
-			this.imgSeguimiento.ToolTip = "No se ha finalizado los puntos resolutivos del seguimiento";
-			this.btnEnviar.Enabled = false;
-			this.btnEnviar.CssClass = "Button_General_Disabled";
-
+				// Gestiones
+				this.imgSeguimiento.ImageUrl = "~/Include/Image/Icon/SeguimientoIcon_Pending.png";
+				this.imgSeguimiento.ToolTip = "No se ha finalizado los puntos resolutivos del seguimiento";
+				this.btnEnviar.Enabled = false;
+				this.btnEnviar.CssClass = "Button_General_Disabled";
+				
+			}catch (Exception ex){
+				throw (ex);
+			}
 		}
 
 

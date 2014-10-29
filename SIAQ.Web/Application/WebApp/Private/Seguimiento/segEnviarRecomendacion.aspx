@@ -37,7 +37,7 @@
 				<td colspan="4"></td>
 			</tr>
 			<tr>
-				<td class="Nombre">Tipo</td>
+				<td class="Nombre">Estatus Seguimiento</td>
 				<td class="Espacio"></td>
 				<td class="Etiqueta"><asp:Label ID="TipoLabel" runat="server" Text=""></asp:Label></td>
 				<td class="Espacio"></td>
@@ -104,6 +104,10 @@
     </div>
 
 	<div id="CheckList">
+		<asp:Panel ID="pnlEnviarAutoridad" runat="server" CssClass="IconoPanel">
+			<asp:Image ID="imgEnviarAutoridad" runat="server" ImageUrl="~/Include/Image/Icon/NotificacionIcon_Success.png" /><br />
+            Seguimiento
+        </asp:Panel>
 		<asp:Panel ID="pnSeguimiento" runat="server" CssClass="IconoPanel">
 			<asp:Image ID="imgSeguimiento" runat="server" ImageUrl="~/Include/Image/Icon/SeguimientoIcon_Success.png" /><br />
             Seguimiento

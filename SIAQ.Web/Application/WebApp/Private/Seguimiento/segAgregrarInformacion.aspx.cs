@@ -51,6 +51,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		void UpdateRecomendacion_NumeroFolio() {
 			ENTSeguimiento oENTSeguimiento = new ENTSeguimiento();
 			ENTResponse oENTResponse = new ENTResponse();
+			ENTSession oENTSession = new ENTSession();
 
 			BPSeguimiento oBPSeguimiento = new BPSeguimiento();
 
@@ -59,10 +60,17 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
 				// Validaciones
 				if (this.txtNumeroRecomendacion.Text.Trim() == "") { throw (new Exception("Es necesario ingresar un número de recomendación")); }
+
+				// Obtener Sesion
+				oENTSession = (ENTSession)this.Session["oENTSession"];
+
+				// Validaciones de sesión
+				if (oENTSession.FuncionarioId == 0) { throw new Exception("No cuenta con permisos para crear diligencias debido a que usted no es un funcionario"); }
 				
 				// Formulario
 				oENTSeguimiento.RecomendacionId = Int32.Parse(this.hddRecomendacionId.Value);
 				oENTSeguimiento.NumeroRecomendacion = this.txtNumeroRecomendacion.Text.Trim();
+				oENTSeguimiento.UsuarioId = oENTSession.idUsuario;
 
 				// Transacción
 				oENTResponse = oBPSeguimiento.UpdateRecomendacion_Numero(oENTSeguimiento);
@@ -103,7 +111,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				this.RecomendacionNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["RecomendacionNumero"].ToString();
 				this.ExpedienteNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["ExpedienteNumero"].ToString();
 
-				this.TipoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Tipo"].ToString();
+				this.TipoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusSeguimientoNombre"].ToString();
 				this.EstatusLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusNombre"].ToString();
 				this.FuncionarioLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FuncionarioNombre"].ToString();
 				this.NombreAutoridadLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NombreAutoridad"].ToString();

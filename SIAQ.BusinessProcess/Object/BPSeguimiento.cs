@@ -247,12 +247,76 @@ namespace SIAQ.BusinessProcess.Object
         }
 
 		///<remarks>
+		///   <name>BPSeguimiento.UpdateRecomendacion_EnvioAutoridad</name>
+		///   <create>12-Septiembre-2014</create>
+        ///   <author>Ruben.Cobos</author>
+        ///</remarks>
+		///<summary>Inicia el proceso de envío de la recomendación/Acuerdo de no responsabilidad a una autoridad</summary>
+		///<param name="oENTSeguimiento">Entidad de Seguimientos con los filtros necesarios para realizar la transacción</param>
+        ///<returns>Una entidad de respuesta</returns>
+        public ENTResponse UpdateRecomendacion_EnvioAutoridad(ENTSeguimiento oENTSeguimiento){
+           DASeguimiento oDASeguimiento = new DASeguimiento();
+           ENTResponse oENTResponse = new ENTResponse();
+
+           try
+           {
+
+              // Transacción en base de datos
+			   oENTResponse = oDASeguimiento.UpdateRecomendacion_EnvioAutoridad(oENTSeguimiento, this.sConnectionApplication, 0);
+
+              // Validación de error en consulta
+              if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+              // Validación de mensajes de la BD
+              oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+
+           }catch (Exception ex){
+              oENTResponse.ExceptionRaised(ex.Message);
+           }
+
+           // Resultado
+           return oENTResponse;
+        }
+
+		///<remarks>
+		///   <name>BPSeguimiento.UpdateRecomendacion_EnvioAutoridadCierre</name>
+		///   <create>12-Septiembre-2014</create>
+        ///   <author>Ruben.Cobos</author>
+        ///</remarks>
+		///<summary>Finaliza el proceso de envío de la recomendación/Acuerdo de no responsabilidad a una autoridad</summary>
+		///<param name="oENTSeguimiento">Entidad de Seguimientos con los filtros necesarios para realizar la transacción</param>
+        ///<returns>Una entidad de respuesta</returns>
+        public ENTResponse UpdateRecomendacion_EnvioAutoridadCierre(ENTSeguimiento oENTSeguimiento){
+           DASeguimiento oDASeguimiento = new DASeguimiento();
+           ENTResponse oENTResponse = new ENTResponse();
+
+           try
+           {
+
+              // Transacción en base de datos
+			   oENTResponse = oDASeguimiento.UpdateRecomendacion_EnvioAutoridadCierre(oENTSeguimiento, this.sConnectionApplication, 0);
+
+              // Validación de error en consulta
+              if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+              // Validación de mensajes de la BD
+              oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+
+           }catch (Exception ex){
+              oENTResponse.ExceptionRaised(ex.Message);
+           }
+
+           // Resultado
+           return oENTResponse;
+        }
+
+		///<remarks>
 		///   <name>BPSeguimiento.UpdateRecomendacion_Numero</name>
 		///   <create>12-Septiembre-2014</create>
         ///   <author>Ruben.Cobos</author>
         ///</remarks>
 		///<summary>Actualiza el número de una recomendación</summary>
-		///<param name="oENTSeguimiento">Entidad de Seguimientos con los filtros necesarios para la consulta</param>
+		///<param name="oENTSeguimiento">Entidad de Seguimientos con los filtros necesarios para realizar la transacción</param>
         ///<returns>Una entidad de respuesta</returns>
         public ENTResponse UpdateRecomendacion_Numero(ENTSeguimiento oENTSeguimiento){
            DASeguimiento oDASeguimiento = new DASeguimiento();

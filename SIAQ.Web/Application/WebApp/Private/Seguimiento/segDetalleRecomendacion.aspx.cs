@@ -183,8 +183,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
 				// Campos ocultos
 				this.hddEstatusId.Value = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusId"].ToString();
+				this.hddEstatusSeguimientoId.Value = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusSeguimientoId"].ToString();
 				this.hddExpedienteId.Value = oENTResponse.dsResponse.Tables[1].Rows[0]["ExpedienteId"].ToString();
 				this.hddFuncionarioId.Value = oENTResponse.dsResponse.Tables[1].Rows[0]["FuncionarioId"].ToString();
+				this.AceptadaPorAutoridad.Value = oENTResponse.dsResponse.Tables[1].Rows[0]["Aceptada"].ToString();
+				this.EsRecomendacion.Value = (oENTResponse.dsResponse.Tables[1].Rows[0]["AcuerdoNoResponsabilidad"].ToString() == "0" ? "1" : "0");
 
 				// Encabezado
 				this.lblEncabezado.Text = "Detalle de " + ( oENTResponse.dsResponse.Tables[1].Rows[0]["AcuerdoNoResponsabilidad"].ToString() == "0" ? "recomendación" : "acuerdo de no responsabilidad" );
@@ -194,7 +197,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				this.RecomendacionNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["RecomendacionNumero"].ToString();
 				this.ExpedienteNumero.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["ExpedienteNumero"].ToString();
 
-				this.TipoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["Tipo"].ToString();
+				this.TipoLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusSeguimientoNombre"].ToString();
 				this.EstatusLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusNombre"].ToString();
 				this.FuncionarioLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["FuncionarioNombre"].ToString();
 				this.NombreAutoridadLabel.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["NombreAutoridad"].ToString();
@@ -211,6 +214,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				// Puntos Resolutivos
 				this.gvPuntosResolutivos.DataSource = oENTResponse.dsResponse.Tables[2];
 				this.gvPuntosResolutivos.DataBind();
+
+				// Ciudadanos
+				this.gvCiudadano.DataSource = oENTResponse.dsResponse.Tables[7];
+				this.gvCiudadano.DataBind();
 
 				// Documentos
 				if (oENTResponse.dsResponse.Tables[3].Rows.Count == 0){
@@ -258,9 +265,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			            this.InformacionPanel.Visible = true;
 						this.AgregrarInformacionPanel.Visible = true;
 			            this.AsignarPanel.Visible = true;
+						this.EnviarAutoridadPanel.Visible = true;
 			            this.SeguimientoPanel.Visible = true;
 			            this.DocumentoPanel.Visible = true;
 			            this.DiligenciaPanel.Visible = true;
+						this.ImpugnarPanel.Visible = true;
+						this.PublicarPanel.Visible = true;
 			            this.pnlEnviarAtencion.Visible = true;
 			            break;
 
@@ -268,9 +278,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			            this.InformacionPanel.Visible = true;
 						this.AgregrarInformacionPanel.Visible = true;
 			            this.AsignarPanel.Visible = true;
+						this.EnviarAutoridadPanel.Visible = true;
 			            this.SeguimientoPanel.Visible = true;
 			            this.DocumentoPanel.Visible = true;
 			            this.DiligenciaPanel.Visible = true;
+						this.ImpugnarPanel.Visible = true;
+						this.PublicarPanel.Visible = true;
 			            this.pnlEnviarAtencion.Visible = true;
 			            break;
 
@@ -278,9 +291,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			            this.InformacionPanel.Visible = true;
 						this.AgregrarInformacionPanel.Visible = true;
 			            this.AsignarPanel.Visible = true;
+						this.EnviarAutoridadPanel.Visible = false;
 			            this.SeguimientoPanel.Visible = false;
 			            this.DocumentoPanel.Visible = false;
 			            this.DiligenciaPanel.Visible = false;
+						this.ImpugnarPanel.Visible = false;
+						this.PublicarPanel.Visible = false;
 			            this.pnlEnviarAtencion.Visible = false;
 			            break;
 
@@ -288,9 +304,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			            this.InformacionPanel.Visible = true;
 						this.AgregrarInformacionPanel.Visible = false;
 			            this.AsignarPanel.Visible = false;
+						this.EnviarAutoridadPanel.Visible = true;
 			            this.SeguimientoPanel.Visible = true;
 			            this.DocumentoPanel.Visible = true;
 			            this.DiligenciaPanel.Visible = true;
+						this.ImpugnarPanel.Visible = true;
+						this.PublicarPanel.Visible = true;
 			            this.pnlEnviarAtencion.Visible = true;
 			            break;
 
@@ -298,9 +317,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			            this.InformacionPanel.Visible = true;
 						this.AgregrarInformacionPanel.Visible = true;
 			            this.AsignarPanel.Visible = true;
+						this.EnviarAutoridadPanel.Visible = false;
 			            this.SeguimientoPanel.Visible = false;
 			            this.DocumentoPanel.Visible = false;
 			            this.DiligenciaPanel.Visible = false;
+						this.ImpugnarPanel.Visible = false;
+						this.PublicarPanel.Visible = false;
 			            this.pnlEnviarAtencion.Visible = false;
 			            break;
 
@@ -308,9 +330,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			            this.InformacionPanel.Visible = false;
 						this.AgregrarInformacionPanel.Visible = false;
 			            this.AsignarPanel.Visible = false;
+						this.EnviarAutoridadPanel.Visible = false;
 			            this.SeguimientoPanel.Visible = false;
 			            this.DocumentoPanel.Visible = false;
 			            this.DiligenciaPanel.Visible = false;
+						this.ImpugnarPanel.Visible = false;
+						this.PublicarPanel.Visible = false;
 			            this.pnlEnviarAtencion.Visible = false;
 			            break;
 
@@ -328,18 +353,24 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
 			    // Si es Defensor pero el expediente no está asignado a él no lo podrá operar
 			    if (idRol == 11 && Int32.Parse(this.hddFuncionarioId.Value) != FuncionarioId) {
-			        this.SeguimientoPanel.Visible = false;
+					this.EnviarAutoridadPanel.Visible = false;
+					this.SeguimientoPanel.Visible = false;
 			        this.DocumentoPanel.Visible = false;
 			        this.DiligenciaPanel.Visible = false;
+					this.ImpugnarPanel.Visible = false;
+					this.PublicarPanel.Visible = false;
 			        this.pnlEnviarAtencion.Visible = false;
 			    }
 
 				// Si aun no se ha agregado un número de recomendación no se puede operar
 				if ( this.RecomendacionNumero.Text.Trim() == "" ){
 					this.AsignarPanel.Visible = false;
+					this.EnviarAutoridadPanel.Visible = false;
 					this.SeguimientoPanel.Visible = false;
 					this.DocumentoPanel.Visible = false;
 					this.DiligenciaPanel.Visible = false;
+					this.ImpugnarPanel.Visible = false;
+					this.PublicarPanel.Visible = false;
 					this.pnlEnviarAtencion.Visible = false;
 				}
 
@@ -348,10 +379,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 					this.AgregrarInformacionPanel.Visible = false;
 				}
 
+				// Si no es una transacción del tipo: Recomendación y Aceptada por la autoridad ocultar la opción de Seguimientos a puntos resolutivos
+				if ( this.AceptadaPorAutoridad.Value != "1" || this.EsRecomendacion.Value != "1" ){
+					this.SeguimientoPanel.Visible = false;
+				}
+
+				// Si aun no ha sido enviada a la autoridad no pudra ser impugnada y/o publicada
+				if ( Int32.Parse( this.hddEstatusSeguimientoId.Value ) < 4 ){
+					this.ImpugnarPanel.Visible = false;
+					this.PublicarPanel.Visible = false;
+				}
+
 			    // Si el expediente está en estatus de confirmación de cierre no se podrá operar
 			    if ( Int32.Parse(this.hddEstatusId.Value) == 8 ){
 					this.AgregrarInformacionPanel.Visible = false;
 			        this.AsignarPanel.Visible = false;
+					this.EnviarAutoridadPanel.Visible = false;
 			        this.SeguimientoPanel.Visible = false;
 			        this.DocumentoPanel.Visible = false;
 			        this.DiligenciaPanel.Visible = false;
@@ -462,6 +505,35 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
             }
         }
 
+		protected void gvCiudadano_RowDataBound(object sender, GridViewRowEventArgs e){
+			try
+			{
+				
+				// Validación de que sea fila 
+				if (e.Row.RowType != DataControlRowType.DataRow) { return; }
+
+				// Atributos Over
+				e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; ");
+
+				// Atributos Out
+				e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; ");
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		protected void gvCiudadano_Sorting(object sender, GridViewSortEventArgs e){
+			try
+			{
+
+				gcCommon.SortGridView(ref this.gvCiudadano, ref this.hddSort, e.SortExpression);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
+		}
+
 		protected void gvPuntosResolutivos_RowDataBound(object sender, GridViewRowEventArgs e){
 			try
 			{
@@ -559,6 +631,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			}
 		}
 
+		protected void EnviarAutoridadButton_Click(object sender, ImageClickEventArgs e){
+			String sKey = "";
+
+			try
+			{
+
+				// Llave encriptada
+				sKey = this.hddRecomendacionId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("segEnviarAutoridad.aspx?key=" + sKey, false);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
+		}
+
 		protected void SeguimientoButton_Click(object sender, ImageClickEventArgs e){
 			String sKey = "";
 
@@ -601,6 +689,38 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				sKey = this.hddRecomendacionId.Value + "|" + this.SenderId.Value;
 				sKey = gcEncryption.EncryptString(sKey, true);
 				this.Response.Redirect("segDiligenciaSeguimiento.aspx?key=" + sKey, false);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
+		}
+
+		protected void ImpugnarButton_Click(object sender, ImageClickEventArgs e){
+			String sKey = "";
+
+			try
+			{
+
+				// Llave encriptada
+				sKey = this.hddRecomendacionId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("segImpugnacion.aspx?key=" + sKey, false);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
+		}
+
+		protected void PublicarButton_Click(object sender, ImageClickEventArgs e){
+			String sKey = "";
+
+			try
+			{
+
+				// Llave encriptada
+				sKey = this.hddRecomendacionId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("segPublicacion.aspx?key=" + sKey, false);
 
 			}catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);

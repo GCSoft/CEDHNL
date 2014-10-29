@@ -1414,6 +1414,10 @@ namespace SIAQ.DataAccess.Object
 			sqlPar.Value = oENTVisitaduria.ModuloId;
 			sqlCom.Parameters.Add(sqlPar);
 
+			sqlPar = new SqlParameter("UsuarioId", SqlDbType.Int);
+			sqlPar.Value = oENTVisitaduria.UsuarioId;
+			sqlCom.Parameters.Add(sqlPar);
+
 			// Inicializaciones
 			oENTResponse.dsResponse = new DataSet();
 			sqlDA = new SqlDataAdapter(sqlCom);

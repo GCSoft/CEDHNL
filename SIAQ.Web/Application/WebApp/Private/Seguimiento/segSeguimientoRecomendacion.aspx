@@ -38,7 +38,7 @@
 				<td colspan="4"></td>
 			</tr>
 			<tr>
-				<td class="Nombre">Tipo</td>
+				<td class="Nombre">Estatus Seguimiento</td>
 				<td class="Espacio"></td>
 				<td class="Etiqueta"><asp:Label ID="TipoLabel" runat="server" Text=""></asp:Label></td>
 				<td class="Espacio"></td>

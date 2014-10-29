@@ -34,9 +34,13 @@
             <asp:ImageButton ID="AsignarButton" ImageUrl="~/Include/Image/Icon/AsignarIcon.png" runat="server" OnClick="AsignarButton_Click"></asp:ImageButton><br />
             Asignar defensor
         </asp:Panel>
+		<asp:Panel CssClass="IconoPanel" ID="EnviarAutoridadPanel" runat="server" Visible="true">
+            <asp:ImageButton ID="EnviarAutoridadButton" ImageUrl="~/Include/Image/Icon/NotificacionIcon.png" runat="server" OnClick="EnviarAutoridadButton_Click"></asp:ImageButton><br />
+            Enviar a Autoridad
+        </asp:Panel>
         <asp:Panel CssClass="IconoPanel" ID="SeguimientoPanel" runat="server" Visible="true">
             <asp:ImageButton ID="SeguimientoButton" ImageUrl="~/Include/Image/Icon/SeguimientoIcon.png" runat="server" OnClick="SeguimientoButton_Click"></asp:ImageButton><br />
-            Seguimiento
+            Seguimientos a puntos resolutivos
         </asp:Panel>
 		<asp:Panel CssClass="IconoPanel" ID="DocumentoPanel" runat="server" Visible="true">
             <asp:ImageButton ID="DocumentoButton" ImageUrl="~/Include/Image/Icon/DocumentoIcon.png" runat="server" OnClick="DocumentoButton_Click"></asp:ImageButton><br />
@@ -45,6 +49,14 @@
         <asp:Panel CssClass="IconoPanel" ID="DiligenciaPanel" runat="server" Visible="true">
             <asp:ImageButton ID="DiligenciasButton" ImageUrl="~/Include/Image/Icon/DiligenciaIcon.png" runat="server" OnClick="DiligenciasButton_Click"></asp:ImageButton><br />
             Diligencias
+        </asp:Panel>
+		<asp:Panel CssClass="IconoPanel" ID="ImpugnarPanel" runat="server" Visible="true">
+            <asp:ImageButton ID="ImpugnarButton" ImageUrl="~/Include/Image/Icon/ComparecenciaIcon.png" runat="server" OnClick="ImpugnarButton_Click"></asp:ImageButton><br />
+            Impugnar
+        </asp:Panel>
+		<asp:Panel CssClass="IconoPanel" ID="PublicarPanel" runat="server" Visible="true">
+            <asp:ImageButton ID="PublicarButton" ImageUrl="~/Include/Image/Icon/PublicarIcon.png" runat="server" OnClick="PublicarButton_Click"></asp:ImageButton><br />
+            Publicar
         </asp:Panel>
         <asp:Panel CssClass="IconoPanel" ID="pnlEnviarAtencion" runat="server" Visible="true">
             <asp:ImageButton ID="EnviarButton" ImageUrl="~/Include/Image/Icon/EnviarIcon.png" runat="server" OnClick="EnviarButton_Click"></asp:ImageButton><br />
@@ -69,7 +81,7 @@
 				<td colspan="4"></td>
 			</tr>
 			<tr>
-				<td class="Nombre">Tipo</td>
+				<td class="Nombre">Estatus Seguimiento</td>
 				<td class="Espacio"></td>
 				<td class="Etiqueta"><asp:Label ID="TipoLabel" runat="server" Text=""></asp:Label></td>
 				<td class="Espacio"></td>
@@ -153,6 +165,55 @@
                         <Columns>
 							<asp:BoundField HeaderText="No"			ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="50px"	DataField="RowNumber"						SortExpression="RowNumber"></asp:BoundField>
 							<asp:BoundField HeaderText="Detalle"	ItemStyle-HorizontalAlign="Left"							DataField="Detalle"		HtmlEncode="false"	SortExpression="Detalle"></asp:BoundField>
+                        </Columns>
+                    </asp:GridView>
+                </td>
+            </tr>
+            <tr><td class="tdCeldaMiddleSpace"></td></tr>
+            <tr><td class="tdCeldaMiddleSpace"></td></tr>
+        </table>
+        <br />
+
+		<!-- Ciudadanos-->
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr><td class="tdCeldaMiddleSpace"></td></tr>
+            <tr>
+                <td style="text-align: left;">
+                    Ciudadanos
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <asp:GridView ID="gvCiudadano" runat="server" AllowPaging="false" AllowSorting="true" AutoGenerateColumns="False" Width="100%"
+						DataKeyNames="CiudadanoId,NombreCompleto" 
+						OnRowDataBound="gvCiudadano_RowDataBound"
+                        OnSorting="gvCiudadano_Sorting">
+                        <RowStyle CssClass="Grid_Row" />
+                        <EditRowStyle Wrap="True" />
+                        <HeaderStyle CssClass="Grid_Header" ForeColor="#E3EBF5" />
+                        <AlternatingRowStyle CssClass="Grid_Row_Alternating" />
+                        <EmptyDataTemplate>
+                            <table border="1px" width="100%" cellpadding="0px" cellspacing="0px">
+                                <tr class="Grid_Header">
+									<td style="width:100px;">Tipo</td>
+									<td style="width:250px;">Nombre</td>
+									<td style="width:90px;">Edad</td>
+									<td style="width:80px;">Sexo</td>
+                                    <td style="width:100px;">Telefono</td>
+									<td>Domicilio</td>
+                                </tr>
+                                <tr class="Grid_Row">
+                                    <td colspan="6">No se encontraron Ciudadanos asociados al Expediente</td>
+                                </tr>
+                            </table>
+                        </EmptyDataTemplate>
+                        <Columns>
+							<asp:BoundField HeaderText="Tipo"		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="100px"	DataField="NombreTipoCiudadano"		SortExpression="NombreTipoCiudadano"></asp:BoundField>
+							<asp:BoundField HeaderText="Nombre"		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="250px"	DataField="NombreCompleto"			SortExpression="NombreCompleto"></asp:BoundField>
+							<asp:BoundField HeaderText="Edad"		ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="90px"	DataField="Edad"					SortExpression="Edad"></asp:BoundField>
+							<asp:BoundField HeaderText="Sexo"		ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="80px"	DataField="NombreSexo"				SortExpression="NombreSexo"></asp:BoundField>
+							<asp:BoundField HeaderText="Telefono"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="100px"	DataField="TelefonoPrincipal"		SortExpression="TelefonoPrincipal"></asp:BoundField>
+							<asp:BoundField HeaderText="Domicilio"	ItemStyle-HorizontalAlign="Left"							DataField="Domicilio"				SortExpression="Domicilio"></asp:BoundField>
                         </Columns>
                     </asp:GridView>
                 </td>
@@ -282,10 +343,13 @@
         </asp:Panel>
     </asp:Panel>
 
-	<asp:HiddenField ID="hddEstatusId" runat="server" Value="Numero" />
-	<asp:HiddenField ID="hddExpedienteId" runat="server" Value="Numero" />
-	<asp:HiddenField ID="hddFuncionarioId" runat="server" Value="Numero" />
-	<asp:HiddenField ID="hddRecomendacionId" runat="server" Value="" />
+	<asp:HiddenField ID="hddEstatusId" runat="server" Value="0" />
+	<asp:HiddenField ID="hddEstatusSeguimientoId" runat="server" Value="0" />
+	<asp:HiddenField ID="hddExpedienteId" runat="server" Value="0" />
+	<asp:HiddenField ID="hddFuncionarioId" runat="server" Value="0" />
+	<asp:HiddenField ID="hddRecomendacionId" runat="server" Value="0" />
+	<asp:HiddenField ID="AceptadaPorAutoridad" runat="server" Value="-1" />
+	<asp:HiddenField ID="EsRecomendacion" runat="server" Value="-1" />
 	<asp:HiddenField ID="hddSort" runat="server" Value="RowNumber" />
 	<asp:HiddenField ID="Sender" runat="server" Value="" />
 	<asp:HiddenField ID="SenderId" runat="server" Value="0" />

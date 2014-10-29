@@ -30,15 +30,19 @@ namespace SIAQ.Entity.Object
 		private Int32	_ModuloId;					// Identificador único del Módulo en donde se realiza la transacción
 		private Int32	_RecomendacionId;			// Identificador único de la recomendación
 		private Int32	_UsuarioId;					// Identificador único del Usuario
+		private Int16	_Aceptada;					// Determina si una autoridad aceptó la recomendación/Acuerdo de no responsabilidad
 		private Int16	_AcuerdoNoResponsabilidad;	// Determina con un 0 si es Recomendación, un 1 si es acuerdo o un 2 para ambos casos
 		private Int16	_MedidaPreventiva;			// Determina con un 1 si es una Medida Preventina o un 0 si es un Asunto
 		private Int16	_Nivel;						// Nivel de transacción
 		private String	_Comentario;				// Comentario en un Asunto o Medida Preventiva
 		private String	_ExpedienteNumero;			// Número de expediente a consultar
+		private String	_Fecha;						// Fecha de la transacción
 		private String	_FechaDesde;				// Fecha inicial de la consulta
 		private String	_FechaHasta;				// Fecha final de la consulta
+		private Int16	_Impugnada;					// Determina si fue impugnado el proceso de una autoridad
 		private String	_NombreAutoridad;			// Nombre de la autoridad a filtrar
 		private String	_NumeroRecomendacion;		//
+		private Int16	_Publicada;					// Determina si fue publicado el proceso de una autoridad
 		private String	_PuestoAutoridad;			// Puesto de la autoridad a filtrar
 		private String	_RecomendacionNumero;		// Número de recomendación a consultar
 
@@ -54,15 +58,19 @@ namespace SIAQ.Entity.Object
 			_ModuloId = 0;
 			_RecomendacionId = 0;
 			_UsuarioId = 0;
+			_Aceptada = 2;
 			_AcuerdoNoResponsabilidad = 2;
 			_MedidaPreventiva = -1;
 			_Nivel = -1;
 			_Comentario = "";
 			_ExpedienteNumero = "";
+			_Fecha = "";
 			_FechaDesde = "";
 			_FechaHasta = "";
+			_Impugnada = 2;
 			_NombreAutoridad = "";
 			_NumeroRecomendacion = "";
+			_Publicada = 2;
 			_PuestoAutoridad = "";
 			_RecomendacionNumero = "";
 		}
@@ -155,6 +163,18 @@ namespace SIAQ.Entity.Object
 		}
 
 		///<remarks>
+		///   <name>ENTSeguimiento.Aceptada</name>
+		///   <create>11-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna un valor que determina si una autoridad aceptó la recomendación/Acuerdo de no responsabilidad</summary>
+		public Int16 Aceptada
+		{
+			get { return _Aceptada; }
+			set { _Aceptada = value; }
+		}
+
+		///<remarks>
 		///   <name>ENTSeguimiento.AcuerdoNoResponsabilidad</name>
 		///   <create>11-Septiembre-2014</create>
 		///   <author>Ruben.Cobos</author>
@@ -215,6 +235,18 @@ namespace SIAQ.Entity.Object
 		}
 
 		///<remarks>
+		///   <name>ENTSeguimiento.Fecha</name>
+		///   <create>11-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna la fecha de la transacción</summary>
+		public String Fecha
+		{
+			get { return _Fecha; }
+			set { _Fecha = value; }
+		}
+
+		///<remarks>
 		///   <name>ENTSeguimiento.FechaDesde</name>
 		///   <create>11-Septiembre-2014</create>
 		///   <author>Ruben.Cobos</author>
@@ -239,6 +271,18 @@ namespace SIAQ.Entity.Object
 		}
 
 		///<remarks>
+		///   <name>ENTSeguimiento.Aceptada</name>
+		///   <create>11-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna un valor que determina si fue impugnado el proceso de una autoridad</summary>
+		public Int16 Impugnada
+		{
+			get { return _Impugnada; }
+			set { _Impugnada = value; }
+		}
+
+		///<remarks>
 		///   <name>ENTSeguimiento.NombreAutoridad</name>
 		///   <create>11-Septiembre-2014</create>
 		///   <author>Ruben.Cobos</author>
@@ -260,6 +304,18 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _NumeroRecomendacion; }
 			set { _NumeroRecomendacion = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTSeguimiento.Publicada</name>
+		///   <create>11-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna un valor que determina si fue publicada el proceso de una autoridad</summary>
+		public Int16 Publicada
+		{
+			get { return _Publicada; }
+			set { _Publicada = value; }
 		}
 
 		///<remarks>

@@ -542,6 +542,11 @@
     <Content Include="Include\Image\Icon\NotificacionIcon.png" />
     <Content Include="Include\Image\Icon\FileIcon_Pdf.png" />
     <Content Include="Include\Image\Icon\FileIcon_PowerPoint.png" />
+    <Content Include="Include\Image\Icon\NotificacionIcon_Pending.png" />
+    <Content Include="Include\Image\Icon\NotificacionIcon_Success.png" />
+    <Content Include="Include\Image\Icon\PublicarIcon.png" />
+    <Content Include="Include\Image\Icon\PublicarIcon_Pending.png" />
+    <Content Include="Include\Image\Icon\PublicarIcon_Success.png" />
     <Content Include="Include\Image\Icon\RechazarCierreIcon.png" />
     <Content Include="Include\Image\Icon\RecomendacionIcon.png" />
     <Content Include="Include\Image\Icon\RecomendacionIcon_Pending.png" />

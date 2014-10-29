@@ -166,7 +166,7 @@
 					<table border="0" cellpadding="0" cellspacing="0" style="height:100%; text-align:left;" width="100%">
 						<tr style="height:20px;"><td colspan="3"></td></tr>
 						<tr class="trFilaItem">
-							<td class="tdActionCeldaLeyendaItem">&nbsp;Fecha de impugnacion</td>
+							<td class="tdActionCeldaLeyendaItem">&nbsp;Fecha de impugnación</td>
 							<td style="width:5px;"></td>
 							<td><wuc:wucCalendar ID="calFechaImpugnar" runat="server" /></td>
 						</tr>
@@ -227,7 +227,7 @@
 						<tr style="height:5px;"><td colspan="3"></td></tr>
 						<tr>
 							<td colspan="3" style="text-align:right;">
-								<asp:Button ID="btnPopUpRespuesta" runat="server" Text="Envío" CssClass="Button_General" width="125px" onclick="btnPopUpRespuesta_Click" />
+								<asp:Button ID="btnPopUpRespuesta" runat="server" Text="Aceptar" CssClass="Button_General" width="125px" onclick="btnPopUpRespuesta_Click" />
 							</td>
 						</tr>
 						<tr>

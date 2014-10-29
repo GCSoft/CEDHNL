@@ -60,7 +60,7 @@
         </asp:Panel>
         <asp:Panel CssClass="IconoPanel" ID="pnlEnviarAtencion" runat="server" Visible="true">
             <asp:ImageButton ID="EnviarButton" ImageUrl="~/Include/Image/Icon/EnviarIcon.png" runat="server" OnClick="EnviarButton_Click"></asp:ImageButton><br />
-            Enviar Expediente
+            Enviar Seguimiento
         </asp:Panel>
     </div>
 

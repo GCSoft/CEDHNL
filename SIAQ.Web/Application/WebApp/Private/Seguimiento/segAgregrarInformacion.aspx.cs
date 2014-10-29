@@ -63,9 +63,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
 				// Obtener Sesion
 				oENTSession = (ENTSession)this.Session["oENTSession"];
-
-				// Validaciones de sesión
-				if (oENTSession.FuncionarioId == 0) { throw new Exception("No cuenta con permisos para crear diligencias debido a que usted no es un funcionario"); }
 				
 				// Formulario
 				oENTSeguimiento.RecomendacionId = Int32.Parse(this.hddRecomendacionId.Value);

@@ -202,7 +202,7 @@
 				<table border="0" cellpadding="0" cellspacing="0" style="height:100%; width:100%">
 					<tr>
 						<td style="width:10px"></td>
-						<td style="text-align:left;"><asp:Label ID="Label2" runat="server" CssClass="ActionHeaderTitle"></asp:Label></td>
+						<td style="text-align:left;"><asp:Label ID="lblRespuestaTitle" runat="server" CssClass="ActionHeaderTitle"></asp:Label></td>
 						<td style="vertical-align:middle; width:14px;"><asp:ImageButton id="imgCloseRespuestaWindow" runat="server" ImageUrl="~/Include/Image/Buttons/CloseWindow.png" ToolTip="Cerrar Ventana" OnClick="imgCloseRespuestaWindow_Click"></asp:ImageButton></td>
 						<td style="width:10px"></td>
 					</tr>
@@ -233,7 +233,7 @@
 						<tr style="height:5px;"><td colspan="3"></td></tr>
 						<tr>
 							<td colspan="3" style="text-align:right;">
-								<asp:Button ID="btnPopUpRespuesta" runat="server" Text="Envío" CssClass="Button_General" width="125px" onclick="btnPopUpRespuesta_Click" />
+								<asp:Button ID="btnPopUpRespuesta" runat="server" Text="Respuesta de Autoridad" CssClass="Button_General" width="180px" onclick="btnPopUpRespuesta_Click" />
 							</td>
 						</tr>
 						<tr>

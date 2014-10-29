@@ -165,7 +165,7 @@
 					<table border="0" cellpadding="0" cellspacing="0" style="height:100%; text-align:left;" width="100%">
 						<tr style="height:20px;"><td colspan="3"></td></tr>
 						<tr class="trFilaItem">
-							<td class="tdActionCeldaLeyendaItem">&nbsp;Fecha de impugnacion</td>
+							<td class="tdActionCeldaLeyendaItem">&nbsp;Fecha de publicación</td>
 							<td style="width:5px;"></td>
 							<td><wuc:wucCalendar ID="calFechaPublicar" runat="server" /></td>
 						</tr>

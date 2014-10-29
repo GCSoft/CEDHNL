@@ -94,7 +94,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
 
 				// Encabezado
-				this.lblEncabezado.Text = "Agregar información " + (oENTResponse.dsResponse.Tables[1].Rows[0]["AcuerdoNoResponsabilidad"].ToString() == "0" ? "a la recomendación" : "al acuerdo de no responsabilidad");
+				this.lblEncabezado.Text = "Envío de " + (oENTResponse.dsResponse.Tables[1].Rows[0]["AcuerdoNoResponsabilidad"].ToString() == "0" ? "la recomendación" : "el acuerdo de no responsabilidad");
 				this.lblNumero.Text = (oENTResponse.dsResponse.Tables[1].Rows[0]["AcuerdoNoResponsabilidad"].ToString() == "0" ? "Recomendación" : "Acuerdo") + " Número";
 
 				// Formulario
@@ -153,7 +153,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				this.btnEnviar.CssClass = "Button_General_Disabled";
 
 				// Impugnar
-				if (oENTResponse.dsResponse.Tables[1].Rows[0]["Impugnada"].ToString() == "0")
+				if (oENTResponse.dsResponse.Tables[1].Rows[0]["Impugnada"].ToString() == "0" && oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusSeguimientoId"].ToString() != "6")
 				{
 
 					this.pnlImpugnar.Visible = false;

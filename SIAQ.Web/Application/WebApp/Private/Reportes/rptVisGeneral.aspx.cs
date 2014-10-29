@@ -8,10 +8,29 @@ using System.Web.UI.WebControls;
 namespace SIAQ.Web.Application.WebApp.Private.Reportes
 {
 	public partial class rptVisGeneral1 : System.Web.UI.Page
-	{
-		protected void Page_Load(object sender, EventArgs e)
-		{
+    {
 
-		}
+        #region Rutinas de la página
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnAceptar_Click(object sender, EventArgs e)
+        {
+            // cboEstatus.SelectedValue.ToString()
+            string script = "window.open('rptPresentaReporte.aspx?TipoReporte=rptVisGeneral&FechaInicial=" + wucFechaInicial.BeginDate.ToString() + "&FechaFinal= " + wucFechaFinal.EndDate.ToString() + "&EstatusId= " + "1" + "', '');";
+
+            ScriptManager.RegisterStartupScript(this, typeof(Page), "popup", script, true);
+        }
+        
+        #endregion
+
+        #region Rutinas del programador
+
+        #endregion
+
+        
 	}
 }

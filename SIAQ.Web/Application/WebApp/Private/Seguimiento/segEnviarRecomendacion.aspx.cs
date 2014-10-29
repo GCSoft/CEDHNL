@@ -140,8 +140,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
 				// Enviar a autoridad
 				if ( Int32.Parse( oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusSeguimientoId"].ToString() ) < 4 ){
-					this.imgSeguimiento.ImageUrl = "~/Include/Image/Icon/NotificacionIcon_Pending.png";
-					this.imgSeguimiento.ToolTip = "No se ha enviado el documento a la autoridad";
+					this.imgEnviarAutoridad.ImageUrl = "~/Include/Image/Icon/NotificacionIcon_Pending.png";
+					this.imgEnviarAutoridad.ToolTip = "No se ha enviado el documento a la autoridad";
 					this.btnEnviar.Enabled = false;
 					this.btnEnviar.CssClass = "Button_General_Disabled";
 				}
@@ -151,6 +151,24 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				this.imgSeguimiento.ToolTip = "No se ha finalizado los puntos resolutivos del seguimiento";
 				this.btnEnviar.Enabled = false;
 				this.btnEnviar.CssClass = "Button_General_Disabled";
+
+				// Impugnar
+				if (oENTResponse.dsResponse.Tables[1].Rows[0]["Impugnada"].ToString() == "0")
+				{
+
+					this.pnlImpugnar.Visible = false;
+				}
+				else
+				{
+
+					if ( oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusSeguimientoId"].ToString() == "6" ){
+						this.imgImpugnar.ImageUrl = "~/Include/Image/Icon/ComparecenciaIcon_Pending.png";
+						this.imgImpugnar.ToolTip = "No se ha finalizado el proceso de impugnación";
+						this.btnEnviar.Enabled = false;
+						this.btnEnviar.CssClass = "Button_General_Disabled";
+					}
+
+				}
 				
 			}catch (Exception ex){
 				throw (ex);

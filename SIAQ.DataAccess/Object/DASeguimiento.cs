@@ -659,6 +659,162 @@ namespace SIAQ.DataAccess.Object
         }
 
 		///<remarks>
+		///   <name>DASeguimiento.UpdateRecomendacion_ImpugnarDocumento</name>
+		///   <create>11-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Inicia el proceso de ipugnación de la recomendación/Acuerdo de no responsabilidad a una autoridad</summary>
+		///<param name="oENTSeguimiento">Entidad de Seguimientos con los filtros necesarios para la transacción</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+        public ENTResponse UpdateRecomendacion_ImpugnarDocumento(ENTSeguimiento oENTSeguimiento, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspRecomendacion_Upd_ImpugnarDocumento", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("RecomendacionId", SqlDbType.Int);
+			sqlPar.Value = oENTSeguimiento.RecomendacionId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("ModuloId", SqlDbType.Int);
+			sqlPar.Value = oENTSeguimiento.ModuloId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("UsuarioId", SqlDbType.Int);
+			sqlPar.Value = oENTSeguimiento.UsuarioId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Fecha", SqlDbType.DateTime);
+			sqlPar.Value = oENTSeguimiento.Fecha;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Gestion", SqlDbType.VarChar);
+			sqlPar.Value = oENTSeguimiento.Comentario;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try
+			{
+				
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+
+			}catch (SqlException sqlEx){
+
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+
+			}catch (Exception ex){
+
+				oENTResponse.ExceptionRaised(ex.Message);
+
+			}finally{
+
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+
+			}
+
+			// Resultado
+			return oENTResponse;
+
+        }
+
+		///<remarks>
+		///   <name>DASeguimiento.UpdateRecomendacion_ImpugnarDocumentoCierre</name>
+		///   <create>11-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Finaliza el proceso de impugnación de la recomendación/Acuerdo de no responsabilidad a una autoridad</summary>
+		///<param name="oENTSeguimiento">Entidad de Seguimientos con los filtros necesarios para la transacción</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+        public ENTResponse UpdateRecomendacion_ImpugnarDocumentoCierre(ENTSeguimiento oENTSeguimiento, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspRecomendacion_Upd_ImpugnarDocumentoCierre", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("RecomendacionId", SqlDbType.Int);
+			sqlPar.Value = oENTSeguimiento.RecomendacionId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("ModuloId", SqlDbType.Int);
+			sqlPar.Value = oENTSeguimiento.ModuloId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("UsuarioId", SqlDbType.Int);
+			sqlPar.Value = oENTSeguimiento.UsuarioId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Fecha", SqlDbType.DateTime);
+			sqlPar.Value = oENTSeguimiento.Fecha;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Gestion", SqlDbType.VarChar);
+			sqlPar.Value = oENTSeguimiento.Comentario;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try
+			{
+				
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+
+			}catch (SqlException sqlEx){
+
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+
+			}catch (Exception ex){
+
+				oENTResponse.ExceptionRaised(ex.Message);
+
+			}finally{
+
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+
+			}
+
+			// Resultado
+			return oENTResponse;
+
+        }
+
+		///<remarks>
 		///   <name>DASeguimiento.UpdateRecomendacion_Numero</name>
 		///   <create>11-Septiembre-2014</create>
 		///   <author>Ruben.Cobos</author>
@@ -694,6 +850,84 @@ namespace SIAQ.DataAccess.Object
 
 			sqlPar = new SqlParameter("NumeroRecomendacion", SqlDbType.VarChar);
 			sqlPar.Value = oENTSeguimiento.NumeroRecomendacion;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try
+			{
+				
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+
+			}catch (SqlException sqlEx){
+
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+
+			}catch (Exception ex){
+
+				oENTResponse.ExceptionRaised(ex.Message);
+
+			}finally{
+
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+
+			}
+
+			// Resultado
+			return oENTResponse;
+
+        }
+
+		///<remarks>
+		///   <name>DASeguimiento.UpdateRecomendacion_PublicarDocumento</name>
+		///   <create>11-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Envia una recomendación/Acuerdo de no responsabilidad a un estado de publicación</summary>
+		///<param name="oENTSeguimiento">Entidad de Seguimientos con los filtros necesarios para la transacción</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+        public ENTResponse UpdateRecomendacion_PublicarDocumento(ENTSeguimiento oENTSeguimiento, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspRecomendacion_Upd_PublicarDocumento", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("RecomendacionId", SqlDbType.Int);
+			sqlPar.Value = oENTSeguimiento.RecomendacionId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("ModuloId", SqlDbType.Int);
+			sqlPar.Value = oENTSeguimiento.ModuloId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("UsuarioId", SqlDbType.Int);
+			sqlPar.Value = oENTSeguimiento.UsuarioId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Fecha", SqlDbType.DateTime);
+			sqlPar.Value = oENTSeguimiento.Fecha;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Gestion", SqlDbType.VarChar);
+			sqlPar.Value = oENTSeguimiento.Comentario;
 			sqlCom.Parameters.Add(sqlPar);
 
 			// Inicializaciones

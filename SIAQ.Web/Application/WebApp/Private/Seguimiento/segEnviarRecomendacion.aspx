@@ -106,11 +106,15 @@
 	<div id="CheckList">
 		<asp:Panel ID="pnlEnviarAutoridad" runat="server" CssClass="IconoPanel">
 			<asp:Image ID="imgEnviarAutoridad" runat="server" ImageUrl="~/Include/Image/Icon/NotificacionIcon_Success.png" /><br />
-            Seguimiento
+            Enviar a Autoridad 
         </asp:Panel>
 		<asp:Panel ID="pnSeguimiento" runat="server" CssClass="IconoPanel">
 			<asp:Image ID="imgSeguimiento" runat="server" ImageUrl="~/Include/Image/Icon/SeguimientoIcon_Success.png" /><br />
             Seguimiento
+        </asp:Panel>
+		<asp:Panel ID="pnlImpugnar" runat="server" CssClass="IconoPanel">
+			<asp:Image ID="imgImpugnar" runat="server" ImageUrl="~/Include/Image/Icon/ComparecenciaIcon_Success.png" /><br />
+            Impugnar
         </asp:Panel>
     </div>
 

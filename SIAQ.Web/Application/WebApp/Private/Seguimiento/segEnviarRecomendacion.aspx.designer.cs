@@ -211,6 +211,24 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         protected global::System.Web.UI.WebControls.Image imgSeguimiento;
         
         /// <summary>
+        /// pnlImpugnar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlImpugnar;
+        
+        /// <summary>
+        /// imgImpugnar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgImpugnar;
+        
+        /// <summary>
         /// hddRecomendacionId control.
         /// </summary>
         /// <remarks>

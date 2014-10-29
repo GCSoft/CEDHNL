@@ -311,6 +311,70 @@ namespace SIAQ.BusinessProcess.Object
         }
 
 		///<remarks>
+		///   <name>BPSeguimiento.UpdateRecomendacion_ImpugnarDocumento</name>
+		///   <create>12-Septiembre-2014</create>
+        ///   <author>Ruben.Cobos</author>
+        ///</remarks>
+		///<summary>Inicia el proceso de impugnación de la recomendación/Acuerdo de no responsabilidad a una autoridad</summary>
+		///<param name="oENTSeguimiento">Entidad de Seguimientos con los filtros necesarios para realizar la transacción</param>
+        ///<returns>Una entidad de respuesta</returns>
+        public ENTResponse UpdateRecomendacion_ImpugnarDocumento(ENTSeguimiento oENTSeguimiento){
+           DASeguimiento oDASeguimiento = new DASeguimiento();
+           ENTResponse oENTResponse = new ENTResponse();
+
+           try
+           {
+
+              // Transacción en base de datos
+			   oENTResponse = oDASeguimiento.UpdateRecomendacion_ImpugnarDocumento(oENTSeguimiento, this.sConnectionApplication, 0);
+
+              // Validación de error en consulta
+              if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+              // Validación de mensajes de la BD
+              oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+
+           }catch (Exception ex){
+              oENTResponse.ExceptionRaised(ex.Message);
+           }
+
+           // Resultado
+           return oENTResponse;
+        }
+
+		///<remarks>
+		///   <name>BPSeguimiento.UpdateRecomendacion_ImpugnarDocumentoCierre</name>
+		///   <create>12-Septiembre-2014</create>
+        ///   <author>Ruben.Cobos</author>
+        ///</remarks>
+		///<summary>Finaliza el proceso de impugnación de la recomendación/Acuerdo de no responsabilidad a una autoridad</summary>
+		///<param name="oENTSeguimiento">Entidad de Seguimientos con los filtros necesarios para realizar la transacción</param>
+        ///<returns>Una entidad de respuesta</returns>
+        public ENTResponse UpdateRecomendacion_ImpugnarDocumentoCierre(ENTSeguimiento oENTSeguimiento){
+           DASeguimiento oDASeguimiento = new DASeguimiento();
+           ENTResponse oENTResponse = new ENTResponse();
+
+           try
+           {
+
+              // Transacción en base de datos
+			   oENTResponse = oDASeguimiento.UpdateRecomendacion_ImpugnarDocumentoCierre(oENTSeguimiento, this.sConnectionApplication, 0);
+
+              // Validación de error en consulta
+              if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+              // Validación de mensajes de la BD
+              oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+
+           }catch (Exception ex){
+              oENTResponse.ExceptionRaised(ex.Message);
+           }
+
+           // Resultado
+           return oENTResponse;
+        }
+
+		///<remarks>
 		///   <name>BPSeguimiento.UpdateRecomendacion_Numero</name>
 		///   <create>12-Septiembre-2014</create>
         ///   <author>Ruben.Cobos</author>
@@ -327,6 +391,38 @@ namespace SIAQ.BusinessProcess.Object
 
               // Transacción en base de datos
 			   oENTResponse = oDASeguimiento.UpdateRecomendacion_Numero(oENTSeguimiento, this.sConnectionApplication, 0);
+
+              // Validación de error en consulta
+              if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+              // Validación de mensajes de la BD
+              oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+
+           }catch (Exception ex){
+              oENTResponse.ExceptionRaised(ex.Message);
+           }
+
+           // Resultado
+           return oENTResponse;
+        }
+
+		///<remarks>
+		///   <name>BPSeguimiento.UpdateRecomendacion_PublicarDocumento</name>
+		///   <create>12-Septiembre-2014</create>
+        ///   <author>Ruben.Cobos</author>
+        ///</remarks>
+		///<summary>Envia una recomendación/Acuerdo de no responsabilidad a un estado de publicación</summary>
+		///<param name="oENTSeguimiento">Entidad de Seguimientos con los filtros necesarios para realizar la transacción</param>
+        ///<returns>Una entidad de respuesta</returns>
+        public ENTResponse UpdateRecomendacion_PublicarDocumento(ENTSeguimiento oENTSeguimiento){
+           DASeguimiento oDASeguimiento = new DASeguimiento();
+           ENTResponse oENTResponse = new ENTResponse();
+
+           try
+           {
+
+              // Transacción en base de datos
+			   oENTResponse = oDASeguimiento.UpdateRecomendacion_PublicarDocumento(oENTSeguimiento, this.sConnectionApplication, 0);
 
               // Validación de error en consulta
               if (oENTResponse.GeneratesException) { return oENTResponse; }

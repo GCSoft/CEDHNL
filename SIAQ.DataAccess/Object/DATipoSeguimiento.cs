@@ -42,7 +42,7 @@ namespace SIAQ.DataAccess.Object
 			ENTResponse oENTResponse = new ENTResponse();
 
 			// Configuración de objetos
-			sqlCom = new SqlCommand("uspcatTipoSeguimiento_Sel", sqlCnn);
+			sqlCom = new SqlCommand("uspTipoSeguimiento_Sel", sqlCnn);
 			sqlCom.CommandType = CommandType.StoredProcedure;
 
 			// Timeout alternativo en caso de ser solicitado

@@ -271,6 +271,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			            this.DiligenciaPanel.Visible = true;
 						this.ImpugnarPanel.Visible = true;
 						this.PublicarPanel.Visible = true;
+						this.pnlVistaPrevia.Visible = true;
 			            this.pnlEnviarAtencion.Visible = true;
 			            break;
 
@@ -284,6 +285,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			            this.DiligenciaPanel.Visible = true;
 						this.ImpugnarPanel.Visible = true;
 						this.PublicarPanel.Visible = true;
+						this.pnlVistaPrevia.Visible = true;
 			            this.pnlEnviarAtencion.Visible = true;
 			            break;
 
@@ -297,6 +299,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			            this.DiligenciaPanel.Visible = false;
 						this.ImpugnarPanel.Visible = false;
 						this.PublicarPanel.Visible = false;
+						this.pnlVistaPrevia.Visible = true;
 			            this.pnlEnviarAtencion.Visible = false;
 			            break;
 
@@ -310,6 +313,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			            this.DiligenciaPanel.Visible = true;
 						this.ImpugnarPanel.Visible = true;
 						this.PublicarPanel.Visible = true;
+						this.pnlVistaPrevia.Visible = true;
 			            this.pnlEnviarAtencion.Visible = true;
 			            break;
 
@@ -323,6 +327,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			            this.DiligenciaPanel.Visible = false;
 						this.ImpugnarPanel.Visible = false;
 						this.PublicarPanel.Visible = false;
+						this.pnlVistaPrevia.Visible = true;
 			            this.pnlEnviarAtencion.Visible = false;
 			            break;
 
@@ -336,6 +341,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			            this.DiligenciaPanel.Visible = false;
 						this.ImpugnarPanel.Visible = false;
 						this.PublicarPanel.Visible = false;
+						this.pnlVistaPrevia.Visible = false;
 			            this.pnlEnviarAtencion.Visible = false;
 			            break;
 
@@ -390,8 +396,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 					this.PublicarPanel.Visible = false;
 				}
 
-			    // Si el expediente está en estatus de confirmación de cierre no se podrá operar
-			    if ( Int32.Parse(this.hddEstatusId.Value) == 8 ){
+			    // Si el expediente está en estatus de confirmación de cierre o cerrada no se podrá operar
+			    if ( Int32.Parse(this.hddEstatusId.Value) == 8 || Int32.Parse(this.hddEstatusId.Value) == 12 ){
 					this.AgregrarInformacionPanel.Visible = false;
 			        this.AsignarPanel.Visible = false;
 					this.EnviarAutoridadPanel.Visible = false;
@@ -656,7 +662,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				// Llave encriptada
 				sKey = this.hddRecomendacionId.Value + "|" + this.SenderId.Value;
 				sKey = gcEncryption.EncryptString(sKey, true);
-				this.Response.Redirect("segSeguimientoRecomendacion.aspx?key=" + sKey, false);
+				this.Response.Redirect("segGestionPuntoResolutivo.aspx?key=" + sKey, false);
 
 			}catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
@@ -721,6 +727,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				sKey = this.hddRecomendacionId.Value + "|" + this.SenderId.Value;
 				sKey = gcEncryption.EncryptString(sKey, true);
 				this.Response.Redirect("segPublicacion.aspx?key=" + sKey, false);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
+		}
+
+		protected void ImprimirButton_Click(object sender, ImageClickEventArgs e){
+			String sKey = "";
+
+			try
+			{
+
+				// Llave encriptada
+				sKey = this.hddRecomendacionId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("segImprimirSeguimiento.aspx?key=" + sKey, false);
 
 			}catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);

@@ -88,6 +88,8 @@
     <Content Include="Application\WebApp\Private\Seguimiento\segDiligenciaSeguimiento.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segEnviarAutoridad.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segEnviarRecomendacion.aspx" />
+    <Content Include="Application\WebApp\Private\Seguimiento\segGestionPuntoResolutivo.aspx" />
+    <Content Include="Application\WebApp\Private\Seguimiento\segImprimirSeguimiento.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segImpugnacion.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segListadoRecomendaciones.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segListadoRecomendacionesAprobacion.aspx" />
@@ -191,7 +193,6 @@
     <Content Include="Application\WebApp\Private\Catalog\ExcelMaker\xlsNacionalidad.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segAsignarDefensor.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segConfirmarCierreExpediente.aspx" />
-    <Content Include="Application\WebApp\Private\Seguimiento\segSeguimientoRecomendacion.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeBusquedaCiudadano.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeDetalleCiudadano.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeInicio.aspx" />
@@ -989,6 +990,20 @@
     <Compile Include="Application\WebApp\Private\Seguimiento\segEnviarRecomendacion.aspx.designer.cs">
       <DependentUpon>segEnviarRecomendacion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segGestionPuntoResolutivo.aspx.cs">
+      <DependentUpon>segGestionPuntoResolutivo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segGestionPuntoResolutivo.aspx.designer.cs">
+      <DependentUpon>segGestionPuntoResolutivo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segImprimirSeguimiento.aspx.cs">
+      <DependentUpon>segImprimirSeguimiento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Seguimiento\segImprimirSeguimiento.aspx.designer.cs">
+      <DependentUpon>segImprimirSeguimiento.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Application\WebApp\Private\Seguimiento\segImpugnacion.aspx.cs">
       <DependentUpon>segImpugnacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1023,13 +1038,6 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Seguimiento\segPublicacion.aspx.designer.cs">
       <DependentUpon>segPublicacion.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\segSeguimientoRecomendacion.aspx.cs">
-      <DependentUpon>segSeguimientoRecomendacion.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Application\WebApp\Private\Seguimiento\segSeguimientoRecomendacion.aspx.designer.cs">
-      <DependentUpon>segSeguimientoRecomendacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeBusquedaCiudadano.aspx.cs">
       <DependentUpon>opeBusquedaCiudadano.aspx</DependentUpon>

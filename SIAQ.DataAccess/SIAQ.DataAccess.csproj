@@ -93,7 +93,6 @@
     <Compile Include="Object\DATipoOrientacion.cs" />
     <Compile Include="Object\DATipoRecomendacion.cs" />
     <Compile Include="Object\DATipoResolucion.cs" />
-    <Compile Include="Object\DATipoSeguimiento.cs" />
     <Compile Include="Object\DATipoSolicitud.cs" />
     <Compile Include="Object\DATipoVivienda.cs" />
     <Compile Include="Object\DATitulo.cs" />

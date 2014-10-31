@@ -146,11 +146,18 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 					this.btnEnviar.CssClass = "Button_General_Disabled";
 				}
 
-				// Gestiones
-				this.imgSeguimiento.ImageUrl = "~/Include/Image/Icon/SeguimientoIcon_Pending.png";
-				this.imgSeguimiento.ToolTip = "No se ha finalizado los puntos resolutivos del seguimiento";
-				this.btnEnviar.Enabled = false;
-				this.btnEnviar.CssClass = "Button_General_Disabled";
+				// Gestión a puntos resolutivos
+				if ( oENTResponse.dsResponse.Tables[1].Rows[0]["Aceptada"].ToString() != "1" || oENTResponse.dsResponse.Tables[1].Rows[0]["AcuerdoNoResponsabilidad"].ToString() != "0" )
+				{
+					this.pnlSeguimiento.Visible = false;
+				}
+				else
+				{
+					this.imgSeguimiento.ImageUrl = "~/Include/Image/Icon/SeguimientoIcon_Pending.png";
+					this.imgSeguimiento.ToolTip = "No se ha finalizado los puntos resolutivos del seguimiento";
+					this.btnEnviar.Enabled = false;
+					this.btnEnviar.CssClass = "Button_General_Disabled";
+				}
 
 				// Impugnar
 				if (oENTResponse.dsResponse.Tables[1].Rows[0]["Impugnada"].ToString() == "0" && oENTResponse.dsResponse.Tables[1].Rows[0]["EstatusSeguimientoId"].ToString() != "6")

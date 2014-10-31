@@ -40,7 +40,7 @@
         </asp:Panel>
         <asp:Panel CssClass="IconoPanel" ID="SeguimientoPanel" runat="server" Visible="true">
             <asp:ImageButton ID="SeguimientoButton" ImageUrl="~/Include/Image/Icon/SeguimientoIcon.png" runat="server" OnClick="SeguimientoButton_Click"></asp:ImageButton><br />
-            Seguimientos a puntos resolutivos
+            Gestión a puntos resolutivos
         </asp:Panel>
 		<asp:Panel CssClass="IconoPanel" ID="DocumentoPanel" runat="server" Visible="true">
             <asp:ImageButton ID="DocumentoButton" ImageUrl="~/Include/Image/Icon/DocumentoIcon.png" runat="server" OnClick="DocumentoButton_Click"></asp:ImageButton><br />
@@ -57,6 +57,10 @@
 		<asp:Panel CssClass="IconoPanel" ID="PublicarPanel" runat="server" Visible="true">
             <asp:ImageButton ID="PublicarButton" ImageUrl="~/Include/Image/Icon/PublicarIcon.png" runat="server" OnClick="PublicarButton_Click"></asp:ImageButton><br />
             Publicar
+        </asp:Panel>
+		<asp:Panel CssClass="IconoPanel" ID="pnlVistaPrevia" runat="server" Visible="true">
+            <asp:ImageButton ID="ImprimirButton" ImageUrl="~/Include/Image/Icon/ImprimirIcon.png" runat="server" OnClick="ImprimirButton_Click"></asp:ImageButton><br />
+            Vista previa
         </asp:Panel>
         <asp:Panel CssClass="IconoPanel" ID="pnlEnviarAtencion" runat="server" Visible="true">
             <asp:ImageButton ID="EnviarButton" ImageUrl="~/Include/Image/Icon/EnviarIcon.png" runat="server" OnClick="EnviarButton_Click"></asp:ImageButton><br />

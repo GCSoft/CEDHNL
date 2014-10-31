@@ -1,7 +1,7 @@
 ﻿/*---------------------------------------------------------------------------------------------------------------------------------
-' Nombre:	segSeguimientoRecomendacion
+' Nombre:	segAgregrarInformacion
 ' Autor:	Ruben.Cobos
-' Fecha:	06-Junio-2014
+' Fecha:	03-Octubre-2014
 '----------------------------------------------------------------------------------------------------------------------------------*/
 
 // Referencias
@@ -21,11 +21,10 @@ using System.Data;
 
 namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 {
-	public partial class segSeguimientoRecomendacion : System.Web.UI.Page
+	public partial class segGestionPuntoResolutivo : System.Web.UI.Page
 	{
 		
 		// Utilerías
-		GCCommon gcCommon = new GCCommon();
 		GCJavascript gcJavascript = new GCJavascript();
 		GCEncryption gcEncryption = new GCEncryption();
 
@@ -47,42 +46,39 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		}
 
 
-		// Rutinas el programador
+		// Funciones el programador
 
-		void InsertRecomendacionGestion() {
-			BPSeguimiento oBPSeguimiento = new BPSeguimiento();
-			ENTSeguimiento oENTSeguimiento = new ENTSeguimiento();
+		void UpdateRecomendacion_NumeroFolio() {
+			//ENTSeguimiento oENTSeguimiento = new ENTSeguimiento();
+			//ENTResponse oENTResponse = new ENTResponse();
+			//ENTSession oENTSession = new ENTSession();
 
-			ENTSession SessionEntity = new ENTSession();
-			ENTResponse oENTResponse = new ENTResponse();
+			//BPSeguimiento oBPSeguimiento = new BPSeguimiento();
 
-			try
-			{
+			//try
+			//{
 
-				// Validaciones
-				if (this.ddlRecomendacion.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar una Recomendación")); }
-				if (this.ddlTipoSeguimiento.SelectedItem.Value == "0") { throw (new Exception("Es necesario seleccionar un Tipo de Seguimiento")); }
-				if (this.ckeSeguimiento.Text.Trim() == "") { throw (new Exception("Es necesario ingresar un detalle del seguimiento")); }
+			//    // Validaciones
+			//    if (this.txtNumeroRecomendacion.Text.Trim() == "") { throw (new Exception("Es necesario ingresar un número de recomendación")); }
 
-				// Obtener sesión
-				SessionEntity = (ENTSession)Session["oENTSession"];
-
-				// Formulario
-				oENTSeguimiento.RecomendacionId = Int32.Parse(this.hddRecomendacionId.Value);
-				//oENTSeguimiento.TipoSeguimientoId = Int32.Parse(this.ddlTipoSeguimiento.SelectedItem.Value);
-				oENTSeguimiento.FuncionarioId = SessionEntity.FuncionarioId;
-				oENTSeguimiento.Comentario = this.ckeSeguimiento.Text.Trim();
-
-				// Transacción
-				oENTResponse = oBPSeguimiento.InsertRecomendacionGestion(oENTSeguimiento);
-
-				// Errores y Warnings
-				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
-				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+			//    // Obtener Sesion
+			//    oENTSession = (ENTSession)this.Session["oENTSession"];
 				
-			}catch (Exception ex){
-				throw (ex);
-			}
+			//    // Formulario
+			//    oENTSeguimiento.RecomendacionId = Int32.Parse(this.hddRecomendacionId.Value);
+			//    oENTSeguimiento.NumeroRecomendacion = this.txtNumeroRecomendacion.Text.Trim();
+			//    oENTSeguimiento.UsuarioId = oENTSession.idUsuario;
+
+			//    // Transacción
+			//    oENTResponse = oBPSeguimiento.UpdateRecomendacion_Numero(oENTSeguimiento);
+
+			//    // Errores y Warnings
+			//    if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+			//    if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }	
+
+			//}catch (Exception ex){
+			//    throw (ex);
+			//}
 		}
 
 		void SelectRecomendacion() {
@@ -104,7 +100,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
 
 				// Encabezado
-				this.lblEncabezado.Text = "Gestión de " + (oENTResponse.dsResponse.Tables[1].Rows[0]["AcuerdoNoResponsabilidad"].ToString() == "0" ? "recomendación" : "acuerdo de no responsabilidad");
+				this.lblEncabezado.Text = "Gestión de puntos resolutivos de " + (oENTResponse.dsResponse.Tables[1].Rows[0]["AcuerdoNoResponsabilidad"].ToString() == "0" ? "la recomendación" : "el acuerdo de no responsabilidad");
 				this.lblNumero.Text = (oENTResponse.dsResponse.Tables[1].Rows[0]["AcuerdoNoResponsabilidad"].ToString() == "0" ? "Recomendación" : "Acuerdo") + " Número";
 
 				// Formulario
@@ -130,42 +126,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			}
 		}
 
-		void SelectedTipoSeguimiento(){
-			ENTTipoSeguimiento oENTTipoSeguimiento = new ENTTipoSeguimiento();
-			ENTResponse oENTResponse = new ENTResponse();
-
-			BPTipoSeguimiento oBPTipoSeguimiento = new BPTipoSeguimiento();
-
-			try
-			{
-
-				// Formulario
-				oENTTipoSeguimiento.TipoSeguimientoId = 0;
-				oENTTipoSeguimiento.Nombre = "";
-
-				// Transacción
-				oENTResponse = oBPTipoSeguimiento.SelectTipoSeguimiento(oENTTipoSeguimiento);
-
-				// Validaciones
-				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
-
-				// Mensaje de la BD
-				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(oENTResponse.sMessage) + "');", true); }
-
-				// Llenado de combo
-				this.ddlTipoSeguimiento.DataTextField = "Nombre";
-				this.ddlTipoSeguimiento.DataValueField = "TipoSeguimientoId";
-				this.ddlTipoSeguimiento.DataSource = oENTResponse.dsResponse.Tables[1];
-				this.ddlTipoSeguimiento.DataBind();
-
-				// Agregar Item de selección
-				this.ddlTipoSeguimiento.Items.Insert(0, new ListItem("[Seleccione]", "0"));
-
-			}catch (Exception ex){
-				throw (ex);
-			}
-		}
-
 
 		// Eventos de la página
 
@@ -173,7 +133,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			String sKey = "";
 
 			try
-			{
+            {
 
 				// Validaciones de llamada
 				if (Page.IsPostBack) { return; }
@@ -193,39 +153,27 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				// Carátula
 				SelectRecomendacion();
 
-				// Llenado de controles
-				SelectedTipoSeguimiento();
-
-				//// Seleccionar la recomendación y Foco
-				//if (sKey.Split(new Char[] { '|' })[2].ToString() != "0") {
-
-				//    this.ddlRecomendacion.SelectedValue = this.Request.QueryString["key"].ToString().ToString().Split(new Char[] { '|' })[2].ToString();
-				//    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlTipoSeguimiento.ClientID + "');", true);
-				//}else{
-
-				//    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlRecomendacion.ClientID + "');", true);
-				//}
-
             }catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
             }
 		}
 
 		protected void btnGuardar_Click(object sender, EventArgs e){
+			String sKey = "";
+
 			try
             {
 
-                // Obtener Expedientes
-				InsertRecomendacionGestion();
+                // Asignar el Defensor
+				UpdateRecomendacion_NumeroFolio();
 
-				// Refrescar Formulario
-				SelectRecomendacion();
-
-				// Foco
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" + this.ddlRecomendacion.ClientID + "');", true);
+				// Llave encriptada
+				sKey = this.hddRecomendacionId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("segDetalleRecomendacion.aspx?key=" + sKey, false);
 
             }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "'); focusControl('" + this.ddlRecomendacion.ClientID + "');", true);
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
             }
 		}
 
@@ -243,35 +191,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
             }catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
             }
-		}
-
-		protected void gvSegRecomendacion_RowDataBound(object sender, GridViewRowEventArgs e){
-			try
-			{
-				
-				// Validación de que sea fila 
-				if (e.Row.RowType != DataControlRowType.DataRow) { return; }
-
-				// Atributos Over
-				e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; ");
-
-				// Atributos Out
-				e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; ");
-
-			}catch (Exception ex){
-				throw (ex);
-			}
-		}
-
-		protected void gvSegRecomendacion_Sorting(object sender, GridViewSortEventArgs e){
-			try
-			{
-
-				gcCommon.SortGridView(ref this.gvSegRecomendacion, ref this.hddSort, e.SortExpression);
-
-			}catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
-			}
 		}
 
 	}

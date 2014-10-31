@@ -193,13 +193,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento {
         protected global::System.Web.UI.WebControls.Image imgEnviarAutoridad;
         
         /// <summary>
-        /// pnSeguimiento control.
+        /// pnlSeguimiento control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnSeguimiento;
+        protected global::System.Web.UI.WebControls.Panel pnlSeguimiento;
         
         /// <summary>
         /// imgSeguimiento control.

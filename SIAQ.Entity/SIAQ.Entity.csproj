@@ -87,6 +87,7 @@
     <Compile Include="Object\ENTTipoOrientacion.cs" />
     <Compile Include="Object\ENTTipoRecomendacion.cs" />
     <Compile Include="Object\ENTTipoResolucion.cs" />
+    <Compile Include="Object\ENTTipoSeguimiento.cs" />
     <Compile Include="Object\ENTTipoSolicitud.cs" />
     <Compile Include="Object\ENTTipoVivienda.cs" />
     <Compile Include="Object\ENTTitulo.cs" />

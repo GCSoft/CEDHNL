@@ -89,6 +89,7 @@
     <Compile Include="Object\BPTipoOrientacion.cs" />
     <Compile Include="Object\BPTipoRecomendacion.cs" />
     <Compile Include="Object\BPTipoResolucion.cs" />
+    <Compile Include="Object\BPTipoSeguimiento.cs" />
     <Compile Include="Object\BPTipoSolicitud.cs" />
     <Compile Include="Object\BPTipoVivienda.cs" />
     <Compile Include="Object\BPTitulo.cs" />

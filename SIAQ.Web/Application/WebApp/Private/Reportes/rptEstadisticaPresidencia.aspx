@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="rptVisGeneral.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Reportes.rptVisGeneral1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Include/MasterPage/PrivateTemplate.Master" AutoEventWireup="true" CodeBehind="rptEstadisticaPresidencia.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.Reportes.rptEstadisticaPresidencia1" %>
 <%@ Register src="../../../../Include/WebUserControls/wucCalendar.ascx" tagname="wucCalendar" tagprefix="wuc" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cntPrivateTemplateHeader" runat="server">
@@ -7,7 +7,7 @@
     <table border="0" cellpadding="0" cellspacing="0" width="100%" class="GeneralTable">
         <tr>
             <td class="tdCeldaTituloEncabezado" style="background-image:url('../../../../Include/Image/Web/BarraTitulo.png');">
-                Reporte general de visitadurías
+                Reporte estadisticas presidencia
             </td>
         </tr>
         <tr><td class="tdCeldaMiddleSpace"></td></tr>

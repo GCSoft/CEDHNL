@@ -33,6 +33,28 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="Application\WebApp\Private\Reportes\DataSet\dsEstadisticaPresidencia.xsc">
+      <DependentUpon>dsEstadisticaPresidencia.xsd</DependentUpon>
+    </None>
+    <None Include="Application\WebApp\Private\Reportes\DataSet\dsEstadisticaPresidencia.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsEstadisticaPresidencia.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Application\WebApp\Private\Reportes\DataSet\dsEstadisticaPresidencia.xss">
+      <DependentUpon>dsEstadisticaPresidencia.xsd</DependentUpon>
+    </None>
+    <None Include="Application\WebApp\Private\Reportes\DataSet\dsIntegralVictimas.xsc">
+      <DependentUpon>dsIntegralVictimas.xsd</DependentUpon>
+    </None>
+    <None Include="Application\WebApp\Private\Reportes\DataSet\dsIntegralVictimas.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsIntegralVictimas.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Application\WebApp\Private\Reportes\DataSet\dsIntegralVictimas.xss">
+      <DependentUpon>dsIntegralVictimas.xsd</DependentUpon>
+    </None>
     <None Include="Application\WebApp\Private\Reportes\DataSet\dsVisGeneral.xsc">
       <DependentUpon>dsVisGeneral.xsd</DependentUpon>
     </None>
@@ -78,6 +100,8 @@
     <Content Include="Application\WebApp\Private\Quejas\QueListadoSolicitudes.aspx" />
     <Content Include="Application\WebApp\Private\Quejas\QueListadoSolicitudesAprobacion.aspx" />
     <Content Include="Application\WebApp\Private\Quejas\QueListadoSolicitudesEnProceso.aspx" />
+    <Content Include="Application\WebApp\Private\Reportes\rptEstadisticaPresidencia.aspx" />
+    <Content Include="Application\WebApp\Private\Reportes\rptIntegralVictimas.aspx" />
     <Content Include="Application\WebApp\Private\Reportes\rptPresentaReporte.aspx" />
     <Content Include="Application\WebApp\Private\Reportes\rptVisGeneral.aspx" />
     <Content Include="Application\WebApp\Private\Seguimiento\segAgregarDocumento.aspx" />
@@ -895,10 +919,50 @@
     <Compile Include="Application\WebApp\Private\Quejas\QueListadoSolicitudesEnProceso.aspx.designer.cs">
       <DependentUpon>QueListadoSolicitudesEnProceso.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Application\WebApp\Private\Reportes\DataSet\dsEstadisticaPresidencia.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsEstadisticaPresidencia.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Reportes\DataSet\dsIntegralVictimas.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsIntegralVictimas.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Reportes\DataSet\dsVisGeneral.cs">
+      <DependentUpon>dsVisGeneral.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Application\WebApp\Private\Reportes\DataSet\dsVisGeneral.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dsVisGeneral.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Reportes\rptEstadisticaPresidencia.aspx.cs">
+      <DependentUpon>rptEstadisticaPresidencia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Reportes\rptEstadisticaPresidencia.aspx.designer.cs">
+      <DependentUpon>rptEstadisticaPresidencia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Reportes\rptEstadisticaPresidencia.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptEstadisticaPresidencia.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Reportes\rptIntegralVictimas.aspx.cs">
+      <DependentUpon>rptIntegralVictimas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Reportes\rptIntegralVictimas.aspx.designer.cs">
+      <DependentUpon>rptIntegralVictimas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Reportes\rptIntegralVictimas.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptIntegralVictimas.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\Reportes\rptPresentaReporte.aspx.cs">
       <DependentUpon>rptPresentaReporte.aspx</DependentUpon>
@@ -1527,6 +1591,14 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Application\WebApp\Private\Reportes\rptEstadisticaPresidencia.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptEstadisticaPresidencia.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application\WebApp\Private\Reportes\rptIntegralVictimas.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptIntegralVictimas.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Application\WebApp\Private\Reportes\rptVisGeneral.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptVisGeneral.cs</LastGenOutput>

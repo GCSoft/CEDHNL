@@ -11,24 +11,29 @@ using System.Data.SqlClient;
 using SIAQ.Entity.Object;
 using SIAQ.BusinessProcess.Object;
 using GCUtility.Function;
+using CrystalDecisions.Shared;
+
+using SIAQ.Web.Application.WebApp.Private.Reportes.DataSet;
 
 namespace SIAQ.Web.Application.WebApp.Private.Reportes
 {
     public partial class rptPresentaReporte : System.Web.UI.Page
     {
+
+        ConnectionInfo connectionInfo = new ConnectionInfo();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             string TipoReporte = Request.QueryString["TipoReporte"];
             DateTime FechaInicial = System.DateTime.Parse(Request.QueryString["FechaInicial"]);
             DateTime FechaFinal = System.DateTime.Parse(Request.QueryString["FechaFinal"]);
-            int EstatusId = Int32.Parse(Request.QueryString["EstatusId"]);
             
-            PresentaReporte(TipoReporte, FechaInicial, FechaFinal, EstatusId);
+            PresentaReporte(TipoReporte, FechaInicial, FechaFinal);
         }
 
         #region Rutinas del programador
 
-        public void PresentaReporte(string TipoReporte, DateTime FechaInicial, DateTime FechaFinal, int EstatusId)
+        public void PresentaReporte(string TipoReporte, DateTime FechaInicial, DateTime FechaFinal)
         {
             ENTResponse oResponse = new ENTResponse();
             System.Data.DataSet ds = new System.Data.DataSet();
@@ -44,43 +49,67 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes
                         BPVisitaduria bssGVis = new BPVisitaduria();
 
                         // Asigna valores
-                        entGVis.FechaDesde = FechaInicial.ToString("dd-MM-yyyy");
-                        entGVis.FechaHasta = FechaFinal.ToString("dd-MM-yyyy");
-                        entGVis.EstatusId = EstatusId;
+                        entGVis.FechaDesde = FechaInicial.ToString("yyyy-MM-dd");
+                        entGVis.FechaHasta = FechaFinal.ToString("yyyy-MM-dd");
 
                         // Consulta reporte            
                         oResponse = bssGVis.RptGeneralVisitaduria(entGVis);
 
+                        //oResponse.dsResponse.Tables[0].TableName = "tblEncabezado";
+                        //oResponse.dsResponse.Tables[1].TableName = "tblExpPeriodo_I";
+                        //oResponse.dsResponse.Tables[2].TableName = "tblExpMedidaCautelar_II";
+                        //oResponse.dsResponse.Tables[3].TableName = "tblExpSolicitudGestion_III";
+                        //oResponse.dsResponse.Tables[4].TableName = "tblExpVisitaduriaGeneral_IV";
+                        //oResponse.dsResponse.Tables[5].TableName = "tblExpConcluidos_V";
+                        //oResponse.dsResponse.Tables[6].TableName = "tblExpNivelAutoridadVI";
+                        //oResponse.dsResponse.Tables[7].TableName = "tblPersonasAtendidasVII";
+                        //oResponse.dsResponse.Tables[8].TableName = "tblEntrevistas_VIII";
+                        //oResponse.dsResponse.Tables[9].TableName = "tblSupervisores_IX";
+                        //oResponse.dsResponse.Tables[10].TableName = "tblResultados_X";
+
+                        //rptEstadisticaPresidencia rptCR = new rptEstadisticaPresidencia();
                         rptVisGeneral rptCR = new rptVisGeneral();
-                        rptCR.SetDataSource(ds.Tables[1]);
+                        rptCR.SetDataSource(oResponse.dsResponse);
+                        //SetDBLogonForReport(connectionInfo);
                         crViewer.ReportSource = rptCR;
                         break;
 
-                    case "Expedientes":
-                        //// Declara Entidad y Buiseness
-                        //ENTVisitaduria entGExp = new ENTVisitaduria();
-                        //BPVisitaduria bssGVis = new BPVisitaduria();
+                    case "rptEstadisticaPresidencia":
+                        // Declara Entidad y Buiseness
+                        ENTVisitaduria entEstadisticaPresindecia = new ENTVisitaduria();
+                        BPVisitaduria bssEstadisticaPresindecia = new BPVisitaduria();
 
-                        //// Asigna valores
-                        //entGVis.FechaDesde = FechaInicial.ToString("dd-MM-yyyy");
-                        //entGVis.FechaHasta = FechaFinal.ToString("dd-MM-yyyy");
-                        //entGVis.EstatusId = EstatusId;
+                        // Asigna valores
+                        entEstadisticaPresindecia.FechaDesde = FechaInicial.ToString("yyyy-MM-dd");
+                        entEstadisticaPresindecia.FechaHasta = FechaFinal.ToString("yyyy-MM-dd");
 
-                        //// Consulta reporte            
-                        //bss.SelectRptQuejas(ref ds, ent);
+                        // Consulta reporte            
+                        oResponse = bssEstadisticaPresindecia.RptGeneralVisitaduria(entEstadisticaPresindecia);
 
-                        //rptVisGeneral rptCREstatusExpediente = new rptVisGeneral();
-                        //rptCREstatusExpediente.SetDataSource(ds.Tables[1]);
-                        //crViewer.ReportSource = rptCREstatusExpediente;
+                        //rptVisGeneral rptCREstadisticaPresidencia = new rptVisGeneral();
+                        rptEstadisticaPresidencia rptCREstadisticaPresidencia = new rptEstadisticaPresidencia();
+                        rptCREstadisticaPresidencia.SetDataSource(oResponse.dsResponse);
+                        //SetDBLogonForReport(connectionInfo);
+                        crViewer.ReportSource = rptCREstadisticaPresidencia;
                         break;
 
-                    case "Solicitudes":
-                        // Consulta reporte            
-                        //bss.SelectRptQuejas(ref ds, ent);
+                    case "rptIntegralVictimas":
+                        // Declara Entidad y Buiseness
+                        ENTVisitaduria entIntegralVictimas = new ENTVisitaduria();
+                        BPVisitaduria bssIntegralVictimas = new BPVisitaduria();
 
-                        //rptVisGeneral rptCRSolicitude = new rptVisGeneral();
-                        //rptCRSolicitude.SetDataSource(ds.Tables[1]);
-                        //crViewer.ReportSource = rptCRSolicitude;
+                        // Asigna valores
+                        entIntegralVictimas.FechaDesde = FechaInicial.ToString("yyyy-MM-dd");
+                        entIntegralVictimas.FechaHasta = FechaFinal.ToString("yyyy-MM-dd");
+
+                        // Consulta reporte            
+                        oResponse = bssIntegralVictimas.RptGeneralVisitaduria(entIntegralVictimas);
+
+                        //rptEstadisticaPresidencia rptCR = new rptEstadisticaPresidencia();
+                        rptIntegralVictimas rptCRIntegralVictimas = new rptIntegralVictimas();
+                        rptCRIntegralVictimas.SetDataSource(oResponse.dsResponse);
+                        //SetDBLogonForReport(connectionInfo);
+                        crViewer.ReportSource = rptCRIntegralVictimas;
                         break;
                 }
             }
@@ -91,5 +120,19 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes
         }
 
         #endregion
+
+        private void SetDBLogonForReport(ConnectionInfo connectionInfo)
+        {
+            TableLogOnInfos tableLogOnInfos = crViewer.LogOnInfo;
+
+            connectionInfo.DatabaseName = "server=ns1.allium.arvixe.com";
+            connectionInfo.UserID = "SIAQDB";
+            connectionInfo.Password = "usld88!34";
+
+            foreach (TableLogOnInfo tableLogOnInfo in tableLogOnInfos)
+            {
+                tableLogOnInfo.ConnectionInfo = connectionInfo;
+            }
+        }
     }
 }

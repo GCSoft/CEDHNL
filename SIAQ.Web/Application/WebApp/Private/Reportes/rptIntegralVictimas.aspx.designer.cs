@@ -10,7 +10,7 @@
 namespace SIAQ.Web.Application.WebApp.Private.Reportes {
     
     
-    public partial class rptVisGeneral1 {
+    public partial class rptIntegralVictimas1 {
         
         /// <summary>
         /// pnlFormulario control.

@@ -758,11 +758,11 @@ namespace SIAQ.DataAccess.Object
 
             // Parametros
             sqlPar = new SqlParameter("FechaInicial", SqlDbType.DateTime);
-            sqlPar.Value = oENTVisitaduria.Nombre;
+            sqlPar.Value = oENTVisitaduria.FechaDesde;
             sqlCom.Parameters.Add(sqlPar);
 
             sqlPar = new SqlParameter("FechaFinal", SqlDbType.DateTime);
-            sqlPar.Value = oENTVisitaduria.Numero;
+            sqlPar.Value = oENTVisitaduria.FechaHasta;
             sqlCom.Parameters.Add(sqlPar);
 
             // Inicializaciones

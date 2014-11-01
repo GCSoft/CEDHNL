@@ -6,12 +6,14 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
+using System.Configuration;
 
 // Referencias manuales
 using SIAQ.Entity.Object;
 using SIAQ.BusinessProcess.Object;
 using GCUtility.Function;
 using CrystalDecisions.Shared;
+using CrystalDecisions.CrystalReports.Engine;
 
 using SIAQ.Web.Application.WebApp.Private.Reportes.DataSet;
 
@@ -55,22 +57,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes
                         // Consulta reporte            
                         oResponse = bssGVis.RptGeneralVisitaduria(entGVis);
 
-                        //oResponse.dsResponse.Tables[0].TableName = "tblEncabezado";
-                        //oResponse.dsResponse.Tables[1].TableName = "tblExpPeriodo_I";
-                        //oResponse.dsResponse.Tables[2].TableName = "tblExpMedidaCautelar_II";
-                        //oResponse.dsResponse.Tables[3].TableName = "tblExpSolicitudGestion_III";
-                        //oResponse.dsResponse.Tables[4].TableName = "tblExpVisitaduriaGeneral_IV";
-                        //oResponse.dsResponse.Tables[5].TableName = "tblExpConcluidos_V";
-                        //oResponse.dsResponse.Tables[6].TableName = "tblExpNivelAutoridadVI";
-                        //oResponse.dsResponse.Tables[7].TableName = "tblPersonasAtendidasVII";
-                        //oResponse.dsResponse.Tables[8].TableName = "tblEntrevistas_VIII";
-                        //oResponse.dsResponse.Tables[9].TableName = "tblSupervisores_IX";
-                        //oResponse.dsResponse.Tables[10].TableName = "tblResultados_X";
+                        oResponse.dsResponse.Tables[0].TableName = "tblEncabezado";
+                        oResponse.dsResponse.Tables[1].TableName = "tblExpPeriodo_I";
+                        oResponse.dsResponse.Tables[2].TableName = "tblExpMedidaCautelar_II";
+                        oResponse.dsResponse.Tables[3].TableName = "tblExpSolicitudGestion_III";
+                        oResponse.dsResponse.Tables[4].TableName = "tblExpVisitaduriaGeneral_IV";
+                        oResponse.dsResponse.Tables[5].TableName = "tblExpConcluidos_V";
+                        oResponse.dsResponse.Tables[6].TableName = "tblExpNivelAutoridadVI";
+                        oResponse.dsResponse.Tables[7].TableName = "tblPersonasAtendidasVII";
+                        oResponse.dsResponse.Tables[8].TableName = "tblEntrevistas_VIII";
+                        oResponse.dsResponse.Tables[9].TableName = "tblSupervisores_IX";
+                        oResponse.dsResponse.Tables[10].TableName = "tblResultados_X";
 
-                        //rptEstadisticaPresidencia rptCR = new rptEstadisticaPresidencia();
                         rptVisGeneral rptCR = new rptVisGeneral();
                         rptCR.SetDataSource(oResponse.dsResponse);
-                        //SetDBLogonForReport(connectionInfo);
+
+                        // Presenta reporte
                         crViewer.ReportSource = rptCR;
                         break;
 
@@ -108,7 +110,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes
                         //rptEstadisticaPresidencia rptCR = new rptEstadisticaPresidencia();
                         rptIntegralVictimas rptCRIntegralVictimas = new rptIntegralVictimas();
                         rptCRIntegralVictimas.SetDataSource(oResponse.dsResponse);
-                        //SetDBLogonForReport(connectionInfo);
                         crViewer.ReportSource = rptCRIntegralVictimas;
                         break;
                 }
@@ -120,19 +121,5 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes
         }
 
         #endregion
-
-        private void SetDBLogonForReport(ConnectionInfo connectionInfo)
-        {
-            TableLogOnInfos tableLogOnInfos = crViewer.LogOnInfo;
-
-            connectionInfo.DatabaseName = "server=ns1.allium.arvixe.com";
-            connectionInfo.UserID = "SIAQDB";
-            connectionInfo.Password = "usld88!34";
-
-            foreach (TableLogOnInfo tableLogOnInfo in tableLogOnInfos)
-            {
-                tableLogOnInfo.ConnectionInfo = connectionInfo;
-            }
-        }
     }
 }

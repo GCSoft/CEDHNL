@@ -48,6 +48,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
         
         private tblExpQuejaAutoridad_XIIDataTable tabletblExpQuejaAutoridad_XII;
         
+        private tblDiligenciasYEntrevistas_XIIIDataTable tabletblDiligenciasYEntrevistas_XIII;
+        
+        private tblGrupoPersonasRelacionadas_XIVDataTable tabletblGrupoPersonasRelacionadas_XIV;
+        
+        private tblOrigenPersonasRelacionadas_XVDataTable tabletblOrigenPersonasRelacionadas_XV;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -111,6 +117,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
                 }
                 if ((ds.Tables["tblExpQuejaAutoridad_XII"] != null)) {
                     base.Tables.Add(new tblExpQuejaAutoridad_XIIDataTable(ds.Tables["tblExpQuejaAutoridad_XII"]));
+                }
+                if ((ds.Tables["tblDiligenciasYEntrevistas_XIII"] != null)) {
+                    base.Tables.Add(new tblDiligenciasYEntrevistas_XIIIDataTable(ds.Tables["tblDiligenciasYEntrevistas_XIII"]));
+                }
+                if ((ds.Tables["tblGrupoPersonasRelacionadas_XIV"] != null)) {
+                    base.Tables.Add(new tblGrupoPersonasRelacionadas_XIVDataTable(ds.Tables["tblGrupoPersonasRelacionadas_XIV"]));
+                }
+                if ((ds.Tables["tblOrigenPersonasRelacionadas_XV"] != null)) {
+                    base.Tables.Add(new tblOrigenPersonasRelacionadas_XVDataTable(ds.Tables["tblOrigenPersonasRelacionadas_XV"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -252,6 +267,36 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public tblDiligenciasYEntrevistas_XIIIDataTable tblDiligenciasYEntrevistas_XIII {
+            get {
+                return this.tabletblDiligenciasYEntrevistas_XIII;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public tblGrupoPersonasRelacionadas_XIVDataTable tblGrupoPersonasRelacionadas_XIV {
+            get {
+                return this.tabletblGrupoPersonasRelacionadas_XIV;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public tblOrigenPersonasRelacionadas_XVDataTable tblOrigenPersonasRelacionadas_XV {
+            get {
+                return this.tabletblOrigenPersonasRelacionadas_XV;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -352,6 +397,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
                 }
                 if ((ds.Tables["tblExpQuejaAutoridad_XII"] != null)) {
                     base.Tables.Add(new tblExpQuejaAutoridad_XIIDataTable(ds.Tables["tblExpQuejaAutoridad_XII"]));
+                }
+                if ((ds.Tables["tblDiligenciasYEntrevistas_XIII"] != null)) {
+                    base.Tables.Add(new tblDiligenciasYEntrevistas_XIIIDataTable(ds.Tables["tblDiligenciasYEntrevistas_XIII"]));
+                }
+                if ((ds.Tables["tblGrupoPersonasRelacionadas_XIV"] != null)) {
+                    base.Tables.Add(new tblGrupoPersonasRelacionadas_XIVDataTable(ds.Tables["tblGrupoPersonasRelacionadas_XIV"]));
+                }
+                if ((ds.Tables["tblOrigenPersonasRelacionadas_XV"] != null)) {
+                    base.Tables.Add(new tblOrigenPersonasRelacionadas_XVDataTable(ds.Tables["tblOrigenPersonasRelacionadas_XV"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -458,6 +512,24 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
                     this.tabletblExpQuejaAutoridad_XII.InitVars();
                 }
             }
+            this.tabletblDiligenciasYEntrevistas_XIII = ((tblDiligenciasYEntrevistas_XIIIDataTable)(base.Tables["tblDiligenciasYEntrevistas_XIII"]));
+            if ((initTable == true)) {
+                if ((this.tabletblDiligenciasYEntrevistas_XIII != null)) {
+                    this.tabletblDiligenciasYEntrevistas_XIII.InitVars();
+                }
+            }
+            this.tabletblGrupoPersonasRelacionadas_XIV = ((tblGrupoPersonasRelacionadas_XIVDataTable)(base.Tables["tblGrupoPersonasRelacionadas_XIV"]));
+            if ((initTable == true)) {
+                if ((this.tabletblGrupoPersonasRelacionadas_XIV != null)) {
+                    this.tabletblGrupoPersonasRelacionadas_XIV.InitVars();
+                }
+            }
+            this.tabletblOrigenPersonasRelacionadas_XV = ((tblOrigenPersonasRelacionadas_XVDataTable)(base.Tables["tblOrigenPersonasRelacionadas_XV"]));
+            if ((initTable == true)) {
+                if ((this.tabletblOrigenPersonasRelacionadas_XV != null)) {
+                    this.tabletblOrigenPersonasRelacionadas_XV.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -492,6 +564,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             base.Tables.Add(this.tabletblSolicitudesGestion_XI);
             this.tabletblExpQuejaAutoridad_XII = new tblExpQuejaAutoridad_XIIDataTable();
             base.Tables.Add(this.tabletblExpQuejaAutoridad_XII);
+            this.tabletblDiligenciasYEntrevistas_XIII = new tblDiligenciasYEntrevistas_XIIIDataTable();
+            base.Tables.Add(this.tabletblDiligenciasYEntrevistas_XIII);
+            this.tabletblGrupoPersonasRelacionadas_XIV = new tblGrupoPersonasRelacionadas_XIVDataTable();
+            base.Tables.Add(this.tabletblGrupoPersonasRelacionadas_XIV);
+            this.tabletblOrigenPersonasRelacionadas_XV = new tblOrigenPersonasRelacionadas_XVDataTable();
+            base.Tables.Add(this.tabletblOrigenPersonasRelacionadas_XV);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -563,6 +641,24 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializetblExpQuejaAutoridad_XII() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializetblDiligenciasYEntrevistas_XIII() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializetblGrupoPersonasRelacionadas_XIV() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializetblOrigenPersonasRelacionadas_XV() {
             return false;
         }
         
@@ -656,6 +752,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void tblExpQuejaAutoridad_XIIRowChangeEventHandler(object sender, tblExpQuejaAutoridad_XIIRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void tblDiligenciasYEntrevistas_XIIIRowChangeEventHandler(object sender, tblDiligenciasYEntrevistas_XIIIRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void tblGrupoPersonasRelacionadas_XIVRowChangeEventHandler(object sender, tblGrupoPersonasRelacionadas_XIVRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void tblOrigenPersonasRelacionadas_XVRowChangeEventHandler(object sender, tblOrigenPersonasRelacionadas_XVRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -5425,6 +5530,1127 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class tblDiligenciasYEntrevistas_XIIIDataTable : global::System.Data.TypedTableBase<tblDiligenciasYEntrevistas_XIIIRow> {
+            
+            private global::System.Data.DataColumn columnCTopoChico;
+            
+            private global::System.Data.DataColumn columnCApodaca;
+            
+            private global::System.Data.DataColumn columnCCadereyta;
+            
+            private global::System.Data.DataColumn columnCAAdolecentes;
+            
+            private global::System.Data.DataColumn columnSSPEstado;
+            
+            private global::System.Data.DataColumn columnAEI;
+            
+            private global::System.Data.DataColumn columnCasaArraigo;
+            
+            private global::System.Data.DataColumn columnAgenciaMP;
+            
+            private global::System.Data.DataColumn columnServiciosPericiales;
+            
+            private global::System.Data.DataColumn columnSEMEFO;
+            
+            private global::System.Data.DataColumn columnHUniversitarioSEMEFO;
+            
+            private global::System.Data.DataColumn columnHMetropolitano;
+            
+            private global::System.Data.DataColumn columnHMaternoInfantil;
+            
+            private global::System.Data.DataColumn columnSSPMonterrey;
+            
+            private global::System.Data.DataColumn columnSSPSanicolas;
+            
+            private global::System.Data.DataColumn columnSSPGuadalupe;
+            
+            private global::System.Data.DataColumn columnSSPApodaca;
+            
+            private global::System.Data.DataColumn columnSSPEscobedo;
+            
+            private global::System.Data.DataColumn columnSSPSanPedro;
+            
+            private global::System.Data.DataColumn columnSSPSantaCatarina;
+            
+            private global::System.Data.DataColumn columnSSPGarcia;
+            
+            private global::System.Data.DataColumn columnSSPJuarez;
+            
+            private global::System.Data.DataColumn columnTotal;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblDiligenciasYEntrevistas_XIIIDataTable() {
+                this.TableName = "tblDiligenciasYEntrevistas_XIII";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal tblDiligenciasYEntrevistas_XIIIDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected tblDiligenciasYEntrevistas_XIIIDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CTopoChicoColumn {
+                get {
+                    return this.columnCTopoChico;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CApodacaColumn {
+                get {
+                    return this.columnCApodaca;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CCadereytaColumn {
+                get {
+                    return this.columnCCadereyta;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CAAdolecentesColumn {
+                get {
+                    return this.columnCAAdolecentes;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SSPEstadoColumn {
+                get {
+                    return this.columnSSPEstado;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AEIColumn {
+                get {
+                    return this.columnAEI;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CasaArraigoColumn {
+                get {
+                    return this.columnCasaArraigo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AgenciaMPColumn {
+                get {
+                    return this.columnAgenciaMP;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ServiciosPericialesColumn {
+                get {
+                    return this.columnServiciosPericiales;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SEMEFOColumn {
+                get {
+                    return this.columnSEMEFO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn HUniversitarioSEMEFOColumn {
+                get {
+                    return this.columnHUniversitarioSEMEFO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn HMetropolitanoColumn {
+                get {
+                    return this.columnHMetropolitano;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn HMaternoInfantilColumn {
+                get {
+                    return this.columnHMaternoInfantil;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SSPMonterreyColumn {
+                get {
+                    return this.columnSSPMonterrey;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SSPSanicolasColumn {
+                get {
+                    return this.columnSSPSanicolas;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SSPGuadalupeColumn {
+                get {
+                    return this.columnSSPGuadalupe;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SSPApodacaColumn {
+                get {
+                    return this.columnSSPApodaca;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SSPEscobedoColumn {
+                get {
+                    return this.columnSSPEscobedo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SSPSanPedroColumn {
+                get {
+                    return this.columnSSPSanPedro;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SSPSantaCatarinaColumn {
+                get {
+                    return this.columnSSPSantaCatarina;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SSPGarciaColumn {
+                get {
+                    return this.columnSSPGarcia;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SSPJuarezColumn {
+                get {
+                    return this.columnSSPJuarez;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TotalColumn {
+                get {
+                    return this.columnTotal;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblDiligenciasYEntrevistas_XIIIRow this[int index] {
+                get {
+                    return ((tblDiligenciasYEntrevistas_XIIIRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tblDiligenciasYEntrevistas_XIIIRowChangeEventHandler tblDiligenciasYEntrevistas_XIIIRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tblDiligenciasYEntrevistas_XIIIRowChangeEventHandler tblDiligenciasYEntrevistas_XIIIRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tblDiligenciasYEntrevistas_XIIIRowChangeEventHandler tblDiligenciasYEntrevistas_XIIIRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tblDiligenciasYEntrevistas_XIIIRowChangeEventHandler tblDiligenciasYEntrevistas_XIIIRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddtblDiligenciasYEntrevistas_XIIIRow(tblDiligenciasYEntrevistas_XIIIRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblDiligenciasYEntrevistas_XIIIRow AddtblDiligenciasYEntrevistas_XIIIRow(
+                        string CTopoChico, 
+                        string CApodaca, 
+                        string CCadereyta, 
+                        string CAAdolecentes, 
+                        string SSPEstado, 
+                        string AEI, 
+                        string CasaArraigo, 
+                        string AgenciaMP, 
+                        string ServiciosPericiales, 
+                        string SEMEFO, 
+                        string HUniversitarioSEMEFO, 
+                        string HMetropolitano, 
+                        string HMaternoInfantil, 
+                        string SSPMonterrey, 
+                        string SSPSanicolas, 
+                        string SSPGuadalupe, 
+                        string SSPApodaca, 
+                        string SSPEscobedo, 
+                        string SSPSanPedro, 
+                        string SSPSantaCatarina, 
+                        string SSPGarcia, 
+                        string SSPJuarez, 
+                        string Total) {
+                tblDiligenciasYEntrevistas_XIIIRow rowtblDiligenciasYEntrevistas_XIIIRow = ((tblDiligenciasYEntrevistas_XIIIRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        CTopoChico,
+                        CApodaca,
+                        CCadereyta,
+                        CAAdolecentes,
+                        SSPEstado,
+                        AEI,
+                        CasaArraigo,
+                        AgenciaMP,
+                        ServiciosPericiales,
+                        SEMEFO,
+                        HUniversitarioSEMEFO,
+                        HMetropolitano,
+                        HMaternoInfantil,
+                        SSPMonterrey,
+                        SSPSanicolas,
+                        SSPGuadalupe,
+                        SSPApodaca,
+                        SSPEscobedo,
+                        SSPSanPedro,
+                        SSPSantaCatarina,
+                        SSPGarcia,
+                        SSPJuarez,
+                        Total};
+                rowtblDiligenciasYEntrevistas_XIIIRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowtblDiligenciasYEntrevistas_XIIIRow);
+                return rowtblDiligenciasYEntrevistas_XIIIRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                tblDiligenciasYEntrevistas_XIIIDataTable cln = ((tblDiligenciasYEntrevistas_XIIIDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new tblDiligenciasYEntrevistas_XIIIDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnCTopoChico = base.Columns["CTopoChico"];
+                this.columnCApodaca = base.Columns["CApodaca"];
+                this.columnCCadereyta = base.Columns["CCadereyta"];
+                this.columnCAAdolecentes = base.Columns["CAAdolecentes"];
+                this.columnSSPEstado = base.Columns["SSPEstado"];
+                this.columnAEI = base.Columns["AEI"];
+                this.columnCasaArraigo = base.Columns["CasaArraigo"];
+                this.columnAgenciaMP = base.Columns["AgenciaMP"];
+                this.columnServiciosPericiales = base.Columns["ServiciosPericiales"];
+                this.columnSEMEFO = base.Columns["SEMEFO"];
+                this.columnHUniversitarioSEMEFO = base.Columns["HUniversitarioSEMEFO"];
+                this.columnHMetropolitano = base.Columns["HMetropolitano"];
+                this.columnHMaternoInfantil = base.Columns["HMaternoInfantil"];
+                this.columnSSPMonterrey = base.Columns["SSPMonterrey"];
+                this.columnSSPSanicolas = base.Columns["SSPSanicolas"];
+                this.columnSSPGuadalupe = base.Columns["SSPGuadalupe"];
+                this.columnSSPApodaca = base.Columns["SSPApodaca"];
+                this.columnSSPEscobedo = base.Columns["SSPEscobedo"];
+                this.columnSSPSanPedro = base.Columns["SSPSanPedro"];
+                this.columnSSPSantaCatarina = base.Columns["SSPSantaCatarina"];
+                this.columnSSPGarcia = base.Columns["SSPGarcia"];
+                this.columnSSPJuarez = base.Columns["SSPJuarez"];
+                this.columnTotal = base.Columns["Total"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnCTopoChico = new global::System.Data.DataColumn("CTopoChico", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCTopoChico);
+                this.columnCApodaca = new global::System.Data.DataColumn("CApodaca", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCApodaca);
+                this.columnCCadereyta = new global::System.Data.DataColumn("CCadereyta", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCCadereyta);
+                this.columnCAAdolecentes = new global::System.Data.DataColumn("CAAdolecentes", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCAAdolecentes);
+                this.columnSSPEstado = new global::System.Data.DataColumn("SSPEstado", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSSPEstado);
+                this.columnAEI = new global::System.Data.DataColumn("AEI", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAEI);
+                this.columnCasaArraigo = new global::System.Data.DataColumn("CasaArraigo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCasaArraigo);
+                this.columnAgenciaMP = new global::System.Data.DataColumn("AgenciaMP", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAgenciaMP);
+                this.columnServiciosPericiales = new global::System.Data.DataColumn("ServiciosPericiales", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnServiciosPericiales);
+                this.columnSEMEFO = new global::System.Data.DataColumn("SEMEFO", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSEMEFO);
+                this.columnHUniversitarioSEMEFO = new global::System.Data.DataColumn("HUniversitarioSEMEFO", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnHUniversitarioSEMEFO);
+                this.columnHMetropolitano = new global::System.Data.DataColumn("HMetropolitano", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnHMetropolitano);
+                this.columnHMaternoInfantil = new global::System.Data.DataColumn("HMaternoInfantil", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnHMaternoInfantil);
+                this.columnSSPMonterrey = new global::System.Data.DataColumn("SSPMonterrey", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSSPMonterrey);
+                this.columnSSPSanicolas = new global::System.Data.DataColumn("SSPSanicolas", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSSPSanicolas);
+                this.columnSSPGuadalupe = new global::System.Data.DataColumn("SSPGuadalupe", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSSPGuadalupe);
+                this.columnSSPApodaca = new global::System.Data.DataColumn("SSPApodaca", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSSPApodaca);
+                this.columnSSPEscobedo = new global::System.Data.DataColumn("SSPEscobedo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSSPEscobedo);
+                this.columnSSPSanPedro = new global::System.Data.DataColumn("SSPSanPedro", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSSPSanPedro);
+                this.columnSSPSantaCatarina = new global::System.Data.DataColumn("SSPSantaCatarina", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSSPSantaCatarina);
+                this.columnSSPGarcia = new global::System.Data.DataColumn("SSPGarcia", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSSPGarcia);
+                this.columnSSPJuarez = new global::System.Data.DataColumn("SSPJuarez", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSSPJuarez);
+                this.columnTotal = new global::System.Data.DataColumn("Total", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotal);
+                this.columnCTopoChico.Caption = "DataColumn1";
+                this.columnCApodaca.Caption = "DataColumn1";
+                this.columnCCadereyta.Caption = "DataColumn1";
+                this.columnCAAdolecentes.Caption = "DataColumn1";
+                this.columnAEI.Caption = "DataColumn1";
+                this.columnCasaArraigo.Caption = "DataColumn1";
+                this.columnAgenciaMP.Caption = "DataColumn1";
+                this.columnServiciosPericiales.Caption = "DataColumn1";
+                this.columnSEMEFO.Caption = "DataColumn1";
+                this.columnHUniversitarioSEMEFO.Caption = "DataColumn1";
+                this.columnHMetropolitano.Caption = "DataColumn1";
+                this.columnHMaternoInfantil.Caption = "DataColumn1";
+                this.columnSSPMonterrey.Caption = "DataColumn1";
+                this.columnSSPGuadalupe.Caption = "aa";
+                this.columnSSPApodaca.Caption = "aa";
+                this.columnSSPEscobedo.Caption = "aa";
+                this.columnSSPSanPedro.Caption = "aa";
+                this.columnSSPSantaCatarina.Caption = "aa";
+                this.columnSSPGarcia.Caption = "aa";
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblDiligenciasYEntrevistas_XIIIRow NewtblDiligenciasYEntrevistas_XIIIRow() {
+                return ((tblDiligenciasYEntrevistas_XIIIRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new tblDiligenciasYEntrevistas_XIIIRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(tblDiligenciasYEntrevistas_XIIIRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.tblDiligenciasYEntrevistas_XIIIRowChanged != null)) {
+                    this.tblDiligenciasYEntrevistas_XIIIRowChanged(this, new tblDiligenciasYEntrevistas_XIIIRowChangeEvent(((tblDiligenciasYEntrevistas_XIIIRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.tblDiligenciasYEntrevistas_XIIIRowChanging != null)) {
+                    this.tblDiligenciasYEntrevistas_XIIIRowChanging(this, new tblDiligenciasYEntrevistas_XIIIRowChangeEvent(((tblDiligenciasYEntrevistas_XIIIRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.tblDiligenciasYEntrevistas_XIIIRowDeleted != null)) {
+                    this.tblDiligenciasYEntrevistas_XIIIRowDeleted(this, new tblDiligenciasYEntrevistas_XIIIRowChangeEvent(((tblDiligenciasYEntrevistas_XIIIRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.tblDiligenciasYEntrevistas_XIIIRowDeleting != null)) {
+                    this.tblDiligenciasYEntrevistas_XIIIRowDeleting(this, new tblDiligenciasYEntrevistas_XIIIRowChangeEvent(((tblDiligenciasYEntrevistas_XIIIRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemovetblDiligenciasYEntrevistas_XIIIRow(tblDiligenciasYEntrevistas_XIIIRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                dsEstadisticaPresidencia ds = new dsEstadisticaPresidencia();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "tblDiligenciasYEntrevistas_XIIIDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class tblGrupoPersonasRelacionadas_XIVDataTable : global::System.Data.TypedTableBase<tblGrupoPersonasRelacionadas_XIVRow> {
+            
+            private global::System.Data.DataColumn columnEdad;
+            
+            private global::System.Data.DataColumn columnMesAnio;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblGrupoPersonasRelacionadas_XIVDataTable() {
+                this.TableName = "tblGrupoPersonasRelacionadas_XIV";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal tblGrupoPersonasRelacionadas_XIVDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected tblGrupoPersonasRelacionadas_XIVDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn EdadColumn {
+                get {
+                    return this.columnEdad;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn MesAnioColumn {
+                get {
+                    return this.columnMesAnio;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblGrupoPersonasRelacionadas_XIVRow this[int index] {
+                get {
+                    return ((tblGrupoPersonasRelacionadas_XIVRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tblGrupoPersonasRelacionadas_XIVRowChangeEventHandler tblGrupoPersonasRelacionadas_XIVRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tblGrupoPersonasRelacionadas_XIVRowChangeEventHandler tblGrupoPersonasRelacionadas_XIVRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tblGrupoPersonasRelacionadas_XIVRowChangeEventHandler tblGrupoPersonasRelacionadas_XIVRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tblGrupoPersonasRelacionadas_XIVRowChangeEventHandler tblGrupoPersonasRelacionadas_XIVRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddtblGrupoPersonasRelacionadas_XIVRow(tblGrupoPersonasRelacionadas_XIVRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblGrupoPersonasRelacionadas_XIVRow AddtblGrupoPersonasRelacionadas_XIVRow(string Edad, string MesAnio) {
+                tblGrupoPersonasRelacionadas_XIVRow rowtblGrupoPersonasRelacionadas_XIVRow = ((tblGrupoPersonasRelacionadas_XIVRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        Edad,
+                        MesAnio};
+                rowtblGrupoPersonasRelacionadas_XIVRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowtblGrupoPersonasRelacionadas_XIVRow);
+                return rowtblGrupoPersonasRelacionadas_XIVRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                tblGrupoPersonasRelacionadas_XIVDataTable cln = ((tblGrupoPersonasRelacionadas_XIVDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new tblGrupoPersonasRelacionadas_XIVDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnEdad = base.Columns["Edad"];
+                this.columnMesAnio = base.Columns["MesAnio"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnEdad = new global::System.Data.DataColumn("Edad", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEdad);
+                this.columnMesAnio = new global::System.Data.DataColumn("MesAnio", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMesAnio);
+                this.columnEdad.Caption = "DataColumn1";
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblGrupoPersonasRelacionadas_XIVRow NewtblGrupoPersonasRelacionadas_XIVRow() {
+                return ((tblGrupoPersonasRelacionadas_XIVRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new tblGrupoPersonasRelacionadas_XIVRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(tblGrupoPersonasRelacionadas_XIVRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.tblGrupoPersonasRelacionadas_XIVRowChanged != null)) {
+                    this.tblGrupoPersonasRelacionadas_XIVRowChanged(this, new tblGrupoPersonasRelacionadas_XIVRowChangeEvent(((tblGrupoPersonasRelacionadas_XIVRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.tblGrupoPersonasRelacionadas_XIVRowChanging != null)) {
+                    this.tblGrupoPersonasRelacionadas_XIVRowChanging(this, new tblGrupoPersonasRelacionadas_XIVRowChangeEvent(((tblGrupoPersonasRelacionadas_XIVRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.tblGrupoPersonasRelacionadas_XIVRowDeleted != null)) {
+                    this.tblGrupoPersonasRelacionadas_XIVRowDeleted(this, new tblGrupoPersonasRelacionadas_XIVRowChangeEvent(((tblGrupoPersonasRelacionadas_XIVRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.tblGrupoPersonasRelacionadas_XIVRowDeleting != null)) {
+                    this.tblGrupoPersonasRelacionadas_XIVRowDeleting(this, new tblGrupoPersonasRelacionadas_XIVRowChangeEvent(((tblGrupoPersonasRelacionadas_XIVRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemovetblGrupoPersonasRelacionadas_XIVRow(tblGrupoPersonasRelacionadas_XIVRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                dsEstadisticaPresidencia ds = new dsEstadisticaPresidencia();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "tblGrupoPersonasRelacionadas_XIVDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class tblOrigenPersonasRelacionadas_XVDataTable : global::System.Data.TypedTableBase<tblOrigenPersonasRelacionadas_XVRow> {
+            
+            private global::System.Data.DataColumn columnMunicipio;
+            
+            private global::System.Data.DataColumn columnMesAnio;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblOrigenPersonasRelacionadas_XVDataTable() {
+                this.TableName = "tblOrigenPersonasRelacionadas_XV";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal tblOrigenPersonasRelacionadas_XVDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected tblOrigenPersonasRelacionadas_XVDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn MunicipioColumn {
+                get {
+                    return this.columnMunicipio;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn MesAnioColumn {
+                get {
+                    return this.columnMesAnio;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblOrigenPersonasRelacionadas_XVRow this[int index] {
+                get {
+                    return ((tblOrigenPersonasRelacionadas_XVRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tblOrigenPersonasRelacionadas_XVRowChangeEventHandler tblOrigenPersonasRelacionadas_XVRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tblOrigenPersonasRelacionadas_XVRowChangeEventHandler tblOrigenPersonasRelacionadas_XVRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tblOrigenPersonasRelacionadas_XVRowChangeEventHandler tblOrigenPersonasRelacionadas_XVRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tblOrigenPersonasRelacionadas_XVRowChangeEventHandler tblOrigenPersonasRelacionadas_XVRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddtblOrigenPersonasRelacionadas_XVRow(tblOrigenPersonasRelacionadas_XVRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblOrigenPersonasRelacionadas_XVRow AddtblOrigenPersonasRelacionadas_XVRow(string Municipio, string MesAnio) {
+                tblOrigenPersonasRelacionadas_XVRow rowtblOrigenPersonasRelacionadas_XVRow = ((tblOrigenPersonasRelacionadas_XVRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        Municipio,
+                        MesAnio};
+                rowtblOrigenPersonasRelacionadas_XVRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowtblOrigenPersonasRelacionadas_XVRow);
+                return rowtblOrigenPersonasRelacionadas_XVRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                tblOrigenPersonasRelacionadas_XVDataTable cln = ((tblOrigenPersonasRelacionadas_XVDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new tblOrigenPersonasRelacionadas_XVDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnMunicipio = base.Columns["Municipio"];
+                this.columnMesAnio = base.Columns["MesAnio"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnMunicipio = new global::System.Data.DataColumn("Municipio", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMunicipio);
+                this.columnMesAnio = new global::System.Data.DataColumn("MesAnio", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMesAnio);
+                this.columnMunicipio.Caption = "DataColumn1";
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblOrigenPersonasRelacionadas_XVRow NewtblOrigenPersonasRelacionadas_XVRow() {
+                return ((tblOrigenPersonasRelacionadas_XVRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new tblOrigenPersonasRelacionadas_XVRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(tblOrigenPersonasRelacionadas_XVRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.tblOrigenPersonasRelacionadas_XVRowChanged != null)) {
+                    this.tblOrigenPersonasRelacionadas_XVRowChanged(this, new tblOrigenPersonasRelacionadas_XVRowChangeEvent(((tblOrigenPersonasRelacionadas_XVRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.tblOrigenPersonasRelacionadas_XVRowChanging != null)) {
+                    this.tblOrigenPersonasRelacionadas_XVRowChanging(this, new tblOrigenPersonasRelacionadas_XVRowChangeEvent(((tblOrigenPersonasRelacionadas_XVRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.tblOrigenPersonasRelacionadas_XVRowDeleted != null)) {
+                    this.tblOrigenPersonasRelacionadas_XVRowDeleted(this, new tblOrigenPersonasRelacionadas_XVRowChangeEvent(((tblOrigenPersonasRelacionadas_XVRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.tblOrigenPersonasRelacionadas_XVRowDeleting != null)) {
+                    this.tblOrigenPersonasRelacionadas_XVRowDeleting(this, new tblOrigenPersonasRelacionadas_XVRowChangeEvent(((tblOrigenPersonasRelacionadas_XVRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemovetblOrigenPersonasRelacionadas_XVRow(tblOrigenPersonasRelacionadas_XVRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                dsEstadisticaPresidencia ds = new dsEstadisticaPresidencia();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "tblOrigenPersonasRelacionadas_XVDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class tblEncabezado_IRow : global::System.Data.DataRow {
@@ -9377,6 +10603,833 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class tblDiligenciasYEntrevistas_XIIIRow : global::System.Data.DataRow {
+            
+            private tblDiligenciasYEntrevistas_XIIIDataTable tabletblDiligenciasYEntrevistas_XIII;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal tblDiligenciasYEntrevistas_XIIIRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tabletblDiligenciasYEntrevistas_XIII = ((tblDiligenciasYEntrevistas_XIIIDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CTopoChico {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDiligenciasYEntrevistas_XIII.CTopoChicoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CTopoChico\' in table \'tblDiligenciasYEntrevistas_XIII\' is D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDiligenciasYEntrevistas_XIII.CTopoChicoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CApodaca {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDiligenciasYEntrevistas_XIII.CApodacaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CApodaca\' in table \'tblDiligenciasYEntrevistas_XIII\' is DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDiligenciasYEntrevistas_XIII.CApodacaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CCadereyta {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDiligenciasYEntrevistas_XIII.CCadereytaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CCadereyta\' in table \'tblDiligenciasYEntrevistas_XIII\' is D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDiligenciasYEntrevistas_XIII.CCadereytaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CAAdolecentes {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDiligenciasYEntrevistas_XIII.CAAdolecentesColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CAAdolecentes\' in table \'tblDiligenciasYEntrevistas_XIII\' i" +
+                                "s DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDiligenciasYEntrevistas_XIII.CAAdolecentesColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SSPEstado {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDiligenciasYEntrevistas_XIII.SSPEstadoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SSPEstado\' in table \'tblDiligenciasYEntrevistas_XIII\' is DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDiligenciasYEntrevistas_XIII.SSPEstadoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string AEI {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDiligenciasYEntrevistas_XIII.AEIColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AEI\' in table \'tblDiligenciasYEntrevistas_XIII\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDiligenciasYEntrevistas_XIII.AEIColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CasaArraigo {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDiligenciasYEntrevistas_XIII.CasaArraigoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CasaArraigo\' in table \'tblDiligenciasYEntrevistas_XIII\' is " +
+                                "DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDiligenciasYEntrevistas_XIII.CasaArraigoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string AgenciaMP {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDiligenciasYEntrevistas_XIII.AgenciaMPColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AgenciaMP\' in table \'tblDiligenciasYEntrevistas_XIII\' is DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDiligenciasYEntrevistas_XIII.AgenciaMPColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ServiciosPericiales {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDiligenciasYEntrevistas_XIII.ServiciosPericialesColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ServiciosPericiales\' in table \'tblDiligenciasYEntrevistas_X" +
+                                "III\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDiligenciasYEntrevistas_XIII.ServiciosPericialesColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SEMEFO {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDiligenciasYEntrevistas_XIII.SEMEFOColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SEMEFO\' in table \'tblDiligenciasYEntrevistas_XIII\' is DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDiligenciasYEntrevistas_XIII.SEMEFOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string HUniversitarioSEMEFO {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDiligenciasYEntrevistas_XIII.HUniversitarioSEMEFOColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'HUniversitarioSEMEFO\' in table \'tblDiligenciasYEntrevistas_" +
+                                "XIII\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDiligenciasYEntrevistas_XIII.HUniversitarioSEMEFOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string HMetropolitano {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDiligenciasYEntrevistas_XIII.HMetropolitanoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'HMetropolitano\' in table \'tblDiligenciasYEntrevistas_XIII\' " +
+                                "is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDiligenciasYEntrevistas_XIII.HMetropolitanoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string HMaternoInfantil {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDiligenciasYEntrevistas_XIII.HMaternoInfantilColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'HMaternoInfantil\' in table \'tblDiligenciasYEntrevistas_XIII" +
+                                "\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDiligenciasYEntrevistas_XIII.HMaternoInfantilColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SSPMonterrey {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDiligenciasYEntrevistas_XIII.SSPMonterreyColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SSPMonterrey\' in table \'tblDiligenciasYEntrevistas_XIII\' is" +
+                                " DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDiligenciasYEntrevistas_XIII.SSPMonterreyColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SSPSanicolas {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDiligenciasYEntrevistas_XIII.SSPSanicolasColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SSPSanicolas\' in table \'tblDiligenciasYEntrevistas_XIII\' is" +
+                                " DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDiligenciasYEntrevistas_XIII.SSPSanicolasColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SSPGuadalupe {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDiligenciasYEntrevistas_XIII.SSPGuadalupeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SSPGuadalupe\' in table \'tblDiligenciasYEntrevistas_XIII\' is" +
+                                " DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDiligenciasYEntrevistas_XIII.SSPGuadalupeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SSPApodaca {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDiligenciasYEntrevistas_XIII.SSPApodacaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SSPApodaca\' in table \'tblDiligenciasYEntrevistas_XIII\' is D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDiligenciasYEntrevistas_XIII.SSPApodacaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SSPEscobedo {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDiligenciasYEntrevistas_XIII.SSPEscobedoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SSPEscobedo\' in table \'tblDiligenciasYEntrevistas_XIII\' is " +
+                                "DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDiligenciasYEntrevistas_XIII.SSPEscobedoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SSPSanPedro {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDiligenciasYEntrevistas_XIII.SSPSanPedroColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SSPSanPedro\' in table \'tblDiligenciasYEntrevistas_XIII\' is " +
+                                "DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDiligenciasYEntrevistas_XIII.SSPSanPedroColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SSPSantaCatarina {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDiligenciasYEntrevistas_XIII.SSPSantaCatarinaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SSPSantaCatarina\' in table \'tblDiligenciasYEntrevistas_XIII" +
+                                "\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDiligenciasYEntrevistas_XIII.SSPSantaCatarinaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SSPGarcia {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDiligenciasYEntrevistas_XIII.SSPGarciaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SSPGarcia\' in table \'tblDiligenciasYEntrevistas_XIII\' is DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDiligenciasYEntrevistas_XIII.SSPGarciaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SSPJuarez {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDiligenciasYEntrevistas_XIII.SSPJuarezColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SSPJuarez\' in table \'tblDiligenciasYEntrevistas_XIII\' is DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDiligenciasYEntrevistas_XIII.SSPJuarezColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Total {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDiligenciasYEntrevistas_XIII.TotalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Total\' in table \'tblDiligenciasYEntrevistas_XIII\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDiligenciasYEntrevistas_XIII.TotalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCTopoChicoNull() {
+                return this.IsNull(this.tabletblDiligenciasYEntrevistas_XIII.CTopoChicoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCTopoChicoNull() {
+                this[this.tabletblDiligenciasYEntrevistas_XIII.CTopoChicoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCApodacaNull() {
+                return this.IsNull(this.tabletblDiligenciasYEntrevistas_XIII.CApodacaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCApodacaNull() {
+                this[this.tabletblDiligenciasYEntrevistas_XIII.CApodacaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCCadereytaNull() {
+                return this.IsNull(this.tabletblDiligenciasYEntrevistas_XIII.CCadereytaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCCadereytaNull() {
+                this[this.tabletblDiligenciasYEntrevistas_XIII.CCadereytaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCAAdolecentesNull() {
+                return this.IsNull(this.tabletblDiligenciasYEntrevistas_XIII.CAAdolecentesColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCAAdolecentesNull() {
+                this[this.tabletblDiligenciasYEntrevistas_XIII.CAAdolecentesColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSSPEstadoNull() {
+                return this.IsNull(this.tabletblDiligenciasYEntrevistas_XIII.SSPEstadoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSSPEstadoNull() {
+                this[this.tabletblDiligenciasYEntrevistas_XIII.SSPEstadoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAEINull() {
+                return this.IsNull(this.tabletblDiligenciasYEntrevistas_XIII.AEIColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAEINull() {
+                this[this.tabletblDiligenciasYEntrevistas_XIII.AEIColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCasaArraigoNull() {
+                return this.IsNull(this.tabletblDiligenciasYEntrevistas_XIII.CasaArraigoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCasaArraigoNull() {
+                this[this.tabletblDiligenciasYEntrevistas_XIII.CasaArraigoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAgenciaMPNull() {
+                return this.IsNull(this.tabletblDiligenciasYEntrevistas_XIII.AgenciaMPColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAgenciaMPNull() {
+                this[this.tabletblDiligenciasYEntrevistas_XIII.AgenciaMPColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsServiciosPericialesNull() {
+                return this.IsNull(this.tabletblDiligenciasYEntrevistas_XIII.ServiciosPericialesColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetServiciosPericialesNull() {
+                this[this.tabletblDiligenciasYEntrevistas_XIII.ServiciosPericialesColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSEMEFONull() {
+                return this.IsNull(this.tabletblDiligenciasYEntrevistas_XIII.SEMEFOColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSEMEFONull() {
+                this[this.tabletblDiligenciasYEntrevistas_XIII.SEMEFOColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsHUniversitarioSEMEFONull() {
+                return this.IsNull(this.tabletblDiligenciasYEntrevistas_XIII.HUniversitarioSEMEFOColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetHUniversitarioSEMEFONull() {
+                this[this.tabletblDiligenciasYEntrevistas_XIII.HUniversitarioSEMEFOColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsHMetropolitanoNull() {
+                return this.IsNull(this.tabletblDiligenciasYEntrevistas_XIII.HMetropolitanoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetHMetropolitanoNull() {
+                this[this.tabletblDiligenciasYEntrevistas_XIII.HMetropolitanoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsHMaternoInfantilNull() {
+                return this.IsNull(this.tabletblDiligenciasYEntrevistas_XIII.HMaternoInfantilColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetHMaternoInfantilNull() {
+                this[this.tabletblDiligenciasYEntrevistas_XIII.HMaternoInfantilColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSSPMonterreyNull() {
+                return this.IsNull(this.tabletblDiligenciasYEntrevistas_XIII.SSPMonterreyColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSSPMonterreyNull() {
+                this[this.tabletblDiligenciasYEntrevistas_XIII.SSPMonterreyColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSSPSanicolasNull() {
+                return this.IsNull(this.tabletblDiligenciasYEntrevistas_XIII.SSPSanicolasColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSSPSanicolasNull() {
+                this[this.tabletblDiligenciasYEntrevistas_XIII.SSPSanicolasColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSSPGuadalupeNull() {
+                return this.IsNull(this.tabletblDiligenciasYEntrevistas_XIII.SSPGuadalupeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSSPGuadalupeNull() {
+                this[this.tabletblDiligenciasYEntrevistas_XIII.SSPGuadalupeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSSPApodacaNull() {
+                return this.IsNull(this.tabletblDiligenciasYEntrevistas_XIII.SSPApodacaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSSPApodacaNull() {
+                this[this.tabletblDiligenciasYEntrevistas_XIII.SSPApodacaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSSPEscobedoNull() {
+                return this.IsNull(this.tabletblDiligenciasYEntrevistas_XIII.SSPEscobedoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSSPEscobedoNull() {
+                this[this.tabletblDiligenciasYEntrevistas_XIII.SSPEscobedoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSSPSanPedroNull() {
+                return this.IsNull(this.tabletblDiligenciasYEntrevistas_XIII.SSPSanPedroColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSSPSanPedroNull() {
+                this[this.tabletblDiligenciasYEntrevistas_XIII.SSPSanPedroColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSSPSantaCatarinaNull() {
+                return this.IsNull(this.tabletblDiligenciasYEntrevistas_XIII.SSPSantaCatarinaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSSPSantaCatarinaNull() {
+                this[this.tabletblDiligenciasYEntrevistas_XIII.SSPSantaCatarinaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSSPGarciaNull() {
+                return this.IsNull(this.tabletblDiligenciasYEntrevistas_XIII.SSPGarciaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSSPGarciaNull() {
+                this[this.tabletblDiligenciasYEntrevistas_XIII.SSPGarciaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSSPJuarezNull() {
+                return this.IsNull(this.tabletblDiligenciasYEntrevistas_XIII.SSPJuarezColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSSPJuarezNull() {
+                this[this.tabletblDiligenciasYEntrevistas_XIII.SSPJuarezColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTotalNull() {
+                return this.IsNull(this.tabletblDiligenciasYEntrevistas_XIII.TotalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTotalNull() {
+                this[this.tabletblDiligenciasYEntrevistas_XIII.TotalColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class tblGrupoPersonasRelacionadas_XIVRow : global::System.Data.DataRow {
+            
+            private tblGrupoPersonasRelacionadas_XIVDataTable tabletblGrupoPersonasRelacionadas_XIV;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal tblGrupoPersonasRelacionadas_XIVRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tabletblGrupoPersonasRelacionadas_XIV = ((tblGrupoPersonasRelacionadas_XIVDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Edad {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblGrupoPersonasRelacionadas_XIV.EdadColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Edad\' in table \'tblGrupoPersonasRelacionadas_XIV\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tabletblGrupoPersonasRelacionadas_XIV.EdadColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string MesAnio {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblGrupoPersonasRelacionadas_XIV.MesAnioColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MesAnio\' in table \'tblGrupoPersonasRelacionadas_XIV\' is DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblGrupoPersonasRelacionadas_XIV.MesAnioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsEdadNull() {
+                return this.IsNull(this.tabletblGrupoPersonasRelacionadas_XIV.EdadColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetEdadNull() {
+                this[this.tabletblGrupoPersonasRelacionadas_XIV.EdadColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsMesAnioNull() {
+                return this.IsNull(this.tabletblGrupoPersonasRelacionadas_XIV.MesAnioColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetMesAnioNull() {
+                this[this.tabletblGrupoPersonasRelacionadas_XIV.MesAnioColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class tblOrigenPersonasRelacionadas_XVRow : global::System.Data.DataRow {
+            
+            private tblOrigenPersonasRelacionadas_XVDataTable tabletblOrigenPersonasRelacionadas_XV;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal tblOrigenPersonasRelacionadas_XVRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tabletblOrigenPersonasRelacionadas_XV = ((tblOrigenPersonasRelacionadas_XVDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Municipio {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblOrigenPersonasRelacionadas_XV.MunicipioColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Municipio\' in table \'tblOrigenPersonasRelacionadas_XV\' is D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblOrigenPersonasRelacionadas_XV.MunicipioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string MesAnio {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblOrigenPersonasRelacionadas_XV.MesAnioColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MesAnio\' in table \'tblOrigenPersonasRelacionadas_XV\' is DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblOrigenPersonasRelacionadas_XV.MesAnioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsMunicipioNull() {
+                return this.IsNull(this.tabletblOrigenPersonasRelacionadas_XV.MunicipioColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetMunicipioNull() {
+                this[this.tabletblOrigenPersonasRelacionadas_XV.MunicipioColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsMesAnioNull() {
+                return this.IsNull(this.tabletblOrigenPersonasRelacionadas_XV.MesAnioColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetMesAnioNull() {
+                this[this.tabletblOrigenPersonasRelacionadas_XV.MesAnioColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -9770,6 +11823,108 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public tblExpQuejaAutoridad_XIIRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class tblDiligenciasYEntrevistas_XIIIRowChangeEvent : global::System.EventArgs {
+            
+            private tblDiligenciasYEntrevistas_XIIIRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblDiligenciasYEntrevistas_XIIIRowChangeEvent(tblDiligenciasYEntrevistas_XIIIRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblDiligenciasYEntrevistas_XIIIRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class tblGrupoPersonasRelacionadas_XIVRowChangeEvent : global::System.EventArgs {
+            
+            private tblGrupoPersonasRelacionadas_XIVRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblGrupoPersonasRelacionadas_XIVRowChangeEvent(tblGrupoPersonasRelacionadas_XIVRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblGrupoPersonasRelacionadas_XIVRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class tblOrigenPersonasRelacionadas_XVRowChangeEvent : global::System.EventArgs {
+            
+            private tblOrigenPersonasRelacionadas_XVRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblOrigenPersonasRelacionadas_XVRowChangeEvent(tblOrigenPersonasRelacionadas_XVRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblOrigenPersonasRelacionadas_XVRow Row {
                 get {
                     return this.eventRow;
                 }

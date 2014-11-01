@@ -159,15 +159,17 @@
                             <table border="1px" width="100%" cellpadding="0px" cellspacing="0px">
                                 <tr class="Grid_Header">
 									<td style="width:50px;">No</td>
+									<td style="width:150px;">Estatus</td>
 									<td>Detalle</td>
                                 </tr>
                                 <tr class="Grid_Row">
-                                    <td colspan="2">No se encontraron Puntos Resolutivos asociados a la Recomendacion/Acuerdo de No Responsabilidad</td>
+                                    <td colspan="3">No se encontraron Puntos Resolutivos asociados a la Recomendacion/Acuerdo de No Responsabilidad</td>
                                 </tr>
                             </table>
                         </EmptyDataTemplate>
                         <Columns>
 							<asp:BoundField HeaderText="No"			ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="50px"	DataField="RowNumber"						SortExpression="RowNumber"></asp:BoundField>
+							<asp:BoundField HeaderText="Estatus"	ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="150px"	DataField="EstatusPuntoResolutivoNombre"	SortExpression="EstatusPuntoResolutivoNombre"></asp:BoundField>
 							<asp:BoundField HeaderText="Detalle"	ItemStyle-HorizontalAlign="Left"							DataField="Detalle"		HtmlEncode="false"	SortExpression="Detalle"></asp:BoundField>
                         </Columns>
                     </asp:GridView>

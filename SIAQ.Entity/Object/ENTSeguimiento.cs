@@ -25,15 +25,18 @@ namespace SIAQ.Entity.Object
 		// Definiciones
 		private Int32	_ComentarioId;				// Identificador único del comentario
 		private Int32	_EstatusId;					// Identificador único del Estatus de la recomendación
+		private Int32	_EstatusPuntoResolutivoId;	// Identificador único del Estatus de punto resolutivo
 		private Int32	_ExpedienteId;				// Identificador único del Expediente a consultar
 		private Int32	_FuncionarioId;				// Identificador único del funcionario asociada la recomendación
 		private Int32	_ModuloId;					// Identificador único del Módulo en donde se realiza la transacción
 		private Int32	_RecomendacionId;			// Identificador único de la recomendación
+		private Int32	_RecomendacionDetalleId;	// Identificador único del detalle de la recomendación (punto resolutivo)
 		private Int32	_UsuarioId;					// Identificador único del Usuario
 		private Int16	_Aceptada;					// Determina si una autoridad aceptó la recomendación/Acuerdo de no responsabilidad
 		private Int16	_AcuerdoNoResponsabilidad;	// Determina con un 0 si es Recomendación, un 1 si es acuerdo o un 2 para ambos casos
 		private Int16	_MedidaPreventiva;			// Determina con un 1 si es una Medida Preventina o un 0 si es un Asunto
 		private Int16	_Nivel;						// Nivel de transacción
+		private String	_Nombre;					// Nombre
 		private String	_Comentario;				// Comentario en un Asunto o Medida Preventiva
 		private String	_ExpedienteNumero;			// Número de expediente a consultar
 		private String	_Fecha;						// Fecha de la transacción
@@ -45,6 +48,7 @@ namespace SIAQ.Entity.Object
 		private Int16	_Publicada;					// Determina si fue publicado el proceso de una autoridad
 		private String	_PuestoAutoridad;			// Puesto de la autoridad a filtrar
 		private String	_RecomendacionNumero;		// Número de recomendación a consultar
+		private Int16	_Visible;					// Determina si un elemento es visible
 
 
 		 //Constructor
@@ -53,15 +57,18 @@ namespace SIAQ.Entity.Object
 		{
 			_ComentarioId = 0;
 			_EstatusId = 0;
+			_EstatusPuntoResolutivoId = 0;
 			_ExpedienteId = 0;
 			_FuncionarioId = 0;
 			_ModuloId = 0;
 			_RecomendacionId = 0;
+			_RecomendacionDetalleId = 0;
 			_UsuarioId = 0;
 			_Aceptada = 2;
 			_AcuerdoNoResponsabilidad = 2;
 			_MedidaPreventiva = -1;
 			_Nivel = -1;
+			_Nombre = "";
 			_Comentario = "";
 			_ExpedienteNumero = "";
 			_Fecha = "";
@@ -73,6 +80,7 @@ namespace SIAQ.Entity.Object
 			_Publicada = 2;
 			_PuestoAutoridad = "";
 			_RecomendacionNumero = "";
+			_Visible = 0;
 		}
 
 
@@ -100,6 +108,18 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _EstatusId; }
 			set { _EstatusId = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTSeguimiento.EstatusPuntoResolutivoId</name>
+		///   <create>11-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el identificador único del Estatus del punto resolutivo</summary>
+		public Int32 EstatusPuntoResolutivoId
+		{
+			get { return _EstatusPuntoResolutivoId; }
+			set { _EstatusPuntoResolutivoId = value; }
 		}
 
 		///<remarks>
@@ -148,6 +168,18 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _RecomendacionId; }
 			set { _RecomendacionId = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTSeguimiento.RecomendacionDetalleId</name>
+		///   <create>11-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el identificador único del detalle de la Recomendación (punto resolutivo)</summary>
+		public Int32 RecomendacionDetalleId
+		{
+			get { return _RecomendacionDetalleId; }
+			set { _RecomendacionDetalleId = value; }
 		}
 
 		///<remarks>
@@ -208,6 +240,18 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _Nivel; }
 			set { _Nivel = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTSeguimiento.Nombre</name>
+		///   <create>11-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna un Nombre</summary>
+		public String Nombre
+		{
+			get { return _Nombre; }
+			set { _Nombre = value; }
 		}
 
 		///<remarks>
@@ -340,6 +384,18 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _RecomendacionNumero; }
 			set { _RecomendacionNumero = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTSeguimiento.Visible</name>
+		///   <create>11-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna un valor que determina si un elemento es visible</summary>
+		public Int16 Visible
+		{
+			get { return _Visible; }
+			set { _Visible = value; }
 		}
 
 	}

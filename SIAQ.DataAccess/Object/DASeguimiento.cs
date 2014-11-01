@@ -242,19 +242,31 @@ namespace SIAQ.DataAccess.Object
 			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
 
 			// Parametros
+			sqlPar = new SqlParameter("RecomendacionDetalleId", SqlDbType.Int);
+			sqlPar.Value = oENTSeguimiento.RecomendacionDetalleId;
+			sqlCom.Parameters.Add(sqlPar);
+
 			sqlPar = new SqlParameter("RecomendacionId", SqlDbType.Int);
 			sqlPar.Value = oENTSeguimiento.RecomendacionId;
 			sqlCom.Parameters.Add(sqlPar);
 
-			//sqlPar = new SqlParameter("TipoSeguimientoId", SqlDbType.Int);
-			//sqlPar.Value = oENTSeguimiento.TipoSeguimientoId;
-			//sqlCom.Parameters.Add(sqlPar);
-
-			sqlPar = new SqlParameter("FuncionarioId", SqlDbType.Int);
-			sqlPar.Value = oENTSeguimiento.FuncionarioId;
+			sqlPar = new SqlParameter("EstatusPuntoResolutivoId", SqlDbType.Int);
+			sqlPar.Value = oENTSeguimiento.EstatusPuntoResolutivoId;
 			sqlCom.Parameters.Add(sqlPar);
 
-			sqlPar = new SqlParameter("Comentario", SqlDbType.VarChar);
+			sqlPar = new SqlParameter("ModuloId", SqlDbType.Int);
+			sqlPar.Value = oENTSeguimiento.ModuloId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("UsuarioId", SqlDbType.Int);
+			sqlPar.Value = oENTSeguimiento.UsuarioId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Fecha", SqlDbType.DateTime);
+			sqlPar.Value = oENTSeguimiento.Fecha;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Gestion", SqlDbType.VarChar);
 			sqlPar.Value = oENTSeguimiento.Comentario;
 			sqlCom.Parameters.Add(sqlPar);
 
@@ -279,6 +291,80 @@ namespace SIAQ.DataAccess.Object
 			// Resultado
 			return oENTResponse;
 		}
+
+		///<remarks>
+		///   <name>DASeguimiento.SelectEstatusPuntoResolutivo</name>
+		///   <create>11-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene un listado de los estatus de un punto resolutivo en base a los parámetros proporcionados</summary>
+		///<param name="oENTSeguimiento">Entidad de Seguimientos con los filtros necesarios para la consulta</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+        public ENTResponse SelectEstatusPuntoResolutivo(ENTSeguimiento oENTSeguimiento, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspEstatusPuntoResolutivo_Sel", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("EstatusPuntoResolutivoId", SqlDbType.Int);
+			sqlPar.Value = oENTSeguimiento.EstatusPuntoResolutivoId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("AcuerdoNoResponsabilidad", SqlDbType.TinyInt);
+			sqlPar.Value = oENTSeguimiento.AcuerdoNoResponsabilidad;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Nombre", SqlDbType.VarChar);
+			sqlPar.Value = oENTSeguimiento.Nombre;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Visible", SqlDbType.TinyInt);
+			sqlPar.Value = oENTSeguimiento.Visible;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try
+			{
+				
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+
+			}catch (SqlException sqlEx){
+
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+
+			}catch (Exception ex){
+
+				oENTResponse.ExceptionRaised(ex.Message);
+
+			}finally{
+
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+
+			}
+
+			// Resultado
+			return oENTResponse;
+
+        }
 
 		///<remarks>
 		///   <name>DASeguimiento.SelectRecomendacion</name>
@@ -464,6 +550,68 @@ namespace SIAQ.DataAccess.Object
 			// Parametros
 			sqlPar = new SqlParameter("RecomendacionId", SqlDbType.Int);
 			sqlPar.Value = oENTSeguimiento.RecomendacionId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try
+			{
+				
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+
+			}catch (SqlException sqlEx){
+
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+
+			}catch (Exception ex){
+
+				oENTResponse.ExceptionRaised(ex.Message);
+
+			}finally{
+
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+
+			}
+
+			// Resultado
+			return oENTResponse;
+
+        }
+
+		///<remarks>
+		///   <name>DASeguimiento.SelectRecomendacionGestion_PuntoResolutivo</name>
+		///   <create>12-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene la gestión de los puntos resolutivos de una Recomendación/Acuerdo de No Responsabilidad</summary>
+		///<param name="oENTSeguimiento">Entidad de Seguimientos con los filtros necesarios para la consulta</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+        public ENTResponse SelectRecomendacionGestion_PuntoResolutivo(ENTSeguimiento oENTSeguimiento, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspRecomendacionGestion_Sel_DetallePuntoResolutivo", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("RecomendacionDetalleId", SqlDbType.Int);
+			sqlPar.Value = oENTSeguimiento.RecomendacionDetalleId;
 			sqlCom.Parameters.Add(sqlPar);
 
 			// Inicializaciones

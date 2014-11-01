@@ -151,6 +151,38 @@ namespace SIAQ.BusinessProcess.Object
 		}
 
 		///<remarks>
+		///   <name>BPSeguimiento.SelectEstatusPuntoResolutivo</name>
+		///   <create>11-Septiembre-2014</create>
+        ///   <author>Ruben.Cobos</author>
+        ///</remarks>
+		///<summary>Obtiene un listado de los estatus de un punto resolutivo en base a los parámetros proporcionados</summary>
+		///<param name="oENTSeguimiento">Entidad de Seguimientos con los filtros necesarios para la consulta</param>
+        ///<returns>Una entidad de respuesta</returns>
+        public ENTResponse SelectEstatusPuntoResolutivo(ENTSeguimiento oENTSeguimiento){
+           DASeguimiento oDASeguimiento = new DASeguimiento();
+           ENTResponse oENTResponse = new ENTResponse();
+
+           try
+           {
+
+              // Transacción en base de datos
+			   oENTResponse = oDASeguimiento.SelectEstatusPuntoResolutivo(oENTSeguimiento, this.sConnectionApplication, 0);
+
+              // Validación de error en consulta
+              if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+              // Validación de mensajes de la BD
+              oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+
+           }catch (Exception ex){
+              oENTResponse.ExceptionRaised(ex.Message);
+           }
+
+           // Resultado
+           return oENTResponse;
+        }
+
+		///<remarks>
 		///   <name>BPSeguimiento.SelectRecomendacion</name>
 		///   <create>11-Septiembre-2014</create>
         ///   <author>Ruben.Cobos</author>
@@ -231,6 +263,38 @@ namespace SIAQ.BusinessProcess.Object
 
               // Transacción en base de datos
 			   oENTResponse = oDASeguimiento.SelectRecomendacion_Detalle(oENTSeguimiento, this.sConnectionApplication, 0);
+
+              // Validación de error en consulta
+              if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+              // Validación de mensajes de la BD
+              oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+
+           }catch (Exception ex){
+              oENTResponse.ExceptionRaised(ex.Message);
+           }
+
+           // Resultado
+           return oENTResponse;
+        }
+
+		///<remarks>
+		///   <name>BPSeguimiento.SelectRecomendacionGestion_PuntoResolutivo</name>
+		///   <create>12-Septiembre-2014</create>
+        ///   <author>Ruben.Cobos</author>
+        ///</remarks>
+		///<summary>Obtiene la gestión de los puntos resolutivos de una Recomendación/Acuerdo de No Responsabilidad</summary>
+		///<param name="oENTSeguimiento">Entidad de Seguimientos con los filtros necesarios para la consulta</param>
+        ///<returns>Una entidad de respuesta</returns>
+        public ENTResponse SelectRecomendacionGestion_PuntoResolutivo(ENTSeguimiento oENTSeguimiento){
+           DASeguimiento oDASeguimiento = new DASeguimiento();
+           ENTResponse oENTResponse = new ENTResponse();
+
+           try
+           {
+
+              // Transacción en base de datos
+			   oENTResponse = oDASeguimiento.SelectRecomendacionGestion_PuntoResolutivo(oENTSeguimiento, this.sConnectionApplication, 0);
 
               // Validación de error en consulta
               if (oENTResponse.GeneratesException) { return oENTResponse; }

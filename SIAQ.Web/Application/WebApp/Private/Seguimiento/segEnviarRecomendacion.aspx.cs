@@ -153,10 +153,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				}
 				else
 				{
-					this.imgSeguimiento.ImageUrl = "~/Include/Image/Icon/SeguimientoIcon_Pending.png";
-					this.imgSeguimiento.ToolTip = "No se ha finalizado los puntos resolutivos del seguimiento";
-					this.btnEnviar.Enabled = false;
-					this.btnEnviar.CssClass = "Button_General_Disabled";
+
+					// Si existe por lo menos un Punto resolutivo con Estatus 1 (a la espera) significa que falta captura
+					if ( oENTResponse.dsResponse.Tables[2].Select("EstatusPuntoResolutivoId = 1").Length > 0 ){
+						this.imgSeguimiento.ImageUrl = "~/Include/Image/Icon/SeguimientoIcon_Pending.png";
+						this.imgSeguimiento.ToolTip = "No se han capturado los puntos resolutivos del seguimiento";
+						this.btnEnviar.Enabled = false;
+						this.btnEnviar.CssClass = "Button_General_Disabled";
+					}
 				}
 
 				// Impugnar

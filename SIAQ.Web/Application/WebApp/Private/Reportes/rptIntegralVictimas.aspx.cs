@@ -14,7 +14,20 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes
 
         protected void Page_Load(object sender, EventArgs e)
         {
+			try
+			{
 
+				// Validaciones
+				if (Page.IsPostBack) { return; }
+
+				// Foco
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.btnAceptar.ClientID + "'); }", true);
+
+			}
+			catch (Exception)
+			{
+				// Do Nothing
+			}
         }
 
         protected void btnAceptar_Click(object sender, EventArgs e)

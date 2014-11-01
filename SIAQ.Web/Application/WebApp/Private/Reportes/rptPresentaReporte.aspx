@@ -22,11 +22,18 @@
 		<asp:Panel ID="pnlNonMenuTemplateCanvas" CssClass="NonMenuCanvas" style="background-color:#8E8E8E" runat="server">
 			<br />
 			<div id="divCanvas" runat="server" style="margin:0px auto; position:relative; width:800px;">
-				<CR:CrystalReportViewer ID="crViewer" runat="server" AutoDataBind="True" BestFitPage="True" HasCrystalLogo="False" HasRefreshButton="True" HasToggleGroupTreeButton="false" ToolPanelView="None" />
+				<CR:CrystalReportViewer ID="crViewer" runat="server"
+					AutoDataBind="True"
+					BestFitPage="True"
+					EnableDatabaseLogonPrompt="true"
+					EnableParameterPrompt="true"
+					HasCrystalLogo="False"
+					HasRefreshButton="True"
+					HasToggleGroupTreeButton="false"
+					ToolPanelView="None" />
 			</div>
 			<br />
 		</asp:Panel>
-		<div class="GCSoft"><img id="imgCompany" alt="SetUp" runat="server" src="~/Include/Image/Web/SetUp.png" /></div>
     </form>
 </body>
 </html>

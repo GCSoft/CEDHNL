@@ -404,6 +404,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			        this.SeguimientoPanel.Visible = false;
 			        this.DocumentoPanel.Visible = false;
 			        this.DiligenciaPanel.Visible = false;
+					this.ImpugnarPanel.Visible = false;
+					this.PublicarPanel.Visible = false;
 			        this.pnlEnviarAtencion.Visible = false;
 			    }
 

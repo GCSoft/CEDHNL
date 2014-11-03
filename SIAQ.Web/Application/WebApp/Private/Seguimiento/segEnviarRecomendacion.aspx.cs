@@ -50,29 +50,29 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 		// Funciones el programador
 
 		void EnviarRecomendacion(){
-			//BPAtencion oBPAtencion = new BPAtencion();
-			//ENTAtencion oENTAtencion = new ENTAtencion();
-			//ENTResponse oENTResponse = new ENTResponse();
+			ENTSeguimiento oENTSeguimiento = new ENTSeguimiento();
+			ENTResponse oENTResponse = new ENTResponse();
 
-			//try
-			//{
+			BPSeguimiento oBPSeguimiento = new BPSeguimiento();
 
-			//    // TODO: Checar en el SP la actualización de la fecha/hora 
-			//    // Formulario
-			//    oENTAtencion.AtencionId = Int32.Parse(this.hddRecomendacionId.Value);
-			//    oENTAtencion.EstatusId = 20; // Pendiente de aprobar atención
-			//    oENTAtencion.ModuloId = 5; // Atención a Víctimas
+			try
+			{
+				
+			    // Formulario
+			    oENTSeguimiento.RecomendacionId = Int32.Parse(this.hddRecomendacionId.Value);
+				oENTSeguimiento.EstatusId = 8; // Pendiente de aprobar Recomendación
+				oENTSeguimiento.ModuloId = 4; // Seguimientos
 
-			//    // Transacción
-			//    oENTResponse = oBPAtencion.UpdateAtencion_Estatus(oENTAtencion);
+			    // Transacción
+				oENTResponse = oBPSeguimiento.UpdateRecomendacion_Estatus(oENTSeguimiento);
 
-			//    // Errores y Warnings
-			//    if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
-			//    if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+			    // Errores y Warnings
+			    if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+			    if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }	
 
-			//}catch (Exception ex){
-			//    throw (ex);
-			//}
+			}catch (Exception ex){
+			    throw (ex);
+			}
 		}
 
 		void SelectRecomendacion() {

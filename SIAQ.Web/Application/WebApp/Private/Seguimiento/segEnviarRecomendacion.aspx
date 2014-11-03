@@ -95,7 +95,7 @@
             <tr><td class="tdCeldaMiddleSpace"></td></tr>
             <tr>
                 <td style="text-align: left;">
-					<asp:Button ID="btnEnviar" runat="server" Text="Enviar" CssClass="Button_General" width="125px" onclick="btnEnviar_Click" OnClientClick="return confirm('¿Seguro que desea enviar el expediente de atención de víctimas para su aprobación?');" /> &nbsp;&nbsp;
+					<asp:Button ID="btnEnviar" runat="server" Text="Enviar" CssClass="Button_General" width="125px" onclick="btnEnviar_Click" OnClientClick="return confirm('¿Seguro que desea enviar el documento para su aprobación?');" /> &nbsp;&nbsp;
 					<asp:Button ID="btnRegresar" runat="server" Text="Regresar" CssClass="Button_General" width="125px" onclick="btnRegresar_Click" />
                 </td>
             </tr>

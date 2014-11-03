@@ -375,6 +375,38 @@ namespace SIAQ.BusinessProcess.Object
         }
 
 		///<remarks>
+		///   <name>BPSeguimiento.UpdateRecomendacion_Estatus</name>
+		///   <create>12-Septiembre-2014</create>
+        ///   <author>Ruben.Cobos</author>
+        ///</remarks>
+		///<summary>Cambia el estatus de la recomendación/Acuerdo de no responsabilidad</summary>
+		///<param name="oENTSeguimiento">Entidad de Seguimientos con los filtros necesarios para realizar la transacción</param>
+        ///<returns>Una entidad de respuesta</returns>
+        public ENTResponse UpdateRecomendacion_Estatus(ENTSeguimiento oENTSeguimiento){
+           DASeguimiento oDASeguimiento = new DASeguimiento();
+           ENTResponse oENTResponse = new ENTResponse();
+
+           try
+           {
+
+              // Transacción en base de datos
+			   oENTResponse = oDASeguimiento.UpdateRecomendacion_Estatus(oENTSeguimiento, this.sConnectionApplication, 0);
+
+              // Validación de error en consulta
+              if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+              // Validación de mensajes de la BD
+              oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+
+           }catch (Exception ex){
+              oENTResponse.ExceptionRaised(ex.Message);
+           }
+
+           // Resultado
+           return oENTResponse;
+        }
+
+		///<remarks>
 		///   <name>BPSeguimiento.UpdateRecomendacion_ImpugnarDocumento</name>
 		///   <create>12-Septiembre-2014</create>
         ///   <author>Ruben.Cobos</author>

@@ -807,6 +807,76 @@ namespace SIAQ.DataAccess.Object
         }
 
 		///<remarks>
+		///   <name>DASeguimiento.UpdateRecomendacion_Estatus</name>
+		///   <create>11-Septiembre-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Cambia el estatus de la recomendación/Acuerdo de no responsabilidad</summary>
+		///<param name="oENTSeguimiento">Entidad de Seguimientos con los filtros necesarios para la transacción</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+        public ENTResponse UpdateRecomendacion_Estatus(ENTSeguimiento oENTSeguimiento, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspRecomendacion_Upd_Estatus", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("RecomendacionId", SqlDbType.Int);
+			sqlPar.Value = oENTSeguimiento.RecomendacionId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("EstatusId", SqlDbType.Int);
+			sqlPar.Value = oENTSeguimiento.EstatusId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("ModuloId", SqlDbType.Int);
+			sqlPar.Value = oENTSeguimiento.ModuloId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try
+			{
+				
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+
+			}catch (SqlException sqlEx){
+
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+
+			}catch (Exception ex){
+
+				oENTResponse.ExceptionRaised(ex.Message);
+
+			}finally{
+
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+
+			}
+
+			// Resultado
+			return oENTResponse;
+
+        }
+
+		///<remarks>
 		///   <name>DASeguimiento.UpdateRecomendacion_ImpugnarDocumento</name>
 		///   <create>11-Septiembre-2014</create>
 		///   <author>Ruben.Cobos</author>

@@ -186,6 +186,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 				this.calFechaEstatusPuntoResolutivo.SetCurrentDate();
 				this.ddlPopUpEstatusPuntoResolutivo.SelectedIndex = 0;
 				this.ckeEstatusPuntoResolutivo.Text = "";
+				this.lblActionMessageEstatusPuntoResolutivo.Text = "";
+				this.pnlEstatusPuntoResolutivo.Visible = true;
 
 				// Foco
 				this.ckeEstatusPuntoResolutivo.Focus();

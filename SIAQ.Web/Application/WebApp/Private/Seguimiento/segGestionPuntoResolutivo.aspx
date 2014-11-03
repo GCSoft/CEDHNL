@@ -223,7 +223,7 @@
 						<tr class="trFilaItem">
 							<td class="tdActionCeldaLeyendaItem">&nbsp;Estatus</td>
 							<td style="width:5px;"></td>
-							<td><asp:DropDownList ID="ddlPopUpEstatusPuntoResolutivo" runat="server" Width="216px" CssClass="DropDownList_General"></asp:DropDownList></td>
+							<td><asp:DropDownList ID="ddlPopUpEstatusPuntoResolutivo" runat="server" Width="316px" CssClass="DropDownList_General"></asp:DropDownList></td>
 						</tr>
 						<tr style="height:5px;"><td colspan="3"></td></tr>
 						<tr class="trFilaItem"><td class="tdActionCeldaLeyendaItem" colspan="3">&nbsp;Detalle</td></tr>
@@ -235,7 +235,7 @@
 						<tr style="height:5px;"><td colspan="3"></td></tr>
 						<tr>
 							<td colspan="3" style="text-align:right;">
-								<asp:Button ID="btnPopUpEstatusPuntoResolutivo" runat="server" Text="EstatusPuntoResolutivo de Autoridad" CssClass="Button_General" width="180px" onclick="btnPopUpEstatusPuntoResolutivo_Click" />
+								<asp:Button ID="btnPopUpEstatusPuntoResolutivo" runat="server" Text="Actualizar Estatus" CssClass="Button_General" width="180px" onclick="btnPopUpEstatusPuntoResolutivo_Click" />
 							</td>
 						</tr>
 						<tr>

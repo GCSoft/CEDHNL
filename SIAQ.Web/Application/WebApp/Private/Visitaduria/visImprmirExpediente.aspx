@@ -411,17 +411,6 @@
 									<asp:BoundField HeaderText="Lugar de Comparecencia"		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="70px"	DataField="LugarComparecenciaNombre"						SortExpression="LugarComparecenciaNombre"></asp:BoundField>
 									<asp:BoundField HeaderText="Funcionario que ejecuta"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="FuncionarioEjecutaNombre"						SortExpression="FuncionarioEjecutaNombre"></asp:BoundField>
 									<asp:BoundField HeaderText="Detalle"					ItemStyle-HorizontalAlign="Left"							DataField="Detalle"						HtmlEncode="false"	SortExpression="Detalle"></asp:BoundField>
-									<asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
-										<ItemTemplate>
-											<asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />
-										</ItemTemplate>
-									</asp:TemplateField>
-									<asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
-										<ItemTemplate>
-											<asp:ImageButton ID="imgDelete" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Borrar" ImageUrl="~/Include/Image/Buttons/Delete.png" runat="server" />
-										</ItemTemplate>
-									</asp:TemplateField>
-									<asp:BoundField DataField="SolicitudId" Visible="false" />
 								</Columns>
 							</asp:GridView>
 						</td>

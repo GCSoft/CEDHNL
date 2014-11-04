@@ -60,6 +60,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 					sTime = Input.Substring(0, 2);
 				}else {
 					sTime = ( Int32.Parse( Input.Substring(0, 2)) + 12).ToString();
+					if (sTime == "24") { sTime = "12"; }
 				}
 
 				// Obtener los minutos
@@ -245,7 +246,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				// Formulario
 				oENTFuncionario.FuncionarioId = 0;
 				oENTFuncionario.idUsuario = 0;
-				oENTFuncionario.idArea = Int32.Parse(this.hddAreaId.Value);	// Área del expediente
+				oENTFuncionario.idArea = ( this.hddAreaId.Value == "10" ? 6 : Int32.Parse(this.hddAreaId.Value) );	// Área del expediente
 				oENTFuncionario.idRol = 8; // Visitaduría - Visitador
 				oENTFuncionario.TituloId = 0;
 				oENTFuncionario.PuestoId = 0;
@@ -457,6 +458,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 						this.lblActionTitle.Text = "Nueva Diligencia";
 						this.btnAction.Text = "Crear Diligencia";
 						this.btnAction.Visible = true;
+
+						this.ddlFuncionario.Items.Clear();
+						SelectFuncionario();
+						this.ddlFuncionario.Enabled = true;
+
 						break;
 
 					case DiligenciaActionTypes.SelectDiligencia:
@@ -470,6 +476,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 						this.lblActionTitle.Text = "Edición de Diligencia";
 						this.btnAction.Text = "Actualizar Diligencia";
 						this.btnAction.Visible = true;
+
+						this.ddlFuncionario.Items.Clear();
+						SelectFuncionario();
+						this.ddlFuncionario.Enabled = true;
+
 						SelectDiligencia_ForEdit(idItem.ToString(), false);
 						break;
 

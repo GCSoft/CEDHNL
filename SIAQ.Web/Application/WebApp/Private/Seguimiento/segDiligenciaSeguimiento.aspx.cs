@@ -60,6 +60,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 					sTime = Input.Substring(0, 2);
 				}else {
 					sTime = ( Int32.Parse( Input.Substring(0, 2)) + 12).ToString();
+					if (sTime == "24") { sTime = "12"; }
 				}
 
 				// Obtener los minutos

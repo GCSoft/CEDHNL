@@ -405,6 +405,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			String CiudadanoId = "";
 			String strCommand = "";
 
+			String sKey = "";
+
 			try
 			{
 
@@ -421,7 +423,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				switch (strCommand){
 
 					case "Editar":
-						Response.Redirect("../Operation/opeRegistroCiudadano.aspx?s=" + CiudadanoId + "&visKey=" + this.hddExpedienteId.Value + "|" + this.SenderId.Value);
+						sKey = CiudadanoId + "&visKey=" + this.hddExpedienteId.Value + "|" + this.SenderId.Value;
+						Response.Redirect("../Operation/opeRegistroCiudadano.aspx?s=" + sKey, false);
 						break;
 
 					case "Eliminar":

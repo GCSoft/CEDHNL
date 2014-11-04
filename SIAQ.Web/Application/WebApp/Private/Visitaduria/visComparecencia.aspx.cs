@@ -102,6 +102,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 					sTime = Input.Substring(0, 2);
 				}else {
 					sTime = ( Int32.Parse( Input.Substring(0, 2)) + 12).ToString();
+					if (sTime == "24") { sTime = "12"; }
 				}
 
 				// Obtener los minutos
@@ -300,7 +301,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				// Formulario
 				oENTFuncionario.FuncionarioId = 0;
 				oENTFuncionario.idUsuario = 0;
-				oENTFuncionario.idArea = Int32.Parse(this.hddAreaId.Value);	// Área del expediente
+				oENTFuncionario.idArea = (this.hddAreaId.Value == "10" ? 6 : Int32.Parse(this.hddAreaId.Value));
 				oENTFuncionario.idRol = 8; // Visitaduría - Visitador
 				oENTFuncionario.TituloId = 0;
 				oENTFuncionario.PuestoId = 0;

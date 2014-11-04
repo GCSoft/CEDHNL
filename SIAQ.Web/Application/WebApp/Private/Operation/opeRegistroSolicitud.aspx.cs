@@ -84,6 +84,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Operation
 			this.hddCiudadanoId.Value = "";
 			this.ddlTipoParticipacion.SelectedIndex = 0;
 			this.rblPresente.Items[0].Selected = true;
+			this.ckeDireccionHechos.Text = "";
 			this.ckeObservaciones.Text = "";
 
 			this.gvCiudadano.DataSource = null;

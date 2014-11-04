@@ -304,7 +304,7 @@
 
 		<!-- PopUp -->
 		<asp:Panel id="pnlAction" runat="server" CssClass="ActionBlock">
-			<asp:Panel id="pnlActionContent" runat="server" CssClass="ActionContent" style="top:50px;" Height="570px" Width="800px">
+			<asp:Panel id="pnlActionContent" runat="server" CssClass="ActionContent" style="top:10px;" Height="570px" Width="800px">
 				<asp:Panel ID="pnlActionHeader" runat="server" CssClass="ActionHeader">
 					<table border="0" cellpadding="0" cellspacing="0" style="height:100%; width:100%">
 						<tr>

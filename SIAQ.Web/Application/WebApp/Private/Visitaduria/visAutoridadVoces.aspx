@@ -283,7 +283,7 @@
 
 		<!-- PopUp -->
 		<asp:Panel id="pnlAction" runat="server" CssClass="ActionBlock" Visible="false" >
-            <asp:Panel ID="pnlActionContent" runat="server" CssClass="ActionContent" Style="top:200px;" Height="390px" Width="450px">
+            <asp:Panel ID="pnlActionContent" runat="server" CssClass="ActionContent" Style="top:10px;" Height="390px" Width="450px">
                 <asp:Panel ID="pnlActionHeader" runat="server" CssClass="ActionHeader">
                     <table border="0" cellpadding="0" cellspacing="0" style="height:100%; width:100%">
                         <tr>
@@ -364,7 +364,7 @@
 
 		<!-- PopUp Voces -->
 		<asp:Panel id="pnlVoces" runat="server" CssClass="ActionBlock" Visible="false" >
-            <asp:Panel ID="pnlVocesContent" runat="server" CssClass="ActionContent" Style="top:50px;" Height="630px" Width="1000px">
+            <asp:Panel ID="pnlVocesContent" runat="server" CssClass="ActionContent" Style="top:10px;" Height="630px" Width="1000px">
                 <asp:Panel ID="pnlVocesHeader" runat="server" CssClass="ActionHeader">
                     <table border="0" cellpadding="0" cellspacing="0" style="height:100%; width:100%">
                         <tr>

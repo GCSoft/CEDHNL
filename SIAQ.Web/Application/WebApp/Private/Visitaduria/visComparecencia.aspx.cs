@@ -489,6 +489,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			DataTable tblServidorPublico = null;
 			DataRow rowServidorPublico = null;
 
+			String AutoridadAgrupada = "";
+
 			try
 			{
 
@@ -519,9 +521,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				rowServidorPublico["ServidorPublicoId"] = oENTResponse.dsResponse.Tables[1].Rows[0]["ServidorPublicoId"];
 				rowServidorPublico["NombreCompleto"] = oENTResponse.dsResponse.Tables[1].Rows[0]["NombreCompleto"];
 
-				rowServidorPublico["AutoridadAgrupada"] = oENTResponse.dsResponse.Tables[1].Rows[0]["AutoridadNivel1Nombre"];
-				if ( oENTResponse.dsResponse.Tables[1].Rows[0]["AutoridadNivel2Id"].ToString() != "0"  ) { rowServidorPublico["AutoridadAgrupada"] = oENTResponse.dsResponse.Tables[1].Rows[0]["AutoridadNivel2Nombre"]; }
-				if ( oENTResponse.dsResponse.Tables[1].Rows[0]["AutoridadNivel3Id"].ToString() != "0"  ) { rowServidorPublico["AutoridadAgrupada"] = oENTResponse.dsResponse.Tables[1].Rows[0]["AutoridadNivel3Nombre"]; }
+				AutoridadAgrupada = oENTResponse.dsResponse.Tables[1].Rows[0]["AutoridadNivel1Nombre"].ToString();
+				AutoridadAgrupada = ( AutoridadAgrupada == "" ? "" : "(N1) - " + AutoridadAgrupada );
+				if (oENTResponse.dsResponse.Tables[1].Rows[0]["AutoridadNivel2Id"].ToString() != "0") { AutoridadAgrupada = ( AutoridadAgrupada == "" ? "(N2) - " + oENTResponse.dsResponse.Tables[1].Rows[0]["AutoridadNivel2Nombre"].ToString() : AutoridadAgrupada + "<br />" + "(N2) - " + oENTResponse.dsResponse.Tables[1].Rows[0]["AutoridadNivel2Nombre"].ToString() ); }
+				if (oENTResponse.dsResponse.Tables[1].Rows[0]["AutoridadNivel3Id"].ToString() != "0") { AutoridadAgrupada = ( AutoridadAgrupada == "" ? "(N3) - " + oENTResponse.dsResponse.Tables[1].Rows[0]["AutoridadNivel3Nombre"].ToString() : AutoridadAgrupada + "<br />" + "(N3) - " + oENTResponse.dsResponse.Tables[1].Rows[0]["AutoridadNivel3Nombre"].ToString() ); }
+				rowServidorPublico["AutoridadAgrupada"] = AutoridadAgrupada;
 
 				tblServidorPublico.Rows.Add(rowServidorPublico);
 

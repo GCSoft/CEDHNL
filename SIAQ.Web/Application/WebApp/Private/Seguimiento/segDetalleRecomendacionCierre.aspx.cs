@@ -434,9 +434,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 			String ModuloId = "";
 			String FechaDiligencia = "";
 
-			String sImagesAttributes = "";
-			String sToolTip = "";
-
 			try
 			{
 				
@@ -456,20 +453,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Seguimiento
 
 				imgEdit.Visible = false;
 				imgDelete.Visible = false;
-
-				// Tooltip Detalle
-				sToolTip = "Detalle de diligencia del " + FechaDiligencia;
-				imgDetail.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
-				imgDetail.Attributes.Add("onmouseout", "tooltip.hide();");
-				imgDetail.Attributes.Add("style", "cursor:hand;");
+				imgDetail.Visible = false;
 
 				// Atributos Over
-				sImagesAttributes = "document.getElementById('" + imgDetail.ClientID + "').src='../../../../Include/Image/Buttons/ConsultarCiudadano_Over.png'; ";
-				e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
+				e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; ");
 
 				// Atributos Out
-				sImagesAttributes = "document.getElementById('" + imgDetail.ClientID + "').src='../../../../Include/Image/Buttons/ConsultarCiudadano.png';";
-				e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
+				e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; ");
 
 			}catch (Exception ex){
 				throw (ex);

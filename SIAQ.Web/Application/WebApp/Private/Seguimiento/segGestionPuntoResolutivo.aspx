@@ -199,12 +199,12 @@
 
 	<!-- PopUp / Editar Estatus Punto Resolutivo -->
 	<asp:Panel id="pnlEstatusPuntoResolutivo" runat="server" CssClass="ActionBlock">
-		<asp:Panel id="pnlEstatusPuntoResolutivoContent" runat="server" CssClass="ActionContent" style="top:100px;" Height="400px" Width="700px">
+		<asp:Panel id="pnlEstatusPuntoResolutivoContent" runat="server" CssClass="ActionContent" style="top:10px;" Height="400px" Width="700px">
 			<asp:Panel ID="pnlEstatusPuntoResolutivoHeader" runat="server" CssClass="ActionHeader">
 				<table border="0" cellpadding="0" cellspacing="0" style="height:100%; width:100%">
 					<tr>
 						<td style="width:10px"></td>
-						<td style="text-align:left;"><asp:Label ID="lblEstatusPuntoResolutivoTitle" runat="server" CssClass="ActionHeaderTitle"></asp:Label></td>
+						<td style="text-align:left;"><asp:Label ID="lblEstatusPuntoResolutivoTitle" runat="server" CssClass="ActionHeaderTitle" Text="Editar estatus de punto resolutivo"></asp:Label></td>
 						<td style="vertical-align:middle; width:14px;"><asp:ImageButton id="imgCloseEstatusPuntoResolutivoWindow" runat="server" ImageUrl="~/Include/Image/Buttons/CloseWindow.png" ToolTip="Cerrar Ventana" OnClick="imgCloseEstatusPuntoResolutivoWindow_Click"></asp:ImageButton></td>
 						<td style="width:10px"></td>
 					</tr>

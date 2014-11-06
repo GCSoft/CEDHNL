@@ -76,6 +76,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         protected global::System.Web.UI.WebControls.DropDownList ddlFuncionario;
         
         /// <summary>
+        /// ddlTipoResolucion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlTipoResolucion;
+        
+        /// <summary>
         /// wucBeginDate control.
         /// </summary>
         /// <remarks>

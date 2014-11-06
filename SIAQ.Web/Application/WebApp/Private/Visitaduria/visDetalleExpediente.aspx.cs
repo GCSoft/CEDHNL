@@ -287,7 +287,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 					case 1:	// System Administrator
 						this.InformacionPanel.Visible = true;
 						this.AsignarPanel.Visible = true;
-						//this.AcuerdoPanel.Visible = true;
+						this.CambioPanel.Visible = true;
 						this.CiudadanoPanel.Visible = true;
 						this.AtencionVictimasPanel.Visible = true;
 						this.DiligenciaPanel.Visible = true;
@@ -305,7 +305,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 					case 2:	// Administrador
 						this.InformacionPanel.Visible = true;
 						this.AsignarPanel.Visible = true;
-						//this.AcuerdoPanel.Visible = true;
+						this.CambioPanel.Visible = true;
 						this.CiudadanoPanel.Visible = true;
 						this.AtencionVictimasPanel.Visible = true;
 						this.DiligenciaPanel.Visible = true;
@@ -323,7 +323,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 					case 7:	// Visitaduría - Secretaria
 						this.InformacionPanel.Visible = true;
 						this.AsignarPanel.Visible = true;
-						//this.AcuerdoPanel.Visible = false;
+						this.CambioPanel.Visible = true;
 						this.CiudadanoPanel.Visible = false;
 						this.AtencionVictimasPanel.Visible = false;
 						this.DiligenciaPanel.Visible = false;
@@ -341,7 +341,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 					case 8:	// Visitaduría - Visitador
 						this.InformacionPanel.Visible = true;
 						this.AsignarPanel.Visible = false;
-						//this.AcuerdoPanel.Visible = true;
+						this.CambioPanel.Visible = false;
 						this.CiudadanoPanel.Visible = true;
 						this.AtencionVictimasPanel.Visible = true;
 						this.DiligenciaPanel.Visible = true;
@@ -359,7 +359,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 					case 9:	// Visitaduría - Director
 						this.InformacionPanel.Visible = true;
 						this.AsignarPanel.Visible = true;
-						//this.AcuerdoPanel.Visible = false;
+						this.CambioPanel.Visible = true;
 						this.CiudadanoPanel.Visible = false;
 						this.AtencionVictimasPanel.Visible = false;
 						this.DiligenciaPanel.Visible = false;
@@ -377,7 +377,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 					default:
 						this.InformacionPanel.Visible = false;
 						this.AsignarPanel.Visible = false;
-						//this.AcuerdoPanel.Visible = false;
+						this.CambioPanel.Visible = false;
 						this.CiudadanoPanel.Visible = false;
 						this.AtencionVictimasPanel.Visible = false;
 						this.DiligenciaPanel.Visible = false;
@@ -451,7 +451,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				// 23 - Proyecto Aprobado
 				if ( Int32.Parse(this.hddEstatusId.Value) == 16 || Int32.Parse(this.hddEstatusId.Value) == 23 ){
 					this.AsignarPanel.Visible = false;
-					//this.AcuerdoPanel.Visible = false;
+					this.CambioPanel.Visible = false;
 					this.CiudadanoPanel.Visible = false;
 					this.AtencionVictimasPanel.Visible = false;
 					this.DiligenciaPanel.Visible = false;
@@ -645,6 +645,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				sKey = this.hddExpedienteId.Value + "|" + this.SenderId.Value;
 				sKey = gcEncryption.EncryptString(sKey, true);
 				this.Response.Redirect("visAsignarFuncionario.aspx?key=" + sKey, false);
+
+			}catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);
+			}
+		}
+
+		protected void CambioButton_Click(object sender, ImageClickEventArgs e){
+			String sKey = "";
+
+			try
+			{
+
+				// Llave encriptada
+				sKey = this.hddExpedienteId.Value + "|" + this.SenderId.Value;
+				sKey = gcEncryption.EncryptString(sKey, true);
+				this.Response.Redirect("visCambioVisitadurias.aspx?key=" + sKey, false);
 
 			}catch (Exception ex){
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + gcJavascript.ClearText(ex.Message) + "');", true);

@@ -233,14 +233,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 					this.btnEnviar.CssClass = "Button_General_Disabled";
 				}
 
-				// Comparecencia
-				if (oENTResponse.dsResponse.Tables[9].Rows.Count == 0){
-					this.imgComparecencia.ImageUrl = "~/Include/Image/Icon/ComparecenciaIcon_Pending.png";
-					this.imgComparecencia.ToolTip = "No se han capturado comparecencias en el Expediente";
-					this.btnEnviar.Enabled = false;
-					this.btnEnviar.CssClass = "Button_General_Disabled";
-				}
-
 				// Autoridades y Voces
 				if (oENTResponse.dsResponse.Tables[10].Select("CalificacionAutoridadId=1").Length > 0 ){
 					this.imgAutoridad.ImageUrl = "~/Include/Image/Icon/AutoridadIcon_Pending.png";
@@ -299,14 +291,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 					this.pnlAcuerdoNoResponsabilidad.Visible = false;
 
 				}
-
-				//// Asuntos
-				//this.lblAsuntos.Text = "Asuntos capturados: " + oBPExpediente.ExpedienteEntity.ResultData.Tables[1].Rows[0]["Asuntos"].ToString(); 
-				//if (oBPExpediente.ExpedienteEntity.ResultData.Tables[1].Rows[0]["Asuntos"].ToString() == "0"){
-				//    this.lblAsuntos.CssClass = "Asunto_Pending";
-				//    this.btnEnviar.Enabled = false;
-				//    this.btnEnviar.CssClass = "Button_General_Disabled";
-				//}
 
 			}catch (Exception ex){
 				this.btnEnviar.Enabled = false;

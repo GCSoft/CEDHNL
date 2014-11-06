@@ -425,7 +425,7 @@
 					<tr><td class="tdCeldaMiddleSpace"></td></tr>
 					<tr>
 						<td style="text-align: left;">
-							Autoridades y Voces Señaladas
+							Autoridades y Hechos Violatorios
 						</td>
 					</tr>
 					<tr>
@@ -473,9 +473,9 @@
 															<EmptyDataTemplate>
 																<table border="1px" cellpadding="0px" cellspacing="0px" width="100%">
 																	<tr class="Grid_Header_Action_Alternative">
-																		<td style="text-align:center; width:180px;">Voz1</td>
-																		<td style="text-align:center; width:180px;">Voz2</td>
-																		<td style="text-align:center; width:180px;">Voz3</td>
+																		<td style="text-align:center; width:180px;">Hecho Violatorio 1</td>
+																		<td style="text-align:center; width:180px;">Hecho Violatorio 2</td>
+																		<td style="text-align:center; width:180px;">Hecho Violatorio 3</td>
 																		<td style="text-align:center;">Comentarios</td>
 																		<td style="text-align:center; width:100px;">Calificación</td>
 																	</tr>
@@ -485,9 +485,9 @@
 																</table>
 															</EmptyDataTemplate>
 															<Columns>
-																<asp:BoundField HeaderText="Voz1" 											ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="180px"	DataField="Voz1"></asp:BoundField>
-																<asp:BoundField HeaderText="Voz2" 											ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="180px"	DataField="Voz2"></asp:BoundField>
-																<asp:BoundField HeaderText="Voz3"											ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="180px"	DataField="Voz3"></asp:BoundField>
+																<asp:BoundField HeaderText="Hecho Violatorio 1" 							ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="180px"	DataField="Voz1"></asp:BoundField>
+																<asp:BoundField HeaderText="Hecho Violatorio 2" 							ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="180px"	DataField="Voz2"></asp:BoundField>
+																<asp:BoundField HeaderText="Hecho Violatorio 3"								ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="180px"	DataField="Voz3"></asp:BoundField>
 																<asp:BoundField HeaderText="Comentarios"									ItemStyle-HorizontalAlign="Left"							DataField="Comentarios"></asp:BoundField>
 																<asp:BoundField HeaderText="Calificación"	ItemStyle-ForeColor="#FF6600"	ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="180px"	DataField="CalificacionAutoridadNombre"></asp:BoundField>
 															</Columns>

@@ -58,6 +58,24 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         protected global::System.Web.UI.WebControls.ImageButton AsignarButton;
         
         /// <summary>
+        /// CambioPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel CambioPanel;
+        
+        /// <summary>
+        /// CambioButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton CambioButton;
+        
+        /// <summary>
         /// CiudadanoPanel control.
         /// </summary>
         /// <remarks>

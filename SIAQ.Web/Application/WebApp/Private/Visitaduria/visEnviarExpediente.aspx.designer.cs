@@ -301,24 +301,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria {
         protected global::System.Web.UI.WebControls.Image imgGestion;
         
         /// <summary>
-        /// pnlComparecencia control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlComparecencia;
-        
-        /// <summary>
-        /// imgComparecencia control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgComparecencia;
-        
-        /// <summary>
         /// pnlAutoridad control.
         /// </summary>
         /// <remarks>

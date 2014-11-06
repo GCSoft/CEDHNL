@@ -177,10 +177,6 @@
 			<asp:Image ID="imgGestion" runat="server" ImageUrl="~/Include/Image/Icon/SeguimientoIcon_Success.png" /><br />
             Gestión
         </asp:Panel>
-		<asp:Panel ID="pnlComparecencia" runat="server" CssClass="IconoPanel">
-			<asp:Image ID="imgComparecencia" runat="server" ImageUrl="~/Include/Image/Icon/ComparecenciaIcon_Success.png" /><br />
-            Comparecencia
-        </asp:Panel>
 		<asp:Panel ID="pnlAutoridad" runat="server" CssClass="IconoPanel">
 			<asp:Image ID="imgAutoridad" runat="server" ImageUrl="~/Include/Image/Icon/AutoridadIcon_Success.png" /><br />
             Autoridades y Voces
@@ -201,10 +197,6 @@
 			<asp:Image ID="imgAtencion" runat="server" ImageUrl="~/Include/Image/Icon/AtencionVictimasIcon_Success.png"  /><br />
             Atención a víctimas
         </asp:Panel>
-		 <%--<div id="Asuntos" style="clear:both; text-align:left;">
-			<br />
-			 <asp:Label ID="lblAsuntos" runat="server" CssClass="Asunto_Success"></asp:Label>
-        </div>--%>
     </div>
 
 	<asp:HiddenField ID="hddExpedienteId" runat="server" Value="0"  />

@@ -31,79 +31,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 		GCEncryption gcEncryption = new GCEncryption();
 		GCJavascript gcJavascript = new GCJavascript();
 
+
 		// Variables publicas
 		String dtBeginDate;
 		String dtEndDate;
 
 
+
 		// Rutinas del programador
-
-		void RecoveryForm(){
-			ENTSession oENTSession = new ENTSession();
-			ENTVisitaduria oENTVisitaduria;
-
-            try
-            {
-
-				// Obtener la sesion
-				oENTSession = (ENTSession)this.Session["oENTSession"];
-
-				// Validaciones
-				if (oENTSession.Entity == null) { return; }
-				if (oENTSession.Entity.GetType().Name != "ENTVisitaduria") { return; }
-
-                // Obtener Formulario
-				oENTVisitaduria = (ENTVisitaduria)oENTSession.Entity;
-
-				// Vaciar formulario
-				this.txtNumeroExpediente.Text = oENTVisitaduria.Numero.ToString();
-				this.txtCiudadano.Text = oENTVisitaduria.Nombre;
-				this.ddlEstatus.SelectedValue = oENTVisitaduria.EstatusId.ToString();
-				this.ddlFuncionario.SelectedValue = oENTVisitaduria.FuncionarioId.ToString();
-				this.wucBeginDate.SetDateTime = DateTime.Parse(oENTVisitaduria.FechaDesde);
-				this.wucEndDate.SetDateTime = DateTime.Parse(oENTVisitaduria.FechaHasta);
-
-				dtBeginDate = oENTVisitaduria.FechaDesde.ToString();
-				dtEndDate = oENTVisitaduria.FechaHasta.ToString();
-				
-				// Liberar el formulario en la sesión
-				oENTSession.Entity = null;
-				this.Session["oENTSession"] = oENTSession;
-
-				// Realcular
-				SelectExpediente(true);
-
-            }catch (Exception ex){
-				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('No fue posible recuperar el formulario: " + gcJavascript.ClearText(ex.Message) + "');", true);
-            }
-		}
-
-		void SaveForm(){
-			ENTSession oENTSession = new ENTSession();
-			ENTVisitaduria oENTVisitaduria = new ENTVisitaduria();
-
-            try
-            {
-
-                // Formulario
-				oENTVisitaduria.Numero = this.txtNumeroExpediente.Text.Trim();
-				oENTVisitaduria.Nombre = this.txtCiudadano.Text.Trim();
-				oENTVisitaduria.EstatusId = Int32.Parse(this.ddlEstatus.SelectedValue);
-				oENTVisitaduria.FuncionarioId = Int32.Parse(this.ddlFuncionario.SelectedValue);
-				oENTVisitaduria.FechaDesde = this.wucBeginDate.BeginDate;
-				oENTVisitaduria.FechaHasta = this.wucEndDate.EndDate;
-
-				// Obtener la sesion
-				oENTSession = (ENTSession)this.Session["oENTSession"];
-
-                // Guardar el formulario en la sesión
-				oENTSession.Entity = oENTVisitaduria;
-				this.Session["oENTSession"] = oENTSession;
-
-            }catch (Exception ex){
-                throw (ex);
-            }
-		}
 
 		void SelectArea() {
 			this.ddlArea.Items.Insert(0, new ListItem("Coordinación Penitenciaria", "10"));
@@ -132,6 +67,43 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 
 			// Item Extra
 			this.ddlEstatus.Items.Insert(0, new ListItem("[Todos]", "0"));
+		}
+
+		void SelectExpediente( Boolean Recovery){
+			BPVisitaduria oBPVisitaduria = new BPVisitaduria();
+			ENTVisitaduria oENTVisitaduria = new ENTVisitaduria();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			try
+			{
+
+				// Formulario
+				oENTVisitaduria.Numero = this.txtNumeroExpediente.Text.Trim();
+				oENTVisitaduria.Nombre = this.txtCiudadano.Text.Trim();
+				oENTVisitaduria.AreaId = Int32.Parse(this.ddlArea.SelectedValue);
+				oENTVisitaduria.EstatusId = Int32.Parse(this.ddlEstatus.SelectedValue);
+				oENTVisitaduria.FuncionarioId = Int32.Parse(this.ddlFuncionario.SelectedValue);
+				oENTVisitaduria.TipoResolucionId = Int32.Parse(this.ddlTipoResolucion.SelectedValue);
+				oENTVisitaduria.FechaDesde = (Recovery ? dtBeginDate : this.wucBeginDate.BeginDate);
+				oENTVisitaduria.FechaHasta = (Recovery ? dtEndDate : this.wucEndDate.EndDate);
+
+				// Transacción
+				oENTResponse = oBPVisitaduria.SelectExpediente_Filtro(oENTVisitaduria);
+
+				// Errores
+				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+
+				// Warnings
+				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + oENTResponse.sMessage + "');", true); }
+
+				// Llenado de control
+				this.gvExpediente.DataSource = oENTResponse.dsResponse.Tables[1];
+				this.gvExpediente.DataBind();
+
+
+			}catch (Exception ex){
+				throw (ex);
+			}
 		}
 
 		void SelectFuncionario(){
@@ -174,25 +146,20 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 			}
 		}
 
-		void SelectExpediente( Boolean Recovery){
-			BPVisitaduria oBPVisitaduria = new BPVisitaduria();
-			ENTVisitaduria oENTVisitaduria = new ENTVisitaduria();
+		void SelectTipoResolucion(){
+			BPTipoResolucion oBPTipoResolucion = new BPTipoResolucion();
+			ENTTipoResolucion oENTTipoResolucion = new ENTTipoResolucion();
 			ENTResponse oENTResponse = new ENTResponse();
 
 			try
 			{
 
 				// Formulario
-				oENTVisitaduria.Numero = this.txtNumeroExpediente.Text.Trim();
-				oENTVisitaduria.Nombre = this.txtCiudadano.Text.Trim();
-				oENTVisitaduria.AreaId = Int32.Parse(this.ddlArea.SelectedValue);
-				oENTVisitaduria.EstatusId = Int32.Parse(this.ddlEstatus.SelectedValue);
-				oENTVisitaduria.FuncionarioId = Int32.Parse(this.ddlFuncionario.SelectedValue);
-				oENTVisitaduria.FechaDesde = (Recovery ? dtBeginDate : this.wucBeginDate.BeginDate);
-				oENTVisitaduria.FechaHasta = (Recovery ? dtEndDate : this.wucEndDate.EndDate);
+				oENTTipoResolucion.TipoResolucionId = 0;
+				oENTTipoResolucion.Nombre = "";
 
 				// Transacción
-				oENTResponse = oBPVisitaduria.SelectExpediente_Filtro(oENTVisitaduria);
+				oENTResponse = oBPTipoResolucion.SelectTipoResolucion(oENTTipoResolucion);
 
 				// Errores
 				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
@@ -201,14 +168,92 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('" + oENTResponse.sMessage + "');", true); }
 
 				// Llenado de control
-				this.gvExpediente.DataSource = oENTResponse.dsResponse.Tables[1];
-				this.gvExpediente.DataBind();
+				this.ddlTipoResolucion.DataTextField = "Nombre";
+				this.ddlTipoResolucion.DataValueField = "TipoResolucionId";
+				this.ddlTipoResolucion.DataSource = oENTResponse.dsResponse.Tables[1];
+				this.ddlTipoResolucion.DataBind();
 
+				// Opción todos
+				this.ddlTipoResolucion.Items.Insert(0, new ListItem("[Todos]", "0"));
 
 			}catch (Exception ex){
 				throw (ex);
 			}
 		}
+
+
+		
+		// Rutinas de recuperación de formulario
+
+		void RecoveryForm(){
+			ENTSession oENTSession = new ENTSession();
+			ENTVisitaduria oENTVisitaduria;
+
+            try
+            {
+
+				// Obtener la sesion
+				oENTSession = (ENTSession)this.Session["oENTSession"];
+
+				// Validaciones
+				if (oENTSession.Entity == null) { return; }
+				if (oENTSession.Entity.GetType().Name != "ENTVisitaduria") { return; }
+
+                // Obtener Formulario
+				oENTVisitaduria = (ENTVisitaduria)oENTSession.Entity;
+
+				// Vaciar formulario
+				this.txtNumeroExpediente.Text = oENTVisitaduria.Numero.ToString();
+				this.txtCiudadano.Text = oENTVisitaduria.Nombre;
+				this.ddlEstatus.SelectedValue = oENTVisitaduria.EstatusId.ToString();
+				this.ddlFuncionario.SelectedValue = oENTVisitaduria.FuncionarioId.ToString();
+				this.ddlTipoResolucion.SelectedValue = oENTVisitaduria.TipoResolucionId.ToString();
+				this.wucBeginDate.SetDateTime = DateTime.Parse(oENTVisitaduria.FechaDesde);
+				this.wucEndDate.SetDateTime = DateTime.Parse(oENTVisitaduria.FechaHasta);
+
+				dtBeginDate = oENTVisitaduria.FechaDesde.ToString();
+				dtEndDate = oENTVisitaduria.FechaHasta.ToString();
+				
+				// Liberar el formulario en la sesión
+				oENTSession.Entity = null;
+				this.Session["oENTSession"] = oENTSession;
+
+				// Realcular
+				SelectExpediente(true);
+
+            }catch (Exception ex){
+				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "alert('No fue posible recuperar el formulario: " + gcJavascript.ClearText(ex.Message) + "');", true);
+            }
+		}
+
+		void SaveForm(){
+			ENTSession oENTSession = new ENTSession();
+			ENTVisitaduria oENTVisitaduria = new ENTVisitaduria();
+
+            try
+            {
+
+                // Formulario
+				oENTVisitaduria.Numero = this.txtNumeroExpediente.Text.Trim();
+				oENTVisitaduria.Nombre = this.txtCiudadano.Text.Trim();
+				oENTVisitaduria.EstatusId = Int32.Parse(this.ddlEstatus.SelectedValue);
+				oENTVisitaduria.FuncionarioId = Int32.Parse(this.ddlFuncionario.SelectedValue);
+				oENTVisitaduria.TipoResolucionId = Int32.Parse(this.ddlTipoResolucion.SelectedValue);
+				oENTVisitaduria.FechaDesde = this.wucBeginDate.BeginDate;
+				oENTVisitaduria.FechaHasta = this.wucEndDate.EndDate;
+
+				// Obtener la sesion
+				oENTSession = (ENTSession)this.Session["oENTSession"];
+
+                // Guardar el formulario en la sesión
+				oENTSession.Entity = oENTVisitaduria;
+				this.Session["oENTSession"] = oENTSession;
+
+            }catch (Exception ex){
+                throw (ex);
+            }
+		}
+
 
 		
 		// Eventos de la página
@@ -224,6 +269,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				SelectArea();
 				SelectEstatus();
 				SelectFuncionario();
+				SelectTipoResolucion();
 
 				// Estado inicial del formulario
 				this.gvExpediente.DataSource = null;

@@ -217,6 +217,10 @@ namespace SIAQ.DataAccess.Object
 			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
 
 			// Parametros
+			sqlPar = new SqlParameter("UsuarioId", SqlDbType.Int);
+			sqlPar.Value = oENTQueja.UsuarioId;
+			sqlCom.Parameters.Add(sqlPar);
+
 			sqlPar = new SqlParameter("SolicitudId", SqlDbType.Int);
 			sqlPar.Value = oENTQueja.SolicitudId;
 			sqlCom.Parameters.Add(sqlPar);

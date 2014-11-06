@@ -107,6 +107,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 		void InsertExpediente() {
 			ENTQueja oENTQueja = new ENTQueja();
 			ENTResponse oENTResponse = new ENTResponse();
+			ENTSession oENTSession;
 
 			BPQueja oBPQueja = new BPQueja();
 
@@ -116,7 +117,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Quejas
 				// Validaciones
 				if (this.lblExpediente.Text.Trim() == "") { throw (new Exception("Es necesario generar el folio del expediente")); }
 
+				// Obtener Sesion
+				oENTSession = (ENTSession)this.Session["oENTSession"];
+
 				// Formulario
+				oENTQueja.UsuarioId = oENTSession.idUsuario;
 				oENTQueja.SolicitudId = Int32.Parse(this.hddSolicitudId.Value);
 				oENTQueja.AreaId = Int32.Parse(this.ddlVisitaduria.SelectedItem.Value);
 				oENTQueja.CalificacionId = Int32.Parse(this.hddCalificacionId.Value);

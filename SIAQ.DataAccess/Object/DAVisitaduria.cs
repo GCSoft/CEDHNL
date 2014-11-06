@@ -1249,6 +1249,10 @@ namespace SIAQ.DataAccess.Object
 			sqlPar.Value = oENTVisitaduria.FuncionarioId;
 			sqlCom.Parameters.Add(sqlPar);
 
+			sqlPar = new SqlParameter("TipoResolucionId", SqlDbType.Int);
+			sqlPar.Value = oENTVisitaduria.TipoResolucionId;
+			sqlCom.Parameters.Add(sqlPar);
+
 			sqlPar = new SqlParameter("FechaDesde", SqlDbType.DateTime);
 			sqlPar.Value = oENTVisitaduria.FechaDesde;
 			sqlCom.Parameters.Add(sqlPar);
@@ -1288,6 +1292,70 @@ namespace SIAQ.DataAccess.Object
 			return oENTResponse;
 
         }
+
+		///<remarks>
+		///   <name>DAVisitaduria.UpdateExpediente_CambioArea</name>
+		///   <create>17-Agosto-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Cambia de área un Expediente de Visitadurias</summary>
+		///<param name="oENTVisitaduria">Entidad de Visitaduria con los parámetros necesarios para realizar la transacción</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse UpdateExpediente_CambioArea(ENTVisitaduria oENTVisitaduria, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspExpediente_Upd_Area", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("ExpedienteId", SqlDbType.Int);
+			sqlPar.Value = oENTVisitaduria.ExpedienteId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("AreaId", SqlDbType.Int);
+			sqlPar.Value = oENTVisitaduria.AreaId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("UsuarioId", SqlDbType.Int);
+			sqlPar.Value = oENTVisitaduria.UsuarioId;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Comentario", SqlDbType.VarChar);
+			sqlPar.Value = oENTVisitaduria.Comentario;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try{
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+			}catch (SqlException sqlEx){
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}finally{
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
 
 		///<remarks>
 		///   <name>DAVisitaduria.UpdateExpedienteAutoridad</name>

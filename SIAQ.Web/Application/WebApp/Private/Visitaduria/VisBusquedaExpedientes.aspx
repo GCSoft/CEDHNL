@@ -44,6 +44,11 @@
                             <td class="Espacio"></td>
                             <td class="Campo"><asp:DropDownList ID="ddlFuncionario" runat="server" CssClass="DropDownList_General" Width="216px"></asp:DropDownList></td>
                         </tr>
+						<tr>
+                            <td class="Etiqueta">Tipo de Resolución</td>
+                            <td class="Espacio"></td>
+                            <td class="Campo"><asp:DropDownList ID="ddlTipoResolucion" runat="server" CssClass="DropDownList_General" Width="216px"></asp:DropDownList></td>
+                        </tr>
                         <tr>
                             <td class="Etiqueta">Fecha inicio</td>
                             <td class="Espacio"></td>
@@ -89,13 +94,15 @@
                                     <td style="width:80px;">Expediente</td>
 									<td style="width:150px;">Área</td>
 									<td style="width:150px;">Funcionario</td>
-                                    <td style="width:150px;">Afectado</td>
-									<td style="width:150px;">Acompañantes</td>
+									<td style="width:120px;">Tipo de Resolucion</td>
+									<td style="width:100px;">No. Recomendación</td>
+                                    <td>Afectado</td>
+									<td>Acompañantes</td>
                                     <td>Observaciones</td>
-                                    <td style="width:200px;">Estatus</td>
+                                    <td style="width:150px;">Estatus</td>
                                 </tr>
                                 <tr class="Grid_Row">
-                                    <td colspan="6">No se encontraron Expedientees registradas en el sistema</td>
+                                    <td colspan="9" style="text-align:center;">No se encontraron Expedientes registradas en el sistema</td>
                                 </tr>
                             </table>
                         </EmptyDataTemplate>
@@ -103,10 +110,12 @@
                             <asp:BoundField HeaderText="Expediente"			ItemStyle-HorizontalAlign="Center"	ItemStyle-Width="80px"	DataField="ExpedienteNumero"						SortExpression="ExpedienteNumero"></asp:BoundField>
 							<asp:BoundField HeaderText="Área"				ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="150px"	DataField="AreaNombre"								SortExpression="AreaNombre"></asp:BoundField>
 							<asp:BoundField HeaderText="Funcionario"		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="150px"	DataField="FuncionarioNombre"						SortExpression="FuncionarioNombre"></asp:BoundField>
-							<asp:BoundField HeaderText="Afectado"			ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="150px"	DataField="Afectados"								SortExpression="Afectados"></asp:BoundField>
-							<asp:BoundField HeaderText="Acompañantes"		ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="150px"	DataField="Acompanantes"							SortExpression="Acompanantes"></asp:BoundField>
+							<asp:BoundField HeaderText="Tipo de Resolucion"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="120px"	DataField="TipoResolucionNombre"					SortExpression="TipoResolucionNombre"></asp:BoundField>
+							<asp:BoundField HeaderText="No. Recomendación"	ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="100px"	DataField="RecomendacionNumero"						SortExpression="RecomendacionNumero"></asp:BoundField>
+							<asp:BoundField HeaderText="Afectado"			ItemStyle-HorizontalAlign="Left"							DataField="Afectados"								SortExpression="Afectados"></asp:BoundField>
+							<asp:BoundField HeaderText="Acompañantes"		ItemStyle-HorizontalAlign="Left"							DataField="Acompanantes"							SortExpression="Acompanantes"></asp:BoundField>
                             <asp:BoundField HeaderText="Observaciones"		ItemStyle-HorizontalAlign="Left"							DataField="Observaciones"		HtmlEncode="false"	SortExpression="Observaciones"></asp:BoundField>
-                            <asp:BoundField HeaderText="Estatus"			ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="200px"	DataField="EstatusNombre"							SortExpression="EstatusNombre"></asp:BoundField>
+                            <asp:BoundField HeaderText="Estatus"			ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="150px"	DataField="EstatusNombre"							SortExpression="EstatusNombre"></asp:BoundField>
                             <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
                                 <ItemTemplate>
                                     <asp:ImageButton ID="imgEdit" CommandArgument='<%#Eval("ExpedienteId")%>' CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />

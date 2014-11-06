@@ -30,6 +30,10 @@
             <asp:ImageButton ID="AsignarButton" ImageUrl="~/Include/Image/Icon/AsignarIcon.png" runat="server" OnClick="AsignarButton_Click"></asp:ImageButton><br />
             Asignar funcionario
         </asp:Panel>
+		<asp:Panel CssClass="IconoPanel" ID="CambioPanel" runat="server" Visible="true">
+            <asp:ImageButton ID="CambioButton" ImageUrl="~/Include/Image/Icon/TransferirIcon.png" runat="server" OnClick="CambioButton_Click"></asp:ImageButton><br />
+            Cambio de Área
+        </asp:Panel>
 		<asp:Panel CssClass="IconoPanel" ID="CiudadanoPanel" runat="server" Visible="true">
             <asp:ImageButton ID="CiudadanoButton" ImageUrl="~/Include/Image/Icon/CiudadanoIcon.png" runat="server" OnClick="CiudadanoButton_Click"></asp:ImageButton><br />
             Agregar ciudadanos
@@ -56,7 +60,7 @@
         </asp:Panel>
 		<asp:Panel CssClass="IconoPanel" ID="AutoridadPanel" runat="server" Visible="true">
             <asp:ImageButton ID="AutoridadButton" ImageUrl="~/Include/Image/Icon/AutoridadIcon.png" runat="server" OnClick="AutoridadButton_Click"></asp:ImageButton><br />
-            Confirmar autoridades señaladas y voces
+            Confirmar autoridades y hechos violatorios
         </asp:Panel>
         <asp:Panel CssClass="IconoPanel" ID="ResolucionPanel" runat="server" Visible="true">
             <asp:ImageButton ID="ResolucionButton" ImageUrl="~/Include/Image/Icon/ResolucionIcon.png" runat="server" OnClick="ResolucionButton_Click"></asp:ImageButton><br />

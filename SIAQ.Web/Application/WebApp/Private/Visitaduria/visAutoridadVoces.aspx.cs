@@ -1053,7 +1053,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
                 sAutoridad = gvAutoridades.DataKeys[e.Row.RowIndex]["Nombre"].ToString();
 
 				// Tooltip Editar Voz
-				sToolTip = "Editar voces de autoridad [" + sAutoridad + "]";
+				sToolTip = "Editar hechos violatorios de autoridad [" + sAutoridad + "]";
 				imgSeleccionar.Attributes.Add("onmouseover", "tooltip.show('" + sToolTip + "', 'Izq');");
 				imgSeleccionar.Attributes.Add("onmouseout", "tooltip.hide();");
 				imgSeleccionar.Attributes.Add("style", "cursor:hand;");

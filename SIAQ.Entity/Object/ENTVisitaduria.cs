@@ -25,6 +25,7 @@ namespace SIAQ.Entity.Object
 		private Int32	_AreaId;					// Identificador único del Área
 		private Int32	_AutoridadId;				// Identificador único de la Autoridad
 		private Int32	_CalificacionAutoridadId;	// Identificador único de la Calificación de la Autoridad
+		private Int32	_CalificacionVozId;			// Identificador único de la Calificación de la Voz
 		private Int32	_CiudadanoId;				// Identificador único del Ciudadano asociado al Expediente
 		private Int32	_ComentarioId;				// Identificador único del Comentario del Expediente
 		private Int32	_EstatusId;					// Identificador único del Estatus del Expediente
@@ -58,6 +59,7 @@ namespace SIAQ.Entity.Object
 			_AreaId = 0;
 			_AutoridadId = 0;
 			_CalificacionAutoridadId = 0;
+			_CalificacionVozId = 0;
 			_CiudadanoId = 0;
 			_ComentarioId = 0;
 			_EstatusId = 0;
@@ -116,11 +118,23 @@ namespace SIAQ.Entity.Object
 		///   <create>27-Agosto-2014</create>
 		///   <author>Ruben.Cobos</author>
 		///</remarks>
-		///<summary>Obtiene/Asigna el identificador único único de la Calificación de la Autoridad/summary>
+		///<summary>Obtiene/Asigna el identificador único de la Calificación de la Autoridad</summary>
 		public Int32 CalificacionAutoridadId
 		{
 			get { return _CalificacionAutoridadId; }
 			set { _CalificacionAutoridadId = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTVisitaduria.CalificacionVozId</name>
+		///   <create>27-Agosto-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el identificador único de la Calificación de la Voz</summary>
+		public Int32 CalificacionVozId
+		{
+			get { return _CalificacionVozId; }
+			set { _CalificacionVozId = value; }
 		}
 
 		///<remarks>

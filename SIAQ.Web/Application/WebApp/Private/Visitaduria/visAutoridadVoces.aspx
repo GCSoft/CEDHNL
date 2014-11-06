@@ -10,7 +10,7 @@
         <table class="GeneralTable">
             <tr>
                 <td class="tdCeldaTituloEncabezado" style="background-image: url('../../../../Include/Image/Web/BarraTitulo.png');">
-                    Confirmar Autoridades y Voces Señaladas en el Expediente
+                    Confirmar Autoridades y Hechos Violatorios en el Expediente
                 </td>
             </tr>
             <tr>
@@ -174,7 +174,7 @@
             <tr><td class="tdCeldaMiddleSpace"></td></tr>
             <tr>
                 <td style="text-align: left;">
-                    Autoridades y Voces registradas en el Expediente
+                    Autoridades y Hechos Violatorios registrados en el Expediente
                 </td>
             </tr>
             <tr>
@@ -232,7 +232,7 @@
                             </asp:TemplateField>
 							<asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
                                 <ItemTemplate>
-                                    <asp:ImageButton ID="DeleteButton" runat="server" CommandArgument='<%#Eval("AutoridadId")%>' CommandName="Borrar" ImageUrl="~/Include/Image/Buttons/Delete.png" OnClientClick="return confirm('¿Seguro que desea eliminar esta autoridad junto con sus voces?');" />
+                                    <asp:ImageButton ID="DeleteButton" runat="server" CommandArgument='<%#Eval("AutoridadId")%>' CommandName="Borrar" ImageUrl="~/Include/Image/Buttons/Delete.png" OnClientClick="return confirm('¿Seguro que desea eliminar esta autoridad junto con sus hechos violatorios?');" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle" ItemStyle-Width="0px">
@@ -255,7 +255,7 @@
 																<td style="text-align:center; width:100px;">Calificación</td>
 															</tr>
 															<tr class="Grid_Row">
-																<td colspan="5" style="text-align:center;">No se han agregado voces a la autoridad</td>
+																<td colspan="5" style="text-align:center;">No se han agregado hechos violatorios a la autoridad</td>
 															</tr>
 														</table>
                                                     </EmptyDataTemplate>
@@ -264,7 +264,7 @@
                                                         <asp:BoundField HeaderText="Hecho Violatorio 2" 							ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="180px"	DataField="Voz2"></asp:BoundField>
                                                         <asp:BoundField HeaderText="Hecho Violatorio 3"								ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="180px"	DataField="Voz3"></asp:BoundField>
 														<asp:BoundField HeaderText="Comentarios"									ItemStyle-HorizontalAlign="Left"							DataField="Comentarios"></asp:BoundField>
-														<asp:BoundField HeaderText="Calificación"	ItemStyle-ForeColor="#FF6600"	ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="180px"	DataField="CalificacionAutoridadNombre"></asp:BoundField>
+														<asp:BoundField HeaderText="Calificación"	ItemStyle-ForeColor="#FF6600"	ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="180px"	DataField="CalificacionVozNombre"></asp:BoundField>
                                                     </Columns>
                                                 </asp:GridView>
 												<br />
@@ -369,7 +369,7 @@
                     <table border="0" cellpadding="0" cellspacing="0" style="height:100%; width:100%">
                         <tr>
                             <td style="width: 10px"></td>
-                            <td style="text-align: left;"><asp:Label ID="lblVocesTitle" runat="server" CssClass="ActionHeaderTitle" Text="Agregar voces a autoridad"></asp:Label></td>
+                            <td style="text-align: left;"><asp:Label ID="lblVocesTitle" runat="server" CssClass="ActionHeaderTitle" Text="Agregar hechos violatorios a la autoridad"></asp:Label></td>
                             <td style="vertical-align: middle; width: 14px;"><asp:ImageButton ID="imgVocesCloseWindow" runat="server" ImageUrl="~/Include/Image/Buttons/CloseWindow.png" ToolTip="Cerrar Ventana" OnClick="imgVocesCloseWindow_Click"></asp:ImageButton></td>
                             <td style="width: 10px"></td>
                         </tr>
@@ -448,14 +448,14 @@
                                                 </div>
 												<div style="border:1px solid #4B4878; height:250px; overflow-x:hidden; overflow-y:scroll; text-align:left; Width:100%">
 													<asp:GridView id="gvAutoridadVoces" runat="server" border="0" AllowPaging="false" AllowSorting="false" AutoGenerateColumns="False" ShowHeader="false" Width="99%"
-														DataKeyNames="VozId,CalificacionAutoridadId,ModuloId,Comentarios"
+														DataKeyNames="VozId,CalificacionVozId,ModuloId,Comentarios"
 														OnRowCommand="gvAutoridadVoces_RowCommand"
 														OnRowDataBound="gvAutoridadVoces_RowDataBound">
 														<HeaderStyle CssClass="Grid_Header_Action" />
 														<RowStyle CssClass="Grid_Row_Action" />
 														<EmptyDataTemplate>
 															<div class="Grid_Row" style="border:0px; clear:both; left:-1px; position:relative; text-align:center; top:-2px; width:100%;">
-                                                                No se encontraron Voces asociadas a la Autoridad
+                                                                No se encontraron Hechos Violatorios asociados a la Autoridad
                                                             </div>
 														</EmptyDataTemplate>
 														<Columns>
@@ -488,7 +488,7 @@
                             <tr style="height:5px;"><td colspan="3"></td></tr>
                             <tr>
                                 <td colspan="3" style="text-align:right;">
-									<asp:Button ID="btnAutoridadVoces_Editar" runat="server" CssClass="Button_General" Text="Actualizar Voces" width="125px" OnClick="btnAutoridadVoces_Editar_Click" />&nbsp;&nbsp;
+									<asp:Button ID="btnAutoridadVoces_Editar" runat="server" CssClass="Button_General" Text="Actualizar Hechos Violatorios" width="175px" OnClick="btnAutoridadVoces_Editar_Click" />&nbsp;&nbsp;
                                     <asp:Button ID="btnAutoridadVoces_Cancelar" runat="server" Text="Cancelar" CssClass="Button_General" Width="125px" OnClick="btnAutoridadVoces_Cancelar_Click" />
                                 </td>
                             </tr>

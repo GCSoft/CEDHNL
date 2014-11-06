@@ -489,7 +489,7 @@
 																<asp:BoundField HeaderText="Hecho Violatorio 2" 							ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="180px"	DataField="Voz2"></asp:BoundField>
 																<asp:BoundField HeaderText="Hecho Violatorio 3"								ItemStyle-HorizontalAlign="Left"	ItemStyle-Width="180px"	DataField="Voz3"></asp:BoundField>
 																<asp:BoundField HeaderText="Comentarios"									ItemStyle-HorizontalAlign="Left"							DataField="Comentarios"></asp:BoundField>
-																<asp:BoundField HeaderText="Calificación"	ItemStyle-ForeColor="#FF6600"	ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="180px"	DataField="CalificacionAutoridadNombre"></asp:BoundField>
+																<asp:BoundField HeaderText="Calificación"	ItemStyle-ForeColor="#FF6600"	ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="180px"	DataField="CalificacionVozNombre"></asp:BoundField>
 															</Columns>
 														</asp:GridView>
 														<br />

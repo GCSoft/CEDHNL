@@ -69,7 +69,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 				if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
 
 				// Validación
-				if (oENTResponse.dsResponse.Tables[0].Select("CalificacionAutoridadId=1").Length > 0) { Response = false; }
+				if (oENTResponse.dsResponse.Tables[0].Select("CalificacionVozId=1").Length > 0) { Response = false; }
 
 			}catch (Exception ex){
 				throw (ex);
@@ -246,7 +246,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Visitaduria
 					if (ValidaVoz( Int32.Parse( rowAutoridad["AutoridadId"].ToString()) ) == false){
 
 						this.imgAutoridad.ImageUrl = "~/Include/Image/Icon/AutoridadIcon_Pending.png";
-						this.imgAutoridad.ToolTip = "No se han calificado algunas voces en el Expediente";
+						this.imgAutoridad.ToolTip = "No se han calificado algunos hechos violatorios en el Expediente";
 						this.btnEnviar.Enabled = false;
 						this.btnEnviar.CssClass = "Button_General_Disabled";
 					}

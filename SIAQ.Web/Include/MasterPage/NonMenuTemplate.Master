@@ -38,38 +38,29 @@
 			};
 			
       </script>
-		<asp:UpdatePanel ID="updNonMenuTemplate" runat="server" UpdateMode="Always">
-			<ContentTemplate>
-				<asp:Panel ID="pnlNonMenuTemplateHeader" CssClass="Header" runat="server">
-					<table border="0" cellpadding="0" cellspacing="0" style="height:104px; width:100%">
-						<tr>
-							<td style="width:1024px;"><img id="Img1" alt="GCSoft" runat="server" src="~/Include/Image/Web/Banner.png" /></td>
-							<td style="background-image:url('../../../../Include/Image/Web/BannerFill.png'); background-repeat:repeat-x;">&nbsp;</td>
-						</tr>
-					</table>
-				</asp:Panel>
-				<asp:Panel ID="pnlNonMenuTemplateCanvas" CssClass="NonMenuCanvas" runat="server">
-					<table style="border:0px solid; border-spacing:0px; padding:0px; width:100%">
-						<tr>
-							<td style="text-align: center;">
-								<asp:Panel ID="pnlNonMenuTemplateBody" runat="server" style="background-color:#FFFFFF; border:0px solid RED; margin:0px auto; position:relative; width:100%;" >
-									<asp:ContentPlaceHolder ID="cntNonMenuTemplateBody" runat="server"></asp:ContentPlaceHolder>
-								</asp:Panel>
-							</td>
-						</tr>
-					</table>
-				</asp:Panel>
-				<asp:UpdateProgress AssociatedUpdatePanelID="updNonMenuTemplate" ID="uprMaster" runat="server">
-               <ProgressTemplate>
-                  <div class="LoadingDiv">
-                     <div id="Div1" class="LoadingImageDiv" runat="server">
-                        <asp:Image ID="imgWait" AlternateText="Cargando..." ImageUrl="~/Include/Image/Wait/Loading.gif" runat="server" />
-                     </div>
-                  </div>
-               </ProgressTemplate>
-            </asp:UpdateProgress>
-			</ContentTemplate>
-		</asp:UpdatePanel>
+		<asp:UpdatePanel ID="updMaster" runat="server">
+            <ContentTemplate>
+                
+                <asp:Panel ID="pnlHeader" runat="server" CssClass="MasterPageHeader" BackImageUrl="~/Include/Image/Web/BannerFill.png">
+                    <img id="imgBanner" alt="Banner" runat="server" src="~/Include/Image/Web/Banner.png" />
+                </asp:Panel>
+                
+                <asp:Panel ID="pnlBody" CssClass="MasterBody" runat="server">
+                     <asp:ContentPlaceHolder ID="cntNonMenuTemplateBody" runat="server"></asp:ContentPlaceHolder>
+                </asp:Panel>
+
+                <asp:UpdateProgress runat="server" ID="uprMaster" AssociatedUpdatePanelID="updMaster">
+                    <ProgressTemplate>
+                        <asp:Panel ID="pnlWait" runat="server" CssClass="LoadingDiv">
+                            <asp:Panel ID="pnlImageWait" runat="server" CssClass="LoadingImageDiv">
+                                <asp:Image ID="imgWait" AlternateText="Cargando..." ImageUrl="~/Include/Image/Wait/Loading.gif" runat="server" />
+                            </asp:Panel>
+                        </asp:Panel>
+                    </ProgressTemplate>
+                </asp:UpdateProgress>
+            
+            </ContentTemplate>
+        </asp:UpdatePanel>
    </form>
 </body>
 </html>

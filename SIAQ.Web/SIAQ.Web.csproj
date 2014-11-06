@@ -138,6 +138,7 @@
     <Content Include="Application\WebApp\Private\Visitaduria\visAtencionVictimas.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\visAutoridadVoces.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\VisBusquedaExpedientes.aspx" />
+    <Content Include="Application\WebApp\Private\Visitaduria\visCambioVisitadurias.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\VisDetalleExpedienteCierre.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\visDiligenciaExpediente.aspx" />
     <Content Include="Application\WebApp\Private\Visitaduria\VisListadoExpedientes.aspx" />
@@ -586,6 +587,7 @@
     <Content Include="Include\Image\Icon\SeguimientoIcon_Pending.png" />
     <Content Include="Include\Image\Icon\SeguimientoIcon_Success.png" />
     <Content Include="Include\Image\Icon\FileIcon_Word.png" />
+    <Content Include="Include\Image\Icon\TransferirIcon.png" />
     <Content Include="Include\Image\Vectores\Banner.png" />
     <Content Include="Include\Image\Vectores\BarraTituloDePagina.png" />
     <Content Include="Include\Image\Vectores\CEDH.png" />
@@ -610,7 +612,6 @@
     <Content Include="Include\Javascript\ToolTip\ImageError.png" />
     <Content Include="Include\Javascript\ToolTip\ImageSuccess.png" />
     <Content Include="Include\Javascript\ToolTip\ImageWarning.png" />
-    <Content Include="Include\Style\Login.css" />
     <Content Include="Include\Style\Table.css" />
     <Content Include="Include\WebUserControls\wucASCiudadano.ascx" />
     <Content Include="Include\WebUserControls\wucBusquedaCiudadano.ascx" />
@@ -1361,6 +1362,13 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Visitaduria\VisBusquedaExpedientes.aspx.designer.cs">
       <DependentUpon>VisBusquedaExpedientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Visitaduria\visCambioVisitadurias.aspx.cs">
+      <DependentUpon>visCambioVisitadurias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Visitaduria\visCambioVisitadurias.aspx.designer.cs">
+      <DependentUpon>visCambioVisitadurias.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Visitaduria\visComparecencia.aspx.cs">
       <DependentUpon>visComparecencia.aspx</DependentUpon>

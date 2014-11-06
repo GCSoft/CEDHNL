@@ -49,31 +49,40 @@ namespace SIAQ.Web.Include.MasterPage {
         protected global::System.Web.UI.ScriptManager smngPrivateTemplate;
         
         /// <summary>
-        /// updPrivateTemplate control.
+        /// updMaster control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel updPrivateTemplate;
+        protected global::System.Web.UI.UpdatePanel updMaster;
         
         /// <summary>
-        /// pnlPrivateTemplateHeader control.
+        /// pnlHeader control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlPrivateTemplateHeader;
+        protected global::System.Web.UI.WebControls.Panel pnlHeader;
         
         /// <summary>
-        /// Img1 control.
+        /// imgBanner control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage Img1;
+        protected global::System.Web.UI.HtmlControls.HtmlImage imgBanner;
+        
+        /// <summary>
+        /// pnlUserName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlUserName;
         
         /// <summary>
         /// lblUserName control.
@@ -94,22 +103,22 @@ namespace SIAQ.Web.Include.MasterPage {
         protected global::System.Web.UI.WebControls.ImageButton imgExit;
         
         /// <summary>
-        /// pnlPrivateTemplateCanvas control.
+        /// pnlBody control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlPrivateTemplateCanvas;
+        protected global::System.Web.UI.WebControls.Panel pnlBody;
         
         /// <summary>
-        /// pnlPrivateTemplateMenu control.
+        /// pnlMenu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlPrivateTemplateMenu;
+        protected global::System.Web.UI.WebControls.Panel pnlMenu;
         
         /// <summary>
         /// wucMenuPrincipal control.
@@ -121,13 +130,13 @@ namespace SIAQ.Web.Include.MasterPage {
         protected global::SIAQ.Web.Include.WebUserControls.wucMenu wucMenuPrincipal;
         
         /// <summary>
-        /// pnlPrivateTemplateBody control.
+        /// pnlCanvas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlPrivateTemplateBody;
+        protected global::System.Web.UI.WebControls.Panel pnlCanvas;
         
         /// <summary>
         /// cntPrivateTemplateBody control.

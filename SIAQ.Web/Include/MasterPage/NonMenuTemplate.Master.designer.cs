@@ -49,49 +49,40 @@ namespace SIAQ.Web.Include.MasterPage {
         protected global::System.Web.UI.ScriptManager smngNonMenuTemplate;
         
         /// <summary>
-        /// updNonMenuTemplate control.
+        /// updMaster control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel updNonMenuTemplate;
+        protected global::System.Web.UI.UpdatePanel updMaster;
         
         /// <summary>
-        /// pnlNonMenuTemplateHeader control.
+        /// pnlHeader control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlNonMenuTemplateHeader;
+        protected global::System.Web.UI.WebControls.Panel pnlHeader;
         
         /// <summary>
-        /// Img1 control.
+        /// imgBanner control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage Img1;
+        protected global::System.Web.UI.HtmlControls.HtmlImage imgBanner;
         
         /// <summary>
-        /// pnlNonMenuTemplateCanvas control.
+        /// pnlBody control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlNonMenuTemplateCanvas;
-        
-        /// <summary>
-        /// pnlNonMenuTemplateBody control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlNonMenuTemplateBody;
+        protected global::System.Web.UI.WebControls.Panel pnlBody;
         
         /// <summary>
         /// cntNonMenuTemplateBody control.

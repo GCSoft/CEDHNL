@@ -8,7 +8,7 @@
 	<meta content="GCSoft - Web Project Creator BETA 1.0" name="autor" />
 	<link rel="shortcut icon" href="~/Include/Image/Content/Web/favicon.ico" type="image/png" />
 	<link href="~/Include/Style/Control.css" rel="Stylesheet" type="text/css" />
-	<link href="~/Include/Style/Login.css" rel="Stylesheet" type="text/css" />
+	<link href="~/Include/Style/MasterPage.css" rel="Stylesheet" type="text/css" />
 	<link href="~/Include/Style/Text.css" rel="Stylesheet" type="text/css" />
 	<link href="~/Include/Style/Wait.css" rel="Stylesheet" type="text/css" />
    <link href="~/Include/Javascript/TinyBox/TinyBox.css" rel="Stylesheet" type="text/css" />
@@ -20,35 +20,33 @@
       
    </asp:ContentPlaceHolder>
 </head>
-<body>
-	<form id="frmLogin" runat="server">
+<body class="BackGroundBody">
+	<form id="frmLogin" runat="server" class="BackGroundBody">
 		<asp:ScriptManager ID="smngLogin" runat="server" EnablePageMethods="True"></asp:ScriptManager>
-		<asp:UpdatePanel ID="updMaster" runat="server" UpdateMode="Always">
-			<ContentTemplate>
-				<asp:Panel ID="pnlLoginHeader" CssClass="Header" runat="server">
-					<table border="0" cellpadding="0" cellspacing="0" style="height:104px; width:100%">
-						<tr>
-							<td style="width:1024px;"><img alt="GCSoft" runat="server" src="~/Include/Image/Web/Banner.png" /></td>
-							<td style="background-image:url('../../../Include/Image/Web/BannerFill.png'); background-repeat:repeat-x;">&nbsp;</td>
-						</tr>
-					</table>
-				</asp:Panel>
-				<asp:Panel ID="pnlLoginBody" CssClass="Login" runat="server">
-					<asp:ContentPlaceHolder ID="cntLoginBody" runat="server">
+		<asp:UpdatePanel ID="updMaster" runat="server">
+            <ContentTemplate>
 
-					</asp:ContentPlaceHolder>
-				</asp:Panel>
-				<asp:UpdateProgress AssociatedUpdatePanelID="updMaster" ID="uprMaster" runat="server">
-					<ProgressTemplate>
-						<div class="LoadingDiv">
-                     <div id="Div1" class="LoadingImageDiv" runat="server">
-                        <asp:Image ID="imgWait" AlternateText="Cargando..." ImageUrl="~/Include/Image/Wait/Loading.gif" runat="server" />
-                     </div>
-                  </div>
-					</ProgressTemplate>
-            </asp:UpdateProgress>
-			</ContentTemplate>
-		</asp:UpdatePanel>
+                <asp:Panel ID="pnlHeader" runat="server" CssClass="MasterPageHeader" BackImageUrl="~/Include/Image/Web/BannerFill.png">
+                    <img id="imgBanner" alt="Banner" runat="server" src="~/Include/Image/Web/Banner.png" />
+                </asp:Panel>
+                
+                <asp:Panel ID="pnlBody" CssClass="MasterLogin" runat="server" BackImageUrl="~/Include/Image/Background/HandsBackgorund.jpg">
+                    <asp:ContentPlaceHolder ID="cntLoginBody" runat="server">
+                    </asp:ContentPlaceHolder>
+                </asp:Panel>
+
+                <asp:UpdateProgress runat="server" ID="uprMaster" AssociatedUpdatePanelID="updMaster">
+                    <ProgressTemplate>
+                        <asp:Panel ID="pnlWait" runat="server" CssClass="LoadingDiv">
+                            <asp:Panel ID="pnlImageWait" runat="server" CssClass="LoadingImageDiv">
+                                <asp:Image ID="imgWait" AlternateText="Cargando..." ImageUrl="~/Include/Image/Wait/Loading.gif" runat="server" />
+                            </asp:Panel>
+                        </asp:Panel>
+                    </ProgressTemplate>
+                </asp:UpdateProgress>
+            
+            </ContentTemplate>
+        </asp:UpdatePanel>
 	</form>
 </body>
 </html>

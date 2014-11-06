@@ -49,22 +49,31 @@ namespace SIAQ.Web.Include.MasterPage {
         protected global::System.Web.UI.UpdatePanel updMaster;
         
         /// <summary>
-        /// pnlLoginHeader control.
+        /// pnlHeader control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlLoginHeader;
+        protected global::System.Web.UI.WebControls.Panel pnlHeader;
         
         /// <summary>
-        /// pnlLoginBody control.
+        /// imgBanner control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlLoginBody;
+        protected global::System.Web.UI.HtmlControls.HtmlImage imgBanner;
+        
+        /// <summary>
+        /// pnlBody control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlBody;
         
         /// <summary>
         /// cntLoginBody control.

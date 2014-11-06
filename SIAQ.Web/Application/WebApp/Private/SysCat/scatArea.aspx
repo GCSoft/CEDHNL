@@ -48,7 +48,7 @@
       <tr>
          <td>
             <asp:Panel id="pnlGrid" runat="server" Width="100%">
-               <asp:GridView id="gvArea" runat="server" AllowPaging="false" AllowSorting="true" AutoGenerateColumns="False" Width="790px"
+               <asp:GridView id="gvArea" runat="server" AllowPaging="false" AllowSorting="true" AutoGenerateColumns="False" Width="100%"
 						DataKeyNames="idArea, tiActivo, sNombre"
 						OnRowDataBound="gvArea_RowDataBound"
 						OnRowCommand="gvArea_RowCommand"
@@ -60,20 +60,18 @@
 							<table border="1px" cellpadding="0px" cellspacing="0px">
 								<tr class="Grid_Header">
 									<td style="width:150px;">Área</td>
-									<td style="width:440px;">Descripción</td>
-                           <td style="width:100px;">Estatus</td>
-                           <td style="width:100px;">Sistema</td>
+									<td style="width:100px;">Estatus</td>
+									<td>Descripción</td>
 								</tr>
 								<tr class="Grid_Row">
-									<td colspan="4">No se encontraron Áreas registradas en el sistema</td>
+									<td colspan="3">No se encontraron Áreas registradas en el sistema</td>
 								</tr>
 							</table>
 						</EmptyDataTemplate>
 						<Columns>
-							<asp:BoundField HeaderText="Área"         ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="150px" DataField="sNombre"        SortExpression="sNombre"></asp:BoundField>
-							<asp:BoundField HeaderText="Descripción"  ItemStyle-HorizontalAlign="Left"		ItemStyle-Width="400px" DataField="sDescripcion"	SortExpression="sDescripcion"></asp:BoundField>
-                     <asp:BoundField HeaderText="Estatus"      ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100px" DataField="sEstatus"       SortExpression="sEstatus"></asp:BoundField>
-                     <asp:BoundField HeaderText="Sistema"      ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100px" DataField="sSistema"       SortExpression="sSistema"></asp:BoundField>
+							<asp:BoundField HeaderText="Área"         ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="150px"	DataField="sNombre"			SortExpression="sNombre"></asp:BoundField>
+							<asp:BoundField HeaderText="Estatus"      ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100px"	DataField="sEstatus"		SortExpression="sEstatus"></asp:BoundField>
+							<asp:BoundField HeaderText="Descripción"  ItemStyle-HorizontalAlign="Left"								DataField="sDescripcion"	SortExpression="sDescripcion"></asp:BoundField>
 							<asp:TemplateField ItemStyle-HorizontalAlign ="Center" ItemStyle-Width="20px">
 								<ItemTemplate>
                            <asp:ImageButton ID="imgEdit" CommandArgument="<%#Container.DataItemIndex%>" CommandName="Editar" ImageUrl="~/Include/Image/Buttons/Edit.png" runat="server" />

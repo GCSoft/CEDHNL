@@ -1,13 +1,12 @@
 /*'---------------------------------------------------------------------------------------------------------------------------------
 ' Nombre:   MasterPage
 ' Autor:    Ruben.Cobos
-' Fecha:		11-Marzo-2012
+' Fecha:	11-Marzo-2012
 '
 ' Descripción:	Hoja de estilos que contiene las configuraciones generales de la aplicación aplicadas en los Master Pages
 '
 '----------------------------------------------------------------------------------------------------------------------------------*/
 
-/* General*/
 html, body, form
 {
 	color: #27245D;
@@ -18,7 +17,29 @@ html, body, form
 	width: 100%;
 }
 
-.GCSoft{
+.BackGroundBody
+{
+	background: #fff url(../Image/Background/HandsBackgorund.jpg) no-repeat center;
+	color: #27245D;
+	background-size: cover;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+.MasterPageHeader{
+	border: 0px solid;
+	height:104px;
+    position:relative;
+    text-align:left;
+    top:0px;
+    vertical-align:top;
+	width:100%;
+}
+
+.MasterPagePoweredBy{
 	border:0px solid #000000;
 	bottom:5px;
 	height:50px;
@@ -28,15 +49,46 @@ html, body, form
 	z-index:800;
 }
 
-.Header{
-	border: 0px solid;
-	height:104px;
+.MasterUserName{
+	border: 0px solid #000000;
+	float:right;
+	height:20px;
+	position:absolute;
+	right:10px;
+	text-align:right;
+	top:80px;
+    vertical-align:top;
+	width:500px;
+}
+
+.MasterBody {
+	background-color:#FFFFFF;
+	border: 0px solid BLUE;
+	clear: both;
+	position:relative;
+	width:99%;
+}
+
+
+.MasterMenu {
+	background-color:#FFFFFF;
+	border: 0px solid YELLOW;
+	min-height:500px;
+	top:30px;
+	position:absolute;
 	width:100%;
 }
 
-/* ApplicationLogin.MasterPage */
-.Login {
+.MasterCanvas {
 	background-color:#FFFFFF;
+	border: 0px solid BLUE;
+	min-height: 500px;
+    top:10px;
+	position:relative;
+    width:100%;
+}
+
+.MasterLogin {
 	border: 0px solid #549CC6;
 	clear: both;
 	height:122px;
@@ -45,62 +97,3 @@ html, body, form
 	width:310px;
 }
 
-/* ApplicationPrivate.MasterPage */
-.Body {
-	background-color:#FFFFFF;
-	border: 0px solid RED;
-	margin:0px auto;
-	min-height:500px;
-	position:relative;
-	width: auto;
-}
-
-.Canvas {
-	background-color:#FFFFFF;
-	border: 0px solid BLUE;
-	clear: both;
-	min-height: 500px;
-	position:relative;
-	width:100%;
-	
-}
-
-.Menu {
-	background-color:#FFFFFF;
-	border: 0px solid YELLOW;
-	float:left;
-	min-height:500px;
-	top:0px;
-	position:relative;
-	width:224px;
-}
-
-.UserName{
-	border: 0px solid #000000;
-	float:right;
-	height:20px;
-	position:absolute;
-	right:10px;
-	text-align:right;
-	top:84px;
-	width:500px;
-}
-
-/* NonMenu.MasterPage */
-.NonMenuCanvas {
-	background-color:#FFFFFF;
-	border: 0px solid BLUE;
-	clear: both;
-	position:relative;
-	width:100%;
-}
-
-/* PopUpTemplate.MasterPage */
-.PopUpCanvas {
-	background-color:#FFFFFF;
-	border:0px solid BLUE;
-	clear:both;
-	margin:0px auto;
-	position:relative;
-	width:100%;
-}

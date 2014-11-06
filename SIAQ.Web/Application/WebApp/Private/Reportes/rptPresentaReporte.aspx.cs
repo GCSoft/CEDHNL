@@ -78,15 +78,32 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes
 
                     case "rptEstadisticaPresidencia":
                         // Declara Entidad y Buiseness
-                        ENTVisitaduria entEstadisticaPresindecia = new ENTVisitaduria();
-                        BPVisitaduria bssEstadisticaPresindecia = new BPVisitaduria();
+                        ENTQueja entEstadisticaPresindecia = new ENTQueja();
+                        BPQueja bssEstadisticaPresindecia = new BPQueja();
 
                         // Asigna valores
                         entEstadisticaPresindecia.FechaDesde = FechaInicial.ToString("yyyy-MM-dd");
                         entEstadisticaPresindecia.FechaHasta = FechaFinal.ToString("yyyy-MM-dd");
 
                         // Consulta reporte            
-                        oResponse = bssEstadisticaPresindecia.RptGeneralVisitaduria(entEstadisticaPresindecia);
+                        oResponse = bssEstadisticaPresindecia.RptEstadisticaPresidencia(entEstadisticaPresindecia);
+
+                        oResponse.dsResponse.Tables[0].TableName = "tblEncabezado_0";
+                        oResponse.dsResponse.Tables[1].TableName = "tblEncabezado_I";
+                        oResponse.dsResponse.Tables[2].TableName = "tblIntervenciones_II";
+                        oResponse.dsResponse.Tables[3].TableName = "tblAsignacionExpediente_III";
+                        oResponse.dsResponse.Tables[4].TableName = "tblMecanismoApertura_IV";
+                        oResponse.dsResponse.Tables[5].TableName = "tblAsignaionExpQuejas_V";
+                        oResponse.dsResponse.Tables[6].TableName = "tblAsignacionExpCautelares_VI";
+                        oResponse.dsResponse.Tables[7].TableName = "tblAsignacionExpGestion_VII";
+                        oResponse.dsResponse.Tables[8].TableName = "tblQuejasVulnerabilidad_VIII";
+                        oResponse.dsResponse.Tables[9].TableName = "tblListadoExpGeneral_IX";
+                        oResponse.dsResponse.Tables[10].TableName = "tblListadoCautelares_X";
+                        oResponse.dsResponse.Tables[11].TableName = "tblSolicitudesGestion_XI";
+                        oResponse.dsResponse.Tables[12].TableName = "tblExpQuejaAutoridad_XII";
+                        oResponse.dsResponse.Tables[13].TableName = "tblDiligenciasYEntrevistas_XIII";
+                        oResponse.dsResponse.Tables[14].TableName = "tblGrupoPersonasRelacionadas_XIV";
+                        oResponse.dsResponse.Tables[15].TableName = "tblOrigenPersonasRelacionadas_XV";
 
                         //rptVisGeneral rptCREstadisticaPresidencia = new rptVisGeneral();
                         rptEstadisticaPresidencia rptCREstadisticaPresidencia = new rptEstadisticaPresidencia();

@@ -286,6 +286,42 @@ namespace SIAQ.BusinessProcess.Object
 			return oENTResponse;
 		}
 
+        ///<remarks>
+        ///   <name>BPQueja.RptEstadisticaPresidencia</name>
+        ///   <create>27-Octubre-2014</create>
+        ///   <author>JJGonzalez</author>
+        ///</remarks>
+        ///<summary>Reporte de quejas</summary>
+        ///<param name="oENTQuejas">Entidad de Quejas con los parámetros necesarios para realizar la transacción</param>
+        ///<returns>Una entidad de respuesta</returns>
+        public ENTResponse RptEstadisticaPresidencia(ENTQueja oENTQueja)
+        {
+            DAQueja oDAQueja = new DAQueja();
+            ENTResponse oENTResponse = new ENTResponse();
+
+            try
+            {
+
+                // Transacción en base de datos
+                oENTResponse = oDAQueja.RptEstadisticaPresidencia(oENTQueja, this.sConnectionApplication, 0);
+
+                // Validación de error en consulta
+                if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+                // Validación de mensajes de la BD
+                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+                if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+
+            // Resultado
+            return oENTResponse;
+        }
+
 		///<remarks>
 		///   <name>BPQueja.SelectMecanismoApertura</name>
 		///   <create>17-Julio-2014</create>

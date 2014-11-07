@@ -57,21 +57,20 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes
                         // Consulta reporte            
                         oResponse = bssGVis.RptGeneralVisitaduria(entGVis);
 
-                        oResponse.dsResponse.Tables[0].TableName = "tblEncabezado";
-                        oResponse.dsResponse.Tables[1].TableName = "tblExpPeriodo_I";
-                        oResponse.dsResponse.Tables[2].TableName = "tblExpMedidaCautelar_II";
-                        oResponse.dsResponse.Tables[3].TableName = "tblExpSolicitudGestion_III";
-                        oResponse.dsResponse.Tables[4].TableName = "tblExpVisitaduriaGeneral_IV";
-                        oResponse.dsResponse.Tables[5].TableName = "tblExpConcluidos_V";
-                        oResponse.dsResponse.Tables[6].TableName = "tblExpNivelAutoridadVI";
-                        oResponse.dsResponse.Tables[7].TableName = "tblPersonasAtendidasVII";
-                        oResponse.dsResponse.Tables[8].TableName = "tblEntrevistas_VIII";
-                        oResponse.dsResponse.Tables[9].TableName = "tblSupervisores_IX";
-                        oResponse.dsResponse.Tables[10].TableName = "tblResultados_X";
+                        //oResponse.dsResponse.Tables[0].TableName = "tblEncabezado";
+                        //oResponse.dsResponse.Tables[1].TableName = "tblExpPeriodo_I";
+                        //oResponse.dsResponse.Tables[2].TableName = "tblExpMedidaCautelar_II";
+                        //oResponse.dsResponse.Tables[3].TableName = "tblExpSolicitudGestion_III";
+                        //oResponse.dsResponse.Tables[4].TableName = "tblExpVisitaduriaGeneral_IV";
+                        //oResponse.dsResponse.Tables[5].TableName = "tblExpConcluidos_V";
+                        //oResponse.dsResponse.Tables[6].TableName = "tblExpNivelAutoridadVI";
+                        //oResponse.dsResponse.Tables[7].TableName = "tblPersonasAtendidasVII";
+                        //oResponse.dsResponse.Tables[8].TableName = "tblEntrevistas_VIII";
+                        //oResponse.dsResponse.Tables[9].TableName = "tblSupervisores_IX";
+                        //oResponse.dsResponse.Tables[10].TableName = "tblResultados_X";
 
                         rptVisGeneral rptCR = new rptVisGeneral();
                         rptCR.SetDataSource(oResponse.dsResponse);
-
                         // Presenta reporte
                         crViewer.ReportSource = rptCR;
                         break;
@@ -104,11 +103,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes
                         oResponse.dsResponse.Tables[13].TableName = "tblDiligenciasYEntrevistas_XIII";
                         oResponse.dsResponse.Tables[14].TableName = "tblGrupoPersonasRelacionadas_XIV";
                         oResponse.dsResponse.Tables[15].TableName = "tblOrigenPersonasRelacionadas_XV";
+                        oResponse.dsResponse.Tables[16].TableName = "tblDatosGenerales";
 
-                        //rptVisGeneral rptCREstadisticaPresidencia = new rptVisGeneral();
                         rptEstadisticaPresidencia rptCREstadisticaPresidencia = new rptEstadisticaPresidencia();
                         rptCREstadisticaPresidencia.SetDataSource(oResponse.dsResponse);
-                        //SetDBLogonForReport(connectionInfo);
                         crViewer.ReportSource = rptCREstadisticaPresidencia;
                         break;
 

@@ -27,7 +27,7 @@
                         <tr>
                             <td class="Etiqueta">Nombre del Ciudadano</td>
                             <td class="Espacio"></td>
-                            <td class="Campo"><asp:TextBox ID="txtCiudadano" runat="server" CssClass="Textbox_General" MaxLength="8000" Width="211px"></asp:TextBox></td>
+                            <td class="Campo"><asp:TextBox ID="txtCiudadano" runat="server" CssClass="Textbox_General" Width="211px"></asp:TextBox></td>
                         </tr>
 						<tr>
                             <td class="Etiqueta">Área</td>

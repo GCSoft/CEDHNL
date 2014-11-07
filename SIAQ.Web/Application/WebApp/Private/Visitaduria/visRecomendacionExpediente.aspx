@@ -348,7 +348,7 @@
 							<tr class="trFilaItem"><td class="tdActionCeldaLeyendaItem" colspan="3">&nbsp;Punto resolutivo</td></tr>
                             <tr class="trFilaItem">
 								<td colspan="3">
-									<CKEditor:CKEditorControl ID="ckeApartado" BasePath="~/Include/Components/CKEditor/Core/" runat="server" Height="90px" MaxLength="8000"></CKEditor:CKEditorControl>
+									<CKEditor:CKEditorControl ID="ckeApartado" BasePath="~/Include/Components/CKEditor/Core/" runat="server" Height="90px"></CKEditor:CKEditorControl>
 								</td>
                             </tr>
                             <tr style="height:5px;"><td colspan="3"></td></tr>

@@ -9,7 +9,7 @@
 
 /* Action (Formularios de Edición/Nuevo) */
 .ActionBlock{
-	background: url(/Include/Image/Wait/Background.png) repeat;
+	background-image: url('../../../../Include/Image/Web/Background.png');
 	left: 0px;
 	height: 100%;
 	position:fixed;

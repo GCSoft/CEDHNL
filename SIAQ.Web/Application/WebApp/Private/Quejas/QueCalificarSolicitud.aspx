@@ -170,7 +170,7 @@
 			<tr>
                 <td class="Nombre">Fundamento</td>
                 <td class="Espacio"></td>
-                <td class="Campo" colspan="5"><CKEditor:CKEditorControl ID="ckeFundamento" BasePath="~/Include/Components/CKEditor/Core/" runat="server" Height="90px" MaxLength="8000"></CKEditor:CKEditorControl></td>
+                <td class="Campo" colspan="5"><CKEditor:CKEditorControl ID="ckeFundamento" BasePath="~/Include/Components/CKEditor/Core/" runat="server" Height="90px"></CKEditor:CKEditorControl></td>
             </tr>
         </table>
 

@@ -90,12 +90,12 @@
 			<tr>
                 <td class="Nombre">Dirección de los hechos</td>
                 <td class="Espacio"></td>
-                <td class="Campo" colspan="5"><CKEditor:CKEditorControl ID="ckeDireccionHechos" BasePath="~/Include/Components/CKEditor/Core/" runat="server" Height="90px" MaxLength="8000"></CKEditor:CKEditorControl></td>
+                <td class="Campo" colspan="5"><CKEditor:CKEditorControl ID="ckeDireccionHechos" BasePath="~/Include/Components/CKEditor/Core/" runat="server" Height="90px"></CKEditor:CKEditorControl></td>
             </tr>
 			<tr>
                 <td class="Nombre">Observaciones</td>
                 <td class="Espacio"></td>
-                <td class="Campo" colspan="5"><CKEditor:CKEditorControl ID="ckeObservaciones" BasePath="~/Include/Components/CKEditor/Core/" runat="server" Height="90px" MaxLength="8000"></CKEditor:CKEditorControl></td>
+                <td class="Campo" colspan="5"><CKEditor:CKEditorControl ID="ckeObservaciones" BasePath="~/Include/Components/CKEditor/Core/" runat="server" Height="90px"></CKEditor:CKEditorControl></td>
             </tr>
         </table>
 

@@ -122,7 +122,7 @@
 						</tr>
 						<tr>
 							<td colspan="4" style="text-align:left; vertical-align:bottom;">
-								<CKEditor:CKEditorControl ID="ckeObservaciones" BasePath="~/Include/Components/CKEditor/Core/" runat="server" MaxLength="8000"></CKEditor:CKEditorControl>
+								<CKEditor:CKEditorControl ID="ckeObservaciones" BasePath="~/Include/Components/CKEditor/Core/" runat="server"></CKEditor:CKEditorControl>
 							</td>
 						</tr>
 					</table>

@@ -8,7 +8,7 @@
 '----------------------------------------------------------------------------------------------------------------------------------*/
 
 .LoadingDiv{
-	background: url(/Include/Image/Wait/Background.png) repeat;
+	background-color: rgba(255, 255, 255, 0.7);
 	left: 0px;
 	height: 100%;
 	position:fixed;

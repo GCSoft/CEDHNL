@@ -46,6 +46,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
         
         private tblResultados_XDataTable tabletblResultados_X;
         
+        private tblDatosGeneralesDataTable tabletblDatosGenerales;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -106,6 +108,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
                 }
                 if ((ds.Tables["tblResultados_X"] != null)) {
                     base.Tables.Add(new tblResultados_XDataTable(ds.Tables["tblResultados_X"]));
+                }
+                if ((ds.Tables["tblDatosGenerales"] != null)) {
+                    base.Tables.Add(new tblDatosGeneralesDataTable(ds.Tables["tblDatosGenerales"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -237,6 +242,16 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public tblDatosGeneralesDataTable tblDatosGenerales {
+            get {
+                return this.tabletblDatosGenerales;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -334,6 +349,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
                 }
                 if ((ds.Tables["tblResultados_X"] != null)) {
                     base.Tables.Add(new tblResultados_XDataTable(ds.Tables["tblResultados_X"]));
+                }
+                if ((ds.Tables["tblDatosGenerales"] != null)) {
+                    base.Tables.Add(new tblDatosGeneralesDataTable(ds.Tables["tblDatosGenerales"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -434,6 +452,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
                     this.tabletblResultados_X.InitVars();
                 }
             }
+            this.tabletblDatosGenerales = ((tblDatosGeneralesDataTable)(base.Tables["tblDatosGenerales"]));
+            if ((initTable == true)) {
+                if ((this.tabletblDatosGenerales != null)) {
+                    this.tabletblDatosGenerales.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -466,6 +490,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             base.Tables.Add(this.tabletblSupervisores_IX);
             this.tabletblResultados_X = new tblResultados_XDataTable();
             base.Tables.Add(this.tabletblResultados_X);
+            this.tabletblDatosGenerales = new tblDatosGeneralesDataTable();
+            base.Tables.Add(this.tabletblDatosGenerales);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -531,6 +557,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializetblResultados_X() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializetblDatosGenerales() {
             return false;
         }
         
@@ -621,6 +653,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void tblResultados_XRowChangeEventHandler(object sender, tblResultados_XRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void tblDatosGeneralesRowChangeEventHandler(object sender, tblDatosGeneralesRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -890,47 +925,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class tblExpPeriodo_IDataTable : global::System.Data.TypedTableBase<tblExpPeriodo_IRow> {
             
-            private global::System.Data.DataColumn columnQTramiteInicioFemenino;
+            private global::System.Data.DataColumn columnNombre;
             
-            private global::System.Data.DataColumn columnQTramiteInicioMasculino;
+            private global::System.Data.DataColumn columnTotalExpedientes;
             
-            private global::System.Data.DataColumn columnQTramiteInicioTransgenero;
+            private global::System.Data.DataColumn columnFemenino;
             
-            private global::System.Data.DataColumn columnQRecibidasDORQFemenino;
+            private global::System.Data.DataColumn columnMasculino;
             
-            private global::System.Data.DataColumn columnQRecibidasDORQMasculino;
-            
-            private global::System.Data.DataColumn columnQRecibidasDORQTransgenero;
-            
-            private global::System.Data.DataColumn columnQRecibidasOtraVGFemenino;
-            
-            private global::System.Data.DataColumn columnQRecibidasOtraVGMasculino;
-            
-            private global::System.Data.DataColumn columnQRecibidasOtraVGTransgenero;
-            
-            private global::System.Data.DataColumn columnQRemitidasOtraVGFemenino;
-            
-            private global::System.Data.DataColumn columnQRemitidasOtraVGMasculino;
-            
-            private global::System.Data.DataColumn columnQRemitidasOtraVGTransgenero;
-            
-            private global::System.Data.DataColumn columnQConcluidasF1Femenino;
-            
-            private global::System.Data.DataColumn columnQConcluidasF1Masculino;
-            
-            private global::System.Data.DataColumn columnQConcluidasF1Transgenero;
-            
-            private global::System.Data.DataColumn columnQConcluidasF3Femenino;
-            
-            private global::System.Data.DataColumn columnQConcluidasF3Masculino;
-            
-            private global::System.Data.DataColumn columnQConcluidasF3Transgenero;
-            
-            private global::System.Data.DataColumn columnQConcluidasF7Femenino;
-            
-            private global::System.Data.DataColumn columnQConcluidasF7Masculino;
-            
-            private global::System.Data.DataColumn columnQConcluidasF7Transgenero;
+            private global::System.Data.DataColumn columnTotalAfectados;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -967,169 +970,41 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn QTramiteInicioFemeninoColumn {
+            public global::System.Data.DataColumn NombreColumn {
                 get {
-                    return this.columnQTramiteInicioFemenino;
+                    return this.columnNombre;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn QTramiteInicioMasculinoColumn {
+            public global::System.Data.DataColumn TotalExpedientesColumn {
                 get {
-                    return this.columnQTramiteInicioMasculino;
+                    return this.columnTotalExpedientes;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn QTramiteInicioTransgeneroColumn {
+            public global::System.Data.DataColumn FemeninoColumn {
                 get {
-                    return this.columnQTramiteInicioTransgenero;
+                    return this.columnFemenino;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn QRecibidasDORQFemeninoColumn {
+            public global::System.Data.DataColumn MasculinoColumn {
                 get {
-                    return this.columnQRecibidasDORQFemenino;
+                    return this.columnMasculino;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn QRecibidasDORQMasculinoColumn {
+            public global::System.Data.DataColumn TotalAfectadosColumn {
                 get {
-                    return this.columnQRecibidasDORQMasculino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn QRecibidasDORQTransgeneroColumn {
-                get {
-                    return this.columnQRecibidasDORQTransgenero;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn QRecibidasOtraVGFemeninoColumn {
-                get {
-                    return this.columnQRecibidasOtraVGFemenino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn QRecibidasOtraVGMasculinoColumn {
-                get {
-                    return this.columnQRecibidasOtraVGMasculino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn QRecibidasOtraVGTransgeneroColumn {
-                get {
-                    return this.columnQRecibidasOtraVGTransgenero;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn QRemitidasOtraVGFemeninoColumn {
-                get {
-                    return this.columnQRemitidasOtraVGFemenino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn QRemitidasOtraVGMasculinoColumn {
-                get {
-                    return this.columnQRemitidasOtraVGMasculino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn QRemitidasOtraVGTransgeneroColumn {
-                get {
-                    return this.columnQRemitidasOtraVGTransgenero;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn QConcluidasF1FemeninoColumn {
-                get {
-                    return this.columnQConcluidasF1Femenino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn QConcluidasF1MasculinoColumn {
-                get {
-                    return this.columnQConcluidasF1Masculino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn QConcluidasF1TransgeneroColumn {
-                get {
-                    return this.columnQConcluidasF1Transgenero;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn QConcluidasF3FemeninoColumn {
-                get {
-                    return this.columnQConcluidasF3Femenino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn QConcluidasF3MasculinoColumn {
-                get {
-                    return this.columnQConcluidasF3Masculino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn QConcluidasF3TransgeneroColumn {
-                get {
-                    return this.columnQConcluidasF3Transgenero;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn QConcluidasF7FemeninoColumn {
-                get {
-                    return this.columnQConcluidasF7Femenino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn QConcluidasF7MasculinoColumn {
-                get {
-                    return this.columnQConcluidasF7Masculino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn QConcluidasF7TransgeneroColumn {
-                get {
-                    return this.columnQConcluidasF7Transgenero;
+                    return this.columnTotalAfectados;
                 }
             }
             
@@ -1170,51 +1045,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblExpPeriodo_IRow AddtblExpPeriodo_IRow(
-                        string QTramiteInicioFemenino, 
-                        string QTramiteInicioMasculino, 
-                        string QTramiteInicioTransgenero, 
-                        string QRecibidasDORQFemenino, 
-                        string QRecibidasDORQMasculino, 
-                        string QRecibidasDORQTransgenero, 
-                        string QRecibidasOtraVGFemenino, 
-                        string QRecibidasOtraVGMasculino, 
-                        string QRecibidasOtraVGTransgenero, 
-                        string QRemitidasOtraVGFemenino, 
-                        string QRemitidasOtraVGMasculino, 
-                        string QRemitidasOtraVGTransgenero, 
-                        string QConcluidasF1Femenino, 
-                        string QConcluidasF1Masculino, 
-                        string QConcluidasF1Transgenero, 
-                        string QConcluidasF3Femenino, 
-                        string QConcluidasF3Masculino, 
-                        string QConcluidasF3Transgenero, 
-                        string QConcluidasF7Femenino, 
-                        string QConcluidasF7Masculino, 
-                        string QConcluidasF7Transgenero) {
+            public tblExpPeriodo_IRow AddtblExpPeriodo_IRow(string Nombre, string TotalExpedientes, string Femenino, string Masculino, string TotalAfectados) {
                 tblExpPeriodo_IRow rowtblExpPeriodo_IRow = ((tblExpPeriodo_IRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        QTramiteInicioFemenino,
-                        QTramiteInicioMasculino,
-                        QTramiteInicioTransgenero,
-                        QRecibidasDORQFemenino,
-                        QRecibidasDORQMasculino,
-                        QRecibidasDORQTransgenero,
-                        QRecibidasOtraVGFemenino,
-                        QRecibidasOtraVGMasculino,
-                        QRecibidasOtraVGTransgenero,
-                        QRemitidasOtraVGFemenino,
-                        QRemitidasOtraVGMasculino,
-                        QRemitidasOtraVGTransgenero,
-                        QConcluidasF1Femenino,
-                        QConcluidasF1Masculino,
-                        QConcluidasF1Transgenero,
-                        QConcluidasF3Femenino,
-                        QConcluidasF3Masculino,
-                        QConcluidasF3Transgenero,
-                        QConcluidasF7Femenino,
-                        QConcluidasF7Masculino,
-                        QConcluidasF7Transgenero};
+                        Nombre,
+                        TotalExpedientes,
+                        Femenino,
+                        Masculino,
+                        TotalAfectados};
                 rowtblExpPeriodo_IRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtblExpPeriodo_IRow);
                 return rowtblExpPeriodo_IRow;
@@ -1237,77 +1075,26 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnQTramiteInicioFemenino = base.Columns["QTramiteInicioFemenino"];
-                this.columnQTramiteInicioMasculino = base.Columns["QTramiteInicioMasculino"];
-                this.columnQTramiteInicioTransgenero = base.Columns["QTramiteInicioTransgenero"];
-                this.columnQRecibidasDORQFemenino = base.Columns["QRecibidasDORQFemenino"];
-                this.columnQRecibidasDORQMasculino = base.Columns["QRecibidasDORQMasculino"];
-                this.columnQRecibidasDORQTransgenero = base.Columns["QRecibidasDORQTransgenero"];
-                this.columnQRecibidasOtraVGFemenino = base.Columns["QRecibidasOtraVGFemenino"];
-                this.columnQRecibidasOtraVGMasculino = base.Columns["QRecibidasOtraVGMasculino"];
-                this.columnQRecibidasOtraVGTransgenero = base.Columns["QRecibidasOtraVGTransgenero"];
-                this.columnQRemitidasOtraVGFemenino = base.Columns["QRemitidasOtraVGFemenino"];
-                this.columnQRemitidasOtraVGMasculino = base.Columns["QRemitidasOtraVGMasculino"];
-                this.columnQRemitidasOtraVGTransgenero = base.Columns["QRemitidasOtraVGTransgenero"];
-                this.columnQConcluidasF1Femenino = base.Columns["QConcluidasF1Femenino"];
-                this.columnQConcluidasF1Masculino = base.Columns["QConcluidasF1Masculino"];
-                this.columnQConcluidasF1Transgenero = base.Columns["QConcluidasF1Transgenero"];
-                this.columnQConcluidasF3Femenino = base.Columns["QConcluidasF3Femenino"];
-                this.columnQConcluidasF3Masculino = base.Columns["QConcluidasF3Masculino"];
-                this.columnQConcluidasF3Transgenero = base.Columns["QConcluidasF3Transgenero"];
-                this.columnQConcluidasF7Femenino = base.Columns["QConcluidasF7Femenino"];
-                this.columnQConcluidasF7Masculino = base.Columns["QConcluidasF7Masculino"];
-                this.columnQConcluidasF7Transgenero = base.Columns["QConcluidasF7Transgenero"];
+                this.columnNombre = base.Columns["Nombre"];
+                this.columnTotalExpedientes = base.Columns["TotalExpedientes"];
+                this.columnFemenino = base.Columns["Femenino"];
+                this.columnMasculino = base.Columns["Masculino"];
+                this.columnTotalAfectados = base.Columns["TotalAfectados"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnQTramiteInicioFemenino = new global::System.Data.DataColumn("QTramiteInicioFemenino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnQTramiteInicioFemenino);
-                this.columnQTramiteInicioMasculino = new global::System.Data.DataColumn("QTramiteInicioMasculino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnQTramiteInicioMasculino);
-                this.columnQTramiteInicioTransgenero = new global::System.Data.DataColumn("QTramiteInicioTransgenero", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnQTramiteInicioTransgenero);
-                this.columnQRecibidasDORQFemenino = new global::System.Data.DataColumn("QRecibidasDORQFemenino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnQRecibidasDORQFemenino);
-                this.columnQRecibidasDORQMasculino = new global::System.Data.DataColumn("QRecibidasDORQMasculino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnQRecibidasDORQMasculino);
-                this.columnQRecibidasDORQTransgenero = new global::System.Data.DataColumn("QRecibidasDORQTransgenero", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnQRecibidasDORQTransgenero);
-                this.columnQRecibidasOtraVGFemenino = new global::System.Data.DataColumn("QRecibidasOtraVGFemenino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnQRecibidasOtraVGFemenino);
-                this.columnQRecibidasOtraVGMasculino = new global::System.Data.DataColumn("QRecibidasOtraVGMasculino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnQRecibidasOtraVGMasculino);
-                this.columnQRecibidasOtraVGTransgenero = new global::System.Data.DataColumn("QRecibidasOtraVGTransgenero", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnQRecibidasOtraVGTransgenero);
-                this.columnQRemitidasOtraVGFemenino = new global::System.Data.DataColumn("QRemitidasOtraVGFemenino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnQRemitidasOtraVGFemenino);
-                this.columnQRemitidasOtraVGMasculino = new global::System.Data.DataColumn("QRemitidasOtraVGMasculino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnQRemitidasOtraVGMasculino);
-                this.columnQRemitidasOtraVGTransgenero = new global::System.Data.DataColumn("QRemitidasOtraVGTransgenero", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnQRemitidasOtraVGTransgenero);
-                this.columnQConcluidasF1Femenino = new global::System.Data.DataColumn("QConcluidasF1Femenino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnQConcluidasF1Femenino);
-                this.columnQConcluidasF1Masculino = new global::System.Data.DataColumn("QConcluidasF1Masculino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnQConcluidasF1Masculino);
-                this.columnQConcluidasF1Transgenero = new global::System.Data.DataColumn("QConcluidasF1Transgenero", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnQConcluidasF1Transgenero);
-                this.columnQConcluidasF3Femenino = new global::System.Data.DataColumn("QConcluidasF3Femenino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnQConcluidasF3Femenino);
-                this.columnQConcluidasF3Masculino = new global::System.Data.DataColumn("QConcluidasF3Masculino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnQConcluidasF3Masculino);
-                this.columnQConcluidasF3Transgenero = new global::System.Data.DataColumn("QConcluidasF3Transgenero", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnQConcluidasF3Transgenero);
-                this.columnQConcluidasF7Femenino = new global::System.Data.DataColumn("QConcluidasF7Femenino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnQConcluidasF7Femenino);
-                this.columnQConcluidasF7Masculino = new global::System.Data.DataColumn("QConcluidasF7Masculino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnQConcluidasF7Masculino);
-                this.columnQConcluidasF7Transgenero = new global::System.Data.DataColumn("QConcluidasF7Transgenero", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnQConcluidasF7Transgenero);
-                this.columnQConcluidasF7Femenino.Caption = "QConcluidasF3Femenino";
-                this.columnQConcluidasF7Masculino.Caption = "QConcluidasF3Masculino";
-                this.columnQConcluidasF7Transgenero.Caption = "QConcluidasF3Transgenero";
+                this.columnNombre = new global::System.Data.DataColumn("Nombre", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombre);
+                this.columnTotalExpedientes = new global::System.Data.DataColumn("TotalExpedientes", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalExpedientes);
+                this.columnFemenino = new global::System.Data.DataColumn("Femenino", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFemenino);
+                this.columnMasculino = new global::System.Data.DataColumn("Masculino", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMasculino);
+                this.columnTotalAfectados = new global::System.Data.DataColumn("TotalAfectados", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalAfectados);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1441,35 +1228,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class tblExpMedidaCautelar_IIDataTable : global::System.Data.TypedTableBase<tblExpMedidaCautelar_IIRow> {
             
-            private global::System.Data.DataColumn columnMCInicioFemenino;
+            private global::System.Data.DataColumn columnNombre;
             
-            private global::System.Data.DataColumn columnMCInicioMasculino;
+            private global::System.Data.DataColumn columnTotalExpedientes;
             
-            private global::System.Data.DataColumn columnMCInicioTransgenero;
+            private global::System.Data.DataColumn columnFemenino;
             
-            private global::System.Data.DataColumn columnMCRecibidasDORQFemenino;
+            private global::System.Data.DataColumn columnMasculino;
             
-            private global::System.Data.DataColumn columnMCRecibidasDORQMasculino;
-            
-            private global::System.Data.DataColumn columnMCRecibidasDORQTransgenero;
-            
-            private global::System.Data.DataColumn columnMCRecibidasOtraVGFemenino;
-            
-            private global::System.Data.DataColumn columnMCRecibidasOtraVGMasculino;
-            
-            private global::System.Data.DataColumn columnMCRecibidasOtraVGTransgenero;
-            
-            private global::System.Data.DataColumn columnMCRemitidasOtraVGFemenino;
-            
-            private global::System.Data.DataColumn columnMCRemitidasOtraVGMasculino;
-            
-            private global::System.Data.DataColumn columnMCRemitidasOtraVGTrangenero;
-            
-            private global::System.Data.DataColumn columnMCConcluidasFemenino;
-            
-            private global::System.Data.DataColumn columnMCConcluidasMasculino;
-            
-            private global::System.Data.DataColumn columnMCConcluidasTransgenero;
+            private global::System.Data.DataColumn columnTotalAfectados;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -1506,121 +1273,41 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MCInicioFemeninoColumn {
+            public global::System.Data.DataColumn NombreColumn {
                 get {
-                    return this.columnMCInicioFemenino;
+                    return this.columnNombre;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MCInicioMasculinoColumn {
+            public global::System.Data.DataColumn TotalExpedientesColumn {
                 get {
-                    return this.columnMCInicioMasculino;
+                    return this.columnTotalExpedientes;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MCInicioTransgeneroColumn {
+            public global::System.Data.DataColumn FemeninoColumn {
                 get {
-                    return this.columnMCInicioTransgenero;
+                    return this.columnFemenino;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MCRecibidasDORQFemeninoColumn {
+            public global::System.Data.DataColumn MasculinoColumn {
                 get {
-                    return this.columnMCRecibidasDORQFemenino;
+                    return this.columnMasculino;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MCRecibidasDORQMasculinoColumn {
+            public global::System.Data.DataColumn TotalAfectadosColumn {
                 get {
-                    return this.columnMCRecibidasDORQMasculino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MCRecibidasDORQTransgeneroColumn {
-                get {
-                    return this.columnMCRecibidasDORQTransgenero;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MCRecibidasOtraVGFemeninoColumn {
-                get {
-                    return this.columnMCRecibidasOtraVGFemenino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MCRecibidasOtraVGMasculinoColumn {
-                get {
-                    return this.columnMCRecibidasOtraVGMasculino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MCRecibidasOtraVGTransgeneroColumn {
-                get {
-                    return this.columnMCRecibidasOtraVGTransgenero;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MCRemitidasOtraVGFemeninoColumn {
-                get {
-                    return this.columnMCRemitidasOtraVGFemenino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MCRemitidasOtraVGMasculinoColumn {
-                get {
-                    return this.columnMCRemitidasOtraVGMasculino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MCRemitidasOtraVGTrangeneroColumn {
-                get {
-                    return this.columnMCRemitidasOtraVGTrangenero;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MCConcluidasFemeninoColumn {
-                get {
-                    return this.columnMCConcluidasFemenino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MCConcluidasMasculinoColumn {
-                get {
-                    return this.columnMCConcluidasMasculino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MCConcluidasTransgeneroColumn {
-                get {
-                    return this.columnMCConcluidasTransgenero;
+                    return this.columnTotalAfectados;
                 }
             }
             
@@ -1661,24 +1348,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblExpMedidaCautelar_IIRow AddtblExpMedidaCautelar_IIRow(string MCInicioFemenino, string MCInicioMasculino, string MCInicioTransgenero, string MCRecibidasDORQFemenino, string MCRecibidasDORQMasculino, string MCRecibidasDORQTransgenero, string MCRecibidasOtraVGFemenino, string MCRecibidasOtraVGMasculino, string MCRecibidasOtraVGTransgenero, string MCRemitidasOtraVGFemenino, string MCRemitidasOtraVGMasculino, string MCRemitidasOtraVGTrangenero, string MCConcluidasFemenino, string MCConcluidasMasculino, string MCConcluidasTransgenero) {
+            public tblExpMedidaCautelar_IIRow AddtblExpMedidaCautelar_IIRow(string Nombre, string TotalExpedientes, string Femenino, string Masculino, string TotalAfectados) {
                 tblExpMedidaCautelar_IIRow rowtblExpMedidaCautelar_IIRow = ((tblExpMedidaCautelar_IIRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        MCInicioFemenino,
-                        MCInicioMasculino,
-                        MCInicioTransgenero,
-                        MCRecibidasDORQFemenino,
-                        MCRecibidasDORQMasculino,
-                        MCRecibidasDORQTransgenero,
-                        MCRecibidasOtraVGFemenino,
-                        MCRecibidasOtraVGMasculino,
-                        MCRecibidasOtraVGTransgenero,
-                        MCRemitidasOtraVGFemenino,
-                        MCRemitidasOtraVGMasculino,
-                        MCRemitidasOtraVGTrangenero,
-                        MCConcluidasFemenino,
-                        MCConcluidasMasculino,
-                        MCConcluidasTransgenero};
+                        Nombre,
+                        TotalExpedientes,
+                        Femenino,
+                        Masculino,
+                        TotalAfectados};
                 rowtblExpMedidaCautelar_IIRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtblExpMedidaCautelar_IIRow);
                 return rowtblExpMedidaCautelar_IIRow;
@@ -1701,56 +1378,26 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnMCInicioFemenino = base.Columns["MCInicioFemenino"];
-                this.columnMCInicioMasculino = base.Columns["MCInicioMasculino"];
-                this.columnMCInicioTransgenero = base.Columns["MCInicioTransgenero"];
-                this.columnMCRecibidasDORQFemenino = base.Columns["MCRecibidasDORQFemenino"];
-                this.columnMCRecibidasDORQMasculino = base.Columns["MCRecibidasDORQMasculino"];
-                this.columnMCRecibidasDORQTransgenero = base.Columns["MCRecibidasDORQTransgenero"];
-                this.columnMCRecibidasOtraVGFemenino = base.Columns["MCRecibidasOtraVGFemenino"];
-                this.columnMCRecibidasOtraVGMasculino = base.Columns["MCRecibidasOtraVGMasculino"];
-                this.columnMCRecibidasOtraVGTransgenero = base.Columns["MCRecibidasOtraVGTransgenero"];
-                this.columnMCRemitidasOtraVGFemenino = base.Columns["MCRemitidasOtraVGFemenino"];
-                this.columnMCRemitidasOtraVGMasculino = base.Columns["MCRemitidasOtraVGMasculino"];
-                this.columnMCRemitidasOtraVGTrangenero = base.Columns["MCRemitidasOtraVGTrangenero"];
-                this.columnMCConcluidasFemenino = base.Columns["MCConcluidasFemenino"];
-                this.columnMCConcluidasMasculino = base.Columns["MCConcluidasMasculino"];
-                this.columnMCConcluidasTransgenero = base.Columns["MCConcluidasTransgenero"];
+                this.columnNombre = base.Columns["Nombre"];
+                this.columnTotalExpedientes = base.Columns["TotalExpedientes"];
+                this.columnFemenino = base.Columns["Femenino"];
+                this.columnMasculino = base.Columns["Masculino"];
+                this.columnTotalAfectados = base.Columns["TotalAfectados"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnMCInicioFemenino = new global::System.Data.DataColumn("MCInicioFemenino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMCInicioFemenino);
-                this.columnMCInicioMasculino = new global::System.Data.DataColumn("MCInicioMasculino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMCInicioMasculino);
-                this.columnMCInicioTransgenero = new global::System.Data.DataColumn("MCInicioTransgenero", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMCInicioTransgenero);
-                this.columnMCRecibidasDORQFemenino = new global::System.Data.DataColumn("MCRecibidasDORQFemenino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMCRecibidasDORQFemenino);
-                this.columnMCRecibidasDORQMasculino = new global::System.Data.DataColumn("MCRecibidasDORQMasculino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMCRecibidasDORQMasculino);
-                this.columnMCRecibidasDORQTransgenero = new global::System.Data.DataColumn("MCRecibidasDORQTransgenero", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMCRecibidasDORQTransgenero);
-                this.columnMCRecibidasOtraVGFemenino = new global::System.Data.DataColumn("MCRecibidasOtraVGFemenino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMCRecibidasOtraVGFemenino);
-                this.columnMCRecibidasOtraVGMasculino = new global::System.Data.DataColumn("MCRecibidasOtraVGMasculino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMCRecibidasOtraVGMasculino);
-                this.columnMCRecibidasOtraVGTransgenero = new global::System.Data.DataColumn("MCRecibidasOtraVGTransgenero", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMCRecibidasOtraVGTransgenero);
-                this.columnMCRemitidasOtraVGFemenino = new global::System.Data.DataColumn("MCRemitidasOtraVGFemenino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMCRemitidasOtraVGFemenino);
-                this.columnMCRemitidasOtraVGMasculino = new global::System.Data.DataColumn("MCRemitidasOtraVGMasculino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMCRemitidasOtraVGMasculino);
-                this.columnMCRemitidasOtraVGTrangenero = new global::System.Data.DataColumn("MCRemitidasOtraVGTrangenero", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMCRemitidasOtraVGTrangenero);
-                this.columnMCConcluidasFemenino = new global::System.Data.DataColumn("MCConcluidasFemenino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMCConcluidasFemenino);
-                this.columnMCConcluidasMasculino = new global::System.Data.DataColumn("MCConcluidasMasculino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMCConcluidasMasculino);
-                this.columnMCConcluidasTransgenero = new global::System.Data.DataColumn("MCConcluidasTransgenero", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMCConcluidasTransgenero);
+                this.columnNombre = new global::System.Data.DataColumn("Nombre", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombre);
+                this.columnTotalExpedientes = new global::System.Data.DataColumn("TotalExpedientes", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalExpedientes);
+                this.columnFemenino = new global::System.Data.DataColumn("Femenino", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFemenino);
+                this.columnMasculino = new global::System.Data.DataColumn("Masculino", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMasculino);
+                this.columnTotalAfectados = new global::System.Data.DataColumn("TotalAfectados", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalAfectados);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1884,35 +1531,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class tblExpSolicitudGestion_IIIDataTable : global::System.Data.TypedTableBase<tblExpSolicitudGestion_IIIRow> {
             
-            private global::System.Data.DataColumn columnSGInicioFemenino;
+            private global::System.Data.DataColumn columnNombre;
             
-            private global::System.Data.DataColumn columnSGInicioMasculino;
+            private global::System.Data.DataColumn columnTotalExpedientes;
             
-            private global::System.Data.DataColumn columnSGInicioTransgenero;
+            private global::System.Data.DataColumn columnFemenino;
             
-            private global::System.Data.DataColumn columnSGRecibidasDORQFemenino;
+            private global::System.Data.DataColumn columnMasculino;
             
-            private global::System.Data.DataColumn columnSGRecibidasDORQMasculino;
-            
-            private global::System.Data.DataColumn columnSGRecibidasDORQTransgenero;
-            
-            private global::System.Data.DataColumn columnSGRecibidasOtraVGFemenino;
-            
-            private global::System.Data.DataColumn columnSGRecibidasOtraVGMasculino;
-            
-            private global::System.Data.DataColumn columnSGRecibidasOtraVGTransgenero;
-            
-            private global::System.Data.DataColumn columnSGRemitidasOtraVGFemenino;
-            
-            private global::System.Data.DataColumn columnSGRemitidasOtraVGMasculino;
-            
-            private global::System.Data.DataColumn columnSGRemitidasOtraVGTrangenero;
-            
-            private global::System.Data.DataColumn columnSGConcluidasFemenino;
-            
-            private global::System.Data.DataColumn columnSGConcluidasMasculino;
-            
-            private global::System.Data.DataColumn columnSGConcluidasTransgenero;
+            private global::System.Data.DataColumn columnTotalAfectados;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -1949,121 +1576,41 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SGInicioFemeninoColumn {
+            public global::System.Data.DataColumn NombreColumn {
                 get {
-                    return this.columnSGInicioFemenino;
+                    return this.columnNombre;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SGInicioMasculinoColumn {
+            public global::System.Data.DataColumn TotalExpedientesColumn {
                 get {
-                    return this.columnSGInicioMasculino;
+                    return this.columnTotalExpedientes;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SGInicioTransgeneroColumn {
+            public global::System.Data.DataColumn FemeninoColumn {
                 get {
-                    return this.columnSGInicioTransgenero;
+                    return this.columnFemenino;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SGRecibidasDORQFemeninoColumn {
+            public global::System.Data.DataColumn MasculinoColumn {
                 get {
-                    return this.columnSGRecibidasDORQFemenino;
+                    return this.columnMasculino;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SGRecibidasDORQMasculinoColumn {
+            public global::System.Data.DataColumn TotalAfectadosColumn {
                 get {
-                    return this.columnSGRecibidasDORQMasculino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SGRecibidasDORQTransgeneroColumn {
-                get {
-                    return this.columnSGRecibidasDORQTransgenero;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SGRecibidasOtraVGFemeninoColumn {
-                get {
-                    return this.columnSGRecibidasOtraVGFemenino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SGRecibidasOtraVGMasculinoColumn {
-                get {
-                    return this.columnSGRecibidasOtraVGMasculino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SGRecibidasOtraVGTransgeneroColumn {
-                get {
-                    return this.columnSGRecibidasOtraVGTransgenero;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SGRemitidasOtraVGFemeninoColumn {
-                get {
-                    return this.columnSGRemitidasOtraVGFemenino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SGRemitidasOtraVGMasculinoColumn {
-                get {
-                    return this.columnSGRemitidasOtraVGMasculino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SGRemitidasOtraVGTrangeneroColumn {
-                get {
-                    return this.columnSGRemitidasOtraVGTrangenero;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SGConcluidasFemeninoColumn {
-                get {
-                    return this.columnSGConcluidasFemenino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SGConcluidasMasculinoColumn {
-                get {
-                    return this.columnSGConcluidasMasculino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SGConcluidasTransgeneroColumn {
-                get {
-                    return this.columnSGConcluidasTransgenero;
+                    return this.columnTotalAfectados;
                 }
             }
             
@@ -2104,24 +1651,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblExpSolicitudGestion_IIIRow AddtblExpSolicitudGestion_IIIRow(string SGInicioFemenino, string SGInicioMasculino, string SGInicioTransgenero, string SGRecibidasDORQFemenino, string SGRecibidasDORQMasculino, string SGRecibidasDORQTransgenero, string SGRecibidasOtraVGFemenino, string SGRecibidasOtraVGMasculino, string SGRecibidasOtraVGTransgenero, string SGRemitidasOtraVGFemenino, string SGRemitidasOtraVGMasculino, string SGRemitidasOtraVGTrangenero, string SGConcluidasFemenino, string SGConcluidasMasculino, string SGConcluidasTransgenero) {
+            public tblExpSolicitudGestion_IIIRow AddtblExpSolicitudGestion_IIIRow(string Nombre, string TotalExpedientes, string Femenino, string Masculino, string TotalAfectados) {
                 tblExpSolicitudGestion_IIIRow rowtblExpSolicitudGestion_IIIRow = ((tblExpSolicitudGestion_IIIRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        SGInicioFemenino,
-                        SGInicioMasculino,
-                        SGInicioTransgenero,
-                        SGRecibidasDORQFemenino,
-                        SGRecibidasDORQMasculino,
-                        SGRecibidasDORQTransgenero,
-                        SGRecibidasOtraVGFemenino,
-                        SGRecibidasOtraVGMasculino,
-                        SGRecibidasOtraVGTransgenero,
-                        SGRemitidasOtraVGFemenino,
-                        SGRemitidasOtraVGMasculino,
-                        SGRemitidasOtraVGTrangenero,
-                        SGConcluidasFemenino,
-                        SGConcluidasMasculino,
-                        SGConcluidasTransgenero};
+                        Nombre,
+                        TotalExpedientes,
+                        Femenino,
+                        Masculino,
+                        TotalAfectados};
                 rowtblExpSolicitudGestion_IIIRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtblExpSolicitudGestion_IIIRow);
                 return rowtblExpSolicitudGestion_IIIRow;
@@ -2144,65 +1681,26 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnSGInicioFemenino = base.Columns["SGInicioFemenino"];
-                this.columnSGInicioMasculino = base.Columns["SGInicioMasculino"];
-                this.columnSGInicioTransgenero = base.Columns["SGInicioTransgenero"];
-                this.columnSGRecibidasDORQFemenino = base.Columns["SGRecibidasDORQFemenino"];
-                this.columnSGRecibidasDORQMasculino = base.Columns["SGRecibidasDORQMasculino"];
-                this.columnSGRecibidasDORQTransgenero = base.Columns["SGRecibidasDORQTransgenero"];
-                this.columnSGRecibidasOtraVGFemenino = base.Columns["SGRecibidasOtraVGFemenino"];
-                this.columnSGRecibidasOtraVGMasculino = base.Columns["SGRecibidasOtraVGMasculino"];
-                this.columnSGRecibidasOtraVGTransgenero = base.Columns["SGRecibidasOtraVGTransgenero"];
-                this.columnSGRemitidasOtraVGFemenino = base.Columns["SGRemitidasOtraVGFemenino"];
-                this.columnSGRemitidasOtraVGMasculino = base.Columns["SGRemitidasOtraVGMasculino"];
-                this.columnSGRemitidasOtraVGTrangenero = base.Columns["SGRemitidasOtraVGTrangenero"];
-                this.columnSGConcluidasFemenino = base.Columns["SGConcluidasFemenino"];
-                this.columnSGConcluidasMasculino = base.Columns["SGConcluidasMasculino"];
-                this.columnSGConcluidasTransgenero = base.Columns["SGConcluidasTransgenero"];
+                this.columnNombre = base.Columns["Nombre"];
+                this.columnTotalExpedientes = base.Columns["TotalExpedientes"];
+                this.columnFemenino = base.Columns["Femenino"];
+                this.columnMasculino = base.Columns["Masculino"];
+                this.columnTotalAfectados = base.Columns["TotalAfectados"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnSGInicioFemenino = new global::System.Data.DataColumn("SGInicioFemenino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSGInicioFemenino);
-                this.columnSGInicioMasculino = new global::System.Data.DataColumn("SGInicioMasculino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSGInicioMasculino);
-                this.columnSGInicioTransgenero = new global::System.Data.DataColumn("SGInicioTransgenero", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSGInicioTransgenero);
-                this.columnSGRecibidasDORQFemenino = new global::System.Data.DataColumn("SGRecibidasDORQFemenino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSGRecibidasDORQFemenino);
-                this.columnSGRecibidasDORQMasculino = new global::System.Data.DataColumn("SGRecibidasDORQMasculino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSGRecibidasDORQMasculino);
-                this.columnSGRecibidasDORQTransgenero = new global::System.Data.DataColumn("SGRecibidasDORQTransgenero", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSGRecibidasDORQTransgenero);
-                this.columnSGRecibidasOtraVGFemenino = new global::System.Data.DataColumn("SGRecibidasOtraVGFemenino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSGRecibidasOtraVGFemenino);
-                this.columnSGRecibidasOtraVGMasculino = new global::System.Data.DataColumn("SGRecibidasOtraVGMasculino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSGRecibidasOtraVGMasculino);
-                this.columnSGRecibidasOtraVGTransgenero = new global::System.Data.DataColumn("SGRecibidasOtraVGTransgenero", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSGRecibidasOtraVGTransgenero);
-                this.columnSGRemitidasOtraVGFemenino = new global::System.Data.DataColumn("SGRemitidasOtraVGFemenino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSGRemitidasOtraVGFemenino);
-                this.columnSGRemitidasOtraVGMasculino = new global::System.Data.DataColumn("SGRemitidasOtraVGMasculino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSGRemitidasOtraVGMasculino);
-                this.columnSGRemitidasOtraVGTrangenero = new global::System.Data.DataColumn("SGRemitidasOtraVGTrangenero", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSGRemitidasOtraVGTrangenero);
-                this.columnSGConcluidasFemenino = new global::System.Data.DataColumn("SGConcluidasFemenino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSGConcluidasFemenino);
-                this.columnSGConcluidasMasculino = new global::System.Data.DataColumn("SGConcluidasMasculino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSGConcluidasMasculino);
-                this.columnSGConcluidasTransgenero = new global::System.Data.DataColumn("SGConcluidasTransgenero", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSGConcluidasTransgenero);
-                this.columnSGRecibidasOtraVGFemenino.Caption = "MCRecibidasOtraVGFemenino";
-                this.columnSGRecibidasOtraVGMasculino.Caption = "MCRecibidasOtraVGMasculino";
-                this.columnSGRecibidasOtraVGTransgenero.Caption = "MCRecibidasOtraVGTransgenero";
-                this.columnSGRemitidasOtraVGFemenino.Caption = "MCRemitidasOtraVGFemenino";
-                this.columnSGRemitidasOtraVGMasculino.Caption = "MCRemitidasOtraVGMasculino";
-                this.columnSGRemitidasOtraVGTrangenero.Caption = "MCRemitidasOtraVGTrangenero";
-                this.columnSGConcluidasFemenino.Caption = "MCConcluidasFemenino";
-                this.columnSGConcluidasMasculino.Caption = "MCConcluidasMasculino";
-                this.columnSGConcluidasTransgenero.Caption = "MCConcluidasTransgenero";
+                this.columnNombre = new global::System.Data.DataColumn("Nombre", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombre);
+                this.columnTotalExpedientes = new global::System.Data.DataColumn("TotalExpedientes", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalExpedientes);
+                this.columnFemenino = new global::System.Data.DataColumn("Femenino", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFemenino);
+                this.columnMasculino = new global::System.Data.DataColumn("Masculino", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMasculino);
+                this.columnTotalAfectados = new global::System.Data.DataColumn("TotalAfectados", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalAfectados);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2336,15 +1834,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class tblExpVisitaduriaGeneral_IVDataTable : global::System.Data.TypedTableBase<tblExpVisitaduriaGeneral_IVRow> {
             
-            private global::System.Data.DataColumn columnNoExpediente;
+            private global::System.Data.DataColumn columnExpedienteNumero;
             
             private global::System.Data.DataColumn columnAcumulados;
             
-            private global::System.Data.DataColumn columnTipoQ_MC_SG;
+            private global::System.Data.DataColumn columnTipo;
             
             private global::System.Data.DataColumn columnFechaRecibido;
             
-            private global::System.Data.DataColumn columnProcedencia_DORQ_VG;
+            private global::System.Data.DataColumn columnProcedencia;
             
             private global::System.Data.DataColumn columnEstatus;
             
@@ -2387,9 +1885,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn NoExpedienteColumn {
+            public global::System.Data.DataColumn ExpedienteNumeroColumn {
                 get {
-                    return this.columnNoExpediente;
+                    return this.columnExpedienteNumero;
                 }
             }
             
@@ -2403,9 +1901,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TipoQ_MC_SGColumn {
+            public global::System.Data.DataColumn TipoColumn {
                 get {
-                    return this.columnTipoQ_MC_SG;
+                    return this.columnTipo;
                 }
             }
             
@@ -2419,9 +1917,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Procedencia_DORQ_VGColumn {
+            public global::System.Data.DataColumn ProcedenciaColumn {
                 get {
-                    return this.columnProcedencia_DORQ_VG;
+                    return this.columnProcedencia;
                 }
             }
             
@@ -2486,14 +1984,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblExpVisitaduriaGeneral_IVRow AddtblExpVisitaduriaGeneral_IVRow(string NoExpediente, string Acumulados, string TipoQ_MC_SG, string FechaRecibido, string Procedencia_DORQ_VG, string Estatus, string fechaConclusion, string CausalConclusion) {
+            public tblExpVisitaduriaGeneral_IVRow AddtblExpVisitaduriaGeneral_IVRow(string ExpedienteNumero, string Acumulados, string Tipo, string FechaRecibido, string Procedencia, string Estatus, string fechaConclusion, string CausalConclusion) {
                 tblExpVisitaduriaGeneral_IVRow rowtblExpVisitaduriaGeneral_IVRow = ((tblExpVisitaduriaGeneral_IVRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        NoExpediente,
+                        ExpedienteNumero,
                         Acumulados,
-                        TipoQ_MC_SG,
+                        Tipo,
                         FechaRecibido,
-                        Procedencia_DORQ_VG,
+                        Procedencia,
                         Estatus,
                         fechaConclusion,
                         CausalConclusion};
@@ -2519,11 +2017,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnNoExpediente = base.Columns["NoExpediente"];
+                this.columnExpedienteNumero = base.Columns["ExpedienteNumero"];
                 this.columnAcumulados = base.Columns["Acumulados"];
-                this.columnTipoQ_MC_SG = base.Columns["TipoQ_MC_SG"];
+                this.columnTipo = base.Columns["Tipo"];
                 this.columnFechaRecibido = base.Columns["FechaRecibido"];
-                this.columnProcedencia_DORQ_VG = base.Columns["Procedencia_DORQ_VG"];
+                this.columnProcedencia = base.Columns["Procedencia"];
                 this.columnEstatus = base.Columns["Estatus"];
                 this.columnfechaConclusion = base.Columns["fechaConclusion"];
                 this.columnCausalConclusion = base.Columns["CausalConclusion"];
@@ -2532,16 +2030,16 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnNoExpediente = new global::System.Data.DataColumn("NoExpediente", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNoExpediente);
+                this.columnExpedienteNumero = new global::System.Data.DataColumn("ExpedienteNumero", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnExpedienteNumero);
                 this.columnAcumulados = new global::System.Data.DataColumn("Acumulados", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAcumulados);
-                this.columnTipoQ_MC_SG = new global::System.Data.DataColumn("TipoQ_MC_SG", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTipoQ_MC_SG);
+                this.columnTipo = new global::System.Data.DataColumn("Tipo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTipo);
                 this.columnFechaRecibido = new global::System.Data.DataColumn("FechaRecibido", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFechaRecibido);
-                this.columnProcedencia_DORQ_VG = new global::System.Data.DataColumn("Procedencia_DORQ_VG", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnProcedencia_DORQ_VG);
+                this.columnProcedencia = new global::System.Data.DataColumn("Procedencia", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProcedencia);
                 this.columnEstatus = new global::System.Data.DataColumn("Estatus", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEstatus);
                 this.columnfechaConclusion = new global::System.Data.DataColumn("fechaConclusion", typeof(string), null, global::System.Data.MappingType.Element);
@@ -2681,25 +2179,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class tblExpConcluidos_VDataTable : global::System.Data.TypedTableBase<tblExpConcluidos_VRow> {
             
-            private global::System.Data.DataColumn columnI_NoCompete;
+            private global::System.Data.DataColumn columnFraccion;
             
-            private global::System.Data.DataColumn columnII_NoViolacionDH;
+            private global::System.Data.DataColumn columnNombre;
             
-            private global::System.Data.DataColumn columnIII_Excluido;
-            
-            private global::System.Data.DataColumn columnIV_NoResponsabilidad;
-            
-            private global::System.Data.DataColumn columnV_Desistimiento;
-            
-            private global::System.Data.DataColumn columnVI_FaltaInteres;
-            
-            private global::System.Data.DataColumn columnVII_AcuerdoAnterior;
-            
-            private global::System.Data.DataColumn columnVIII_Comciliacion;
-            
-            private global::System.Data.DataColumn columnIX_SinMateria;
-            
-            private global::System.Data.DataColumn columnX_FundamentoLegal;
+            private global::System.Data.DataColumn columnTotal;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -2736,81 +2220,25 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn I_NoCompeteColumn {
+            public global::System.Data.DataColumn FraccionColumn {
                 get {
-                    return this.columnI_NoCompete;
+                    return this.columnFraccion;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn II_NoViolacionDHColumn {
+            public global::System.Data.DataColumn NombreColumn {
                 get {
-                    return this.columnII_NoViolacionDH;
+                    return this.columnNombre;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn III_ExcluidoColumn {
+            public global::System.Data.DataColumn TotalColumn {
                 get {
-                    return this.columnIII_Excluido;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn IV_NoResponsabilidadColumn {
-                get {
-                    return this.columnIV_NoResponsabilidad;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn V_DesistimientoColumn {
-                get {
-                    return this.columnV_Desistimiento;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn VI_FaltaInteresColumn {
-                get {
-                    return this.columnVI_FaltaInteres;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn VII_AcuerdoAnteriorColumn {
-                get {
-                    return this.columnVII_AcuerdoAnterior;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn VIII_ComciliacionColumn {
-                get {
-                    return this.columnVIII_Comciliacion;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn IX_SinMateriaColumn {
-                get {
-                    return this.columnIX_SinMateria;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn X_FundamentoLegalColumn {
-                get {
-                    return this.columnX_FundamentoLegal;
+                    return this.columnTotal;
                 }
             }
             
@@ -2851,19 +2279,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblExpConcluidos_VRow AddtblExpConcluidos_VRow(string I_NoCompete, string II_NoViolacionDH, string III_Excluido, string IV_NoResponsabilidad, string V_Desistimiento, string VI_FaltaInteres, string VII_AcuerdoAnterior, string VIII_Comciliacion, string IX_SinMateria, string X_FundamentoLegal) {
+            public tblExpConcluidos_VRow AddtblExpConcluidos_VRow(string Fraccion, string Nombre, string Total) {
                 tblExpConcluidos_VRow rowtblExpConcluidos_VRow = ((tblExpConcluidos_VRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        I_NoCompete,
-                        II_NoViolacionDH,
-                        III_Excluido,
-                        IV_NoResponsabilidad,
-                        V_Desistimiento,
-                        VI_FaltaInteres,
-                        VII_AcuerdoAnterior,
-                        VIII_Comciliacion,
-                        IX_SinMateria,
-                        X_FundamentoLegal};
+                        Fraccion,
+                        Nombre,
+                        Total};
                 rowtblExpConcluidos_VRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtblExpConcluidos_VRow);
                 return rowtblExpConcluidos_VRow;
@@ -2886,41 +2307,20 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnI_NoCompete = base.Columns["I_NoCompete"];
-                this.columnII_NoViolacionDH = base.Columns["II_NoViolacionDH"];
-                this.columnIII_Excluido = base.Columns["III_Excluido"];
-                this.columnIV_NoResponsabilidad = base.Columns["IV_NoResponsabilidad"];
-                this.columnV_Desistimiento = base.Columns["V_Desistimiento"];
-                this.columnVI_FaltaInteres = base.Columns["VI_FaltaInteres"];
-                this.columnVII_AcuerdoAnterior = base.Columns["VII_AcuerdoAnterior"];
-                this.columnVIII_Comciliacion = base.Columns["VIII_Comciliacion"];
-                this.columnIX_SinMateria = base.Columns["IX_SinMateria"];
-                this.columnX_FundamentoLegal = base.Columns["X_FundamentoLegal"];
+                this.columnFraccion = base.Columns["Fraccion"];
+                this.columnNombre = base.Columns["Nombre"];
+                this.columnTotal = base.Columns["Total"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnI_NoCompete = new global::System.Data.DataColumn("I_NoCompete", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnI_NoCompete);
-                this.columnII_NoViolacionDH = new global::System.Data.DataColumn("II_NoViolacionDH", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnII_NoViolacionDH);
-                this.columnIII_Excluido = new global::System.Data.DataColumn("III_Excluido", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIII_Excluido);
-                this.columnIV_NoResponsabilidad = new global::System.Data.DataColumn("IV_NoResponsabilidad", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIV_NoResponsabilidad);
-                this.columnV_Desistimiento = new global::System.Data.DataColumn("V_Desistimiento", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnV_Desistimiento);
-                this.columnVI_FaltaInteres = new global::System.Data.DataColumn("VI_FaltaInteres", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnVI_FaltaInteres);
-                this.columnVII_AcuerdoAnterior = new global::System.Data.DataColumn("VII_AcuerdoAnterior", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnVII_AcuerdoAnterior);
-                this.columnVIII_Comciliacion = new global::System.Data.DataColumn("VIII_Comciliacion", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnVIII_Comciliacion);
-                this.columnIX_SinMateria = new global::System.Data.DataColumn("IX_SinMateria", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIX_SinMateria);
-                this.columnX_FundamentoLegal = new global::System.Data.DataColumn("X_FundamentoLegal", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnX_FundamentoLegal);
+                this.columnFraccion = new global::System.Data.DataColumn("Fraccion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFraccion);
+                this.columnNombre = new global::System.Data.DataColumn("Nombre", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombre);
+                this.columnTotal = new global::System.Data.DataColumn("Total", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotal);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3054,23 +2454,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class tblExpNivelAutoridadVIDataTable : global::System.Data.TypedTableBase<tblExpNivelAutoridadVIRow> {
             
-            private global::System.Data.DataColumn columnFederalFemenino;
+            private global::System.Data.DataColumn columnNombre;
             
-            private global::System.Data.DataColumn columnFederalMasculino;
+            private global::System.Data.DataColumn columnTotalExpedientes;
             
-            private global::System.Data.DataColumn columnFederalTransgenero;
+            private global::System.Data.DataColumn columnFemenino;
             
-            private global::System.Data.DataColumn columnEstatalFemenino;
+            private global::System.Data.DataColumn columnMasculino;
             
-            private global::System.Data.DataColumn columnEstatalMasculino;
-            
-            private global::System.Data.DataColumn columnEstatalTransgenero;
-            
-            private global::System.Data.DataColumn columnMunicipalFemenino;
-            
-            private global::System.Data.DataColumn columnMunicipalMasculino;
-            
-            private global::System.Data.DataColumn columnMunicipalTransgenero;
+            private global::System.Data.DataColumn columnTotalAfectados;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -3107,73 +2499,41 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn FederalFemeninoColumn {
+            public global::System.Data.DataColumn NombreColumn {
                 get {
-                    return this.columnFederalFemenino;
+                    return this.columnNombre;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn FederalMasculinoColumn {
+            public global::System.Data.DataColumn TotalExpedientesColumn {
                 get {
-                    return this.columnFederalMasculino;
+                    return this.columnTotalExpedientes;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn FederalTransgeneroColumn {
+            public global::System.Data.DataColumn FemeninoColumn {
                 get {
-                    return this.columnFederalTransgenero;
+                    return this.columnFemenino;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn EstatalFemeninoColumn {
+            public global::System.Data.DataColumn MasculinoColumn {
                 get {
-                    return this.columnEstatalFemenino;
+                    return this.columnMasculino;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn EstatalMasculinoColumn {
+            public global::System.Data.DataColumn TotalAfectadosColumn {
                 get {
-                    return this.columnEstatalMasculino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn EstatalTransgeneroColumn {
-                get {
-                    return this.columnEstatalTransgenero;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MunicipalFemeninoColumn {
-                get {
-                    return this.columnMunicipalFemenino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MunicipalMasculinoColumn {
-                get {
-                    return this.columnMunicipalMasculino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MunicipalTransgeneroColumn {
-                get {
-                    return this.columnMunicipalTransgenero;
+                    return this.columnTotalAfectados;
                 }
             }
             
@@ -3214,18 +2574,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblExpNivelAutoridadVIRow AddtblExpNivelAutoridadVIRow(string FederalFemenino, string FederalMasculino, string FederalTransgenero, string EstatalFemenino, string EstatalMasculino, string EstatalTransgenero, string MunicipalFemenino, string MunicipalMasculino, string MunicipalTransgenero) {
+            public tblExpNivelAutoridadVIRow AddtblExpNivelAutoridadVIRow(string Nombre, string TotalExpedientes, string Femenino, string Masculino, string TotalAfectados) {
                 tblExpNivelAutoridadVIRow rowtblExpNivelAutoridadVIRow = ((tblExpNivelAutoridadVIRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        FederalFemenino,
-                        FederalMasculino,
-                        FederalTransgenero,
-                        EstatalFemenino,
-                        EstatalMasculino,
-                        EstatalTransgenero,
-                        MunicipalFemenino,
-                        MunicipalMasculino,
-                        MunicipalTransgenero};
+                        Nombre,
+                        TotalExpedientes,
+                        Femenino,
+                        Masculino,
+                        TotalAfectados};
                 rowtblExpNivelAutoridadVIRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtblExpNivelAutoridadVIRow);
                 return rowtblExpNivelAutoridadVIRow;
@@ -3248,44 +2604,28 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnFederalFemenino = base.Columns["FederalFemenino"];
-                this.columnFederalMasculino = base.Columns["FederalMasculino"];
-                this.columnFederalTransgenero = base.Columns["FederalTransgenero"];
-                this.columnEstatalFemenino = base.Columns["EstatalFemenino"];
-                this.columnEstatalMasculino = base.Columns["EstatalMasculino"];
-                this.columnEstatalTransgenero = base.Columns["EstatalTransgenero"];
-                this.columnMunicipalFemenino = base.Columns["MunicipalFemenino"];
-                this.columnMunicipalMasculino = base.Columns["MunicipalMasculino"];
-                this.columnMunicipalTransgenero = base.Columns["MunicipalTransgenero"];
+                this.columnNombre = base.Columns["Nombre"];
+                this.columnTotalExpedientes = base.Columns["TotalExpedientes"];
+                this.columnFemenino = base.Columns["Femenino"];
+                this.columnMasculino = base.Columns["Masculino"];
+                this.columnTotalAfectados = base.Columns["TotalAfectados"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnFederalFemenino = new global::System.Data.DataColumn("FederalFemenino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFederalFemenino);
-                this.columnFederalMasculino = new global::System.Data.DataColumn("FederalMasculino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFederalMasculino);
-                this.columnFederalTransgenero = new global::System.Data.DataColumn("FederalTransgenero", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFederalTransgenero);
-                this.columnEstatalFemenino = new global::System.Data.DataColumn("EstatalFemenino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEstatalFemenino);
-                this.columnEstatalMasculino = new global::System.Data.DataColumn("EstatalMasculino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEstatalMasculino);
-                this.columnEstatalTransgenero = new global::System.Data.DataColumn("EstatalTransgenero", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEstatalTransgenero);
-                this.columnMunicipalFemenino = new global::System.Data.DataColumn("MunicipalFemenino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMunicipalFemenino);
-                this.columnMunicipalMasculino = new global::System.Data.DataColumn("MunicipalMasculino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMunicipalMasculino);
-                this.columnMunicipalTransgenero = new global::System.Data.DataColumn("MunicipalTransgenero", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMunicipalTransgenero);
-                this.columnEstatalFemenino.Caption = "FederalFemenino";
-                this.columnEstatalMasculino.Caption = "FederalMasculino";
-                this.columnEstatalTransgenero.Caption = "FederalTransgenero";
-                this.columnMunicipalFemenino.Caption = "FederalFemenino";
-                this.columnMunicipalMasculino.Caption = "FederalMasculino";
-                this.columnMunicipalTransgenero.Caption = "FederalTransgenero";
+                this.columnNombre = new global::System.Data.DataColumn("Nombre", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombre);
+                this.columnTotalExpedientes = new global::System.Data.DataColumn("TotalExpedientes", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalExpedientes);
+                this.columnFemenino = new global::System.Data.DataColumn("Femenino", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFemenino);
+                this.columnMasculino = new global::System.Data.DataColumn("Masculino", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMasculino);
+                this.columnTotalAfectados = new global::System.Data.DataColumn("TotalAfectados", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalAfectados);
+                this.columnMasculino.Caption = "FederalFemenino";
+                this.columnTotalAfectados.Caption = "FederalMasculino";
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3419,29 +2759,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class tblPersonasAtendidasVIIDataTable : global::System.Data.TypedTableBase<tblPersonasAtendidasVIIRow> {
             
-            private global::System.Data.DataColumn columnDiligenciaExternaFemenino;
+            private global::System.Data.DataColumn columnNombre;
             
-            private global::System.Data.DataColumn columnDiligenciaExternaMasculino;
+            private global::System.Data.DataColumn columnTotalExpedientes;
             
-            private global::System.Data.DataColumn columnDiligenciaExternaTransgenero;
+            private global::System.Data.DataColumn columnFemenino;
             
-            private global::System.Data.DataColumn columnEntrevistaExternaFemenino;
+            private global::System.Data.DataColumn columnMasculino;
             
-            private global::System.Data.DataColumn columnEntrevistaExternaMasculino;
-            
-            private global::System.Data.DataColumn columnEntrevistaExternaTransgenero;
-            
-            private global::System.Data.DataColumn columnComparecenciaFemenino;
-            
-            private global::System.Data.DataColumn columnComparecenciaMasculino;
-            
-            private global::System.Data.DataColumn columnComparecenciaTransgenero;
-            
-            private global::System.Data.DataColumn columnEntrevistaAutoridadesFemenino;
-            
-            private global::System.Data.DataColumn columnEntrevistaAutoridadesMasculino;
-            
-            private global::System.Data.DataColumn columnEntrevistaAutoridadesTransgenero;
+            private global::System.Data.DataColumn columnTotalAfectados;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -3478,97 +2804,41 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DiligenciaExternaFemeninoColumn {
+            public global::System.Data.DataColumn NombreColumn {
                 get {
-                    return this.columnDiligenciaExternaFemenino;
+                    return this.columnNombre;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DiligenciaExternaMasculinoColumn {
+            public global::System.Data.DataColumn TotalExpedientesColumn {
                 get {
-                    return this.columnDiligenciaExternaMasculino;
+                    return this.columnTotalExpedientes;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DiligenciaExternaTransgeneroColumn {
+            public global::System.Data.DataColumn FemeninoColumn {
                 get {
-                    return this.columnDiligenciaExternaTransgenero;
+                    return this.columnFemenino;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn EntrevistaExternaFemeninoColumn {
+            public global::System.Data.DataColumn MasculinoColumn {
                 get {
-                    return this.columnEntrevistaExternaFemenino;
+                    return this.columnMasculino;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn EntrevistaExternaMasculinoColumn {
+            public global::System.Data.DataColumn TotalAfectadosColumn {
                 get {
-                    return this.columnEntrevistaExternaMasculino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn EntrevistaExternaTransgeneroColumn {
-                get {
-                    return this.columnEntrevistaExternaTransgenero;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ComparecenciaFemeninoColumn {
-                get {
-                    return this.columnComparecenciaFemenino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ComparecenciaMasculinoColumn {
-                get {
-                    return this.columnComparecenciaMasculino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ComparecenciaTransgeneroColumn {
-                get {
-                    return this.columnComparecenciaTransgenero;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn EntrevistaAutoridadesFemeninoColumn {
-                get {
-                    return this.columnEntrevistaAutoridadesFemenino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn EntrevistaAutoridadesMasculinoColumn {
-                get {
-                    return this.columnEntrevistaAutoridadesMasculino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn EntrevistaAutoridadesTransgeneroColumn {
-                get {
-                    return this.columnEntrevistaAutoridadesTransgenero;
+                    return this.columnTotalAfectados;
                 }
             }
             
@@ -3609,21 +2879,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblPersonasAtendidasVIIRow AddtblPersonasAtendidasVIIRow(string DiligenciaExternaFemenino, string DiligenciaExternaMasculino, string DiligenciaExternaTransgenero, string EntrevistaExternaFemenino, string EntrevistaExternaMasculino, string EntrevistaExternaTransgenero, string ComparecenciaFemenino, string ComparecenciaMasculino, string ComparecenciaTransgenero, string EntrevistaAutoridadesFemenino, string EntrevistaAutoridadesMasculino, string EntrevistaAutoridadesTransgenero) {
+            public tblPersonasAtendidasVIIRow AddtblPersonasAtendidasVIIRow(string Nombre, string TotalExpedientes, string Femenino, string Masculino, string TotalAfectados) {
                 tblPersonasAtendidasVIIRow rowtblPersonasAtendidasVIIRow = ((tblPersonasAtendidasVIIRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        DiligenciaExternaFemenino,
-                        DiligenciaExternaMasculino,
-                        DiligenciaExternaTransgenero,
-                        EntrevistaExternaFemenino,
-                        EntrevistaExternaMasculino,
-                        EntrevistaExternaTransgenero,
-                        ComparecenciaFemenino,
-                        ComparecenciaMasculino,
-                        ComparecenciaTransgenero,
-                        EntrevistaAutoridadesFemenino,
-                        EntrevistaAutoridadesMasculino,
-                        EntrevistaAutoridadesTransgenero};
+                        Nombre,
+                        TotalExpedientes,
+                        Femenino,
+                        Masculino,
+                        TotalAfectados};
                 rowtblPersonasAtendidasVIIRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtblPersonasAtendidasVIIRow);
                 return rowtblPersonasAtendidasVIIRow;
@@ -3646,56 +2909,28 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnDiligenciaExternaFemenino = base.Columns["DiligenciaExternaFemenino"];
-                this.columnDiligenciaExternaMasculino = base.Columns["DiligenciaExternaMasculino"];
-                this.columnDiligenciaExternaTransgenero = base.Columns["DiligenciaExternaTransgenero"];
-                this.columnEntrevistaExternaFemenino = base.Columns["EntrevistaExternaFemenino"];
-                this.columnEntrevistaExternaMasculino = base.Columns["EntrevistaExternaMasculino"];
-                this.columnEntrevistaExternaTransgenero = base.Columns["EntrevistaExternaTransgenero"];
-                this.columnComparecenciaFemenino = base.Columns["ComparecenciaFemenino"];
-                this.columnComparecenciaMasculino = base.Columns["ComparecenciaMasculino"];
-                this.columnComparecenciaTransgenero = base.Columns["ComparecenciaTransgenero"];
-                this.columnEntrevistaAutoridadesFemenino = base.Columns["EntrevistaAutoridadesFemenino"];
-                this.columnEntrevistaAutoridadesMasculino = base.Columns["EntrevistaAutoridadesMasculino"];
-                this.columnEntrevistaAutoridadesTransgenero = base.Columns["EntrevistaAutoridadesTransgenero"];
+                this.columnNombre = base.Columns["Nombre"];
+                this.columnTotalExpedientes = base.Columns["TotalExpedientes"];
+                this.columnFemenino = base.Columns["Femenino"];
+                this.columnMasculino = base.Columns["Masculino"];
+                this.columnTotalAfectados = base.Columns["TotalAfectados"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnDiligenciaExternaFemenino = new global::System.Data.DataColumn("DiligenciaExternaFemenino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDiligenciaExternaFemenino);
-                this.columnDiligenciaExternaMasculino = new global::System.Data.DataColumn("DiligenciaExternaMasculino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDiligenciaExternaMasculino);
-                this.columnDiligenciaExternaTransgenero = new global::System.Data.DataColumn("DiligenciaExternaTransgenero", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDiligenciaExternaTransgenero);
-                this.columnEntrevistaExternaFemenino = new global::System.Data.DataColumn("EntrevistaExternaFemenino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEntrevistaExternaFemenino);
-                this.columnEntrevistaExternaMasculino = new global::System.Data.DataColumn("EntrevistaExternaMasculino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEntrevistaExternaMasculino);
-                this.columnEntrevistaExternaTransgenero = new global::System.Data.DataColumn("EntrevistaExternaTransgenero", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEntrevistaExternaTransgenero);
-                this.columnComparecenciaFemenino = new global::System.Data.DataColumn("ComparecenciaFemenino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnComparecenciaFemenino);
-                this.columnComparecenciaMasculino = new global::System.Data.DataColumn("ComparecenciaMasculino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnComparecenciaMasculino);
-                this.columnComparecenciaTransgenero = new global::System.Data.DataColumn("ComparecenciaTransgenero", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnComparecenciaTransgenero);
-                this.columnEntrevistaAutoridadesFemenino = new global::System.Data.DataColumn("EntrevistaAutoridadesFemenino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEntrevistaAutoridadesFemenino);
-                this.columnEntrevistaAutoridadesMasculino = new global::System.Data.DataColumn("EntrevistaAutoridadesMasculino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEntrevistaAutoridadesMasculino);
-                this.columnEntrevistaAutoridadesTransgenero = new global::System.Data.DataColumn("EntrevistaAutoridadesTransgenero", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEntrevistaAutoridadesTransgenero);
-                this.columnEntrevistaExternaFemenino.Caption = "DiligenciaExternaFemenino";
-                this.columnEntrevistaExternaMasculino.Caption = "DiligenciaExternaMasculino";
-                this.columnEntrevistaExternaTransgenero.Caption = "DiligenciaExternaTransgenero";
-                this.columnComparecenciaFemenino.Caption = "DiligenciaExternaFemenino";
-                this.columnComparecenciaMasculino.Caption = "DiligenciaExternaMasculino";
-                this.columnComparecenciaTransgenero.Caption = "DiligenciaExternaTransgenero";
-                this.columnEntrevistaAutoridadesFemenino.Caption = "DiligenciaExternaFemenino";
-                this.columnEntrevistaAutoridadesMasculino.Caption = "DiligenciaExternaMasculino";
-                this.columnEntrevistaAutoridadesTransgenero.Caption = "DiligenciaExternaTransgenero";
+                this.columnNombre = new global::System.Data.DataColumn("Nombre", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombre);
+                this.columnTotalExpedientes = new global::System.Data.DataColumn("TotalExpedientes", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalExpedientes);
+                this.columnFemenino = new global::System.Data.DataColumn("Femenino", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFemenino);
+                this.columnMasculino = new global::System.Data.DataColumn("Masculino", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMasculino);
+                this.columnTotalAfectados = new global::System.Data.DataColumn("TotalAfectados", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalAfectados);
+                this.columnMasculino.Caption = "DiligenciaExternaFemenino";
+                this.columnTotalAfectados.Caption = "DiligenciaExternaMasculino";
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3829,41 +3064,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class tblEntrevistas_VIIIDataTable : global::System.Data.TypedTableBase<tblEntrevistas_VIIIRow> {
             
-            private global::System.Data.DataColumn columnCEPRESOTopoChicoFemenino;
+            private global::System.Data.DataColumn columnNombre;
             
-            private global::System.Data.DataColumn columnCEPRESOTopoChicoMasculino;
+            private global::System.Data.DataColumn columnTotalExpedientes;
             
-            private global::System.Data.DataColumn columnCEPRESOTopoChicoTransgenero;
+            private global::System.Data.DataColumn columnFemenino;
             
-            private global::System.Data.DataColumn columnCEPRESOCadereytaFemenino;
+            private global::System.Data.DataColumn columnMasculino;
             
-            private global::System.Data.DataColumn columnCEPRESOCadereytaMasculino;
-            
-            private global::System.Data.DataColumn columnCEPRESOCadereytaTransgenero;
-            
-            private global::System.Data.DataColumn columnCEPRESOApodacaFemenino;
-            
-            private global::System.Data.DataColumn columnCEPRESOApodacaMasculino;
-            
-            private global::System.Data.DataColumn columnCEPRESOApodacaTransgenero;
-            
-            private global::System.Data.DataColumn columnCJAdolecentesFemenino;
-            
-            private global::System.Data.DataColumn columnCJAdolecentesMasculino;
-            
-            private global::System.Data.DataColumn columnCJAdolecentesTransgenero;
-            
-            private global::System.Data.DataColumn columnAEI_CasasdeAmigoFemenino;
-            
-            private global::System.Data.DataColumn columnAEI_CasasdeAmigoMasculino;
-            
-            private global::System.Data.DataColumn columnAEI_CasasdeAmigoTransgenero;
-            
-            private global::System.Data.DataColumn columnOtrosCentrosAFemenino;
-            
-            private global::System.Data.DataColumn columnOtrosCentrosAMasculino;
-            
-            private global::System.Data.DataColumn columnOtrosCentrosATransgenero;
+            private global::System.Data.DataColumn columnTotalAfectados;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -3900,145 +3109,41 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CEPRESOTopoChicoFemeninoColumn {
+            public global::System.Data.DataColumn NombreColumn {
                 get {
-                    return this.columnCEPRESOTopoChicoFemenino;
+                    return this.columnNombre;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CEPRESOTopoChicoMasculinoColumn {
+            public global::System.Data.DataColumn TotalExpedientesColumn {
                 get {
-                    return this.columnCEPRESOTopoChicoMasculino;
+                    return this.columnTotalExpedientes;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CEPRESOTopoChicoTransgeneroColumn {
+            public global::System.Data.DataColumn FemeninoColumn {
                 get {
-                    return this.columnCEPRESOTopoChicoTransgenero;
+                    return this.columnFemenino;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CEPRESOCadereytaFemeninoColumn {
+            public global::System.Data.DataColumn MasculinoColumn {
                 get {
-                    return this.columnCEPRESOCadereytaFemenino;
+                    return this.columnMasculino;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CEPRESOCadereytaMasculinoColumn {
+            public global::System.Data.DataColumn TotalAfectadosColumn {
                 get {
-                    return this.columnCEPRESOCadereytaMasculino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CEPRESOCadereytaTransgeneroColumn {
-                get {
-                    return this.columnCEPRESOCadereytaTransgenero;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CEPRESOApodacaFemeninoColumn {
-                get {
-                    return this.columnCEPRESOApodacaFemenino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CEPRESOApodacaMasculinoColumn {
-                get {
-                    return this.columnCEPRESOApodacaMasculino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CEPRESOApodacaTransgeneroColumn {
-                get {
-                    return this.columnCEPRESOApodacaTransgenero;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CJAdolecentesFemeninoColumn {
-                get {
-                    return this.columnCJAdolecentesFemenino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CJAdolecentesMasculinoColumn {
-                get {
-                    return this.columnCJAdolecentesMasculino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CJAdolecentesTransgeneroColumn {
-                get {
-                    return this.columnCJAdolecentesTransgenero;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn AEI_CasasdeAmigoFemeninoColumn {
-                get {
-                    return this.columnAEI_CasasdeAmigoFemenino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn AEI_CasasdeAmigoMasculinoColumn {
-                get {
-                    return this.columnAEI_CasasdeAmigoMasculino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn AEI_CasasdeAmigoTransgeneroColumn {
-                get {
-                    return this.columnAEI_CasasdeAmigoTransgenero;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn OtrosCentrosAFemeninoColumn {
-                get {
-                    return this.columnOtrosCentrosAFemenino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn OtrosCentrosAMasculinoColumn {
-                get {
-                    return this.columnOtrosCentrosAMasculino;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn OtrosCentrosATransgeneroColumn {
-                get {
-                    return this.columnOtrosCentrosATransgenero;
+                    return this.columnTotalAfectados;
                 }
             }
             
@@ -4079,45 +3184,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblEntrevistas_VIIIRow AddtblEntrevistas_VIIIRow(
-                        string CEPRESOTopoChicoFemenino, 
-                        string CEPRESOTopoChicoMasculino, 
-                        string CEPRESOTopoChicoTransgenero, 
-                        string CEPRESOCadereytaFemenino, 
-                        string CEPRESOCadereytaMasculino, 
-                        string CEPRESOCadereytaTransgenero, 
-                        string CEPRESOApodacaFemenino, 
-                        string CEPRESOApodacaMasculino, 
-                        string CEPRESOApodacaTransgenero, 
-                        string CJAdolecentesFemenino, 
-                        string CJAdolecentesMasculino, 
-                        string CJAdolecentesTransgenero, 
-                        string AEI_CasasdeAmigoFemenino, 
-                        string AEI_CasasdeAmigoMasculino, 
-                        string AEI_CasasdeAmigoTransgenero, 
-                        string OtrosCentrosAFemenino, 
-                        string OtrosCentrosAMasculino, 
-                        string OtrosCentrosATransgenero) {
+            public tblEntrevistas_VIIIRow AddtblEntrevistas_VIIIRow(string Nombre, string TotalExpedientes, string Femenino, string Masculino, string TotalAfectados) {
                 tblEntrevistas_VIIIRow rowtblEntrevistas_VIIIRow = ((tblEntrevistas_VIIIRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        CEPRESOTopoChicoFemenino,
-                        CEPRESOTopoChicoMasculino,
-                        CEPRESOTopoChicoTransgenero,
-                        CEPRESOCadereytaFemenino,
-                        CEPRESOCadereytaMasculino,
-                        CEPRESOCadereytaTransgenero,
-                        CEPRESOApodacaFemenino,
-                        CEPRESOApodacaMasculino,
-                        CEPRESOApodacaTransgenero,
-                        CJAdolecentesFemenino,
-                        CJAdolecentesMasculino,
-                        CJAdolecentesTransgenero,
-                        AEI_CasasdeAmigoFemenino,
-                        AEI_CasasdeAmigoMasculino,
-                        AEI_CasasdeAmigoTransgenero,
-                        OtrosCentrosAFemenino,
-                        OtrosCentrosAMasculino,
-                        OtrosCentrosATransgenero};
+                        Nombre,
+                        TotalExpedientes,
+                        Femenino,
+                        Masculino,
+                        TotalAfectados};
                 rowtblEntrevistas_VIIIRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtblEntrevistas_VIIIRow);
                 return rowtblEntrevistas_VIIIRow;
@@ -4140,66 +3214,28 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnCEPRESOTopoChicoFemenino = base.Columns["CEPRESOTopoChicoFemenino"];
-                this.columnCEPRESOTopoChicoMasculino = base.Columns["CEPRESOTopoChicoMasculino"];
-                this.columnCEPRESOTopoChicoTransgenero = base.Columns["CEPRESOTopoChicoTransgenero"];
-                this.columnCEPRESOCadereytaFemenino = base.Columns["CEPRESOCadereytaFemenino"];
-                this.columnCEPRESOCadereytaMasculino = base.Columns["CEPRESOCadereytaMasculino"];
-                this.columnCEPRESOCadereytaTransgenero = base.Columns["CEPRESOCadereytaTransgenero"];
-                this.columnCEPRESOApodacaFemenino = base.Columns["CEPRESOApodacaFemenino"];
-                this.columnCEPRESOApodacaMasculino = base.Columns["CEPRESOApodacaMasculino"];
-                this.columnCEPRESOApodacaTransgenero = base.Columns["CEPRESOApodacaTransgenero"];
-                this.columnCJAdolecentesFemenino = base.Columns["CJAdolecentesFemenino"];
-                this.columnCJAdolecentesMasculino = base.Columns["CJAdolecentesMasculino"];
-                this.columnCJAdolecentesTransgenero = base.Columns["CJAdolecentesTransgenero"];
-                this.columnAEI_CasasdeAmigoFemenino = base.Columns["AEI_CasasdeAmigoFemenino"];
-                this.columnAEI_CasasdeAmigoMasculino = base.Columns["AEI_CasasdeAmigoMasculino"];
-                this.columnAEI_CasasdeAmigoTransgenero = base.Columns["AEI_CasasdeAmigoTransgenero"];
-                this.columnOtrosCentrosAFemenino = base.Columns["OtrosCentrosAFemenino"];
-                this.columnOtrosCentrosAMasculino = base.Columns["OtrosCentrosAMasculino"];
-                this.columnOtrosCentrosATransgenero = base.Columns["OtrosCentrosATransgenero"];
+                this.columnNombre = base.Columns["Nombre"];
+                this.columnTotalExpedientes = base.Columns["TotalExpedientes"];
+                this.columnFemenino = base.Columns["Femenino"];
+                this.columnMasculino = base.Columns["Masculino"];
+                this.columnTotalAfectados = base.Columns["TotalAfectados"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnCEPRESOTopoChicoFemenino = new global::System.Data.DataColumn("CEPRESOTopoChicoFemenino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCEPRESOTopoChicoFemenino);
-                this.columnCEPRESOTopoChicoMasculino = new global::System.Data.DataColumn("CEPRESOTopoChicoMasculino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCEPRESOTopoChicoMasculino);
-                this.columnCEPRESOTopoChicoTransgenero = new global::System.Data.DataColumn("CEPRESOTopoChicoTransgenero", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCEPRESOTopoChicoTransgenero);
-                this.columnCEPRESOCadereytaFemenino = new global::System.Data.DataColumn("CEPRESOCadereytaFemenino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCEPRESOCadereytaFemenino);
-                this.columnCEPRESOCadereytaMasculino = new global::System.Data.DataColumn("CEPRESOCadereytaMasculino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCEPRESOCadereytaMasculino);
-                this.columnCEPRESOCadereytaTransgenero = new global::System.Data.DataColumn("CEPRESOCadereytaTransgenero", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCEPRESOCadereytaTransgenero);
-                this.columnCEPRESOApodacaFemenino = new global::System.Data.DataColumn("CEPRESOApodacaFemenino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCEPRESOApodacaFemenino);
-                this.columnCEPRESOApodacaMasculino = new global::System.Data.DataColumn("CEPRESOApodacaMasculino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCEPRESOApodacaMasculino);
-                this.columnCEPRESOApodacaTransgenero = new global::System.Data.DataColumn("CEPRESOApodacaTransgenero", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCEPRESOApodacaTransgenero);
-                this.columnCJAdolecentesFemenino = new global::System.Data.DataColumn("CJAdolecentesFemenino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCJAdolecentesFemenino);
-                this.columnCJAdolecentesMasculino = new global::System.Data.DataColumn("CJAdolecentesMasculino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCJAdolecentesMasculino);
-                this.columnCJAdolecentesTransgenero = new global::System.Data.DataColumn("CJAdolecentesTransgenero", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCJAdolecentesTransgenero);
-                this.columnAEI_CasasdeAmigoFemenino = new global::System.Data.DataColumn("AEI_CasasdeAmigoFemenino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAEI_CasasdeAmigoFemenino);
-                this.columnAEI_CasasdeAmigoMasculino = new global::System.Data.DataColumn("AEI_CasasdeAmigoMasculino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAEI_CasasdeAmigoMasculino);
-                this.columnAEI_CasasdeAmigoTransgenero = new global::System.Data.DataColumn("AEI_CasasdeAmigoTransgenero", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAEI_CasasdeAmigoTransgenero);
-                this.columnOtrosCentrosAFemenino = new global::System.Data.DataColumn("OtrosCentrosAFemenino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOtrosCentrosAFemenino);
-                this.columnOtrosCentrosAMasculino = new global::System.Data.DataColumn("OtrosCentrosAMasculino", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOtrosCentrosAMasculino);
-                this.columnOtrosCentrosATransgenero = new global::System.Data.DataColumn("OtrosCentrosATransgenero", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOtrosCentrosATransgenero);
-                this.columnAEI_CasasdeAmigoTransgenero.Caption = "DataColumn12";
+                this.columnNombre = new global::System.Data.DataColumn("Nombre", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombre);
+                this.columnTotalExpedientes = new global::System.Data.DataColumn("TotalExpedientes", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalExpedientes);
+                this.columnFemenino = new global::System.Data.DataColumn("Femenino", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFemenino);
+                this.columnMasculino = new global::System.Data.DataColumn("Masculino", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMasculino);
+                this.columnTotalAfectados = new global::System.Data.DataColumn("TotalAfectados", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalAfectados);
+                this.columnMasculino.Caption = "DiligenciaExternaFemenino";
+                this.columnTotalAfectados.Caption = "DiligenciaExternaMasculino";
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4333,29 +3369,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class tblSupervisores_IXDataTable : global::System.Data.TypedTableBase<tblSupervisores_IXRow> {
             
-            private global::System.Data.DataColumn columnCEPRESOTopoChicoVisitas;
+            private global::System.Data.DataColumn columnNombre;
             
-            private global::System.Data.DataColumn columnCEPRESOTopoChicoEntrevistas;
+            private global::System.Data.DataColumn columnVisitas;
             
-            private global::System.Data.DataColumn columnCEPRESOCadereytaVisitas;
-            
-            private global::System.Data.DataColumn columnCEPRESOCadereytaEntrevistas;
-            
-            private global::System.Data.DataColumn columnCEPRESOApodacaVisitas;
-            
-            private global::System.Data.DataColumn columnCEPRESOApodacaEntrevistas;
-            
-            private global::System.Data.DataColumn columnCJAdolecentesVisitas;
-            
-            private global::System.Data.DataColumn columnCJAdolecentesEntrevistas;
-            
-            private global::System.Data.DataColumn columnCarcelMunicipalVisitas;
-            
-            private global::System.Data.DataColumn columnCarcelMunicipalEntrevistas;
-            
-            private global::System.Data.DataColumn columnCardelDistritalVisitas;
-            
-            private global::System.Data.DataColumn columnCardelDistritalEntrevistas;
+            private global::System.Data.DataColumn columnPersonasEntrevistadas;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -4392,97 +3410,25 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CEPRESOTopoChicoVisitasColumn {
+            public global::System.Data.DataColumn NombreColumn {
                 get {
-                    return this.columnCEPRESOTopoChicoVisitas;
+                    return this.columnNombre;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CEPRESOTopoChicoEntrevistasColumn {
+            public global::System.Data.DataColumn VisitasColumn {
                 get {
-                    return this.columnCEPRESOTopoChicoEntrevistas;
+                    return this.columnVisitas;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CEPRESOCadereytaVisitasColumn {
+            public global::System.Data.DataColumn PersonasEntrevistadasColumn {
                 get {
-                    return this.columnCEPRESOCadereytaVisitas;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CEPRESOCadereytaEntrevistasColumn {
-                get {
-                    return this.columnCEPRESOCadereytaEntrevistas;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CEPRESOApodacaVisitasColumn {
-                get {
-                    return this.columnCEPRESOApodacaVisitas;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CEPRESOApodacaEntrevistasColumn {
-                get {
-                    return this.columnCEPRESOApodacaEntrevistas;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CJAdolecentesVisitasColumn {
-                get {
-                    return this.columnCJAdolecentesVisitas;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CJAdolecentesEntrevistasColumn {
-                get {
-                    return this.columnCJAdolecentesEntrevistas;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CarcelMunicipalVisitasColumn {
-                get {
-                    return this.columnCarcelMunicipalVisitas;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CarcelMunicipalEntrevistasColumn {
-                get {
-                    return this.columnCarcelMunicipalEntrevistas;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CardelDistritalVisitasColumn {
-                get {
-                    return this.columnCardelDistritalVisitas;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CardelDistritalEntrevistasColumn {
-                get {
-                    return this.columnCardelDistritalEntrevistas;
+                    return this.columnPersonasEntrevistadas;
                 }
             }
             
@@ -4523,21 +3469,12 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblSupervisores_IXRow AddtblSupervisores_IXRow(string CEPRESOTopoChicoVisitas, string CEPRESOTopoChicoEntrevistas, string CEPRESOCadereytaVisitas, string CEPRESOCadereytaEntrevistas, string CEPRESOApodacaVisitas, string CEPRESOApodacaEntrevistas, string CJAdolecentesVisitas, string CJAdolecentesEntrevistas, string CarcelMunicipalVisitas, string CarcelMunicipalEntrevistas, string CardelDistritalVisitas, string CardelDistritalEntrevistas) {
+            public tblSupervisores_IXRow AddtblSupervisores_IXRow(string Nombre, string Visitas, string PersonasEntrevistadas) {
                 tblSupervisores_IXRow rowtblSupervisores_IXRow = ((tblSupervisores_IXRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        CEPRESOTopoChicoVisitas,
-                        CEPRESOTopoChicoEntrevistas,
-                        CEPRESOCadereytaVisitas,
-                        CEPRESOCadereytaEntrevistas,
-                        CEPRESOApodacaVisitas,
-                        CEPRESOApodacaEntrevistas,
-                        CJAdolecentesVisitas,
-                        CJAdolecentesEntrevistas,
-                        CarcelMunicipalVisitas,
-                        CarcelMunicipalEntrevistas,
-                        CardelDistritalVisitas,
-                        CardelDistritalEntrevistas};
+                        Nombre,
+                        Visitas,
+                        PersonasEntrevistadas};
                 rowtblSupervisores_IXRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtblSupervisores_IXRow);
                 return rowtblSupervisores_IXRow;
@@ -4560,55 +3497,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnCEPRESOTopoChicoVisitas = base.Columns["CEPRESOTopoChicoVisitas"];
-                this.columnCEPRESOTopoChicoEntrevistas = base.Columns["CEPRESOTopoChicoEntrevistas"];
-                this.columnCEPRESOCadereytaVisitas = base.Columns["CEPRESOCadereytaVisitas"];
-                this.columnCEPRESOCadereytaEntrevistas = base.Columns["CEPRESOCadereytaEntrevistas"];
-                this.columnCEPRESOApodacaVisitas = base.Columns["CEPRESOApodacaVisitas"];
-                this.columnCEPRESOApodacaEntrevistas = base.Columns["CEPRESOApodacaEntrevistas"];
-                this.columnCJAdolecentesVisitas = base.Columns["CJAdolecentesVisitas"];
-                this.columnCJAdolecentesEntrevistas = base.Columns["CJAdolecentesEntrevistas"];
-                this.columnCarcelMunicipalVisitas = base.Columns["CarcelMunicipalVisitas"];
-                this.columnCarcelMunicipalEntrevistas = base.Columns["CarcelMunicipalEntrevistas"];
-                this.columnCardelDistritalVisitas = base.Columns["CardelDistritalVisitas"];
-                this.columnCardelDistritalEntrevistas = base.Columns["CardelDistritalEntrevistas"];
+                this.columnNombre = base.Columns["Nombre"];
+                this.columnVisitas = base.Columns["Visitas"];
+                this.columnPersonasEntrevistadas = base.Columns["PersonasEntrevistadas"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnCEPRESOTopoChicoVisitas = new global::System.Data.DataColumn("CEPRESOTopoChicoVisitas", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCEPRESOTopoChicoVisitas);
-                this.columnCEPRESOTopoChicoEntrevistas = new global::System.Data.DataColumn("CEPRESOTopoChicoEntrevistas", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCEPRESOTopoChicoEntrevistas);
-                this.columnCEPRESOCadereytaVisitas = new global::System.Data.DataColumn("CEPRESOCadereytaVisitas", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCEPRESOCadereytaVisitas);
-                this.columnCEPRESOCadereytaEntrevistas = new global::System.Data.DataColumn("CEPRESOCadereytaEntrevistas", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCEPRESOCadereytaEntrevistas);
-                this.columnCEPRESOApodacaVisitas = new global::System.Data.DataColumn("CEPRESOApodacaVisitas", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCEPRESOApodacaVisitas);
-                this.columnCEPRESOApodacaEntrevistas = new global::System.Data.DataColumn("CEPRESOApodacaEntrevistas", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCEPRESOApodacaEntrevistas);
-                this.columnCJAdolecentesVisitas = new global::System.Data.DataColumn("CJAdolecentesVisitas", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCJAdolecentesVisitas);
-                this.columnCJAdolecentesEntrevistas = new global::System.Data.DataColumn("CJAdolecentesEntrevistas", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCJAdolecentesEntrevistas);
-                this.columnCarcelMunicipalVisitas = new global::System.Data.DataColumn("CarcelMunicipalVisitas", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCarcelMunicipalVisitas);
-                this.columnCarcelMunicipalEntrevistas = new global::System.Data.DataColumn("CarcelMunicipalEntrevistas", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCarcelMunicipalEntrevistas);
-                this.columnCardelDistritalVisitas = new global::System.Data.DataColumn("CardelDistritalVisitas", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCardelDistritalVisitas);
-                this.columnCardelDistritalEntrevistas = new global::System.Data.DataColumn("CardelDistritalEntrevistas", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCardelDistritalEntrevistas);
-                this.columnCEPRESOTopoChicoVisitas.Caption = "CEPRESOTopoChicoFemenino";
-                this.columnCEPRESOTopoChicoEntrevistas.Caption = "CEPRESOTopoChicoFemenino";
-                this.columnCEPRESOCadereytaEntrevistas.Caption = "CEPRESOCadereytaFemenino";
-                this.columnCEPRESOApodacaEntrevistas.Caption = "CEPRESOApodacaFemenino";
-                this.columnCJAdolecentesEntrevistas.Caption = "CJAdolecentesFemenino";
-                this.columnCarcelMunicipalEntrevistas.Caption = "CarcelMunicipalFemenino";
-                this.columnCardelDistritalVisitas.Caption = "CardelDistritalFemenino";
-                this.columnCardelDistritalEntrevistas.Caption = "CardelDistritalFemenino";
+                this.columnNombre = new global::System.Data.DataColumn("Nombre", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombre);
+                this.columnVisitas = new global::System.Data.DataColumn("Visitas", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVisitas);
+                this.columnPersonasEntrevistadas = new global::System.Data.DataColumn("PersonasEntrevistadas", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPersonasEntrevistadas);
+                this.columnNombre.Caption = "CEPRESOTopoChicoFemenino";
+                this.columnVisitas.Caption = "CEPRESOTopoChicoFemenino";
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4742,9 +3646,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class tblResultados_XDataTable : global::System.Data.TypedTableBase<tblResultados_XRow> {
             
-            private global::System.Data.DataColumn columnNoExpediente;
+            private global::System.Data.DataColumn columnExpedienteNumero;
             
-            private global::System.Data.DataColumn columnAutoridad;
+            private global::System.Data.DataColumn columnDestinatario;
             
             private global::System.Data.DataColumn columnConciliacionAceptada;
             
@@ -4785,17 +3689,17 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn NoExpedienteColumn {
+            public global::System.Data.DataColumn ExpedienteNumeroColumn {
                 get {
-                    return this.columnNoExpediente;
+                    return this.columnExpedienteNumero;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn AutoridadColumn {
+            public global::System.Data.DataColumn DestinatarioColumn {
                 get {
-                    return this.columnAutoridad;
+                    return this.columnDestinatario;
                 }
             }
             
@@ -4852,11 +3756,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblResultados_XRow AddtblResultados_XRow(string NoExpediente, string Autoridad, string ConciliacionAceptada, string ConciliacionCumplida) {
+            public tblResultados_XRow AddtblResultados_XRow(string ExpedienteNumero, string Destinatario, string ConciliacionAceptada, string ConciliacionCumplida) {
                 tblResultados_XRow rowtblResultados_XRow = ((tblResultados_XRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        NoExpediente,
-                        Autoridad,
+                        ExpedienteNumero,
+                        Destinatario,
                         ConciliacionAceptada,
                         ConciliacionCumplida};
                 rowtblResultados_XRow.ItemArray = columnValuesArray;
@@ -4881,8 +3785,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnNoExpediente = base.Columns["NoExpediente"];
-                this.columnAutoridad = base.Columns["Autoridad"];
+                this.columnExpedienteNumero = base.Columns["ExpedienteNumero"];
+                this.columnDestinatario = base.Columns["Destinatario"];
                 this.columnConciliacionAceptada = base.Columns["ConciliacionAceptada"];
                 this.columnConciliacionCumplida = base.Columns["ConciliacionCumplida"];
             }
@@ -4890,10 +3794,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnNoExpediente = new global::System.Data.DataColumn("NoExpediente", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNoExpediente);
-                this.columnAutoridad = new global::System.Data.DataColumn("Autoridad", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAutoridad);
+                this.columnExpedienteNumero = new global::System.Data.DataColumn("ExpedienteNumero", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnExpedienteNumero);
+                this.columnDestinatario = new global::System.Data.DataColumn("Destinatario", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDestinatario);
                 this.columnConciliacionAceptada = new global::System.Data.DataColumn("ConciliacionAceptada", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnConciliacionAceptada);
                 this.columnConciliacionCumplida = new global::System.Data.DataColumn("ConciliacionCumplida", typeof(string), null, global::System.Data.MappingType.Element);
@@ -5025,6 +3929,281 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class tblDatosGeneralesDataTable : global::System.Data.TypedTableBase<tblDatosGeneralesRow> {
+            
+            private global::System.Data.DataColumn columnDirigente;
+            
+            private global::System.Data.DataColumn columnFechaInicial;
+            
+            private global::System.Data.DataColumn columnFechaFinal;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblDatosGeneralesDataTable() {
+                this.TableName = "tblDatosGenerales";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal tblDatosGeneralesDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected tblDatosGeneralesDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DirigenteColumn {
+                get {
+                    return this.columnDirigente;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FechaInicialColumn {
+                get {
+                    return this.columnFechaInicial;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FechaFinalColumn {
+                get {
+                    return this.columnFechaFinal;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblDatosGeneralesRow this[int index] {
+                get {
+                    return ((tblDatosGeneralesRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tblDatosGeneralesRowChangeEventHandler tblDatosGeneralesRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tblDatosGeneralesRowChangeEventHandler tblDatosGeneralesRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tblDatosGeneralesRowChangeEventHandler tblDatosGeneralesRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event tblDatosGeneralesRowChangeEventHandler tblDatosGeneralesRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddtblDatosGeneralesRow(tblDatosGeneralesRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblDatosGeneralesRow AddtblDatosGeneralesRow(string Dirigente, string FechaInicial, string FechaFinal) {
+                tblDatosGeneralesRow rowtblDatosGeneralesRow = ((tblDatosGeneralesRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        Dirigente,
+                        FechaInicial,
+                        FechaFinal};
+                rowtblDatosGeneralesRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowtblDatosGeneralesRow);
+                return rowtblDatosGeneralesRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                tblDatosGeneralesDataTable cln = ((tblDatosGeneralesDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new tblDatosGeneralesDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnDirigente = base.Columns["Dirigente"];
+                this.columnFechaInicial = base.Columns["FechaInicial"];
+                this.columnFechaFinal = base.Columns["FechaFinal"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnDirigente = new global::System.Data.DataColumn("Dirigente", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDirigente);
+                this.columnFechaInicial = new global::System.Data.DataColumn("FechaInicial", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFechaInicial);
+                this.columnFechaFinal = new global::System.Data.DataColumn("FechaFinal", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFechaFinal);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblDatosGeneralesRow NewtblDatosGeneralesRow() {
+                return ((tblDatosGeneralesRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new tblDatosGeneralesRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(tblDatosGeneralesRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.tblDatosGeneralesRowChanged != null)) {
+                    this.tblDatosGeneralesRowChanged(this, new tblDatosGeneralesRowChangeEvent(((tblDatosGeneralesRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.tblDatosGeneralesRowChanging != null)) {
+                    this.tblDatosGeneralesRowChanging(this, new tblDatosGeneralesRowChangeEvent(((tblDatosGeneralesRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.tblDatosGeneralesRowDeleted != null)) {
+                    this.tblDatosGeneralesRowDeleted(this, new tblDatosGeneralesRowChangeEvent(((tblDatosGeneralesRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.tblDatosGeneralesRowDeleting != null)) {
+                    this.tblDatosGeneralesRowDeleting(this, new tblDatosGeneralesRowChangeEvent(((tblDatosGeneralesRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemovetblDatosGeneralesRow(tblDatosGeneralesRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                dsVisGeneral ds = new dsVisGeneral();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "tblDatosGeneralesDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class tblEncabezadoRow : global::System.Data.DataRow {
@@ -5111,611 +4290,142 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string QTramiteInicioFemenino {
+            public string Nombre {
                 get {
                     try {
-                        return ((string)(this[this.tabletblExpPeriodo_I.QTramiteInicioFemeninoColumn]));
+                        return ((string)(this[this.tabletblExpPeriodo_I.NombreColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'QTramiteInicioFemenino\' in table \'tblExpPeriodo_I\' is DBNul" +
-                                "l.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Nombre\' in table \'tblExpPeriodo_I\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblExpPeriodo_I.QTramiteInicioFemeninoColumn] = value;
+                    this[this.tabletblExpPeriodo_I.NombreColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string QTramiteInicioMasculino {
+            public string TotalExpedientes {
                 get {
                     try {
-                        return ((string)(this[this.tabletblExpPeriodo_I.QTramiteInicioMasculinoColumn]));
+                        return ((string)(this[this.tabletblExpPeriodo_I.TotalExpedientesColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'QTramiteInicioMasculino\' in table \'tblExpPeriodo_I\' is DBNu" +
-                                "ll.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'TotalExpedientes\' in table \'tblExpPeriodo_I\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblExpPeriodo_I.QTramiteInicioMasculinoColumn] = value;
+                    this[this.tabletblExpPeriodo_I.TotalExpedientesColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string QTramiteInicioTransgenero {
+            public string Femenino {
                 get {
                     try {
-                        return ((string)(this[this.tabletblExpPeriodo_I.QTramiteInicioTransgeneroColumn]));
+                        return ((string)(this[this.tabletblExpPeriodo_I.FemeninoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'QTramiteInicioTransgenero\' in table \'tblExpPeriodo_I\' is DB" +
-                                "Null.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Femenino\' in table \'tblExpPeriodo_I\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblExpPeriodo_I.QTramiteInicioTransgeneroColumn] = value;
+                    this[this.tabletblExpPeriodo_I.FemeninoColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string QRecibidasDORQFemenino {
+            public string Masculino {
                 get {
                     try {
-                        return ((string)(this[this.tabletblExpPeriodo_I.QRecibidasDORQFemeninoColumn]));
+                        return ((string)(this[this.tabletblExpPeriodo_I.MasculinoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'QRecibidasDORQFemenino\' in table \'tblExpPeriodo_I\' is DBNul" +
-                                "l.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Masculino\' in table \'tblExpPeriodo_I\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblExpPeriodo_I.QRecibidasDORQFemeninoColumn] = value;
+                    this[this.tabletblExpPeriodo_I.MasculinoColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string QRecibidasDORQMasculino {
+            public string TotalAfectados {
                 get {
                     try {
-                        return ((string)(this[this.tabletblExpPeriodo_I.QRecibidasDORQMasculinoColumn]));
+                        return ((string)(this[this.tabletblExpPeriodo_I.TotalAfectadosColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'QRecibidasDORQMasculino\' in table \'tblExpPeriodo_I\' is DBNu" +
-                                "ll.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'TotalAfectados\' in table \'tblExpPeriodo_I\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblExpPeriodo_I.QRecibidasDORQMasculinoColumn] = value;
+                    this[this.tabletblExpPeriodo_I.TotalAfectadosColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string QRecibidasDORQTransgenero {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpPeriodo_I.QRecibidasDORQTransgeneroColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'QRecibidasDORQTransgenero\' in table \'tblExpPeriodo_I\' is DB" +
-                                "Null.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpPeriodo_I.QRecibidasDORQTransgeneroColumn] = value;
-                }
+            public bool IsNombreNull() {
+                return this.IsNull(this.tabletblExpPeriodo_I.NombreColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string QRecibidasOtraVGFemenino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpPeriodo_I.QRecibidasOtraVGFemeninoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'QRecibidasOtraVGFemenino\' in table \'tblExpPeriodo_I\' is DBN" +
-                                "ull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpPeriodo_I.QRecibidasOtraVGFemeninoColumn] = value;
-                }
+            public void SetNombreNull() {
+                this[this.tabletblExpPeriodo_I.NombreColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string QRecibidasOtraVGMasculino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpPeriodo_I.QRecibidasOtraVGMasculinoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'QRecibidasOtraVGMasculino\' in table \'tblExpPeriodo_I\' is DB" +
-                                "Null.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpPeriodo_I.QRecibidasOtraVGMasculinoColumn] = value;
-                }
+            public bool IsTotalExpedientesNull() {
+                return this.IsNull(this.tabletblExpPeriodo_I.TotalExpedientesColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string QRecibidasOtraVGTransgenero {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpPeriodo_I.QRecibidasOtraVGTransgeneroColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'QRecibidasOtraVGTransgenero\' in table \'tblExpPeriodo_I\' is " +
-                                "DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpPeriodo_I.QRecibidasOtraVGTransgeneroColumn] = value;
-                }
+            public void SetTotalExpedientesNull() {
+                this[this.tabletblExpPeriodo_I.TotalExpedientesColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string QRemitidasOtraVGFemenino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpPeriodo_I.QRemitidasOtraVGFemeninoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'QRemitidasOtraVGFemenino\' in table \'tblExpPeriodo_I\' is DBN" +
-                                "ull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpPeriodo_I.QRemitidasOtraVGFemeninoColumn] = value;
-                }
+            public bool IsFemeninoNull() {
+                return this.IsNull(this.tabletblExpPeriodo_I.FemeninoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string QRemitidasOtraVGMasculino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpPeriodo_I.QRemitidasOtraVGMasculinoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'QRemitidasOtraVGMasculino\' in table \'tblExpPeriodo_I\' is DB" +
-                                "Null.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpPeriodo_I.QRemitidasOtraVGMasculinoColumn] = value;
-                }
+            public void SetFemeninoNull() {
+                this[this.tabletblExpPeriodo_I.FemeninoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string QRemitidasOtraVGTransgenero {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpPeriodo_I.QRemitidasOtraVGTransgeneroColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'QRemitidasOtraVGTransgenero\' in table \'tblExpPeriodo_I\' is " +
-                                "DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpPeriodo_I.QRemitidasOtraVGTransgeneroColumn] = value;
-                }
+            public bool IsMasculinoNull() {
+                return this.IsNull(this.tabletblExpPeriodo_I.MasculinoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string QConcluidasF1Femenino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpPeriodo_I.QConcluidasF1FemeninoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'QConcluidasF1Femenino\' in table \'tblExpPeriodo_I\' is DBNull" +
-                                ".", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpPeriodo_I.QConcluidasF1FemeninoColumn] = value;
-                }
+            public void SetMasculinoNull() {
+                this[this.tabletblExpPeriodo_I.MasculinoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string QConcluidasF1Masculino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpPeriodo_I.QConcluidasF1MasculinoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'QConcluidasF1Masculino\' in table \'tblExpPeriodo_I\' is DBNul" +
-                                "l.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpPeriodo_I.QConcluidasF1MasculinoColumn] = value;
-                }
+            public bool IsTotalAfectadosNull() {
+                return this.IsNull(this.tabletblExpPeriodo_I.TotalAfectadosColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string QConcluidasF1Transgenero {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpPeriodo_I.QConcluidasF1TransgeneroColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'QConcluidasF1Transgenero\' in table \'tblExpPeriodo_I\' is DBN" +
-                                "ull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpPeriodo_I.QConcluidasF1TransgeneroColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string QConcluidasF3Femenino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpPeriodo_I.QConcluidasF3FemeninoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'QConcluidasF3Femenino\' in table \'tblExpPeriodo_I\' is DBNull" +
-                                ".", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpPeriodo_I.QConcluidasF3FemeninoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string QConcluidasF3Masculino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpPeriodo_I.QConcluidasF3MasculinoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'QConcluidasF3Masculino\' in table \'tblExpPeriodo_I\' is DBNul" +
-                                "l.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpPeriodo_I.QConcluidasF3MasculinoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string QConcluidasF3Transgenero {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpPeriodo_I.QConcluidasF3TransgeneroColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'QConcluidasF3Transgenero\' in table \'tblExpPeriodo_I\' is DBN" +
-                                "ull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpPeriodo_I.QConcluidasF3TransgeneroColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string QConcluidasF7Femenino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpPeriodo_I.QConcluidasF7FemeninoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'QConcluidasF7Femenino\' in table \'tblExpPeriodo_I\' is DBNull" +
-                                ".", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpPeriodo_I.QConcluidasF7FemeninoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string QConcluidasF7Masculino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpPeriodo_I.QConcluidasF7MasculinoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'QConcluidasF7Masculino\' in table \'tblExpPeriodo_I\' is DBNul" +
-                                "l.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpPeriodo_I.QConcluidasF7MasculinoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string QConcluidasF7Transgenero {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpPeriodo_I.QConcluidasF7TransgeneroColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'QConcluidasF7Transgenero\' in table \'tblExpPeriodo_I\' is DBN" +
-                                "ull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpPeriodo_I.QConcluidasF7TransgeneroColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsQTramiteInicioFemeninoNull() {
-                return this.IsNull(this.tabletblExpPeriodo_I.QTramiteInicioFemeninoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetQTramiteInicioFemeninoNull() {
-                this[this.tabletblExpPeriodo_I.QTramiteInicioFemeninoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsQTramiteInicioMasculinoNull() {
-                return this.IsNull(this.tabletblExpPeriodo_I.QTramiteInicioMasculinoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetQTramiteInicioMasculinoNull() {
-                this[this.tabletblExpPeriodo_I.QTramiteInicioMasculinoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsQTramiteInicioTransgeneroNull() {
-                return this.IsNull(this.tabletblExpPeriodo_I.QTramiteInicioTransgeneroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetQTramiteInicioTransgeneroNull() {
-                this[this.tabletblExpPeriodo_I.QTramiteInicioTransgeneroColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsQRecibidasDORQFemeninoNull() {
-                return this.IsNull(this.tabletblExpPeriodo_I.QRecibidasDORQFemeninoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetQRecibidasDORQFemeninoNull() {
-                this[this.tabletblExpPeriodo_I.QRecibidasDORQFemeninoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsQRecibidasDORQMasculinoNull() {
-                return this.IsNull(this.tabletblExpPeriodo_I.QRecibidasDORQMasculinoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetQRecibidasDORQMasculinoNull() {
-                this[this.tabletblExpPeriodo_I.QRecibidasDORQMasculinoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsQRecibidasDORQTransgeneroNull() {
-                return this.IsNull(this.tabletblExpPeriodo_I.QRecibidasDORQTransgeneroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetQRecibidasDORQTransgeneroNull() {
-                this[this.tabletblExpPeriodo_I.QRecibidasDORQTransgeneroColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsQRecibidasOtraVGFemeninoNull() {
-                return this.IsNull(this.tabletblExpPeriodo_I.QRecibidasOtraVGFemeninoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetQRecibidasOtraVGFemeninoNull() {
-                this[this.tabletblExpPeriodo_I.QRecibidasOtraVGFemeninoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsQRecibidasOtraVGMasculinoNull() {
-                return this.IsNull(this.tabletblExpPeriodo_I.QRecibidasOtraVGMasculinoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetQRecibidasOtraVGMasculinoNull() {
-                this[this.tabletblExpPeriodo_I.QRecibidasOtraVGMasculinoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsQRecibidasOtraVGTransgeneroNull() {
-                return this.IsNull(this.tabletblExpPeriodo_I.QRecibidasOtraVGTransgeneroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetQRecibidasOtraVGTransgeneroNull() {
-                this[this.tabletblExpPeriodo_I.QRecibidasOtraVGTransgeneroColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsQRemitidasOtraVGFemeninoNull() {
-                return this.IsNull(this.tabletblExpPeriodo_I.QRemitidasOtraVGFemeninoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetQRemitidasOtraVGFemeninoNull() {
-                this[this.tabletblExpPeriodo_I.QRemitidasOtraVGFemeninoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsQRemitidasOtraVGMasculinoNull() {
-                return this.IsNull(this.tabletblExpPeriodo_I.QRemitidasOtraVGMasculinoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetQRemitidasOtraVGMasculinoNull() {
-                this[this.tabletblExpPeriodo_I.QRemitidasOtraVGMasculinoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsQRemitidasOtraVGTransgeneroNull() {
-                return this.IsNull(this.tabletblExpPeriodo_I.QRemitidasOtraVGTransgeneroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetQRemitidasOtraVGTransgeneroNull() {
-                this[this.tabletblExpPeriodo_I.QRemitidasOtraVGTransgeneroColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsQConcluidasF1FemeninoNull() {
-                return this.IsNull(this.tabletblExpPeriodo_I.QConcluidasF1FemeninoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetQConcluidasF1FemeninoNull() {
-                this[this.tabletblExpPeriodo_I.QConcluidasF1FemeninoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsQConcluidasF1MasculinoNull() {
-                return this.IsNull(this.tabletblExpPeriodo_I.QConcluidasF1MasculinoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetQConcluidasF1MasculinoNull() {
-                this[this.tabletblExpPeriodo_I.QConcluidasF1MasculinoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsQConcluidasF1TransgeneroNull() {
-                return this.IsNull(this.tabletblExpPeriodo_I.QConcluidasF1TransgeneroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetQConcluidasF1TransgeneroNull() {
-                this[this.tabletblExpPeriodo_I.QConcluidasF1TransgeneroColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsQConcluidasF3FemeninoNull() {
-                return this.IsNull(this.tabletblExpPeriodo_I.QConcluidasF3FemeninoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetQConcluidasF3FemeninoNull() {
-                this[this.tabletblExpPeriodo_I.QConcluidasF3FemeninoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsQConcluidasF3MasculinoNull() {
-                return this.IsNull(this.tabletblExpPeriodo_I.QConcluidasF3MasculinoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetQConcluidasF3MasculinoNull() {
-                this[this.tabletblExpPeriodo_I.QConcluidasF3MasculinoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsQConcluidasF3TransgeneroNull() {
-                return this.IsNull(this.tabletblExpPeriodo_I.QConcluidasF3TransgeneroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetQConcluidasF3TransgeneroNull() {
-                this[this.tabletblExpPeriodo_I.QConcluidasF3TransgeneroColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsQConcluidasF7FemeninoNull() {
-                return this.IsNull(this.tabletblExpPeriodo_I.QConcluidasF7FemeninoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetQConcluidasF7FemeninoNull() {
-                this[this.tabletblExpPeriodo_I.QConcluidasF7FemeninoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsQConcluidasF7MasculinoNull() {
-                return this.IsNull(this.tabletblExpPeriodo_I.QConcluidasF7MasculinoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetQConcluidasF7MasculinoNull() {
-                this[this.tabletblExpPeriodo_I.QConcluidasF7MasculinoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsQConcluidasF7TransgeneroNull() {
-                return this.IsNull(this.tabletblExpPeriodo_I.QConcluidasF7TransgeneroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetQConcluidasF7TransgeneroNull() {
-                this[this.tabletblExpPeriodo_I.QConcluidasF7TransgeneroColumn] = global::System.Convert.DBNull;
+            public void SetTotalAfectadosNull() {
+                this[this.tabletblExpPeriodo_I.TotalAfectadosColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -5735,437 +4445,144 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string MCInicioFemenino {
+            public string Nombre {
                 get {
                     try {
-                        return ((string)(this[this.tabletblExpMedidaCautelar_II.MCInicioFemeninoColumn]));
+                        return ((string)(this[this.tabletblExpMedidaCautelar_II.NombreColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MCInicioFemenino\' in table \'tblExpMedidaCautelar_II\' is DBN" +
+                        throw new global::System.Data.StrongTypingException("The value for column \'Nombre\' in table \'tblExpMedidaCautelar_II\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblExpMedidaCautelar_II.NombreColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string TotalExpedientes {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblExpMedidaCautelar_II.TotalExpedientesColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TotalExpedientes\' in table \'tblExpMedidaCautelar_II\' is DBN" +
                                 "ull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblExpMedidaCautelar_II.MCInicioFemeninoColumn] = value;
+                    this[this.tabletblExpMedidaCautelar_II.TotalExpedientesColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string MCInicioMasculino {
+            public string Femenino {
                 get {
                     try {
-                        return ((string)(this[this.tabletblExpMedidaCautelar_II.MCInicioMasculinoColumn]));
+                        return ((string)(this[this.tabletblExpMedidaCautelar_II.FemeninoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MCInicioMasculino\' in table \'tblExpMedidaCautelar_II\' is DB" +
-                                "Null.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Femenino\' in table \'tblExpMedidaCautelar_II\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblExpMedidaCautelar_II.MCInicioMasculinoColumn] = value;
+                    this[this.tabletblExpMedidaCautelar_II.FemeninoColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string MCInicioTransgenero {
+            public string Masculino {
                 get {
                     try {
-                        return ((string)(this[this.tabletblExpMedidaCautelar_II.MCInicioTransgeneroColumn]));
+                        return ((string)(this[this.tabletblExpMedidaCautelar_II.MasculinoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MCInicioTransgenero\' in table \'tblExpMedidaCautelar_II\' is " +
-                                "DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Masculino\' in table \'tblExpMedidaCautelar_II\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblExpMedidaCautelar_II.MCInicioTransgeneroColumn] = value;
+                    this[this.tabletblExpMedidaCautelar_II.MasculinoColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string MCRecibidasDORQFemenino {
+            public string TotalAfectados {
                 get {
                     try {
-                        return ((string)(this[this.tabletblExpMedidaCautelar_II.MCRecibidasDORQFemeninoColumn]));
+                        return ((string)(this[this.tabletblExpMedidaCautelar_II.TotalAfectadosColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MCRecibidasDORQFemenino\' in table \'tblExpMedidaCautelar_II\'" +
-                                " is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'TotalAfectados\' in table \'tblExpMedidaCautelar_II\' is DBNul" +
+                                "l.", e);
                     }
                 }
                 set {
-                    this[this.tabletblExpMedidaCautelar_II.MCRecibidasDORQFemeninoColumn] = value;
+                    this[this.tabletblExpMedidaCautelar_II.TotalAfectadosColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string MCRecibidasDORQMasculino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpMedidaCautelar_II.MCRecibidasDORQMasculinoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MCRecibidasDORQMasculino\' in table \'tblExpMedidaCautelar_II" +
-                                "\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpMedidaCautelar_II.MCRecibidasDORQMasculinoColumn] = value;
-                }
+            public bool IsNombreNull() {
+                return this.IsNull(this.tabletblExpMedidaCautelar_II.NombreColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string MCRecibidasDORQTransgenero {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpMedidaCautelar_II.MCRecibidasDORQTransgeneroColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MCRecibidasDORQTransgenero\' in table \'tblExpMedidaCautelar_" +
-                                "II\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpMedidaCautelar_II.MCRecibidasDORQTransgeneroColumn] = value;
-                }
+            public void SetNombreNull() {
+                this[this.tabletblExpMedidaCautelar_II.NombreColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string MCRecibidasOtraVGFemenino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpMedidaCautelar_II.MCRecibidasOtraVGFemeninoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MCRecibidasOtraVGFemenino\' in table \'tblExpMedidaCautelar_I" +
-                                "I\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpMedidaCautelar_II.MCRecibidasOtraVGFemeninoColumn] = value;
-                }
+            public bool IsTotalExpedientesNull() {
+                return this.IsNull(this.tabletblExpMedidaCautelar_II.TotalExpedientesColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string MCRecibidasOtraVGMasculino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpMedidaCautelar_II.MCRecibidasOtraVGMasculinoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MCRecibidasOtraVGMasculino\' in table \'tblExpMedidaCautelar_" +
-                                "II\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpMedidaCautelar_II.MCRecibidasOtraVGMasculinoColumn] = value;
-                }
+            public void SetTotalExpedientesNull() {
+                this[this.tabletblExpMedidaCautelar_II.TotalExpedientesColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string MCRecibidasOtraVGTransgenero {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpMedidaCautelar_II.MCRecibidasOtraVGTransgeneroColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MCRecibidasOtraVGTransgenero\' in table \'tblExpMedidaCautela" +
-                                "r_II\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpMedidaCautelar_II.MCRecibidasOtraVGTransgeneroColumn] = value;
-                }
+            public bool IsFemeninoNull() {
+                return this.IsNull(this.tabletblExpMedidaCautelar_II.FemeninoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string MCRemitidasOtraVGFemenino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpMedidaCautelar_II.MCRemitidasOtraVGFemeninoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MCRemitidasOtraVGFemenino\' in table \'tblExpMedidaCautelar_I" +
-                                "I\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpMedidaCautelar_II.MCRemitidasOtraVGFemeninoColumn] = value;
-                }
+            public void SetFemeninoNull() {
+                this[this.tabletblExpMedidaCautelar_II.FemeninoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string MCRemitidasOtraVGMasculino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpMedidaCautelar_II.MCRemitidasOtraVGMasculinoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MCRemitidasOtraVGMasculino\' in table \'tblExpMedidaCautelar_" +
-                                "II\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpMedidaCautelar_II.MCRemitidasOtraVGMasculinoColumn] = value;
-                }
+            public bool IsMasculinoNull() {
+                return this.IsNull(this.tabletblExpMedidaCautelar_II.MasculinoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string MCRemitidasOtraVGTrangenero {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpMedidaCautelar_II.MCRemitidasOtraVGTrangeneroColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MCRemitidasOtraVGTrangenero\' in table \'tblExpMedidaCautelar" +
-                                "_II\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpMedidaCautelar_II.MCRemitidasOtraVGTrangeneroColumn] = value;
-                }
+            public void SetMasculinoNull() {
+                this[this.tabletblExpMedidaCautelar_II.MasculinoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string MCConcluidasFemenino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpMedidaCautelar_II.MCConcluidasFemeninoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MCConcluidasFemenino\' in table \'tblExpMedidaCautelar_II\' is" +
-                                " DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpMedidaCautelar_II.MCConcluidasFemeninoColumn] = value;
-                }
+            public bool IsTotalAfectadosNull() {
+                return this.IsNull(this.tabletblExpMedidaCautelar_II.TotalAfectadosColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string MCConcluidasMasculino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpMedidaCautelar_II.MCConcluidasMasculinoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MCConcluidasMasculino\' in table \'tblExpMedidaCautelar_II\' i" +
-                                "s DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpMedidaCautelar_II.MCConcluidasMasculinoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string MCConcluidasTransgenero {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpMedidaCautelar_II.MCConcluidasTransgeneroColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MCConcluidasTransgenero\' in table \'tblExpMedidaCautelar_II\'" +
-                                " is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpMedidaCautelar_II.MCConcluidasTransgeneroColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMCInicioFemeninoNull() {
-                return this.IsNull(this.tabletblExpMedidaCautelar_II.MCInicioFemeninoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMCInicioFemeninoNull() {
-                this[this.tabletblExpMedidaCautelar_II.MCInicioFemeninoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMCInicioMasculinoNull() {
-                return this.IsNull(this.tabletblExpMedidaCautelar_II.MCInicioMasculinoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMCInicioMasculinoNull() {
-                this[this.tabletblExpMedidaCautelar_II.MCInicioMasculinoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMCInicioTransgeneroNull() {
-                return this.IsNull(this.tabletblExpMedidaCautelar_II.MCInicioTransgeneroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMCInicioTransgeneroNull() {
-                this[this.tabletblExpMedidaCautelar_II.MCInicioTransgeneroColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMCRecibidasDORQFemeninoNull() {
-                return this.IsNull(this.tabletblExpMedidaCautelar_II.MCRecibidasDORQFemeninoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMCRecibidasDORQFemeninoNull() {
-                this[this.tabletblExpMedidaCautelar_II.MCRecibidasDORQFemeninoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMCRecibidasDORQMasculinoNull() {
-                return this.IsNull(this.tabletblExpMedidaCautelar_II.MCRecibidasDORQMasculinoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMCRecibidasDORQMasculinoNull() {
-                this[this.tabletblExpMedidaCautelar_II.MCRecibidasDORQMasculinoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMCRecibidasDORQTransgeneroNull() {
-                return this.IsNull(this.tabletblExpMedidaCautelar_II.MCRecibidasDORQTransgeneroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMCRecibidasDORQTransgeneroNull() {
-                this[this.tabletblExpMedidaCautelar_II.MCRecibidasDORQTransgeneroColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMCRecibidasOtraVGFemeninoNull() {
-                return this.IsNull(this.tabletblExpMedidaCautelar_II.MCRecibidasOtraVGFemeninoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMCRecibidasOtraVGFemeninoNull() {
-                this[this.tabletblExpMedidaCautelar_II.MCRecibidasOtraVGFemeninoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMCRecibidasOtraVGMasculinoNull() {
-                return this.IsNull(this.tabletblExpMedidaCautelar_II.MCRecibidasOtraVGMasculinoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMCRecibidasOtraVGMasculinoNull() {
-                this[this.tabletblExpMedidaCautelar_II.MCRecibidasOtraVGMasculinoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMCRecibidasOtraVGTransgeneroNull() {
-                return this.IsNull(this.tabletblExpMedidaCautelar_II.MCRecibidasOtraVGTransgeneroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMCRecibidasOtraVGTransgeneroNull() {
-                this[this.tabletblExpMedidaCautelar_II.MCRecibidasOtraVGTransgeneroColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMCRemitidasOtraVGFemeninoNull() {
-                return this.IsNull(this.tabletblExpMedidaCautelar_II.MCRemitidasOtraVGFemeninoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMCRemitidasOtraVGFemeninoNull() {
-                this[this.tabletblExpMedidaCautelar_II.MCRemitidasOtraVGFemeninoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMCRemitidasOtraVGMasculinoNull() {
-                return this.IsNull(this.tabletblExpMedidaCautelar_II.MCRemitidasOtraVGMasculinoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMCRemitidasOtraVGMasculinoNull() {
-                this[this.tabletblExpMedidaCautelar_II.MCRemitidasOtraVGMasculinoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMCRemitidasOtraVGTrangeneroNull() {
-                return this.IsNull(this.tabletblExpMedidaCautelar_II.MCRemitidasOtraVGTrangeneroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMCRemitidasOtraVGTrangeneroNull() {
-                this[this.tabletblExpMedidaCautelar_II.MCRemitidasOtraVGTrangeneroColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMCConcluidasFemeninoNull() {
-                return this.IsNull(this.tabletblExpMedidaCautelar_II.MCConcluidasFemeninoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMCConcluidasFemeninoNull() {
-                this[this.tabletblExpMedidaCautelar_II.MCConcluidasFemeninoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMCConcluidasMasculinoNull() {
-                return this.IsNull(this.tabletblExpMedidaCautelar_II.MCConcluidasMasculinoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMCConcluidasMasculinoNull() {
-                this[this.tabletblExpMedidaCautelar_II.MCConcluidasMasculinoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMCConcluidasTransgeneroNull() {
-                return this.IsNull(this.tabletblExpMedidaCautelar_II.MCConcluidasTransgeneroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMCConcluidasTransgeneroNull() {
-                this[this.tabletblExpMedidaCautelar_II.MCConcluidasTransgeneroColumn] = global::System.Convert.DBNull;
+            public void SetTotalAfectadosNull() {
+                this[this.tabletblExpMedidaCautelar_II.TotalAfectadosColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -6185,437 +4602,145 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string SGInicioFemenino {
+            public string Nombre {
                 get {
                     try {
-                        return ((string)(this[this.tabletblExpSolicitudGestion_III.SGInicioFemeninoColumn]));
+                        return ((string)(this[this.tabletblExpSolicitudGestion_III.NombreColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SGInicioFemenino\' in table \'tblExpSolicitudGestion_III\' is " +
+                        throw new global::System.Data.StrongTypingException("The value for column \'Nombre\' in table \'tblExpSolicitudGestion_III\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblExpSolicitudGestion_III.NombreColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string TotalExpedientes {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblExpSolicitudGestion_III.TotalExpedientesColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TotalExpedientes\' in table \'tblExpSolicitudGestion_III\' is " +
                                 "DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblExpSolicitudGestion_III.SGInicioFemeninoColumn] = value;
+                    this[this.tabletblExpSolicitudGestion_III.TotalExpedientesColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string SGInicioMasculino {
+            public string Femenino {
                 get {
                     try {
-                        return ((string)(this[this.tabletblExpSolicitudGestion_III.SGInicioMasculinoColumn]));
+                        return ((string)(this[this.tabletblExpSolicitudGestion_III.FemeninoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SGInicioMasculino\' in table \'tblExpSolicitudGestion_III\' is" +
-                                " DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Femenino\' in table \'tblExpSolicitudGestion_III\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblExpSolicitudGestion_III.SGInicioMasculinoColumn] = value;
+                    this[this.tabletblExpSolicitudGestion_III.FemeninoColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string SGInicioTransgenero {
+            public string Masculino {
                 get {
                     try {
-                        return ((string)(this[this.tabletblExpSolicitudGestion_III.SGInicioTransgeneroColumn]));
+                        return ((string)(this[this.tabletblExpSolicitudGestion_III.MasculinoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SGInicioTransgenero\' in table \'tblExpSolicitudGestion_III\' " +
-                                "is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Masculino\' in table \'tblExpSolicitudGestion_III\' is DBNull." +
+                                "", e);
                     }
                 }
                 set {
-                    this[this.tabletblExpSolicitudGestion_III.SGInicioTransgeneroColumn] = value;
+                    this[this.tabletblExpSolicitudGestion_III.MasculinoColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string SGRecibidasDORQFemenino {
+            public string TotalAfectados {
                 get {
                     try {
-                        return ((string)(this[this.tabletblExpSolicitudGestion_III.SGRecibidasDORQFemeninoColumn]));
+                        return ((string)(this[this.tabletblExpSolicitudGestion_III.TotalAfectadosColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SGRecibidasDORQFemenino\' in table \'tblExpSolicitudGestion_I" +
-                                "II\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'TotalAfectados\' in table \'tblExpSolicitudGestion_III\' is DB" +
+                                "Null.", e);
                     }
                 }
                 set {
-                    this[this.tabletblExpSolicitudGestion_III.SGRecibidasDORQFemeninoColumn] = value;
+                    this[this.tabletblExpSolicitudGestion_III.TotalAfectadosColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string SGRecibidasDORQMasculino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpSolicitudGestion_III.SGRecibidasDORQMasculinoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SGRecibidasDORQMasculino\' in table \'tblExpSolicitudGestion_" +
-                                "III\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpSolicitudGestion_III.SGRecibidasDORQMasculinoColumn] = value;
-                }
+            public bool IsNombreNull() {
+                return this.IsNull(this.tabletblExpSolicitudGestion_III.NombreColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string SGRecibidasDORQTransgenero {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpSolicitudGestion_III.SGRecibidasDORQTransgeneroColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SGRecibidasDORQTransgenero\' in table \'tblExpSolicitudGestio" +
-                                "n_III\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpSolicitudGestion_III.SGRecibidasDORQTransgeneroColumn] = value;
-                }
+            public void SetNombreNull() {
+                this[this.tabletblExpSolicitudGestion_III.NombreColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string SGRecibidasOtraVGFemenino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpSolicitudGestion_III.SGRecibidasOtraVGFemeninoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SGRecibidasOtraVGFemenino\' in table \'tblExpSolicitudGestion" +
-                                "_III\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpSolicitudGestion_III.SGRecibidasOtraVGFemeninoColumn] = value;
-                }
+            public bool IsTotalExpedientesNull() {
+                return this.IsNull(this.tabletblExpSolicitudGestion_III.TotalExpedientesColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string SGRecibidasOtraVGMasculino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpSolicitudGestion_III.SGRecibidasOtraVGMasculinoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SGRecibidasOtraVGMasculino\' in table \'tblExpSolicitudGestio" +
-                                "n_III\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpSolicitudGestion_III.SGRecibidasOtraVGMasculinoColumn] = value;
-                }
+            public void SetTotalExpedientesNull() {
+                this[this.tabletblExpSolicitudGestion_III.TotalExpedientesColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string SGRecibidasOtraVGTransgenero {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpSolicitudGestion_III.SGRecibidasOtraVGTransgeneroColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SGRecibidasOtraVGTransgenero\' in table \'tblExpSolicitudGest" +
-                                "ion_III\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpSolicitudGestion_III.SGRecibidasOtraVGTransgeneroColumn] = value;
-                }
+            public bool IsFemeninoNull() {
+                return this.IsNull(this.tabletblExpSolicitudGestion_III.FemeninoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string SGRemitidasOtraVGFemenino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpSolicitudGestion_III.SGRemitidasOtraVGFemeninoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SGRemitidasOtraVGFemenino\' in table \'tblExpSolicitudGestion" +
-                                "_III\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpSolicitudGestion_III.SGRemitidasOtraVGFemeninoColumn] = value;
-                }
+            public void SetFemeninoNull() {
+                this[this.tabletblExpSolicitudGestion_III.FemeninoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string SGRemitidasOtraVGMasculino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpSolicitudGestion_III.SGRemitidasOtraVGMasculinoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SGRemitidasOtraVGMasculino\' in table \'tblExpSolicitudGestio" +
-                                "n_III\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpSolicitudGestion_III.SGRemitidasOtraVGMasculinoColumn] = value;
-                }
+            public bool IsMasculinoNull() {
+                return this.IsNull(this.tabletblExpSolicitudGestion_III.MasculinoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string SGRemitidasOtraVGTrangenero {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpSolicitudGestion_III.SGRemitidasOtraVGTrangeneroColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SGRemitidasOtraVGTrangenero\' in table \'tblExpSolicitudGesti" +
-                                "on_III\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpSolicitudGestion_III.SGRemitidasOtraVGTrangeneroColumn] = value;
-                }
+            public void SetMasculinoNull() {
+                this[this.tabletblExpSolicitudGestion_III.MasculinoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string SGConcluidasFemenino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpSolicitudGestion_III.SGConcluidasFemeninoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SGConcluidasFemenino\' in table \'tblExpSolicitudGestion_III\'" +
-                                " is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpSolicitudGestion_III.SGConcluidasFemeninoColumn] = value;
-                }
+            public bool IsTotalAfectadosNull() {
+                return this.IsNull(this.tabletblExpSolicitudGestion_III.TotalAfectadosColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string SGConcluidasMasculino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpSolicitudGestion_III.SGConcluidasMasculinoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SGConcluidasMasculino\' in table \'tblExpSolicitudGestion_III" +
-                                "\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpSolicitudGestion_III.SGConcluidasMasculinoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string SGConcluidasTransgenero {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpSolicitudGestion_III.SGConcluidasTransgeneroColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SGConcluidasTransgenero\' in table \'tblExpSolicitudGestion_I" +
-                                "II\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpSolicitudGestion_III.SGConcluidasTransgeneroColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsSGInicioFemeninoNull() {
-                return this.IsNull(this.tabletblExpSolicitudGestion_III.SGInicioFemeninoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetSGInicioFemeninoNull() {
-                this[this.tabletblExpSolicitudGestion_III.SGInicioFemeninoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsSGInicioMasculinoNull() {
-                return this.IsNull(this.tabletblExpSolicitudGestion_III.SGInicioMasculinoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetSGInicioMasculinoNull() {
-                this[this.tabletblExpSolicitudGestion_III.SGInicioMasculinoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsSGInicioTransgeneroNull() {
-                return this.IsNull(this.tabletblExpSolicitudGestion_III.SGInicioTransgeneroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetSGInicioTransgeneroNull() {
-                this[this.tabletblExpSolicitudGestion_III.SGInicioTransgeneroColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsSGRecibidasDORQFemeninoNull() {
-                return this.IsNull(this.tabletblExpSolicitudGestion_III.SGRecibidasDORQFemeninoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetSGRecibidasDORQFemeninoNull() {
-                this[this.tabletblExpSolicitudGestion_III.SGRecibidasDORQFemeninoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsSGRecibidasDORQMasculinoNull() {
-                return this.IsNull(this.tabletblExpSolicitudGestion_III.SGRecibidasDORQMasculinoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetSGRecibidasDORQMasculinoNull() {
-                this[this.tabletblExpSolicitudGestion_III.SGRecibidasDORQMasculinoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsSGRecibidasDORQTransgeneroNull() {
-                return this.IsNull(this.tabletblExpSolicitudGestion_III.SGRecibidasDORQTransgeneroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetSGRecibidasDORQTransgeneroNull() {
-                this[this.tabletblExpSolicitudGestion_III.SGRecibidasDORQTransgeneroColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsSGRecibidasOtraVGFemeninoNull() {
-                return this.IsNull(this.tabletblExpSolicitudGestion_III.SGRecibidasOtraVGFemeninoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetSGRecibidasOtraVGFemeninoNull() {
-                this[this.tabletblExpSolicitudGestion_III.SGRecibidasOtraVGFemeninoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsSGRecibidasOtraVGMasculinoNull() {
-                return this.IsNull(this.tabletblExpSolicitudGestion_III.SGRecibidasOtraVGMasculinoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetSGRecibidasOtraVGMasculinoNull() {
-                this[this.tabletblExpSolicitudGestion_III.SGRecibidasOtraVGMasculinoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsSGRecibidasOtraVGTransgeneroNull() {
-                return this.IsNull(this.tabletblExpSolicitudGestion_III.SGRecibidasOtraVGTransgeneroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetSGRecibidasOtraVGTransgeneroNull() {
-                this[this.tabletblExpSolicitudGestion_III.SGRecibidasOtraVGTransgeneroColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsSGRemitidasOtraVGFemeninoNull() {
-                return this.IsNull(this.tabletblExpSolicitudGestion_III.SGRemitidasOtraVGFemeninoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetSGRemitidasOtraVGFemeninoNull() {
-                this[this.tabletblExpSolicitudGestion_III.SGRemitidasOtraVGFemeninoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsSGRemitidasOtraVGMasculinoNull() {
-                return this.IsNull(this.tabletblExpSolicitudGestion_III.SGRemitidasOtraVGMasculinoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetSGRemitidasOtraVGMasculinoNull() {
-                this[this.tabletblExpSolicitudGestion_III.SGRemitidasOtraVGMasculinoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsSGRemitidasOtraVGTrangeneroNull() {
-                return this.IsNull(this.tabletblExpSolicitudGestion_III.SGRemitidasOtraVGTrangeneroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetSGRemitidasOtraVGTrangeneroNull() {
-                this[this.tabletblExpSolicitudGestion_III.SGRemitidasOtraVGTrangeneroColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsSGConcluidasFemeninoNull() {
-                return this.IsNull(this.tabletblExpSolicitudGestion_III.SGConcluidasFemeninoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetSGConcluidasFemeninoNull() {
-                this[this.tabletblExpSolicitudGestion_III.SGConcluidasFemeninoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsSGConcluidasMasculinoNull() {
-                return this.IsNull(this.tabletblExpSolicitudGestion_III.SGConcluidasMasculinoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetSGConcluidasMasculinoNull() {
-                this[this.tabletblExpSolicitudGestion_III.SGConcluidasMasculinoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsSGConcluidasTransgeneroNull() {
-                return this.IsNull(this.tabletblExpSolicitudGestion_III.SGConcluidasTransgeneroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetSGConcluidasTransgeneroNull() {
-                this[this.tabletblExpSolicitudGestion_III.SGConcluidasTransgeneroColumn] = global::System.Convert.DBNull;
+            public void SetTotalAfectadosNull() {
+                this[this.tabletblExpSolicitudGestion_III.TotalAfectadosColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -6635,18 +4760,18 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string NoExpediente {
+            public string ExpedienteNumero {
                 get {
                     try {
-                        return ((string)(this[this.tabletblExpVisitaduriaGeneral_IV.NoExpedienteColumn]));
+                        return ((string)(this[this.tabletblExpVisitaduriaGeneral_IV.ExpedienteNumeroColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'NoExpediente\' in table \'tblExpVisitaduriaGeneral_IV\' is DBN" +
-                                "ull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'ExpedienteNumero\' in table \'tblExpVisitaduriaGeneral_IV\' is" +
+                                " DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblExpVisitaduriaGeneral_IV.NoExpedienteColumn] = value;
+                    this[this.tabletblExpVisitaduriaGeneral_IV.ExpedienteNumeroColumn] = value;
                 }
             }
             
@@ -6669,18 +4794,17 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string TipoQ_MC_SG {
+            public string Tipo {
                 get {
                     try {
-                        return ((string)(this[this.tabletblExpVisitaduriaGeneral_IV.TipoQ_MC_SGColumn]));
+                        return ((string)(this[this.tabletblExpVisitaduriaGeneral_IV.TipoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TipoQ_MC_SG\' in table \'tblExpVisitaduriaGeneral_IV\' is DBNu" +
-                                "ll.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Tipo\' in table \'tblExpVisitaduriaGeneral_IV\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblExpVisitaduriaGeneral_IV.TipoQ_MC_SGColumn] = value;
+                    this[this.tabletblExpVisitaduriaGeneral_IV.TipoColumn] = value;
                 }
             }
             
@@ -6703,18 +4827,18 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Procedencia_DORQ_VG {
+            public string Procedencia {
                 get {
                     try {
-                        return ((string)(this[this.tabletblExpVisitaduriaGeneral_IV.Procedencia_DORQ_VGColumn]));
+                        return ((string)(this[this.tabletblExpVisitaduriaGeneral_IV.ProcedenciaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Procedencia_DORQ_VG\' in table \'tblExpVisitaduriaGeneral_IV\'" +
-                                " is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Procedencia\' in table \'tblExpVisitaduriaGeneral_IV\' is DBNu" +
+                                "ll.", e);
                     }
                 }
                 set {
-                    this[this.tabletblExpVisitaduriaGeneral_IV.Procedencia_DORQ_VGColumn] = value;
+                    this[this.tabletblExpVisitaduriaGeneral_IV.ProcedenciaColumn] = value;
                 }
             }
             
@@ -6770,14 +4894,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsNoExpedienteNull() {
-                return this.IsNull(this.tabletblExpVisitaduriaGeneral_IV.NoExpedienteColumn);
+            public bool IsExpedienteNumeroNull() {
+                return this.IsNull(this.tabletblExpVisitaduriaGeneral_IV.ExpedienteNumeroColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetNoExpedienteNull() {
-                this[this.tabletblExpVisitaduriaGeneral_IV.NoExpedienteColumn] = global::System.Convert.DBNull;
+            public void SetExpedienteNumeroNull() {
+                this[this.tabletblExpVisitaduriaGeneral_IV.ExpedienteNumeroColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6794,14 +4918,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTipoQ_MC_SGNull() {
-                return this.IsNull(this.tabletblExpVisitaduriaGeneral_IV.TipoQ_MC_SGColumn);
+            public bool IsTipoNull() {
+                return this.IsNull(this.tabletblExpVisitaduriaGeneral_IV.TipoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTipoQ_MC_SGNull() {
-                this[this.tabletblExpVisitaduriaGeneral_IV.TipoQ_MC_SGColumn] = global::System.Convert.DBNull;
+            public void SetTipoNull() {
+                this[this.tabletblExpVisitaduriaGeneral_IV.TipoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6818,14 +4942,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsProcedencia_DORQ_VGNull() {
-                return this.IsNull(this.tabletblExpVisitaduriaGeneral_IV.Procedencia_DORQ_VGColumn);
+            public bool IsProcedenciaNull() {
+                return this.IsNull(this.tabletblExpVisitaduriaGeneral_IV.ProcedenciaColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetProcedencia_DORQ_VGNull() {
-                this[this.tabletblExpVisitaduriaGeneral_IV.Procedencia_DORQ_VGColumn] = global::System.Convert.DBNull;
+            public void SetProcedenciaNull() {
+                this[this.tabletblExpVisitaduriaGeneral_IV.ProcedenciaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6881,286 +5005,86 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string I_NoCompete {
+            public string Fraccion {
                 get {
                     try {
-                        return ((string)(this[this.tabletblExpConcluidos_V.I_NoCompeteColumn]));
+                        return ((string)(this[this.tabletblExpConcluidos_V.FraccionColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'I_NoCompete\' in table \'tblExpConcluidos_V\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Fraccion\' in table \'tblExpConcluidos_V\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblExpConcluidos_V.I_NoCompeteColumn] = value;
+                    this[this.tabletblExpConcluidos_V.FraccionColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string II_NoViolacionDH {
+            public string Nombre {
                 get {
                     try {
-                        return ((string)(this[this.tabletblExpConcluidos_V.II_NoViolacionDHColumn]));
+                        return ((string)(this[this.tabletblExpConcluidos_V.NombreColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'II_NoViolacionDH\' in table \'tblExpConcluidos_V\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Nombre\' in table \'tblExpConcluidos_V\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblExpConcluidos_V.II_NoViolacionDHColumn] = value;
+                    this[this.tabletblExpConcluidos_V.NombreColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string III_Excluido {
+            public string Total {
                 get {
                     try {
-                        return ((string)(this[this.tabletblExpConcluidos_V.III_ExcluidoColumn]));
+                        return ((string)(this[this.tabletblExpConcluidos_V.TotalColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'III_Excluido\' in table \'tblExpConcluidos_V\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Total\' in table \'tblExpConcluidos_V\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblExpConcluidos_V.III_ExcluidoColumn] = value;
+                    this[this.tabletblExpConcluidos_V.TotalColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string IV_NoResponsabilidad {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpConcluidos_V.IV_NoResponsabilidadColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'IV_NoResponsabilidad\' in table \'tblExpConcluidos_V\' is DBNu" +
-                                "ll.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpConcluidos_V.IV_NoResponsabilidadColumn] = value;
-                }
+            public bool IsFraccionNull() {
+                return this.IsNull(this.tabletblExpConcluidos_V.FraccionColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string V_Desistimiento {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpConcluidos_V.V_DesistimientoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'V_Desistimiento\' in table \'tblExpConcluidos_V\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpConcluidos_V.V_DesistimientoColumn] = value;
-                }
+            public void SetFraccionNull() {
+                this[this.tabletblExpConcluidos_V.FraccionColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string VI_FaltaInteres {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpConcluidos_V.VI_FaltaInteresColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'VI_FaltaInteres\' in table \'tblExpConcluidos_V\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpConcluidos_V.VI_FaltaInteresColumn] = value;
-                }
+            public bool IsNombreNull() {
+                return this.IsNull(this.tabletblExpConcluidos_V.NombreColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string VII_AcuerdoAnterior {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpConcluidos_V.VII_AcuerdoAnteriorColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'VII_AcuerdoAnterior\' in table \'tblExpConcluidos_V\' is DBNul" +
-                                "l.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpConcluidos_V.VII_AcuerdoAnteriorColumn] = value;
-                }
+            public void SetNombreNull() {
+                this[this.tabletblExpConcluidos_V.NombreColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string VIII_Comciliacion {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpConcluidos_V.VIII_ComciliacionColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'VIII_Comciliacion\' in table \'tblExpConcluidos_V\' is DBNull." +
-                                "", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpConcluidos_V.VIII_ComciliacionColumn] = value;
-                }
+            public bool IsTotalNull() {
+                return this.IsNull(this.tabletblExpConcluidos_V.TotalColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string IX_SinMateria {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpConcluidos_V.IX_SinMateriaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'IX_SinMateria\' in table \'tblExpConcluidos_V\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpConcluidos_V.IX_SinMateriaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string X_FundamentoLegal {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpConcluidos_V.X_FundamentoLegalColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'X_FundamentoLegal\' in table \'tblExpConcluidos_V\' is DBNull." +
-                                "", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpConcluidos_V.X_FundamentoLegalColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsI_NoCompeteNull() {
-                return this.IsNull(this.tabletblExpConcluidos_V.I_NoCompeteColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetI_NoCompeteNull() {
-                this[this.tabletblExpConcluidos_V.I_NoCompeteColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsII_NoViolacionDHNull() {
-                return this.IsNull(this.tabletblExpConcluidos_V.II_NoViolacionDHColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetII_NoViolacionDHNull() {
-                this[this.tabletblExpConcluidos_V.II_NoViolacionDHColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsIII_ExcluidoNull() {
-                return this.IsNull(this.tabletblExpConcluidos_V.III_ExcluidoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetIII_ExcluidoNull() {
-                this[this.tabletblExpConcluidos_V.III_ExcluidoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsIV_NoResponsabilidadNull() {
-                return this.IsNull(this.tabletblExpConcluidos_V.IV_NoResponsabilidadColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetIV_NoResponsabilidadNull() {
-                this[this.tabletblExpConcluidos_V.IV_NoResponsabilidadColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsV_DesistimientoNull() {
-                return this.IsNull(this.tabletblExpConcluidos_V.V_DesistimientoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetV_DesistimientoNull() {
-                this[this.tabletblExpConcluidos_V.V_DesistimientoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsVI_FaltaInteresNull() {
-                return this.IsNull(this.tabletblExpConcluidos_V.VI_FaltaInteresColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetVI_FaltaInteresNull() {
-                this[this.tabletblExpConcluidos_V.VI_FaltaInteresColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsVII_AcuerdoAnteriorNull() {
-                return this.IsNull(this.tabletblExpConcluidos_V.VII_AcuerdoAnteriorColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetVII_AcuerdoAnteriorNull() {
-                this[this.tabletblExpConcluidos_V.VII_AcuerdoAnteriorColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsVIII_ComciliacionNull() {
-                return this.IsNull(this.tabletblExpConcluidos_V.VIII_ComciliacionColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetVIII_ComciliacionNull() {
-                this[this.tabletblExpConcluidos_V.VIII_ComciliacionColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsIX_SinMateriaNull() {
-                return this.IsNull(this.tabletblExpConcluidos_V.IX_SinMateriaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetIX_SinMateriaNull() {
-                this[this.tabletblExpConcluidos_V.IX_SinMateriaColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsX_FundamentoLegalNull() {
-                return this.IsNull(this.tabletblExpConcluidos_V.X_FundamentoLegalColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetX_FundamentoLegalNull() {
-                this[this.tabletblExpConcluidos_V.X_FundamentoLegalColumn] = global::System.Convert.DBNull;
+            public void SetTotalNull() {
+                this[this.tabletblExpConcluidos_V.TotalColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -7180,263 +5104,144 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string FederalFemenino {
+            public string Nombre {
                 get {
                     try {
-                        return ((string)(this[this.tabletblExpNivelAutoridadVI.FederalFemeninoColumn]));
+                        return ((string)(this[this.tabletblExpNivelAutoridadVI.NombreColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'FederalFemenino\' in table \'tblExpNivelAutoridadVI\' is DBNul" +
-                                "l.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Nombre\' in table \'tblExpNivelAutoridadVI\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblExpNivelAutoridadVI.FederalFemeninoColumn] = value;
+                    this[this.tabletblExpNivelAutoridadVI.NombreColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string FederalMasculino {
+            public string TotalExpedientes {
                 get {
                     try {
-                        return ((string)(this[this.tabletblExpNivelAutoridadVI.FederalMasculinoColumn]));
+                        return ((string)(this[this.tabletblExpNivelAutoridadVI.TotalExpedientesColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'FederalMasculino\' in table \'tblExpNivelAutoridadVI\' is DBNu" +
+                        throw new global::System.Data.StrongTypingException("The value for column \'TotalExpedientes\' in table \'tblExpNivelAutoridadVI\' is DBNu" +
                                 "ll.", e);
                     }
                 }
                 set {
-                    this[this.tabletblExpNivelAutoridadVI.FederalMasculinoColumn] = value;
+                    this[this.tabletblExpNivelAutoridadVI.TotalExpedientesColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string FederalTransgenero {
+            public string Femenino {
                 get {
                     try {
-                        return ((string)(this[this.tabletblExpNivelAutoridadVI.FederalTransgeneroColumn]));
+                        return ((string)(this[this.tabletblExpNivelAutoridadVI.FemeninoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'FederalTransgenero\' in table \'tblExpNivelAutoridadVI\' is DB" +
-                                "Null.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Femenino\' in table \'tblExpNivelAutoridadVI\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblExpNivelAutoridadVI.FederalTransgeneroColumn] = value;
+                    this[this.tabletblExpNivelAutoridadVI.FemeninoColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string EstatalFemenino {
+            public string Masculino {
                 get {
                     try {
-                        return ((string)(this[this.tabletblExpNivelAutoridadVI.EstatalFemeninoColumn]));
+                        return ((string)(this[this.tabletblExpNivelAutoridadVI.MasculinoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'EstatalFemenino\' in table \'tblExpNivelAutoridadVI\' is DBNul" +
-                                "l.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Masculino\' in table \'tblExpNivelAutoridadVI\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblExpNivelAutoridadVI.EstatalFemeninoColumn] = value;
+                    this[this.tabletblExpNivelAutoridadVI.MasculinoColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string EstatalMasculino {
+            public string TotalAfectados {
                 get {
                     try {
-                        return ((string)(this[this.tabletblExpNivelAutoridadVI.EstatalMasculinoColumn]));
+                        return ((string)(this[this.tabletblExpNivelAutoridadVI.TotalAfectadosColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'EstatalMasculino\' in table \'tblExpNivelAutoridadVI\' is DBNu" +
-                                "ll.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'TotalAfectados\' in table \'tblExpNivelAutoridadVI\' is DBNull" +
+                                ".", e);
                     }
                 }
                 set {
-                    this[this.tabletblExpNivelAutoridadVI.EstatalMasculinoColumn] = value;
+                    this[this.tabletblExpNivelAutoridadVI.TotalAfectadosColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string EstatalTransgenero {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpNivelAutoridadVI.EstatalTransgeneroColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'EstatalTransgenero\' in table \'tblExpNivelAutoridadVI\' is DB" +
-                                "Null.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpNivelAutoridadVI.EstatalTransgeneroColumn] = value;
-                }
+            public bool IsNombreNull() {
+                return this.IsNull(this.tabletblExpNivelAutoridadVI.NombreColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string MunicipalFemenino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpNivelAutoridadVI.MunicipalFemeninoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MunicipalFemenino\' in table \'tblExpNivelAutoridadVI\' is DBN" +
-                                "ull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpNivelAutoridadVI.MunicipalFemeninoColumn] = value;
-                }
+            public void SetNombreNull() {
+                this[this.tabletblExpNivelAutoridadVI.NombreColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string MunicipalMasculino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpNivelAutoridadVI.MunicipalMasculinoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MunicipalMasculino\' in table \'tblExpNivelAutoridadVI\' is DB" +
-                                "Null.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpNivelAutoridadVI.MunicipalMasculinoColumn] = value;
-                }
+            public bool IsTotalExpedientesNull() {
+                return this.IsNull(this.tabletblExpNivelAutoridadVI.TotalExpedientesColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string MunicipalTransgenero {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblExpNivelAutoridadVI.MunicipalTransgeneroColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MunicipalTransgenero\' in table \'tblExpNivelAutoridadVI\' is " +
-                                "DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblExpNivelAutoridadVI.MunicipalTransgeneroColumn] = value;
-                }
+            public void SetTotalExpedientesNull() {
+                this[this.tabletblExpNivelAutoridadVI.TotalExpedientesColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsFederalFemeninoNull() {
-                return this.IsNull(this.tabletblExpNivelAutoridadVI.FederalFemeninoColumn);
+            public bool IsFemeninoNull() {
+                return this.IsNull(this.tabletblExpNivelAutoridadVI.FemeninoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetFederalFemeninoNull() {
-                this[this.tabletblExpNivelAutoridadVI.FederalFemeninoColumn] = global::System.Convert.DBNull;
+            public void SetFemeninoNull() {
+                this[this.tabletblExpNivelAutoridadVI.FemeninoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsFederalMasculinoNull() {
-                return this.IsNull(this.tabletblExpNivelAutoridadVI.FederalMasculinoColumn);
+            public bool IsMasculinoNull() {
+                return this.IsNull(this.tabletblExpNivelAutoridadVI.MasculinoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetFederalMasculinoNull() {
-                this[this.tabletblExpNivelAutoridadVI.FederalMasculinoColumn] = global::System.Convert.DBNull;
+            public void SetMasculinoNull() {
+                this[this.tabletblExpNivelAutoridadVI.MasculinoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsFederalTransgeneroNull() {
-                return this.IsNull(this.tabletblExpNivelAutoridadVI.FederalTransgeneroColumn);
+            public bool IsTotalAfectadosNull() {
+                return this.IsNull(this.tabletblExpNivelAutoridadVI.TotalAfectadosColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetFederalTransgeneroNull() {
-                this[this.tabletblExpNivelAutoridadVI.FederalTransgeneroColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsEstatalFemeninoNull() {
-                return this.IsNull(this.tabletblExpNivelAutoridadVI.EstatalFemeninoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetEstatalFemeninoNull() {
-                this[this.tabletblExpNivelAutoridadVI.EstatalFemeninoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsEstatalMasculinoNull() {
-                return this.IsNull(this.tabletblExpNivelAutoridadVI.EstatalMasculinoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetEstatalMasculinoNull() {
-                this[this.tabletblExpNivelAutoridadVI.EstatalMasculinoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsEstatalTransgeneroNull() {
-                return this.IsNull(this.tabletblExpNivelAutoridadVI.EstatalTransgeneroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetEstatalTransgeneroNull() {
-                this[this.tabletblExpNivelAutoridadVI.EstatalTransgeneroColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMunicipalFemeninoNull() {
-                return this.IsNull(this.tabletblExpNivelAutoridadVI.MunicipalFemeninoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMunicipalFemeninoNull() {
-                this[this.tabletblExpNivelAutoridadVI.MunicipalFemeninoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMunicipalMasculinoNull() {
-                return this.IsNull(this.tabletblExpNivelAutoridadVI.MunicipalMasculinoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMunicipalMasculinoNull() {
-                this[this.tabletblExpNivelAutoridadVI.MunicipalMasculinoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMunicipalTransgeneroNull() {
-                return this.IsNull(this.tabletblExpNivelAutoridadVI.MunicipalTransgeneroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMunicipalTransgeneroNull() {
-                this[this.tabletblExpNivelAutoridadVI.MunicipalTransgeneroColumn] = global::System.Convert.DBNull;
+            public void SetTotalAfectadosNull() {
+                this[this.tabletblExpNivelAutoridadVI.TotalAfectadosColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -7456,350 +5261,144 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string DiligenciaExternaFemenino {
+            public string Nombre {
                 get {
                     try {
-                        return ((string)(this[this.tabletblPersonasAtendidasVII.DiligenciaExternaFemeninoColumn]));
+                        return ((string)(this[this.tabletblPersonasAtendidasVII.NombreColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DiligenciaExternaFemenino\' in table \'tblPersonasAtendidasVI" +
-                                "I\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Nombre\' in table \'tblPersonasAtendidasVII\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblPersonasAtendidasVII.DiligenciaExternaFemeninoColumn] = value;
+                    this[this.tabletblPersonasAtendidasVII.NombreColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string DiligenciaExternaMasculino {
+            public string TotalExpedientes {
                 get {
                     try {
-                        return ((string)(this[this.tabletblPersonasAtendidasVII.DiligenciaExternaMasculinoColumn]));
+                        return ((string)(this[this.tabletblPersonasAtendidasVII.TotalExpedientesColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DiligenciaExternaMasculino\' in table \'tblPersonasAtendidasV" +
-                                "II\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'TotalExpedientes\' in table \'tblPersonasAtendidasVII\' is DBN" +
+                                "ull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblPersonasAtendidasVII.DiligenciaExternaMasculinoColumn] = value;
+                    this[this.tabletblPersonasAtendidasVII.TotalExpedientesColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string DiligenciaExternaTransgenero {
+            public string Femenino {
                 get {
                     try {
-                        return ((string)(this[this.tabletblPersonasAtendidasVII.DiligenciaExternaTransgeneroColumn]));
+                        return ((string)(this[this.tabletblPersonasAtendidasVII.FemeninoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DiligenciaExternaTransgenero\' in table \'tblPersonasAtendida" +
-                                "sVII\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Femenino\' in table \'tblPersonasAtendidasVII\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblPersonasAtendidasVII.DiligenciaExternaTransgeneroColumn] = value;
+                    this[this.tabletblPersonasAtendidasVII.FemeninoColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string EntrevistaExternaFemenino {
+            public string Masculino {
                 get {
                     try {
-                        return ((string)(this[this.tabletblPersonasAtendidasVII.EntrevistaExternaFemeninoColumn]));
+                        return ((string)(this[this.tabletblPersonasAtendidasVII.MasculinoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'EntrevistaExternaFemenino\' in table \'tblPersonasAtendidasVI" +
-                                "I\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Masculino\' in table \'tblPersonasAtendidasVII\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblPersonasAtendidasVII.EntrevistaExternaFemeninoColumn] = value;
+                    this[this.tabletblPersonasAtendidasVII.MasculinoColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string EntrevistaExternaMasculino {
+            public string TotalAfectados {
                 get {
                     try {
-                        return ((string)(this[this.tabletblPersonasAtendidasVII.EntrevistaExternaMasculinoColumn]));
+                        return ((string)(this[this.tabletblPersonasAtendidasVII.TotalAfectadosColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'EntrevistaExternaMasculino\' in table \'tblPersonasAtendidasV" +
-                                "II\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'TotalAfectados\' in table \'tblPersonasAtendidasVII\' is DBNul" +
+                                "l.", e);
                     }
                 }
                 set {
-                    this[this.tabletblPersonasAtendidasVII.EntrevistaExternaMasculinoColumn] = value;
+                    this[this.tabletblPersonasAtendidasVII.TotalAfectadosColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string EntrevistaExternaTransgenero {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblPersonasAtendidasVII.EntrevistaExternaTransgeneroColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'EntrevistaExternaTransgenero\' in table \'tblPersonasAtendida" +
-                                "sVII\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblPersonasAtendidasVII.EntrevistaExternaTransgeneroColumn] = value;
-                }
+            public bool IsNombreNull() {
+                return this.IsNull(this.tabletblPersonasAtendidasVII.NombreColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string ComparecenciaFemenino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblPersonasAtendidasVII.ComparecenciaFemeninoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ComparecenciaFemenino\' in table \'tblPersonasAtendidasVII\' i" +
-                                "s DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblPersonasAtendidasVII.ComparecenciaFemeninoColumn] = value;
-                }
+            public void SetNombreNull() {
+                this[this.tabletblPersonasAtendidasVII.NombreColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string ComparecenciaMasculino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblPersonasAtendidasVII.ComparecenciaMasculinoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ComparecenciaMasculino\' in table \'tblPersonasAtendidasVII\' " +
-                                "is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblPersonasAtendidasVII.ComparecenciaMasculinoColumn] = value;
-                }
+            public bool IsTotalExpedientesNull() {
+                return this.IsNull(this.tabletblPersonasAtendidasVII.TotalExpedientesColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string ComparecenciaTransgenero {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblPersonasAtendidasVII.ComparecenciaTransgeneroColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ComparecenciaTransgenero\' in table \'tblPersonasAtendidasVII" +
-                                "\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblPersonasAtendidasVII.ComparecenciaTransgeneroColumn] = value;
-                }
+            public void SetTotalExpedientesNull() {
+                this[this.tabletblPersonasAtendidasVII.TotalExpedientesColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string EntrevistaAutoridadesFemenino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblPersonasAtendidasVII.EntrevistaAutoridadesFemeninoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'EntrevistaAutoridadesFemenino\' in table \'tblPersonasAtendid" +
-                                "asVII\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblPersonasAtendidasVII.EntrevistaAutoridadesFemeninoColumn] = value;
-                }
+            public bool IsFemeninoNull() {
+                return this.IsNull(this.tabletblPersonasAtendidasVII.FemeninoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string EntrevistaAutoridadesMasculino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblPersonasAtendidasVII.EntrevistaAutoridadesMasculinoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'EntrevistaAutoridadesMasculino\' in table \'tblPersonasAtendi" +
-                                "dasVII\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblPersonasAtendidasVII.EntrevistaAutoridadesMasculinoColumn] = value;
-                }
+            public void SetFemeninoNull() {
+                this[this.tabletblPersonasAtendidasVII.FemeninoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string EntrevistaAutoridadesTransgenero {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblPersonasAtendidasVII.EntrevistaAutoridadesTransgeneroColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'EntrevistaAutoridadesTransgenero\' in table \'tblPersonasAten" +
-                                "didasVII\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblPersonasAtendidasVII.EntrevistaAutoridadesTransgeneroColumn] = value;
-                }
+            public bool IsMasculinoNull() {
+                return this.IsNull(this.tabletblPersonasAtendidasVII.MasculinoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsDiligenciaExternaFemeninoNull() {
-                return this.IsNull(this.tabletblPersonasAtendidasVII.DiligenciaExternaFemeninoColumn);
+            public void SetMasculinoNull() {
+                this[this.tabletblPersonasAtendidasVII.MasculinoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetDiligenciaExternaFemeninoNull() {
-                this[this.tabletblPersonasAtendidasVII.DiligenciaExternaFemeninoColumn] = global::System.Convert.DBNull;
+            public bool IsTotalAfectadosNull() {
+                return this.IsNull(this.tabletblPersonasAtendidasVII.TotalAfectadosColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsDiligenciaExternaMasculinoNull() {
-                return this.IsNull(this.tabletblPersonasAtendidasVII.DiligenciaExternaMasculinoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetDiligenciaExternaMasculinoNull() {
-                this[this.tabletblPersonasAtendidasVII.DiligenciaExternaMasculinoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsDiligenciaExternaTransgeneroNull() {
-                return this.IsNull(this.tabletblPersonasAtendidasVII.DiligenciaExternaTransgeneroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetDiligenciaExternaTransgeneroNull() {
-                this[this.tabletblPersonasAtendidasVII.DiligenciaExternaTransgeneroColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsEntrevistaExternaFemeninoNull() {
-                return this.IsNull(this.tabletblPersonasAtendidasVII.EntrevistaExternaFemeninoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetEntrevistaExternaFemeninoNull() {
-                this[this.tabletblPersonasAtendidasVII.EntrevistaExternaFemeninoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsEntrevistaExternaMasculinoNull() {
-                return this.IsNull(this.tabletblPersonasAtendidasVII.EntrevistaExternaMasculinoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetEntrevistaExternaMasculinoNull() {
-                this[this.tabletblPersonasAtendidasVII.EntrevistaExternaMasculinoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsEntrevistaExternaTransgeneroNull() {
-                return this.IsNull(this.tabletblPersonasAtendidasVII.EntrevistaExternaTransgeneroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetEntrevistaExternaTransgeneroNull() {
-                this[this.tabletblPersonasAtendidasVII.EntrevistaExternaTransgeneroColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsComparecenciaFemeninoNull() {
-                return this.IsNull(this.tabletblPersonasAtendidasVII.ComparecenciaFemeninoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetComparecenciaFemeninoNull() {
-                this[this.tabletblPersonasAtendidasVII.ComparecenciaFemeninoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsComparecenciaMasculinoNull() {
-                return this.IsNull(this.tabletblPersonasAtendidasVII.ComparecenciaMasculinoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetComparecenciaMasculinoNull() {
-                this[this.tabletblPersonasAtendidasVII.ComparecenciaMasculinoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsComparecenciaTransgeneroNull() {
-                return this.IsNull(this.tabletblPersonasAtendidasVII.ComparecenciaTransgeneroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetComparecenciaTransgeneroNull() {
-                this[this.tabletblPersonasAtendidasVII.ComparecenciaTransgeneroColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsEntrevistaAutoridadesFemeninoNull() {
-                return this.IsNull(this.tabletblPersonasAtendidasVII.EntrevistaAutoridadesFemeninoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetEntrevistaAutoridadesFemeninoNull() {
-                this[this.tabletblPersonasAtendidasVII.EntrevistaAutoridadesFemeninoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsEntrevistaAutoridadesMasculinoNull() {
-                return this.IsNull(this.tabletblPersonasAtendidasVII.EntrevistaAutoridadesMasculinoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetEntrevistaAutoridadesMasculinoNull() {
-                this[this.tabletblPersonasAtendidasVII.EntrevistaAutoridadesMasculinoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsEntrevistaAutoridadesTransgeneroNull() {
-                return this.IsNull(this.tabletblPersonasAtendidasVII.EntrevistaAutoridadesTransgeneroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetEntrevistaAutoridadesTransgeneroNull() {
-                this[this.tabletblPersonasAtendidasVII.EntrevistaAutoridadesTransgeneroColumn] = global::System.Convert.DBNull;
+            public void SetTotalAfectadosNull() {
+                this[this.tabletblPersonasAtendidasVII.TotalAfectadosColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -7819,524 +5418,143 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CEPRESOTopoChicoFemenino {
+            public string Nombre {
                 get {
                     try {
-                        return ((string)(this[this.tabletblEntrevistas_VIII.CEPRESOTopoChicoFemeninoColumn]));
+                        return ((string)(this[this.tabletblEntrevistas_VIII.NombreColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CEPRESOTopoChicoFemenino\' in table \'tblEntrevistas_VIII\' is" +
-                                " DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Nombre\' in table \'tblEntrevistas_VIII\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblEntrevistas_VIII.CEPRESOTopoChicoFemeninoColumn] = value;
+                    this[this.tabletblEntrevistas_VIII.NombreColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CEPRESOTopoChicoMasculino {
+            public string TotalExpedientes {
                 get {
                     try {
-                        return ((string)(this[this.tabletblEntrevistas_VIII.CEPRESOTopoChicoMasculinoColumn]));
+                        return ((string)(this[this.tabletblEntrevistas_VIII.TotalExpedientesColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CEPRESOTopoChicoMasculino\' in table \'tblEntrevistas_VIII\' i" +
-                                "s DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'TotalExpedientes\' in table \'tblEntrevistas_VIII\' is DBNull." +
+                                "", e);
                     }
                 }
                 set {
-                    this[this.tabletblEntrevistas_VIII.CEPRESOTopoChicoMasculinoColumn] = value;
+                    this[this.tabletblEntrevistas_VIII.TotalExpedientesColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CEPRESOTopoChicoTransgenero {
+            public string Femenino {
                 get {
                     try {
-                        return ((string)(this[this.tabletblEntrevistas_VIII.CEPRESOTopoChicoTransgeneroColumn]));
+                        return ((string)(this[this.tabletblEntrevistas_VIII.FemeninoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CEPRESOTopoChicoTransgenero\' in table \'tblEntrevistas_VIII\'" +
-                                " is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Femenino\' in table \'tblEntrevistas_VIII\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblEntrevistas_VIII.CEPRESOTopoChicoTransgeneroColumn] = value;
+                    this[this.tabletblEntrevistas_VIII.FemeninoColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CEPRESOCadereytaFemenino {
+            public string Masculino {
                 get {
                     try {
-                        return ((string)(this[this.tabletblEntrevistas_VIII.CEPRESOCadereytaFemeninoColumn]));
+                        return ((string)(this[this.tabletblEntrevistas_VIII.MasculinoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CEPRESOCadereytaFemenino\' in table \'tblEntrevistas_VIII\' is" +
-                                " DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Masculino\' in table \'tblEntrevistas_VIII\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblEntrevistas_VIII.CEPRESOCadereytaFemeninoColumn] = value;
+                    this[this.tabletblEntrevistas_VIII.MasculinoColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CEPRESOCadereytaMasculino {
+            public string TotalAfectados {
                 get {
                     try {
-                        return ((string)(this[this.tabletblEntrevistas_VIII.CEPRESOCadereytaMasculinoColumn]));
+                        return ((string)(this[this.tabletblEntrevistas_VIII.TotalAfectadosColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CEPRESOCadereytaMasculino\' in table \'tblEntrevistas_VIII\' i" +
-                                "s DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'TotalAfectados\' in table \'tblEntrevistas_VIII\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblEntrevistas_VIII.CEPRESOCadereytaMasculinoColumn] = value;
+                    this[this.tabletblEntrevistas_VIII.TotalAfectadosColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CEPRESOCadereytaTransgenero {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblEntrevistas_VIII.CEPRESOCadereytaTransgeneroColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CEPRESOCadereytaTransgenero\' in table \'tblEntrevistas_VIII\'" +
-                                " is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblEntrevistas_VIII.CEPRESOCadereytaTransgeneroColumn] = value;
-                }
+            public bool IsNombreNull() {
+                return this.IsNull(this.tabletblEntrevistas_VIII.NombreColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CEPRESOApodacaFemenino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblEntrevistas_VIII.CEPRESOApodacaFemeninoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CEPRESOApodacaFemenino\' in table \'tblEntrevistas_VIII\' is D" +
-                                "BNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblEntrevistas_VIII.CEPRESOApodacaFemeninoColumn] = value;
-                }
+            public void SetNombreNull() {
+                this[this.tabletblEntrevistas_VIII.NombreColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CEPRESOApodacaMasculino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblEntrevistas_VIII.CEPRESOApodacaMasculinoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CEPRESOApodacaMasculino\' in table \'tblEntrevistas_VIII\' is " +
-                                "DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblEntrevistas_VIII.CEPRESOApodacaMasculinoColumn] = value;
-                }
+            public bool IsTotalExpedientesNull() {
+                return this.IsNull(this.tabletblEntrevistas_VIII.TotalExpedientesColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CEPRESOApodacaTransgenero {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblEntrevistas_VIII.CEPRESOApodacaTransgeneroColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CEPRESOApodacaTransgenero\' in table \'tblEntrevistas_VIII\' i" +
-                                "s DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblEntrevistas_VIII.CEPRESOApodacaTransgeneroColumn] = value;
-                }
+            public void SetTotalExpedientesNull() {
+                this[this.tabletblEntrevistas_VIII.TotalExpedientesColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CJAdolecentesFemenino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblEntrevistas_VIII.CJAdolecentesFemeninoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CJAdolecentesFemenino\' in table \'tblEntrevistas_VIII\' is DB" +
-                                "Null.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblEntrevistas_VIII.CJAdolecentesFemeninoColumn] = value;
-                }
+            public bool IsFemeninoNull() {
+                return this.IsNull(this.tabletblEntrevistas_VIII.FemeninoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CJAdolecentesMasculino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblEntrevistas_VIII.CJAdolecentesMasculinoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CJAdolecentesMasculino\' in table \'tblEntrevistas_VIII\' is D" +
-                                "BNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblEntrevistas_VIII.CJAdolecentesMasculinoColumn] = value;
-                }
+            public void SetFemeninoNull() {
+                this[this.tabletblEntrevistas_VIII.FemeninoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CJAdolecentesTransgenero {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblEntrevistas_VIII.CJAdolecentesTransgeneroColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CJAdolecentesTransgenero\' in table \'tblEntrevistas_VIII\' is" +
-                                " DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblEntrevistas_VIII.CJAdolecentesTransgeneroColumn] = value;
-                }
+            public bool IsMasculinoNull() {
+                return this.IsNull(this.tabletblEntrevistas_VIII.MasculinoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string AEI_CasasdeAmigoFemenino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblEntrevistas_VIII.AEI_CasasdeAmigoFemeninoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'AEI_CasasdeAmigoFemenino\' in table \'tblEntrevistas_VIII\' is" +
-                                " DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblEntrevistas_VIII.AEI_CasasdeAmigoFemeninoColumn] = value;
-                }
+            public void SetMasculinoNull() {
+                this[this.tabletblEntrevistas_VIII.MasculinoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string AEI_CasasdeAmigoMasculino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblEntrevistas_VIII.AEI_CasasdeAmigoMasculinoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'AEI_CasasdeAmigoMasculino\' in table \'tblEntrevistas_VIII\' i" +
-                                "s DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblEntrevistas_VIII.AEI_CasasdeAmigoMasculinoColumn] = value;
-                }
+            public bool IsTotalAfectadosNull() {
+                return this.IsNull(this.tabletblEntrevistas_VIII.TotalAfectadosColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string AEI_CasasdeAmigoTransgenero {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblEntrevistas_VIII.AEI_CasasdeAmigoTransgeneroColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'AEI_CasasdeAmigoTransgenero\' in table \'tblEntrevistas_VIII\'" +
-                                " is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblEntrevistas_VIII.AEI_CasasdeAmigoTransgeneroColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string OtrosCentrosAFemenino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblEntrevistas_VIII.OtrosCentrosAFemeninoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'OtrosCentrosAFemenino\' in table \'tblEntrevistas_VIII\' is DB" +
-                                "Null.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblEntrevistas_VIII.OtrosCentrosAFemeninoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string OtrosCentrosAMasculino {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblEntrevistas_VIII.OtrosCentrosAMasculinoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'OtrosCentrosAMasculino\' in table \'tblEntrevistas_VIII\' is D" +
-                                "BNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblEntrevistas_VIII.OtrosCentrosAMasculinoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string OtrosCentrosATransgenero {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblEntrevistas_VIII.OtrosCentrosATransgeneroColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'OtrosCentrosATransgenero\' in table \'tblEntrevistas_VIII\' is" +
-                                " DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblEntrevistas_VIII.OtrosCentrosATransgeneroColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCEPRESOTopoChicoFemeninoNull() {
-                return this.IsNull(this.tabletblEntrevistas_VIII.CEPRESOTopoChicoFemeninoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCEPRESOTopoChicoFemeninoNull() {
-                this[this.tabletblEntrevistas_VIII.CEPRESOTopoChicoFemeninoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCEPRESOTopoChicoMasculinoNull() {
-                return this.IsNull(this.tabletblEntrevistas_VIII.CEPRESOTopoChicoMasculinoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCEPRESOTopoChicoMasculinoNull() {
-                this[this.tabletblEntrevistas_VIII.CEPRESOTopoChicoMasculinoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCEPRESOTopoChicoTransgeneroNull() {
-                return this.IsNull(this.tabletblEntrevistas_VIII.CEPRESOTopoChicoTransgeneroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCEPRESOTopoChicoTransgeneroNull() {
-                this[this.tabletblEntrevistas_VIII.CEPRESOTopoChicoTransgeneroColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCEPRESOCadereytaFemeninoNull() {
-                return this.IsNull(this.tabletblEntrevistas_VIII.CEPRESOCadereytaFemeninoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCEPRESOCadereytaFemeninoNull() {
-                this[this.tabletblEntrevistas_VIII.CEPRESOCadereytaFemeninoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCEPRESOCadereytaMasculinoNull() {
-                return this.IsNull(this.tabletblEntrevistas_VIII.CEPRESOCadereytaMasculinoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCEPRESOCadereytaMasculinoNull() {
-                this[this.tabletblEntrevistas_VIII.CEPRESOCadereytaMasculinoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCEPRESOCadereytaTransgeneroNull() {
-                return this.IsNull(this.tabletblEntrevistas_VIII.CEPRESOCadereytaTransgeneroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCEPRESOCadereytaTransgeneroNull() {
-                this[this.tabletblEntrevistas_VIII.CEPRESOCadereytaTransgeneroColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCEPRESOApodacaFemeninoNull() {
-                return this.IsNull(this.tabletblEntrevistas_VIII.CEPRESOApodacaFemeninoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCEPRESOApodacaFemeninoNull() {
-                this[this.tabletblEntrevistas_VIII.CEPRESOApodacaFemeninoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCEPRESOApodacaMasculinoNull() {
-                return this.IsNull(this.tabletblEntrevistas_VIII.CEPRESOApodacaMasculinoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCEPRESOApodacaMasculinoNull() {
-                this[this.tabletblEntrevistas_VIII.CEPRESOApodacaMasculinoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCEPRESOApodacaTransgeneroNull() {
-                return this.IsNull(this.tabletblEntrevistas_VIII.CEPRESOApodacaTransgeneroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCEPRESOApodacaTransgeneroNull() {
-                this[this.tabletblEntrevistas_VIII.CEPRESOApodacaTransgeneroColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCJAdolecentesFemeninoNull() {
-                return this.IsNull(this.tabletblEntrevistas_VIII.CJAdolecentesFemeninoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCJAdolecentesFemeninoNull() {
-                this[this.tabletblEntrevistas_VIII.CJAdolecentesFemeninoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCJAdolecentesMasculinoNull() {
-                return this.IsNull(this.tabletblEntrevistas_VIII.CJAdolecentesMasculinoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCJAdolecentesMasculinoNull() {
-                this[this.tabletblEntrevistas_VIII.CJAdolecentesMasculinoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCJAdolecentesTransgeneroNull() {
-                return this.IsNull(this.tabletblEntrevistas_VIII.CJAdolecentesTransgeneroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCJAdolecentesTransgeneroNull() {
-                this[this.tabletblEntrevistas_VIII.CJAdolecentesTransgeneroColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsAEI_CasasdeAmigoFemeninoNull() {
-                return this.IsNull(this.tabletblEntrevistas_VIII.AEI_CasasdeAmigoFemeninoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetAEI_CasasdeAmigoFemeninoNull() {
-                this[this.tabletblEntrevistas_VIII.AEI_CasasdeAmigoFemeninoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsAEI_CasasdeAmigoMasculinoNull() {
-                return this.IsNull(this.tabletblEntrevistas_VIII.AEI_CasasdeAmigoMasculinoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetAEI_CasasdeAmigoMasculinoNull() {
-                this[this.tabletblEntrevistas_VIII.AEI_CasasdeAmigoMasculinoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsAEI_CasasdeAmigoTransgeneroNull() {
-                return this.IsNull(this.tabletblEntrevistas_VIII.AEI_CasasdeAmigoTransgeneroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetAEI_CasasdeAmigoTransgeneroNull() {
-                this[this.tabletblEntrevistas_VIII.AEI_CasasdeAmigoTransgeneroColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsOtrosCentrosAFemeninoNull() {
-                return this.IsNull(this.tabletblEntrevistas_VIII.OtrosCentrosAFemeninoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetOtrosCentrosAFemeninoNull() {
-                this[this.tabletblEntrevistas_VIII.OtrosCentrosAFemeninoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsOtrosCentrosAMasculinoNull() {
-                return this.IsNull(this.tabletblEntrevistas_VIII.OtrosCentrosAMasculinoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetOtrosCentrosAMasculinoNull() {
-                this[this.tabletblEntrevistas_VIII.OtrosCentrosAMasculinoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsOtrosCentrosATransgeneroNull() {
-                return this.IsNull(this.tabletblEntrevistas_VIII.OtrosCentrosATransgeneroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetOtrosCentrosATransgeneroNull() {
-                this[this.tabletblEntrevistas_VIII.OtrosCentrosATransgeneroColumn] = global::System.Convert.DBNull;
+            public void SetTotalAfectadosNull() {
+                this[this.tabletblEntrevistas_VIII.TotalAfectadosColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -8356,350 +5574,87 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CEPRESOTopoChicoVisitas {
+            public string Nombre {
                 get {
                     try {
-                        return ((string)(this[this.tabletblSupervisores_IX.CEPRESOTopoChicoVisitasColumn]));
+                        return ((string)(this[this.tabletblSupervisores_IX.NombreColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CEPRESOTopoChicoVisitas\' in table \'tblSupervisores_IX\' is D" +
-                                "BNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Nombre\' in table \'tblSupervisores_IX\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblSupervisores_IX.CEPRESOTopoChicoVisitasColumn] = value;
+                    this[this.tabletblSupervisores_IX.NombreColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CEPRESOTopoChicoEntrevistas {
+            public string Visitas {
                 get {
                     try {
-                        return ((string)(this[this.tabletblSupervisores_IX.CEPRESOTopoChicoEntrevistasColumn]));
+                        return ((string)(this[this.tabletblSupervisores_IX.VisitasColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CEPRESOTopoChicoEntrevistas\' in table \'tblSupervisores_IX\' " +
-                                "is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Visitas\' in table \'tblSupervisores_IX\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblSupervisores_IX.CEPRESOTopoChicoEntrevistasColumn] = value;
+                    this[this.tabletblSupervisores_IX.VisitasColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CEPRESOCadereytaVisitas {
+            public string PersonasEntrevistadas {
                 get {
                     try {
-                        return ((string)(this[this.tabletblSupervisores_IX.CEPRESOCadereytaVisitasColumn]));
+                        return ((string)(this[this.tabletblSupervisores_IX.PersonasEntrevistadasColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CEPRESOCadereytaVisitas\' in table \'tblSupervisores_IX\' is D" +
-                                "BNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblSupervisores_IX.CEPRESOCadereytaVisitasColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CEPRESOCadereytaEntrevistas {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblSupervisores_IX.CEPRESOCadereytaEntrevistasColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CEPRESOCadereytaEntrevistas\' in table \'tblSupervisores_IX\' " +
-                                "is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblSupervisores_IX.CEPRESOCadereytaEntrevistasColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CEPRESOApodacaVisitas {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblSupervisores_IX.CEPRESOApodacaVisitasColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CEPRESOApodacaVisitas\' in table \'tblSupervisores_IX\' is DBN" +
+                        throw new global::System.Data.StrongTypingException("The value for column \'PersonasEntrevistadas\' in table \'tblSupervisores_IX\' is DBN" +
                                 "ull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblSupervisores_IX.CEPRESOApodacaVisitasColumn] = value;
+                    this[this.tabletblSupervisores_IX.PersonasEntrevistadasColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CEPRESOApodacaEntrevistas {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblSupervisores_IX.CEPRESOApodacaEntrevistasColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CEPRESOApodacaEntrevistas\' in table \'tblSupervisores_IX\' is" +
-                                " DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblSupervisores_IX.CEPRESOApodacaEntrevistasColumn] = value;
-                }
+            public bool IsNombreNull() {
+                return this.IsNull(this.tabletblSupervisores_IX.NombreColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CJAdolecentesVisitas {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblSupervisores_IX.CJAdolecentesVisitasColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CJAdolecentesVisitas\' in table \'tblSupervisores_IX\' is DBNu" +
-                                "ll.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblSupervisores_IX.CJAdolecentesVisitasColumn] = value;
-                }
+            public void SetNombreNull() {
+                this[this.tabletblSupervisores_IX.NombreColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CJAdolecentesEntrevistas {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblSupervisores_IX.CJAdolecentesEntrevistasColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CJAdolecentesEntrevistas\' in table \'tblSupervisores_IX\' is " +
-                                "DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblSupervisores_IX.CJAdolecentesEntrevistasColumn] = value;
-                }
+            public bool IsVisitasNull() {
+                return this.IsNull(this.tabletblSupervisores_IX.VisitasColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CarcelMunicipalVisitas {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblSupervisores_IX.CarcelMunicipalVisitasColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CarcelMunicipalVisitas\' in table \'tblSupervisores_IX\' is DB" +
-                                "Null.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblSupervisores_IX.CarcelMunicipalVisitasColumn] = value;
-                }
+            public void SetVisitasNull() {
+                this[this.tabletblSupervisores_IX.VisitasColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CarcelMunicipalEntrevistas {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblSupervisores_IX.CarcelMunicipalEntrevistasColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CarcelMunicipalEntrevistas\' in table \'tblSupervisores_IX\' i" +
-                                "s DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblSupervisores_IX.CarcelMunicipalEntrevistasColumn] = value;
-                }
+            public bool IsPersonasEntrevistadasNull() {
+                return this.IsNull(this.tabletblSupervisores_IX.PersonasEntrevistadasColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CardelDistritalVisitas {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblSupervisores_IX.CardelDistritalVisitasColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CardelDistritalVisitas\' in table \'tblSupervisores_IX\' is DB" +
-                                "Null.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblSupervisores_IX.CardelDistritalVisitasColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CardelDistritalEntrevistas {
-                get {
-                    try {
-                        return ((string)(this[this.tabletblSupervisores_IX.CardelDistritalEntrevistasColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CardelDistritalEntrevistas\' in table \'tblSupervisores_IX\' i" +
-                                "s DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tabletblSupervisores_IX.CardelDistritalEntrevistasColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCEPRESOTopoChicoVisitasNull() {
-                return this.IsNull(this.tabletblSupervisores_IX.CEPRESOTopoChicoVisitasColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCEPRESOTopoChicoVisitasNull() {
-                this[this.tabletblSupervisores_IX.CEPRESOTopoChicoVisitasColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCEPRESOTopoChicoEntrevistasNull() {
-                return this.IsNull(this.tabletblSupervisores_IX.CEPRESOTopoChicoEntrevistasColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCEPRESOTopoChicoEntrevistasNull() {
-                this[this.tabletblSupervisores_IX.CEPRESOTopoChicoEntrevistasColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCEPRESOCadereytaVisitasNull() {
-                return this.IsNull(this.tabletblSupervisores_IX.CEPRESOCadereytaVisitasColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCEPRESOCadereytaVisitasNull() {
-                this[this.tabletblSupervisores_IX.CEPRESOCadereytaVisitasColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCEPRESOCadereytaEntrevistasNull() {
-                return this.IsNull(this.tabletblSupervisores_IX.CEPRESOCadereytaEntrevistasColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCEPRESOCadereytaEntrevistasNull() {
-                this[this.tabletblSupervisores_IX.CEPRESOCadereytaEntrevistasColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCEPRESOApodacaVisitasNull() {
-                return this.IsNull(this.tabletblSupervisores_IX.CEPRESOApodacaVisitasColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCEPRESOApodacaVisitasNull() {
-                this[this.tabletblSupervisores_IX.CEPRESOApodacaVisitasColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCEPRESOApodacaEntrevistasNull() {
-                return this.IsNull(this.tabletblSupervisores_IX.CEPRESOApodacaEntrevistasColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCEPRESOApodacaEntrevistasNull() {
-                this[this.tabletblSupervisores_IX.CEPRESOApodacaEntrevistasColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCJAdolecentesVisitasNull() {
-                return this.IsNull(this.tabletblSupervisores_IX.CJAdolecentesVisitasColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCJAdolecentesVisitasNull() {
-                this[this.tabletblSupervisores_IX.CJAdolecentesVisitasColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCJAdolecentesEntrevistasNull() {
-                return this.IsNull(this.tabletblSupervisores_IX.CJAdolecentesEntrevistasColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCJAdolecentesEntrevistasNull() {
-                this[this.tabletblSupervisores_IX.CJAdolecentesEntrevistasColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCarcelMunicipalVisitasNull() {
-                return this.IsNull(this.tabletblSupervisores_IX.CarcelMunicipalVisitasColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCarcelMunicipalVisitasNull() {
-                this[this.tabletblSupervisores_IX.CarcelMunicipalVisitasColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCarcelMunicipalEntrevistasNull() {
-                return this.IsNull(this.tabletblSupervisores_IX.CarcelMunicipalEntrevistasColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCarcelMunicipalEntrevistasNull() {
-                this[this.tabletblSupervisores_IX.CarcelMunicipalEntrevistasColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCardelDistritalVisitasNull() {
-                return this.IsNull(this.tabletblSupervisores_IX.CardelDistritalVisitasColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCardelDistritalVisitasNull() {
-                this[this.tabletblSupervisores_IX.CardelDistritalVisitasColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCardelDistritalEntrevistasNull() {
-                return this.IsNull(this.tabletblSupervisores_IX.CardelDistritalEntrevistasColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCardelDistritalEntrevistasNull() {
-                this[this.tabletblSupervisores_IX.CardelDistritalEntrevistasColumn] = global::System.Convert.DBNull;
+            public void SetPersonasEntrevistadasNull() {
+                this[this.tabletblSupervisores_IX.PersonasEntrevistadasColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -8719,33 +5674,33 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string NoExpediente {
+            public string ExpedienteNumero {
                 get {
                     try {
-                        return ((string)(this[this.tabletblResultados_X.NoExpedienteColumn]));
+                        return ((string)(this[this.tabletblResultados_X.ExpedienteNumeroColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'NoExpediente\' in table \'tblResultados_X\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'ExpedienteNumero\' in table \'tblResultados_X\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblResultados_X.NoExpedienteColumn] = value;
+                    this[this.tabletblResultados_X.ExpedienteNumeroColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Autoridad {
+            public string Destinatario {
                 get {
                     try {
-                        return ((string)(this[this.tabletblResultados_X.AutoridadColumn]));
+                        return ((string)(this[this.tabletblResultados_X.DestinatarioColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Autoridad\' in table \'tblResultados_X\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Destinatario\' in table \'tblResultados_X\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblResultados_X.AutoridadColumn] = value;
+                    this[this.tabletblResultados_X.DestinatarioColumn] = value;
                 }
             }
             
@@ -8785,26 +5740,26 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsNoExpedienteNull() {
-                return this.IsNull(this.tabletblResultados_X.NoExpedienteColumn);
+            public bool IsExpedienteNumeroNull() {
+                return this.IsNull(this.tabletblResultados_X.ExpedienteNumeroColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetNoExpedienteNull() {
-                this[this.tabletblResultados_X.NoExpedienteColumn] = global::System.Convert.DBNull;
+            public void SetExpedienteNumeroNull() {
+                this[this.tabletblResultados_X.ExpedienteNumeroColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsAutoridadNull() {
-                return this.IsNull(this.tabletblResultados_X.AutoridadColumn);
+            public bool IsDestinatarioNull() {
+                return this.IsNull(this.tabletblResultados_X.DestinatarioColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetAutoridadNull() {
-                this[this.tabletblResultados_X.AutoridadColumn] = global::System.Convert.DBNull;
+            public void SetDestinatarioNull() {
+                this[this.tabletblResultados_X.DestinatarioColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8829,6 +5784,105 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetConciliacionCumplidaNull() {
                 this[this.tabletblResultados_X.ConciliacionCumplidaColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class tblDatosGeneralesRow : global::System.Data.DataRow {
+            
+            private tblDatosGeneralesDataTable tabletblDatosGenerales;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal tblDatosGeneralesRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tabletblDatosGenerales = ((tblDatosGeneralesDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Dirigente {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDatosGenerales.DirigenteColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Dirigente\' in table \'tblDatosGenerales\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDatosGenerales.DirigenteColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string FechaInicial {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDatosGenerales.FechaInicialColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FechaInicial\' in table \'tblDatosGenerales\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDatosGenerales.FechaInicialColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string FechaFinal {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDatosGenerales.FechaFinalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FechaFinal\' in table \'tblDatosGenerales\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDatosGenerales.FechaFinalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDirigenteNull() {
+                return this.IsNull(this.tabletblDatosGenerales.DirigenteColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDirigenteNull() {
+                this[this.tabletblDatosGenerales.DirigenteColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFechaInicialNull() {
+                return this.IsNull(this.tabletblDatosGenerales.FechaInicialColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFechaInicialNull() {
+                this[this.tabletblDatosGenerales.FechaInicialColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFechaFinalNull() {
+                return this.IsNull(this.tabletblDatosGenerales.FechaFinalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFechaFinalNull() {
+                this[this.tabletblDatosGenerales.FechaFinalColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -9192,6 +6246,40 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public tblResultados_XRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class tblDatosGeneralesRowChangeEvent : global::System.EventArgs {
+            
+            private tblDatosGeneralesRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblDatosGeneralesRowChangeEvent(tblDatosGeneralesRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tblDatosGeneralesRow Row {
                 get {
                     return this.eventRow;
                 }

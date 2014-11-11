@@ -824,20 +824,24 @@ namespace SIAQ.DataAccess.Object
             ENTResponse oENTResponse = new ENTResponse();
 
             // Configuración de objetos
-            sqlCom = new SqlCommand("usprptGeneralVisitaduria", sqlCnn);
+            sqlCom = new SqlCommand("uspReporte_VisitaduriaGeneral", sqlCnn);
             sqlCom.CommandType = CommandType.StoredProcedure;
 
             // Timeout alternativo en caso de ser solicitado
             if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
 
             // Parametros
-            sqlPar = new SqlParameter("FechaInicial", SqlDbType.DateTime);
+            sqlPar = new SqlParameter("BeginDate", SqlDbType.DateTime);
             sqlPar.Value = oENTVisitaduria.FechaDesde;
             sqlCom.Parameters.Add(sqlPar);
 
-            sqlPar = new SqlParameter("FechaFinal", SqlDbType.DateTime);
+            sqlPar = new SqlParameter("EndDate", SqlDbType.DateTime);
             sqlPar.Value = oENTVisitaduria.FechaHasta;
             sqlCom.Parameters.Add(sqlPar);
+
+            //sqlPar = new SqlParameter("AreaId", SqlDbType.Int);
+            //sqlPar.Value = oENTVisitaduria.AreaId;
+            //sqlCom.Parameters.Add(sqlPar);
 
             // Inicializaciones
             oENTResponse.dsResponse = new DataSet();

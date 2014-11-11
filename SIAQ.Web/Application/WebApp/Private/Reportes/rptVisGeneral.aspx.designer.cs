@@ -40,6 +40,15 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes {
         protected global::SIAQ.Web.Include.WebUserControls.wucCalendar wucFechaFinal;
         
         /// <summary>
+        /// ddlArea control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlArea;
+        
+        /// <summary>
         /// Panel1 control.
         /// </summary>
         /// <remarks>
@@ -56,5 +65,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAceptar;
+        
+        /// <summary>
+        /// hddAreaVisible control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hddAreaVisible;
     }
 }

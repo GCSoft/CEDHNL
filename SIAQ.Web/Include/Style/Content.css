@@ -28,7 +28,7 @@
 
 .ActionContent{
 	background-color:#FFFFFF;
-	border:1px solid #4B4878;
+	border:1px solid #456B4A;
 	margin:0px auto;
 	position:relative;
 	z-index:901;
@@ -43,7 +43,7 @@
 }
 
 .ActionHeader{
-	background-color:#4B4878;
+	background-color:#456B4A;
 	cursor:move;
 	height:30px;
 	text-align:center;
@@ -65,8 +65,8 @@
 }
 
 .tdActionCeldaLeyendaItem{
-	border:0px solid #4B4878;
-	color:#4B4878;
+	border:0px solid #456B4A;
+	color:#456B4A;
 	font-family: Arial, Sans-Serif;
 	font-size:12px;
 	font-weight:bold;
@@ -77,7 +77,7 @@
 
 /* Formulario General*/
 .tdCeldaTituloEncabezado{
-	color:#27245D;
+	color:#2F7B54;
 	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
 	font-size:15px;
 	font-weight:bold;
@@ -93,7 +93,7 @@
 
 .tdCeldaLeyendaItem{
 	background-color: #549CC6;
-	border:1px solid #4B4878;
+	border:1px solid #456B4A;
 	color:White;
 	font-family: Arial, Sans-Serif;
 	font-size:12px;
@@ -104,7 +104,7 @@
 
 .tdCeldaLeyendaItemFondoBlanco{
 	background-color: White;
-	border:1px none #4B4878;
+	border:1px none #456B4A;
 	color:Navy;
 	font-family: Arial, Sans-Serif;
 	font-size:11px;
@@ -123,8 +123,8 @@
 
 .tdCeldaSpan{
 	background-color: #FFFFFF;
-	border:1px solid #4B4878;
-	color:#27245D;
+	border:1px solid #456B4A;
+	color:#2F7B54;
 	font-family: Arial, Sans-Serif;
 	font-size:12px;
 	font-weight:bold;
@@ -203,7 +203,7 @@
 
 .DocumentoListDiv a
 {
-	color: #27245D;
+	color: #2F7B54;
 	font-size: 12px;
 	text-decoration: none;
 }

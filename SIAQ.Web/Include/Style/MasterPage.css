@@ -9,7 +9,7 @@
 
 html, body, form
 {
-	color: #27245D;
+	color: #2F7B54;
 	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
 	height: 100%;
 	margin: 0;
@@ -20,7 +20,7 @@ html, body, form
 .BackGroundBody
 {
 	background: #fff url(../Image/Background/HandsBackgorund.jpg) no-repeat center;
-	color: #27245D;
+	color: #2F7B54;
 	background-size: cover;
 	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
 	height: 100%;

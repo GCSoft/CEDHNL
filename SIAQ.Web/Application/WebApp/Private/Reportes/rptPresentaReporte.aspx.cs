@@ -29,13 +29,17 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes
             string TipoReporte = Request.QueryString["TipoReporte"];
             DateTime FechaInicial = System.DateTime.Parse(Request.QueryString["FechaInicial"]);
             DateTime FechaFinal = System.DateTime.Parse(Request.QueryString["FechaFinal"]);
-            
-            PresentaReporte(TipoReporte, FechaInicial, FechaFinal);
+            int AreaId = 0;
+
+            // Se asigna la visitaduria a la que corresponde
+            if (TipoReporte == "VisGeneral") { AreaId = Int32.Parse(Request.QueryString["AreaId"].ToString()); }
+
+            PresentaReporte(TipoReporte, FechaInicial, FechaFinal, AreaId);
         }
 
         #region Rutinas del programador
 
-        public void PresentaReporte(string TipoReporte, DateTime FechaInicial, DateTime FechaFinal)
+        public void PresentaReporte(string TipoReporte, DateTime FechaInicial, DateTime FechaFinal, int AreaId)
         {
             ENTResponse oResponse = new ENTResponse();
             System.Data.DataSet ds = new System.Data.DataSet();
@@ -53,23 +57,26 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes
                         // Asigna valores
                         entGVis.FechaDesde = FechaInicial.ToString("yyyy-MM-dd");
                         entGVis.FechaHasta = FechaFinal.ToString("yyyy-MM-dd");
+                        entGVis.AreaId = AreaId;
 
                         // Consulta reporte            
                         oResponse = bssGVis.RptGeneralVisitaduria(entGVis);
 
                         //oResponse.dsResponse.Tables[0].TableName = "tblEncabezado";
-                        //oResponse.dsResponse.Tables[1].TableName = "tblExpPeriodo_I";
-                        //oResponse.dsResponse.Tables[2].TableName = "tblExpMedidaCautelar_II";
-                        //oResponse.dsResponse.Tables[3].TableName = "tblExpSolicitudGestion_III";
-                        //oResponse.dsResponse.Tables[4].TableName = "tblExpVisitaduriaGeneral_IV";
-                        //oResponse.dsResponse.Tables[5].TableName = "tblExpConcluidos_V";
-                        //oResponse.dsResponse.Tables[6].TableName = "tblExpNivelAutoridadVI";
-                        //oResponse.dsResponse.Tables[7].TableName = "tblPersonasAtendidasVII";
-                        //oResponse.dsResponse.Tables[8].TableName = "tblEntrevistas_VIII";
-                        //oResponse.dsResponse.Tables[9].TableName = "tblSupervisores_IX";
-                        //oResponse.dsResponse.Tables[10].TableName = "tblResultados_X";
+                        oResponse.dsResponse.Tables[0].TableName = "tblExpPeriodo_I";
+                        oResponse.dsResponse.Tables[1].TableName = "tblExpMedidaCautelar_II";
+                        oResponse.dsResponse.Tables[2].TableName = "tblExpSolicitudGestion_III";
+                        oResponse.dsResponse.Tables[3].TableName = "tblExpVisitaduriaGeneral_IV";
+                        oResponse.dsResponse.Tables[4].TableName = "tblExpConcluidos_V";
+                        oResponse.dsResponse.Tables[5].TableName = "tblExpNivelAutoridadVI";
+                        oResponse.dsResponse.Tables[6].TableName = "tblPersonasAtendidasVII";
+                        oResponse.dsResponse.Tables[7].TableName = "tblEntrevistas_VIII";
+                        oResponse.dsResponse.Tables[8].TableName = "tblSupervisores_IX";
+                        oResponse.dsResponse.Tables[9].TableName = "tblResultados_X";
+                        oResponse.dsResponse.Tables[10].TableName = "tblDatosGenerales";
 
                         rptVisGeneral rptCR = new rptVisGeneral();
+                        //rptVisGeneral rptCR = new rptVisGeneral();
                         rptCR.SetDataSource(oResponse.dsResponse);
                         // Presenta reporte
                         crViewer.ReportSource = rptCR;

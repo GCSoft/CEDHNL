@@ -9,8 +9,8 @@
 
 /*ACORDEON*/
 .AccordionHeader{
-	border: 1px solid #549CC6;
-	background-color: #4B4878;
+	border: 1px solid #55C666;
+	background-color: #456B4A;
 	color: white;
 	cursor: pointer;
 	font-family: Arial, Sans-Serif;
@@ -32,8 +32,8 @@
 }
 
 .AccordionHeaderSelected{
-   background-color: #549CC6;
-	border: 1px solid #4B4878;
+   background-color: #55C666;
+	border: 1px solid #456B4A;
 	color: white;
 	cursor: pointer;
 	font-family: Arial, Sans-Serif;
@@ -73,7 +73,7 @@
 }
 
 .MenuItem a{
-	color: #4B4878;
+	color: #456B4A;
 	background: none;
 	text-decoration: none;
 }
@@ -123,7 +123,7 @@
 }
 
 .Autocomplete_HighLightedListItem{
-	background-color:#549CC6;
+	background-color:#55C666;
 	color:#FFFFFF;
     padding:1px; 
 }
@@ -139,7 +139,7 @@
 	font-size: 11px;
 	color: #FFFFFF;
 	cursor:pointer;
-	background-color: #4B4878;
+	background-color: #456B4A;
 	border-top-width: 1px;
 	border-right-width: 1px;
 	border-bottom-width: 1px;
@@ -187,8 +187,8 @@
 .Calendar_Canvas{
 	background:url('../../../../Include/Image/Buttons/Calendar.png') 98% 50% no-repeat;
 	background-color:#EFEFEF;
-	border:1px solid #4B4878;
-	color:#4B4878;
+	border:1px solid #456B4A;
+	color:#456B4A;
 	cursor:pointer;
 	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
 	font-size: 11px;
@@ -201,35 +201,35 @@
 }
 
 .Calendar_General .ajax__calendar_container {
-    border:1px solid #4B4878;
+    border:1px solid #456B4A;
     background-color:#EFEFEF;
-    color:#4B4878;
+    color:#456B4A;
 }
 
 .Calendar_General .ajax__calendar_dayname,
 .Calendar_General .ajax__calendar_other .ajax__calendar_day,
 .Calendar_General .ajax__calendar_other .ajax__calendar_year{
-    color:#4B4878;
+    color:#456B4A;
     font-weight:bold;
 }
 
 .Calendar_General .ajax__calendar_hover .ajax__calendar_day,
 .Calendar_General .ajax__calendar_hover .ajax__calendar_month,
 .Calendar_General .ajax__calendar_hover .ajax__calendar_year{
-    color:#549CC6;
+    color:#55C666;
     font-weight:bold;
 }
 
 .Calendar_General .ajax__calendar_active .ajax__calendar_day,
 .Calendar_General .ajax__calendar_active .ajax__calendar_month,
 .Calendar_General .ajax__calendar_active .ajax__calendar_year{
-    background-color:#549CC6;
+    background-color:#55C666;
     color:#FFFFFF;
     font-weight:lighter;
 }
 
 .Calendar_General .ajax__calendar_hover .ajax__calendar_today{
-    background-color:#549CC6;
+    background-color:#55C666;
     color:#FFFFFF;
     font-weight:lighter;
 }
@@ -238,7 +238,7 @@
 .CalendarFixed_Canvas{
 	background:url('../../../../Include/Image/Buttons/Watch.png') 98% 50% no-repeat;
 	background-color:#EFEFEF;
-	border:1px solid #4B4878;
+	border:1px solid #456B4A;
 	color:#666666;
 	cursor:default;
 	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
@@ -253,7 +253,7 @@
 
 /*CHECKBOX*/
 .CheckBox_Regular{
-	color:#4B4878;
+	color:#456B4A;
 	cursor:pointer;
 	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
 	font-size: 12px;
@@ -267,7 +267,7 @@
 /*CHECKBOXLIST*/
 .CheckBoxList_Regular{
 	border: 1px solid #C1C1C1;
-	color:#4B4878;
+	color:#456B4A;
 	cursor:pointer;
 	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
 	font-size: 12px;
@@ -309,8 +309,8 @@
 /*FIXEDDATETIME*/
 .Calendar_Canvas{
 	background-color:#EFEFEF;
-	border:1px solid #4B4878;
-	color:#4B4878;
+	border:1px solid #456B4A;
+	color:#456B4A;
 	cursor:default;
 	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
 	font-size: 11px;
@@ -322,7 +322,7 @@
 
 /*GRIDVIEW*/
 .Grid_Header {
-	background-color: #549CC6;
+	background-color: #55C666;
 	border: 1px solid #C1C1C1;
 	color: #FFFFFF;
 	font-family: 'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
@@ -396,7 +396,7 @@
 }
 
 .Grid_Row_Over{
-	background-color: #4B4878;
+	background-color: #456B4A;
 	border: 1px solid #C1C1C1;
 	color: #C1C1C1;
 	font-family: 'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
@@ -447,20 +447,20 @@
 .Grid_Header_Action {
 	background-color: #EFEFEF;
 	border: 1px solid #C1C1C1;
-	color: #4B4878;
+	color: #456B4A;
 	font:11px Tahoma;
 	font-weight:normal;
 	height:15px;
 }
 
 .Grid_Header_Action a {
-	color: #4B4878;
+	color: #456B4A;
 	background: none;
 } 
 
 .Grid_Header_Action th {
 	border: solid 1px #C1C1C1;
-	color: #4B4878;
+	color: #456B4A;
 	font:11px Tahoma;
 	font-weight:normal;
 	padding:2px;
@@ -469,20 +469,20 @@
 .Grid_Row_Action {
 	background-color: #FFFFFF;
 	border: 1px solid #C1C1C1;
-	color: #4B4878;
+	color: #456B4A;
 	font:11px Tahoma;
 	font-weight:normal;
 	height:15px;
 }
 
 .Grid_Row_Action a{
-	color: #4B4878;
+	color: #456B4A;
 	background: none;
 }
 
 .Grid_Row_Action td {
 	border: solid 1px #C1C1C1;
-	color: #4B4878;
+	color: #456B4A;
 	font:11px Tahoma;
 	font-weight:normal;
 	height:15px;
@@ -490,7 +490,7 @@
 }
 
 .Grid_Row_Over_Action{
-	background-color: #4B4878;
+	background-color: #456B4A;
 	border: 1px solid #C1C1C1;
 	color: #C1C1C1;
 	font:11px Tahoma;
@@ -514,7 +514,7 @@
 
 /*GRIDVIEW HEADER ACTION ALTERNATIVO*/
 .Grid_Header_Action_Alternative {
-	background-color: #4B4878;
+	background-color: #456B4A;
 	border: 1px solid #C1C1C1;
 	color: #FFFFFF;
 	font:11px Tahoma;
@@ -542,7 +542,7 @@
 	border-left: 1px solid #EDEDED;
 	border-right: 1px solid #EDEDED;
 	border-top: 5px solid #FFFFFF;
-	color: #4B4878;
+	color: #456B4A;
 	font:11px Tahoma;
 	font-weight:normal;
 	height:15px;
@@ -593,7 +593,7 @@
 .Textarea_Disabled{
 	border:1px solid #5E8291;
 	background-color: #EFEFEF;
-	color:#4B4878;
+	color:#456B4A;
 	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
 	font-size: 11px;
 	font-weight:lighter;
@@ -631,7 +631,7 @@
 /*TIMER*/
 .Timer_Canvas{
 	background-color:#EFEFEF;
-	border:1px solid #4B4878;
+	border:1px solid #456B4A;
 	color:#666666;
 	cursor:default;
 	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
@@ -645,7 +645,7 @@
 
 .Timer_Error_Canvas{
 	background-color:#FF9966;
-	border:1px solid #4B4878;
+	border:1px solid #456B4A;
 	color:#666666;
 	cursor:default;
 	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
@@ -670,7 +670,7 @@
 
 .Timer_Focus_Canvas{
 	background-color:#FFFFFF;
-	border:1px solid #4B4878;
+	border:1px solid #456B4A;
 	color:#666666;
 	cursor:default;
 	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
@@ -697,7 +697,7 @@
 }
 
 .Label_CellInside{
-	background-color: #549CC6;
+	background-color: #55C666;
 	border: 0px;
 	color:White;
 	font-family: Arial, Sans-Serif;
@@ -715,7 +715,7 @@
 
 .NumeroNuevoExpedienteLabel{
 	background-color:#EFEFEF;
-	border:1px solid #4B4878;
+	border:1px solid #456B4A;
 	color:#666666;
 	cursor:default;
 	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
@@ -729,7 +729,7 @@
 
 /*LINKBUTTON*/
 .LinkButton_Regular{
-	color: #4B4878;
+	color: #456B4A;
 	cursor:pointer;
 	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
 	font-size: 12px;

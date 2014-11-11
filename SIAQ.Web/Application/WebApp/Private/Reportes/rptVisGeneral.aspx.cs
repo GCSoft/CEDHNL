@@ -5,10 +5,29 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+using GCUtility.Function;
+using GCUtility.Security;
+using SIAQ.Entity.Object;
+using SIAQ.BusinessProcess.Page;
+using SIAQ.BusinessProcess.Object;
+
 namespace SIAQ.Web.Application.WebApp.Private.Reportes
 {
 	public partial class rptVisGeneral1 : System.Web.UI.Page
     {
+        // Utilerías
+        GCCommon gcCommon = new GCCommon();
+        GCEncryption gcEncryption = new GCEncryption();
+        GCJavascript gcJavascript = new GCJavascript();
+
+        void SelectArea()
+        {
+            this.ddlArea.Items.Insert(0, new ListItem("Coordinación Penitenciaria", "10"));
+            this.ddlArea.Items.Insert(0, new ListItem("Tercera Visitaduría", "6"));
+            this.ddlArea.Items.Insert(0, new ListItem("Segunda Visitaduría", "5"));
+            this.ddlArea.Items.Insert(0, new ListItem("Primera Visitaduría", "4"));
+            this.ddlArea.Items.Insert(0, new ListItem("[Todas]", "0"));
+        }
 
         #region Rutinas de la página
 
@@ -19,6 +38,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes
 
 				// Validaciones
 				if (Page.IsPostBack) { return; }
+
+                // Llenado de controles
+                SelectArea();
 
 				// Foco
 				ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "function pageLoad(){ focusControl('" + this.btnAceptar.ClientID + "'); }", true);
@@ -33,11 +55,11 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
             // cboEstatus.SelectedValue.ToString()
-            string script = "window.open('rptPresentaReporte.aspx?TipoReporte=rptVisGeneral&FechaInicial=" + wucFechaInicial.BeginDate.ToString() + "&FechaFinal= " + wucFechaFinal.EndDate.ToString() + "&EstatusId= " + "1" + "', '');";
+            string script = "window.open('rptPresentaReporte.aspx?TipoReporte=rptVisGeneral&FechaInicial=" + wucFechaInicial.BeginDate.ToString() + "&FechaFinal= " + wucFechaFinal.EndDate.ToString() + "&AreaId= " + ddlArea.SelectedValue.ToString() + "', '');";
 
             ScriptManager.RegisterStartupScript(this, typeof(Page), "popup", script, true);
         }
-        
+
         #endregion
 
         #region Rutinas del programador

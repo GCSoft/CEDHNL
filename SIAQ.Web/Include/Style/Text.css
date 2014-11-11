@@ -8,7 +8,7 @@
 '----------------------------------------------------------------------------------------------------------------------------------*/
 
 .LoginTextLink{
-	color:#4B4878;
+	color:#456B4A;
 	font-family:Verdana, Arial, Helvetica, sans-serif;
 	font-size:11px;
 	font-weight:bold;
@@ -16,14 +16,14 @@
 }
 
 .Notification{
-	color:#180A3B;
+	color:#0A3A31;
 	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
 	vertical-align: top;
 }
 
 .Asunto_Success
 {
-	color: #27245D;
+	color: #2F7B54;
 	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
 	font-size:medium;
 	font-weight:bold;
@@ -40,13 +40,13 @@
 /*'---------------------------------------------------------------------------------------------------------------------------------*/
 
 .GraphTabTitleText{
-   color:#4B4878;
+   color:#456B4A;
 	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
 	font-size:10px;
 }
 
 .GraphTitleText{
-   color:#4B4878;
+   color:#456B4A;
 	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
 	font-size:12px;
 	font-weight:bold;
@@ -55,7 +55,7 @@
 }
 
 .GraphSubTitleText{
-   color:#4B4878;
+   color:#456B4A;
 	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
 	font-size:10px;
 	text-align:center;
@@ -63,7 +63,7 @@
 }
 
 .LoginText{
-	color:#4B4878;
+	color:#456B4A;
 	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
 	font-size: 12px;
 }
@@ -75,14 +75,14 @@
 }
 
 .Title_Form{
-	color: #2e5fa9;
+	color: #2EA97B;
 	font-family: 'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
 	font-size: 15px;
 	font-weight: bold;
 }
 
 .Title_Public{
-	color: #27245D;
+	color: #2F7B54;
 	font-family:Agency FB;
 	font-size:35px;
 	text-align:center;
@@ -90,7 +90,7 @@
 }
 
 .UserNameText{
-	color:#549CC6;
+	color:#53C891;
 	font-family:Arial;
 	font-size:9pt;
 	font-weight:normal;

@@ -28,6 +28,11 @@
 							<wuc:wucCalendar ID="wucFechaFinal" runat="server" />
 						</td>
                     </tr>
+                    <tr>
+						<td class="Etiqueta">Área</td>
+						<td class="Espacio"></td>
+						<td class="Campo"><asp:DropDownList ID="ddlArea" runat="server" AutoPostBack="false" CssClass="DropDownList_General" width="216px" ></asp:DropDownList></td>
+					</tr>
                 </table>
 			</asp:Panel>
         </td>
@@ -48,4 +53,5 @@
             </td>
         </tr>
     </table>
+    <asp:HiddenField ID="hddAreaVisible" runat="server" Value="1" />
 </asp:Content>

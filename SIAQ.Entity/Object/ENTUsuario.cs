@@ -19,26 +19,28 @@ namespace SIAQ.Entity.Object
 	{
 	
 		// Definiciones
-		private Int32	_idUsuario;			   // Identificador único de Usuario
-      private Int32  _idArea;             // Identificador único del Área de la CEDH a la que pertenece el usuario
-		private Int32	_idRol;				   // Identificador único del Rol de Usuario
-		private String	_dtFechaCreacion;	   // Fecha de creación del registro
-		private String	_sApellidoMaterno;   // Apellido de la madre del usuario
-		private String	_sApellidoPaterno;   // Apellido del padre del usuario
-		private String	_sDescripcion;		   // Descripción/notas del registro
-		private String	_sEmail;			      // Email/username del usuario
-		private String	_sNombre;			   // Nombre(s) del usuario
-		private String	_sOldPassword;		   // Password anterior encriptado del usuario. Utilizado en cambio de contraseña.
-		private String	_sPassword;			   // Password encriptado
-		private Int16	_tiActivo;			   // Control de baja lógica de registro
+		private Int32	_idUsuario;			// Identificador único de Usuario
+		private Int32	_idArea;            // Identificador único del Área de la CEDH a la que pertenece el usuario
+		private Int32	_idRol;				// Identificador único del Rol de Usuario
+		private Int32	_SexoId;
+		private String	_dtFechaCreacion;	// Fecha de creación del registro
+		private String	_sApellidoMaterno;  // Apellido de la madre del usuario
+		private String	_sApellidoPaterno;	// Apellido del padre del usuario
+		private String	_sDescripcion;		// Descripción/notas del registro
+		private String	_sEmail;			// Email/username del usuario
+		private String	_sNombre;			// Nombre(s) del usuario
+		private String	_sOldPassword;		// Password anterior encriptado del usuario. Utilizado en cambio de contraseña.
+		private String	_sPassword;			// Password encriptado
+		private Int16	_tiActivo;			// Control de baja lógica de registro
 
 		
 		 //Constructor
 
 		public ENTUsuario(){
 			_idUsuario = 0;
-         _idArea = 0;
+			_idArea = 0;
 			_idRol = 0;
+			_SexoId = 0;
 			_dtFechaCreacion = "";
 			_sApellidoMaterno = "";
 			_sApellidoPaterno = "";
@@ -65,17 +67,17 @@ namespace SIAQ.Entity.Object
 			set { _idUsuario = value; }
 		}
 
-      ///<remarks>
-      ///   <name>ENTUsuario.idArea</name>
-      ///   <create>21-Octubre-2013</create>
-      ///   <author>GCSoft - Web Project Creator BETA 1.0</author>
-      ///</remarks>
-      ///<summary>Obtiene/Asigna el identificador único del Área de la CEDH a la que pertenece el usuario</summary>
-      public Int32 idArea
-      {
-         get { return _idArea; }
-         set { _idArea = value; }
-      }
+		///<remarks>
+		///   <name>ENTUsuario.idArea</name>
+		///   <create>21-Octubre-2013</create>
+		///   <author>GCSoft - Web Project Creator BETA 1.0</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el identificador único del Área de la CEDH a la que pertenece el usuario</summary>
+		public Int32 idArea
+		{
+			get { return _idArea; }
+			set { _idArea = value; }
+		}
 		
 		///<remarks>
 		///   <name>ENTUsuario.idRol</name>
@@ -87,6 +89,18 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _idRol; }
 			set { _idRol = value; }
+		}
+
+		///<remarks>
+		///   <name>ENTUsuario.SexoId</name>
+		///   <create>21-Octubre-2013</create>
+		///   <author>GCSoft - Web Project Creator BETA 1.0</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el identificador único de Sexo de Usuario</summary>
+		public Int32 SexoId
+		{
+			get { return _SexoId; }
+			set { _SexoId = value; }
 		}
 
 		///<remarks>

@@ -1,7 +1,7 @@
 ﻿/*---------------------------------------------------------------------------------------------------------------------------------
 ' Nombre:	scatUsuario
-' Autor:		Ruben.Cobos
-' Fecha:		27-Octubre-2013
+' Autor:	Ruben.Cobos
+' Fecha:	27-Octubre-2013
 '
 ' Descripción:
 '           Catálogo de Sistema de Usuarios de la aplicación
@@ -70,6 +70,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
 				// Limpiar formulario
 				if (this.ddlActionArea.Enabled) { this.ddlActionArea.SelectedIndex = 0; }
 				this.ddlActionRol.SelectedIndex = 0;
+				this.ddlSexo.SelectedIndex = 0;
 				this.txtActionEmail.Text = "";
 				this.txtActionNombre.Text = "";
 				this.txtActionApellidoPaterno.Text = "";
@@ -127,6 +128,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
 				// Formulario
 				oENTUsuario.idRol = Int32.Parse(this.ddlActionRol.SelectedValue);
 				oENTUsuario.idArea = Int32.Parse(this.ddlActionArea.SelectedValue);
+				oENTUsuario.SexoId = Int32.Parse(this.ddlSexo.SelectedValue);
 				oENTUsuario.sApellidoMaterno = this.txtActionApellidoMaterno.Text.Trim();
 				oENTUsuario.sApellidoPaterno = this.txtActionApellidoPaterno.Text.Trim();
 				oENTUsuario.sDescripcion = this.txtActionDescripcion.Text.Trim();
@@ -322,6 +324,35 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
 			}
 		}
 
+		private void SelectSexo_Action(){
+			BPCiudadano oBPCiudadano = new BPCiudadano();
+			ENTCiudadano oENTCiudadano = new ENTCiudadano();
+
+			try
+			{
+
+				oBPCiudadano.SelectComboSexo();
+
+				if (oBPCiudadano.ErrorId == 0)
+				{
+					if (oBPCiudadano.ENTCiudadano.ResultData.Tables[0].Rows.Count > 0)
+					{
+						this.ddlSexo.DataSource = oBPCiudadano.ENTCiudadano.ResultData;
+						this.ddlSexo.DataTextField = "Nombre";
+						this.ddlSexo.DataValueField = "SexoId";
+						this.ddlSexo.DataBind();
+					}
+
+					// Agregar Item de selección
+					this.ddlSexo.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+
+				}
+
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
 		private void SelectStatus()
 		{
 			try
@@ -432,6 +463,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
 
 				// Llenado de formulario
 				this.ddlActionArea.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["idArea"].ToString();
+				this.ddlSexo.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["SexoId"].ToString();
 				this.ddlActionRol.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["idRol"].ToString();
 				this.txtActionEmail.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["sEmail"].ToString();
 				this.txtActionNombre.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["sNombre"].ToString();
@@ -496,6 +528,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
 				// Formulario
 				oENTUsuario.idUsuario = idUsuario;
 				oENTUsuario.idArea = Int32.Parse(this.ddlActionArea.SelectedValue);
+				oENTUsuario.SexoId = Int32.Parse(this.ddlSexo.SelectedValue);
 				oENTUsuario.idRol = Int32.Parse(this.ddlActionRol.SelectedValue);
 				oENTUsuario.sApellidoMaterno = this.txtActionApellidoMaterno.Text.Trim();
 				oENTUsuario.sApellidoPaterno = this.txtActionApellidoPaterno.Text.Trim();
@@ -579,6 +612,9 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
 				// Área
 				if (this.ddlActionArea.SelectedIndex == 0) { throw new Exception("* El campo [Área] es requerido"); }
 
+				// Sexo
+				if (this.ddlSexo.SelectedIndex == 0) { throw new Exception("* El campo [Sexo] es requerido"); }
+
 				// Email
 				if (this.txtActionEmail.Text.Trim() == "") { throw new Exception("* El campo [Email] es requerido"); }
 
@@ -613,6 +649,7 @@ namespace SIAQ.Web.Application.WebApp.Private.SysCat
 				// Llenado de controles
 				SelectArea();
 				SelectArea_Action();
+				SelectSexo_Action();
 				SelectStatus();
 				SelectStatus_Action();
 				SelectRol();

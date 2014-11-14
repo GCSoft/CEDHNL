@@ -56,6 +56,10 @@ namespace SIAQ.DataAccess.Object
 			sqlPar = new SqlParameter("idRol", SqlDbType.Int);
 			sqlPar.Value = oENTUsuario.idRol;
 			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("SexoId", SqlDbType.Int);
+			sqlPar.Value = oENTUsuario.SexoId;
+			sqlCom.Parameters.Add(sqlPar);
 			
 			sqlPar = new SqlParameter("sApellidoMaterno", SqlDbType.VarChar);
 			sqlPar.Value = oENTUsuario.sApellidoMaterno;
@@ -324,6 +328,10 @@ namespace SIAQ.DataAccess.Object
          sqlPar = new SqlParameter("idRol", SqlDbType.Int);
          sqlPar.Value = oENTUsuario.idRol;
          sqlCom.Parameters.Add(sqlPar);
+
+		 sqlPar = new SqlParameter("SexoId", SqlDbType.Int);
+		 sqlPar.Value = oENTUsuario.SexoId;
+		 sqlCom.Parameters.Add(sqlPar);
 
          sqlPar = new SqlParameter("sApellidoMaterno", SqlDbType.VarChar);
          sqlPar.Value = oENTUsuario.sApellidoMaterno;

@@ -123,6 +123,7 @@
     <Content Include="Application\WebApp\Private\Victimas\vicAgregrarInformacion.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\vicAsignarDoctor.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\VicBusquedaAtenciones.aspx" />
+    <Content Include="Application\WebApp\Private\Victimas\vicClimaLaboral.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\VicDetalleAtencion.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\VicDetalleAtencionCierre.aspx" />
     <Content Include="Application\WebApp\Private\Victimas\VicDictamenMedico.aspx" />
@@ -1132,6 +1133,13 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Victimas\VicBusquedaAtenciones.aspx.designer.cs">
       <DependentUpon>VicBusquedaAtenciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Victimas\vicClimaLaboral.aspx.cs">
+      <DependentUpon>vicClimaLaboral.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Victimas\vicClimaLaboral.aspx.designer.cs">
+      <DependentUpon>vicClimaLaboral.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Victimas\VicDetalleAtencion.aspx.cs">
       <DependentUpon>VicDetalleAtencion.aspx</DependentUpon>

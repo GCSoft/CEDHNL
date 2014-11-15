@@ -329,6 +329,79 @@ namespace SIAQ.DataAccess.Object
 			return oENTResponse;
 		}
 
+        ///<remarks>
+        ///   <name>DAAtencion.RptIntegralVictimas</name>
+        ///   <create>14-Niviembre-2014</create>
+        ///   <author>JJGonzalez</author>
+        ///</remarks>
+        ///<summary>Reporte de atención a víctimas</summary>
+        ///<param name="oENTQueja">Entidad del Expediente de Solicitud de atención con los filtros necesarios para la consulta</param>
+        ///<param name="sConnection">Cadena de conexión a la base de datos</param>
+        ///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+        ///<returns>Una entidad de respuesta</returns>
+        public ENTResponse RptIntegralVictimas(ENTAtencion oENTAtencion, String sConnection, Int32 iAlternateDBTimeout)
+        {
+            SqlConnection sqlCnn = new SqlConnection(sConnection);
+            SqlCommand sqlCom;
+            SqlParameter sqlPar;
+            SqlDataAdapter sqlDA;
+
+            ENTResponse oENTResponse = new ENTResponse();
+
+            // Configuración de objetos
+            sqlCom = new SqlCommand("uspReporte_AtencionVictimasGeneral", sqlCnn);
+            sqlCom.CommandType = CommandType.StoredProcedure;
+
+            // Timeout alternativo en caso de ser solicitado
+            if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+            // Parametros
+            sqlPar = new SqlParameter("BeginDate", SqlDbType.DateTime);
+            sqlPar.Value = oENTAtencion.FechaDesde;
+            sqlCom.Parameters.Add(sqlPar);
+
+            sqlPar = new SqlParameter("EndDate", SqlDbType.DateTime);
+            sqlPar.Value = oENTAtencion.FechaHasta;
+            sqlCom.Parameters.Add(sqlPar);
+
+            // Inicializaciones
+            oENTResponse.dsResponse = new DataSet();
+            sqlDA = new SqlDataAdapter(sqlCom);
+
+            // Transacción
+            try
+            {
+
+                sqlCnn.Open();
+                sqlDA.Fill(oENTResponse.dsResponse);
+                sqlCnn.Close();
+
+            }
+            catch (SqlException sqlEx)
+            {
+
+                oENTResponse.ExceptionRaised(sqlEx.Message);
+
+            }
+            catch (Exception ex)
+            {
+
+                oENTResponse.ExceptionRaised(ex.Message);
+
+            }
+            finally
+            {
+
+                if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+                sqlCnn.Dispose();
+
+            }
+
+            // Resultado
+            return oENTResponse;
+
+        }
+
 		///<remarks>
 		///   <name>DAAtencion.SelectAtencion</name>
 		///   <create>17-Junio-2014</create>

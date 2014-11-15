@@ -177,6 +177,42 @@ namespace SIAQ.BusinessProcess.Object
 			return oENTResponse;
 		}
 
+        ///<remarks>
+        ///   <name>BPAtencion.RptIntegralVictimas</name>
+        ///   <create>14-Nviembre-2014</create>
+        ///   <author>JJGonzalez</author>
+        ///</remarks>
+        ///<summary>Reporte de Atn Víctimas</summary>
+        ///<param name="oENTQuejas">Entidad de Atenion con los parámetros necesarios para realizar la transacción</param>
+        ///<returns>Una entidad de respuesta</returns>
+        public ENTResponse RptIntegralVictimas(ENTAtencion oENTAtencion)
+        {
+            DAAtencion oDAAtencion = new DAAtencion();
+            ENTResponse oENTResponse = new ENTResponse();
+
+            try
+            {
+
+                // Transacción en base de datos
+                oENTResponse = oDAAtencion.RptIntegralVictimas(oENTAtencion, this.sConnectionApplication, 0);
+
+                // Validación de error en consulta
+                if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+                // Validación de mensajes de la BD
+                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+                if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+
+            // Resultado
+            return oENTResponse;
+        }
+
 		///<remarks>
 		///   <name>BPAtencion.SelectAtencion</name>
         ///   <create>17-Junio-2014</create>

@@ -3941,6 +3941,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             private global::System.Data.DataColumn columnFechaFinal;
             
+            private global::System.Data.DataColumn columnVisitaduria;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public tblDatosGeneralesDataTable() {
@@ -4000,6 +4002,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn VisitaduriaColumn {
+                get {
+                    return this.columnVisitaduria;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -4035,12 +4045,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblDatosGeneralesRow AddtblDatosGeneralesRow(string Dirigente, string FechaInicial, string FechaFinal) {
+            public tblDatosGeneralesRow AddtblDatosGeneralesRow(string Dirigente, string FechaInicial, string FechaFinal, string Visitaduria) {
                 tblDatosGeneralesRow rowtblDatosGeneralesRow = ((tblDatosGeneralesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Dirigente,
                         FechaInicial,
-                        FechaFinal};
+                        FechaFinal,
+                        Visitaduria};
                 rowtblDatosGeneralesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtblDatosGeneralesRow);
                 return rowtblDatosGeneralesRow;
@@ -4066,6 +4077,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
                 this.columnDirigente = base.Columns["Dirigente"];
                 this.columnFechaInicial = base.Columns["FechaInicial"];
                 this.columnFechaFinal = base.Columns["FechaFinal"];
+                this.columnVisitaduria = base.Columns["Visitaduria"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4077,6 +4089,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
                 base.Columns.Add(this.columnFechaInicial);
                 this.columnFechaFinal = new global::System.Data.DataColumn("FechaFinal", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFechaFinal);
+                this.columnVisitaduria = new global::System.Data.DataColumn("Visitaduria", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVisitaduria);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5851,6 +5865,22 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Visitaduria {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDatosGenerales.VisitaduriaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Visitaduria\' in table \'tblDatosGenerales\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDatosGenerales.VisitaduriaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsDirigenteNull() {
                 return this.IsNull(this.tabletblDatosGenerales.DirigenteColumn);
             }
@@ -5883,6 +5913,18 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetFechaFinalNull() {
                 this[this.tabletblDatosGenerales.FechaFinalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsVisitaduriaNull() {
+                return this.IsNull(this.tabletblDatosGenerales.VisitaduriaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetVisitaduriaNull() {
+                this[this.tabletblDatosGenerales.VisitaduriaColumn] = global::System.Convert.DBNull;
             }
         }
         

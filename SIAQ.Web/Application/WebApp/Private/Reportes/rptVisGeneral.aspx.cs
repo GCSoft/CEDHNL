@@ -22,7 +22,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes
 
         void SelectArea()
         {
-            this.ddlArea.Items.Insert(0, new ListItem("Coordinación Penitenciaria", "10"));
             this.ddlArea.Items.Insert(0, new ListItem("Tercera Visitaduría", "6"));
             this.ddlArea.Items.Insert(0, new ListItem("Segunda Visitaduría", "5"));
             this.ddlArea.Items.Insert(0, new ListItem("Primera Visitaduría", "4"));

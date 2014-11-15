@@ -32,7 +32,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes
             int AreaId = 0;
 
             // Se asigna la visitaduria a la que corresponde
-            if (TipoReporte == "VisGeneral") { AreaId = Int32.Parse(Request.QueryString["AreaId"].ToString()); }
+            if (TipoReporte == "rptVisGeneral") { AreaId = Int32.Parse(Request.QueryString["AreaId"].ToString()); }
 
             PresentaReporte(TipoReporte, FechaInicial, FechaFinal, AreaId);
         }
@@ -119,15 +119,25 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes
 
                     case "rptIntegralVictimas":
                         // Declara Entidad y Buiseness
-                        ENTVisitaduria entIntegralVictimas = new ENTVisitaduria();
-                        BPVisitaduria bssIntegralVictimas = new BPVisitaduria();
+                        ENTAtencion entIntegralVictimas = new ENTAtencion();
+                        BPAtencion bssIntegralVictimas = new BPAtencion();
 
                         // Asigna valores
                         entIntegralVictimas.FechaDesde = FechaInicial.ToString("yyyy-MM-dd");
                         entIntegralVictimas.FechaHasta = FechaFinal.ToString("yyyy-MM-dd");
 
                         // Consulta reporte            
-                        oResponse = bssIntegralVictimas.RptGeneralVisitaduria(entIntegralVictimas);
+                        oResponse = bssIntegralVictimas.RptIntegralVictimas(entIntegralVictimas);
+
+                        oResponse.dsResponse.Tables[0].TableName = "tblDMFPrevioLesiones_I";
+                        oResponse.dsResponse.Tables[1].TableName = "tblDMFPrevioLesionesPorGenero_II";
+                        oResponse.dsResponse.Tables[2].TableName = "tblDMFPrevioLesionesEstatus_III";
+                        oResponse.dsResponse.Tables[3].TableName = "tblDictamenPsicologico_163_IV";
+                        oResponse.dsResponse.Tables[4].TableName = "tblDictamenPsicologico_163_PorGenero_V";
+                        oResponse.dsResponse.Tables[5].TableName = "tblOpinionMedica_VI";
+                        oResponse.dsResponse.Tables[6].TableName = "tblDesgloseDictamen_VII";
+                        oResponse.dsResponse.Tables[7].TableName = "tblClimaLaboral_IX";
+                        oResponse.dsResponse.Tables[8].TableName = "tblDatosGenerales";
 
                         //rptEstadisticaPresidencia rptCR = new rptEstadisticaPresidencia();
                         rptIntegralVictimas rptCRIntegralVictimas = new rptIntegralVictimas();

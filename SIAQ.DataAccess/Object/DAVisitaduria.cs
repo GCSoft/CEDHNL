@@ -839,9 +839,9 @@ namespace SIAQ.DataAccess.Object
             sqlPar.Value = oENTVisitaduria.FechaHasta;
             sqlCom.Parameters.Add(sqlPar);
 
-            //sqlPar = new SqlParameter("AreaId", SqlDbType.Int);
-            //sqlPar.Value = oENTVisitaduria.AreaId;
-            //sqlCom.Parameters.Add(sqlPar);
+            sqlPar = new SqlParameter("AreaId", SqlDbType.Int);
+            sqlPar.Value = oENTVisitaduria.AreaId;
+            sqlCom.Parameters.Add(sqlPar);
 
             // Inicializaciones
             oENTResponse.dsResponse = new DataSet();

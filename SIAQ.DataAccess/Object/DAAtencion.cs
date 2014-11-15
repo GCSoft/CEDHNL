@@ -266,6 +266,70 @@ namespace SIAQ.DataAccess.Object
 		}
 
 		///<remarks>
+		///   <name>DAAtencion.InsertClimaLaboral</name>
+		///   <create>19-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Crea una nueva sesión de Clima Laboral en el módulo de Atención a Víctimas</summary>
+		///<param name="oENTAtencion">Entidad de Atención a Víctimas con los parámetros necesarios para realizar la transacción</param>
+		///<param name="sConnection">Cadena de conexión a la base de datos</param>
+		///<param name="iAlternateDBTimeout">Valor en milisegundos del Timeout en la consulta a la base de datos. 0 si se desea el Timeout por default</param>
+		///<returns>Una entidad de respuesta</returns>
+		public ENTResponse InsertClimaLaboral(ENTAtencion oENTAtencion, String sConnection, Int32 iAlternateDBTimeout){
+			SqlConnection sqlCnn = new SqlConnection(sConnection);
+			SqlCommand sqlCom;
+			SqlParameter sqlPar;
+			SqlDataAdapter sqlDA;
+
+			ENTResponse oENTResponse = new ENTResponse();
+
+			// Configuración de objetos
+			sqlCom = new SqlCommand("uspClimaLaboral_Ins", sqlCnn);
+			sqlCom.CommandType = CommandType.StoredProcedure;
+
+			// Timeout alternativo en caso de ser solicitado
+			if (iAlternateDBTimeout > 0) { sqlCom.CommandTimeout = iAlternateDBTimeout; }
+
+			// Parametros
+			sqlPar = new SqlParameter("UsuarioIdInsert", SqlDbType.Int);
+			sqlPar.Value = oENTAtencion.UsuarioIdInsert;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Grupal", SqlDbType.TinyInt);
+			sqlPar.Value = oENTAtencion.Grupal;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("Observaciones", SqlDbType.VarChar);
+			sqlPar.Value = oENTAtencion.Observaciones;
+			sqlCom.Parameters.Add(sqlPar);
+
+			sqlPar = new SqlParameter("tblUsuario", SqlDbType.Structured);
+			sqlPar.Value = oENTAtencion.tblUsuario;
+			sqlCom.Parameters.Add(sqlPar);
+
+			// Inicializaciones
+			oENTResponse.dsResponse = new DataSet();
+			sqlDA = new SqlDataAdapter(sqlCom);
+
+			// Transacción
+			try{
+				sqlCnn.Open();
+				sqlDA.Fill(oENTResponse.dsResponse);
+				sqlCnn.Close();
+			}catch (SqlException sqlEx){
+				oENTResponse.ExceptionRaised(sqlEx.Message);
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}finally{
+				if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+				sqlCnn.Dispose();
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
+
+		///<remarks>
 		///   <name>DAAtencion.SelectAtencion</name>
 		///   <create>17-Junio-2014</create>
 		///   <author>Ruben.Cobos</author>

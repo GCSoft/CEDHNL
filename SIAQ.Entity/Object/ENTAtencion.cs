@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Data;
 
 namespace SIAQ.Entity.Object
 {
@@ -21,6 +22,8 @@ namespace SIAQ.Entity.Object
 
 
 		private Int32	_FuncionarioId;		// Identificador del funcionario que tiene asignado el caso
+		private Int32	_UsuarioIdInsert;
+		private Int16	_Grupal;
 		private Int16	_Nivel;				// Nivel de transacción
 		private String	_Comentario;		// Comentario en el expediente de Atención a Víctimas
 		private String	_Quejoso;			// Nombre del quejoso que levanta la denuncia
@@ -33,6 +36,7 @@ namespace SIAQ.Entity.Object
 		private String	_Detalle;
 		private String	_NumeroOficio;
 		private String	_NumeroFolio;
+		private DataTable _tblUsuario;
 
         public ENTAtencion(){
             _AtencionId = 0;
@@ -49,6 +53,8 @@ namespace SIAQ.Entity.Object
             _DoctorId = 0;
 
 			_FuncionarioId = 0;
+			_UsuarioIdInsert = 0;
+			_Grupal = 0;
 			_Nivel = 0;
 			_Comentario = "";
 			_Quejoso = "";
@@ -61,6 +67,7 @@ namespace SIAQ.Entity.Object
 			_Detalle = "";
 			_NumeroOficio = "";
 			_NumeroFolio = "";
+			_tblUsuario = null;
         }
 
 
@@ -223,6 +230,30 @@ namespace SIAQ.Entity.Object
 		}
 
 		///<remarks>
+		///   <name>ENTAtencion.UsuarioIdInsert</name>
+		///   <create>19-Junio-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna el identificador único del usuario que realiza la transacción</summary>
+		public Int32 UsuarioIdInsert
+		{
+			get { return _UsuarioIdInsert; }
+			set { _UsuarioIdInsert = value; }
+		}
+
+		///<remarks>
+		///   <name>Atencion.Grupal</name>
+		///   <create>04-Agosto-2014</create>
+		///   <author>Ruben.Cobos</author>
+		///</remarks>
+		///<summary>Obtiene/Asigna unvalor que determina si una sesión de clima laboral es grupal o no</summary>
+		public Int16 Grupal
+		{
+			get { return _Grupal; }
+			set { _Grupal = value; }
+		}
+
+		///<remarks>
 		///   <name>ENTAtencion.Comentario</name>
 		///   <create>19-Junio-2014</create>
 		///   <author>Ruben.Cobos</author>
@@ -298,6 +329,12 @@ namespace SIAQ.Entity.Object
 		{
 			get { return _NumeroFolio; }
 			set { _NumeroFolio = value; }
+		}
+
+		public DataTable tblUsuario
+		{
+			get { return _tblUsuario; }
+			set { _tblUsuario = value; }
 		}
 
     }

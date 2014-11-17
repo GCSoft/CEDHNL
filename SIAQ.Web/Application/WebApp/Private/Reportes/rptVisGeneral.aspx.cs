@@ -25,7 +25,6 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes
             this.ddlArea.Items.Insert(0, new ListItem("Tercera Visitaduría", "6"));
             this.ddlArea.Items.Insert(0, new ListItem("Segunda Visitaduría", "5"));
             this.ddlArea.Items.Insert(0, new ListItem("Primera Visitaduría", "4"));
-            this.ddlArea.Items.Insert(0, new ListItem("[Todas]", "0"));
         }
 
         #region Rutinas de la página
@@ -54,7 +53,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
             // cboEstatus.SelectedValue.ToString()
-            string script = "window.open('rptPresentaReporte.aspx?TipoReporte=rptVisGeneral&FechaInicial=" + wucFechaInicial.BeginDate.ToString() + "&FechaFinal= " + wucFechaFinal.EndDate.ToString() + "&AreaId= " + ddlArea.SelectedValue.ToString() + "', '');";
+            string script = "window.open('rptPresentaReporte.aspx?TipoReporte=rptVisitaduriaGeneralpage&FechaInicial=" + wucFechaInicial.BeginDate.ToString() + "&FechaFinal= " + wucFechaFinal.EndDate.ToString() + "&AreaId= " + ddlArea.SelectedValue.ToString() + "', '');";
 
             ScriptManager.RegisterStartupScript(this, typeof(Page), "popup", script, true);
         }

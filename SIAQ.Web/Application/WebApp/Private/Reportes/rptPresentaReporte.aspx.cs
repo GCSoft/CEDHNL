@@ -32,7 +32,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes
             int AreaId = 0;
 
             // Se asigna la visitaduria a la que corresponde
-            if (TipoReporte == "rptVisGeneral") { AreaId = Int32.Parse(Request.QueryString["AreaId"].ToString()); }
+            if (TipoReporte == "rptVisitaduriaGeneralpage") { AreaId = Int32.Parse(Request.QueryString["AreaId"].ToString()); }
 
             PresentaReporte(TipoReporte, FechaInicial, FechaFinal, AreaId);
         }
@@ -48,8 +48,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes
             {
                 switch (TipoReporte)
                 {
-                    case "rptVisGeneral":
-                        
+                    case "rptVisitaduriaGeneralpage":
+
                         // Declara Entidad y Buiseness
                         ENTVisitaduria entGVis = new ENTVisitaduria();
                         BPVisitaduria bssGVis = new BPVisitaduria();
@@ -59,10 +59,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes
                         entGVis.FechaHasta = FechaFinal.ToString("yyyy-MM-dd");
                         entGVis.AreaId = AreaId;
 
-                        // Consulta reporte            
+                        //// Consulta reporte            
                         oResponse = bssGVis.RptGeneralVisitaduria(entGVis);
 
-                        //oResponse.dsResponse.Tables[0].TableName = "tblEncabezado";
                         oResponse.dsResponse.Tables[0].TableName = "tblExpPeriodo_I";
                         oResponse.dsResponse.Tables[1].TableName = "tblExpMedidaCautelar_II";
                         oResponse.dsResponse.Tables[2].TableName = "tblExpSolicitudGestion_III";
@@ -75,11 +74,10 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes
                         oResponse.dsResponse.Tables[9].TableName = "tblResultados_X";
                         oResponse.dsResponse.Tables[10].TableName = "tblDatosGenerales";
 
-                        rptVisGeneral rptCR = new rptVisGeneral();
-                        //rptVisGeneral rptCR = new rptVisGeneral();
-                        rptCR.SetDataSource(oResponse.dsResponse);
-                        // Presenta reporte
-                        crViewer.ReportSource = rptCR;
+                        rptVisGeneral rptVisitaduriaGeneral = new rptVisGeneral();
+                        rptVisitaduriaGeneral.SetDataSource(oResponse.dsResponse);
+                        //// Presenta reporte
+                        crViewer.ReportSource = rptVisitaduriaGeneral;
                         break;
 
                     case "rptEstadisticaPresidencia":
@@ -136,8 +134,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes
                         oResponse.dsResponse.Tables[4].TableName = "tblDictamenPsicologico_163_PorGenero_V";
                         oResponse.dsResponse.Tables[5].TableName = "tblOpinionMedica_VI";
                         oResponse.dsResponse.Tables[6].TableName = "tblDesgloseDictamen_VII";
+                        oResponse.dsResponse.Tables[7].TableName = "tblAcompanamientoEmocional_VIII";
                         oResponse.dsResponse.Tables[7].TableName = "tblClimaLaboral_IX";
-                        oResponse.dsResponse.Tables[8].TableName = "tblDatosGenerales";
+                        oResponse.dsResponse.Tables[9].TableName = "tblDatosGenerales";
 
                         //rptEstadisticaPresidencia rptCR = new rptEstadisticaPresidencia();
                         rptIntegralVictimas rptCRIntegralVictimas = new rptIntegralVictimas();

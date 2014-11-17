@@ -200,7 +200,6 @@ namespace SIAQ.BusinessProcess.Object
                 if (oENTResponse.GeneratesException) { return oENTResponse; }
 
                 // Validación de mensajes de la BD
-                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
                 if (oENTResponse.sMessage != "") { return oENTResponse; }
 
             }

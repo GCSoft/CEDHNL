@@ -1840,7 +1840,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             private global::System.Data.DataColumn columnTipo;
             
-            private global::System.Data.DataColumn columnFechaRecibido;
+            private global::System.Data.DataColumn columnFechaRecibo;
             
             private global::System.Data.DataColumn columnProcedencia;
             
@@ -1909,9 +1909,9 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn FechaRecibidoColumn {
+            public global::System.Data.DataColumn FechaReciboColumn {
                 get {
-                    return this.columnFechaRecibido;
+                    return this.columnFechaRecibo;
                 }
             }
             
@@ -1984,13 +1984,13 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblExpVisitaduriaGeneral_IVRow AddtblExpVisitaduriaGeneral_IVRow(string ExpedienteNumero, string Acumulados, string Tipo, string FechaRecibido, string Procedencia, string Estatus, string fechaConclusion, string CausalConclusion) {
+            public tblExpVisitaduriaGeneral_IVRow AddtblExpVisitaduriaGeneral_IVRow(string ExpedienteNumero, string Acumulados, string Tipo, string FechaRecibo, string Procedencia, string Estatus, string fechaConclusion, string CausalConclusion) {
                 tblExpVisitaduriaGeneral_IVRow rowtblExpVisitaduriaGeneral_IVRow = ((tblExpVisitaduriaGeneral_IVRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ExpedienteNumero,
                         Acumulados,
                         Tipo,
-                        FechaRecibido,
+                        FechaRecibo,
                         Procedencia,
                         Estatus,
                         fechaConclusion,
@@ -2020,7 +2020,7 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
                 this.columnExpedienteNumero = base.Columns["ExpedienteNumero"];
                 this.columnAcumulados = base.Columns["Acumulados"];
                 this.columnTipo = base.Columns["Tipo"];
-                this.columnFechaRecibido = base.Columns["FechaRecibido"];
+                this.columnFechaRecibo = base.Columns["FechaRecibo"];
                 this.columnProcedencia = base.Columns["Procedencia"];
                 this.columnEstatus = base.Columns["Estatus"];
                 this.columnfechaConclusion = base.Columns["fechaConclusion"];
@@ -2036,8 +2036,8 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
                 base.Columns.Add(this.columnAcumulados);
                 this.columnTipo = new global::System.Data.DataColumn("Tipo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTipo);
-                this.columnFechaRecibido = new global::System.Data.DataColumn("FechaRecibido", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFechaRecibido);
+                this.columnFechaRecibo = new global::System.Data.DataColumn("FechaRecibo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFechaRecibo);
                 this.columnProcedencia = new global::System.Data.DataColumn("Procedencia", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnProcedencia);
                 this.columnEstatus = new global::System.Data.DataColumn("Estatus", typeof(string), null, global::System.Data.MappingType.Element);
@@ -4824,18 +4824,18 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string FechaRecibido {
+            public string FechaRecibo {
                 get {
                     try {
-                        return ((string)(this[this.tabletblExpVisitaduriaGeneral_IV.FechaRecibidoColumn]));
+                        return ((string)(this[this.tabletblExpVisitaduriaGeneral_IV.FechaReciboColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'FechaRecibido\' in table \'tblExpVisitaduriaGeneral_IV\' is DB" +
-                                "Null.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'FechaRecibo\' in table \'tblExpVisitaduriaGeneral_IV\' is DBNu" +
+                                "ll.", e);
                     }
                 }
                 set {
-                    this[this.tabletblExpVisitaduriaGeneral_IV.FechaRecibidoColumn] = value;
+                    this[this.tabletblExpVisitaduriaGeneral_IV.FechaReciboColumn] = value;
                 }
             }
             
@@ -4944,14 +4944,14 @@ namespace SIAQ.Web.Application.WebApp.Private.Reportes.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsFechaRecibidoNull() {
-                return this.IsNull(this.tabletblExpVisitaduriaGeneral_IV.FechaRecibidoColumn);
+            public bool IsFechaReciboNull() {
+                return this.IsNull(this.tabletblExpVisitaduriaGeneral_IV.FechaReciboColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetFechaRecibidoNull() {
-                this[this.tabletblExpVisitaduriaGeneral_IV.FechaRecibidoColumn] = global::System.Convert.DBNull;
+            public void SetFechaReciboNull() {
+                this[this.tabletblExpVisitaduriaGeneral_IV.FechaReciboColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

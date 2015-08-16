@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<GCUtility Version="1.1">
+	<Communication Namespace="GCSoft.Utilities.Communication">
+		<GCMail>
+			<Utility Method="Send"	Summary="Envía un correo electrónico con los parametros de configuración establecidos en App.config"/>
+		</GCMail>
+	</Communication>
+	<Function Namespace="GCUtility.Function">
+		<GCCommon>
+			<Utility Method="SortGridView" Summary="Ordena un GridView"/>
+			<Utility Method="StampCookie" Summary="Agrega una marca única de la aplicación al nombre de una cookie"/>
+		</GCCommon>
+		<GCJavascript>
+			<Utility Method="ClearText" Summary="Reemplaza los caracteres especiales que no se interpretan en Javascript encontrados en la cadena de entrada por caracteres válidos"/>
+		</GCJavascript>
+		<GCNumber>
+			<Utility Method="IsNumber" Summary="Evalua una cadena de texto para saber si es un Número"/>
+		</GCNumber>
+		<GCParse>
+			<Utility Method="ToStandarDate"			Summary="Obtiene una fecha en el formato universal"/>
+			<Utility Method="GridViewToDataTable"	Summary="Obtiene un DataTable en base a la definición de enlazado de un GridView (incluye DataKeys). Este método no contempla los TemplateField ni ningun otra columna diferente a un BoundField o DataKey"/>
+		</GCParse>
+	</Function>
+	<Security Namespace="GCSoft.Utilities.Security">
+		<GCAuthentication>
+			<Utility Method="AuthenticateUser"  Summary="Genera un ticket de autenticación para un usuario que acreditó los niveles de seguridad de una aplicación configurada como Authentication Mode Forms"/>
+		</GCAuthentication>
+		<GCEncryption>
+			<Utility Method="DecryptString"  Summary="Desencripta una cadena de texto"/>
+			<Utility Method="EncryptString"  Summary="Encripta una cadena de texto"/>
+		</GCEncryption>
+		<GCPassword>
+			<Utility Method="Create" Summary="Crea un nuevo password"/>
+		</GCPassword>
+	</Security>
+</GCUtility>

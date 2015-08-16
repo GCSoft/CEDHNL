@@ -1,0 +1,736 @@
+/*'---------------------------------------------------------------------------------------------------------------------------------
+' Nombre:   Control
+' Autor:    Ruben.Cobos
+' Fecha:		11-Marzo-2012
+'
+' Descripción:	Hoja de estilos que contiene las configuraciones generales de los controles de la aplicación
+'
+'----------------------------------------------------------------------------------------------------------------------------------*/
+
+/*ACORDEON*/
+.AccordionHeader{
+	border: 1px solid #55C666;
+	background-color: #456B4A;
+	color: white;
+	cursor: pointer;
+	font-family: Arial, Sans-Serif;
+	font-size: 13px;
+	font-weight: bold;
+	margin-top: 5px;
+	padding: 5px;
+}
+
+.AccordionHeader a{
+	color: #FFFFFF;
+	background: none;
+	text-decoration: none;
+}
+
+.AccordionHeader a:hover{
+	background: none;
+	text-decoration: underline;
+}
+
+.AccordionHeaderSelected{
+   background-color: #55C666;
+	border: 1px solid #456B4A;
+	color: white;
+	cursor: pointer;
+	font-family: Arial, Sans-Serif;
+	font-size: 13px;
+	font-weight: bold;
+	margin-top: 5px;
+	padding: 5px;
+}
+
+.AccordionHeaderSelected a{
+	color: #FFFFFF;
+	background: none;
+	text-decoration: none;
+}
+
+.AccordionHeaderSelected a:hover{
+	background: none;
+	text-decoration: underline;
+}
+
+.AccordionContent{
+	background-color: #FFFFFF;
+	border: 0px dashed #2F4F4F;
+	border-top: none;
+	padding: 5px;
+	padding-top: 10px;
+}
+
+/*ACORDEON - OPCIONES DE MENU*/
+.MenuItem{
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size:13px;
+	height:20px;
+	left:8px;
+	position:relative;
+	width:230px;
+}
+
+.MenuItem a{
+	color: #456B4A;
+	background: none;
+	text-decoration: none;
+}
+
+.MenuItem a:hover{
+	background: none;
+	cursor: pointer;
+	font-weight:bold;
+	text-decoration: underline;
+}
+
+.MenuItemSelected{
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size:13px;
+	height:20px;
+	left:8px;
+	position:relative;
+	width:230px;
+}
+
+.MenuItemSelected a{
+	color:red;
+	background:none;
+	text-decoration: none;
+}
+
+.MenuItemSelected a:hover{
+	background: none;
+	cursor:pointer;
+	font-weight:bold;
+	text-decoration: underline;
+}
+
+/*AUTOCOMPLETE*/
+.Autocomplete_CompletionListElement {
+	background-color:inherit; 
+	border:solid 1px gray; 
+	color:black; 
+    cursor:pointer; 
+    font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+    font-size:11px; 
+    list-style-type:none; 
+    margin:0px! important;
+    padding:0;
+    text-align:left;
+	visibility:hidden;
+}
+
+.Autocomplete_HighLightedListItem{
+	background-color:#55C666;
+	color:#FFFFFF;
+    padding:1px; 
+}
+
+.Autocomplete_ListItem {
+	background-color:#FFFFFF;
+    padding:1px; 
+}
+
+/*BOTONES*/
+.Button_General{
+  	font-family: Arial;
+	font-size: 11px;
+	color: #FFFFFF;
+	cursor:pointer;
+	background-color: #456B4A;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-top-color: #808080;
+	border-right-color: #808080;
+	border-bottom-color: #808080;
+	border-left-color: #808080;
+	margin-top: 4px;
+	font-weight: bold;
+	margin-bottom: 4px;
+	padding-top: 2px;
+	padding-right: 0px;
+	padding-bottom: 2px;
+	padding-left: 0px;
+	height:20px;
+}
+
+.Button_General_Disabled{
+  	font-family: Arial;
+	font-size: 11px;
+	color: #FFFFFF;
+	background-color: #CCCCCC;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-top-color: #DDDDDD;
+	border-right-color: #DDDDDD;
+	border-bottom-color: #DDDDDD;
+	border-left-color: #DDDDDD;
+	margin-top: 4px;
+	font-weight: bold;
+	margin-bottom: 4px;
+	padding-top: 2px;
+	padding-right: 0px;
+	padding-bottom: 2px;
+	padding-left: 0px;
+	height:20px;
+}
+
+/*CALENDAR*/
+.Calendar_Canvas{
+	background:url('../../../../Include/Image/Buttons/Calendar.png') 98% 50% no-repeat;
+	background-color:#EFEFEF;
+	border:1px solid #456B4A;
+	color:#456B4A;
+	cursor:pointer;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 11px;
+	font-weight:bold;
+	height:20px;
+	line-height:20px;
+	text-align:center;
+	/*width:176px;*/
+	width:211px;
+}
+
+.Calendar_General .ajax__calendar_container {
+    border:1px solid #456B4A;
+    background-color:#EFEFEF;
+    color:#456B4A;
+}
+
+.Calendar_General .ajax__calendar_dayname,
+.Calendar_General .ajax__calendar_other .ajax__calendar_day,
+.Calendar_General .ajax__calendar_other .ajax__calendar_year{
+    color:#456B4A;
+    font-weight:bold;
+}
+
+.Calendar_General .ajax__calendar_hover .ajax__calendar_day,
+.Calendar_General .ajax__calendar_hover .ajax__calendar_month,
+.Calendar_General .ajax__calendar_hover .ajax__calendar_year{
+    color:#55C666;
+    font-weight:bold;
+}
+
+.Calendar_General .ajax__calendar_active .ajax__calendar_day,
+.Calendar_General .ajax__calendar_active .ajax__calendar_month,
+.Calendar_General .ajax__calendar_active .ajax__calendar_year{
+    background-color:#55C666;
+    color:#FFFFFF;
+    font-weight:lighter;
+}
+
+.Calendar_General .ajax__calendar_hover .ajax__calendar_today{
+    background-color:#55C666;
+    color:#FFFFFF;
+    font-weight:lighter;
+}
+
+/*CALENDAR FIXED DATE TIME*/
+.CalendarFixed_Canvas{
+	background:url('../../../../Include/Image/Buttons/Watch.png') 98% 50% no-repeat;
+	background-color:#EFEFEF;
+	border:1px solid #456B4A;
+	color:#666666;
+	cursor:default;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 11px;
+	font-weight:bold;
+	height:20px;
+	line-height:20px;
+	text-align:center;
+	width:211px;
+}
+
+
+/*CHECKBOX*/
+.CheckBox_Regular{
+	color:#456B4A;
+	cursor:pointer;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 12px;
+}
+
+.CheckBox_Regular label{ 
+	position:relative;
+	top:-2px;
+}
+
+/*CHECKBOXLIST*/
+.CheckBoxList_Regular{
+	border: 1px solid #C1C1C1;
+	color:#456B4A;
+	cursor:pointer;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 12px;
+	height:100px;
+	width:100%;
+}
+
+.CheckBoxList_Regular label{ 
+	float:left;
+}
+
+.CheckBoxList_Regular input{
+    float:left;
+    clear:both;
+}
+
+.CheckBoxList_Regular tr{
+   height:24px;
+}
+
+.CheckBoxList_Regular td{
+   width:250px;
+}
+
+/*DROPDOWNLIST*/
+.DropDownList_General{
+	border:1px solid #5E8291;
+	background-color: #FFFFFF;
+	color:#333333;
+	cursor:pointer;
+	font-family: 'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 13px;
+	font-weight:lighter;
+	height:25px;
+	text-align:left;
+	vertical-align:middle;
+}
+
+/*FIXEDDATETIME*/
+.Calendar_Canvas{
+	background-color:#EFEFEF;
+	border:1px solid #456B4A;
+	color:#456B4A;
+	cursor:default;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 11px;
+	font-weight:bold;
+	height:20px;
+	line-height:20px;
+	text-align:center;
+}
+
+/*GRIDVIEW*/
+.Grid_Header {
+	background-color: #55C666;
+	border: 1px solid #C1C1C1;
+	color: #FFFFFF;
+	font-family: 'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 12px;
+	font-weight:normal;
+	height: 28px;
+}
+
+.Grid_Header a{
+	color: #FFFFFF;
+	background: none;
+}
+
+.Grid_Header th {
+	border:solid 1px #C1C1C1;
+	color:#FFFFFF;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size:12px;
+	font-weight:normal;
+	padding:2px;
+} 
+
+.Grid_Row {
+	background-color: #FFFFFF;
+	border: 1px solid #C1C1C1;
+	color: #333333;
+	font-family: 'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 12px;
+	font-weight:normal;
+	height: 22px;
+}
+
+.Grid_Row a{
+	color: #333333;
+	background: none;
+}
+
+.Grid_Row td {
+	border:solid 1px #C1C1C1;
+	color:#333333;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size:12px;
+	font-weight:normal;
+	height:22px;
+	padding:2px;
+}
+
+.Grid_Row_Alternating {
+	background-color:#E6E6E6;
+	border:1px solid #C1C1C1;
+	color:#333333;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size:12px;
+	font-weight:normal;
+	height:22px;
+}
+
+.Grid_Row_Alternating a{
+	color: #333333;
+	background: none;
+}
+
+.Grid_Row_Alternating td {
+	border: solid 1px #C1C1C1;
+	color: #333333;
+	font-family: 'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size:12px;
+	font-weight:normal;
+	height:22px;
+	padding:2px;
+}
+
+.Grid_Row_Over{
+	background-color: #456B4A;
+	border: 1px solid #C1C1C1;
+	color: #C1C1C1;
+	font-family: 'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 12px;
+	font-weight:normal;
+	height: 22px;
+}
+
+.Grid_Row_Over a{
+	color: #C1C1C1;
+	background: none;
+}
+
+.Grid_Row_Over td {
+	border: solid 1px #C1C1C1;
+	color: #C1C1C1;
+	font-family: 'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 12px;
+	font-weight:normal;
+	height: 22px;
+	padding:2px;
+}
+
+.Grid_Label_Header{
+	color: #FFFFFF;
+	background: none;
+}
+
+.AgregadosGrid
+{
+	border: 0px;
+	margin: auto;
+	width: 100%;
+}
+
+.AgregadosGrid td
+{
+	border: 0px;
+	padding: 5px;
+}
+
+.AgregadosGrid tr
+{
+	border: 0px;
+}
+
+/*GRIDVIEW ACTION*/
+.Grid_Header_Action {
+	background-color: #EFEFEF;
+	border: 1px solid #C1C1C1;
+	color: #456B4A;
+	font:11px Tahoma;
+	font-weight:normal;
+	height:15px;
+}
+
+.Grid_Header_Action a {
+	color: #456B4A;
+	background: none;
+} 
+
+.Grid_Header_Action th {
+	border: solid 1px #C1C1C1;
+	color: #456B4A;
+	font:11px Tahoma;
+	font-weight:normal;
+	padding:2px;
+} 
+
+.Grid_Row_Action {
+	background-color: #FFFFFF;
+	border: 1px solid #C1C1C1;
+	color: #456B4A;
+	font:11px Tahoma;
+	font-weight:normal;
+	height:15px;
+}
+
+.Grid_Row_Action a{
+	color: #456B4A;
+	background: none;
+}
+
+.Grid_Row_Action td {
+	border: solid 1px #C1C1C1;
+	color: #456B4A;
+	font:11px Tahoma;
+	font-weight:normal;
+	height:15px;
+	padding:2px;
+}
+
+.Grid_Row_Over_Action{
+	background-color: #456B4A;
+	border: 1px solid #C1C1C1;
+	color: #C1C1C1;
+	font:11px Tahoma;
+	font-weight:normal;
+	height:15px;
+}
+
+.Grid_Row_Over_Action a{
+	color:#C1C1C1;
+	background: none;
+}
+
+.Grid_Row_Over_Action td {
+	border:solid 1px #C1C1C1;
+	color:#C1C1C1;
+	font:11px Tahoma;
+	font-weight:normal;
+	height:15px;
+	padding:2px;
+}
+
+/*GRIDVIEW HEADER ACTION ALTERNATIVO*/
+.Grid_Header_Action_Alternative {
+	background-color: #456B4A;
+	border: 1px solid #C1C1C1;
+	color: #FFFFFF;
+	font:11px Tahoma;
+	font-weight:normal;
+	height:15px;
+}
+
+.Grid_Header_Action_Alternative a {
+	color: #FFFFFF;
+	background: none;
+} 
+
+.Grid_Header_Action_Alternative th {
+	border: solid 1px #C1C1C1;
+	color: #FFFFFF;
+	font:11px Tahoma;
+	font-weight:normal;
+	padding:2px;
+}
+
+/*GRIDVIEW DETALLE*/
+.Grid_Row_Detail {
+	background-color: #EDEDED;
+	border-bottom: 1px solid #EDEDED;
+	border-left: 1px solid #EDEDED;
+	border-right: 1px solid #EDEDED;
+	border-top: 5px solid #FFFFFF;
+	color: #456B4A;
+	font:11px Tahoma;
+	font-weight:normal;
+	height:15px;
+} 
+
+/* GRIDVIEW OPCIONES DINÁMICAS */
+.GridDinamico
+{
+	
+}
+
+.GridDinamico .Row
+{
+	background-color: #FFFFFF;
+	border: 1px solid #C1C1C1;
+	color: #333333;
+	font-family: 'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	height: 22px;
+}
+
+.GridDinamico .Alternating
+{
+	background-color: #eaeaea;
+	border: 1px solid #C1C1C1;
+	color: #333333;
+	font-family: 'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	height: 22px;
+}
+
+
+/*TEXTAREA*/
+.Textarea_General{
+	border:1px solid #5E8291;
+	background-color: #FFFFFF;
+	color:#333333;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 11px;
+	font-weight:lighter;
+	height:50px;
+	text-align:left;
+	vertical-align:middle;
+}
+
+.Textarea_Disabled{
+	border:1px solid #5E8291;
+	background-color: #EFEFEF;
+	color:#456B4A;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 11px;
+	font-weight:lighter;
+	height:50px;
+	text-align:left;
+	vertical-align:middle;
+}
+
+/*TEXTBOX*/
+.Textbox_General{
+	border:1px solid #5E8291;
+	background-color: #FFFFFF;
+	color:#333333;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 12px;
+	font-weight:lighter;
+	height:16px;
+	text-align:left;
+	vertical-align:bottom;
+}
+
+
+.Textbox_Disabled{
+	border:1px solid #5E8291;
+	background-color: #EFEFEF;
+	color:#333333;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 12px;
+	font-weight:lighter;
+	height:16px;
+	text-align:left;
+	vertical-align:bottom;
+}
+
+/*TIMER*/
+.Timer_Canvas{
+	background-color:#EFEFEF;
+	border:1px solid #456B4A;
+	color:#666666;
+	cursor:default;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 11px;
+	font-weight:bold;
+	height:20px;
+	line-height:20px;
+	text-align:center;
+	width:80px;
+}
+
+.Timer_Error_Canvas{
+	background-color:#FF9966;
+	border:1px solid #456B4A;
+	color:#666666;
+	cursor:default;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 11px;
+	font-weight:bold;
+	height:20px;
+	line-height:20px;
+	text-align:center;
+	width:80px;
+}
+
+.Timer_Error_Messages{
+	color:red;
+	cursor:default;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 11px;
+	height:20px;
+	line-height:20px;
+	text-align:center;
+	width:80px;
+}
+
+.Timer_Focus_Canvas{
+	background-color:#FFFFFF;
+	border:1px solid #456B4A;
+	color:#666666;
+	cursor:default;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 11px;
+	font-weight:bold;
+	height:20px;
+	line-height:20px;
+	text-align:center;
+	width:80px;
+}
+
+
+/*'---------------------------------------------------------------------------------------------------------------------------------*/
+
+
+
+
+
+/*LABEL*/
+.Label_General{
+	color:#333333;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 11px;
+}
+
+.Label_CellInside{
+	background-color: #55C666;
+	border: 0px;
+	color:White;
+	font-family: Arial, Sans-Serif;
+	font-size:12px;
+	font-weight:bold;
+	text-align:left;
+}
+
+.NumeroSolicitudLabel
+{
+	color: #ff6600;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.NumeroNuevoExpedienteLabel{
+	background-color:#EFEFEF;
+	border:1px solid #456B4A;
+	color:#666666;
+	cursor:default;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 14px;
+	font-weight:bold;
+	height:25px;
+	line-height:20px;
+	text-align:left;
+}
+
+
+/*LINKBUTTON*/
+.LinkButton_Regular{
+	color: #456B4A;
+	cursor:pointer;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 12px;
+}

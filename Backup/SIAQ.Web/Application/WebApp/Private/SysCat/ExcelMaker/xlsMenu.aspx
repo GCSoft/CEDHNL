@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="xlsMenu.aspx.cs" Inherits="SIAQ.Web.Application.WebApp.Private.SysCat.ExcelMaker.xlsMenu" %>

@@ -1,0 +1,32 @@
+/*'---------------------------------------------------------------------------------------------------------------------------------
+' Nombre:   ToolTip
+' Autor:    Ruben.Cobos
+' Fecha:		02-Abril-2012
+'
+' Descripción:	Hoja de estilos que contiene las configuraciones generales para el objeto ToolTip
+'
+' Referencia Web:
+'              http://sixrevisions.com/tutorials/javascript_tutorial/create_lightweight_javascript_tooltip/
+'					http://sandbox.scriptiny.com/tooltip/
+'----------------------------------------------------------------------------------------------------------------------------------*/
+.hotspot {
+	border-bottom:1px dotted #900;
+	color:#900;
+	cursor:pointer;
+	font:11px/1.5 Verdana, Arial, Helvetica, sans-serif;
+	padding-bottom:1px;
+}
+
+#tt {
+	display:block;
+	font:11px/1.5 Verdana, Arial, Helvetica, sans-serif;
+	position:absolute;
+}
+
+#ttcont {
+	background:#666;
+	color:#FFF;
+	display:block;
+	margin-left:5px;
+	padding:2px 12px 3px 7px;
+}

@@ -1,0 +1,344 @@
+﻿/*'---------------------------------------------------------------------------------------------------------------------------------
+' Nombre:   Content
+' Autor:    Ruben.Cobos
+' Fecha:	27-Febrero-2014
+'
+' Descripción:	Hoja de estilos para algunas tablas
+'
+'----------------------------------------------------------------------------------------------------------------------------------*/
+
+/* Tabla general */
+.GeneralTable
+{
+	border-spacing: 5px;
+	font-size:12px;
+	padding: 0px;
+	width: 100%;
+}
+
+.GeneralTable .Agregados
+{
+	vertical-align: top;
+}
+
+.GeneralTable .Botones
+{
+	text-align: left;
+}
+
+.GeneralTable .Campo
+{
+	text-align: left;
+	width: 286px;
+}
+
+.GeneralTable .Espacio
+{
+	width: 20px;
+}
+
+.GeneralTable .Especial
+{
+	color: #a9a9a9;
+	font-size: 15px;
+	font-weight: bold;
+	text-align: left;
+}
+
+.GeneralTable .Etiqueta
+{
+	background-color: #ededed;
+	text-align: left;
+	width: 180px;
+}
+
+.GeneralTable .Nombre
+{
+	text-align: left;
+	vertical-align: top;
+	width: 150px;
+}
+
+.GeneralTable .Observaciones
+{
+	background-color: #ededed;
+	text-align: left;
+}
+
+.GeneralTable .SubTitulo
+{
+	font-size: 12px;
+	text-align: left;
+}
+
+.GeneralTable .VinetaObligatorio
+{
+    color: #ff0000;
+    font-size: 12px;
+    vertical-align: top;
+    width: 20px;
+}
+
+.SolicitudComentarioTable
+{
+	border-spacing: 5px;
+	padding: 0px;
+	width: 100%;
+}
+
+/* Tabla para el detalle de la solicitud */
+.SolicitudTable
+{
+	border-spacing: 5px;
+	font-size:12px;
+	padding: 0px;
+	width: 100%;
+    height: 1px;
+}
+
+.SolicitudTable .Botones
+{
+	text-align: left;
+}
+
+.SolicitudTable .Campo
+{
+	text-align: left;
+	width: 200px;
+}
+
+.SolicitudTable .Espacio
+{
+	width: 20px;
+}
+
+.SolicitudTable .Especial
+{
+	color: #a9a9a9;
+	font-size: 15px;
+	font-weight: bold;
+	text-align: left;
+}
+
+.SolicitudTable .Etiqueta
+{
+	background-color: #ededed;
+	text-align: left;
+	width: 180px;
+}
+
+.SolicitudTable .Observaciones
+{
+	background-color: #ededed;
+	text-align: left;
+}
+
+.SolicitudTable .Nombre
+{
+	text-align: left;
+	vertical-align: top;
+	width: 150px;
+}
+
+/*Tabla Agregar Ciudadanos a la solicitud*/
+.Solicitud
+{ 
+	font-size: 15px;
+	font-weight: bold;
+	text-align: left;
+}
+            
+.MiddleSpace
+{
+	height:7px;
+}
+                        
+.Tamanoletra
+{
+	font-size:13.5px;
+	text-align:left;
+	height:50px;
+}
+        
+.TablaCiudadano
+{
+	border-spacing: 5px;
+	font-size:11px;
+	padding: 0px;
+	width: 100%;
+	text-align:left;
+}  
+            
+.EstiloBR
+{
+	width: 236px;
+	font-size:13.5px;
+}
+        
+.tdBotonbuscar
+{
+	width: 127px;
+}
+        
+.EspacioCeldaMediano
+{
+	width: 251px;
+}
+
+.EspacioCeldaIntermedia
+{
+	width: 7px;
+}
+             
+.Grid_Encabezado {
+	background-color:transparent;
+	border:transparent;
+	height: 1px;
+}
+             
+.Grid_Filas{
+	background-color: transparent;
+	border: transparent;
+	color: Black;
+	font-family: 'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 11px;
+	font-weight:normal;
+	height:11.5px;
+}
+                    
+.Empty
+{
+	border-style: none;
+	border-width: 0px;
+	background-color:transparent;
+	border: 0px;
+}
+
+.TextoSolNum
+{
+	font-size: 15px;
+	font-weight: bold;
+	text-align: left;
+	width: 158px;
+}
+
+.CeldaEspacioGrandeAncho
+{
+	height: 7px;
+	width: 158px;
+}
+
+.AnchoCeldaPrincipal
+{
+	width: 158px;
+}
+
+.AlturaCeldaIntermedia
+{
+	height: 6px;
+	width: 186px;
+}
+ 
+.EspacioIntermedio
+{
+	width: 186px;
+}
+
+.AnchoTablaCalSol
+{
+	width: 146px;
+	font-size: 11px;
+	background-color: #ededed;
+	border:2px;
+	border-color:White;
+}
+
+.TamanoLetraNormal
+{
+	font-size:11px;
+}
+        
+.SolicitudCalSol
+{
+    text-align: left;
+    width: 129px;
+	font-size: 15px;
+	font-weight: bold;
+	text-align: left;
+}
+
+.CalificarTable
+{
+	border-spacing: 5px;
+	font-size:11px;
+	padding: 0px;
+	width: 100%;
+    height: 1px;
+}
+
+.CalificarTable .Especial
+{
+	color: #a9a9a9;
+	font-size: 15px;
+	font-weight: bold;
+	text-align: left;
+}
+
+.CalificarTable .Espacio
+{
+	width: 20px;
+}
+
+/* Estilos para los comentarios de la solicitud */
+.ComentarioSolicitudTable
+{
+	width: 100%;
+}
+
+.ComentarioSolicitudTable .Fecha
+{
+	color: #666;
+	font-size: 13px;
+	font-weight: normal;
+	text-align: right;
+}
+
+.ComentarioSolicitudTable .Nombre
+{
+	color: #27245D;
+	font-size: 13px;
+	font-weight: normal;
+	text-align: left;
+}
+
+.ComentarioSolicitudTable .Numero
+{
+	background-color: #c0c0c0;
+	color: #fff;
+	font-size: 30px;
+	font-weight: normal;
+	width: 75px;
+}
+
+.ComentarioSolicitudTable .Texto
+{
+	color: #999;
+	font-size: 13px;
+	font-weight: normal;
+	text-align: left;
+	vertical-align: top;
+}
+
+
+/* Estilos para filas que sirven de divisón con encabezado */
+.DivisonTabla 
+{
+    background-color: #55C666;
+	border: 1px solid #C1C1C1;
+	color: #FFFFFF;
+	font-family: 'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 12px;
+	font-weight:normal;
+	height: 28px;
+	text-align:left;
+}

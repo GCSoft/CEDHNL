@@ -1,0 +1,264 @@
+/*'---------------------------------------------------------------------------------------------------------------------------------
+' Nombre:   Content
+' Autor:    Ruben.Cobos
+' Fecha:		11-Marzo-2012
+'
+' Descripción:	Hoja de estilos que contiene las configuraciones de las tablas de los Content's de la aplicación
+'
+'----------------------------------------------------------------------------------------------------------------------------------*/
+
+/* Action (Formularios de Edición/Nuevo) */
+.ActionBlock{
+	background-image: url('../../../../Include/Image/Web/Background.png');
+	left: 0px;
+	height: 100%;
+	position:fixed;
+	top: 0px;
+	width: 100%;
+	z-index:900;
+}
+
+.ActionBody{ 
+	border:0px solid red;
+	clear: both;
+	text-align:center;
+	vertical-align:middle;
+	width:100%;
+}
+
+.ActionContent{
+	background-color:#FFFFFF;
+	border:1px solid #456B4A;
+	margin:0px auto;
+	position:relative;
+	z-index:901;
+}
+
+.ActionContentMessage{
+	border:0px solid red;
+	color:Red;
+	display:block;
+	font-family:Arial, Sans-Serif;
+	font-size:9px;
+}
+
+.ActionHeader{
+	background-color:#456B4A;
+	cursor:move;
+	height:30px;
+	text-align:center;
+	vertical-align:middle;
+	width:100%;
+}
+
+.ActionHeaderCloseImage{
+   cursor:pointer;
+   width:14px;
+   z-index:902;
+}
+
+.ActionHeaderTitle{
+   color:#FFFFFF;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size:12px;
+	font-weight:bold;
+}
+
+.tdActionCeldaLeyendaItem{
+	border:0px solid #456B4A;
+	color:#456B4A;
+	font-family: Arial, Sans-Serif;
+	font-size:12px;
+	font-weight:bold;
+	text-align:left;
+	width:160px;
+}
+
+
+/* Formulario General*/
+.tdCeldaTituloEncabezado{
+	color:#2F7B54;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size:15px;
+	font-weight:bold;
+	height: 27px;
+	text-align:left;
+}
+
+.tdCeldaItem{
+	text-align:left;
+	vertical-align:bottom;
+	width:500px;
+}
+
+.tdCeldaLeyendaItem{
+	background-color: #55C666;
+	border:1px solid #456B4A;
+	color:White;
+	font-family: Arial, Sans-Serif;
+	font-size:12px;
+	font-weight:bold;
+	text-align:left;
+	width:300px;
+}
+
+.tdCeldaLeyendaItemFondoBlanco{
+	background-color: White;
+	border:1px none #456B4A;
+	color:Navy;
+	font-family: Arial, Sans-Serif;
+	font-size:11px;
+	font-weight:normal;
+	text-align:left;
+	width:180px;
+}
+
+.tdCeldaMiddleSpace{
+	height:10px;
+}
+
+.tdCeldaMiddleSpace_Title{
+	height:20px;
+}
+
+.tdCeldaSpan{
+	background-color: #FFFFFF;
+	border:1px solid #456B4A;
+	color:#2F7B54;
+	font-family: Arial, Sans-Serif;
+	font-size:12px;
+	font-weight:bold;
+	vertical-align:text-top;
+	width:153px;
+}
+
+.trFilaItem{
+	height:24px;
+}
+
+.trFilaFooter{
+	height:24px;
+}
+ 
+/* Generales */ 
+#InformacionDiv
+{
+	margin-bottom: 20px;
+}
+
+.MarcadorObligatorio{
+	background-color: White;
+	color:Red;
+	font-family: Arial, Sans-Serif;
+	font-size:10px;
+	font-weight:normal;
+	text-align:left;
+	width:10px;
+}
+
+/* Detalle de la solicitud */
+#AgregadosDiv
+{
+	width: 250px;
+}
+
+#AgregadosDiv .ContenidoDiv
+{
+	background-color: #eff2fb;
+	border: 1px solid;
+	min-height: 150px;
+}
+
+#AgregadosDiv .TituloDiv
+{
+	background-color: #ddf;
+	border: 1px solid;
+	height: 20px;
+	padding: 5px;
+	vertical-align: middle;
+}
+
+.DocumentoListDiv
+{
+	border: 1px solid #eee;
+	margin-bottom: 20px;
+	min-height: 100px;
+	vertical-align: top;
+	width: 100%;
+}
+
+.DocumentoListDiv .Item
+{
+	border: 0px;
+	height: 55px;
+	padding: 5px;
+	width: 65px;
+}
+
+.DocumentoListDiv .Texto
+{
+	font-size: 11px;
+	text-align: left;
+}
+
+.DocumentoListDiv a
+{
+	color: #2F7B54;
+	font-size: 12px;
+	text-decoration: none;
+}
+
+.DocumentoListDiv a:hover
+{
+	text-decoration: underline;
+}
+
+.DocumentoListDiv img
+{
+	padding: 5px;
+}
+
+.IconoPanel
+{
+	color: #737373;
+	float: left;
+	font-size: 12px;
+	height: 120px;
+	margin-right: 15px;
+	margin-top: 5px;
+	text-align: center;
+	width: 85px;
+}
+
+.IconoPanel img
+{
+	padding-bottom: 10px;
+	padding: 5px;
+}
+
+.SolicitudComentarioDiv
+{
+	border: 1px solid #eee;
+	margin-bottom: 20px;
+	min-height: 100px;
+	vertical-align: top;
+	width: 100%;
+}
+
+.SolicitudComentarioDiv .Texto
+{
+	font-size: 11px;
+	text-align: center;
+}
+
+.SolicitudComentarioDiv .TituloDiv
+{
+	background-color: #55C666;
+	color: #fff;
+	font-size: 13px;
+	height: 20px;
+	padding: 5px;
+	text-align: left;
+}
+
+

@@ -1,0 +1,66 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="NonMenuTemplate.master.cs" Inherits="SIAQ.Web.Include.MasterPage.NonMenuTemplate" %>
+<%@ Register Assembly="System.Web.Extensions" Namespace="System.Web.UI" TagPrefix="asp" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+   <title>SIAQ</title>
+   <meta content="GCSoft - Web Project Creator BETA 1.0" name="autor" />
+   <link rel="shortcut icon" href="~/Include/Image/Content/Web/favicon.ico" type="image/png" />
+   <link href="~/Include/Style/Content.css" rel="Stylesheet" type="text/css" />
+   <link href="~/Include/Style/Control.css" rel="Stylesheet" type="text/css" />
+   <link href="~/Include/Style/MasterPage.css" rel="Stylesheet" type="text/css" />
+   <link href="~/Include/Style/Text.css" rel="Stylesheet" type="text/css" />
+   <link href="~/Include/Style/Wait.css" rel="Stylesheet" type="text/css" />
+   <link href="~/Include/Javascript/TinyBox/TinyBox.css" rel="Stylesheet" type="text/css" />
+   <link href="~/Include/Javascript/ToolTip/ToolTip.css" rel="Stylesheet" type="text/css" />
+   <script src="../../../../Include/Javascript/TinyBox/TinyBox.js" type="text/javascript"></script>
+   <script src="../../../../Include/Javascript/ToolTip/ToolTip.js" type="text/javascript"></script>
+   <script language="javascript" type="text/javascript" src="../../../../Include/Javascript/GCSoft/GCSoft.js"></script>
+   <asp:ContentPlaceHolder ID="cntNonMenuTemplateHeader" runat="server">
+      
+   </asp:ContentPlaceHolder>
+</head>
+<body>
+   <form id="frmNonMenuTemplate" runat="server">
+		<asp:ScriptManager ID="smngNonMenuTemplate" runat="server" EnablePageMethods="True"></asp:ScriptManager>
+		<script type="text/jscript" language="javascript">
+      
+			// Listener
+			document.onkeydown = function (){
+				var keyPressed = window.event.keyCode;
+
+				switch(keyPressed){
+					case 13:		// Enter en cualquier parte de la página es deshabilitado por mandar al evento Click de salir
+						return false;
+				}
+				
+			};
+			
+      </script>
+		<asp:UpdatePanel ID="updMaster" runat="server">
+            <ContentTemplate>
+                
+                <asp:Panel ID="pnlHeader" runat="server" CssClass="MasterPageHeader" BackImageUrl="~/Include/Image/Web/BannerFill.png">
+                    <img id="imgBanner" alt="Banner" runat="server" src="~/Include/Image/Web/Banner.png" />
+                </asp:Panel>
+                
+                <asp:Panel ID="pnlBody" CssClass="MasterBody" runat="server">
+                     <asp:ContentPlaceHolder ID="cntNonMenuTemplateBody" runat="server"></asp:ContentPlaceHolder>
+                </asp:Panel>
+
+                <asp:UpdateProgress runat="server" ID="uprMaster" AssociatedUpdatePanelID="updMaster">
+                    <ProgressTemplate>
+                        <asp:Panel ID="pnlWait" runat="server" CssClass="LoadingDiv">
+                            <asp:Panel ID="pnlImageWait" runat="server" CssClass="LoadingImageDiv">
+                                <asp:Image ID="imgWait" AlternateText="Cargando..." ImageUrl="~/Include/Image/Wait/Loading.gif" runat="server" />
+                            </asp:Panel>
+                        </asp:Panel>
+                    </ProgressTemplate>
+                </asp:UpdateProgress>
+            
+            </ContentTemplate>
+        </asp:UpdatePanel>
+   </form>
+</body>
+</html>

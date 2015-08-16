@@ -1,0 +1,105 @@
+/*'---------------------------------------------------------------------------------------------------------------------------------
+' Nombre:   Text
+' Autor:    Ruben.Cobos
+' Fecha:		01-Marzo-2012
+'
+' Descripción:	Hoja de estilos que contiene las configuraciones generales de los textos de la aplicación
+'
+'----------------------------------------------------------------------------------------------------------------------------------*/
+
+.LoginTextLink{
+	color:#456B4A;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	font-weight:bold;
+	text-decoration: underline;
+}
+
+.Notification{
+	color:#0A3A31;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	vertical-align: top;
+}
+
+.Asunto_Success
+{
+	color: #2F7B54;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size:medium;
+	font-weight:bold;
+}
+
+.Asunto_Pending
+{
+	color:Red;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size:medium;
+	font-weight:bold;
+}
+
+/*'---------------------------------------------------------------------------------------------------------------------------------*/
+
+.GraphTabTitleText{
+   color:#456B4A;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size:10px;
+}
+
+.GraphTitleText{
+   color:#456B4A;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	text-align:center;
+	width:100%;
+}
+
+.GraphSubTitleText{
+   color:#456B4A;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size:10px;
+	text-align:center;
+	width:100%;
+}
+
+.LoginText{
+	color:#456B4A;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 12px;
+}
+
+.SubTitulo
+{
+	font-size: 12px;
+	text-align:left;
+}
+
+.Title_Form{
+	color: #2EA97B;
+	font-family: 'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.Title_Public{
+	color: #2F7B54;
+	font-family:Agency FB;
+	font-size:35px;
+	text-align:center;
+	font-weight: bold;
+}
+
+.UserNameText{
+	color:#539BC5;
+	font-family:Arial;
+	font-size:10pt;
+	font-weight:normal;
+}
+
+.VinetaObligatorio
+{
+    color: #ff0000;
+    font-size: 12px;
+    vertical-align: top;
+    width: 26px;
+}
